@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Seven Mysteries of Christ — The Orthodox Lamp</title>
+<style>
+:root{--gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;--bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--tx:#e8e0d0;--mu:#a09880;--red:#8b2020;--br:#2a2a2a;--bg5:#3a2e10;--sidebar-w:270px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.7;display:flex;flex-direction:column;min-height:100vh}
+a{color:var(--gold);text-decoration:none}
+a:hover{color:var(--gl)}
+
+#prog{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--gd),var(--gold),var(--gl));z-index:9999;transition:width .1s}
+
+#sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:100;display:flex;flex-direction:column;transition:transform .3s}
+#sidebar header{padding:1.4rem 1.2rem 1rem;border-bottom:1px solid var(--br)}
+.sb-cross{font-size:1.3rem;color:var(--gold);display:block;text-align:center;margin-bottom:.3rem}
+.sb-title{font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gl);text-align:center;line-height:1.3}
+.sb-sub{font-size:.62rem;color:var(--mu);text-align:center;margin-top:.25rem;font-style:italic}
+nav{padding:.8rem 0;flex:1}
+nav a{display:block;padding:.42rem 1.2rem;font-size:.78rem;color:var(--mu);transition:color .15s,background .15s;border-left:2px solid transparent;line-height:1.4}
+nav a:hover{color:var(--tx);background:var(--bg3)}
+nav a.active{color:var(--gl);border-left-color:var(--gold);background:var(--bg5)}
+.sb-search{padding:.8rem 1rem;border-top:1px solid var(--br)}
+.sb-search input{width:100%;background:var(--bg3);border:1px solid var(--br);border-radius:5px;padding:.4rem .7rem;color:var(--tx);font-size:.78rem;outline:none}
+.sb-search input:focus{border-color:var(--gd)}
+
+#main{margin-left:var(--sidebar-w);flex:1;display:flex;flex-direction:column}
+#mob-bar{display:none;position:fixed;top:0;left:0;right:0;height:48px;background:var(--bg2);border-bottom:1px solid var(--br);align-items:center;padding:0 1rem;z-index:99}
+#mob-bar .mb-title{font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gl);flex:1;text-align:center}
+#ham{background:none;border:none;color:var(--gold);font-size:1.4rem;cursor:pointer;padding:.3rem}
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:99}
+#overlay.show{display:block}
+
+.hero{text-align:center;padding:4.5rem 1.5rem 3rem;background:linear-gradient(180deg,var(--bg2) 0%,var(--bg) 100%);border-bottom:1px solid var(--br);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(201,168,76,.07) 0%,transparent 70%);pointer-events:none}
+.si{font-size:2rem;color:var(--gold);display:block;margin-bottom:.5rem}
+.st{font-size:clamp(1.5rem,4vw,2.4rem);font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--tx);line-height:1.2}
+.st span{color:var(--gold)}
+.ss{font-size:1rem;color:var(--gl);margin:.6rem 0 .3rem;font-weight:700;letter-spacing:.04em}
+.tg{font-size:.85rem;color:var(--mu);font-style:italic;margin-top:.4rem}
+.orn{color:var(--gold);font-size:.9rem;letter-spacing:.4em;margin-top:1rem;opacity:.7}
+
+.content{max-width:820px;margin:0 auto;padding:3rem 2rem 5rem;flex:1}
+
+.sec{border:1px solid var(--br);border-radius:8px;margin-bottom:1.2rem;overflow:hidden;background:var(--bg2)}
+.sec-h{width:100%;background:none;border:none;padding:1.1rem 1.4rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--tx);font-family:'Georgia',serif;font-size:1rem;font-weight:700;text-align:left;transition:background .2s}
+.sec-h:hover{background:var(--bg3)}
+.sec-h .sec-num{color:var(--gold);font-size:.8rem;font-weight:700;letter-spacing:.1em;margin-right:.7rem;min-width:2.2rem}
+.sec-h .arr{color:var(--gold);transition:transform .3s;font-size:.9rem}
+.sec.open .arr{transform:rotate(180deg)}
+.sec-b{display:none;padding:1.4rem;border-top:1px solid var(--br)}
+.sec.open .sec-b{display:block}
+
+h3{font-size:1rem;color:var(--gl);margin:1.4rem 0 .6rem;letter-spacing:.03em}
+h3:first-child{margin-top:0}
+p{margin-bottom:.9rem;font-size:.92rem}
+ul,ol{margin:.6rem 0 .9rem 1.4rem;font-size:.92rem}
+li{margin-bottom:.3rem}
+blockquote{border-left:3px solid var(--gold);padding:.6rem 1rem;background:var(--bg3);border-radius:0 5px 5px 0;margin:.8rem 0;font-style:italic;font-size:.9rem;color:var(--gl)}
+
+/* Sacrament badge */
+.sac-badge{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.2rem .7rem;border-radius:20px;background:var(--bg5);color:var(--gold);border:1px solid var(--gd);margin-bottom:1rem}
+
+/* Scripture / verse grid */
+.sv-grid{display:grid;gap:.8rem;margin:.8rem 0}
+.sv{background:var(--bg3);border:1px solid var(--br);border-radius:7px;padding:1rem 1.2rem}
+.sv .ref{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+.sv .txt{font-size:.9rem;font-style:italic;line-height:1.6;margin-bottom:.5rem}
+.labels{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.4rem}
+.labels span{font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.15rem .5rem;border-radius:3px}
+.labels .prot{background:#1a1a3a;color:#8a8adf;border:1px solid #2a2a6a}
+.labels .oo{background:var(--bg5);color:var(--gold);border:1px solid var(--gd)}
+.labels .ctx{background:#1a2a1a;color:#6abf8a;border:1px solid #2a5c3a}
+.labels .pl{background:#3a2e10;color:#c9a84c;border:1px solid #5a4a20}
+
+/* Father cards */
+.fc{background:var(--bg3);border-left:3px solid var(--gold);border-radius:0 7px 7px 0;padding:1rem 1.2rem;margin:.7rem 0}
+.fc .fn{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.2rem}
+.fc .fw{font-size:.78rem;color:var(--mu);margin-bottom:.4rem;font-style:italic}
+.fc .fq{font-size:.9rem;font-style:italic;line-height:1.6}
+
+/* Objection accordion */
+.obj{border:1px solid var(--br);border-radius:7px;margin:.7rem 0;overflow:hidden;background:var(--bg3)}
+.obj-h{width:100%;background:none;border:none;padding:.8rem 1.1rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--gl);font-family:'Georgia',serif;font-size:.88rem;font-weight:700;text-align:left}
+.obj-h:hover{background:var(--bg4)}
+.obj-h .arr{transition:transform .3s;font-size:.8rem;color:var(--gold)}
+.obj.open .arr{transform:rotate(180deg)}
+.obj-b{display:none;padding:1rem 1.1rem;border-top:1px solid var(--br);font-size:.88rem}
+.obj.open .obj-b{display:block}
+
+/* FAQ */
+.fi{border:1px solid var(--br);border-radius:7px;margin:.6rem 0;overflow:hidden}
+.fi-h{width:100%;background:var(--bg2);border:none;padding:.8rem 1.1rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--tx);font-family:'Georgia',serif;font-size:.88rem;font-weight:700;text-align:left}
+.fi-h:hover{background:var(--bg3)}
+.fi-h .arr{transition:transform .3s;font-size:.8rem;color:var(--gold)}
+.fi.open .arr{transform:rotate(180deg)}
+.fi-b{display:none;padding:1rem 1.1rem;border-top:1px solid var(--br);background:var(--bg2);font-size:.88rem}
+.fi.open .fi-b{display:block}
+
+/* Sources */
+.src-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.8rem;margin-top:.8rem}
+.src-card{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:.9rem 1rem}
+.src-card h4{font-size:.78rem;font-weight:700;color:var(--gold);margin-bottom:.4rem;letter-spacing:.06em;text-transform:uppercase}
+.src-card p,.src-card li{font-size:.8rem;color:var(--mu)}
+.src-card ul{margin-left:1rem}
+
+#btt{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--bg3);border:1px solid var(--gd);border-radius:50%;width:2.4rem;height:2.4rem;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1rem;cursor:pointer;opacity:0;transition:opacity .3s;z-index:50}
+#btt.show{opacity:1}
+
+@media(max-width:768px){
+  #sidebar{transform:translateX(-100%)}
+  #sidebar.open{transform:translateX(0)}
+  #main{margin-left:0;padding-top:48px}
+  #mob-bar{display:flex}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<div id="overlay" onclick="closeMobile()"></div>
+
+<aside id="sidebar">
+  <header>
+    <span class="sb-cross">☩</span>
+    <div class="sb-title">The Orthodox Lamp</div>
+    <div class="sb-sub">The Seven Holy Mysteries</div>
+  </header>
+  <nav id="nav">
+    <a href="#s1">I. Introduction</a>
+    <a href="#s2">II. What is a Mystery?</a>
+    <a href="#s3">III. Holy Baptism</a>
+    <a href="#s4">IV. Holy Chrismation</a>
+    <a href="#s5">V. The Holy Eucharist</a>
+    <a href="#s6">VI. Holy Confession</a>
+    <a href="#s7">VII. Holy Orders</a>
+    <a href="#s8">VIII. Holy Matrimony</a>
+    <a href="#s9">IX. Holy Unction</a>
+    <a href="#s10">X. Theosis and Synergy</a>
+    <a href="#s11">XI. Protestant Objections</a>
+    <a href="#s12">XII. The Fathers on the Mysteries</a>
+    <a href="#s13">XIII. Frequently Asked Questions</a>
+    <a href="#s14">XIV. Sources &amp; Further Reading</a>
+  </nav>
+  <div class="sb-search">
+    <input type="text" id="srch" placeholder="Search this page…" oninput="doSearch(this.value)">
+  </div>
+</aside>
+
+<div id="main">
+  <div id="mob-bar">
+    <button id="ham" onclick="toggleSidebar()">☰</button>
+    <span class="mb-title">The Orthodox Lamp</span>
+  </div>
+
+  <div class="hero">
+    <span class="si">☩</span>
+    <h1 class="st">THE <span>ORTHODOX</span> LAMP</h1>
+    <p class="ss">The Mysteries of Christ</p>
+    <p class="tg">A Comprehensive Defense of the Seven Holy Mysteries</p>
+    <div class="orn">✦ ✦ ✦</div>
+  </div>
+
+  <div class="content">
+
+    <div class="sec open" id="s1">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">I.</span>Introduction</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <p>The seven Holy Mysteries — known in the Western tradition as Sacraments — are at the center of Oriental Orthodox Christian life. They are not merely rituals or symbols. They are the living channels through which the Holy Spirit, who fills the Church as the Body of Christ, communicates divine grace to believers, drawing them into participation in the divine nature (2 Peter 1:4) — a process the Fathers call <em>theosis</em>, or deification.</p>
+        <p>The Oriental Orthodox tradition — Coptic, Ethiopian, Syriac, Armenian, and Malankara — confesses seven Holy Mysteries: Baptism, Chrismation (Myron), the Eucharist, Confession, Holy Orders, Matrimony, and Unction (the Anointing of the Sick). These were instituted by Christ, transmitted through the Apostles, and preserved in the Church as vessels of the Holy Spirit's sanctifying work.</p>
+        <p>This site examines each Mystery through Scripture, the Church Fathers, and the early Christian witness — and responds to Protestant objections that these Mysteries are either unscriptural additions, works-based supplements to grace, or mere symbolic acts.</p>
+        <blockquote>"…through these he has given us his very great and precious promises, so that through them you may participate in the divine nature…" — 2 Peter 1:4</blockquote>
+      </div>
+    </div>
+
+    <div class="sec" id="s2">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">II.</span>What is a Holy Mystery?</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <p>The Greek word <em>mysterion</em> (μυστήριον) is used in the New Testament to describe the hidden purposes of God now revealed in Christ (Ephesians 1:9; 3:3–9; Colossians 1:26–27). Paul uses <em>mysterion</em> specifically to describe the union of Christ and the Church — and applies it directly to marriage (Ephesians 5:32): "This mystery is great — but I am speaking about Christ and the Church."</p>
+        <p>The Fathers applied this vocabulary to the ritual acts of the Church through which Christ's saving work is communicated: Baptism, Eucharist, Anointing. By the medieval period, both East and West had settled on seven such Mysteries/Sacraments. The Oriental Orthodox tradition holds to this number as the apostolic inheritance.</p>
+        <p>Key characteristics of a Holy Mystery:</p>
+        <ul>
+          <li><strong>Instituted by Christ</strong>: Each Mystery traces to a dominical command or act</li>
+          <li><strong>Performed by the Church</strong>: Administered through ordained ministers in the community of the faithful</li>
+          <li><strong>Outward sign, inward grace</strong>: A visible, material action (water, oil, bread, wine) through which invisible divine grace is communicated</li>
+          <li><strong>Efficacious by the Holy Spirit</strong>: Not merely symbolic — the Holy Spirit acts through the Mystery to accomplish what it signifies</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sec" id="s3">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">III.</span>Holy Baptism</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <div class="sac-badge">Mystery I — Holy Baptism</div>
+        <p>Baptism is the Mystery of entry into the Church and the beginning of new life in Christ. It is administration of water in the name of the Holy Trinity, through which the person is born again of water and the Spirit (John 3:5), united with Christ in his death and resurrection (Romans 6:3–5), and receives the forgiveness of sins.</p>
+
+        <div class="sv-grid">
+          <div class="sv">
+            <div class="ref">John 3:5</div>
+            <div class="txt">"Jesus answered, 'Very truly I tell you, no one can enter the kingdom of God unless they are born of water and the Spirit.'"</div>
+            <div class="labels"><span class="oo">OO: Baptismal regeneration — water and Spirit together effect new birth</span><span class="prot">Protestant: "Water" = spiritual cleansing; physical baptism not required for salvation</span></div>
+          </div>
+          <div class="sv">
+            <div class="ref">Romans 6:3–4</div>
+            <div class="txt">"Or don't you know that all of us who were baptized into Christ Jesus were baptized into his death? We were therefore buried with him through baptism into death in order that, just as Christ was raised from the dead through the glory of the Father, we too may live a new life."</div>
+            <div class="labels"><span class="oo">OO: Baptism unites us to Christ's death and resurrection — a real ontological change</span></div>
+          </div>
+          <div class="sv">
+            <div class="ref">Acts 2:38</div>
+            <div class="txt">"Peter replied, 'Repent and be baptized, every one of you, in the name of Jesus Christ for the forgiveness of your sins. And you will receive the gift of the Holy Spirit.'"</div>
+            <div class="labels"><span class="oo">OO: Baptism for forgiveness of sins and receipt of the Holy Spirit — first sermon of the Church</span></div>
+          </div>
+        </div>
+
+        <div class="fc">
+          <div class="fn">Tertullian</div>
+          <div class="fw">On Baptism, Chapter 1 (c. 198 CE)</div>
+          <div class="fq">"Happy is our sacrament of water, in that, by washing away the sins of our early blindness, we are set free and admitted into eternal life! A treatise on this matter will not be superfluous; instructing people as to the reasons for each act."</div>
+          <div class="labels"><span class="pl">PARAPHRASE</span></div>
+        </div>
+
+        <div class="fc">
+          <div class="fn">Cyril of Jerusalem</div>
+          <div class="fw">Mystagogical Catecheses II (c. 350 CE)</div>
+          <div class="fq">"At the same moment you were dying and being born; and that water of salvation was at once your grave and your mother. What Solomon said in another context is applicable to you: 'There is a time to give birth, and a time to die' — but for you, the order is reversed: a time to die, and a time to be born; and both times happened in the self-same moment."</div>
+          <div class="labels"><span class="pl">PARAPHRASE</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s4">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">IV.</span>Holy Chrismation (Myron)</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <div class="sac-badge">Mystery II — Holy Chrismation</div>
+        <p>Chrismation — the anointing with holy Myron (chrism oil) — is the Mystery by which the newly baptized person receives the seal of the Holy Spirit and is confirmed as a full member of the Body of Christ. In the Oriental Orthodox tradition, Chrismation is administered immediately after Baptism, even for infants, followed immediately by reception of the Eucharist.</p>
+
+        <div class="sv-grid">
+          <div class="sv">
+            <div class="ref">2 Corinthians 1:21–22</div>
+            <div class="txt">"Now it is God who makes both us and you stand firm in Christ. He anointed us, set his seal of ownership on us, and put his Spirit in our hearts as a deposit, guaranteeing what is to come."</div>
+            <div class="labels"><span class="oo">OO: "Anointed" (Greek: chrisas) and "sealed" — direct language of Chrismation</span></div>
+          </div>
+          <div class="sv">
+            <div class="ref">1 John 2:27</div>
+            <div class="txt">"As for you, the anointing you received from him remains in you, and you do not need anyone to teach you. But as his anointing teaches you about all things and as that anointing is real, not counterfeit — just as it has taught you, remain in him."</div>
+            <div class="labels"><span class="oo">OO: "Anointing" — the chrism received at initiation teaches and seals the believer</span><span class="ctx">John's community clearly practiced a ritual anointing as part of Christian initiation</span></div>
+          </div>
+        </div>
+
+        <div class="fc">
+          <div class="fn">Cyril of Jerusalem</div>
+          <div class="fw">Mystagogical Catechesis III (c. 350 CE)</div>
+          <div class="fq">"After being baptized into Christ, and having put on Christ, you have been made conformable to the Son of God. For God, having predestinated us to the adoption of sons, made us like the glorious Body of Christ. Being therefore made partakers of Christ, you are properly called Christs, and of you God said, 'Touch not My Christs.' Now you were made Christs, by receiving the antitype of the Holy Ghost."</div>
+          <div class="labels"><span class="pl">PARAPHRASE</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s5">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">V.</span>The Holy Eucharist</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <div class="sac-badge">Mystery III — The Holy Eucharist</div>
+        <p>The Eucharist — called in Coptic the <em>Qurbana</em>, in Syriac the <em>Qurbono</em>, in Ethiopian the <em>Qiddase</em> — is the center of the Church's life and the summit of all the Holy Mysteries. In the Eucharist, the bread and wine become the true Body and Blood of Christ through the Holy Spirit's epiklesis (invocation), and the faithful receive Christ himself — truly, really, and substantially present.</p>
+
+        <div class="sv-grid">
+          <div class="sv">
+            <div class="ref">John 6:53–56</div>
+            <div class="txt">"Jesus said to them, 'Very truly I tell you, unless you eat the flesh of the Son of Man and drink his blood, you have no life in you. Whoever eats my flesh and drinks my blood has eternal life, and I will raise them up at the last day. For my flesh is real food and my blood is real drink. Whoever eats my flesh and drinks my blood remains in me, and I in them.'"</div>
+            <div class="labels"><span class="oo">OO: Real presence — Christ's flesh is "real food" (alethes brosis), not metaphor</span><span class="prot">Protestant: "Eat my flesh" is figurative (cf. v.63: "the flesh counts for nothing")</span><span class="ctx">Many disciples left after this teaching (v.66) — suggesting they took it literally</span></div>
+          </div>
+          <div class="sv">
+            <div class="ref">1 Corinthians 10:16</div>
+            <div class="txt">"Is not the cup of thanksgiving for which we give thanks a participation in the blood of Christ? And is not the bread that we break a participation in the body of Christ?"</div>
+            <div class="labels"><span class="oo">OO: "Participation" (Greek: koinonia) — genuine sharing in Christ's Body and Blood</span></div>
+          </div>
+          <div class="sv">
+            <div class="ref">1 Corinthians 11:27–29</div>
+            <div class="txt">"So then, whoever eats the bread or drinks the cup of the Lord in an unworthy manner will be guilty of sinning against the body and blood of the Lord… For those who eat and drink without discerning the body of Christ eat and drink judgment on themselves."</div>
+            <div class="labels"><span class="oo">OO: "Guilty of the body and blood" — treating the Eucharist symbolically makes this language incomprehensible</span></div>
+          </div>
+        </div>
+
+        <div class="fc">
+          <div class="fn">Ignatius of Antioch</div>
+          <div class="fw">Letter to the Smyrnaeans, Chapter 7 (c. 110 CE)</div>
+          <div class="fq">"They abstain from the Eucharist and from prayer, because they confess not the Eucharist to be the flesh of our Savior Jesus Christ, which suffered for our sins, and which the Father, of His goodness, raised up again."</div>
+          <div class="labels"><span class="pl">PARAPHRASE</span><span class="ctx">Written c. 110 CE — within living memory of the Apostles</span></div>
+        </div>
+
+        <div class="fc">
+          <div class="fn">Justin Martyr</div>
+          <div class="fw">First Apology, Chapter 66 (c. 150 CE)</div>
+          <div class="fq">"For not as common bread and common drink do we receive these; but in like manner as Jesus Christ our Savior, having been made flesh by the Word of God, had both flesh and blood for our salvation, so likewise have we been taught that the food which is blessed by the prayer of His word, and from which our blood and flesh by transmutation are nourished, is the flesh and blood of that Jesus who was made flesh."</div>
+          <div class="labels"><span class="pl">PARAPHRASE</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s6">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">VI.</span>Holy Confession (Repentance)</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <div class="sac-badge">Mystery IV — Holy Confession</div>
+        <p>The Mystery of Confession — also called Repentance (metanoia) — is the sacramental act through which baptized Christians confess their sins to Christ through a priest and receive absolution. It is the renewal of baptismal grace, the healing of the soul, and the restoration of full communion with the Body of Christ.</p>
+
+        <div class="sv-grid">
+          <div class="sv">
+            <div class="ref">John 20:22–23</div>
+            <div class="txt">"And with that he breathed on them and said, 'Receive the Holy Spirit. If you forgive anyone's sins, their sins are forgiven; if you do not forgive them, they are not forgiven.'"</div>
+            <div class="labels"><span class="oo">OO: Christ explicitly gives the Apostles authority to forgive or retain sins — a sacerdotal act</span><span class="prot">Protestant: This is a general declaration that the Gospel forgives sins, not sacerdotal absolution</span><span class="ctx">The parallel with John 17:18 and Matt 18:18 supports apostolic delegated authority</span></div>
+          </div>
+          <div class="sv">
+            <div class="ref">James 5:16</div>
+            <div class="txt">"Therefore confess your sins to each other and pray for each other so that you may be healed. The prayer of a righteous person is powerful and effective."</div>
+            <div class="labels"><span class="oo">OO: Auricular confession practiced in the early Church — "confess to each other" in the context of priestly ministry</span></div>
+          </div>
+        </div>
+
+        <div class="fc">
+          <div class="fn">Origen of Alexandria</div>
+          <div class="fw">Homilies on Leviticus, Homily 2 (c. 240 CE)</div>
+          <div class="fq">"There is also a seventh mode of remission of sins through penance, when the sinner… is not ashamed to make his sin known to the priest of the Lord, and to seek a remedy for his wound."</div>
+          <div class="labels"><span class="pl">PARAPHRASE</span><span class="ctx">Origen's "seventh mode" of forgiveness explicitly includes confession to a priest</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s7">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">VII.</span>Holy Orders</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <div class="sac-badge">Mystery V — Holy Orders</div>
+        <p>The Mystery of Holy Orders is the sacramental act by which men are ordained into the threefold ministry of Bishop, Priest (Presbyter), and Deacon through the laying on of hands and prayer by a bishop in the apostolic succession. Holy Orders confers an ontological change — not merely a function or role — enabling the ordained minister to act in persona Christi in the administration of the other Mysteries.</p>
+
+        <div class="sv-grid">
+          <div class="sv">
+            <div class="ref">1 Timothy 4:14</div>
+            <div class="txt">"Do not neglect your gift, which was given you through prophecy when the body of elders laid their hands on you."</div>
+            <div class="labels"><span class="oo">OO: "Gift" (charisma) given through the physical laying on of hands — sacramental action</span></div>
+          </div>
+          <div class="sv">
+            <div class="ref">2 Timothy 1:6</div>
+            <div class="txt">"For this reason I remind you to fan into flame the gift of God, which is in you through the laying on of my hands."</div>
+            <div class="labels"><span class="oo">OO: The gift of ministry transmitted through apostolic hands — Paul to Timothy</span><span class="ctx">This is the apostolic succession in action: Paul → Timothy → those Timothy will ordain (2 Tim 2:2)</span></div>
+          </div>
+          <div class="sv">
+            <div class="ref">Acts 14:23</div>
+            <div class="txt">"Paul and Barnabas appointed elders for them in each church and, with prayer and fasting, committed them to the Lord, in whom they had put their trust."</div>
+            <div class="labels"><span class="ctx">The Apostles appoint (cheirotoneo — literally "elect by raising the hand") elders in each church</span></div>
+          </div>
+        </div>
+
+        <div class="fc">
+          <div class="fn">Ignatius of Antioch</div>
+          <div class="fw">Letter to the Trallians, Chapter 3 (c. 110 CE)</div>
+          <div class="fq">"In like manner, let all reverence the deacons as an appointment of Jesus Christ, and the bishop as Jesus Christ, who is the Son of the Father, and the presbyters as the Sanhedrin of God, and assembly of the Apostles. Apart from these, there is no Church."</div>
+          <div class="labels"><span class="pl">PARAPHRASE</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s8">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">VIII.</span>Holy Matrimony</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <div class="sac-badge">Mystery VI — Holy Matrimony</div>
+        <p>The Mystery of Holy Matrimony crowns the union of a Christian man and woman as an icon of the union of Christ and the Church. It is not merely a civil contract or a social arrangement — it is a divine covenant through which the Holy Spirit sanctifies the spouses and their life together. The marriage is consummated in the Eucharist: in the Coptic tradition, the couple receives Communion as part of the marriage rite.</p>
+
+        <div class="sv-grid">
+          <div class="sv">
+            <div class="ref">Ephesians 5:31–32</div>
+            <div class="txt">"'For this reason a man will leave his father and mother and be united to his wife, and the two will become one flesh.' This is a profound mystery — but I am talking about Christ and the church."</div>
+            <div class="labels"><span class="oo">OO: Paul explicitly calls marriage a "mysterion" — in the same context as the union of Christ and the Church</span><span class="ctx">The Greek word "mysterion" here is translated "sacramentum" in the Vulgate — directly giving marriage sacramental status</span></div>
+          </div>
+          <div class="sv">
+            <div class="ref">John 2:1–11</div>
+            <div class="txt">"On the third day a wedding took place at Cana in Galilee… Jesus said to the servants, 'Fill the jars with water'… the master of the banquet tasted the water that had been turned into wine."</div>
+            <div class="labels"><span class="oo">OO: Christ's first miracle sanctifies a marriage — his presence at Cana consecrates the institution</span></div>
+          </div>
+        </div>
+
+        <div class="fc">
+          <div class="fn">Tertullian</div>
+          <div class="fw">To His Wife, Book II (c. 205 CE)</div>
+          <div class="fq">"How shall we ever be able adequately to describe the happiness of that marriage which the Church arranges, the Sacrifice strengthens, upon which the blessing sets a seal, at which angels are present as witnesses, and to which the Father gives His consent?"</div>
+          <div class="labels"><span class="pl">PARAPHRASE</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s9">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">IX.</span>Holy Unction (Anointing of the Sick)</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <div class="sac-badge">Mystery VII — Holy Unction</div>
+        <p>The Mystery of Holy Unction is the anointing of the sick with blessed oil, administered by a priest, for the healing of soul and body. It traces directly to the apostolic practice described in the New Testament and is the liturgical continuation of Christ's own healing ministry.</p>
+
+        <div class="sv-grid">
+          <div class="sv">
+            <div class="ref">James 5:14–15</div>
+            <div class="txt">"Is anyone among you sick? Let them call the elders of the church to pray over them and anoint them with oil in the name of the Lord. And the prayer offered in faith will make the sick person well; the Lord will raise them up. If they have sinned, they will be forgiven."</div>
+            <div class="labels"><span class="oo">OO: Explicit apostolic command: elders, oil, prayer, healing of body and forgiveness of sins — all elements of the Mystery</span><span class="prot">Protestant: A specific charismatic gift of the apostolic age, not a permanent sacramental institution</span></div>
+          </div>
+          <div class="sv">
+            <div class="ref">Mark 6:13</div>
+            <div class="txt">"They drove out many demons and anointed many sick people with oil and healed them."</div>
+            <div class="labels"><span class="ctx">The Twelve practiced anointing with oil as a healing ministry — rooted in Christ's own commission</span></div>
+          </div>
+        </div>
+
+        <div class="fc">
+          <div class="fn">Origen of Alexandria</div>
+          <div class="fw">Homilies on Leviticus, Homily 2 (c. 240 CE)</div>
+          <div class="fq">"There is yet a fifth mode of obtaining forgiveness, that through penance — when the sinner, not ashamed, confesses to a priest, who takes care of souls and prays for him, and lays hands on him and anoints him with oil."</div>
+          <div class="labels"><span class="pl">PARAPHRASE</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s10">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">X.</span>Theosis and Synergy</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <p>The theology of the Holy Mysteries is inseparable from the doctrine of <em>theosis</em> — deification, or participation in the divine nature. The Mysteries are the primary channels through which God communicates this participation to the faithful.</p>
+
+        <blockquote>"He became what we are so that he might make us what he is." — Athanasius of Alexandria, On the Incarnation (c. 318 CE)</blockquote>
+
+        <p>Theosis is not the obliteration of the human person but its perfection. The human person, created in the image of God (Genesis 1:26–27), is called to grow into the likeness of God through participation in the divine life. This participation comes through grace — but grace that is genuinely communicated, not merely imputed.</p>
+
+        <div class="sv">
+          <div class="ref">2 Peter 1:4</div>
+          <div class="txt">"Through these he has given us his very great and precious promises, so that through them you may participate in the divine nature, having escaped the corruption in the world caused by evil desires."</div>
+          <div class="labels"><span class="oo">OO: "Participate in the divine nature" — theosis expressed in the language of Scripture itself</span><span class="prot">Protestant: This describes moral conformity to God's character, not ontological deification</span></div>
+        </div>
+
+        <h3>Synergy: Faith and the Mysteries</h3>
+        <p>The OO tradition holds that the Mysteries are effective not <em>ex opere operato</em> (by the mere performance of the act) apart from faith, nor by faith alone apart from the sacramental act. They require both: the Church's faithful administration and the recipient's living faith, repentance, and participation. This is <em>synergy</em> — cooperation between divine grace and human freedom.</p>
+        <p>This is not "works-based salvation." The OO church does not teach that the Mysteries earn merit before God. They teach that the Mysteries are the appointed channels through which God's grace — freely given, unmerited — is communicated to those who receive it in faith.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s11">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XI.</span>Protestant Objections</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>⚡ "The Sacraments are human inventions — only faith saves, not rituals."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> The Mysteries were not invented by humans — they were instituted by Christ (Baptism: Matthew 28:19; Eucharist: Luke 22:19–20; Confession: John 20:23; Anointing: James 5:14) and practiced by the Apostles from the Church's inception. The divide is not between "faith" and "ritual" — the OO tradition insists on living faith as the necessary context of the Mysteries. The question is whether Christ, in instituting these acts, genuinely communicates grace through them or merely recommends them as optional expressions of pre-existing spiritual states. The Church Fathers, writing within living memory of the Apostles, unanimously held that the Mysteries are genuine channels of grace.</p>
+          </div>
+        </div>
+
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>⚡ "The Eucharist is just a memorial meal — 'Do this in remembrance of me' means symbolic commemoration."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> The Greek word <em>anamnesis</em> (remembrance) in 1 Corinthians 11:24–25 does not mean "mere mental recollection." In both Jewish and Greek usage, <em>anamnesis</em> denotes a re-presentation or re-actualization of a past event — making it present and effective in the now. This is why Paul immediately follows the institution narrative with a warning that those who eat unworthily "will be guilty of the body and blood of the Lord" (v. 27) — language that only makes sense if the body and blood are really present. Ignatius of Antioch (c. 110 CE), writing before any development of sacramental theology, simply assumed the Eucharist is "the flesh of our Savior."</p>
+          </div>
+        </div>
+
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Confession to a priest is unscriptural — confess your sins to God alone."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> The OO tradition does not teach that a priest forgives sins by his own authority — the priest acts as a witness and minister of Christ's forgiveness. Christ explicitly delegated to the Apostles the authority to forgive or retain sins (John 20:23) — an authority that was not exercised privately but through the ordained ministry of the Church. The practice of confessing sins to appointed ministers is attested in Didache 4 (c. 100 CE), Origen (c. 240 CE), and consistently throughout the Fathers. The Protestant objection would apply equally to Christ's saying "I forgive your sins" to specific individuals in the Gospels — yet we do not deny those forgivenesses on the grounds that God alone can forgive.</p>
+          </div>
+        </div>
+
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Infant Baptism is unscriptural — babies cannot have faith."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> Baptism is not a declaration of one's faith but the means of receiving it. It is analogous to circumcision in the Old Covenant (Colossians 2:11–12), which was administered to eight-day-old infants who clearly could not articulate personal faith. The households baptized in Acts (Acts 16:15, 33; 1 Corinthians 1:16) almost certainly included children. Origen explicitly states that infant baptism was received "from the Apostles" (Commentary on Romans 5:9, c. 244 CE). The Church that gave us the New Testament canon practiced infant baptism from its earliest traceable period.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="sec" id="s12">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XII.</span>The Fathers on the Mysteries</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <div class="fc">
+          <div class="fn">Didache (Teaching of the Twelve Apostles)</div>
+          <div class="fw">Chapters 7, 9–10 (c. 90–100 CE)</div>
+          <div class="fq">"Baptize in the name of the Father and of the Son and of the Holy Spirit… Concerning the Eucharist, give thanks in this way: First, concerning the cup: 'We thank you, our Father, for the holy vine of David your servant… Let grace come and this world pass away.' None is to eat or drink of your Eucharist except those who have been baptized in the name of the Lord."</div>
+          <div class="labels"><span class="pl">PARAPHRASE</span><span class="ctx">Written c. 90–100 CE — the earliest non-canonical Christian document</span></div>
+        </div>
+
+        <div class="fc">
+          <div class="fn">Cyprian of Carthage</div>
+          <div class="fw">Epistle 63 (c. 253 CE)</div>
+          <div class="fq">"If Christ Jesus, our Lord and God, is himself the High Priest of God the Father, and has first offered himself a sacrifice to the Father, and has commanded this to be done in commemoration of himself, certainly that priest truly discharges the office of Christ, who imitates that which Christ did; and he then offers a true and full sacrifice in the Church to God the Father, when he proceeds to offer it according to what he sees Christ himself to have offered."</div>
+          <div class="labels"><span class="pl">PARAPHRASE</span></div>
+        </div>
+
+        <div class="fc">
+          <div class="fn">Basil the Great</div>
+          <div class="fw">On the Holy Spirit, Chapter 27 (c. 375 CE)</div>
+          <div class="fq">"Of the beliefs and practices whether generally accepted or publicly enjoined which are preserved in the Church, some we possess derived from written teaching; others we have received delivered to us 'in a mystery' by the tradition of the Apostles; and both of these in relation to true religion have the same force. And these no one will gainsay; — no one, at all events, who is even moderately versed in the institutions of the Church."</div>
+          <div class="labels"><span class="pl">PARAPHRASE</span><span class="ctx">The Mysteries include both written Scripture and apostolic tradition as sources — Basil defends this principle</span></div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="sec" id="s13">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XIII.</span>Frequently Asked Questions</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>Why seven Mysteries? Is the number seven in Scripture?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>The number seven is not explicitly stated in the New Testament as the number of Mysteries. The identification of exactly seven sacraments developed gradually through the patristic and medieval periods, crystallized in both East and West around the 12th–13th centuries, and was formally defined in the Western church at the Council of Florence (1439) and confirmed at Trent. The Oriental Orthodox tradition maintains seven as the received number, based on the dominical institution and apostolic practice of these seven acts. Some Protestant traditions note that the formal number "seven" is a later theological synthesis — OO apologists respond that the number reflects what was always practiced, even if not formally enumerated until later.</p>
+          </div>
+        </div>
+
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>Do the Mysteries automatically convey grace regardless of the recipient's faith?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>No. The OO tradition holds to a synergistic view: the Mysteries require both the Holy Spirit's action through the Church and the recipient's faith, repentance, and cooperation. Paul explicitly warns that receiving the Eucharist in an "unworthy manner" results in judgment rather than blessing (1 Corinthians 11:27–29). The Mystery is not a magical act — it is a covenantal encounter that requires genuine participation. An adult who receives Baptism without repentance or who receives the Eucharist in enmity with their neighbor does not automatically receive grace.</p>
+          </div>
+        </div>
+
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>What happens if the priest administering the Mystery is sinful?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>This was the central question of the Donatist controversy (4th century), and the Church's answer — articulated by Augustine of Hippo — has been consistent ever since: the validity of the Mysteries does not depend on the personal holiness of the minister. The minister acts as the instrument of Christ; Christ is the true minister of every Mystery. A sinful priest who baptizes validly baptizes; a wicked bishop who ordains a deacon validly ordains. This does not excuse clerical sin — it protects the faithful from uncertainty about the validity of their sacramental life based on the private life of the priest.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="sec" id="s14">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XIV.</span>Sources &amp; Further Reading</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <div class="src-grid">
+          <div class="src-card">
+            <h4>Primary Sources</h4>
+            <ul>
+              <li>Didache (c. 90–100 CE)</li>
+              <li>Ignatius of Antioch, Letters (c. 110 CE)</li>
+              <li>Justin Martyr, First Apology (c. 150 CE)</li>
+              <li>Cyprian of Carthage, Epistles (c. 250 CE)</li>
+            </ul>
+          </div>
+          <div class="src-card">
+            <h4>Patristic Collections</h4>
+            <ul>
+              <li>NPNF Series 1 &amp; 2</li>
+              <li>ANF (Ante-Nicene Fathers)</li>
+              <li>Cyril of Jerusalem, Mystagogical Catecheses</li>
+              <li>Basil the Great, On the Holy Spirit</li>
+            </ul>
+          </div>
+          <div class="src-card">
+            <h4>OO Sources</h4>
+            <ul>
+              <li>Coptic Divine Liturgy of St. Basil</li>
+              <li>Coptic Orthodox Deacon's Handbook</li>
+              <li>Pope Shenouda III, The Heresy of Salvation in a Moment</li>
+              <li>Fr. Tadros Malaty, Introduction to the Coptic Orthodox Church</li>
+            </ul>
+          </div>
+          <div class="src-card">
+            <h4>Modern Scholarship</h4>
+            <ul>
+              <li>Alexander Schmemann, For the Life of the World</li>
+              <li>John Meyendorff, Byzantine Theology</li>
+              <li>Jaroslav Pelikan, The Christian Tradition, Vol. 1</li>
+              <li>Paul Bradshaw, Early Christian Worship</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+
+  <footer style="text-align:center;padding:2rem 1rem;border-top:1px solid var(--br);font-size:.8rem;color:var(--mu)">
+    <p>THE <span style="color:var(--gold)">ORTHODOX LAMP</span> &nbsp;·&nbsp; Biblical, Historical &amp; Patristic Apologetics</p>
+    <p style="margin-top:.5rem;font-size:.72rem;opacity:.6;">☩ &nbsp; In the name of the Father, and of the Son, and of the Holy Spirit &nbsp; ☩</p>
+  </footer>
+</div><!-- /main -->
+
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+function ts(h){h.closest('.sec').classList.toggle('open')}
+function tobj(h){h.closest('.obj').classList.toggle('open')}
+function tf(h){h.closest('.fi').classList.toggle('open')}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').classList.toggle('show')}
+function closeMobile(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
+
+window.addEventListener('scroll',()=>{
+  const s=document.documentElement,b=document.body;
+  const pct=(s.scrollTop||b.scrollTop)/((s.scrollHeight||b.scrollHeight)-s.clientHeight)*100;
+  document.getElementById('prog').style.width=pct+'%';
+  document.getElementById('btt').classList.toggle('show',(s.scrollTop||b.scrollTop)>300);
+});
+
+const secs=[...document.querySelectorAll('.sec')];
+const links=[...document.querySelectorAll('#nav a')];
+window.addEventListener('scroll',()=>{
+  let cur='';
+  secs.forEach(s=>{if(s.getBoundingClientRect().top<120)cur=s.id});
+  links.forEach(l=>{l.classList.toggle('active',l.getAttribute('href')==='#'+cur)});
+},{ passive:true });
+
+function doSearch(q){
+  document.querySelectorAll('.hl').forEach(e=>{
+    const p=e.parentNode;p.replaceChild(document.createTextNode(e.textContent),e);p.normalize();
+  });
+  if(!q.trim())return;
+  const re=new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi');
+  const walker=document.createTreeWalker(document.querySelector('.content'),NodeFilter.SHOW_TEXT);
+  const nodes=[];let n;
+  while((n=walker.nextNode()))nodes.push(n);
+  nodes.forEach(node=>{
+    if(!re.test(node.textContent))return;
+    re.lastIndex=0;
+    const frag=document.createDocumentFragment();
+    let last=0,m;
+    while((m=re.exec(node.textContent))!==null){
+      frag.appendChild(document.createTextNode(node.textContent.slice(last,m.index)));
+      const mark=document.createElement('mark');
+      mark.className='hl';mark.style.cssText='background:#8a6a20;color:#fff;border-radius:2px;padding:0 2px';
+      mark.textContent=m[0];frag.appendChild(mark);last=m.index+m[0].length;
+    }
+    frag.appendChild(document.createTextNode(node.textContent.slice(last)));
+    node.parentNode.replaceChild(frag,node);
+  });
+  const first=document.querySelector('.hl');if(first)first.scrollIntoView({block:'center',behavior:'smooth'});
+}
+</script>
+</body>
+</html>

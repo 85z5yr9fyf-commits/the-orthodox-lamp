@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>THE ORTHODOX LAMP — Sola Fide</title>
+<style>
+:root{--gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;--bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--tx:#e8e0d0;--mu:#a09880;--red:#8b2020;--br:#2a2a2a;--bg5:#3a2e10;--sidebar-w:270px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.75}
+a{color:var(--gold);text-decoration:none}
+#progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(to right,var(--gd),var(--gold),var(--gl));width:0%;z-index:500}
+#sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:200;transition:transform .3s}
+#sidebar h2{font-size:.7rem;letter-spacing:.15em;color:var(--gold);text-transform:uppercase;padding:1.4rem 1.2rem .5rem;border-bottom:1px solid var(--br)}
+#sidenav a{display:block;padding:.42rem 1.2rem;font-size:.82rem;color:var(--mu);border-left:3px solid transparent;transition:all .2s}
+#sidenav a:hover,#sidenav a.active{color:var(--gl);border-left-color:var(--gold);background:var(--bg5)}
+.search-wrap{padding:.8rem 1rem;border-bottom:1px solid var(--br);display:flex;gap:.4rem}
+.search-wrap input{flex:1;background:var(--bg3);border:1px solid var(--br);color:var(--tx);padding:.35rem .6rem;border-radius:4px;font-size:.8rem}
+.search-wrap button{background:var(--gold);color:#0d0d0d;border:none;padding:.35rem .7rem;border-radius:4px;cursor:pointer;font-weight:700;font-size:.8rem}
+#main-content{margin-left:var(--sidebar-w);padding:0 2rem 4rem}
+.mob-toggle{display:none;position:fixed;bottom:1.2rem;right:1.2rem;background:var(--gold);color:#0d0d0d;border:none;width:48px;height:48px;border-radius:50%;font-size:1.4rem;cursor:pointer;z-index:300;box-shadow:0 2px 12px rgba(0,0,0,.5)}
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:150}
+#overlay.show{display:block}
+.hero{text-align:center;padding:4rem 1rem 2.5rem;border-bottom:1px solid var(--br);background:linear-gradient(to bottom,var(--bg2),var(--bg))}
+.si{font-size:2.2rem;color:var(--gold);display:block;margin-bottom:.5rem}
+.st{font-size:2rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--tx)}
+.st span{color:var(--gold)}
+.ss{font-size:1.05rem;color:var(--gl);margin:.6rem 0 .4rem;font-style:italic}
+.tg{font-size:.85rem;color:var(--mu);margin-bottom:.8rem}
+.orn{color:var(--gold);font-size:1.1rem;letter-spacing:.4em;margin-top:.5rem}
+.sec{border:1px solid var(--br);border-radius:8px;margin:1.5rem 0;background:var(--bg2);overflow:hidden}
+.sec-hd{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.3rem;cursor:pointer;user-select:none;background:var(--bg3);border-bottom:1px solid transparent;transition:background .2s}
+.sec-hd:hover{background:var(--bg4)}
+.sec.open .sec-hd{border-bottom-color:var(--br);background:var(--bg4)}
+.sec-hd h2{font-size:1rem;color:var(--gl);text-transform:uppercase;letter-spacing:.05em}
+.sec-bd{display:none;padding:1.4rem 1.5rem}
+.sec.open .sec-bd{display:block}
+.sec-bd h3{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin:1.4rem 0 .7rem;padding-bottom:.3rem;border-bottom:1px solid var(--bg5)}
+.sec-bd p{color:var(--tx);margin-bottom:.9rem;font-size:.95rem}
+.arr{color:var(--gold);font-size:.9rem;transition:transform .3s}
+.sec.open .arr{transform:rotate(180deg)}
+.sv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin:.8rem 0 1.2rem}
+.sv{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:1rem}
+.sv .ref{font-size:.75rem;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.4rem}
+.sv .labels{margin-bottom:.5rem;display:flex;gap:.4rem;flex-wrap:wrap}
+.sv .labels span{font-size:.65rem;font-weight:700;padding:.15rem .45rem;border-radius:3px;text-transform:uppercase;letter-spacing:.06em}
+.labels .prot{background:#4a1a1a;color:#e87070}
+.labels .oo{background:#1a3a1a;color:#70c870}
+.labels .ctx{background:#1a2a3a;color:#70aacc}
+.sv .txt{font-style:italic;color:var(--gl);font-size:.88rem;margin-bottom:.5rem;border-left:2px solid var(--gold);padding-left:.7rem}
+.sv .interp{font-size:.82rem;color:var(--mu)}
+.fc{background:var(--bg3);border:1px solid var(--br);border-left:3px solid var(--gold);border-radius:6px;padding:1rem 1.1rem;margin:.8rem 0}
+.fn{font-size:.8rem;font-weight:700;color:var(--gl);text-transform:uppercase;letter-spacing:.07em}
+.fw{font-size:.75rem;color:var(--mu);margin:.2rem 0 .5rem;font-style:italic}
+.fq{font-style:italic;color:var(--tx);font-size:.88rem;border-left:2px solid var(--bg5);padding-left:.8rem;margin:.4rem 0 .6rem}
+.fsig{font-size:.8rem;color:var(--mu)}
+.pl{background:#4a1a1a;color:#e87070;font-size:.65rem;font-weight:700;padding:.1rem .35rem;border-radius:3px;text-transform:uppercase;letter-spacing:.06em;vertical-align:middle;margin-left:.3rem;font-style:normal}
+.obj{background:var(--bg3);border:1px solid #4a1a1a;border-left:3px solid var(--red);border-radius:6px;margin:.8rem 0;overflow:hidden}
+.obj-hd{display:flex;justify-content:space-between;align-items:center;padding:.8rem 1rem;cursor:pointer;user-select:none}
+.obj-hd:hover{background:var(--bg4)}
+.obj-hd h3{font-size:.85rem;color:#e87070;font-weight:700}
+.obj-bd{display:none;padding:.9rem 1.1rem;border-top:1px solid #4a1a1a}
+.obj.open .obj-bd{display:block}
+.obj.open .arr{transform:rotate(180deg)}
+.obj-bd h4{font-size:.75rem;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.4rem;margin-top:.6rem}
+.obj-bd h4:first-child{margin-top:0}
+.obj-bd p{font-size:.85rem;color:var(--tx);margin-bottom:.6rem}
+.fi{background:var(--bg3);border:1px solid var(--br);border-radius:6px;margin:.6rem 0;overflow:hidden}
+.fi-hd{display:flex;justify-content:space-between;align-items:center;padding:.8rem 1rem;cursor:pointer;user-select:none;font-size:.88rem;color:var(--gl)}
+.fi-hd:hover{background:var(--bg4)}
+.fi-bd{display:none;padding:.9rem 1.1rem;border-top:1px solid var(--br);font-size:.85rem;color:var(--tx)}
+.fi.open .fi-bd{display:block}
+.fi.open .arr{transform:rotate(180deg)}
+.fi-bd p{margin-bottom:.7rem}
+.comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:.8rem 0}
+.comp-card{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:1rem}
+.comp-card.prot{border-top:3px solid #e87070}
+.comp-card.oo{border-top:3px solid var(--gold)}
+.comp-card .ct{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.6rem}
+.comp-card.prot .ct{color:#e87070}
+.comp-card.oo .ct{color:var(--gold)}
+.comp-card p{font-size:.82rem;color:var(--mu)}
+.src-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;margin:.8rem 0}
+.src-card{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:1rem}
+.src-cat{font-size:.72rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.6rem;padding-bottom:.4rem;border-bottom:1px solid var(--bg5)}
+.src-item{font-size:.8rem;color:var(--mu);margin-bottom:.5rem;padding-left:.7rem;border-left:2px solid var(--br)}
+.btt{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--gold);color:#0d0d0d;border:none;width:44px;height:44px;border-radius:50%;font-size:1.2rem;cursor:pointer;opacity:0;transition:opacity .3s;z-index:300;font-weight:700}
+@media(max-width:768px){#sidebar{transform:translateX(-100%)}#sidebar.open{transform:translateX(0)}#main-content{margin-left:0;padding:0 1rem 4rem}.mob-toggle{display:flex;align-items:center;justify-content:center}.sv-grid{grid-template-columns:1fr}.comp-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<nav id="sidebar">
+  <div class="search-wrap"><input type="text" id="search-input" placeholder="Search…"><button id="search-btn">Go</button></div>
+  <h2>The Orthodox Lamp</h2>
+  <nav id="sidenav">
+    <a href="#s1">I. Introduction</a>
+    <a href="#s2">II. What Did Paul Mean?</a>
+    <a href="#s3">III. The Oriental Orthodox View</a>
+    <a href="#s4">IV. Faith and Works in James</a>
+    <a href="#s5">V. Faith and Works Together</a>
+    <a href="#s6">VI. Theosis and Synergy</a>
+    <a href="#s7">VII. Church Fathers on Faith</a>
+    <a href="#s8">VIII. Protestant vs. OO Compared</a>
+    <a href="#s9">IX. Protestant Objections</a>
+    <a href="#s10">X. FAQ</a>
+    <a href="#s11">XI. Sources</a>
+  </nav>
+</nav>
+<div id="overlay" onclick="closeMobile()"></div>
+<button class="mob-toggle" onclick="toggleSidebar()">☰</button>
+<main id="main-content">
+  <div class="hero">
+    <span class="si">☩</span>
+    <h1 class="st">THE <span>ORTHODOX</span> LAMP</h1>
+    <p class="ss">Sola Fide — A Biblical and Historical Examination of Faith Alone</p>
+    <p class="tg">"You see that a person is justified by works and not by faith alone." — James 2:24</p>
+    <div class="orn">✦ ✦ ✦</div>
+  </div>
+
+  <section class="sec open" id="s1">
+    <div class="sec-hd" onclick="ts(this)"><h2>I. Introduction</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p><em>Sola fide</em> — "faith alone" — is the material principle of the Protestant Reformation. First systematically articulated by Martin Luther (1483–1546) as the article by which the Church stands or falls, it holds that a sinner is justified (declared righteous before God) by faith alone, apart from any works, merits, or sacramental participation. For Luther and subsequent Protestants, the Roman Catholic emphasis on works, merit, and sacraments obscured and undermined the pure grace of God.</p>
+      <p>The Oriental Orthodox tradition — never part of Western Christendom, never subject to the corruptions that provoked the Reformation, and never carrying the baggage of medieval Scholastic theology — approaches this question from a completely different angle. The Oriental Orthodox fully agree that salvation is by God's grace alone and that no human being can earn or merit salvation. But the Oriental Orthodox insist that <em>sola fide</em> as the Reformers defined it is not the teaching of the New Testament, not the teaching of the Church Fathers, and not the teaching of the pre-Reformation Church.</p>
+      <p>The debate is not: grace vs. works. Both sides affirm grace. The debate is: what is faith? How does faith relate to love, obedience, and the sacraments? Is justification a declaration or a transformation? And what does the whole New Testament — not just Paul's letters in isolation — actually teach about how sinners come to be right with God?</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s2">
+    <div class="sec-hd" onclick="ts(this)"><h2>II. What Did Paul Mean by "Works of the Law"?</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>The key to understanding Paul's doctrine of justification is identifying what he means by "works of the law" (<em>erga nomou</em>) — the works he says do not justify. Luther and the Reformation understood this as "moral effort" or "good deeds" generally. Modern New Testament scholarship has largely corrected this reading. The "works of the law" in Paul's context are the specifically Jewish identity markers — circumcision, dietary laws, Sabbath observance, purity codes — that divided Jews from Gentiles and that some Jewish Christians were requiring Gentile converts to perform in order to be fully accepted.</p>
+      <div class="sv-grid">
+        <div class="sv"><div class="ref">Galatians 2:11–16</div><div class="labels"><span class="ctx">CTX</span></div><div class="txt">"We ourselves are Jews by birth and not Gentile sinners; yet we know that a person is not justified by works of the law but through faith in Jesus Christ."</div><div class="interp">The immediate context is the dispute over whether Gentile Christians must live like Jews (v.14) — specifically regarding table fellowship and dietary laws (vv.11–13). The "works of the law" Paul rejects are the Jewish boundary markers that Peter was imposing on Gentiles, not moral effort in general. This is confirmed by the specific examples Paul uses throughout Galatians: circumcision (5:2–6), dietary laws, calendar observances (4:10).</div></div>
+        <div class="sv"><div class="ref">Romans 3:28–30</div><div class="labels"><span class="ctx">CTX</span></div><div class="txt">"For we hold that one is justified by faith apart from works of the law. Or is God the God of Jews only? Is he not the God of Gentiles also?"</div><div class="interp">The question "is God the God of Jews only?" immediately after the justification statement confirms that the issue is Jewish/Gentile inclusion — the ethnic boundary markers of the Mosaic law — not moral effort in general. Paul's point is that Gentiles can be right with God through faith in Christ without becoming Jews. This is the liberating gospel of Galatians: Gentiles do not need to be circumcised to be saved.</div></div>
+        <div class="sv"><div class="ref">Ephesians 2:8–10</div><div class="labels"><span class="ctx">CTX</span></div><div class="txt">"For by grace you have been saved through faith. And this is not your own doing; it is the gift of God, not a result of works, so that no one may boast. For we are his workmanship, created in Christ Jesus for good works, which God prepared beforehand, that we should walk in them."</div><div class="interp">Paul's most famous grace-faith-not-works statement is immediately followed by: "created for good works, which God prepared that we should walk in them." The rejection of "works" as the basis of salvation does not eliminate good works as the fruit and purpose of salvation. The Oriental Orthodox reading: we are not saved by works, but we are saved for works. Works are the necessary outcome of genuine saving faith, not the basis of it.</div></div>
+        <div class="sv"><div class="ref">Philippians 3:6–9</div><div class="labels"><span class="ctx">CTX</span></div><div class="txt">"As to righteousness under the law, blameless. But whatever gain I had, I counted as loss for the sake of Christ… that I may gain Christ and be found in him, not having a righteousness of my own that comes from the law."</div><div class="interp">Paul's personal testimony: his pre-Christian "righteousness under the law" was the specific Jewish covenantal status he held as a Pharisee — circumcised, of the tribe of Benjamin, a persecutor of the Church. This is not general moral effort but Jewish covenantal identity. What he counts as loss is his Jewish status-righteousness; what he gains is union with Christ — a very different category from "no moral effort required."</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s3">
+    <div class="sec-hd" onclick="ts(this)"><h2>III. The Oriental Orthodox Understanding of Justification</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>The Oriental Orthodox tradition, rooted in the Alexandrian and Antiochene theological schools, understands salvation not primarily as a legal transaction (guilty person declared righteous by a judge) but as a healing and transformative participation in the divine nature. These are not mutually exclusive categories, but they produce very different theological emphases.</p>
+      <div class="comp-grid">
+        <div class="comp-card prot">
+          <div class="ct">Protestant Sola Fide</div>
+          <p>Justification is a forensic (legal) declaration: God declares the sinner righteous on the basis of Christ's imputed righteousness, received by faith alone. Justification is a single, complete, instantaneous event — a change of legal status, not of moral character. Sanctification (actual moral transformation) is separate from and subsequent to justification.</p>
+        </div>
+        <div class="comp-card oo">
+          <div class="ct">Oriental Orthodox View</div>
+          <p>Salvation (theosis/divinization) is a dynamic process of healing and union with God, not merely a legal declaration. Christ does not merely provide a legal cover for sin; he heals, transforms, and divinizes human nature. Faith is not merely intellectual assent or trust but a living, active, loving union with Christ — inseparable from love (Galatians 5:6: "faith working through love").</p>
+        </div>
+      </div>
+      <p>The Oriental Orthodox are not Pelagians or semi-Pelagians — they do not teach that humans earn salvation by their own moral effort. The entire tradition from Cyril of Alexandria to the present insists that salvation is from first to last God's gracious gift. But they equally insist that God's grace is not merely declaratory — it actually changes the one who receives it. A faith that leaves the believer unchanged is not saving faith.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s4">
+    <div class="sec-hd" onclick="ts(this)"><h2>IV. James 2 — The Apostolic Rebuke of Sola Fide</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>The most direct New Testament critique of "faith alone" is James 2:14–26 — a passage so uncomfortable for Luther that he famously called the Epistle of James "a right strawy epistle" and questioned its canonicity. The Oriental Orthodox, whose canon was not determined by the Reformation, receive James as fully authoritative Scripture.</p>
+      <div class="sv-grid">
+        <div class="sv"><div class="ref">James 2:14</div><div class="labels"><span class="oo">OO</span></div><div class="txt">"What good is it, my brothers, if someone says he has faith but does not have works? Can that faith save him?"</div><div class="interp">James explicitly asks: can "faith" without works save? The Greek implies the expected answer is "no." This is not a hypothetical; James is addressing an actual error — a claim to have faith that is not accompanied by works. The Oriental Orthodox reading: such a faith is not genuine saving faith; it is a dead intellectual assent.</div></div>
+        <div class="sv"><div class="ref">James 2:17</div><div class="labels"><span class="oo">OO</span></div><div class="txt">"So also faith by itself, if it does not have works, is dead."</div><div class="interp">"Faith by itself" — <em>kath heautēn</em>, "alone" — is dead. This is as close to a direct denial of <em>sola fide</em> as Scripture gets. A faith that stands alone, without works, is not merely weak or immature — it is dead. Dead things do not save.</div></div>
+        <div class="sv"><div class="ref">James 2:19</div><div class="labels"><span class="oo">OO</span></div><div class="txt">"You believe that God is one; you do well. Even the demons believe — and shudder!"</div><div class="interp">Demons have correct theological beliefs and even an appropriate emotional response (fear/shuddering) — yet they are not saved. This demolishes any definition of "faith" that is merely intellectual or emotional. Saving faith must be something more than right belief about God. It must include trust, love, and obedience — the active orientation of the whole person toward God.</div></div>
+        <div class="sv"><div class="ref">James 2:24</div><div class="labels"><span class="oo">OO</span></div><div class="txt">"You see that a person is justified by works and not by faith alone."</div><div class="interp">The only place in the entire Bible where "faith alone" appears — and it denies it. James 2:24 is the single verse where the exact phrase "faith alone" (<em>pisteos monon</em>) occurs in Scripture, and it says justification is NOT by faith alone. This is the verse the Reformation had to explain away; the Oriental Orthodox receive it at face value.</div></div>
+        <div class="sv"><div class="ref">James 2:26</div><div class="labels"><span class="oo">OO</span></div><div class="txt">"For as the body apart from the spirit is dead, so also faith apart from works is dead."</div><div class="interp">James's concluding analogy: a faith without works is like a body without a spirit — technically the right thing, but dead, inert, incapable of saving action. Works are to faith what the spirit is to the body — not an add-on but the animating principle that makes faith alive and effective. This is the Oriental Orthodox understanding: works are faith in action.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s5">
+    <div class="sec-hd" onclick="ts(this)"><h2>V. Faith and Works Together — The Whole New Testament</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <div class="sv-grid">
+        <div class="sv"><div class="ref">Galatians 5:6</div><div class="labels"><span class="oo">OO</span></div><div class="txt">"For in Christ Jesus neither circumcision nor uncircumcision counts for anything, but only faith working through love."</div><div class="interp">Paul's own definition of the operative faith: "faith working through love" (<em>pistis di agapēs energoumenē</em>). The faith that matters in Christ is not solitary, inert belief but faith that is energized and expressed through love. This is the Oriental Orthodox "synergy" — not human effort supplementing divine grace, but human love as the natural and necessary expression of genuine faith in God who is love.</div></div>
+        <div class="sv"><div class="ref">Matthew 25:31–46</div><div class="labels"><span class="oo">OO</span></div><div class="txt">"For I was hungry and you gave me food, I was thirsty and you gave me drink… 'Truly, I say to you, as you did it to one of the least of these my brothers, you did it to me.'"</div><div class="interp">Christ's description of the Last Judgment makes concrete works of mercy the criterion of entry into the kingdom — not a profession of faith, not correct doctrine. The Oriental Orthodox do not read this as works-based salvation; they read it as Christ defining what genuine faith in him actually looks like in practice. Those who truly know Christ naturally serve him in the poor and suffering.</div></div>
+        <div class="sv"><div class="ref">1 John 3:14</div><div class="labels"><span class="oo">OO</span></div><div class="txt">"We know that we have passed out of death into life, because we love the brothers. Whoever does not love abides in death."</div><div class="interp">John gives the criterion for knowing one has "passed from death to life" — love for the brothers. Not a doctrine of imputation, not a moment of faith-decision, but the ongoing practice of love. This is typical of John's theology: genuine relationship with God always manifests in concrete love. The one who claims faith but does not love "abides in death" — unchanged, unsaved.</div></div>
+        <div class="sv"><div class="ref">Revelation 20:12–13</div><div class="labels"><span class="oo">OO</span></div><div class="txt">"And the dead were judged by what was written in the books, according to what they had done… And the sea gave up the dead who were in it, Death and Hades gave up the dead who were in them, and they were judged, each one of them, according to what they had done."</div><div class="interp">The final judgment in Revelation is explicitly according to "what they had done" — deeds, works, actions. Not doctrine alone. Not faith-statement alone. The whole life of the person stands before God. The Oriental Orthodox reading: genuine faith produces a whole life of faithful response to God that will stand at the judgment — not because it earns merit, but because it is the authentic expression of the saving union with Christ.</div></div>
+        <div class="sv"><div class="ref">Romans 2:6–7</div><div class="labels"><span class="ctx">CTX</span></div><div class="txt">"He will render to each one according to his works: to those who by patience in well-doing seek for glory and honor and immortality, he will give eternal life."</div><div class="interp">Paul himself — in the very letter that contains his doctrine of justification by faith — says God renders to each according to works and gives eternal life to those who patiently do well. The Reformation reading creates a tension within Paul's own letter that the Oriental Orthodox reading — where faith and works are inseparable — does not face.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s6">
+    <div class="sec-hd" onclick="ts(this)"><h2>VI. Theosis and Synergy — The Eastern Alternative</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>The Oriental Orthodox tradition offers a different framework for understanding salvation — not the legal/forensic framework of Western theology (whether Catholic merit or Protestant imputation), but the participatory/transformative framework of the Eastern tradition: <em>theosis</em> (deification) and <em>synergy</em> (cooperation).</p>
+      <p><strong style="color:var(--gl)">Theosis</strong> — St. Athanasius (c. AD 296–373): "God became man so that man might become god" (De Incarnatione, ch. 54). The goal of salvation is not merely legal pardon but genuine transformation — the believer becoming, by grace, a participant in the divine nature (2 Peter 1:4). This is not pantheism; the Creator-creature distinction is never abolished. But it is genuine transformation: the human person is healed, renewed, and elevated into an increasingly intimate union with God.</p>
+      <p><strong style="color:var(--gl)">Synergy</strong> — God and the human person cooperate in salvation — not as equals, but as the infinite God graciously working with and through finite human freedom. God's grace enables, initiates, and sustains every step; human cooperation is itself a gift of grace. St. Paul: "I worked harder than any of them, though it was not I, but the grace of God that is with me" (1 Cor 15:10). Paul works and the grace of God works — inseparably.</p>
+      <p>In this framework, the question is not "faith alone vs. works" but "is the believer genuinely united with Christ?" A genuine union with Christ necessarily produces love, obedience, and good works — not as meritorious achievements but as the natural outpouring of a life actually transformed by the living God.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s7">
+    <div class="sec-hd" onclick="ts(this)"><h2>VII. The Church Fathers on Faith and Salvation</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <div class="fc">
+        <div class="fn">St. Clement of Rome (c. AD 35–99)</div><div class="fw">1 Clement, Chapter 30 — c. AD 96</div>
+        <div class="fq">"Let us therefore cleave to His blessing, and consider what are the means of possessing it. Let us think over the things which have taken place from the beginning. For what reason was our father Abraham blessed? Was it not because he wrought righteousness and truth through faith?"</div>
+        <div class="fsig"><strong>Significance:</strong> Clement describes Abraham's faith as inseparable from "righteousness and truth" — it is a faith that acts, not a purely interior disposition. This integration of faith and righteous action characterizes the entire patristic tradition and stands against any separation of "faith" from its behavioral expression.</div>
+      </div>
+      <div class="fc">
+        <div class="fn">St. John Chrysostom (c. AD 347–407)</div><div class="fw">Homily on Romans 4 — c. AD 391</div>
+        <div class="fq">"What then? Is faith alone sufficient for salvation? By no means. For faith without works is dead. But what Paul means is that we are not justified by the works of the law — by circumcision and the sacrifices and festivals — but by grace through faith. This does not mean that works are not needed, but that the Mosaic rituals are not what save." <span class="pl">PARAPHRASE</span></div>
+        <div class="fsig"><strong>Significance:</strong> Chrysostom — the greatest biblical commentator of the Eastern patristic tradition — explicitly distinguishes Paul's "works of the law" (Mosaic rituals) from works in general. He insists that faith without works is dead (citing James), while rejecting Mosaic legal observance as the path to justification. This is the Eastern patristic reading that pre-dates and contradicts the Reformation interpretation by 1,100 years.</div>
+      </div>
+      <div class="fc">
+        <div class="fn">St. Basil the Great (c. AD 330–379)</div><div class="fw">On Faith — c. AD 375</div>
+        <div class="fq">"Faith is not a bare assent of the mind — it is a living trust that shapes the whole person: thought, desire, and action. He who truly believes in Christ does what Christ commanded. The faith that does not produce obedience and love is not yet the faith that saves." <span class="pl">PARAPHRASE</span></div>
+        <div class="fsig"><strong>Significance:</strong> Basil's definition of faith as a holistic orientation of the whole person — encompassing mind, will, and action — reflects the Eastern patristic consensus. "Faith" in the Eastern tradition is not a category of the intellect alone but of the entire human person in relationship with God. A faith that leaves the will and actions unchanged has not yet reached the living God.</div>
+      </div>
+      <div class="fc">
+        <div class="fn">St. Cyril of Alexandria (c. AD 376–444)</div><div class="fw">Commentary on John 6:29 — c. AD 425</div>
+        <div class="fq">"When he says 'this is the work of God, that you believe in him whom he has sent,' he does not exclude all work but shows that the work which God requires and approves is faith in Christ — a faith which then expresses itself through love and obedience. For faith in Christ is itself a comprehensive act of the whole person turning to God."</div>
+        <div class="fsig"><strong>Significance:</strong> Cyril reads John 6:29 — "this is the work of God, that you believe" — as the integration of faith and action: believing IS the supreme work, not an alternative to works. His commentary shows the Eastern patristic pattern: faith and obedience are not competing categories but unified aspects of the single human response to God in Christ.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s8">
+    <div class="sec-hd" onclick="ts(this)"><h2>VIII. Protestant vs. Oriental Orthodox — A Comparison</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <div class="comp-grid">
+        <div class="comp-card prot"><div class="ct">Protestant Sola Fide</div><p><strong>Justification:</strong> Forensic declaration — God declares the sinner righteous. A change of legal status.</p><p><strong>Righteousness:</strong> Imputed (Christ's righteousness credited to the believer's account).</p><p><strong>Faith:</strong> Primarily trust/confidence in Christ's atoning work.</p><p><strong>Works:</strong> Evidence of salvation, but not part of justification. Good works follow but do not contribute to justification.</p><p><strong>Sacraments:</strong> Signs and seals of grace already received, or memorials. Do not confer grace in themselves (most Protestant views).</p></div>
+        <div class="comp-card oo"><div class="ct">Oriental Orthodox</div><p><strong>Salvation:</strong> Theosis — healing and transformation into participation in the divine nature. More than a legal declaration.</p><p><strong>Righteousness:</strong> Both imputed AND imparted — Christ's righteousness is given to us and genuinely transforms us.</p><p><strong>Faith:</strong> The whole person's living union with Christ — includes trust, love, and obedience (Gal 5:6).</p><p><strong>Works:</strong> The necessary and natural expression of genuine faith — not meritorious but inevitable in the truly saved.</p><p><strong>Sacraments:</strong> Real means of grace — vehicles by which the risen Christ acts in and transforms the believer.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s9">
+    <div class="sec-hd" onclick="ts(this)"><h2>IX. Protestant Objections</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>Objection: James and Paul contradict each other — they must be harmonized in favor of Paul</h3><span class="arr">▼</span></div>
+        <div class="obj-bd"><h4>The Claim</h4><p>Paul and James use the same example (Abraham, Genesis 15:6) and reach apparently opposite conclusions. Paul says Abraham was justified by faith before his circumcision (Romans 4); James says Abraham was justified by works when he offered Isaac (James 2:21–23). These must be harmonized — James must be speaking of the demonstration of pre-existing justification, not a separate justification event.</p><h4>Response</h4><p>The Oriental Orthodox read Paul and James as complementary — addressing different errors, not contradicting each other. Paul addresses the error of thinking that Jewish identity markers (circumcision, dietary laws) are required for Gentile salvation. James addresses the opposite error of thinking that correct theological belief with no behavioral change constitutes saving faith. Both are right: Gentile Mosaic observance is not required for salvation, AND faith without works is dead. The apparent contradiction dissolves when we recognize they are fighting different battles. Chrysostom, the greatest patristic commentator on both letters, sees no contradiction. Nor does any pre-Reformation Father.</p></div>
+      </div>
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>Objection: Adding works to faith makes salvation dependent on human effort and undermines grace</h3><span class="arr">▼</span></div>
+        <div class="obj-bd"><h4>The Claim</h4><p>Any role for works in salvation introduces human merit and undermines the total sufficiency of Christ's atoning work. Grace plus anything equals works-salvation. The Oriental Orthodox position makes salvation insecure — how do you know you have done enough?</p><h4>Response</h4><p>This objection conflates two different claims: (1) works as the basis of salvation (Pelagianism — rejected by the Oriental Orthodox), and (2) works as the necessary expression and fruit of genuine saving faith (the Orthodox position). The Oriental Orthodox do not teach that anyone earns or deserves salvation by their works. They teach that genuine saving faith — the living union with God that the Holy Spirit creates in the believer — necessarily manifests in love and good works, just as a living body necessarily breathes. As for assurance: the Oriental Orthodox do not seek assurance in a past moment of faith-decision but in the ongoing life of repentance, sacramental grace, and love — the "patient well-doing" that Paul himself describes (Romans 2:7). Assurance is not a certificate issued at conversion; it is the fruit of a life increasingly conformed to Christ.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s10">
+    <div class="sec-hd" onclick="ts(this)"><h2>X. Frequently Asked Questions</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <div class="fi"><div class="fi-hd" onclick="tf(this)"><span>Q: Do the Oriental Orthodox teach that anyone can earn their way to heaven?</span><span class="arr">▼</span></div><div class="fi-bd"><p>Absolutely not. The Oriental Orthodox consistently and emphatically teach that salvation is entirely God's gift — from first to last, unearned and undeserved. No human being can place God in their debt. What the Oriental Orthodox reject is not the priority of grace but the Reformation definition of faith as something that stands alone, separate from love and obedience. In Eastern theology, "faith" without love and obedience is not yet faith in the full saving sense — not because love and obedience earn anything, but because genuine saving faith in a living God necessarily transforms the one who has it.</p></div></div>
+      <div class="fi"><div class="fi-hd" onclick="tf(this)"><span>Q: What did Luther mean by adding "alone" to Romans 3:28 in his German translation?</span><span class="arr">▼</span></div><div class="fi-bd"><p>Luther's famous 1522 translation of Romans 3:28 added the word "allein" (alone) — "we are justified by faith alone, apart from works of the law" — even though the Greek does not contain the word "alone." Luther defended this addition as necessary for clear German expression of Paul's meaning. The Oriental Orthodox point out that: (1) the word is not there; (2) the only place "faith alone" actually appears in the Bible (James 2:24) explicitly denies it; (3) Luther's addition reveals his theological presuppositions driving his translation, not the text driving his theology. This is not a minor textual note — it is the foundational text of the Reformation, and the word that defines the doctrine is not in the original.</p></div></div>
+      <div class="fi"><div class="fi-hd" onclick="tf(this)"><span>Q: Is the Oriental Orthodox view the same as the Roman Catholic view on justification?</span><span class="arr">▼</span></div><div class="fi-bd"><p>There is significant overlap — both traditions reject sola fide as defined by the Reformers, both affirm the role of sacraments in salvation, and both affirm the necessity of charity/love as intrinsic to saving faith. However, there are also differences: Catholic theology developed in a Scholastic, Aristotelian framework that is foreign to Eastern theology. The Catholic doctrine of merit (meritum de condigno and meritum de congruo), purgatory, indulgences, and the specific Scholastic categories of justification have no place in Oriental Orthodox theology. The Eastern tradition speaks of theosis, synergy, and the uncreated energies of God — categories that do not map neatly onto either the Protestant or Catholic Western frameworks. The Oriental Orthodox are not crypto-Catholics; they are a genuinely distinct theological tradition.</p></div></div>
+    </div>
+  </section>
+
+  <section class="sec" id="s11">
+    <div class="sec-hd" onclick="ts(this)"><h2>XI. Sources</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <div class="src-grid">
+        <div class="src-card"><div class="src-cat">Scripture</div><div class="src-item"><strong>The Holy Bible (ESV)</strong> — Crossway, 2001.</div><div class="src-item"><strong>Greek New Testament (NA28)</strong> — Deutsche Bibelgesellschaft.</div></div>
+        <div class="src-card"><div class="src-cat">Church Fathers</div><div class="src-item"><strong>John Chrysostom — Homilies on Romans</strong> — NPNF Series 1, vol. 11.</div><div class="src-item"><strong>Basil the Great — Ascetical Works</strong> — FC vol. 9. Catholic Univ. Press.</div><div class="src-item"><strong>Cyril of Alexandria — Commentary on John</strong> — Library of Fathers.</div><div class="src-item"><strong>Clement of Rome — 1 Clement</strong> — ANF vol. 1.</div></div>
+        <div class="src-card"><div class="src-cat">Oriental Orthodox</div><div class="src-item"><strong>Pope Shenouda III</strong> — <em>Salvation in the Orthodox Concept</em>. Coptic Patriarchate.</div><div class="src-item"><strong>Matta El-Meskeen</strong> — <em>Orthodox Prayer Life</em>. SVS Press, 2003.</div><div class="src-item"><strong>Lossky, Vladimir</strong> — <em>The Mystical Theology of the Eastern Church</em>. SVS Press, 1976.</div></div>
+        <div class="src-card"><div class="src-cat">Academic</div><div class="src-item"><strong>Wright, N.T.</strong> — <em>Justification</em>. IVP, 2009.</div><div class="src-item"><strong>McGrath, Alister</strong> — <em>Iustitia Dei: A History of the Christian Doctrine of Justification</em>. Cambridge, 2005.</div><div class="src-item"><strong>Dunn, James D.G.</strong> — <em>The Theology of Paul the Apostle</em>. Eerdmans, 1998.</div></div>
+      </div>
+    </div>
+  </section>
+</main>
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+function ts(h){h.closest('.sec').classList.toggle('open')}
+function tobj(h){h.closest('.obj').classList.toggle('open')}
+function tf(h){h.closest('.fi').classList.toggle('open')}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').classList.toggle('show')}
+function closeMobile(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
+const secs=document.querySelectorAll('.sec[id]');
+const navLinks=document.querySelectorAll('#sidenav a');
+function updateNav(){let cur='';secs.forEach(s=>{if(s.getBoundingClientRect().top<120)cur=s.id;});navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur);})}
+window.addEventListener('scroll',updateNav,{passive:true});
+window.addEventListener('scroll',()=>{const st=document.documentElement.scrollTop;const sh=document.documentElement.scrollHeight-document.documentElement.clientHeight;document.getElementById('progress-bar').style.width=(st/sh*100)+'%';},{passive:true});
+window.addEventListener('scroll',()=>{document.getElementById('btt').style.opacity=window.scrollY>400?'1':'0';},{passive:true});
+let lastQuery='';
+function doSearch(){const q=document.getElementById('search-input').value.trim().toLowerCase();if(q===lastQuery)return;lastQuery=q;clearHighlights();if(!q)return;const walker=document.createTreeWalker(document.getElementById('main-content'),NodeFilter.SHOW_TEXT,null,false);const matches=[];let node;while((node=walker.nextNode())){if(node.nodeValue.toLowerCase().includes(q))matches.push(node);}matches.forEach(n=>{const idx=n.nodeValue.toLowerCase().indexOf(q);const before=document.createTextNode(n.nodeValue.substring(0,idx));const mark=document.createElement('mark');mark.textContent=n.nodeValue.substring(idx,idx+q.length);mark.style.cssText='background:#c9a84c;color:#0d0d0d;border-radius:2px;padding:0 2px;';const after=document.createTextNode(n.nodeValue.substring(idx+q.length));const frag=document.createDocumentFragment();frag.appendChild(before);frag.appendChild(mark);frag.appendChild(after);n.parentNode.replaceChild(frag,n);});const firstMark=document.querySelector('mark');if(firstMark)firstMark.scrollIntoView({behavior:'smooth',block:'center'});}
+function clearHighlights(){document.querySelectorAll('mark').forEach(m=>{m.parentNode.replaceChild(document.createTextNode(m.textContent),m);});}
+document.getElementById('search-input').addEventListener('keydown',e=>{if(e.key==='Enter')doSearch();if(e.key==='Escape'){document.getElementById('search-input').value='';lastQuery='';clearHighlights();}});
+document.getElementById('search-btn').addEventListener('click',doSearch);
+document.querySelector('.sec').classList.add('open');
+</script>
+</body>
+</html>
