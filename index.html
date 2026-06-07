@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>THE ORTHODOX LAMP — Library</title>
+<style>
+:root{--gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;--bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--tx:#e8e0d0;--mu:#a09880;--br:#2a2a2a;--bg5:#3a2e10}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.7;min-height:100vh}
+a{color:inherit;text-decoration:none}
+
+/* ── Hero ── */
+.hero{text-align:center;padding:5rem 1.5rem 3.5rem;background:linear-gradient(180deg,var(--bg2) 0%,var(--bg) 100%);border-bottom:1px solid var(--br);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(201,168,76,.07) 0%,transparent 70%);pointer-events:none}
+.cross{font-size:2.6rem;color:var(--gold);display:block;margin-bottom:.7rem;letter-spacing:.05em}
+.site-title{font-size:clamp(1.8rem,5vw,3rem);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--tx);line-height:1.15}
+.site-title span{color:var(--gold)}
+.tagline{font-size:1rem;color:var(--mu);margin:1rem 0 .5rem;font-style:italic;letter-spacing:.03em}
+.verse{font-size:.85rem;color:var(--gd);margin-top:.6rem}
+.orn{color:var(--gold);font-size:1rem;letter-spacing:.5em;margin-top:1.2rem;opacity:.7}
+
+/* ── Layout ── */
+.container{max-width:1100px;margin:0 auto;padding:3rem 1.5rem 5rem}
+
+/* ── Section heading ── */
+.cat-label{font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);padding:.25rem .7rem;border:1px solid var(--gd);border-radius:3px;display:inline-block;margin-bottom:1.2rem}
+
+/* ── Article grid ── */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.4rem;margin-bottom:3.5rem}
+
+/* ── Article card ── */
+.card{background:var(--bg2);border:1px solid var(--br);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,border-color .2s,box-shadow .2s;cursor:pointer}
+.card:hover{transform:translateY(-3px);border-color:var(--gd);box-shadow:0 8px 32px rgba(0,0,0,.5)}
+.card-top{padding:1.4rem 1.4rem 0;flex:1}
+.card-icon{font-size:1.5rem;margin-bottom:.8rem;display:block}
+.card-cat{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+.card-title{font-size:1.05rem;font-weight:700;color:var(--gl);line-height:1.35;margin-bottom:.6rem}
+.card-subtitle{font-size:.82rem;color:var(--mu);font-style:italic;margin-bottom:.8rem}
+.card-desc{font-size:.82rem;color:var(--tx);opacity:.85;line-height:1.6}
+.card-footer{padding:1rem 1.4rem;border-top:1px solid var(--br);margin-top:1rem;display:flex;justify-content:space-between;align-items:center}
+.card-meta{font-size:.72rem;color:var(--mu)}
+.card-link{font-size:.75rem;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;display:flex;align-items:center;gap:.3rem;transition:color .2s}
+.card:hover .card-link{color:var(--gl)}
+.card-link::after{content:'→';transition:transform .2s}
+.card:hover .card-link::after{transform:translateX(3px)}
+
+/* ── Islamic category variant ── */
+.card.islamic{border-top:2px solid #2a5c3a}
+.card.islamic .card-cat{color:#6abf8a}
+.card.islamic:hover{border-color:#2a5c3a;box-shadow:0 8px 32px rgba(0,0,0,.5)}
+
+/* ── Footer ── */
+footer{text-align:center;padding:2rem 1rem;border-top:1px solid var(--br);font-size:.8rem;color:var(--mu)}
+footer span{color:var(--gold)}
+
+/* ── Divider ── */
+.divider{border:none;border-top:1px solid var(--br);margin:0 0 2.5rem}
+
+/* ── Responsive ── */
+@media(max-width:600px){
+  .hero{padding:3.5rem 1rem 2.5rem}
+  .grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <span class="cross">☩</span>
+  <h1 class="site-title">THE <span>ORTHODOX</span> LAMP</h1>
+  <p class="tagline">Biblical, Historical &amp; Patristic Apologetics</p>
+  <p class="verse">"Your word is a lamp to my feet and a light to my path." — Psalm 119:105</p>
+  <div class="orn">✦ ✦ ✦</div>
+</div>
+
+<div class="container">
+
+  <!-- Oriental Orthodox Theology -->
+  <div class="cat-label">Oriental Orthodox Theology</div>
+  <div class="grid">
+
+    <a class="card" href="infant_baptism.html">
+      <div class="card-top">
+        <span class="card-icon">💧</span>
+        <div class="card-cat">Sacramental Theology</div>
+        <div class="card-title">Infant Baptism</div>
+        <div class="card-subtitle">A Biblical and Patristic Defense</div>
+        <div class="card-desc">The scriptural foundation for baptizing infants — Old Testament typology, household baptisms, and the unanimous witness of the Church Fathers from Origen to Augustine. Includes responses to Baptist and Reformed objections.</div>
+      </div>
+      <div class="card-footer">
+        <span class="card-meta">10 sections · OO Sacramental Theology</span>
+        <span class="card-link">Read</span>
+      </div>
+    </a>
+
+    <a class="card" href="sola_fide.html">
+      <div class="card-top">
+        <span class="card-icon">⚖️</span>
+        <div class="card-cat">Soteriology</div>
+        <div class="card-title">Sola Fide &amp; Justification</div>
+        <div class="card-subtitle">Faith, Works, and Theosis in the Oriental Orthodox Tradition</div>
+        <div class="card-desc">What Paul means by "works of the Law," why James 2 is not a contradiction, and how the OO doctrine of synergy and theosis presents a scriptural alternative to both Lutheran and Catholic frameworks. With Patristic citations.</div>
+      </div>
+      <div class="card-footer">
+        <span class="card-meta">11 sections · OO Soteriology</span>
+        <span class="card-link">Read</span>
+      </div>
+    </a>
+
+    <a class="card" href="sola_scriptura.html">
+      <div class="card-top">
+        <span class="card-icon">📖</span>
+        <div class="card-cat">Ecclesiology</div>
+        <div class="card-title">Scripture &amp; Sacred Tradition</div>
+        <div class="card-subtitle">A Patristic Examination of Sola Scriptura</div>
+        <div class="card-desc">Why "Scripture alone" is a self-defeating principle — the canon problem, the interpretation problem, and the Patristic witness that Scripture and Holy Tradition form a single living deposit of faith. Responses to Protestant objections.</div>
+      </div>
+      <div class="card-footer">
+        <span class="card-meta">11 sections · Scripture &amp; Tradition</span>
+        <span class="card-link">Read</span>
+      </div>
+    </a>
+
+    <a class="card" href="apostolic_succession.html">
+      <div class="card-top">
+        <span class="card-icon">🔗</span>
+        <div class="card-cat">Ecclesiology</div>
+        <div class="card-title">Apostolic Succession — The Unbroken Chain</div>
+        <div class="card-subtitle">A Comprehensive Biblical, Historical, and Patristic Defense</div>
+        <div class="card-desc">From the Old Testament foundations of appointed succession, through Christ's institution of the apostolic office, to the succession lists of the Coptic, Syriac, Armenian, and Ethiopian churches. Includes full responses to Protestant objections.</div>
+      </div>
+      <div class="card-footer">
+        <span class="card-meta">15 sections · OO Ecclesiology</span>
+        <span class="card-link">Read</span>
+      </div>
+    </a>
+
+    <a class="card" href="mysteries_of_christ.html">
+      <div class="card-top">
+        <span class="card-icon">✝️</span>
+        <div class="card-cat">Sacramental Theology</div>
+        <div class="card-title">The Mysteries of Christ</div>
+        <div class="card-subtitle">A Comprehensive Defense of the Seven Sacraments</div>
+        <div class="card-desc">The seven Holy Mysteries — Baptism, Chrismation, Eucharist, Confession, Holy Orders, Matrimony, and Unction — examined through Scripture, the Church Fathers, and the early Church. Includes theosis, synergy, and 20 FAQ.</div>
+      </div>
+      <div class="card-footer">
+        <span class="card-meta">14 sections · Seven Mysteries</span>
+        <span class="card-link">Read</span>
+      </div>
+    </a>
+
+    <a class="card" href="christology.html">
+      <div class="card-top">
+        <span class="card-icon">🕊️</span>
+        <div class="card-cat">Christology</div>
+        <div class="card-title">Miaphysitism &amp; Dyophysitism</div>
+        <div class="card-subtitle">A Patristic Examination of the Nature of Christ</div>
+        <div class="card-desc">A deep investigation into the Christological councils — Nicaea, Ephesus, Chalcedon — comparing the Alexandrian and Antiochene schools. Features an interactive glossary, comparison charts, Cyril's Twelve Anathemas, and the modern ecumenical dialogues.</div>
+      </div>
+      <div class="card-footer">
+        <span class="card-meta">20 sections · Interactive Glossary</span>
+        <span class="card-link">Read</span>
+      </div>
+    </a>
+
+    <a class="card" href="filioque.html">
+      <div class="card-top">
+        <span class="card-icon">🔥</span>
+        <div class="card-cat">Pneumatology</div>
+        <div class="card-title">The Filioque Controversy</div>
+        <div class="card-subtitle">The Procession of the Holy Spirit and the Great Schism</div>
+        <div class="card-desc">An examination of the filioque addition to the Nicene Creed — its historical origins in the Frankish church, its theological implications for Trinitarian theology, the Oriental Orthodox position, and its role in the East-West division of AD 1054.</div>
+      </div>
+      <div class="card-footer">
+        <span class="card-meta">OO Pneumatology</span>
+        <span class="card-link">Read</span>
+      </div>
+    </a>
+
+  </div>
+
+  <hr class="divider">
+
+  <!-- Islamic Studies -->
+  <div class="cat-label" style="color:#6abf8a;border-color:#2a5c3a;">Islamic Studies &amp; Comparative Religion</div>
+  <div class="grid">
+
+    <a class="card islamic" href="islamic_dilemma.html">
+      <div class="card-top">
+        <span class="card-icon">📖</span>
+        <div class="card-cat" style="color:#6abf8a;">Biblical Studies</div>
+        <div class="card-title">The Islamic Dilemma</div>
+        <div class="card-subtitle">A Biblical and Historical Examination of the Qur'an's View of the Previous Scriptures</div>
+        <div class="card-desc">The Qur'an affirms the Torah and Gospels as divine revelation — yet contradicts them at key points. This site examines the logical dilemma this creates, with Qur'anic evidence, patristic testimony, and Christian responses to Islamic objections.</div>
+      </div>
+      <div class="card-footer">
+        <span class="card-meta">9 sections · Comparative Religion</span>
+        <span class="card-link">Read</span>
+      </div>
+    </a>
+
+    <a class="card islamic" href="orthodox_lamp_aisha.html">
+      <div class="card-top">
+        <span class="card-icon">📜</span>
+        <div class="card-cat" style="color:#6abf8a;">Historical Studies</div>
+        <div class="card-title">Aisha's Age, Early Marriage &amp; the Bible</div>
+        <div class="card-subtitle">A Historical and Scriptural Examination</div>
+        <div class="card-desc">An examination of the Islamic sources on Aisha's age at marriage, the historical context of early marriage in the ancient world, the range of Muslim scholarly interpretations, and a biblical ethical framework for evaluating the question.</div>
+      </div>
+      <div class="card-footer">
+        <span class="card-meta">11 sections · Historical Analysis</span>
+        <span class="card-link">Read</span>
+      </div>
+    </a>
+
+  </div>
+
+</div>
+
+<footer>
+  <p>THE <span>ORTHODOX LAMP</span> &nbsp;·&nbsp; Biblical, Historical &amp; Patristic Apologetics</p>
+  <p style="margin-top:.5rem;font-size:.72rem;opacity:.6;">☩ &nbsp; In the name of the Father, and of the Son, and of the Holy Spirit &nbsp; ☩</p>
+</footer>
+
+</body>
+</html>
