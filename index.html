@@ -3,678 +3,326 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>THE ORTHODOX LAMP — Library</title>
+<title>The Orthodox Lamp — Home</title>
+<meta name="description" content="The Orthodox Lamp — Biblical, historical and patristic apologetics by St James Coptic Orthodox Church. Crafted to provide a defence no matter the topic.">
 <style>
-:root{--gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;--bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--tx:#e8e0d0;--mu:#a09880;--br:#2a2a2a;--bg5:#3a2e10}
+:root{
+  --gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;
+  --olive:#94781f;--olive2:#7d6418;
+  --bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;
+  --tx:#e8e0d0;--mu:#a09880;--br:#2a2a2a;--ink:#1c1604;
+}
 *{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.7;min-height:100vh}
 a{color:inherit;text-decoration:none}
 
-/* ── Hero ── */
-.hero{text-align:center;padding:5rem 1.5rem 3.5rem;background:linear-gradient(180deg,var(--bg2) 0%,var(--bg) 100%);border-bottom:1px solid var(--br);position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(201,168,76,.07) 0%,transparent 70%);pointer-events:none}
-.cross{font-size:2.6rem;color:var(--gold);display:block;margin-bottom:.7rem;letter-spacing:.05em}
-.site-title{font-size:clamp(1.8rem,5vw,3rem);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--tx);line-height:1.15}
-.site-title span{color:var(--gold)}
-.tagline{font-size:1rem;color:var(--mu);margin:1rem 0 .5rem;font-style:italic;letter-spacing:.03em}
-.verse{font-size:.85rem;color:var(--gd);margin-top:.6rem}
-.orn{color:var(--gold);font-size:1rem;letter-spacing:.5em;margin-top:1.2rem;opacity:.7}
+/* ── Top header bar ── */
+.topbar{background:#0a0a0a;border-bottom:1px solid var(--br);padding:1.1rem 1.5rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
+.brand{line-height:1.35}
+.brand .b1{color:var(--gold);font-size:.95rem;letter-spacing:.06em}
+.brand .b2{color:var(--mu);font-size:.78rem}
+.topline{flex:1;text-align:center;min-width:260px}
+.topline .t1{font-size:clamp(1.05rem,2.6vw,1.55rem);color:var(--gl);letter-spacing:.02em}
+.topline .t2{font-size:.82rem;color:var(--mu);font-style:italic;margin-top:.15rem}
+.logo-btn{display:block;border:2px solid var(--gd);border-radius:50%;padding:3px;background:#fff;transition:transform .2s,box-shadow .2s;flex:none}
+.logo-btn:hover{transform:scale(1.06);box-shadow:0 0 22px rgba(201,168,76,.45)}
+.logo-btn img{display:block;width:74px;height:74px;border-radius:50%;object-fit:cover}
 
-/* ── Layout ── */
-.container{max-width:1100px;margin:0 auto;padding:3rem 1.5rem 5rem}
+/* ── Gold hero ── */
+.hero{background:linear-gradient(160deg,var(--olive) 0%,var(--olive2) 100%);padding:4.2rem 1.5rem;border-bottom:3px solid var(--ink)}
+.hero-in{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.05fr 1fr;gap:3rem;align-items:center}
+.hero h1{font-size:clamp(2.3rem,5.5vw,3.7rem);color:var(--ink);font-weight:700;line-height:1.12;letter-spacing:.01em}
+.verse-btn{display:inline-block;margin-top:1.6rem;border:2px solid var(--ink);color:var(--ink);padding:.55rem 1.5rem;font-size:.95rem;letter-spacing:.04em;transition:background .2s,color .2s}
+.verse-btn:hover{background:var(--ink);color:var(--gl)}
+.purpose{color:#fff;font-size:1.02rem;line-height:1.85;text-shadow:0 1px 2px rgba(0,0,0,.25)}
+.purpose p+p{margin-top:1.1rem}
+.donate-row{margin-top:1.4rem;display:flex;align-items:center;gap:.9rem}
+.donate-btn{display:inline-flex;align-items:center;gap:.55rem;background:var(--ink);color:var(--gl);padding:.6rem 1.4rem;border-radius:4px;font-size:.92rem;letter-spacing:.05em;border:1px solid rgba(232,201,106,.35);transition:transform .2s,box-shadow .2s}
+.donate-btn:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.4)}
+.donate-btn svg{width:21px;height:15px}
 
-/* ── Section heading ── */
-.cat-label{font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);padding:.25rem .7rem;border:1px solid var(--gd);border-radius:3px;display:inline-block;margin-bottom:1.2rem}
-
-/* ── Article grid ── */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.4rem;margin-bottom:3.5rem}
-
-/* ── Article card ── */
-.card{background:var(--bg2);border:1px solid var(--br);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,border-color .2s,box-shadow .2s;cursor:pointer}
-.card:hover{transform:translateY(-3px);border-color:var(--gd);box-shadow:0 8px 32px rgba(0,0,0,.5)}
-.card-top{padding:1.4rem 1.4rem 0;flex:1}
-.card-icon{font-size:1.5rem;margin-bottom:.8rem;display:block}
-.card-cat{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
-.card-title{font-size:1.05rem;font-weight:700;color:var(--gl);line-height:1.35;margin-bottom:.6rem}
-.card-subtitle{font-size:.82rem;color:var(--mu);font-style:italic;margin-bottom:.8rem}
-.card-desc{font-size:.82rem;color:var(--tx);opacity:.85;line-height:1.6}
-.card-footer{padding:1rem 1.4rem;border-top:1px solid var(--br);margin-top:1rem;display:flex;justify-content:space-between;align-items:center}
-.card-meta{font-size:.72rem;color:var(--mu)}
-.card-link{font-size:.75rem;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;display:flex;align-items:center;gap:.3rem;transition:color .2s}
-.card:hover .card-link{color:var(--gl)}
-.card-link::after{content:'→';transition:transform .2s}
-.card:hover .card-link::after{transform:translateX(3px)}
-
-/* ── Islamic category variant ── */
-.card.islamic{border-top:2px solid #2a5c3a}
-.card.islamic .card-cat{color:#6abf8a}
-.card.islamic:hover{border-color:#2a5c3a;box-shadow:0 8px 32px rgba(0,0,0,.5)}
-
-/* ── Footer ── */
-footer{text-align:center;padding:2rem 1rem;border-top:1px solid var(--br);font-size:.8rem;color:var(--mu)}
-footer span{color:var(--gold)}
-
-/* ── Divider ── */
-.divider{border:none;border-top:1px solid var(--br);margin:0 0 2.5rem}
+/* ── Sticky section nav ── */
+.snav{position:sticky;top:0;z-index:50;background:rgba(10,10,10,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--br);padding:.65rem 1rem;display:flex;justify-content:center;gap:.35rem;flex-wrap:wrap}
+.snav a{font-size:.74rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mu);padding:.35rem .8rem;border-radius:4px;transition:color .15s,background .15s}
+.snav a:hover{color:var(--gl);background:var(--bg3)}
 
 /* ── Search ── */
-.search-wrap{max-width:560px;margin:1.6rem auto 0;position:relative}
+.search-band{background:var(--bg2);border-bottom:1px solid var(--br);padding:1.5rem 1rem;text-align:center}
+.search-wrap{max-width:560px;margin:0 auto;position:relative}
 .search-wrap input{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--br);border-radius:8px;padding:11px 42px 11px 16px;font-size:.95rem;color:var(--tx);font-family:'Georgia',serif;outline:none;transition:border-color .2s}
 .search-wrap input::placeholder{color:var(--mu)}
 .search-wrap input:focus{border-color:var(--gd)}
-.search-wrap .s-icon{position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--mu);pointer-events:none;font-size:1rem}
-.no-results{display:none;text-align:center;padding:3rem 1rem;color:var(--mu);font-style:italic}
+.search-wrap .s-icon{position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--mu);pointer-events:none}
+.no-results{display:none;text-align:center;padding:2.5rem 1rem;color:var(--mu);font-style:italic}
 .no-results.show{display:block}
-.card.s-hidden{display:none}
 
-/* ── Responsive ── */
-@media(max-width:600px){
-  .hero{padding:3.5rem 1rem 2.5rem}
-  .grid{grid-template-columns:1fr}
+/* ── Featured banner ── */
+.featured{max-width:1100px;margin:2.6rem auto 0;padding:0 1.5rem}
+.featured a{display:block;text-align:center;border:1px solid var(--gd);border-radius:10px;background:linear-gradient(180deg,var(--bg3),var(--bg2));padding:1.6rem 1rem;transition:transform .2s,box-shadow .2s}
+.featured a:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(0,0,0,.5)}
+.featured .f1{font-size:clamp(1.25rem,3vw,1.7rem);color:var(--gl);letter-spacing:.05em}
+.featured .f2{font-size:.85rem;color:var(--mu);font-style:italic;margin-top:.3rem}
+
+/* ── Sections ── */
+.container{max-width:1100px;margin:0 auto;padding:1.5rem 1.5rem 4rem}
+section{padding-top:2.8rem}
+.sec-head{display:flex;align-items:center;gap:1.1rem;margin-bottom:1.5rem}
+.sec-head::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--gd),transparent)}
+.sec-title{font-size:clamp(1.6rem,4vw,2.4rem);color:var(--gold);font-weight:700;letter-spacing:.04em;background:linear-gradient(180deg,var(--bg3),transparent);padding:.2rem .9rem .2rem 0}
+.sec-sub{font-size:.85rem;color:var(--mu);font-style:italic;margin:-1rem 0 1.4rem}
+
+/* ── Link grid ── */
+.links{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:.8rem}
+.lk{display:flex;align-items:baseline;gap:.7rem;background:var(--bg2);border:1px solid var(--br);border-left:3px solid var(--gd);border-radius:6px;padding:.85rem 1.1rem;transition:transform .15s,border-color .15s,background .15s}
+.lk:hover{transform:translateX(4px);border-color:var(--gd);background:var(--bg3)}
+.lk .lt{color:var(--gl);font-size:.97rem;font-weight:700;line-height:1.4}
+.lk .ls{color:var(--mu);font-size:.76rem;font-style:italic;margin-left:auto;text-align:right;flex:none;max-width:42%}
+.lk::after{content:'→';color:var(--gd);font-size:.9rem;flex:none}
+.lk:hover::after{color:var(--gl)}
+section.islam .lk{border-left-color:#2a5c3a}
+section.atheism .lk{border-left-color:#5a4a7a}
+.s-hidden{display:none!important}
+
+/* ── Help section ── */
+.help{background:var(--bg2);border-top:3px solid var(--gd);margin-top:3.5rem}
+.help-in{max-width:900px;margin:0 auto;padding:3.2rem 1.5rem;text-align:center}
+.help-in img{width:90px;height:90px;border-radius:50%;background:#fff;padding:3px;border:2px solid var(--gd);margin-bottom:1.2rem}
+.help-in h2{color:var(--gold);font-size:1.7rem;letter-spacing:.05em;margin-bottom:1.1rem}
+.help-in p{color:#fff;font-size:1rem;line-height:1.9;max-width:720px;margin:0 auto 1rem}
+.help-actions{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;margin-top:1.6rem}
+.help-actions a{display:inline-block;padding:.6rem 1.5rem;border-radius:4px;font-size:.9rem;letter-spacing:.05em;border:1px solid var(--gd);color:var(--gl);transition:background .2s,transform .2s}
+.help-actions a:hover{background:var(--bg3);transform:translateY(-2px)}
+.help-actions a.primary{background:var(--gold);color:var(--ink);border-color:var(--gold);font-weight:700}
+.help-actions a.primary:hover{background:var(--gl)}
+
+footer{text-align:center;padding:2rem 1rem;border-top:1px solid var(--br);font-size:.8rem;color:var(--mu)}
+footer span{color:var(--gold)}
+
+@media(max-width:760px){
+  .hero-in{grid-template-columns:1fr;gap:2rem}
+  .topbar{justify-content:center;text-align:center}
+  .lk .ls{display:none}
 }
 </style>
 </head>
 <body>
 
+<!-- ── Header ── -->
+<div class="topbar">
+  <div class="brand">
+    <div class="b1">The Orthodox Lamp</div>
+    <div class="b2">By St James Coptic Orthodox Church</div>
+  </div>
+  <div class="topline">
+    <div class="t1">Crafted to provide a defence no matter the topic</div>
+    <div class="t2">Information on websites can have errors, so verify personally with an Abouna</div>
+  </div>
+  <a class="logo-btn" href="https://stjamescoc.org.au/" title="St James Brother of the Lord Coptic Orthodox Church" aria-label="St James Coptic Orthodox Church website">
+    <img src="https://static.wixstatic.com/media/20c18e_5e2e195809b84f20b64346113d5c7ca5~mv2.png/v1/fill/w_200,h_200,al_c,q_85/logo.png" alt="St James Brother of the Lord Coptic Orthodox Church logo">
+  </a>
+</div>
+
+<!-- ── Gold hero ── -->
 <div class="hero">
-  <span class="cross">☩</span>
-  <h1 class="site-title">THE <span>ORTHODOX</span> LAMP</h1>
-  <p class="tagline">Biblical, Historical &amp; Patristic Apologetics</p>
-  <p class="verse">"Your word is a lamp to my feet and a light to my path." — Psalm 119:105</p>
-  <div class="orn">✦ ✦ ✦</div>
+  <div class="hero-in">
+    <div>
+      <h1>Welcome<br>to the Orthodox<br>Lamp</h1>
+      <a class="verse-btn" href="https://www.biblegateway.com/passage/?search=1%20peter%203%3A15&amp;version=NKJV">1 Peter 3:15</a>
+    </div>
+    <div class="purpose">
+      <p>This website is not meant to spark arguments; however, it is supposed to be used to venture closer to the truth, which is Jesus Christ, our Lord. Learn and journey deeper into the faith and gain new knowledge on other faiths too. All pages have been made using Claude AI and can have faults, so please verify with an Abouna (priest/father).</p>
+      <p>If you would like to support us and keep this website up-to-date, you can donate on our main website.</p>
+      <div class="donate-row">
+        <a class="donate-btn" href="https://stjamescoc.org.au/donate">
+          <svg viewBox="0 0 24 17" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1" y="1" width="22" height="15" rx="1.5"/><path d="M1.5 2l10.5 8L22.5 2"/></svg>
+          Donate
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Section nav ── -->
+<nav class="snav">
+  <a href="#oriental">Oriental Orthodoxy</a>
+  <a href="#protestantism">Protestantism</a>
+  <a href="#catholicism">Catholicism</a>
+  <a href="#eastern">Eastern Orthodoxy</a>
+  <a href="#islam">Islam</a>
+  <a href="#atheism">Atheism &amp; Agnosticism</a>
+  <a href="#help">Help</a>
+</nav>
+
+<!-- ── Search ── -->
+<div class="search-band">
   <div class="search-wrap">
     <input type="search" id="search" placeholder="Search the library…" autocomplete="off" oninput="doSearch(this.value)">
     <span class="s-icon">🔍</span>
   </div>
 </div>
 
+<!-- ── Featured ── -->
+<div class="featured">
+  <a href="what_is_a_christian.html">
+    <div class="f1">What it means to be a Christian</div>
+    <div class="f2">Begin here — the foundation of everything else on this site</div>
+  </a>
+</div>
+
 <div class="container">
 
-  <!-- Oriental Orthodox Theology -->
-  <div class="cat-label">Oriental Orthodox Theology</div>
-  <div class="grid">
-
-    <a class="card" href="infant_baptism.html">
-      <div class="card-top">
-        <span class="card-icon">💧</span>
-        <div class="card-cat">Sacramental Theology</div>
-        <div class="card-title">Infant Baptism</div>
-        <div class="card-subtitle">A Biblical and Patristic Defense</div>
-        <div class="card-desc">The scriptural foundation for baptizing infants — Old Testament typology, household baptisms, and the unanimous witness of the Church Fathers from Origen to Augustine. Includes responses to Baptist and Reformed objections.</div>
-      </div>
-      <div class="card-footer">
-        <span class="card-meta">10 sections · OO Sacramental Theology</span>
-        <span class="card-link">Read</span>
-      </div>
-    </a>
-
-    <a class="card" href="sola_fide.html">
-      <div class="card-top">
-        <span class="card-icon">⚖️</span>
-        <div class="card-cat">Soteriology</div>
-        <div class="card-title">Sola Fide &amp; Justification</div>
-        <div class="card-subtitle">Faith, Works, and Theosis in the Oriental Orthodox Tradition</div>
-        <div class="card-desc">What Paul means by "works of the Law," why James 2 is not a contradiction, and how the OO doctrine of synergy and theosis presents a scriptural alternative to both Lutheran and Catholic frameworks. With Patristic citations.</div>
-      </div>
-      <div class="card-footer">
-        <span class="card-meta">11 sections · OO Soteriology</span>
-        <span class="card-link">Read</span>
-      </div>
-    </a>
-
-    <a class="card" href="sola_scriptura.html">
-      <div class="card-top">
-        <span class="card-icon">📖</span>
-        <div class="card-cat">Ecclesiology</div>
-        <div class="card-title">Scripture &amp; Sacred Tradition</div>
-        <div class="card-subtitle">A Patristic Examination of Sola Scriptura</div>
-        <div class="card-desc">Why "Scripture alone" is a self-defeating principle — the canon problem, the interpretation problem, and the Patristic witness that Scripture and Holy Tradition form a single living deposit of faith. Responses to Protestant objections.</div>
-      </div>
-      <div class="card-footer">
-        <span class="card-meta">11 sections · Scripture &amp; Tradition</span>
-        <span class="card-link">Read</span>
-      </div>
-    </a>
-
-    <a class="card" href="apostolic_succession.html">
-      <div class="card-top">
-        <span class="card-icon">🔗</span>
-        <div class="card-cat">Ecclesiology</div>
-        <div class="card-title">Apostolic Succession — The Unbroken Chain</div>
-        <div class="card-subtitle">A Comprehensive Biblical, Historical, and Patristic Defense</div>
-        <div class="card-desc">From the Old Testament foundations of appointed succession, through Christ's institution of the apostolic office, to the succession lists of the Coptic, Syriac, Armenian, and Ethiopian churches. Includes full responses to Protestant objections.</div>
-      </div>
-      <div class="card-footer">
-        <span class="card-meta">15 sections · OO Ecclesiology</span>
-        <span class="card-link">Read</span>
-      </div>
-    </a>
-
-    <a class="card" href="mysteries_of_christ.html">
-      <div class="card-top">
-        <span class="card-icon">✝️</span>
-        <div class="card-cat">Sacramental Theology</div>
-        <div class="card-title">The Mysteries of Christ</div>
-        <div class="card-subtitle">A Comprehensive Defense of the Seven Sacraments</div>
-        <div class="card-desc">The seven Holy Mysteries — Baptism, Chrismation, Eucharist, Confession, Holy Orders, Matrimony, and Unction — examined through Scripture, the Church Fathers, and the early Church. Includes theosis, synergy, and 20 FAQ.</div>
-      </div>
-      <div class="card-footer">
-        <span class="card-meta">14 sections · Seven Mysteries</span>
-        <span class="card-link">Read</span>
-      </div>
-    </a>
-
-    <a class="card" href="christology.html">
-      <div class="card-top">
-        <span class="card-icon">🕊️</span>
-        <div class="card-cat">Christology</div>
-        <div class="card-title">Miaphysitism &amp; Dyophysitism</div>
-        <div class="card-subtitle">A Patristic Examination of the Nature of Christ</div>
-        <div class="card-desc">A deep investigation into the Christological councils — Nicaea, Ephesus, Chalcedon — comparing the Alexandrian and Antiochene schools. Features an interactive glossary, comparison charts, Cyril's Twelve Anathemas, and the modern ecumenical dialogues.</div>
-      </div>
-      <div class="card-footer">
-        <span class="card-meta">20 sections · Interactive Glossary</span>
-        <span class="card-link">Read</span>
-      </div>
-    </a>
-
-    <a class="card" href="filioque.html">
-      <div class="card-top">
-        <span class="card-icon">🔥</span>
-        <div class="card-cat">Pneumatology</div>
-        <div class="card-title">The Filioque Controversy</div>
-        <div class="card-subtitle">The Procession of the Holy Spirit and the Great Schism</div>
-        <div class="card-desc">An examination of the filioque addition to the Nicene Creed — its historical origins in the Frankish church, its theological implications for Trinitarian theology, the Oriental Orthodox position, and its role in the East-West division of AD 1054.</div>
-      </div>
-      <div class="card-footer">
-        <span class="card-meta">12 sections · OO Pneumatology</span>
-        <span class="card-link">Read</span>
-      </div>
-    </a>
-
-    <a class="card" href="women_in_church.html">
-      <div class="card-top">
-        <span class="card-icon">🕊️</span>
-        <div class="card-cat">Theological Anthropology</div>
-        <div class="card-title">Women in the Church</div>
-        <div class="card-subtitle">Dignity, Vocation, and the Apostolic Tradition</div>
-        <div class="card-desc">A comprehensive survey of women in Scripture and the Patristic tradition — from the prophetesses of Israel to Mary Magdalene, the Apostle to the Apostles. Includes the Desert Mothers, the female diaconate, the "silence" passages, and the OO position on ordination.</div>
-      </div>
-      <div class="card-footer">
-        <span class="card-meta">13 sections · OO Theological Anthropology</span>
-        <span class="card-link">Read</span>
-      </div>
-    </a>
-
-    <a class="card" href="saints_intercession.html">
-      <div class="card-top">
-        <span class="card-icon">☩</span>
-        <div class="card-cat">Devotional Theology</div>
-        <div class="card-title">Saints &amp; Intercession</div>
-        <div class="card-subtitle">A Biblical, Historical &amp; Patristic Defense</div>
-        <div class="card-desc">A comprehensive defense of the veneration of saints and intercessory prayer — from the OT cloud of witnesses to the martyrs in Revelation. Covers the one Mediator question, latria vs. dulia, the necromancy objection, the Sub Tuum Praesidium, and the full Patristic witness from Origen to John of Damascus.</div>
-      </div>
-      <div class="card-footer">
-        <span class="card-meta">20 sections · Communion of Saints</span>
-        <span class="card-link">Read</span>
-      </div>
-    </a>
-
-    <a class="card" href="liturgy.html">
-      <div class="card-top">
-        <span class="card-icon">⛪</span>
-        <div class="card-cat">Liturgical Theology</div>
-        <div class="card-title">The Sacred Liturgy of the Early Church</div>
-        <div class="card-subtitle">The Bible is a Liturgical Book — The Early Church Was Not a Protestant Church</div>
-        <div class="card-desc">A comprehensive examination of Christian worship from the apostolic era — from the liturgical character of the New Testament, through the Didache (c. AD 80), Justin Martyr (c. 155), and Hippolytus (c. 215), to the Temple-synagogue roots, the structure of the ancient anaphora, liturgical time and space, and the Oriental Orthodox churches as living custodians of apostolic worship. Includes five Protestant objections and FAQ.</div>
-      </div>
-      <div class="card-footer">
-        <span class="card-meta">20 sections · Liturgical Theology</span>
-        <span class="card-link">Read</span>
-      </div>
-    </a>
-
-    <a class="card" href="contemporary_ethics.html">
-      <div class="card-top">
-        <span class="card-icon">🏛️</span>
-        <div class="card-cat">Moral Theology</div>
-        <div class="card-title">The Church &amp; Contemporary Ethics</div>
-        <div class="card-subtitle">Abortion, LGBTQ, Euthanasia, Divorce &amp; More</div>
-        <div class="card-desc">The Oriental Orthodox position on the most contested moral questions of the modern age — abortion, homosexuality and same-sex marriage, euthanasia, contraception, divorce, capital punishment, economic justice, the environment, and religious freedom. Grounded in Scripture, the Patristic consensus, and canon law. Includes five major objections and FAQ.</div>
-      </div>
-      <div class="card-footer">
-        <span class="card-meta">17 sections · OO Moral Theology</span>
-        <span class="card-link">Read</span>
-      </div>
-    </a>
-
-    <a class="card" href="salvation.html">
-      <div class="card-top">
-        <span class="card-icon">✝️</span>
-        <div class="card-cat">Soteriology</div>
-        <div class="card-title">Salvation in the Oriental Orthodox Faith</div>
-        <div class="card-subtitle">Theosis, Baptismal Regeneration, Grace &amp; Synergy</div>
-        <div class="card-desc">A comprehensive examination of how salvation works in the OO tradition — from baptismal regeneration and the three stages of salvation, to theosis as the goal of the Christian life, divine-human synergy, the role of the Holy Mysteries, and the full Patristic consensus. Includes responses to six Protestant objections and six FAQ.</div>
-      </div>
-      <div class="card-footer">
-        <span class="card-meta">16 sections · OO Soteriology</span>
-        <span class="card-link">Read</span>
-      </div>
-    </a>
-
-    <a class="card" href="icon_veneration.html">
-      <div class="card-top">
-        <span class="card-icon">🖼️</span>
-        <div class="card-cat">Liturgical Theology</div>
-        <div class="card-title">Icon Veneration</div>
-        <div class="card-subtitle">The Theology of the Holy Image — A Biblical, Historical &amp; Patristic Defense</div>
-        <div class="card-desc">A comprehensive examination of icon theology — from the Incarnation as its ultimate foundation, through Old Testament precedents, the Iconoclast controversy, Nicaea II (787), John of Damascus's threefold argument, and the four Oriental Orthodox iconographic traditions. Includes the Second Commandment, Protestant and Islamic objections, and 20 FAQ.</div>
-      </div>
-      <div class="card-footer">
-        <span class="card-meta">20 sections · Liturgical Theology</span>
-        <span class="card-link">Read</span>
-      </div>
-    </a>
-    <a class="card" href="spiritual_gifts.html">
-      <div class="card-top">
-        <span class="card-icon">🕊️</span>
-        <div class="card-cat">Pneumatology</div>
-        <div class="card-title">Spiritual Gifts</div>
-        <div class="card-subtitle">The Charismatic Life of the Church</div>
-        <div class="card-desc">A comprehensive Oriental Orthodox treatment of all spiritual gifts — tongues, prophecy, healing, discernment, and more — grounded in Scripture and the Fathers. Includes a sober assessment of the Charismatic movement and cessationism.</div>
-      </div>
-      <div class="card-footer">
-        <span class="card-meta">18 sections · Pneumatology</span>
-        <span class="card-link">Read</span>
-      </div>
-    </a>
-
-    <a class="card" href="church_authority.html">
-      <div class="card-top">
-        <span class="card-icon">⛩️</span>
-        <div class="card-cat">Ecclesiology</div>
-        <div class="card-title">The Authorial Power of the Church</div>
-        <div class="card-subtitle">Pillar and Bulwark of the Truth</div>
-        <div class="card-desc">The Oriental Orthodox case for conciliar church authority — from 1 Timothy 3:15 and Matthew 16 through Acts 15, apostolic succession, and the canon. Includes a three-way comparison of OO conciliarism, sola scriptura, and Roman papalism.</div>
-      </div>
-      <div class="card-footer">
-        <span class="card-meta">13 sections · Ecclesiology</span>
-        <span class="card-link">Read</span>
-      </div>
-    </a>
-    <a class="card" href="papal_authority.html">
-      <div class="card-top">
-        <span class="card-icon">⛪</span>
-        <div class="card-cat">Ecclesiology — Catholic Dialogue</div>
-        <div class="card-title">The Papacy</div>
-        <div class="card-subtitle">Church Head, Papal Authority &amp; Infallibility</div>
-        <div class="card-desc">A thorough three-part examination of papal claims — who heads the Church, the rise and critique of papal jurisdiction, and the doctrine of papal infallibility (Vatican I). Covers the Petrine texts, Pope Honorius condemned as heretic, and the OO conciliar alternative.</div>
-      </div>
-      <div class="card-footer">
-        <span class="card-meta">21 sections · Catholic Dialogue</span>
-        <span class="card-link">Read</span>
-      </div>
-    </a>
-
-    <a class="card" href="trinity.html">
-      <div class="card-top">
-        <span class="card-icon">🔆</span>
-        <div class="card-cat">Triadology</div>
-        <div class="card-title">The Holy Trinity</div>
-        <div class="card-subtitle">One God in Three Persons — Without Contradiction</div>
-        <div class="card-desc">How One God can be Three Persons and why this is no contradiction — monarchical Trinitarianism, the eternal generation of the Son and procession of the Spirit, the Cappadocian distinction of ousia and hypostasis, perichoresis, and responses to Unitarian, Islamic, and modalist objections.</div>
-      </div>
-      <div class="card-footer">
-        <span class="card-meta">15 sections · Triadology</span>
-        <span class="card-link">Read</span>
-      </div>
-    </a>
-
-    <a class="card" href="the-orthodox-lamp.html">
-      <div class="card-top">
-        <span class="card-icon">🕯️</span>
-        <div class="card-cat">Catechesis</div>
-        <div class="card-title">Twenty Questions on God and Christ</div>
-        <div class="card-subtitle">In-Depth Answers from the Scriptures and the Fathers</div>
-        <div class="card-desc">Twenty foundational questions on God, the Holy Trinity, and Christ's saving work — each answered at depth from the Holy Scriptures and the Fathers of the Church. A catechetical companion to the library's longer treatises.</div>
-      </div>
-      <div class="card-footer">
-        <span class="card-meta">20 questions · Catechesis</span>
-        <span class="card-link">Read</span>
-      </div>
-    </a>
-
-    <a class="card" href="what_is_a_christian.html">
-      <div class="card-top">
-        <span class="card-icon">✝️</span>
-        <div class="card-cat">Catechesis</div>
-        <div class="card-title">What Is a Christian?</div>
-        <div class="card-subtitle">More Than Belief — Faith, Baptism, Church, and Theosis</div>
-        <div class="card-desc">Is Christianity merely a set of beliefs? An examination of what pistis (faith) actually means, the Creed, baptism as new birth, the Church as the Body of Christ, repentance as metanoia, the sacraments, and salvation as transformation.</div>
-      </div>
-      <div class="card-footer">
-        <span class="card-meta">15 sections · Catechesis</span>
-        <span class="card-link">Read</span>
-      </div>
-    </a>
-
-    <a class="card" href="biblical_canon.html">
-      <div class="card-top">
-        <span class="card-icon">📚</span>
-        <div class="card-cat">Scripture &amp; Tradition</div>
-        <div class="card-title">The Biblical Canon</div>
-        <div class="card-subtitle">The Septuagint, the Deuterocanon, and the Canons of the Churches</div>
-        <div class="card-desc">A full comparison of the biblical canons — the Septuagint as the Church's Bible, the Jamnia dispute, individual profiles of the deuterocanonical books, the Ethiopian 81-book canon, the Syriac Peshitta, and how the New Testament canon was recognized.</div>
-      </div>
-      <div class="card-footer">
-        <span class="card-meta">16 sections · Canon Studies</span>
-        <span class="card-link">Read</span>
-      </div>
-    </a>
-
-    <a class="card" href="chalcedon_schism.html">
-      <div class="card-top">
-        <span class="card-icon">⚖️</span>
-        <div class="card-cat">Christology — Church History</div>
-        <div class="card-title">The Chalcedonian Schism</div>
-        <div class="card-subtitle">The Ecumenical Councils and the Division of 451</div>
-        <div class="card-desc">The road to Chalcedon — Cyril's formula, Leo's Tome, what actually happened at the Council of 451, the Four Adverbs, why the Oriental Orthodox rejected the Definition, and the centuries of aftermath. A full historical and theological account.</div>
-      </div>
-      <div class="card-footer">
-        <span class="card-meta">19 sections · Church History</span>
-        <span class="card-link">Read</span>
-      </div>
-    </a>
-
-    <a class="card" href="oo_history.html">
-      <div class="card-top">
-        <span class="card-icon">🏛️</span>
-        <div class="card-cat">Church History</div>
-        <div class="card-title">History of the Oriental Orthodox Church</div>
-        <div class="card-subtitle">From the Apostles to the Present Day</div>
-        <div class="card-desc">The apostolic origins of the Coptic, Syriac, Armenian, Ethiopian, Eritrean, and Indian churches — the Alexandrian school, the Era of Martyrs, Chalcedon, Byzantine persecution, the Arab conquest, and survival under Islam to the modern diaspora.</div>
-      </div>
-      <div class="card-footer">
-        <span class="card-meta">16 sections · Church History</span>
-        <span class="card-link">Read</span>
-      </div>
-    </a>
-
-    <a class="card" href="eo_oo_differences.html">
-      <div class="card-top">
-        <span class="card-icon">☦️</span>
-        <div class="card-cat">Comparative Orthodoxy</div>
-        <div class="card-title">Eastern &amp; Oriental Orthodoxy</div>
-        <div class="card-subtitle">One Root, Two Families — A Complete Comparison</div>
-        <div class="card-desc">A side-by-side comparison of the Eastern and Oriental Orthodox communions — the Chalcedonian schism, 3 vs. 7 councils, Christological formulas, liturgical rites, fasting, canons, calendars, governance, Palamism, hesychasm, and what both families share.</div>
-      </div>
-      <div class="card-footer">
-        <span class="card-meta">17 sections · Comparative Orthodoxy</span>
-        <span class="card-link">Read</span>
-      </div>
-    </a>
-
-    <a class="card" href="marian_theology.html">
-      <div class="card-top">
-        <span class="card-icon">🌹</span>
-        <div class="card-cat">Marian Theology</div>
-        <div class="card-title">Mary: Theotokos &amp; Perpetual Virginity</div>
-        <div class="card-subtitle">A Biblical, Conciliar &amp; Patristic Defense</div>
-        <div class="card-desc">The dogmatic case for the Theotokos title and Mary's perpetual virginity — the Council of Ephesus (431), the biblical evidence, the Patristic witness, the "brothers of Jesus" question, and responses to Protestant objections.</div>
-      </div>
-      <div class="card-footer">
-        <span class="card-meta">18 sections · Marian Theology</span>
-        <span class="card-link">Read</span>
-      </div>
-    </a>
-
-    <a class="card" href="theotokos_mary.html">
-      <div class="card-top">
-        <span class="card-icon">👑</span>
-        <div class="card-cat">Devotional Theology</div>
-        <div class="card-title">The Theotokos</div>
-        <div class="card-subtitle">Mary in the Life and Liturgy of the Oriental Orthodox Church</div>
-        <div class="card-desc">Mary's titles, her place in the Oriental Orthodox liturgy, the Dormition, her intercession, the apparition at Zeitoun, Egypt (1968–1971), and how the OO veneration of Mary differs from Roman Catholic Mariology.</div>
-      </div>
-      <div class="card-footer">
-        <span class="card-meta">12 sections · Devotional Theology</span>
-        <span class="card-link">Read</span>
-      </div>
-    </a>
-
-    <a class="card" href="hard_passages.html">
-      <div class="card-top">
-        <span class="card-icon">📜</span>
-        <div class="card-cat">Apologetics &amp; Theodicy</div>
-        <div class="card-title">The Hard Passages</div>
-        <div class="card-subtitle">Old Testament Violence, Slavery, and the "Contradictions"</div>
-        <div class="card-desc">The three sharpest attacks on Scripture, answered in three organized parts: the conquest texts read as their first readers read them (war rhetoric, judgment after 400 years of patience, the Fathers on Joshua); what the Law actually says about slavery and the first abolitionist sermon in history (Gregory of Nyssa, AD 379); and the famous "contradictions" opened case by case with Chrysostom and Augustine.</div>
-      </div>
-      <div class="card-footer">
-        <span class="card-meta">15 sections · Apologetics</span>
-        <span class="card-link">Read</span>
-      </div>
-    </a>
-    <a class="card" href="moral_argument.html">
-      <div class="card-top">
-        <span class="card-icon">⚖️</span>
-        <div class="card-cat">Apologetics &amp; Theodicy</div>
-        <div class="card-title">The Moral Argument</div>
-        <div class="card-subtitle">Right and Wrong Are Real — and That Points to God</div>
-        <div class="card-desc">Lewis's famous argument from Mere Christianity, rebuilt step by step in plain words: a real moral law, not instinct, not custom, not evolution — with the Euthyphro dilemma answered, the Fathers on the law written within, honest atheist concessions, and the law fulfilled in Christ.</div>
-      </div>
-      <div class="card-footer">
-        <span class="card-meta">18 sections · Apologetics</span>
-        <span class="card-link">Read</span>
-      </div>
-    </a>
-    <a class="card" href="evidence_for_god.html">
-      <div class="card-top">
-        <span class="card-icon">🔭</span>
-        <div class="card-cat">Apologetics &amp; Theodicy</div>
-        <div class="card-title">The Evidence for God</div>
-        <div class="card-subtitle">"There Is No Evidence" — Ten Lines of Evidence, Organized for Quick Use</div>
-        <div class="card-desc">A large, navigable evidence catalog: the universe's beginning, fine-tuning, the code in the cell, the comprehensible cosmos, consciousness and reason, the moral law, desire and worship, the Resurrection, and the continuing witness of martyrs and Zeitoun — each in one sentence first, with the Fathers, the Scriptures, and the scientists' own words.</div>
-      </div>
-      <div class="card-footer">
-        <span class="card-meta">20 sections · Apologetics</span>
-        <span class="card-link">Read</span>
-      </div>
-    </a>
-    <a class="card" href="problem_of_evil.html">
-      <div class="card-top">
-        <span class="card-icon">🌒</span>
-        <div class="card-cat">Apologetics &amp; Theodicy</div>
-        <div class="card-title">The Problem of Evil</div>
-        <div class="card-subtitle">Why Does a Good God Permit Suffering? — The Atheist Objection Answered</div>
-        <div class="card-desc">The Epicurean trilemma stated at full strength, evil as privation of good in Athanasius and Basil, freedom and the Fall, Isaiah 45:7 examined, the logical, evidential, and emotional arguments answered, and the Cross as God's answer in person — from the Church of the Martyrs.</div>
-      </div>
-      <div class="card-footer">
-        <span class="card-meta">13 sections · Apologetics</span>
-        <span class="card-link">Read</span>
-      </div>
-    </a>
-    <a class="card" href="original_sin.html">
-      <div class="card-top">
-        <span class="card-icon">🍃</span>
-        <div class="card-cat">Theological Anthropology</div>
-        <div class="card-title">Original Sin</div>
-        <div class="card-subtitle">Ancestral Sin vs. Inherited Guilt — Two Frameworks Compared</div>
-        <div class="card-desc">Romans 5:12 and the pivotal translation question, Augustine's innovation, the Eastern understanding of ancestral sin, what we do and don't inherit from Adam, and why this difference shapes everything from infant baptism to the doctrine of grace.</div>
-      </div>
-      <div class="card-footer">
-        <span class="card-meta">8 sections · Theological Anthropology</span>
-        <span class="card-link">Read</span>
-      </div>
-    </a>
-
-    <a class="card" href="assurance_of_salvation.html">
-      <div class="card-top">
-        <span class="card-icon">⚓</span>
-        <div class="card-cat">Soteriology</div>
-        <div class="card-title">Assurance of Salvation</div>
-        <div class="card-subtitle">Hope vs. Certainty — The Holy Tension of Fear and Love</div>
-        <div class="card-desc">Can a Christian be certain of salvation? Three views compared — the distinction between hope and presumption, why certainty can be spiritually dangerous, why fear must not become despair, and the witness of the Fathers on confident hope.</div>
-      </div>
-      <div class="card-footer">
-        <span class="card-meta">9 sections · Soteriology</span>
-        <span class="card-link">Read</span>
-      </div>
-    </a>
-
-    <a class="card" href="apostolic_grace.html">
-      <div class="card-top">
-        <span class="card-icon">🕊️</span>
-        <div class="card-cat">Sacramental Theology</div>
-        <div class="card-title">Grace Beyond Communion</div>
-        <div class="card-subtitle">Sacramental Validity Outside the Oriental Orthodox Church</div>
-        <div class="card-desc">What makes a sacrament valid, apostolic succession as the channel of sacramental grace, baptism as once-for-all, the principle of economia, why the Spirit is not imprisoned, and which churches retain valid orders — and why.</div>
-      </div>
-      <div class="card-footer">
-        <span class="card-meta">11 sections · Sacramental Theology</span>
-        <span class="card-link">Read</span>
-      </div>
-    </a>
-
-    <a class="card" href="priestly_celibacy.html">
-      <div class="card-top">
-        <span class="card-icon">💍</span>
-        <div class="card-cat">Ecclesiology</div>
-        <div class="card-title">Priestly Celibacy</div>
-        <div class="card-subtitle">Married Priests, Celibate Bishops — The Apostolic Pattern</div>
-        <div class="card-desc">Why the Oriental Orthodox churches ordain married men to the priesthood while requiring celibate bishops — the scriptural witness, how the Latin rule of mandatory celibacy developed, and OO practice today.</div>
-      </div>
-      <div class="card-footer">
-        <span class="card-meta">7 sections · Ecclesiology</span>
-        <span class="card-link">Read</span>
-      </div>
-    </a>
-
-    <a class="card" href="church_practices.html">
-      <div class="card-top">
-        <span class="card-icon">⛪</span>
-        <div class="card-cat">Liturgical Theology</div>
-        <div class="card-title">Church Practices: Cultural vs. Sacred</div>
-        <div class="card-subtitle">Distinguishing Holy Tradition from Local Custom</div>
-        <div class="card-desc">Which practices of the Church are unchangeable Holy Tradition and which are venerable but local custom? The distinguishing principle, applied to head coverings, fasting customs, liturgical languages, and more — with FAQ.</div>
-      </div>
-      <div class="card-footer">
-        <span class="card-meta">Practical Theology</span>
-        <span class="card-link">Read</span>
-      </div>
-    </a>
-
-    <a class="card" href="roman_catholic_dogmas.html">
-      <div class="card-top">
-        <span class="card-icon">🏰</span>
-        <div class="card-cat">Ecclesiology — Catholic Dialogue</div>
-        <div class="card-title">Roman Catholic Dogmas</div>
-        <div class="card-subtitle">Post-Schism Definitions Examined from the OO Perspective</div>
-        <div class="card-desc">An examination of dogmas Rome defined after the schisms — purgatory, the Immaculate Conception, papal infallibility, the filioque, indulgences, created grace, and satisfaction atonement — and the method problem of how dogmas are defined.</div>
-      </div>
-      <div class="card-footer">
-        <span class="card-meta">13 sections · Catholic Dialogue</span>
-        <span class="card-link">Read</span>
-      </div>
-    </a>
-
-    <a class="card" href="faq.html">
-      <div class="card-top">
-        <span class="card-icon">❓</span>
-        <div class="card-cat">Common Questions</div>
-        <div class="card-title">Common Questions</div>
-        <div class="card-subtitle">A Reference FAQ Across the Whole Library</div>
-        <div class="card-desc">Concise answers to the most frequent questions — church authority, saints and Mary, icons, salvation, sacraments, worship, fasting, Christology, Scripture, prayer, the afterlife, church practices, and modern issues — with links to the full treatises.</div>
-      </div>
-      <div class="card-footer">
-        <span class="card-meta">13 categories · Reference</span>
-        <span class="card-link">Read</span>
-      </div>
-    </a>
-
+<!-- ══ ORIENTAL ORTHODOXY ══ -->
+<section id="oriental">
+  <div class="sec-head"><h2 class="sec-title">Oriental Orthodoxy</h2></div>
+  <p class="sec-sub">The faith, worship and history of the Oriental Orthodox Church</p>
+  <div class="links">
+    <a class="lk" href="chalcedon_schism.html"><span class="lt">Chalcedon — Schism &amp; Councils</span><span class="ls">History</span></a>
+    <a class="lk" href="apostolic_succession.html"><span class="lt">Order of the Church &amp; Apostolic Succession</span><span class="ls">Ecclesiology</span></a>
+    <a class="lk" href="women_in_church.html"><span class="lt">Women in the Church</span><span class="ls">Ecclesiology</span></a>
+    <a class="lk" href="mysteries_of_christ.html"><span class="lt">The Sacraments — Holy Mysteries</span><span class="ls">Sacraments</span></a>
+    <a class="lk" href="christology.html"><span class="lt">Miaphysitism vs Dyophysitism</span><span class="ls">Christology</span></a>
+    <a class="lk" href="icon_veneration.html"><span class="lt">Icon Veneration</span><span class="ls">Worship</span></a>
+    <a class="lk" href="apostolic_grace.html"><span class="lt">The Acceptance of External Baptism</span><span class="ls">Sacraments</span></a>
+    <a class="lk" href="biblical_canon.html"><span class="lt">The Canon of Scripture</span><span class="ls">Scripture</span></a>
+    <a class="lk" href="faq.html"><span class="lt">FAQs on Oriental Orthodoxy</span><span class="ls">Questions</span></a>
+    <a class="lk" href="contemporary_ethics.html"><span class="lt">Modern Ethical Topics</span><span class="ls">Ethics</span></a>
+    <a class="lk" href="liturgy.html"><span class="lt">Liturgy &amp; Preservation</span><span class="ls">Worship</span></a>
+    <a class="lk" href="church_authority.html"><span class="lt">The Authority of the Church</span><span class="ls">Ecclesiology</span></a>
+    <a class="lk" href="saints_intercession.html"><span class="lt">The Saints &amp; Intercessions</span><span class="ls">Worship</span></a>
+    <a class="lk" href="marian_theology.html"><span class="lt">Mary the Perpetual Virgin</span><span class="ls">Theotokos</span></a>
+    <a class="lk" href="theotokos_mary.html"><span class="lt">The Virgin Mary as Theotokos</span><span class="ls">Theotokos</span></a>
+    <a class="lk" href="salvation.html"><span class="lt">Salvation in the Oriental Church</span><span class="ls">Soteriology</span></a>
+    <a class="lk" href="church_practices.html"><span class="lt">Sacred, Ancient &amp; Cultural Norms</span><span class="ls">Practice</span></a>
+    <a class="lk" href="oo_history.html"><span class="lt">History of the Oriental Orthodox Church</span><span class="ls">History</span></a>
   </div>
+</section>
 
-  <hr class="divider">
-
-  <!-- Islamic Studies -->
-  <div class="cat-label" style="color:#6abf8a;border-color:#2a5c3a;">Islamic Studies &amp; Comparative Religion</div>
-  <div class="grid">
-
-    <a class="card islamic" href="islamic_dilemma.html">
-      <div class="card-top">
-        <span class="card-icon">📖</span>
-        <div class="card-cat" style="color:#6abf8a;">Biblical Studies</div>
-        <div class="card-title">The Islamic Dilemma</div>
-        <div class="card-subtitle">A Biblical and Historical Examination of the Qur'an's View of the Previous Scriptures</div>
-        <div class="card-desc">The Qur'an affirms the Torah and Gospels as divine revelation — yet contradicts them at key points. This site examines the logical dilemma this creates, with Qur'anic evidence, patristic testimony, and Christian responses to Islamic objections.</div>
-      </div>
-      <div class="card-footer">
-        <span class="card-meta">9 sections · Comparative Religion</span>
-        <span class="card-link">Read</span>
-      </div>
-    </a>
-
-    <a class="card islamic" href="orthodox_lamp_aisha.html">
-      <div class="card-top">
-        <span class="card-icon">📜</span>
-        <div class="card-cat" style="color:#6abf8a;">Historical Studies</div>
-        <div class="card-title">Aisha's Age, Early Marriage &amp; the Bible</div>
-        <div class="card-subtitle">A Historical and Scriptural Examination</div>
-        <div class="card-desc">An examination of the Islamic sources on Aisha's age at marriage, the historical context of early marriage in the ancient world, the range of Muslim scholarly interpretations, and a biblical ethical framework for evaluating the question.</div>
-      </div>
-      <div class="card-footer">
-        <span class="card-meta">11 sections · Historical Analysis</span>
-        <span class="card-link">Read</span>
-      </div>
-    </a>
-
-    <a class="card islamic" href="islam_and_christians.html">
-      <div class="card-top">
-        <span class="card-icon">🕌</span>
-        <div class="card-cat" style="color:#6abf8a;">Comparative Religion</div>
-        <div class="card-title">Islam &amp; Christians</div>
-        <div class="card-subtitle">A Steelmanned Inquiry into Islamic Tolerance</div>
-        <div class="card-desc">A deliberately steelmanned examination of how Islam regards Christians — the strongest case for Islamic tolerance presented first, then tested against the Meccan and Medinan phases, the Qur'anic texts on Christians, and the historical record.</div>
-      </div>
-      <div class="card-footer">
-        <span class="card-meta">14 sections · Comparative Religion</span>
-        <span class="card-link">Read</span>
-      </div>
-    </a>
-
+<!-- ══ PROTESTANTISM ══ -->
+<section id="protestantism">
+  <div class="sec-head"><h2 class="sec-title">Protestantism</h2></div>
+  <p class="sec-sub">Answering the Reformation — sola fide, sola scriptura, and the questions between us</p>
+  <div class="links">
+    <a class="lk" href="sola_fide.html"><span class="lt">Sola Fide — Faith Alone</span><span class="ls">Soteriology</span></a>
+    <a class="lk" href="sola_scriptura.html"><span class="lt">Sola Scriptura — Scripture Alone</span><span class="ls">Authority</span></a>
+    <a class="lk" href="infant_baptism.html"><span class="lt">Infant vs Believers' Baptism</span><span class="ls">Sacraments</span></a>
+    <a class="lk" href="filioque.html"><span class="lt">The Filioque — "and the Son"</span><span class="ls">Trinity</span></a>
+    <a class="lk" href="spiritual_gifts.html"><span class="lt">Spiritual Gifts</span><span class="ls">Charismata</span></a>
+    <a class="lk" href="assurance_of_salvation.html"><span class="lt">Calvinism, TULIP &amp; Assurance of Salvation</span><span class="ls">Soteriology</span></a>
+    <a class="lk" href="orthodox_lamp.html"><span class="lt">A Defense of Apostolic Succession</span><span class="ls">Ecclesiology</span></a>
+    <a class="lk" href="apostolic_succession.html"><span class="lt">Order of the Church &amp; Apostolic Succession</span><span class="ls">Ecclesiology</span></a>
+    <a class="lk" href="women_in_church.html"><span class="lt">Women in the Church</span><span class="ls">Ecclesiology</span></a>
+    <a class="lk" href="mysteries_of_christ.html"><span class="lt">The Sacraments — Holy Mysteries</span><span class="ls">Sacraments</span></a>
+    <a class="lk" href="christology.html"><span class="lt">Miaphysitism vs Dyophysitism</span><span class="ls">Christology</span></a>
+    <a class="lk" href="icon_veneration.html"><span class="lt">Icon Veneration</span><span class="ls">Worship</span></a>
+    <a class="lk" href="theotokos_mary.html"><span class="lt">The Virgin Mary as Theotokos</span><span class="ls">Theotokos</span></a>
+    <a class="lk" href="marian_theology.html"><span class="lt">Mary the Perpetual Virgin</span><span class="ls">Theotokos</span></a>
+    <a class="lk" href="saints_intercession.html"><span class="lt">The Saints &amp; Intercessions</span><span class="ls">Worship</span></a>
+    <a class="lk" href="liturgy.html"><span class="lt">Liturgy &amp; Preservation</span><span class="ls">Worship</span></a>
+    <a class="lk" href="church_authority.html"><span class="lt">The Authority of the Church</span><span class="ls">Ecclesiology</span></a>
+    <a class="lk" href="biblical_canon.html"><span class="lt">The Canon of Scripture</span><span class="ls">Scripture</span></a>
+    <a class="lk" href="salvation.html"><span class="lt">Salvation in the Oriental Church</span><span class="ls">Soteriology</span></a>
+    <a class="lk" href="contemporary_ethics.html"><span class="lt">Modern Ethical Topics</span><span class="ls">Ethics</span></a>
+    <a class="lk" href="chalcedon_schism.html"><span class="lt">Chalcedon — Schism &amp; Councils</span><span class="ls">History</span></a>
   </div>
+</section>
 
-  <p class="no-results" id="no-results">No articles found for that search.</p>
+<!-- ══ CATHOLICISM ══ -->
+<section id="catholicism">
+  <div class="sec-head"><h2 class="sec-title">Catholicism</h2></div>
+  <p class="sec-sub">Where Rome and the Oriental Orthodox agree — and where we differ</p>
+  <div class="links">
+    <a class="lk" href="papal_authority.html"><span class="lt">Papal Authority</span><span class="ls">Ecclesiology</span></a>
+    <a class="lk" href="roman_catholic_dogmas.html"><span class="lt">Roman Catholic Dogmas</span><span class="ls">Doctrine</span></a>
+    <a class="lk" href="filioque.html"><span class="lt">The Filioque — "and the Son"</span><span class="ls">Trinity</span></a>
+    <a class="lk" href="priestly_celibacy.html"><span class="lt">Celibacy of Priests</span><span class="ls">Practice</span></a>
+    <a class="lk" href="original_sin.html"><span class="lt">Original Sin</span><span class="ls">Anthropology</span></a>
+    <a class="lk" href="christology.html"><span class="lt">Miaphysitism vs Dyophysitism</span><span class="ls">Christology</span></a>
+    <a class="lk" href="chalcedon_schism.html"><span class="lt">Chalcedon — Schism &amp; Councils</span><span class="ls">History</span></a>
+    <a class="lk" href="salvation.html"><span class="lt">Salvation in the Oriental Church</span><span class="ls">Soteriology</span></a>
+    <a class="lk" href="liturgy.html"><span class="lt">Liturgy &amp; Preservation</span><span class="ls">Worship</span></a>
+    <a class="lk" href="church_authority.html"><span class="lt">The Authority of the Church</span><span class="ls">Ecclesiology</span></a>
+    <a class="lk" href="biblical_canon.html"><span class="lt">The Canon of Scripture</span><span class="ls">Scripture</span></a>
+    <a class="lk" href="assurance_of_salvation.html"><span class="lt">Assurance of Salvation</span><span class="ls">Soteriology</span></a>
+  </div>
+</section>
 
+<!-- ══ EASTERN ORTHODOXY ══ -->
+<section id="eastern">
+  <div class="sec-head"><h2 class="sec-title">Eastern Orthodoxy</h2></div>
+  <p class="sec-sub">Our closest brothers — the questions that remain from 451</p>
+  <div class="links">
+    <a class="lk" href="eo_oo_differences.html"><span class="lt">Overall Differences — EO &amp; OO</span><span class="ls">Comparison</span></a>
+    <a class="lk" href="christology.html"><span class="lt">Miaphysitism vs Dyophysitism</span><span class="ls">Christology</span></a>
+    <a class="lk" href="chalcedon_schism.html"><span class="lt">Chalcedon — Schism &amp; Councils</span><span class="ls">History</span></a>
+    <a class="lk" href="biblical_canon.html"><span class="lt">The Canon of Scripture</span><span class="ls">Scripture</span></a>
+  </div>
+</section>
+
+<!-- ══ ISLAM ══ -->
+<section id="islam" class="islam">
+  <div class="sec-head"><h2 class="sec-title">Islam</h2></div>
+  <p class="sec-sub">Honest, sourced engagement with Islamic claims and history</p>
+  <div class="links">
+    <a class="lk" href="orthodox_lamp_aisha.html"><span class="lt">The Marriage of Aisha</span><span class="ls">History</span></a>
+    <a class="lk" href="islamic_dilemma.html"><span class="lt">The Islamic Dilemma</span><span class="ls">Scripture</span></a>
+    <a class="lk" href="islam_and_christians.html"><span class="lt">The Persecution of the Oriental Orthodox Church</span><span class="ls">History</span></a>
+  </div>
+</section>
+
+<!-- ══ ATHEISM / AGNOSTICISM ══ -->
+<section id="atheism" class="atheism">
+  <div class="sec-head"><h2 class="sec-title">Atheism &amp; Agnosticism</h2></div>
+  <p class="sec-sub">Reasons to believe — philosophy, evidence and the hard questions</p>
+  <div class="links">
+    <a class="lk" href="the-orthodox-lamp.html"><span class="lt">God, the Trinity, Christ &amp; His Ministry — Twenty Questions</span><span class="ls">Overview</span></a>
+    <a class="lk" href="trinity.html"><span class="lt">The Trinity</span><span class="ls">Doctrine</span></a>
+    <a class="lk" href="problem_of_evil.html"><span class="lt">The Problem of Evil</span><span class="ls">Philosophy</span></a>
+    <a class="lk" href="evidence_for_god.html"><span class="lt">Explanations for God's Existence</span><span class="ls">Evidence</span></a>
+    <a class="lk" href="moral_argument.html"><span class="lt">The Moral Argument</span><span class="ls">Philosophy</span></a>
+    <a class="lk" href="hard_passages.html"><span class="lt">Biblical Contradictions &amp; Hard Passages</span><span class="ls">Scripture</span></a>
+  </div>
+</section>
+
+<div class="no-results" id="no-results">No pages match your search.</div>
+
+</div><!-- /container -->
+
+<!-- ══ HELP ══ -->
+<div class="help" id="help">
+  <div class="help-in">
+    <a href="https://stjamescoc.org.au/"><img src="https://static.wixstatic.com/media/20c18e_5e2e195809b84f20b64346113d5c7ca5~mv2.png/v1/fill/w_200,h_200,al_c,q_85/logo.png" alt="St James Brother of the Lord Coptic Orthodox Church logo"></a>
+    <h2>Help &amp; Guidance</h2>
+    <p>This library exists to draw you closer to the truth — Jesus Christ, our Lord. It is not meant to spark arguments, but to help you learn the faith and understand other faiths honestly. Every page cites Scripture and the Church Fathers in their accurate forms.</p>
+    <p>These pages were prepared with the assistance of Claude AI and can have faults — always verify what you read personally with an Abouna (priest/father). If a question remains, start with the FAQs, or contact St James Coptic Orthodox Church directly.</p>
+    <div class="help-actions">
+      <a class="primary" href="https://stjamescoc.org.au/donate">Support &amp; Donate</a>
+      <a href="faq.html">Read the FAQs</a>
+      <a href="https://stjamescoc.org.au/">Visit St James Church</a>
+    </div>
+  </div>
 </div>
 
 <footer>
-  <p>THE <span>ORTHODOX LAMP</span> &nbsp;·&nbsp; Biblical, Historical &amp; Patristic Apologetics</p>
-  <p style="margin-top:.5rem;font-size:.72rem;opacity:.6;">☩ &nbsp; In the name of the Father, and of the Son, and of the Holy Spirit &nbsp; ☩</p>
+  <span>☩</span> The Orthodox Lamp — By St James Brother of the Lord Coptic Orthodox Church<br>
+  "Always be ready to give a defence to everyone who asks you a reason for the hope that is in you, with meekness and fear." — 1 Peter 3:15
 </footer>
 
 <script>
 function doSearch(q){
   q=q.trim().toLowerCase();
-  const cards=document.querySelectorAll('.card');
-  cards.forEach(c=>{
-    const match=!q||c.textContent.toLowerCase().includes(q);
-    c.classList.toggle('s-hidden',!match);
+  var links=document.querySelectorAll('.lk'),secs=document.querySelectorAll('section'),hits=0;
+  links.forEach(function(a){
+    var ok=!q||a.textContent.toLowerCase().indexOf(q)>-1;
+    a.classList.toggle('s-hidden',!ok); if(ok)hits++;
   });
-  // Show/hide each grid and its preceding cat-label
-  document.querySelectorAll('.grid').forEach(grid=>{
-    const vis=grid.querySelectorAll('.card:not(.s-hidden)').length>0;
-    grid.style.display=vis?'':'none';
-    let prev=grid.previousElementSibling;
-    while(prev){
-      if(prev.classList.contains('cat-label')){prev.style.display=vis?'':'none';break;}
-      if(prev.classList.contains('divider')){prev.style.display=vis?'':'none';}
-      prev=prev.previousElementSibling;
-    }
+  secs.forEach(function(s){
+    var vis=s.querySelectorAll('.lk:not(.s-hidden)').length;
+    s.classList.toggle('s-hidden',vis===0);
   });
-  const anyVis=document.querySelectorAll('.card:not(.s-hidden)').length>0;
-  document.getElementById('no-results').classList.toggle('show',!!q&&!anyVis);
+  document.getElementById('no-results').classList.toggle('show',hits===0);
 }
 </script>
+
 </body>
 </html>
