@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>THE ORTHODOX LAMP — The Resurrection of Christ: Answering Skepticism</title>
+<style>
+:root{--gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;--bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--tx:#e8e0d0;--mu:#a09880;--red:#8b2020;--br:#2a2a2a;--bg5:#3a2e10;--sidebar-w:270px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.75}
+a{color:var(--gold);text-decoration:none}
+#progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(to right,var(--gd),var(--gold),var(--gl));width:0%;z-index:500}
+#sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:200;transition:transform .3s}
+#sidebar h2{font-size:.7rem;letter-spacing:.15em;color:var(--gold);text-transform:uppercase;padding:1.4rem 1.2rem .5rem;border-bottom:1px solid var(--br)}
+#sidenav a{display:block;padding:.42rem 1.2rem;font-size:.82rem;color:var(--mu);border-left:3px solid transparent;transition:all .2s}
+#sidenav a:hover,#sidenav a.active{color:var(--gl);border-left-color:var(--gold);background:var(--bg5)}
+.search-wrap{padding:.8rem 1rem;border-bottom:1px solid var(--br);display:flex;gap:.4rem}
+.search-wrap input{flex:1;background:var(--bg3);border:1px solid var(--br);color:var(--tx);padding:.35rem .6rem;border-radius:4px;font-size:.8rem}
+.search-wrap button{background:var(--gold);color:#0d0d0d;border:none;padding:.35rem .7rem;border-radius:4px;cursor:pointer;font-weight:700;font-size:.8rem}
+#main-content{margin-left:var(--sidebar-w);padding:0 2rem 4rem}
+.mob-toggle{display:none;position:fixed;bottom:1.2rem;right:1.2rem;background:var(--gold);color:#0d0d0d;border:none;width:48px;height:48px;border-radius:50%;font-size:1.4rem;cursor:pointer;z-index:300;box-shadow:0 2px 12px rgba(0,0,0,.5)}
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:150}
+#overlay.show{display:block}
+.hero{text-align:center;padding:4rem 1rem 2.5rem;border-bottom:1px solid var(--br);background:linear-gradient(to bottom,var(--bg2),var(--bg))}
+.si{font-size:2.2rem;color:var(--gold);display:block;margin-bottom:.5rem}
+.st{font-size:2rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--tx)}
+.st span{color:var(--gold)}
+.ss{font-size:1.05rem;color:var(--gl);margin:.6rem 0 .4rem;font-style:italic}
+.tg{font-size:.85rem;color:var(--mu);margin-bottom:.8rem}
+.orn{color:var(--gold);font-size:1.1rem;letter-spacing:.4em;margin-top:.5rem}
+.sec{border:1px solid var(--br);border-radius:8px;margin:1.5rem 0;background:var(--bg2);overflow:hidden}
+.sec-hd{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.3rem;cursor:pointer;user-select:none;background:var(--bg3);border-bottom:1px solid transparent;transition:background .2s}
+.sec-hd:hover{background:var(--bg4)}
+.sec.open .sec-hd{border-bottom-color:var(--br);background:var(--bg4)}
+.sec-hd h2{font-size:1rem;color:var(--gl);text-transform:uppercase;letter-spacing:.05em}
+.sec-bd{display:none;padding:1.4rem 1.5rem}
+.sec.open .sec-bd{display:block}
+.sec-bd h3{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin:1.4rem 0 .7rem;padding-bottom:.3rem;border-bottom:1px solid var(--bg5)}
+.sec-bd p{color:var(--tx);margin-bottom:.9rem;font-size:.95rem}
+.arr{color:var(--gold);font-size:.9rem;transition:transform .3s}
+.sec.open .arr{transform:rotate(180deg)}
+.sv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin:.8rem 0 1.2rem}
+.sv{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:1rem}
+.sv .ref{font-size:.75rem;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.4rem}
+.sv .labels{margin-bottom:.5rem;display:flex;gap:.4rem;flex-wrap:wrap}
+.sv .labels span{font-size:.65rem;font-weight:700;padding:.15rem .45rem;border-radius:3px;text-transform:uppercase;letter-spacing:.06em}
+.labels .prot{background:#4a1a1a;color:#e87070}
+.labels .oo{background:#1a3a1a;color:#70c870}
+.labels .ctx{background:#1a2a3a;color:#70aacc}
+.sv .txt{font-style:italic;color:var(--gl);font-size:.88rem;margin-bottom:.5rem;border-left:2px solid var(--gold);padding-left:.7rem}
+.sv .interp{font-size:.82rem;color:var(--mu)}
+.fc{background:var(--bg3);border:1px solid var(--br);border-left:3px solid var(--gold);border-radius:6px;padding:1rem 1.1rem;margin:.8rem 0}
+.fn{font-size:.8rem;font-weight:700;color:var(--gl);text-transform:uppercase;letter-spacing:.07em}
+.fw{font-size:.75rem;color:var(--mu);margin:.2rem 0 .5rem;font-style:italic}
+.fq{font-style:italic;color:var(--tx);font-size:.88rem;border-left:2px solid var(--bg5);padding-left:.8rem;margin:.4rem 0 .6rem}
+.fsig{font-size:.8rem;color:var(--mu)}
+.pl{background:#4a1a1a;color:#e87070;font-size:.65rem;font-weight:700;padding:.1rem .35rem;border-radius:3px;text-transform:uppercase;letter-spacing:.06em;vertical-align:middle;margin-left:.3rem;font-style:normal}
+.gl-tag{background:#1a3a1a;color:#70c870;font-size:.65rem;font-weight:700;padding:.1rem .35rem;border-radius:3px;text-transform:uppercase;letter-spacing:.06em;vertical-align:middle;margin-left:.3rem;font-style:normal}
+.obj{background:var(--bg3);border:1px solid #4a1a1a;border-left:3px solid var(--red);border-radius:6px;margin:.8rem 0;overflow:hidden}
+.obj-hd{display:flex;justify-content:space-between;align-items:center;padding:.8rem 1rem;cursor:pointer;user-select:none}
+.obj-hd:hover{background:var(--bg4)}
+.obj-hd h3{font-size:.85rem;color:#e87070;font-weight:700}
+.obj-bd{display:none;padding:.9rem 1.1rem;border-top:1px solid #4a1a1a}
+.obj.open .obj-bd{display:block}
+.obj.open .arr{transform:rotate(180deg)}
+.obj-bd h4{font-size:.75rem;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.4rem;margin-top:.6rem}
+.obj-bd h4:first-child{margin-top:0}
+.obj-bd p{font-size:.85rem;color:var(--tx);margin-bottom:.6rem}
+.fi{background:var(--bg3);border:1px solid var(--br);border-radius:6px;margin:.6rem 0;overflow:hidden}
+.fi-hd{display:flex;justify-content:space-between;align-items:center;padding:.8rem 1rem;cursor:pointer;user-select:none;font-size:.88rem;color:var(--gl)}
+.fi-hd:hover{background:var(--bg4)}
+.fi-bd{display:none;padding:.9rem 1.1rem;border-top:1px solid var(--br);font-size:.85rem;color:var(--tx)}
+.fi.open .fi-bd{display:block}
+.fi.open .arr{transform:rotate(180deg)}
+.fi-bd p{margin-bottom:.7rem}
+.comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:.8rem 0}
+.comp-card{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:1rem}
+.comp-card.prot{border-top:3px solid #e87070}
+.comp-card.oo{border-top:3px solid var(--gold)}
+.comp-card .ct{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.6rem}
+.comp-card.prot .ct{color:#e87070}
+.comp-card.oo .ct{color:var(--gold)}
+.comp-card p{font-size:.82rem;color:var(--mu)}
+.tl{border-left:2px solid var(--bg5);margin:1rem 0 1rem .4rem;padding-left:1.2rem}
+.tl-item{position:relative;margin-bottom:1.1rem}
+.tl-item::before{content:'';position:absolute;left:-1.62rem;top:.45rem;width:11px;height:11px;border-radius:50%;background:var(--gold);border:2px solid var(--bg2)}
+.tl-date{font-size:.78rem;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase}
+.tl-item p{font-size:.85rem;color:var(--mu);margin:.2rem 0 0}
+.src-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;margin:.8rem 0}
+.src-card{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:1rem}
+.src-cat{font-size:.72rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.6rem;padding-bottom:.4rem;border-bottom:1px solid var(--bg5)}
+.src-item{font-size:.8rem;color:var(--mu);margin-bottom:.5rem;padding-left:.7rem;border-left:2px solid var(--br)}
+.btt{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--gold);color:#0d0d0d;border:none;width:44px;height:44px;border-radius:50%;font-size:1.2rem;cursor:pointer;opacity:0;transition:opacity .3s;z-index:300;font-weight:700}
+@media(max-width:768px){#sidebar{transform:translateX(-100%)}#sidebar.open{transform:translateX(0)}#main-content{margin-left:0;padding:0 1rem 4rem}.mob-toggle{display:flex;align-items:center;justify-content:center}.sv-grid{grid-template-columns:1fr}.comp-grid{grid-template-columns:1fr}}
+
+.lampsvg{display:block;margin:0 auto 14px;height:auto}
+.lampsvg .lampflame{animation:lampflick 3.2s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes lampflick{0%,100%{transform:scaleY(1) scaleX(1);opacity:.95}25%{transform:scaleY(1.06) scaleX(.97);opacity:1}50%{transform:scaleY(.96) scaleX(1.03);opacity:.9}75%{transform:scaleY(1.04) scaleX(.98);opacity:1}}
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<nav id="sidebar">
+  <div class="search-wrap"><input type="text" id="search-input" placeholder="Search…"><button id="search-btn">Go</button></div>
+  <svg class="lampsvg" width="64" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><radialGradient id="lmpGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffb95e" stop-opacity=".55"/><stop offset="100%" stop-color="#ffb95e" stop-opacity="0"/></radialGradient><linearGradient id="lmpFlame" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#ff7a1f"/><stop offset="55%" stop-color="#ffb347"/><stop offset="100%" stop-color="#ffe9b0"/></linearGradient><linearGradient id="lmpBrass" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e3b860"/><stop offset="50%" stop-color="#a87b35"/><stop offset="100%" stop-color="#7a5523"/></linearGradient></defs><circle cx="60" cy="38" r="34" fill="url(#lmpGlow)"/><g class="lampflame"><path d="M60 16 C66 26 70 32 70 40 C70 48 65.5 53 60 53 C54.5 53 50 48 50 40 C50 32 54 26 60 16 Z" fill="url(#lmpFlame)"/><path d="M60 30 C63 35 64.5 38 64.5 42 C64.5 46.5 62.5 49 60 49 C57.5 49 55.5 46.5 55.5 42 C55.5 38 57 35 60 30 Z" fill="#fff3cf" opacity=".85"/></g><rect x="56" y="52" width="8" height="7" rx="2" fill="#8a6228"/><path d="M28 62 L92 62 C92 80 78 92 60 92 C42 92 28 80 28 62 Z" fill="url(#lmpBrass)"/><rect x="24" y="58" width="72" height="6" rx="3" fill="#caa14e"/><rect x="56" y="92" width="8" height="16" fill="url(#lmpBrass)"/><path d="M38 118 C38 110 47 108 60 108 C73 108 82 110 82 118 L82 122 L38 122 Z" fill="url(#lmpBrass)"/><rect x="32" y="122" width="56" height="6" rx="3" fill="#caa14e"/></svg>
+  <h2>The Orthodox Lamp</h2>
+  <nav id="sidenav">
+    <a href="#s1">I. Introduction</a>
+    <a href="#s2">II. What the Church Confesses</a>
+    <a href="#s3">III. The Historical Bedrock</a>
+    <a href="#s4">IV. Skeptical Theories Answered</a>
+    <a href="#s5">V. The Witness of Scripture</a>
+    <a href="#s6">VI. The Witness of the Fathers</a>
+    <a href="#s7">VII. The Power of the Resurrection</a>
+    <a href="#s8">VIII. Modern Objections</a>
+    <a href="#s9">IX. FAQ</a>
+    <a href="#s10">X. Sources</a>
+  </nav>
+</nav>
+<div id="overlay" onclick="closeMobile()"></div>
+<button class="mob-toggle" onclick="toggleSidebar()">☰</button>
+<main id="main-content">
+  <div class="hero">
+    <span class="si">☩</span>
+    <h1 class="st">THE <span>ORTHODOX</span> LAMP</h1>
+    <p class="ss">The Resurrection of Christ — Answering the Skeptics</p>
+    <p class="tg">"He is not here; for He is risen, as He said." — Matthew 28:6</p>
+    <div class="orn">✦ ✦ ✦</div>
+  </div>
+
+  <section class="sec open" id="s1">
+    <div class="sec-hd" onclick="ts(this)"><h2>I. Introduction</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>Christianity stakes everything on a single historical claim and invites the world to check it. St. Paul says so himself: "If Christ is not risen, then our preaching is empty and your faith is also empty… you are still in your sins!" (1 Corinthians 15:14, 17). No resurrection, no Church — the apostles built no escape hatch.</p>
+      <p>Skeptics have accepted the invitation for two thousand years, and their theories are remarkably few: He did not really die (the swoon theory); the disciples stole the body (fraud); the witnesses hallucinated; the women went to the wrong tomb; the story grew as legend; or it was copied from pagan dying-and-rising gods. None of these is new — the stolen-body story is in Matthew's Gospel itself, and the pagan philosopher Celsus tried the hallucination theory in the second century — and the oldest of them were answered while eyewitnesses still lived. This page examines each fairly, alongside the modern forms they take.</p>
+      <p>The Oriental Orthodox Church does not merely defend the Resurrection; she lives from it. Every Sunday liturgy, every Paschal night when the Coptic Church cries <em>Pikhristos aftonf! Khen oumethmi aftonf!</em> — "Christ is risen! Truly He is risen!" — every martyr of the Era of the Martyrs who chose death over denial, is a link in an unbroken chain of witness reaching back to the women at the tomb.</p>
+      <div class="comp-grid">
+        <div class="comp-card prot"><div class="ct">The Skeptical Claim</div><p>The Resurrection is a legend, a hallucination, or a fraud: dead men stay dead, the accounts are late and biased, and the story matches a familiar pattern of ancient myth. Whatever happened that Passover, it was not a man walking out of his grave.</p></div>
+        <div class="comp-card oo"><div class="ct">Oriental Orthodox Teaching</div><p>Christ truly died, was truly buried, and on the third day truly rose in His own body — seen, touched, and eaten with — "of which we are witnesses" (Acts 2:32). The evidence: an empty tomb no enemy could refute, appearances no fraud could fake, and transformed witnesses no threat could silence.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s2">
+    <div class="sec-hd" onclick="ts(this)"><h2>II. What the Church Confesses</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>Precision first, because skeptics often refute a claim the Church never made.</p>
+      <h3>1. A Bodily Resurrection, Not a Metaphor</h3>
+      <p>The Creed confesses that Christ "rose from the dead on the third day." Not that His cause survived, not that His spirit lived on in the disciples' hearts, not that He was "raised into the kerygma" (as some modern theologians put it). The risen Lord said: "Behold My hands and My feet, that it is I Myself. Handle Me and see, for a spirit does not have flesh and bones as you see I have" (Luke 24:39) — and then He ate broiled fish in front of them (24:42–43). A metaphor does not eat fish.</p>
+      <h3>2. The Same Body, Glorified</h3>
+      <p>The tomb was empty because the body that was buried is the body that rose — still bearing the wounds Thomas was invited to touch (John 20:27), yet transfigured, no longer subject to death: "the firstfruits of those who have fallen asleep" (1 Corinthians 15:20). What happened to Christ is what awaits the faithful: "He will transform our lowly body that it may be conformed to His glorious body" (Philippians 3:21).</p>
+      <h3>3. A Public Claim About a Public Event</h3>
+      <p>Paul, on trial, appeals to common knowledge: "the king, before whom I also speak freely, knows these things… for this thing was not done in a corner" (Acts 26:26). The Resurrection was preached first in Jerusalem — the one city where the tomb could be inspected — within weeks of the crucifixion (Acts 2), to audiences who had every motive and every means to refute it.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s3">
+    <div class="sec-hd" onclick="ts(this)"><h2>III. The Historical Bedrock</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>These facts are conceded by most historians of every persuasion, including skeptical ones — some (the crucifixion, the disciples' sincere belief that they saw the risen Christ) almost universally, others (the burial, the empty tomb) by a strong majority — because the evidence for each is early and multiple. Any theory must explain all of them together.</p>
+      <div class="sv-grid">
+        <div class="sv"><div class="ref">1 Corinthians 15:3–8</div><div class="labels"><span class="oo">The Earliest Creed</span></div><div class="txt">"For I delivered to you first of all that which I also received: that Christ died for our sins according to the Scriptures, and that He was buried, and that He rose again the third day… and that He was seen by Cephas, then by the twelve. After that He was seen by over five hundred brethren at once, of whom the greater part remain to the present…"</div><div class="interp">Paul, writing c. AD 55, quotes a formula he "received" — a creed scholars on all sides date to within a few years of the crucifixion itself, since Paul most plausibly received it at his conversion or his Jerusalem visit (Galatians 1:18). There is no gap for legend to grow in: the full claim — death, burial, resurrection, appearances — is the <em>first</em> stratum, not the last. And Paul adds a checkable detail: most of the five hundred are still alive. Go ask them.</div></div>
+        <div class="sv"><div class="ref">Death by Crucifixion</div><div class="labels"><span class="oo">Conceded Fact</span></div><div class="txt">"Christus… suffered the extreme penalty during the reign of Tiberius at the hands of one of our procurators, Pontius Pilatus." — Tacitus, Annals 15.44</div><div class="interp">Rome's greatest historian, no friend of Christians, confirms the execution. Josephus (Antiquities 18.3.3) likewise records the crucifixion under Pilate — and we note plainly that parts of that passage were embellished by later Christian copyists, but the core reference to Jesus' execution is accepted by the consensus of Josephus scholars. No serious historian today denies that Jesus of Nazareth died by Roman crucifixion.</div></div>
+        <div class="sv"><div class="ref">The Burial</div><div class="labels"><span class="oo">Conceded Fact</span></div><div class="txt">"Joseph of Arimathea, a prominent council member… went in boldly to Pilate and asked for the body of Jesus." (Mark 15:43)</div><div class="interp">The burial is attested in the pre-Pauline creed ("He was buried") and all four Gospels. The detail is hard to invent: Joseph was a named, locatable member of the very Sanhedrin that condemned Jesus — a fabricated story would not hand its critics a checkable name and address for the tomb.</div></div>
+        <div class="sv"><div class="ref">The Empty Tomb</div><div class="labels"><span class="oo">Conceded by Enemies</span></div><div class="txt">"…they gave a large sum of money to the soldiers, saying, 'Tell them, "His disciples came at night and stole Him away while we slept."'… and this saying is commonly reported among the Jews until this day." (Matthew 28:12–15)</div><div class="interp">The earliest anti-Christian polemic did not say "the tomb is occupied" — it said "the disciples stole the body." That is, the enemies of the Church <em>presupposed the tomb was empty</em> and needed to explain it. If a body could have been produced, the movement dies in a day; instead Jerusalem's authorities reached for a theft story still circulating when Matthew wrote, and still when Justin debated Trypho a century later.</div></div>
+        <div class="sv"><div class="ref">Women as First Witnesses</div><div class="labels"><span class="oo">Criterion of Embarrassment</span></div><div class="txt">"Now when He rose early on the first day of the week, He appeared first to Mary Magdalene…" (Mark 16:9; cf. Matthew 28:1–10; John 20:11–18)</div><div class="interp">In first-century Judaea a woman's testimony carried little legal weight — Josephus says women's evidence was not admitted (Antiquities 4.8.15). No first-century forger inventing a resurrection account would make women the first and primary witnesses while the male leaders hide. The Gospels report it because that is what happened — and the Church honors St. Mary Magdalene to this day as "apostle to the apostles."</div></div>
+        <div class="sv"><div class="ref">Transformed Witnesses</div><div class="labels"><span class="oo">Conceded Fact</span></div><div class="txt">"Then all the disciples forsook Him and fled" (Matthew 26:56) → "You… killed the Prince of life, whom God raised from the dead, of which we are witnesses" (Acts 3:14–15, preached publicly in Jerusalem).</div><div class="interp">Something turned a scattered, terrified band — whose leader denied Him three times to a servant girl — into men who proclaimed the Resurrection to the very court that crucified Him, and who went to prison, flogging, and death without one of them ever recanting. Conspirators break under torture; these men did not, because they were not conspirators.</div></div>
+        <div class="sv"><div class="ref">The Skeptics Converted: James &amp; Paul</div><div class="labels"><span class="oo">Hostile Witnesses</span></div><div class="txt">"For even His brothers did not believe in Him" (John 7:5) → "Then He was seen by James" (1 Corinthians 15:7) → James leads the Jerusalem church and dies a martyr. "Saul… breathing threats and murder against the disciples" (Acts 9:1) → "He was seen by me also" (1 Corinthians 15:8).</div><div class="interp">Legends grow among the sympathetic. But the Resurrection's two most consequential converts were a skeptical brother and the Church's chief persecutor — both transformed by what they insisted was a meeting with the risen Christ, both martyred for it. Wishful thinking does not explain men who did not wish it.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s4">
+    <div class="sec-hd" onclick="ts(this)"><h2>IV. The Skeptical Theories Answered</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>Theory 1: The Swoon — Jesus did not really die</h3><span class="arr">▼</span></div>
+        <div class="obj-bd"><h4>The Claim</h4><p>Jesus fainted on the cross, revived in the cool tomb, and emerged to convince His disciples He had conquered death.</p><h4>Response</h4><p>Roman execution squads did not lose victims: when the soldiers found Jesus already dead, one "pierced His side with a spear, and immediately blood and water came out" (John 19:34) — the eyewitness detail describing what medicine recognizes in pericardial effusion, reported by a writer with no knowledge of its significance. Pilate independently verified the death with the centurion before releasing the body (Mark 15:44–45). And the theory's fatal flaw was named by the skeptic David Strauss himself: a half-dead man crawling from a tomb, needing bandages and a physician, could never have convinced anyone he was the risen and glorious Lord of life. The swoon theory does not explain the faith; it makes it impossible.</p></div>
+      </div>
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>Theory 2: The disciples stole the body</h3><span class="arr">▼</span></div>
+        <div class="obj-bd"><h4>The Claim</h4><p>The oldest theory of all (Matthew 28:13): the disciples took the corpse by night and proclaimed a resurrection they knew was false.</p><h4>Response</h4><p>It requires the guards to testify to what happened <em>while they slept</em> — Augustine's old jest: "Do you produce sleeping witnesses?" It requires the demoralized deserters of Friday to mount a raid on a guarded, sealed tomb by Sunday. Above all it requires liars to become martyrs: the apostles suffered for this claim, and the Church's tradition records that nearly all of them were martyred for it, and men do not die for what they know they invented — conspiracies unravel at the first flogging. The theft story's real value is what it concedes: the tomb was empty, and the enemies of the Church knew it (see Justin's testimony in Section VI).</p></div>
+      </div>
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>Theory 3: Hallucination — grief-stricken visions</h3><span class="arr">▼</span></div>
+        <div class="obj-bd"><h4>The Claim</h4><p>The bereaved disciples experienced visions of Jesus, as mourners sometimes "see" the dead; from these the resurrection faith grew. (So Celsus in the 2nd century; so Lüdemann today.)</p><h4>Response</h4><p>Hallucinations are private events of individual minds — they are not shared by twelve men at supper (Luke 24:36–43), five hundred at once (1 Corinthians 15:6), or seven fishermen who watch the figure cook breakfast (John 21). They do not eat fish, hold extended conversations, or invite touch over forty days "by many infallible proofs" (Acts 1:3). They strike the grieving and expectant — not church-persecutors like Paul or unbelieving brothers like James. And above all, hallucinations leave the body in the grave: the theory explains everything except the one fact every party in Jerusalem conceded, the empty tomb.</p></div>
+      </div>
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>Theory 4: The wrong tomb</h3><span class="arr">▼</span></div>
+        <div class="obj-bd"><h4>The Claim</h4><p>In the dawn dark the women mistook an empty, unused tomb for Jesus' tomb; the resurrection faith was built on a navigation error.</p><h4>Response</h4><p>The women had watched the burial two days earlier: "and the women… observed the tomb and how His body was laid" (Luke 23:55). The tomb belonged to a named public figure, Joseph of Arimathea — the Sanhedrin knew exactly where it was. The moment the disciples preached the Resurrection, the authorities needed only to walk to the right tomb and produce the body. They produced a theft story instead. The theory also explains none of the appearances, nor Paul, nor James.</p></div>
+      </div>
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>Theory 5: Legend — the story grew with time</h3><span class="arr">▼</span></div>
+        <div class="obj-bd"><h4>The Claim</h4><p>Jesus' followers revered his memory; over decades the stories inflated, until a spiritual presence became an empty tomb and a walking, talking risen Lord. The Gospels, written 40–70 years later, record the legend's mature form.</p><h4>Response</h4><p>The timeline forbids it. The creed of 1 Corinthians 15:3–8 — death, burial, resurrection on the third day, named appearances — was already fixed tradition when Paul received it in the early or mid 30s, within a handful of years of the cross, while hostile eyewitnesses filled Jerusalem. Legend needs generations and distance; this proclamation began at the scene of the event among the people best placed to refute it, and its earliest form is its strongest form. The legendary embellishments we <em>can</em> watch growing — in the second-century apocryphal gospels — only highlight by contrast the sober restraint of the canonical accounts, which describe the Resurrection itself not at all: no one saw the moment, and the evangelists, unlike forgers, resisted the temptation to invent it.</p></div>
+      </div>
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>Theory 6: A copy of pagan dying-and-rising gods</h3><span class="arr">▼</span></div>
+        <div class="obj-bd"><h4>The Claim</h4><p>Osiris, Adonis, Attis, Mithras — antiquity teemed with dying and rising deities; Christianity simply dressed the old myth in Jewish clothes.</p><h4>Response</h4><p>The Coptic Church may answer this one with a smile: our own ancestors worshipped Osiris, and we know the story. Osiris does not rise — he is dismembered, reassembled, and reigns as lord of the <em>underworld</em>, the dead god of the dead. Attis and Adonis are vegetation cycles, not historical persons; the "resurrection" of Attis is unattested before the Christian era. Mithras has no death and no resurrection at all. The mystery deities die and revive (where they do) <em>annually and mythically</em>, in the timeless world of symbol; the apostles proclaimed that one named man, under a named Roman governor, on a datable Passover, rose once and forever — and they proclaimed it to Jews, the people most violently allergic to pagan myth in the ancient world, in the language of Jewish bodily resurrection (Daniel 12:2), not Greek cycles. The first Christians were not borrowing Egypt's gods; within three centuries, Egypt had abandoned them for Christ.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s5">
+    <div class="sec-hd" onclick="ts(this)"><h2>V. The Witness of Scripture</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>The New Testament does not narrate a vague triumph; it piles up concrete, physical, almost stubborn detail.</p>
+      <div class="sv-grid">
+        <div class="sv"><div class="ref">Luke 24:36–43</div><div class="labels"><span class="oo">Key Text</span></div><div class="txt">"Behold My hands and My feet, that it is I Myself. Handle Me and see, for a spirit does not have flesh and bones as you see I have… And He took it and ate in their presence."</div><div class="interp">The Lord anticipates the hallucination and ghost theories Himself and refutes them with touch and food. Luke, the physician who "had perfect understanding of all things from the very first" (1:3), records the examination.</div></div>
+        <div class="sv"><div class="ref">John 20:24–29</div><div class="labels"><span class="oo">Key Text</span></div><div class="txt">"Reach your finger here, and look at My hands; and reach your hand here, and put it into My side. Do not be unbelieving, but believing."</div><div class="interp">The Church canonized her own skeptic. Thomas demanded forensic evidence and was given it — the standing answer to the claim that Christian faith fears examination. His cry "My Lord and my God!" is the first full confession of the risen Christ's divinity.</div></div>
+        <div class="sv"><div class="ref">John 21:1–14</div><div class="labels"><span class="oo">Key Text</span></div><div class="txt">"Jesus then came and took the bread and gave it to them, and likewise the fish."</div><div class="interp">A third appearance: dawn, the Sea of Tiberias, a charcoal fire, one hundred fifty-three fish — counted. Eyewitness memory preserves exactly this kind of useless, vivid detail; legend preserves none of it.</div></div>
+        <div class="sv"><div class="ref">Acts 1:3 / Acts 10:40–41</div><div class="labels"><span class="oo">Key Text</span></div><div class="txt">"…to whom He also presented Himself alive after His suffering by many infallible proofs, being seen by them during forty days." / "God raised Him up on the third day, and showed Him openly… to witnesses chosen before by God, even to us who ate and drank with Him after He arose from the dead."</div><div class="interp">Not one ambiguous glimpse but forty days of appearances — walking (Luke 24:13–35), teaching, eating, to individuals and crowds, indoors and outdoors, in Judaea and Galilee. The variety is itself the argument: no single error covers it.</div></div>
+        <div class="sv"><div class="ref">1 Corinthians 15:14–19</div><div class="labels"><span class="oo">Key Text</span></div><div class="txt">"And if Christ is not risen, then our preaching is empty and your faith is also empty. Yes, and we are found false witnesses of God… If in this life only we have hope in Christ, we are of all men the most pitiable."</div><div class="interp">Paul names the stakes without flinching: either it happened, or Christianity is false and Christians are frauds and fools. No hedge, no retreat into "spiritual truth." A religion this falsifiable, preached where it could be falsified, survived because it could not be.</div></div>
+        <div class="sv"><div class="ref">Psalm 16:10 / Acts 2:25–32</div><div class="labels"><span class="oo">Prophecy</span></div><div class="txt">"For You will not leave my soul in Sheol, nor will You allow Your Holy One to see corruption."</div><div class="interp">Peter's Pentecost sermon, fifty days after the crucifixion, argues from this psalm: David died and his tomb "is with us to this day" — but the One David foresaw did not see corruption, "of which we are all witnesses." The first recorded apologetic for the Resurrection stands on an empty tomb and living witnesses, in Jerusalem, at the earliest possible moment.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s6">
+    <div class="sec-hd" onclick="ts(this)"><h2>VI. The Witness of the Fathers</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>The generation taught by the apostles staked their lives on a bodily resurrection — and answered the skeptical theories already circulating in their day. Direct quotations follow the standard English editions (ANF/NPNF); summaries are marked.</p>
+      <div class="fc"><div class="fn">St. Clement of Rome <span class="gl-tag">Direct Quote</span></div><div class="fw">1 Clement 42 (c. AD 96)</div><div class="fq">"Having therefore received their orders, and being fully assured by the resurrection of our Lord Jesus Christ, and established in the word of God, with full assurance of the Holy Ghost, they went forth proclaiming that the kingdom of God was at hand."</div><div class="fsig">Written while St. John still lived: the apostles' mission is grounded in their being "fully assured by the resurrection" — assurance, not hope or rumor.</div></div>
+      <div class="fc"><div class="fn">St. Ignatius of Antioch <span class="gl-tag">Direct Quote</span></div><div class="fw">Epistle to the Smyrnaeans 3 (c. AD 107)</div><div class="fq">"For I know that after His resurrection also He was still possessed of flesh, and I believe that He is so now. When, for instance, He came to those who were with Peter, He said to them, 'Lay hold, handle Me, and see that I am not an incorporeal spirit.' And immediately they touched Him, and believed, being convinced both by His flesh and spirit."</div><div class="fsig">A disciple of the apostles, against the first "spiritual resurrection" revisionists (the Docetists): flesh, touched and verified.</div></div>
+      <div class="fc"><div class="fn">St. Ignatius of Antioch <span class="gl-tag">Direct Quote</span></div><div class="fw">Epistle to the Trallians 9 (c. AD 107)</div><div class="fq">"He was truly crucified, and [truly] died, in the sight of beings in heaven, and on earth, and under the earth. He was also truly raised from the dead, His Father quickening Him, even as after the same manner His Father will so raise up us who believe in Him by Christ Jesus."</div><div class="fsig">"Truly" hammered four times in one sentence — the apostolic generation's answer to every theory that makes the event less than real.</div></div>
+      <div class="fc"><div class="fn">Quadratus of Athens <span class="gl-tag">Direct Quote</span></div><div class="fw">Apology to Hadrian, quoted in Eusebius, Church History 4.3.2 (c. AD 125)</div><div class="fq">"But the works of our Saviour were always present, for they were genuine: those that were healed, and those that were raised from the dead, who were seen not only when they were healed and when they were raised, but were also always present; and not merely while the Saviour was on earth, but also after His death, they were alive for quite a while, so that some of them lived even to our day."</div><div class="fsig">The earliest surviving Christian apology: living, examinable witnesses were the Church's evidence from the beginning.</div></div>
+      <div class="fc"><div class="fn">St. Justin Martyr <span class="gl-tag">Direct Quote</span></div><div class="fw">Dialogue with Trypho 108 (c. AD 160)</div><div class="fq">"…you have sent chosen and ordained men throughout all the world to proclaim that a godless and lawless heresy had sprung from one Jesus, a Galilaean deceiver, whom we crucified, but his disciples stole him by night from the tomb, where he was laid when unfastened from the cross, and now deceive men by asserting that he has risen from the dead and ascended to heaven."</div><div class="fsig">Justin, debating a learned Jew, cites the official counter-story still being circulated a century after the event — independent confirmation that the tomb's emptiness was never in dispute, only its explanation.</div></div>
+      <div class="fc"><div class="fn">Origen <span class="pl">Paraphrase</span></div><div class="fw">Against Celsus, Book 2 (c. AD 248)</div><div class="fq">Answering Celsus — who had proposed that a "half-frantic woman" and the deluded or deceitful disciples imagined the appearances — Origen replies that hallucinations do not befall sane men in groups in broad daylight, that the disciples' willingness to suffer and die for their testimony is inexplicable if they invented it, and that the transformation of the witnesses is itself evidence no fiction can supply.</div><div class="fsig">The hallucination theory is not modern; it was tried and answered seventeen centuries ago.</div></div>
+      <div class="fc"><div class="fn">St. Athanasius the Apostolic <span class="pl">Paraphrase</span></div><div class="fw">On the Incarnation §§27–30 (c. AD 318)</div><div class="fq">Athanasius argues from a fact his pagan readers could verify with their own eyes: Christians — men, women, and children — now despise death, mocking it as a defeated tyrant, going to martyrdom as to victory. Dead men work no such revolution; the despising of death by thousands is the standing public proof that Christ is risen and death is slain.</div><div class="fsig">Egypt's own pope, writing amid the generation that survived the Era of the Martyrs: the Coptic Church's calendar still counts its years from that proof.</div></div>
+    </div>
+  </section>
+
+  <section class="sec" id="s7">
+    <div class="sec-hd" onclick="ts(this)"><h2>VII. The Power of the Resurrection</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <h3>The Birth of the Church Is Itself Evidence</h3>
+      <p>Within weeks of the crucifixion, in the city of the crucifixion, thousands of Jews — the ancient world's strictest monotheists — began worshipping a crucified man as Lord, moving their immovable Sabbath observance to Sunday, the day of the Resurrection, and replacing Passover with the Eucharist of His body and blood. Sociological revolutions of that scale do not spring from a stolen corpse or a private vision. Something happened — and the only account anyone has ever offered that explains all the evidence is the one the witnesses gave.</p>
+      <h3>The Martyrs' Argument</h3>
+      <p>The witnesses sealed their testimony in blood — not for doctrines they believed secondhand (men die for honest errors), but for an event they claimed to have <em>seen</em>, which is precisely what no one dies for knowing it false. The chain has never broken: from the apostles, to the martyrs of Diocletian from whom the Coptic Church dates her calendar, to the twenty-one of Libya in 2015 who died with the name of the risen Christ on their lips. The Church does not merely argue that death is conquered; she keeps producing people who act like it.</p>
+      <h3>The Firstfruits</h3>
+      <p>The Resurrection is not a bare apologetic fact but the hinge of everything: "Christ is risen from the dead, and has become the firstfruits of those who have fallen asleep" (1 Corinthians 15:20). Because He rose, death works backwards; because He rose, the annihilationist's grave and the materialist's void are alike abolished; because He rose, "as in Adam all die, even so in Christ all shall be made alive" (15:22). This is why Pascha, the Feast of Feasts, outshines every other night of the Orthodox year.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s8">
+    <div class="sec-hd" onclick="ts(this)"><h2>VIII. Modern Objections</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>Objection: Extraordinary claims require extraordinary evidence</h3><span class="arr">▼</span></div>
+        <div class="obj-bd"><h4>The Claim</h4><p>A resurrection is the most extraordinary claim possible; no ancient testimony could ever be evidence enough.</p><h4>Response</h4><p>The slogan, examined, means only that improbable events need <em>good</em> evidence — agreed. But what counts as improbable depends on the background assumption: if God exists, a resurrection is not a violation of nature but an act of nature's Author, no harder for Him than creation itself (see <a href="evidence_for_god.html">Evidence for God</a>). The skeptic who rules the evidence inadmissible <em>because</em> the conclusion is theistic is not weighing evidence but begging the question. And the evidence here is not one rumor but a convergence: empty tomb conceded by enemies, multiple group appearances, hostile-witness conversions, and witnesses who died rather than recant — each independently attested. Extraordinary enough that no naturalistic theory in twenty centuries has explained even half of it.</p></div>
+      </div>
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>Objection: Historians cannot conclude a miracle happened</h3><span class="arr">▼</span></div>
+        <div class="obj-bd"><h4>The Claim</h4><p>History as a discipline can only deal in natural causes (so Bart Ehrman); "Jesus rose" is by definition outside its competence.</p><h4>Response</h4><p>Notice what this objection is not: it is not a claim that the evidence is weak. It is a methodological rule that no amount of evidence could ever suffice — which converts a discipline's working convention into a metaphysical dogma. The historian can establish the public facts (death, burial, empty tomb, appearance-experiences, transformation); the question of the best explanation then belongs to the reasoner weighing all the options. Ruling out the Resurrection in advance does not make the facts go away; it merely leaves them — as even agnostic historians admit — without any agreed explanation.</p></div>
+      </div>
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>Objection: The Gospels are late, anonymous, and biased</h3><span class="arr">▼</span></div>
+        <div class="obj-bd"><h4>The Claim</h4><p>Written 40–70 years after the events by non-eyewitnesses with an agenda, the Gospels cannot bear historical weight.</p><h4>Response</h4><p>The case does not rest on the Gospels' dates: the creed of 1 Corinthians 15 is securely dated within a few years of the cross, in a letter no scholar disputes Paul wrote. The Gospel accounts then corroborate from within living memory — 40 years is the distance of an eyewitness's mature recollection, not legend (closer than our best sources for Alexander the Great by centuries). "Biased" proves too much: every ancient source has commitments, and the disciples' "bias" was acquired <em>by</em> the events in question — that is the thing requiring explanation. As for the alleged contradictions among the accounts, see <a href="hard_passages.html">Biblical Contradictions &amp; Hard Passages</a>: variation in secondary detail with agreement in core is precisely the signature of independent eyewitness testimony, as any courtroom knows.</p></div>
+      </div>
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>Objection: Why didn't the risen Jesus appear to everyone — to Pilate, to Caiaphas, to Rome?</h3><span class="arr">▼</span></div>
+        <div class="obj-bd"><h4>The Claim</h4><p>A real risen Lord would have settled the question forever with one appearance in the Forum.</p><h4>Response</h4><p>He appeared to over five hundred people in varied circumstances over forty days — including, decisively, to enemies and skeptics (Paul, James). What He declined was spectacle without relationship: the same Lord who refused to leap from the temple pinnacle (Matthew 4:5–7) does not compel belief by overwhelming force, "for faith working through love" (Galatians 5:6) cannot be extorted. And He told us the deeper truth in the parable: "If they do not hear Moses and the prophets, neither will they be persuaded though one rise from the dead" (Luke 16:31) — verified within weeks, when the authorities who heard the guards' report bribed them rather than believed them (Matthew 28:11–15). Evidence sufficient for the willing, room left for freedom: that is the consistent divine pattern.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s9">
+    <div class="sec-hd" onclick="ts(this)"><h2>IX. Frequently Asked Questions</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <div class="fi"><div class="fi-hd" onclick="tf(this)"><span>Q: What exactly does the Church claim rose — a body, a spirit, or something else?</span><span class="arr">▼</span></div><div class="fi-bd"><p>The same body that hung on the cross and lay in the tomb, now glorified and deathless — bearing the wounds (John 20:27), able to eat (Luke 24:43), yet "the firstfruits" of a transfigured creation (1 Corinthians 15:20–44). Not a resuscitation back into mortal life like Lazarus, who died again; a resurrection through death and out the other side, never to die (Romans 6:9).</p></div></div>
+      <div class="fi"><div class="fi-hd" onclick="tf(this)"><span>Q: Can the five hundred witnesses of 1 Corinthians 15:6 be verified?</span><span class="arr">▼</span></div><div class="fi-bd"><p>Paul's point in naming them is exactly that they could be: "the greater part remain to the present" — an open invitation to his readers, c. AD 55, to go and interrogate living people. A forger does not direct his audience to checkable witnesses. We cannot interview them now, but Paul's contemporaries could, and the claim circulated unrefuted in the generation that could have refuted it.</p></div></div>
+      <div class="fi"><div class="fi-hd" onclick="tf(this)"><span>Q: Don't the four Gospels contradict each other about Easter morning?</span><span class="arr">▼</span></div><div class="fi-bd"><p>They differ in secondary details (how many women, how many angels reported, the order of appearances) and agree completely in core (the same tomb found empty by women on the first day of the week; the risen Lord seen). That pattern — core agreement, peripheral variation — is what independent honest testimony looks like; identical accounts would indicate collusion. The classic harmonizations are discussed on the <a href="hard_passages.html">Hard Passages</a> page.</p></div></div>
+      <div class="fi"><div class="fi-hd" onclick="tf(this)"><span>Q: What about the claim that Jesus' tomb has been found — with His bones?</span><span class="arr">▼</span></div><div class="fi-bd"><p>The "Talpiot tomb" (publicized in 2007) contained ossuaries with names like Jesus, Mary, and Joseph — among the most common Jewish names of the period (roughly one in four women was named Mary). The identification is rejected by the overwhelming majority of archaeologists, including its original excavators. A family wealthy enough for a Talpiot rock-cut tomb is also the wrong profile for a Galilean carpenter's family — and the disciples were preaching the Resurrection in Jerusalem while any such tomb could have been opened and shown.</p></div></div>
+      <div class="fi"><div class="fi-hd" onclick="tf(this)"><span>Q: How does the Oriental Orthodox Church celebrate the Resurrection?</span><span class="arr">▼</span></div><div class="fi-bd"><p>Pascha (the Feast of the Resurrection) is the Feast of Feasts. In the Coptic rite, after the fifty-five-day fast and the Holy Pascha week, the church is darkened, the Resurrection enactment is performed at the sanctuary doors, and the cry goes up: <em>Pikhristos aftonf! Khen oumethmi aftonf!</em> — "Christ is risen! Truly He is risen!" The fifty days to Pentecost are kept without fasting or kneeling, every Sunday of the year is a little Pascha, and the departed are buried facing east to await the same resurrection.</p></div></div>
+      <div class="fi"><div class="fi-hd" onclick="tf(this)"><span>Q: How should I talk with a skeptical friend about this?</span><span class="arr">▼</span></div><div class="fi-bd"><p>Start with the facts most historians grant: the crucifixion, the disciples' sincere belief that they saw Him, the conversions of Paul and James, the explosion of the Church in Jerusalem. Then ask the honest question: what explanation covers all of it? Walk through the alternatives one by one — each fails on evidence the others need. Don't demand instant agreement; the witnesses themselves doubted at first (Matthew 28:17, Luke 24:11, John 20:25), and the Lord was patient with every one of them. Invite your friend to read one Gospel — Mark takes ninety minutes — and to come to a Paschal liturgy and see the living argument.</p></div></div>
+    </div>
+  </section>
+
+  <section class="sec" id="s10">
+    <div class="sec-hd" onclick="ts(this)"><h2>X. Sources</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <div class="src-grid">
+        <div class="src-card"><div class="src-cat">Scripture</div><div class="src-item"><strong>The Holy Bible</strong> — quotations follow the NKJV wording, checked against the Greek (NA28).</div><div class="src-item"><strong>1 Corinthians 15:3–8</strong> — the pre-Pauline resurrection creed.</div></div>
+        <div class="src-card"><div class="src-cat">Church Fathers</div><div class="src-item"><strong>Clement of Rome — 1 Clement</strong> — ANF vol. 1.</div><div class="src-item"><strong>Ignatius — Smyrnaeans; Trallians</strong> — ANF vol. 1.</div><div class="src-item"><strong>Quadratus — Apology</strong> — in Eusebius, Church History 4.3, NPNF II.1.</div><div class="src-item"><strong>Justin Martyr — Dialogue with Trypho</strong> — ANF vol. 1.</div><div class="src-item"><strong>Origen — Against Celsus</strong> — ANF vol. 4.</div><div class="src-item"><strong>Athanasius — On the Incarnation</strong> — SVS Press.</div></div>
+        <div class="src-card"><div class="src-cat">Non-Christian Sources</div><div class="src-item"><strong>Tacitus — Annals 15.44</strong> — on the execution of Christus under Pilate.</div><div class="src-item"><strong>Josephus — Antiquities 18.3.3; 20.9.1</strong> — cited with the standard scholarly caution on partial Christian interpolation.</div><div class="src-item"><strong>Josephus — Antiquities 4.8.15</strong> — on women's testimony.</div></div>
+        <div class="src-card"><div class="src-cat">Skeptical Sources Engaged</div><div class="src-item"><strong>Celsus</strong> — as preserved in Origen, Against Celsus.</div><div class="src-item"><strong>Strauss, D. F.</strong> — <em>A New Life of Jesus</em> (on the swoon theory's failure).</div><div class="src-item"><strong>Lüdemann, Gerd</strong> — <em>The Resurrection of Jesus</em> (vision hypothesis).</div><div class="src-item"><strong>Ehrman, Bart</strong> — <em>How Jesus Became God</em> (historiographical objection).</div></div>
+      </div>
+      <p style="margin-top:1rem;font-size:.82rem;color:var(--mu)">Quotations marked <span class="gl-tag">Direct Quote</span> follow the standard English editions; entries marked <span class="pl">Paraphrase</span> summarize a source's documented argument without claiming exact wording. An educational resource of St James Brother of the Lord Coptic Orthodox Church.</p>
+    </div>
+  </section>
+
+</main>
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+function ts(h){h.closest('.sec').classList.toggle('open')}
+function tobj(h){h.closest('.obj').classList.toggle('open')}
+function tf(h){h.closest('.fi').classList.toggle('open')}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').classList.toggle('show')}
+function closeMobile(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
+const secs=document.querySelectorAll('.sec[id]');
+const navLinks=document.querySelectorAll('#sidenav a');
+function updateNav(){let cur='';secs.forEach(s=>{if(s.getBoundingClientRect().top<120)cur=s.id;});navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur);})}
+window.addEventListener('scroll',updateNav,{passive:true});
+window.addEventListener('scroll',()=>{const st=document.documentElement.scrollTop;const sh=document.documentElement.scrollHeight-document.documentElement.clientHeight;document.getElementById('progress-bar').style.width=(st/sh*100)+'%';},{passive:true});
+window.addEventListener('scroll',()=>{document.getElementById('btt').style.opacity=window.scrollY>400?'1':'0';},{passive:true});
+let lastQuery='';
+function doSearch(){const q=document.getElementById('search-input').value.trim().toLowerCase();if(q===lastQuery)return;lastQuery=q;clearHighlights();if(!q)return;const walker=document.createTreeWalker(document.getElementById('main-content'),NodeFilter.SHOW_TEXT,null,false);const matches=[];let node;while((node=walker.nextNode())){if(node.nodeValue.toLowerCase().includes(q))matches.push(node);}matches.forEach(n=>{const idx=n.nodeValue.toLowerCase().indexOf(q);const before=document.createTextNode(n.nodeValue.substring(0,idx));const mark=document.createElement('mark');mark.textContent=n.nodeValue.substring(idx,idx+q.length);mark.style.cssText='background:#c9a84c;color:#0d0d0d;border-radius:2px;padding:0 2px;';const after=document.createTextNode(n.nodeValue.substring(idx+q.length));const frag=document.createDocumentFragment();frag.appendChild(before);frag.appendChild(mark);frag.appendChild(after);n.parentNode.replaceChild(frag,n);});const firstMark=document.querySelector('mark');if(firstMark)firstMark.scrollIntoView({behavior:'smooth',block:'center'});}
+function clearHighlights(){document.querySelectorAll('mark').forEach(m=>{m.parentNode.replaceChild(document.createTextNode(m.textContent),m);});}
+document.getElementById('search-input').addEventListener('keydown',e=>{if(e.key==='Enter')doSearch();if(e.key==='Escape'){document.getElementById('search-input').value='';lastQuery='';clearHighlights();}});
+document.getElementById('search-btn').addEventListener('click',doSearch);
+document.querySelector('.sec').classList.add('open');
+</script>
+</body>
+</html>
