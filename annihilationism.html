@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>THE ORTHODOX LAMP — Annihilationism (Destructionism)</title>
+<style>
+:root{--gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;--bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--tx:#e8e0d0;--mu:#a09880;--red:#8b2020;--br:#2a2a2a;--bg5:#3a2e10;--sidebar-w:270px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.75}
+a{color:var(--gold);text-decoration:none}
+#progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(to right,var(--gd),var(--gold),var(--gl));width:0%;z-index:500}
+#sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:200;transition:transform .3s}
+#sidebar h2{font-size:.7rem;letter-spacing:.15em;color:var(--gold);text-transform:uppercase;padding:1.4rem 1.2rem .5rem;border-bottom:1px solid var(--br)}
+#sidenav a{display:block;padding:.42rem 1.2rem;font-size:.82rem;color:var(--mu);border-left:3px solid transparent;transition:all .2s}
+#sidenav a:hover,#sidenav a.active{color:var(--gl);border-left-color:var(--gold);background:var(--bg5)}
+.search-wrap{padding:.8rem 1rem;border-bottom:1px solid var(--br);display:flex;gap:.4rem}
+.search-wrap input{flex:1;background:var(--bg3);border:1px solid var(--br);color:var(--tx);padding:.35rem .6rem;border-radius:4px;font-size:.8rem}
+.search-wrap button{background:var(--gold);color:#0d0d0d;border:none;padding:.35rem .7rem;border-radius:4px;cursor:pointer;font-weight:700;font-size:.8rem}
+#main-content{margin-left:var(--sidebar-w);padding:0 2rem 4rem}
+.mob-toggle{display:none;position:fixed;bottom:1.2rem;right:1.2rem;background:var(--gold);color:#0d0d0d;border:none;width:48px;height:48px;border-radius:50%;font-size:1.4rem;cursor:pointer;z-index:300;box-shadow:0 2px 12px rgba(0,0,0,.5)}
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:150}
+#overlay.show{display:block}
+.hero{text-align:center;padding:4rem 1rem 2.5rem;border-bottom:1px solid var(--br);background:linear-gradient(to bottom,var(--bg2),var(--bg))}
+.si{font-size:2.2rem;color:var(--gold);display:block;margin-bottom:.5rem}
+.st{font-size:2rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--tx)}
+.st span{color:var(--gold)}
+.ss{font-size:1.05rem;color:var(--gl);margin:.6rem 0 .4rem;font-style:italic}
+.tg{font-size:.85rem;color:var(--mu);margin-bottom:.8rem}
+.orn{color:var(--gold);font-size:1.1rem;letter-spacing:.4em;margin-top:.5rem}
+.sec{border:1px solid var(--br);border-radius:8px;margin:1.5rem 0;background:var(--bg2);overflow:hidden}
+.sec-hd{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.3rem;cursor:pointer;user-select:none;background:var(--bg3);border-bottom:1px solid transparent;transition:background .2s}
+.sec-hd:hover{background:var(--bg4)}
+.sec.open .sec-hd{border-bottom-color:var(--br);background:var(--bg4)}
+.sec-hd h2{font-size:1rem;color:var(--gl);text-transform:uppercase;letter-spacing:.05em}
+.sec-bd{display:none;padding:1.4rem 1.5rem}
+.sec.open .sec-bd{display:block}
+.sec-bd h3{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin:1.4rem 0 .7rem;padding-bottom:.3rem;border-bottom:1px solid var(--bg5)}
+.sec-bd p{color:var(--tx);margin-bottom:.9rem;font-size:.95rem}
+.arr{color:var(--gold);font-size:.9rem;transition:transform .3s}
+.sec.open .arr{transform:rotate(180deg)}
+.sv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin:.8rem 0 1.2rem}
+.sv{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:1rem}
+.sv .ref{font-size:.75rem;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.4rem}
+.sv .labels{margin-bottom:.5rem;display:flex;gap:.4rem;flex-wrap:wrap}
+.sv .labels span{font-size:.65rem;font-weight:700;padding:.15rem .45rem;border-radius:3px;text-transform:uppercase;letter-spacing:.06em}
+.labels .prot{background:#4a1a1a;color:#e87070}
+.labels .oo{background:#1a3a1a;color:#70c870}
+.labels .ctx{background:#1a2a3a;color:#70aacc}
+.sv .txt{font-style:italic;color:var(--gl);font-size:.88rem;margin-bottom:.5rem;border-left:2px solid var(--gold);padding-left:.7rem}
+.sv .interp{font-size:.82rem;color:var(--mu)}
+.fc{background:var(--bg3);border:1px solid var(--br);border-left:3px solid var(--gold);border-radius:6px;padding:1rem 1.1rem;margin:.8rem 0}
+.fn{font-size:.8rem;font-weight:700;color:var(--gl);text-transform:uppercase;letter-spacing:.07em}
+.fw{font-size:.75rem;color:var(--mu);margin:.2rem 0 .5rem;font-style:italic}
+.fq{font-style:italic;color:var(--tx);font-size:.88rem;border-left:2px solid var(--bg5);padding-left:.8rem;margin:.4rem 0 .6rem}
+.fsig{font-size:.8rem;color:var(--mu)}
+.pl{background:#4a1a1a;color:#e87070;font-size:.65rem;font-weight:700;padding:.1rem .35rem;border-radius:3px;text-transform:uppercase;letter-spacing:.06em;vertical-align:middle;margin-left:.3rem;font-style:normal}
+.gl-tag{background:#1a3a1a;color:#70c870;font-size:.65rem;font-weight:700;padding:.1rem .35rem;border-radius:3px;text-transform:uppercase;letter-spacing:.06em;vertical-align:middle;margin-left:.3rem;font-style:normal}
+.obj{background:var(--bg3);border:1px solid #4a1a1a;border-left:3px solid var(--red);border-radius:6px;margin:.8rem 0;overflow:hidden}
+.obj-hd{display:flex;justify-content:space-between;align-items:center;padding:.8rem 1rem;cursor:pointer;user-select:none}
+.obj-hd:hover{background:var(--bg4)}
+.obj-hd h3{font-size:.85rem;color:#e87070;font-weight:700}
+.obj-bd{display:none;padding:.9rem 1.1rem;border-top:1px solid #4a1a1a}
+.obj.open .obj-bd{display:block}
+.obj.open .arr{transform:rotate(180deg)}
+.obj-bd h4{font-size:.75rem;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.4rem;margin-top:.6rem}
+.obj-bd h4:first-child{margin-top:0}
+.obj-bd p{font-size:.85rem;color:var(--tx);margin-bottom:.6rem}
+.fi{background:var(--bg3);border:1px solid var(--br);border-radius:6px;margin:.6rem 0;overflow:hidden}
+.fi-hd{display:flex;justify-content:space-between;align-items:center;padding:.8rem 1rem;cursor:pointer;user-select:none;font-size:.88rem;color:var(--gl)}
+.fi-hd:hover{background:var(--bg4)}
+.fi-bd{display:none;padding:.9rem 1.1rem;border-top:1px solid var(--br);font-size:.85rem;color:var(--tx)}
+.fi.open .fi-bd{display:block}
+.fi.open .arr{transform:rotate(180deg)}
+.fi-bd p{margin-bottom:.7rem}
+.comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:.8rem 0}
+.comp-card{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:1rem}
+.comp-card.prot{border-top:3px solid #e87070}
+.comp-card.oo{border-top:3px solid var(--gold)}
+.comp-card .ct{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.6rem}
+.comp-card.prot .ct{color:#e87070}
+.comp-card.oo .ct{color:var(--gold)}
+.comp-card p{font-size:.82rem;color:var(--mu)}
+.tl{border-left:2px solid var(--bg5);margin:1rem 0 1rem .4rem;padding-left:1.2rem}
+.tl-item{position:relative;margin-bottom:1.1rem}
+.tl-item::before{content:'';position:absolute;left:-1.62rem;top:.45rem;width:11px;height:11px;border-radius:50%;background:var(--gold);border:2px solid var(--bg2)}
+.tl-date{font-size:.78rem;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase}
+.tl-item p{font-size:.85rem;color:var(--mu);margin:.2rem 0 0}
+.src-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;margin:.8rem 0}
+.src-card{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:1rem}
+.src-cat{font-size:.72rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.6rem;padding-bottom:.4rem;border-bottom:1px solid var(--bg5)}
+.src-item{font-size:.8rem;color:var(--mu);margin-bottom:.5rem;padding-left:.7rem;border-left:2px solid var(--br)}
+.btt{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--gold);color:#0d0d0d;border:none;width:44px;height:44px;border-radius:50%;font-size:1.2rem;cursor:pointer;opacity:0;transition:opacity .3s;z-index:300;font-weight:700}
+@media(max-width:768px){#sidebar{transform:translateX(-100%)}#sidebar.open{transform:translateX(0)}#main-content{margin-left:0;padding:0 1rem 4rem}.mob-toggle{display:flex;align-items:center;justify-content:center}.sv-grid{grid-template-columns:1fr}.comp-grid{grid-template-columns:1fr}}
+
+.lampsvg{display:block;margin:0 auto 14px;height:auto}
+.lampsvg .lampflame{animation:lampflick 3.2s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes lampflick{0%,100%{transform:scaleY(1) scaleX(1);opacity:.95}25%{transform:scaleY(1.06) scaleX(.97);opacity:1}50%{transform:scaleY(.96) scaleX(1.03);opacity:.9}75%{transform:scaleY(1.04) scaleX(.98);opacity:1}}
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<nav id="sidebar">
+  <div class="search-wrap"><input type="text" id="search-input" placeholder="Search…"><button id="search-btn">Go</button></div>
+  <svg class="lampsvg" width="64" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><radialGradient id="lmpGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffb95e" stop-opacity=".55"/><stop offset="100%" stop-color="#ffb95e" stop-opacity="0"/></radialGradient><linearGradient id="lmpFlame" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#ff7a1f"/><stop offset="55%" stop-color="#ffb347"/><stop offset="100%" stop-color="#ffe9b0"/></linearGradient><linearGradient id="lmpBrass" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e3b860"/><stop offset="50%" stop-color="#a87b35"/><stop offset="100%" stop-color="#7a5523"/></linearGradient></defs><circle cx="60" cy="38" r="34" fill="url(#lmpGlow)"/><g class="lampflame"><path d="M60 16 C66 26 70 32 70 40 C70 48 65.5 53 60 53 C54.5 53 50 48 50 40 C50 32 54 26 60 16 Z" fill="url(#lmpFlame)"/><path d="M60 30 C63 35 64.5 38 64.5 42 C64.5 46.5 62.5 49 60 49 C57.5 49 55.5 46.5 55.5 42 C55.5 38 57 35 60 30 Z" fill="#fff3cf" opacity=".85"/></g><rect x="56" y="52" width="8" height="7" rx="2" fill="#8a6228"/><path d="M28 62 L92 62 C92 80 78 92 60 92 C42 92 28 80 28 62 Z" fill="url(#lmpBrass)"/><rect x="24" y="58" width="72" height="6" rx="3" fill="#caa14e"/><rect x="56" y="92" width="8" height="16" fill="url(#lmpBrass)"/><path d="M38 118 C38 110 47 108 60 108 C73 108 82 110 82 118 L82 122 L38 122 Z" fill="url(#lmpBrass)"/><rect x="32" y="122" width="56" height="6" rx="3" fill="#caa14e"/></svg>
+  <h2>The Orthodox Lamp</h2>
+  <nav id="sidenav">
+    <a href="#s1">I. Introduction</a>
+    <a href="#s2">II. What the Church Teaches</a>
+    <a href="#s3">III. Scripture on Eternal Punishment</a>
+    <a href="#s4">IV. Annihilationist Texts Answered</a>
+    <a href="#s5">V. The Soul After Death</a>
+    <a href="#s6">VI. The Witness of the Fathers</a>
+    <a href="#s7">VII. Theological Considerations</a>
+    <a href="#s8">VIII. Objections</a>
+    <a href="#s9">IX. FAQ</a>
+    <a href="#s10">X. Sources</a>
+  </nav>
+</nav>
+<div id="overlay" onclick="closeMobile()"></div>
+<button class="mob-toggle" onclick="toggleSidebar()">☰</button>
+<main id="main-content">
+  <div class="hero">
+    <span class="si">☩</span>
+    <h1 class="st">THE <span>ORTHODOX</span> LAMP</h1>
+    <p class="ss">Annihilationism (Destructionism) — Do the Souls in Hell Cease to Exist?</p>
+    <p class="tg">"And these will go away into everlasting punishment, but the righteous into eternal life." — Matthew 25:46</p>
+    <div class="orn">✦ ✦ ✦</div>
+  </div>
+
+  <section class="sec open" id="s1">
+    <div class="sec-hd" onclick="ts(this)"><h2>I. Introduction</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p><strong>Annihilationism</strong> — sometimes called <em>destructionism</em> or, in its fuller form, <em>conditional immortality</em> — teaches that the souls of the finally impenitent do not suffer everlasting punishment but are destroyed: after death (or after the Last Judgment) the lost simply <em>cease to exist</em>. On this view "eternal punishment" means a punishment whose <em>result</em> is eternal (non-existence), not a punishment eternally <em>experienced</em>; the soul is not naturally immortal, immortality being a gift granted only to the saved.</p>
+      <p>The doctrine is held today by the Seventh-day Adventist Church and Jehovah's Witnesses, and has been defended by some evangelical writers (Edward Fudge's <em>The Fire That Consumes</em>; John Stott expressed cautious sympathy). It is presented as a more merciful reading of Scripture and a rescue of God's character from the charge of cruelty.</p>
+      <p>The Oriental Orthodox Church receives a different and older teaching: the resurrection of <em>all</em> the dead — "those who have done good, to the resurrection of life, and those who have done evil, to the resurrection of condemnation" (John 5:29) — and a judgment whose two outcomes Scripture sets in deliberate parallel: "everlasting punishment… eternal life" (Matthew 25:46). The Creed itself ends, "we look for the resurrection of the dead, and the life of the age to come." The Church proclaims this not with relish but with tears — God "desires all men to be saved" (1 Timothy 2:4) — yet she may not soften what her Lord, who wept over Jerusalem, taught more often and more vividly than anyone else in Scripture. This page examines the annihilationist case with fairness: its texts, its strongest arguments, and the answer of the Bible and the Fathers.</p>
+      <div class="comp-grid">
+        <div class="comp-card prot"><div class="ct">Annihilationist Claim</div><p>The soul is not immortal; "eternal punishment" is eternal in effect, not in experience; the fire consumes utterly; the lost are blotted out of existence — for "the wages of sin is death," not endless torment.</p></div>
+        <div class="comp-card oo"><div class="ct">Oriental Orthodox Teaching</div><p>All the dead rise; the soul, created immortal by God's gift, does not lapse into nothing; the condemned go away into a real, unending separation from the blessedness of God — a state Scripture calls everlasting fire, outer darkness, and the second death — freely chosen by impenitence and never reversed.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s2">
+    <div class="sec-hd" onclick="ts(this)"><h2>II. What the Church Teaches</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>Three clarifications guard this doctrine from caricature.</p>
+      <h3>1. Hell Is Not God's Delight</h3>
+      <p>"'As I live,' says the Lord GOD, 'I have no pleasure in the death of the wicked'" (Ezekiel 33:11). Gehenna was "prepared for the devil and his angels" (Matthew 25:41) — not for man. Every soul that enters it enters against the desire of God, who gave His own Son rather than lose it. The Orthodox doctrine of hell is the doctrine of a freedom so real, and a love so non-coercive, that refusal is eternally possible.</p>
+      <h3>2. The Soul's Immortality Is a Gift, Not a Divinity</h3>
+      <p>Orthodoxy does not teach the pagan notion that souls are self-existent or naturally divine. God "alone has immortality" (1 Timothy 6:16) in the absolute sense: He alone is life in Himself. The soul is immortal <em>derivatively</em> — because God created it for unending existence and does not revoke His gift: "the dust will return to the earth as it was, and the spirit will return to God who gave it" (Ecclesiastes 12:7). Thus the conditionalist's correct premise (only God is inherently immortal) does not yield his conclusion (the lost cease to exist) — that would require God to unmake what He made for eternity, which Scripture nowhere teaches and everywhere contradicts.</p>
+      <h3>3. Punishment Is Separation, Not Divine Sadism</h3>
+      <p>The essence of the second death is exclusion from the source of all joy: "Depart from Me" (Matthew 25:41); "punished with everlasting destruction <em>from the presence of the Lord and from the glory of His power</em>" (2 Thessalonians 1:9). The fire and the worm are the Lord's own images for the misery of a creature that has made itself incapable of God. The Church refuses both modern softenings: she will not turn hell into a metaphor for annihilation, nor preach it as the arbitrary cruelty of a vindictive deity.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s3">
+    <div class="sec-hd" onclick="ts(this)"><h2>III. The Witness of Scripture on Eternal Punishment</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <div class="sv-grid">
+        <div class="sv"><div class="ref">Matthew 25:46</div><div class="labels"><span class="oo">Key Text</span></div><div class="txt">"And these will go away into everlasting punishment (κόλασιν αἰώνιον), but the righteous into eternal life (ζωὴν αἰώνιον)."</div><div class="interp">The decisive parallel: one adjective, αἰώνιος, governs both destinies in a single sentence. If the punishment terminates, the life must terminate; if the life is endless, so is the punishment. Note also that the lost "go away into" punishment — they exist to undergo it. An annihilated person is not <em>in</em> punishment; he is nowhere.</div></div>
+        <div class="sv"><div class="ref">Mark 9:43–48</div><div class="labels"><span class="oo">Key Text</span></div><div class="txt">"…to go to hell, into the fire that shall never be quenched — where 'their worm does not die and the fire is not quenched.'"</div><div class="interp">The Lord cites Isaiah 66:24 three times in six verses. An unquenchable fire that runs out of fuel, and an undying worm whose food is gone, are images emptied of meaning by annihilation. The horror of the picture is precisely its <em>continuance</em>.</div></div>
+        <div class="sv"><div class="ref">Revelation 14:10–11</div><div class="labels"><span class="oo">Key Text</span></div><div class="txt">"He shall be tormented with fire and brimstone… and the smoke of their torment ascends forever and ever; and they have no rest day or night."</div><div class="interp">"No rest day or night" describes ongoing conscious experience, not extinction; smoke ascending "forever and ever" (εἰς αἰῶνας αἰώνων — Scripture's strongest formula for endlessness, used of God's own life, Revelation 4:9–10) signifies a judgment that never becomes past.</div></div>
+        <div class="sv"><div class="ref">Revelation 20:10, 15</div><div class="labels"><span class="oo">Key Text</span></div><div class="txt">"The devil… was cast into the lake of fire and brimstone where the beast and the false prophet are. And they will be tormented day and night forever and ever… And anyone not found written in the Book of Life was cast into the lake of fire."</div><div class="interp">The beast and false prophet, thrown in a thousand years earlier (19:20), are still there — not consumed — and the torment is explicitly "day and night forever and ever." Verse 15 places the condemned in the <em>same</em> lake. The "second death" (20:14) is thus defined by the text itself as ongoing torment, not cessation.</div></div>
+        <div class="sv"><div class="ref">Daniel 12:2</div><div class="labels"><span class="oo">Key Text</span></div><div class="txt">"And many of those who sleep in the dust of the earth shall awake, some to everlasting life, some to shame and everlasting contempt."</div><div class="interp">The Old Testament's clearest resurrection text, with the same parallel structure as Matthew 25:46: everlasting life, everlasting contempt. Contempt (or abhorrence) requires an object; a non-existent person can no more be held in everlasting contempt than honored with everlasting life.</div></div>
+        <div class="sv"><div class="ref">Jude 7, 13</div><div class="labels"><span class="oo">Key Text</span></div><div class="txt">"…suffering the vengeance of eternal fire… wandering stars for whom is reserved the blackness of darkness forever."</div><div class="interp">Darkness "reserved forever" for persons is a strange way to describe persons who will shortly not exist. Jude's twin images — eternal fire, eternal darkness — match the Lord's own pairing of gehenna and the "outer darkness" where "there will be weeping and gnashing of teeth" (Matthew 8:12; 22:13; 25:30): the weeping presupposes weepers.</div></div>
+        <div class="sv"><div class="ref">Matthew 26:24</div><div class="labels"><span class="oo">Key Text</span></div><div class="txt">"It would have been good for that man if he had not been born."</div><div class="interp">Spoken of Judas. On the annihilationist account, the lost end exactly as if they had never been born — non-existence — having first enjoyed existence and then escaped all consequence into painless nothing. The Lord's saying then loses its force: never-born and finally-annihilated would be equivalent, or annihilation even preferable. The words are only sober truth if what awaits is worse than non-existence.</div></div>
+        <div class="sv"><div class="ref">Matthew 18:8 / 25:41</div><div class="labels"><span class="oo">Key Text</span></div><div class="txt">"…to be cast into the everlasting fire… 'Depart from Me, you cursed, into the everlasting fire prepared for the devil and his angels.'"</div><div class="interp">The fire is "everlasting" in itself, and Revelation 20:10 shows the devil tormented in it "forever and ever" — not annihilated. Those sentenced to the <em>same</em> fire share its character. If the fire annihilated, the devil would be its first proof; instead he is its standing refutation.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s4">
+    <div class="sec-hd" onclick="ts(this)"><h2>IV. The Annihilationist Proof Texts Answered</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>The annihilationist case is built on the Bible's vocabulary of destruction — perish, destroy, death, consume. The answer in every case is the same: examine how Scripture itself uses these words.</p>
+      <div class="sv-grid">
+        <div class="sv"><div class="ref">Matthew 10:28</div><div class="labels"><span class="prot">Annihilationist Use</span><span class="oo">OO Reading</span></div><div class="txt">"And do not fear those who kill the body but cannot kill the soul. But rather fear Him who is able to destroy (ἀπολέσαι) both soul and body in hell."</div><div class="interp"><strong>Their use:</strong> God will destroy the soul — annihilation. <strong>Answer:</strong> the verse first asserts what conditionalism denies: men can kill the body but <em>cannot kill the soul</em> — the soul survives bodily death. "Destroy" (ἀπόλλυμι) in Scripture's usage means ruin and loss, not abolition of being: the same verb describes the "lost (ἀπολωλός) sheep" (Luke 15:4,6), the "ruined" wineskins (Matthew 9:17), and the prodigal who "was lost (ἀπολωλώς) and is found" (Luke 15:24) — all still existing. God is "able" to hand the whole person over to gehenna's ruin; the nature of that ruin is given by the other texts: unquenchable fire, undying worm.</div></div>
+        <div class="sv"><div class="ref">John 3:16</div><div class="labels"><span class="prot">Annihilationist Use</span><span class="oo">OO Reading</span></div><div class="txt">"…that whoever believes in Him should not perish (ἀπόληται) but have everlasting life."</div><div class="interp"><strong>Their use:</strong> the alternative to eternal life is perishing — ceasing to be. <strong>Answer:</strong> same verb, same answer: to perish is to be lost to God, not to stop existing. The contrast is between two qualities of unending existence — "life" (communion with God) and "perdition" (ruin apart from Him) — exactly as in John 5:29, where <em>both</em> classes rise from the dead, one to life and one to condemnation.</div></div>
+        <div class="sv"><div class="ref">Romans 6:23 / Ezekiel 18:4</div><div class="labels"><span class="prot">Annihilationist Use</span><span class="oo">OO Reading</span></div><div class="txt">"The wages of sin is death…" / "The soul who sins shall die."</div><div class="interp"><strong>Their use:</strong> death means the end of existence. <strong>Answer:</strong> in Scripture death never means non-existence; it means separation. Adam "died" the day he ate (Genesis 2:17) yet lived on for centuries — dead toward God. The baptized were "dead in trespasses" while walking about (Ephesians 2:1). Physical death is the soul's separation from the body; the "second death" (Revelation 20:14) is the person's final separation from God — defined in the same chapter as the lake where torment continues "forever and ever," not as a synonym for vanishing.</div></div>
+        <div class="sv"><div class="ref">2 Thessalonians 1:9</div><div class="labels"><span class="prot">Annihilationist Use</span><span class="oo">OO Reading</span></div><div class="txt">"These shall be punished with everlasting destruction (ὄλεθρον αἰώνιον) from the presence of the Lord and from the glory of His power."</div><div class="interp"><strong>Their use:</strong> "everlasting destruction" = annihilation. <strong>Answer:</strong> ὄλεθρος means ruin, not erasure — Paul uses it of the incestuous Corinthian delivered to Satan "for the destruction of the flesh, that his spirit may be saved" (1 Corinthians 5:5): a destruction the man survives. And destruction "<em>from</em> the presence of the Lord" locates the ruined — away from His face. Non-existent things have no location and no exclusion. If Paul meant extinction, "everlasting" adds nothing: an extinction lasting one second is as final as one lasting forever.</div></div>
+        <div class="sv"><div class="ref">Malachi 4:1–3 / Psalm 37:20</div><div class="labels"><span class="prot">Annihilationist Use</span><span class="oo">OO Reading</span></div><div class="txt">"All the proud… will be stubble. And the day which is coming shall burn them up… they shall be ashes under the soles of your feet." / "The wicked… into smoke they shall vanish away."</div><div class="interp"><strong>Their use:</strong> burned to ashes — gone. <strong>Answer:</strong> these are prophetic and poetic pictures of the wicked's overthrow in history and at the Day of the Lord, in the same idiom by which Israel's enemies are "consumed" yet their peoples persist. Doctrine on the final state must be ruled by the explicit, didactic resurrection-and-judgment texts (Daniel 12:2; Matthew 25; John 5:28–29; Revelation 20), not by imagery whose own books also speak of unquenchable fire (Isaiah 66:24 — the closing verse of Isaiah, quoted by the Lord of gehenna).</div></div>
+        <div class="sv"><div class="ref">1 Timothy 6:16</div><div class="labels"><span class="prot">Annihilationist Use</span><span class="oo">OO Reading</span></div><div class="txt">"…who alone has immortality, dwelling in unapproachable light."</div><div class="interp"><strong>Their use:</strong> only God is immortal; therefore souls are mortal and the lost cease. <strong>Answer:</strong> God alone has immortality <em>essentially</em> — underived, self-existent. Creatures have it <em>by gift</em>: the angels do not die (Luke 20:36), and the same Paul teaches that at the resurrection even the lost are raised (Acts 24:15 — "a resurrection of the dead, both of the just and the unjust"). The verse distinguishes Creator from creature; it does not promise the uncreation of sinners.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s5">
+    <div class="sec-hd" onclick="ts(this)"><h2>V. The Soul After Death</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>Annihilationism usually travels with <em>soul sleep</em> or outright materialism about the soul (so Adventists and Jehovah's Witnesses): the dead are unconscious or non-existent until the resurrection. Scripture and the unbroken practice of the Church say otherwise.</p>
+      <div class="sv-grid">
+        <div class="sv"><div class="ref">Luke 16:19–31</div><div class="labels"><span class="oo">Key Text</span></div><div class="txt">"The rich man also died and was buried. And being in torments in Hades, he lifted up his eyes and saw Abraham afar off, and Lazarus in his bosom."</div><div class="interp">Between death and resurrection: consciousness, memory ("Son, remember," v.25), concern for living brothers, fixed separation. Even read as a parable, the Lord does not build teaching on a false picture of the afterlife — and uniquely in His parables, He names a person (Lazarus).</div></div>
+        <div class="sv"><div class="ref">Luke 23:43</div><div class="labels"><span class="oo">Key Text</span></div><div class="txt">"Assuredly, I say to you, today you will be with Me in Paradise."</div><div class="interp">The thief, dying that afternoon, is promised presence with Christ <em>today</em> — not unconsciousness until a remote resurrection. The Watchtower's repunctuation ("I say to you today, you will be…") is grammatically desperate: in all 74 other uses, "Amen, I say to you" is the fixed formula and what follows is the content.</div></div>
+        <div class="sv"><div class="ref">Philippians 1:23 / 2 Corinthians 5:8</div><div class="labels"><span class="oo">Key Text</span></div><div class="txt">"…having a desire to depart and be with Christ, which is far better." / "…well pleased rather to be absent from the body and to be present with the Lord."</div><div class="interp">Paul's hope at death is immediate gain — being <em>with Christ</em> — meaningless if death is dreamless gap or nothingness. "Far better" than fruitful apostolic labor cannot describe oblivion.</div></div>
+        <div class="sv"><div class="ref">Revelation 6:9–11 / Matthew 22:32</div><div class="labels"><span class="oo">Key Text</span></div><div class="txt">"I saw under the altar the souls of those who had been slain… and they cried with a loud voice." / "'I am the God of Abraham…' God is not the God of the dead, but of the living."</div><div class="interp">The martyrs' souls, before the resurrection, are alive, aware, vocal, and clothed in white. And the Lord proves the resurrection to the Sadducees from the present tense: Abraham, long buried, <em>lives</em> to God. On these texts rests the Church's whole communion with the departed — her prayers, her commemorations, her confidence that the saints intercede.</div></div>
+      </div>
+      <p>This is why the Oriental Orthodox funeral is not a farewell into nothing: the Church commends a living soul into the hands of a living God, awaiting the resurrection of the body. The doctrine of hell concerns what a soul that exists forever does with a God who is everywhere; annihilationism solves the problem by abolishing the patient.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s6">
+    <div class="sec-hd" onclick="ts(this)"><h2>VI. The Witness of the Fathers</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>From the generation that knew the apostles onward, the Church's voice is consistent: the fire is eternal, the punishment unending. Direct quotations follow the standard English editions (ANF/NPNF); summaries of documented teaching are marked.</p>
+      <div class="fc"><div class="fn">St. Ignatius of Antioch <span class="gl-tag">Direct Quote</span></div><div class="fw">Epistle to the Ephesians 16 (c. AD 107)</div><div class="fq">"Do not err, my brethren. Those that corrupt families shall not inherit the kingdom of God… he who corrupts the faith of God, for which Jesus Christ was crucified, shall go away into everlasting fire, and so shall every one that hearkens unto him."</div><div class="fsig">A disciple of the apostles, writing on the road to his own martyrdom: the fire is everlasting, and persons "go away into" it.</div></div>
+      <div class="fc"><div class="fn">The Martyrdom of St. Polycarp <span class="gl-tag">Direct Quote</span></div><div class="fw">Martyrdom of Polycarp 2 (c. AD 156)</div><div class="fq">"…the fire of their savage executioners appeared cool to them, for they kept before their view escape from that fire which is eternal and never shall be quenched."</div><div class="fsig">The martyrs endured an hour's flame to escape the unquenchable one — a calculation that collapses if the second fire merely ends existence painlessly.</div></div>
+      <div class="fc"><div class="fn">St. Justin Martyr <span class="gl-tag">Direct Quote</span></div><div class="fw">First Apology 52 (c. AD 155)</div><div class="fq">"He shall raise the bodies of all men who have lived, and shall clothe those of the worthy with immortality, and shall send those of the wicked, endued with eternal sensibility, into everlasting fire with the wicked devils."</div><div class="fsig">"Endued with eternal sensibility" — the precise point annihilationism denies, asserted in the Church's first great apology to the Roman state. (Justin elsewhere [Dialogue 5–6] denies the soul is immortal <em>of its own nature</em> — it lives because God wills it — which is exactly the Orthodox doctrine of derived immortality, not annihilationism, as his own Apology shows.)</div></div>
+      <div class="fc"><div class="fn">Second Epistle of Clement <span class="gl-tag">Direct Quote</span></div><div class="fw">2 Clement 17 (mid-2nd c.)</div><div class="fq">"…and the unbelievers shall see His glory and His might: and they shall be amazed when they see the kingdom of the world given to Jesus, saying, Woe unto us, for Thou wast, and we knew it not… and their worm shall not die and their fire shall not be quenched, and they shall be a spectacle unto all flesh."</div><div class="fsig">The earliest surviving Christian sermon outside the New Testament, preaching Isaiah 66:24 exactly as the Lord did.</div></div>
+      <div class="fc"><div class="fn">St. Cyril of Jerusalem <span class="gl-tag">Direct Quote</span></div><div class="fw">Catechetical Lectures 18.19 (c. AD 350)</div><div class="fq">"We shall be raised therefore, all with our bodies eternal, but not all with bodies alike: for if a man is righteous, he will receive a heavenly body… but if a man is a sinner, he shall receive an eternal body, fitted to endure the penalties of sins, that he may burn eternally in fire, nor ever be consumed."</div><div class="fsig">Catechism — the Church's plain instruction to converts: an eternal body, never consumed. The direct patristic answer to "fire destroys what it burns."</div></div>
+      <div class="fc"><div class="fn">St. Basil the Great <span class="gl-tag">Direct Quote</span></div><div class="fw">Shorter Rules (Regulae brevius tractatae), Q. 267 (c. AD 370)</div><div class="fq">"It is a trick of the devil that many men, as though forgetting these and similar statements of the Lord, ascribe an end to punishment, that they may sin the more boldly. For if there be an end of eternal punishment, eternal life must likewise have an end; and if we may not think this of life, what reason is there to ascribe an end to eternal punishment? For the word 'eternal' is applied equally to both."</div><div class="fsig">Basil states the Matthew 25:46 parallel argument in full — and diagnoses the pastoral motive of softened eschatology.</div></div>
+      <div class="fc"><div class="fn">St. John Chrysostom <span class="pl">Paraphrase</span></div><div class="fw">To Theodore After His Fall 1.10; Homilies on Matthew (c. AD 380–390)</div><div class="fq">Chrysostom teaches that the bodies of the lost are raised incorruptible precisely so that the punishment does not end as this life's sufferings do: the fire of gehenna, unlike earthly fire, does not consume what it holds, and "that punishment has no end." He urges that one hour of it outweighs every pleasure of sin — and that God reveals it now exactly so that no one need ever see it.</div><div class="fsig">The greatest preacher of the East, whose liturgy the Church still serves, preaching hell with tears in order to empty it.</div></div>
+      <div class="fc"><div class="fn">St. Athanasius the Apostolic <span class="pl">Paraphrase</span></div><div class="fw">On the Incarnation §§4–6; Festal Letters (c. AD 318–360)</div><div class="fq">Athanasius frames the Fall as a slide toward corruption and non-being from which the Word came to rescue us — yet he never teaches that the lost reach annihilation; rather, the unrepentant face "eternal fire" and the judgment of Christ, while the saints receive incorruption. Being held in existence for judgment is itself the work of the Word who upholds all things.</div><div class="fsig">The Alexandrian doctor of the Incarnation: corruption tends toward nothing, but God's judgment, not nothingness, is the sinner's end.</div></div>
+      <p><strong>An honest note on the other side.</strong> Annihilationists commonly claim Irenaeus and Arnobius. Arnobius of Sicca (d. c. 330), a recent convert and lay rhetorician, did teach the destruction of unrighteous souls — he is the exception that proves the rule, was never canonized, and founded no tradition. Irenaeus (Against Heresies II.34) says souls "continue as long as God wills them to exist," which is the doctrine of derived immortality stated above, not a prediction of cessation: the same Irenaeus speaks repeatedly of the "eternal fire" prepared for apostates (e.g., AH IV.28.2). St. Gregory of Nyssa entertained the opposite speculation — universal restoration (apokatastasis), all eventually saved — which is the contrary of annihilation and was never received as the Church's teaching. The consensus of the Fathers, East and West, Greek, Syriac, and Coptic, stands with the plain sense of Matthew 25:46.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s7">
+    <div class="sec-hd" onclick="ts(this)"><h2>VII. Theological Considerations</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <h3>The Parallel Cannot Be Broken</h3>
+      <p>Every attempt to make αἰώνιος mean "eternal in result" for punishment must explain why it means "eternal in experience" for life — in the same verse, the same grammar, the same Speaker. Basil saw the move and named it. The annihilationist reply (punishment is the <em>event</em> of destruction, eternally final) founders on the texts where the experience itself is described as continuing: no rest day or night, weeping and gnashing of teeth, tormented forever and ever.</p>
+      <h3>Annihilation Is Not Mercy</h3>
+      <p>The doctrine's emotional appeal dissolves on inspection. If the wicked are extinguished, then for them sin finally <em>costs nothing they can feel</em>: a Nero and an unbaptized infant dying in ignorance reach the same terminus — nothing. Justice is not done; it is cancelled. And the "mercy" offered is the mercy of a God who solves the problem of evil by deleting persons He created in His own image — a more chilling portrait, on reflection, than the doctrine it replaces. The true mercy is the Cross, offered to all while it is still today.</p>
+      <h3>God Does Not Repent of Creating</h3>
+      <p>To annihilate a soul is to unmake an image-bearer — to concede that creating him was, in the end, a mistake to be erased. But "the gifts and the calling of God are irrevocable" (Romans 11:29). God remains faithful to His creature's existence even when the creature is faithless to Him; this fidelity is the dreadful dignity of freedom. Hell is the shadow cast by two unyielding realities: God will not cease to be God, and He will not force the creature to love Him.</p>
+      <h3>The Fear of the Lord Is Clean</h3>
+      <p>The Lord spoke of gehenna more than anyone in Scripture — not to terrorize, but because love warns. A Church that trims this teaching preaches a Christ who exaggerated. The Orthodox path holds the full severity and the full hope together: real, eternal loss is possible; and "God our Savior desires all men to be saved" — therefore now, today, the door stands open, and the Church prays without ceasing for every living soul.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s8">
+    <div class="sec-hd" onclick="ts(this)"><h2>VIII. Objections</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>Objection: Eternal torment for finite sins is unjust — the punishment must fit the crime</h3><span class="arr">▼</span></div>
+        <div class="obj-bd"><h4>The Claim</h4><p>A man sins for seventy years; infinite punishment for finite offense violates proportionality. A just God would impose a penalty that ends — extinction.</p><h4>Response</h4><p>Three answers. (1) The gravity of an offense is measured by the one offended as well as the act — treason against infinite Goodness is not a finite triviality. (2) More deeply: Scripture's picture is not of God endlessly avenging old sins, but of a fixed <em>state</em> — the lost do not repent. The rich man in Hades asks for water and for his brothers, never for forgiveness; the damned of Revelation "blasphemed God… and did not repent" (16:9, 11). Hell is eternal because the refusal is eternal; the sinning, in that sense, never ends. (3) Annihilation does not solve proportionality — it abolishes the scale entirely, giving the greatest and least evil the identical sentence of nothing.</p></div>
+      </div>
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>Objection: αἰώνιος (aionios) means "of the age," not "endless"</h3><span class="arr">▼</span></div>
+        <div class="obj-bd"><h4>The Claim</h4><p>The Greek adjective derives from αἰών, "age"; "aionian punishment" is punishment belonging to the age to come, with no claim about endless duration.</p><h4>Response</h4><p>Then "aionian life" is likewise only age-long, and the believer's hope expires with it — a conclusion no one accepts. In the New Testament αἰώνιος describes God Himself (Romans 16:26), His Spirit (Hebrews 9:14), His kingdom (2 Peter 1:11), and redemption that does not lapse (Hebrews 9:12). Where the age to come is in view, its mark is precisely that it does not end (Luke 1:33: "of His kingdom there will be no end"). And Revelation's εἰς αἰῶνας αἰώνων ("unto ages of ages"), used of the torment of the lost (14:11; 20:10), is the identical formula used of God's endless life (4:9–10) and the saints' endless reign (22:5).</p></div>
+      </div>
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>Objection: Fire consumes — that is what fire is for. The biblical image itself implies extinction</h3><span class="arr">▼</span></div>
+        <div class="obj-bd"><h4>The Claim</h4><p>Chaff, stubble, weeds, dead branches — every fire image in Scripture pictures burning <em>up</em>. Eternal burning without consumption is unnatural.</p><h4>Response</h4><p>Scripture anticipated the objection with an icon: the burning bush, which "burned with fire, but the bush was not consumed" (Exodus 3:2) — fire as the presence of God that does not annihilate what it embraces. "Our God is a consuming fire" (Hebrews 12:29), yet the seraphim stand in His blaze forever. The Fathers (Cyril of Jerusalem above) drew the conclusion: the resurrection body of the lost is "eternal… nor ever consumed." The agricultural fires of the parables teach removal from the kingdom; the didactic texts teach the duration; both are the Lord's, and He combined them Himself: "their worm does not die and the fire is not quenched."</p></div>
+      </div>
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>Objection: The immortality of the soul is Greek philosophy smuggled into the Church, not Hebrew Scripture</h3><span class="arr">▼</span></div>
+        <div class="obj-bd"><h4>The Claim</h4><p>Plato taught the soul's deathlessness; the Hebrews knew only sheol and resurrection. The Fathers absorbed Plato and misread the Bible through him.</p><h4>Response</h4><p>The Church's doctrine differs from Plato exactly where it must: souls are <em>created</em>, not pre-existent or divine, and immortal by God's gift, not by nature (so Justin, Dialogue 5–6 — the very passage annihilationists quote). The continuing existence of the dead is not Plato but Moses and the Lord: "I am the God of Abraham" — "God is not the God of the dead, but of the living" (Matthew 22:32); Samuel speaks after death (1 Samuel 28); the transfigured Christ converses with Moses, centuries departed (Matthew 17:3); the martyrs cry from under the altar (Revelation 6:9–10). It was the Sadducees who denied the soul's survival — and the Lord said they erred, "not knowing the Scriptures nor the power of God" (Matthew 22:29).</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s9">
+    <div class="sec-hd" onclick="ts(this)"><h2>IX. Frequently Asked Questions</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <div class="fi"><div class="fi-hd" onclick="tf(this)"><span>Q: Who actually teaches annihilationism today?</span><span class="arr">▼</span></div><div class="fi-bd"><p>Jehovah's Witnesses (the dead are non-existent; the wicked are not resurrected or are destroyed after the millennium), Seventh-day Adventists (soul sleep now, annihilation after final judgment), Christadelphians, and a minority of evangelicals (conditional immortality). No ancient apostolic communion — Oriental Orthodox, Eastern Orthodox, Roman Catholic, or the Assyrian Church — has ever taught it.</p></div></div>
+      <div class="fi"><div class="fi-hd" onclick="tf(this)"><span>Q: Is hell a place God built to torture people?</span><span class="arr">▼</span></div><div class="fi-bd"><p>Gehenna was "prepared for the devil and his angels" (Matthew 25:41), not for man, and God "has no pleasure in the death of the wicked" (Ezekiel 33:11). The lost are not dragged in; they "go away" (25:46) — the grain of a life of refusal hardened into permanence. God remains what He is: light and love. To the purified, His presence is paradise; to the self-enclosed, the same presence is fire. The torment is real; the torturer is not God but the sin the soul would not surrender.</p></div></div>
+      <div class="fi"><div class="fi-hd" onclick="tf(this)"><span>Q: Doesn't Gregory of Nyssa prove the Fathers disagreed?</span><span class="arr">▼</span></div><div class="fi-bd"><p>Gregory speculated about apokatastasis — universal restoration — which is the opposite error to annihilation (everyone kept in being and saved, rather than the lost erased). His speculation was honored in the man, never received as doctrine; later councils condemned Origenist apokatastasis. The existence of one debated speculation on one side does not create patristic support for annihilationism, for which the only real ancient witness is the layman Arnobius.</p></div></div>
+      <div class="fi"><div class="fi-hd" onclick="tf(this)"><span>Q: Why do the Oriental Orthodox pray for the departed if destinies are fixed?</span><span class="arr">▼</span></div><div class="fi-bd"><p>Because the departed are alive, and love does not stop at the grave. The Church prays for the faithful departed — for mercy, refreshment, and a good defense at the awesome judgment seat — following 2 Maccabees 12:43–45 (in the Orthodox canon) and unbroken liturgical practice. She does not presume to map God's mercy, but she also does not teach a "second chance" gospel: this life is the arena of repentance (Hebrews 9:27). Prayer for the dead presupposes exactly what annihilationism denies — that the dead exist.</p></div></div>
+      <div class="fi"><div class="fi-hd" onclick="tf(this)"><span>Q: How should I speak with an Adventist or Jehovah's Witness about this?</span><span class="arr">▼</span></div><div class="fi-bd"><p>With charity — their motive is usually reverence for God's goodness. Begin on common ground: only God is inherently immortal; hell gives God no pleasure; Greek paganism is not our authority. Then open the texts that decide the matter: Matthew 25:46 (the parallel), Revelation 20:10 with 19:20 (the beast still there after a thousand years), Luke 16 and 23:43 (consciousness after death), and Justin's First Apology 52 with Ignatius's Ephesians 16 (what Christians taught while the apostles' disciples still lived). Ask the one question the system cannot answer: if the lost simply cease, why did the Lord say of Judas that non-existence would have been <em>better</em> for him?</p></div></div>
+      <div class="fi"><div class="fi-hd" onclick="tf(this)"><span>Q: Does this doctrine contradict God's love?</span><span class="arr">▼</span></div><div class="fi-bd"><p>It is the costliest implication of God's love. Love that must be freely returned can be finally refused; a God who annihilated the refusers would be editing His creation until only compliance remained. The Cross is the measure of how far God will go to save — to the last drop of blood, but not one step past the freedom of the beloved. The right response to the doctrine of hell is not to relitigate it but to flee to the open arms of the Crucified, and to bring as many with us as we can.</p></div></div>
+    </div>
+  </section>
+
+  <section class="sec" id="s10">
+    <div class="sec-hd" onclick="ts(this)"><h2>X. Sources</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <div class="src-grid">
+        <div class="src-card"><div class="src-cat">Scripture</div><div class="src-item"><strong>The Holy Bible</strong> — quotations follow the NKJV wording, checked against the Greek (NA28) and Septuagint.</div><div class="src-item"><strong>2 Maccabees</strong> — Orthodox deuterocanon, on prayer for the departed.</div></div>
+        <div class="src-card"><div class="src-cat">Church Fathers</div><div class="src-item"><strong>Ignatius — Epistle to the Ephesians</strong> — ANF vol. 1.</div><div class="src-item"><strong>Martyrdom of Polycarp</strong> — ANF vol. 1.</div><div class="src-item"><strong>Justin Martyr — First Apology; Dialogue with Trypho</strong> — ANF vol. 1.</div><div class="src-item"><strong>2 Clement</strong> — Lightfoot, Apostolic Fathers.</div><div class="src-item"><strong>Irenaeus — Against Heresies</strong> — ANF vol. 1.</div><div class="src-item"><strong>Cyril of Jerusalem — Catechetical Lectures</strong> — NPNF II.7.</div><div class="src-item"><strong>Basil — Regulae brevius tractatae (Shorter Rules)</strong> — PG 31; Clarke, Ascetic Works.</div><div class="src-item"><strong>John Chrysostom — To Theodore; Homilies on Matthew</strong> — NPNF I.9–10.</div><div class="src-item"><strong>Athanasius — On the Incarnation</strong> — SVS Press.</div></div>
+        <div class="src-card"><div class="src-cat">Annihilationist Sources Engaged</div><div class="src-item"><strong>Fudge, Edward</strong> — <em>The Fire That Consumes</em>. 3rd ed., Cascade, 2011.</div><div class="src-item"><strong>Seventh-day Adventist Church</strong> — <em>28 Fundamental Beliefs</em>, no. 27–28.</div><div class="src-item"><strong>Watch Tower Society</strong> — <em>What Does the Bible Really Teach?</em>, ch. 6–7.</div><div class="src-item"><strong>Arnobius of Sicca</strong> — <em>Against the Heathen</em> II — ANF vol. 6.</div></div>
+        <div class="src-card"><div class="src-cat">Orthodox &amp; Academic</div><div class="src-item"><strong>Pope Shenouda III</strong> — <em>So Many Years with the Problems of People</em> (on eternity); Coptic Patriarchate catechesis.</div><div class="src-item"><strong>Lossky, Vladimir</strong> — <em>The Mystical Theology of the Eastern Church</em>. SVS Press.</div><div class="src-item"><strong>Kelly, J.N.D.</strong> — <em>Early Christian Doctrines</em>, ch. on eschatology. Continuum, 1977.</div></div>
+      </div>
+      <p style="margin-top:1rem;font-size:.82rem;color:var(--mu)">Quotations marked <span class="gl-tag">Direct Quote</span> follow the standard English editions; entries marked <span class="pl">Paraphrase</span> summarize a Father's documented teaching without claiming exact wording. An educational resource of St James Brother of the Lord Coptic Orthodox Church.</p>
+    </div>
+  </section>
+
+</main>
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+function ts(h){h.closest('.sec').classList.toggle('open')}
+function tobj(h){h.closest('.obj').classList.toggle('open')}
+function tf(h){h.closest('.fi').classList.toggle('open')}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').classList.toggle('show')}
+function closeMobile(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
+const secs=document.querySelectorAll('.sec[id]');
+const navLinks=document.querySelectorAll('#sidenav a');
+function updateNav(){let cur='';secs.forEach(s=>{if(s.getBoundingClientRect().top<120)cur=s.id;});navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur);})}
+window.addEventListener('scroll',updateNav,{passive:true});
+window.addEventListener('scroll',()=>{const st=document.documentElement.scrollTop;const sh=document.documentElement.scrollHeight-document.documentElement.clientHeight;document.getElementById('progress-bar').style.width=(st/sh*100)+'%';},{passive:true});
+window.addEventListener('scroll',()=>{document.getElementById('btt').style.opacity=window.scrollY>400?'1':'0';},{passive:true});
+let lastQuery='';
+function doSearch(){const q=document.getElementById('search-input').value.trim().toLowerCase();if(q===lastQuery)return;lastQuery=q;clearHighlights();if(!q)return;const walker=document.createTreeWalker(document.getElementById('main-content'),NodeFilter.SHOW_TEXT,null,false);const matches=[];let node;while((node=walker.nextNode())){if(node.nodeValue.toLowerCase().includes(q))matches.push(node);}matches.forEach(n=>{const idx=n.nodeValue.toLowerCase().indexOf(q);const before=document.createTextNode(n.nodeValue.substring(0,idx));const mark=document.createElement('mark');mark.textContent=n.nodeValue.substring(idx,idx+q.length);mark.style.cssText='background:#c9a84c;color:#0d0d0d;border-radius:2px;padding:0 2px;';const after=document.createTextNode(n.nodeValue.substring(idx+q.length));const frag=document.createDocumentFragment();frag.appendChild(before);frag.appendChild(mark);frag.appendChild(after);n.parentNode.replaceChild(frag,n);});const firstMark=document.querySelector('mark');if(firstMark)firstMark.scrollIntoView({behavior:'smooth',block:'center'});}
+function clearHighlights(){document.querySelectorAll('mark').forEach(m=>{m.parentNode.replaceChild(document.createTextNode(m.textContent),m);});}
+document.getElementById('search-input').addEventListener('keydown',e=>{if(e.key==='Enter')doSearch();if(e.key==='Escape'){document.getElementById('search-input').value='';lastQuery='';clearHighlights();}});
+document.getElementById('search-btn').addEventListener('click',doSearch);
+document.querySelector('.sec').classList.add('open');
+</script>
+</body>
+</html>

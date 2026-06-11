@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>THE ORTHODOX LAMP — Creation, Evolution &amp; the Age of the Earth</title>
+<style>
+:root{--gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;--bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--tx:#e8e0d0;--mu:#a09880;--red:#8b2020;--br:#2a2a2a;--bg5:#3a2e10;--sidebar-w:270px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.75}
+a{color:var(--gold);text-decoration:none}
+#progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(to right,var(--gd),var(--gold),var(--gl));width:0%;z-index:500}
+#sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:200;transition:transform .3s}
+#sidebar h2{font-size:.7rem;letter-spacing:.15em;color:var(--gold);text-transform:uppercase;padding:1.4rem 1.2rem .5rem;border-bottom:1px solid var(--br)}
+#sidenav a{display:block;padding:.42rem 1.2rem;font-size:.82rem;color:var(--mu);border-left:3px solid transparent;transition:all .2s}
+#sidenav a:hover,#sidenav a.active{color:var(--gl);border-left-color:var(--gold);background:var(--bg5)}
+.search-wrap{padding:.8rem 1rem;border-bottom:1px solid var(--br);display:flex;gap:.4rem}
+.search-wrap input{flex:1;background:var(--bg3);border:1px solid var(--br);color:var(--tx);padding:.35rem .6rem;border-radius:4px;font-size:.8rem}
+.search-wrap button{background:var(--gold);color:#0d0d0d;border:none;padding:.35rem .7rem;border-radius:4px;cursor:pointer;font-weight:700;font-size:.8rem}
+#main-content{margin-left:var(--sidebar-w);padding:0 2rem 4rem}
+.mob-toggle{display:none;position:fixed;bottom:1.2rem;right:1.2rem;background:var(--gold);color:#0d0d0d;border:none;width:48px;height:48px;border-radius:50%;font-size:1.4rem;cursor:pointer;z-index:300;box-shadow:0 2px 12px rgba(0,0,0,.5)}
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:150}
+#overlay.show{display:block}
+.hero{text-align:center;padding:4rem 1rem 2.5rem;border-bottom:1px solid var(--br);background:linear-gradient(to bottom,var(--bg2),var(--bg))}
+.si{font-size:2.2rem;color:var(--gold);display:block;margin-bottom:.5rem}
+.st{font-size:2rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--tx)}
+.st span{color:var(--gold)}
+.ss{font-size:1.05rem;color:var(--gl);margin:.6rem 0 .4rem;font-style:italic}
+.tg{font-size:.85rem;color:var(--mu);margin-bottom:.8rem}
+.orn{color:var(--gold);font-size:1.1rem;letter-spacing:.4em;margin-top:.5rem}
+.sec{border:1px solid var(--br);border-radius:8px;margin:1.5rem 0;background:var(--bg2);overflow:hidden}
+.sec-hd{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.3rem;cursor:pointer;user-select:none;background:var(--bg3);border-bottom:1px solid transparent;transition:background .2s}
+.sec-hd:hover{background:var(--bg4)}
+.sec.open .sec-hd{border-bottom-color:var(--br);background:var(--bg4)}
+.sec-hd h2{font-size:1rem;color:var(--gl);text-transform:uppercase;letter-spacing:.05em}
+.sec-bd{display:none;padding:1.4rem 1.5rem}
+.sec.open .sec-bd{display:block}
+.sec-bd h3{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin:1.4rem 0 .7rem;padding-bottom:.3rem;border-bottom:1px solid var(--bg5)}
+.sec-bd p{color:var(--tx);margin-bottom:.9rem;font-size:.95rem}
+.arr{color:var(--gold);font-size:.9rem;transition:transform .3s}
+.sec.open .arr{transform:rotate(180deg)}
+.sv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin:.8rem 0 1.2rem}
+.sv{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:1rem}
+.sv .ref{font-size:.75rem;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.4rem}
+.sv .labels{margin-bottom:.5rem;display:flex;gap:.4rem;flex-wrap:wrap}
+.sv .labels span{font-size:.65rem;font-weight:700;padding:.15rem .45rem;border-radius:3px;text-transform:uppercase;letter-spacing:.06em}
+.labels .prot{background:#4a1a1a;color:#e87070}
+.labels .oo{background:#1a3a1a;color:#70c870}
+.labels .ctx{background:#1a2a3a;color:#70aacc}
+.sv .txt{font-style:italic;color:var(--gl);font-size:.88rem;margin-bottom:.5rem;border-left:2px solid var(--gold);padding-left:.7rem}
+.sv .interp{font-size:.82rem;color:var(--mu)}
+.fc{background:var(--bg3);border:1px solid var(--br);border-left:3px solid var(--gold);border-radius:6px;padding:1rem 1.1rem;margin:.8rem 0}
+.fn{font-size:.8rem;font-weight:700;color:var(--gl);text-transform:uppercase;letter-spacing:.07em}
+.fw{font-size:.75rem;color:var(--mu);margin:.2rem 0 .5rem;font-style:italic}
+.fq{font-style:italic;color:var(--tx);font-size:.88rem;border-left:2px solid var(--bg5);padding-left:.8rem;margin:.4rem 0 .6rem}
+.fsig{font-size:.8rem;color:var(--mu)}
+.pl{background:#4a1a1a;color:#e87070;font-size:.65rem;font-weight:700;padding:.1rem .35rem;border-radius:3px;text-transform:uppercase;letter-spacing:.06em;vertical-align:middle;margin-left:.3rem;font-style:normal}
+.gl-tag{background:#1a3a1a;color:#70c870;font-size:.65rem;font-weight:700;padding:.1rem .35rem;border-radius:3px;text-transform:uppercase;letter-spacing:.06em;vertical-align:middle;margin-left:.3rem;font-style:normal}
+.obj{background:var(--bg3);border:1px solid #4a1a1a;border-left:3px solid var(--red);border-radius:6px;margin:.8rem 0;overflow:hidden}
+.obj-hd{display:flex;justify-content:space-between;align-items:center;padding:.8rem 1rem;cursor:pointer;user-select:none}
+.obj-hd:hover{background:var(--bg4)}
+.obj-hd h3{font-size:.85rem;color:#e87070;font-weight:700}
+.obj-bd{display:none;padding:.9rem 1.1rem;border-top:1px solid #4a1a1a}
+.obj.open .obj-bd{display:block}
+.obj.open .arr{transform:rotate(180deg)}
+.obj-bd h4{font-size:.75rem;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.4rem;margin-top:.6rem}
+.obj-bd h4:first-child{margin-top:0}
+.obj-bd p{font-size:.85rem;color:var(--tx);margin-bottom:.6rem}
+.fi{background:var(--bg3);border:1px solid var(--br);border-radius:6px;margin:.6rem 0;overflow:hidden}
+.fi-hd{display:flex;justify-content:space-between;align-items:center;padding:.8rem 1rem;cursor:pointer;user-select:none;font-size:.88rem;color:var(--gl)}
+.fi-hd:hover{background:var(--bg4)}
+.fi-bd{display:none;padding:.9rem 1.1rem;border-top:1px solid var(--br);font-size:.85rem;color:var(--tx)}
+.fi.open .fi-bd{display:block}
+.fi.open .arr{transform:rotate(180deg)}
+.fi-bd p{margin-bottom:.7rem}
+.comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:.8rem 0}
+.comp-card{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:1rem}
+.comp-card.prot{border-top:3px solid #e87070}
+.comp-card.oo{border-top:3px solid var(--gold)}
+.comp-card .ct{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.6rem}
+.comp-card.prot .ct{color:#e87070}
+.comp-card.oo .ct{color:var(--gold)}
+.comp-card p{font-size:.82rem;color:var(--mu)}
+.tl{border-left:2px solid var(--bg5);margin:1rem 0 1rem .4rem;padding-left:1.2rem}
+.tl-item{position:relative;margin-bottom:1.1rem}
+.tl-item::before{content:'';position:absolute;left:-1.62rem;top:.45rem;width:11px;height:11px;border-radius:50%;background:var(--gold);border:2px solid var(--bg2)}
+.tl-date{font-size:.78rem;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase}
+.tl-item p{font-size:.85rem;color:var(--mu);margin:.2rem 0 0}
+.src-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;margin:.8rem 0}
+.src-card{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:1rem}
+.src-cat{font-size:.72rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.6rem;padding-bottom:.4rem;border-bottom:1px solid var(--bg5)}
+.src-item{font-size:.8rem;color:var(--mu);margin-bottom:.5rem;padding-left:.7rem;border-left:2px solid var(--br)}
+.btt{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--gold);color:#0d0d0d;border:none;width:44px;height:44px;border-radius:50%;font-size:1.2rem;cursor:pointer;opacity:0;transition:opacity .3s;z-index:300;font-weight:700}
+@media(max-width:768px){#sidebar{transform:translateX(-100%)}#sidebar.open{transform:translateX(0)}#main-content{margin-left:0;padding:0 1rem 4rem}.mob-toggle{display:flex;align-items:center;justify-content:center}.sv-grid{grid-template-columns:1fr}.comp-grid{grid-template-columns:1fr}}
+
+.lampsvg{display:block;margin:0 auto 14px;height:auto}
+.lampsvg .lampflame{animation:lampflick 3.2s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes lampflick{0%,100%{transform:scaleY(1) scaleX(1);opacity:.95}25%{transform:scaleY(1.06) scaleX(.97);opacity:1}50%{transform:scaleY(.96) scaleX(1.03);opacity:.9}75%{transform:scaleY(1.04) scaleX(.98);opacity:1}}
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<nav id="sidebar">
+  <div class="search-wrap"><input type="text" id="search-input" placeholder="Search…"><button id="search-btn">Go</button></div>
+  <svg class="lampsvg" width="64" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><radialGradient id="lmpGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffb95e" stop-opacity=".55"/><stop offset="100%" stop-color="#ffb95e" stop-opacity="0"/></radialGradient><linearGradient id="lmpFlame" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#ff7a1f"/><stop offset="55%" stop-color="#ffb347"/><stop offset="100%" stop-color="#ffe9b0"/></linearGradient><linearGradient id="lmpBrass" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e3b860"/><stop offset="50%" stop-color="#a87b35"/><stop offset="100%" stop-color="#7a5523"/></linearGradient></defs><circle cx="60" cy="38" r="34" fill="url(#lmpGlow)"/><g class="lampflame"><path d="M60 16 C66 26 70 32 70 40 C70 48 65.5 53 60 53 C54.5 53 50 48 50 40 C50 32 54 26 60 16 Z" fill="url(#lmpFlame)"/><path d="M60 30 C63 35 64.5 38 64.5 42 C64.5 46.5 62.5 49 60 49 C57.5 49 55.5 46.5 55.5 42 C55.5 38 57 35 60 30 Z" fill="#fff3cf" opacity=".85"/></g><rect x="56" y="52" width="8" height="7" rx="2" fill="#8a6228"/><path d="M28 62 L92 62 C92 80 78 92 60 92 C42 92 28 80 28 62 Z" fill="url(#lmpBrass)"/><rect x="24" y="58" width="72" height="6" rx="3" fill="#caa14e"/><rect x="56" y="92" width="8" height="16" fill="url(#lmpBrass)"/><path d="M38 118 C38 110 47 108 60 108 C73 108 82 110 82 118 L82 122 L38 122 Z" fill="url(#lmpBrass)"/><rect x="32" y="122" width="56" height="6" rx="3" fill="#caa14e"/></svg>
+  <h2>The Orthodox Lamp</h2>
+  <nav id="sidenav">
+    <a href="#s1">I. Introduction</a>
+    <a href="#s2">II. What the Church Confesses</a>
+    <a href="#s3">III. The Six Days in the Fathers</a>
+    <a href="#s4">IV. The Age of the Earth</a>
+    <a href="#s5">V. Evolution Assessed</a>
+    <a href="#s6">VI. Science &amp; Faith</a>
+    <a href="#s7">VII. Common Questions</a>
+    <a href="#s8">VIII. FAQ</a>
+    <a href="#s9">IX. Sources</a>
+  </nav>
+</nav>
+<div id="overlay" onclick="closeMobile()"></div>
+<button class="mob-toggle" onclick="toggleSidebar()">☰</button>
+<main id="main-content">
+  <div class="hero">
+    <span class="si">☩</span>
+    <h1 class="st">THE <span>ORTHODOX</span> LAMP</h1>
+    <p class="ss">Creation, Evolution &amp; the Age of the Earth — An Oriental Orthodox Perspective</p>
+    <p class="tg">"In the beginning God created the heavens and the earth." — Genesis 1:1</p>
+    <div class="orn">✦ ✦ ✦</div>
+  </div>
+
+  <section class="sec open" id="s1">
+    <div class="sec-hd" onclick="ts(this)"><h2>I. Introduction</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>Few questions are pressed on believers more often than this one: <em>hasn't science disproved Genesis?</em> Behind it stand two louder voices. The atheist insists that evolution and an ancient universe have made the Creator unnecessary. Certain Protestant fundamentalists insist, in reply, that the faith stands or falls with a particular calendar — that unless the world is about six thousand years old and was made in six twenty-four-hour days, the Bible is false. The Oriental Orthodox Church is captive to neither voice.</p>
+      <p>The Church's teaching is older than this quarrel and larger than it. She confesses without qualification that "in the beginning God created the heavens and the earth" (Genesis 1:1) — out of nothing, by His free will, with wisdom and purpose; that man is uniquely made in God's image; that Adam and Eve are real, and the Fall is real. These are dogma. But on questions Scripture was not written to settle — the precise age of the earth, the exact nature of the six days, the natural processes God may have employed in shaping the world — the Fathers themselves held differing views with full peace, and the Church has never bound the conscience to one scientific model.</p>
+      <p>This page sets out what is dogma and what is liberty; what the Fathers actually said about the six days; how to weigh young-earth and old-earth readings; what may and may not be accepted from evolutionary science; and how an Orthodox Christian holds Scripture and science together without fear.</p>
+      <div class="comp-grid">
+        <div class="comp-card prot"><div class="ct">The Two Errors</div><p><strong>Atheistic materialism:</strong> the universe and life are the product of unguided, purposeless processes; Genesis is mythology; man is an accident. <strong>Rigid literalism:</strong> the faith collapses unless one modern reconstruction of the chronology is correct, making a calendar into a creed.</p></div>
+        <div class="comp-card oo"><div class="ct">Oriental Orthodox Teaching</div><p>God freely created all things from nothing, governs them by providence, and crowned creation with man in His own image. The fact, the Author, and the purpose of creation are dogma; the timescale and the natural means are questions on which the Fathers allowed liberty — and so does the Church.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s2">
+    <div class="sec-hd" onclick="ts(this)"><h2>II. What the Church Confesses</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>The Creed opens: "We believe in one God, the Father Almighty, Maker of heaven and earth, and of all things visible and invisible." From this confession the following are <strong>non-negotiable dogma</strong>:</p>
+      <h3>1. Creation Out of Nothing</h3>
+      <p>"By faith we understand that the worlds were framed by the word of God, so that the things which are seen were not made of things which are visible" (Hebrews 11:3). The Maccabean mother urges her son: "look upon the heaven and the earth… and consider that God made them of things that were not" (2 Maccabees 7:28 — a book of the Orthodox canon). Matter is not eternal; it is not God; it began.</p>
+      <h3>2. Creation Is Free, Wise, and Purposeful</h3>
+      <p>"The heavens declare the glory of God" (Psalm 19:1); "since the creation of the world His invisible attributes are clearly seen, being understood by the things that are made" (Romans 1:20). Nothing exists by blind necessity or pure chance; "in wisdom You have made them all" (Psalm 104:24). Any theory that makes the world <em>ultimately</em> unguided and purposeless is excluded — whatever its scientific dress.</p>
+      <h3>3. Man in the Image of God</h3>
+      <p>"So God created man in His own image" (Genesis 1:27). Man is not merely a clever animal: "the LORD God formed man of the dust of the ground, and breathed into his nostrils the breath of life" (Genesis 2:7). The body may share the dust with the beasts; the soul is from God directly, and every soul still is (Ecclesiastes 12:7; Zechariah 12:1).</p>
+      <h3>4. A Real Adam, a Real Fall</h3>
+      <p>"Through one man sin entered the world, and death through sin" (Romans 5:12); "as in Adam all die, even so in Christ all shall be made alive" (1 Corinthians 15:22). St. Luke traces the Lord's genealogy to "Adam, the son of God" (Luke 3:38). Adam is not a metaphor; if there was no first man and no Fall, the second Adam answers no real catastrophe, and the Gospel's own logic dissolves.</p>
+      <h3>5. What Is Left Free</h3>
+      <p>The age of the earth; whether the "days" of Genesis 1 are twenty-four hours, long ages, or a theological framework; what secondary natural processes the Creator employed below the level of man's soul — on these the Fathers differed among themselves (see Section III), and the Oriental Orthodox Church has never defined them as dogma. Here St. Augustine's caution applies: do not chain the Scriptures to one scientific opinion, lest when the opinion falls men think Scripture fell with it.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s3">
+    <div class="sec-hd" onclick="ts(this)"><h2>III. The Six Days in the Fathers</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>Both modern camps like to claim "the Fathers" wholesale. The truth is more interesting: most Fathers read the days plainly, while a respected minority — beginning long before Darwin gave anyone a motive — read them otherwise. Neither reading was ever condemned.</p>
+      <h3>The Literal Reading</h3>
+      <div class="fc"><div class="fn">St. Basil the Great <span class="gl-tag">Direct Quote</span></div><div class="fw">Hexaemeron, Homily 2.8 (c. AD 370)</div><div class="fq">"'And there was evening and there was morning: one day.'… If it therefore says 'one day,' it is because Scripture wishes to determine the measure of day and night, and to combine the time that they contain. Now twenty-four hours fill up the space of one day."</div><div class="fsig">The greatest patristic commentary on creation takes the day as an ordinary day — while Basil also warns in the same homilies against those who "serve their own ends" with allegory.</div></div>
+      <div class="fc"><div class="fn">St. Ephrem the Syrian <span class="gl-tag">Direct Quote</span></div><div class="fw">Commentary on Genesis, Section 1 (4th century)</div><div class="fq">"So let no one think that there is anything allegorical in the works of the six days. No one can rightly say that the things that pertain to these days were symbolic."</div><div class="fsig">The harp of the Spirit, beloved of the Syriac and Oriental tradition, insists the six days are no mere allegory.</div></div>
+      <div class="fc"><div class="fn">Theophilus of Antioch <span class="pl">Paraphrase</span></div><div class="fw">To Autolycus 3.28 (c. AD 180)</div><div class="fq">Theophilus computes a chronology from Adam to his own day totalling under six thousand years, presenting the world as young against the Greek philosophers' claims of vast ages.</div><div class="fsig">Early witness that a young chronology was a common Christian assumption — though offered as computation, not dogma.</div></div>
+      <h3>The Non-Literal Reading</h3>
+      <div class="fc"><div class="fn">Origen <span class="gl-tag">Direct Quote</span></div><div class="fw">De Principiis 4.1.16 (c. AD 230)</div><div class="fq">"What man of intelligence will believe that the first, and the second, and the third day, and the evening and the morning, existed without a sun, and moon, and stars?"</div><div class="fsig">Origen (received critically — some of his other teachings were later condemned, but this exegetical observation was echoed by the orthodox) notes the text itself signals that the "days" before the sun's creation on day four are not ordinary solar days.</div></div>
+      <div class="fc"><div class="fn">Clement of Alexandria <span class="pl">Paraphrase</span></div><div class="fw">Stromata 6.16 (c. AD 200)</div><div class="fq">Clement teaches that creation did not occur in time as we know it — time itself was created with the world — and that the six days express order and rank in creation rather than a mere succession of hours.</div><div class="fsig">The head of the Catechetical School of Alexandria, the Coptic Church's own intellectual cradle.</div></div>
+      <div class="fc"><div class="fn">St. Augustine of Hippo <span class="pl">Paraphrase</span></div><div class="fw">De Genesi ad Litteram (AD 415)</div><div class="fq">Augustine held that God created all things simultaneously in a single instant, implanting "seminal reasons" — seed-principles — from which creatures unfolded in time; the six days are a teaching arrangement accommodated to our understanding, not six rotations of the earth.</div><div class="fsig">A Western Father, but a weighty witness that a non-literal reading of the days is ancient and orthodox — written twelve centuries before geology existed to pressure anyone.</div></div>
+      <p><strong>The honest conclusion:</strong> the length of the days was a matter of exegetical liberty in the undivided Church. What <em>no</em> Father doubted: that God truly created, from nothing, with purpose, and that Adam was real. The liberty is real, but it is liberty inside those walls.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s4">
+    <div class="sec-hd" onclick="ts(this)"><h2>IV. The Age of the Earth</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>Is the world about six thousand years old, or billions? The Church has never dogmatized either number. Weigh the considerations honestly:</p>
+      <div class="sv-grid">
+        <div class="sv"><div class="ref">Exodus 20:11</div><div class="labels"><span class="prot">Young-Earth Use</span><span class="oo">OO Reading</span></div><div class="txt">"For in six days the LORD made the heavens and the earth… and rested the seventh day."</div><div class="interp">The strongest young-earth text: the Sabbath commandment treats the days as a real week. The reply: the Sabbath pattern holds whether the "days" are God's archetype that our week copies, or our week itself — Hebrews 4 treats God's seventh-day rest as still continuing, which no twenty-four-hour day does.</div></div>
+        <div class="sv"><div class="ref">2 Peter 3:8 / Psalm 90:4</div><div class="labels"><span class="oo">Key Text</span></div><div class="txt">"With the Lord one day is as a thousand years, and a thousand years as one day."</div><div class="interp">Scripture's own warning against forcing God's acts into our clocks. Not a conversion formula (day = 1,000 years), but a principle: divine "days" are not measured by ours.</div></div>
+        <div class="sv"><div class="ref">Genesis 2:4</div><div class="labels"><span class="oo">Key Text</span></div><div class="txt">"…in the day that the LORD God made the earth and the heavens."</div><div class="interp">Here "day" (Hebrew <em>yom</em>) covers the whole creation week in a single word — proof from Genesis itself that the term is flexible.</div></div>
+        <div class="sv"><div class="ref">Genesis 5 &amp; 11 genealogies</div><div class="labels"><span class="prot">Young-Earth Use</span><span class="oo">OO Reading</span></div><div class="txt">The patriarchal genealogies, added up, yield a creation date in the region of 5,500 BC (Septuagint figures, which the Orthodox follow).</div><div class="interp">Biblical genealogies demonstrably compress: Matthew 1:8 omits three kings; Luke 3:36 includes a Cainan absent from the Hebrew of Genesis 11. "Begot" can mean "became the ancestor of." The genealogies certify a real line from Adam to Christ — they were not written to be a calendar.</div></div>
+      </div>
+      <p><strong>On church calendars:</strong> the Byzantine tradition counted years "from the creation of the world" (Anno Mundi, creation placed at 5509 BC), and similar reckonings appear in Coptic and Ethiopian chronicles. These are liturgical conventions built on the Septuagint genealogies, never dogmatic definitions — note that the Coptic Church's own calendar counts not from creation at all but from the Era of the Martyrs (AD 284). A calendar is not a creed.</p>
+      <p><strong>Conclusion:</strong> a faithful Oriental Orthodox Christian may hold the earth young or ancient. What he may not hold is that it made itself. The age of the rocks is a question for geology; the Rock of Ages is a question for faith — and only the second is dogma.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s5">
+    <div class="sec-hd" onclick="ts(this)"><h2>V. Evolution Assessed</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>"Evolution" is not one claim but several, and they must be judged separately.</p>
+      <h3>1. Adaptation and Variation Within Kinds</h3>
+      <p>That creatures vary, adapt, and diversify — finch beaks, bacterial resistance, the spread of breeds from common stock — is observed fact and raises no theological question at all. Scripture itself shows creation endowed with fruitfulness: "Let the earth bring forth…" (Genesis 1:24).</p>
+      <h3>2. Common Descent of Animal Life</h3>
+      <p>That all animal life descends from earlier forms over long ages is a scientific theory. The Church neither canonizes it nor anathematizes it as an account of <em>bodies</em>. If God chose to form living things through an unfolding of secondary causes — Augustine's "seminal reasons" anticipate exactly such a picture — His glory is not diminished; the potter is no less a potter for using a wheel. But the theory remains science, revisable as science is, and must never be preached as dogma either.</p>
+      <h3>3. The Origin of Man — Where the Line Is Drawn</h3>
+      <div class="sv-grid">
+        <div class="sv"><div class="ref">Genesis 1:26–27</div><div class="labels"><span class="oo">Key Text</span></div><div class="txt">"Let Us make man in Our image, according to Our likeness… So God created man in His own image."</div><div class="interp">A unique divine counsel precedes man alone. Whatever the prehistory of dust, man as <em>man</em> — rational, free, capable of God — exists by a special creative act, not as one ape among others.</div></div>
+        <div class="sv"><div class="ref">Genesis 2:7</div><div class="labels"><span class="oo">Key Text</span></div><div class="txt">"And the LORD God formed man of the dust of the ground, and breathed into his nostrils the breath of life; and man became a living being."</div><div class="interp">The soul is not secreted by matter or inherited from beasts; it is breathed by God. No biological process, however long, produces the image of God — that is God's direct gift, in Adam and in every child since.</div></div>
+        <div class="sv"><div class="ref">Romans 5:12 / 1 Corinthians 15:21–22</div><div class="labels"><span class="oo">Key Text</span></div><div class="txt">"Through one man sin entered the world, and death through sin… For as in Adam all die, even so in Christ all shall be made alive."</div><div class="interp">The parallel Adam–Christ is structural to salvation: one real man fell; one real God-man redeems. An "Adam" who is only a symbol gives us a Christ who repairs only a symbol.</div></div>
+        <div class="sv"><div class="ref">1 Corinthians 15:39</div><div class="labels"><span class="oo">Key Text</span></div><div class="txt">"All flesh is not the same flesh, but there is one kind of flesh of men, another flesh of animals…"</div><div class="interp">Scripture marks a real discontinuity between man and beast. Whatever continuity biology finds in the body, the Church confesses a difference in kind, not merely degree.</div></div>
+      </div>
+      <p>The Coptic Orthodox Church's catechetical teaching — notably under Pope Shenouda III <span class="pl">Paraphrase</span> — has firmly rejected applying evolutionary theory to man in any way that denies the special creation of Adam, the direct creation of the soul, or the historical Fall. Speculation about the animal world is tolerated as opinion; the doctrine of man is not negotiable.</p>
+      <h3>4. Atheistic Darwinism — Rejected Absolutely</h3>
+      <p>The claim that evolution is <em>unguided</em> — that chance and necessity alone account for everything, and no mind stands behind the world — is not science but materialist philosophy wearing a lab coat. No experiment can show absence of purpose. Against it stands the whole of revelation: "The heavens declare the glory of God" (Psalm 19:1); "For from the greatness and beauty of created things their original author, by analogy, is seen" (Wisdom of Solomon 13:5); "what may be known of God is manifest… so that they are without excuse" (Romans 1:20).</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s6">
+    <div class="sec-hd" onclick="ts(this)"><h2>VI. Science &amp; Faith</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>God is the author of two books: the book of Scripture and the book of creation. Read rightly, they cannot contradict, because they have one Author. Where they seem to clash, either the science is provisional, or the exegesis is — and the Church has been burned by hasty certainty in both directions.</p>
+      <div class="fc"><div class="fn">St. Augustine of Hippo <span class="gl-tag">Direct Quote</span></div><div class="fw">De Genesi ad Litteram 1.19 (trans. J. H. Taylor)</div><div class="fq">"Usually, even a non-Christian knows something about the earth, the heavens… and this knowledge he holds to as being certain from reason and experience. Now, it is a disgraceful and dangerous thing for an infidel to hear a Christian, presumably giving the meaning of Holy Scripture, talking nonsense on these topics; and we should take all means to prevent such an embarrassing situation, in which people show up vast ignorance in a Christian and laugh it to scorn."</div><div class="fsig">Written fourteen centuries before Darwin: confident ignorance dressed as piety drives thinking people from the faith.</div></div>
+      <p>The Fathers themselves modeled the right posture. St. Basil's Hexaemeron is saturated with the best natural science of his century — astronomy, botany, zoology — pressed into the service of doxology. He did not fear the science of his day; he baptized it. The Christian today does the same: he receives what is demonstrated with gratitude, holds what is speculative loosely, and refuses what is philosophy smuggled in as fact.</p>
+      <p>Two errors to refuse: <strong>scientism</strong>, which pretends the laboratory can answer questions of meaning, purpose, and God; and <strong>obscurantism</strong>, which treats every scientific discovery as an enemy and makes the Church ridiculous over questions Scripture never claimed to settle. Science answers <em>how</em> and <em>when</em>; revelation answers <em>Who</em> and <em>why</em>. The believer who keeps that distinction loses nothing on either side.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s7">
+    <div class="sec-hd" onclick="ts(this)"><h2>VII. Common Questions</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>Objection: If you don't read Genesis 1 as 24-hour days, you don't believe the Bible</h3><span class="arr">▼</span></div>
+        <div class="obj-bd"><h4>The Claim</h4><p>Plain reading demands ordinary days; anything else is compromise with secularism.</p><h4>Response</h4><p>Then Origen, Clement of Alexandria, and Augustine were compromising with a secularism that would not exist for over a thousand years. The non-literal reading arose from the <em>text itself</em> — days before the sun, "day" used for the whole week in Genesis 2:4, God's seventh-day rest still continuing (Hebrews 4) — not from geology. Believing the Bible means believing what it teaches; the length of the days is something the Church's greatest interpreters disagreed about while sharing one faith. Beware of making a hedge-question into the wall of the faith.</p></div>
+      </div>
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>Objection: Evolution has disproved Adam and Eve</h3><span class="arr">▼</span></div>
+        <div class="obj-bd"><h4>The Claim</h4><p>Genetics and paleontology show humanity arose as a population, not a single pair; therefore the Fall is myth.</p><h4>Response</h4><p>Science studies bodies and genes; it has no instrument that detects souls, the image of God, or moral catastrophe. The Church's claim is that at a real point, God made a creature in His image — and that creature fell. Population genetics models assumptions about the past; it does not observe it, and its reconstructions have been revised repeatedly. The Christian holds the dogma (real first parents, real Fall) and lets the scientific models churn — they are not the judge of revelation. And note what the alternative costs: no Fall means death and evil are God's original design, a far darker doctrine than anything in Genesis.</p></div>
+      </div>
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>Objection: An old earth means death before Adam — but death entered through sin (Romans 5:12)</h3><span class="arr">▼</span></div>
+        <div class="obj-bd"><h4>The Claim</h4><p>Fossils show animals dying for millions of years before any man existed; Romans says death came through Adam's sin; therefore the earth must be young.</p><h4>Response</h4><p>Read the verse precisely: "death spread to <em>all men</em>, because all sinned" (Romans 5:12). Paul's subject is human death — the severing of man from the Source of life. Scripture nowhere asserts that no animal died before the Fall; lions are praised as seeking "their food from God" (Psalm 104:21) in a psalm celebrating creation's present order. Whether animal mortality preceded the Fall is an open question the Fathers did not settle. What is dogma is that <em>man</em> was made for incorruption and lost it by sin — and regains it in Christ.</p></div>
+      </div>
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>Objection: "Theistic evolution" is just baptized atheism</h3><span class="arr">▼</span></div>
+        <div class="obj-bd"><h4>The Claim</h4><p>Saying "God used evolution" concedes everything to Darwin and keeps God as a polite fiction.</p><h4>Response</h4><p>It depends entirely on what is meant. If "God used evolution" means an unguided process God merely watched — yes, that is deism shading into atheism, and the Church rejects it. But if it means God sovereignly worked through secondary causes He created and governs — as He forms each of us "in our mother's womb" (Psalm 139:13) through nine months of biology without ceasing to be our Maker — that is simply the doctrine of providence. The test is not the mechanism but the confession: creation from nothing, real providence, special creation of man's soul, real Adam, real Fall. Within those walls there is room to differ; outside them there is no Christianity.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s8">
+    <div class="sec-hd" onclick="ts(this)"><h2>VIII. Frequently Asked Questions</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <div class="fi"><div class="fi-hd" onclick="tf(this)"><span>Q: What MUST an Oriental Orthodox Christian believe about creation?</span><span class="arr">▼</span></div><div class="fi-bd"><p>That the one God freely created all things, visible and invisible, out of nothing; that creation is good, purposeful, and governed by providence; that man is uniquely made in God's image with a soul given directly by God; that Adam and Eve are real and the Fall is real; and that Christ, the new Adam, restores what Adam lost. These are the Creed's "Maker of heaven and earth" unpacked.</p></div></div>
+      <div class="fi"><div class="fi-hd" onclick="tf(this)"><span>Q: May I believe the universe is billions of years old?</span><span class="arr">▼</span></div><div class="fi-bd"><p>Yes. The Church has never dogmatized a creation date, and Fathers as early as Clement and Origen read the "days" non-literally for textual reasons. Equally, a Christian persuaded of a young earth holds a view shared by Basil and Ephrem. Neither may anathematize the other.</p></div></div>
+      <div class="fi"><div class="fi-hd" onclick="tf(this)"><span>Q: Did the Church ever officially date creation?</span><span class="arr">▼</span></div><div class="fi-bd"><p>No council ever defined the age of the world. The Byzantine "Anno Mundi" calendar (creation at 5509 BC) was a civil-liturgical convention from the Septuagint genealogies. The Coptic Church's calendar does not even count from creation — it counts from the Era of the Martyrs (AD 284), honoring those slain under Diocletian. Calendars commemorate; they do not dogmatize.</p></div></div>
+      <div class="fi"><div class="fi-hd" onclick="tf(this)"><span>Q: What about dinosaurs and the fossil record?</span><span class="arr">▼</span></div><div class="fi-bd"><p>The fossils are real creatures God made — "O LORD, how manifold are Your works!" (Psalm 104:24). On a young-earth reading they perished around the Flood; on an old-earth reading they lived and died in ages before man. The Church requires neither account. What the fossils cannot do, on any dating, is explain their own existence — every bone is a witness that something rather than nothing exists, and asks why.</p></div></div>
+      <div class="fi"><div class="fi-hd" onclick="tf(this)"><span>Q: Is Genesis 1 poetry or history?</span><span class="arr">▼</span></div><div class="fi-bd"><p>It is a false alternative. Genesis 1 is exalted, structured prose proclaiming real events — real creation, real ordering, real blessing — in liturgical form (the refrains, the sevens, the symmetry of days 1–3 with 4–6). It teaches true history in the manner of a hymn, not in the manner of a lab notebook. The Fathers read it as both utterly true and deliberately shaped.</p></div></div>
+      <div class="fi"><div class="fi-hd" onclick="tf(this)"><span>Q: What did Pope Shenouda III teach about evolution?</span><span class="arr">▼</span></div><div class="fi-bd"><p>In his catechetical writings and lectures he firmly rejected applying evolution to man — insisting on the special creation of Adam, the soul breathed by God, and the historical Fall — and criticized attempts to read Darwin into Genesis <span class="pl">Paraphrase</span>. His concern was the doctrine of man, on which there is no liberty; he was not issuing scientific rulings on geology or the animal kingdom as dogma.</p></div></div>
+      <div class="fi"><div class="fi-hd" onclick="tf(this)"><span>Q: How do I answer an atheist who says evolution removed the need for God?</span><span class="arr">▼</span></div><div class="fi-bd"><p>Ask what evolution explains: how living forms change. Ask what it cannot even address: why anything exists, why the laws of nature exist and are mathematically elegant, why the universe is fine-tuned for life, why matter ever became conscious, why reason can be trusted, why goodness obligates. A mechanism inside the universe cannot explain the universe — as a watch's gears do not explain the watchmaker. See the companion page <a href="evidence_for_god.html">Evidence for God</a>.</p></div></div>
+    </div>
+  </section>
+
+  <section class="sec" id="s9">
+    <div class="sec-hd" onclick="ts(this)"><h2>IX. Sources</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <div class="src-grid">
+        <div class="src-card"><div class="src-cat">Scripture</div><div class="src-item"><strong>The Holy Bible</strong> — quotations follow the NKJV wording; Old Testament checked against the Septuagint, which the Orthodox Church receives.</div><div class="src-item"><strong>2 Maccabees; Wisdom of Solomon</strong> — Orthodox deuterocanon, on creation from nothing and the knowledge of God from creation.</div></div>
+        <div class="src-card"><div class="src-cat">Church Fathers</div><div class="src-item"><strong>Basil the Great — Hexaemeron</strong> — NPNF series 2, vol. 8.</div><div class="src-item"><strong>Ephrem the Syrian — Commentary on Genesis</strong> — FOTC vol. 91 (trans. Mathews &amp; Amar).</div><div class="src-item"><strong>Origen — De Principiis</strong> — ANF vol. 4.</div><div class="src-item"><strong>Clement of Alexandria — Stromata</strong> — ANF vol. 2.</div><div class="src-item"><strong>Theophilus of Antioch — To Autolycus</strong> — ANF vol. 2.</div><div class="src-item"><strong>Augustine — De Genesi ad Litteram</strong> — ACW vols. 41–42 (trans. J. H. Taylor).</div></div>
+        <div class="src-card"><div class="src-cat">Oriental Orthodox &amp; Modern</div><div class="src-item"><strong>Pope Shenouda III</strong> — catechetical writings and lectures on creation and the doctrine of man (cited as paraphrase).</div><div class="src-item"><strong>The Nicene-Constantinopolitan Creed</strong> — "Maker of heaven and earth, and of all things visible and invisible."</div><div class="src-item"><strong>Companion pages</strong> — <a href="evidence_for_god.html">Evidence for God</a>; <a href="problem_of_evil.html">The Problem of Evil</a>.</div></div>
+      </div>
+      <p style="margin-top:1rem;font-size:.85rem;color:var(--mut)">Direct quotations are marked <span class="gl-tag">Direct Quote</span> and follow the standard English editions cited; summarized teachings are marked <span class="pl">Paraphrase</span>. Prepared as an educational resource of St. James Brother of the Lord Coptic Orthodox Church.</p>
+    </div>
+  </section>
+
+</main>
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+function ts(h){h.closest('.sec').classList.toggle('open')}
+function tobj(h){h.closest('.obj').classList.toggle('open')}
+function tf(h){h.closest('.fi').classList.toggle('open')}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').classList.toggle('show')}
+function closeMobile(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
+const secs=document.querySelectorAll('.sec[id]');
+const navLinks=document.querySelectorAll('#sidenav a');
+function updateNav(){let cur='';secs.forEach(s=>{if(s.getBoundingClientRect().top<120)cur=s.id;});navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur);})}
+window.addEventListener('scroll',updateNav,{passive:true});
+window.addEventListener('scroll',()=>{const st=document.documentElement.scrollTop;const sh=document.documentElement.scrollHeight-document.documentElement.clientHeight;document.getElementById('progress-bar').style.width=(st/sh*100)+'%';},{passive:true});
+window.addEventListener('scroll',()=>{document.getElementById('btt').style.opacity=window.scrollY>400?'1':'0';},{passive:true});
+let lastQuery='';
+function doSearch(){const q=document.getElementById('search-input').value.trim().toLowerCase();if(q===lastQuery)return;lastQuery=q;clearHighlights();if(!q)return;const walker=document.createTreeWalker(document.getElementById('main-content'),NodeFilter.SHOW_TEXT,null,false);const matches=[];let node;while((node=walker.nextNode())){if(node.nodeValue.toLowerCase().includes(q))matches.push(node);}matches.forEach(n=>{const idx=n.nodeValue.toLowerCase().indexOf(q);const before=document.createTextNode(n.nodeValue.substring(0,idx));const mark=document.createElement('mark');mark.textContent=n.nodeValue.substring(idx,idx+q.length);mark.style.cssText='background:#c9a84c;color:#0d0d0d;border-radius:2px;padding:0 2px;';const after=document.createTextNode(n.nodeValue.substring(idx+q.length));const frag=document.createDocumentFragment();frag.appendChild(before);frag.appendChild(mark);frag.appendChild(after);n.parentNode.replaceChild(frag,n);});const firstMark=document.querySelector('mark');if(firstMark)firstMark.scrollIntoView({behavior:'smooth',block:'center'});}
+function clearHighlights(){document.querySelectorAll('mark').forEach(m=>{m.parentNode.replaceChild(document.createTextNode(m.textContent),m);});}
+document.getElementById('search-input').addEventListener('keydown',e=>{if(e.key==='Enter')doSearch();if(e.key==='Escape'){document.getElementById('search-input').value='';lastQuery='';clearHighlights();}});
+document.getElementById('search-btn').addEventListener('click',doSearch);
+document.querySelector('.sec').classList.add('open');
+</script>
+</body>
+</html>
