@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Saints &amp; Intercession — The Orthodox Lamp</title>
+<style>
+:root{--gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;--bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--tx:#e8e0d0;--mu:#a09880;--red:#8b2020;--br:#2a2a2a;--bg5:#3a2e10;--sidebar-w:270px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.7;display:flex;flex-direction:column;min-height:100vh}
+a{color:var(--gold);text-decoration:none}
+a:hover{color:var(--gl)}
+
+#prog{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--gd),var(--gold),var(--gl));z-index:9999;transition:width .1s}
+
+#sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:100;display:flex;flex-direction:column;transition:transform .3s}
+#sidebar header{padding:1.4rem 1.2rem 1rem;border-bottom:1px solid var(--br)}
+.sb-cross{font-size:1.3rem;color:var(--gold);display:block;text-align:center;margin-bottom:.3rem}
+.sb-title{font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gl);text-align:center;line-height:1.3}
+.sb-sub{font-size:.62rem;color:var(--mu);text-align:center;margin-top:.25rem;font-style:italic}
+nav{padding:.8rem 0;flex:1}
+nav a{display:block;padding:.42rem 1.2rem;font-size:.78rem;color:var(--mu);transition:color .15s,background .15s;border-left:2px solid transparent;line-height:1.4}
+nav a:hover{color:var(--tx);background:var(--bg3)}
+nav a.active{color:var(--gl);border-left-color:var(--gold);background:var(--bg5)}
+.sb-search{padding:.8rem 1rem;border-top:1px solid var(--br)}
+.sb-search input{width:100%;background:var(--bg3);border:1px solid var(--br);border-radius:5px;padding:.4rem .7rem;color:var(--tx);font-size:.78rem;outline:none}
+.sb-search input:focus{border-color:var(--gd)}
+
+#main{margin-left:var(--sidebar-w);flex:1;display:flex;flex-direction:column}
+#mob-bar{display:none;position:fixed;top:0;left:0;right:0;height:48px;background:var(--bg2);border-bottom:1px solid var(--br);align-items:center;padding:0 1rem;z-index:99}
+#mob-bar .mb-title{font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gl);flex:1;text-align:center}
+#ham{background:none;border:none;color:var(--gold);font-size:1.4rem;cursor:pointer;padding:.3rem}
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:99}
+#overlay.show{display:block}
+
+.hero{text-align:center;padding:4.5rem 1.5rem 3rem;background:linear-gradient(180deg,var(--bg2) 0%,var(--bg) 100%);border-bottom:1px solid var(--br);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(201,168,76,.07) 0%,transparent 70%);pointer-events:none}
+.si{font-size:2rem;color:var(--gold);display:block;margin-bottom:.5rem}
+.st{font-size:clamp(1.5rem,4vw,2.4rem);font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--tx);line-height:1.2}
+.st span{color:var(--gold)}
+.ss{font-size:1rem;color:var(--gl);margin:.6rem 0 .3rem;font-weight:700;letter-spacing:.04em}
+.tg{font-size:.85rem;color:var(--mu);font-style:italic;margin-top:.4rem}
+.orn{color:var(--gold);font-size:.9rem;letter-spacing:.4em;margin-top:1rem;opacity:.7}
+
+.content{max-width:860px;margin:0 auto;padding:3rem 2rem 5rem;flex:1}
+
+.sec{border:1px solid var(--br);border-radius:8px;margin-bottom:1.2rem;overflow:hidden;background:var(--bg2)}
+.sec-h{width:100%;background:none;border:none;padding:1.1rem 1.4rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--tx);font-family:'Georgia',serif;font-size:1rem;font-weight:700;text-align:left;transition:background .2s}
+.sec-h:hover{background:var(--bg3)}
+.sec-h .sec-num{color:var(--gold);font-size:.8rem;font-weight:700;letter-spacing:.1em;margin-right:.7rem;min-width:2.5rem}
+.sec-h .arr{color:var(--gold);transition:transform .3s;font-size:.9rem}
+.sec.open .arr{transform:rotate(180deg)}
+.sec-b{display:none;padding:1.4rem;border-top:1px solid var(--br)}
+.sec.open .sec-b{display:block}
+
+h3{font-size:1rem;color:var(--gl);margin:1.4rem 0 .6rem;letter-spacing:.03em}
+h3:first-child{margin-top:0}
+p{margin-bottom:.9rem;font-size:.92rem}
+ul,ol{margin:.6rem 0 .9rem 1.4rem;font-size:.92rem}
+li{margin-bottom:.3rem}
+blockquote{border-left:3px solid var(--gold);padding:.6rem 1rem;background:var(--bg3);border-radius:0 5px 5px 0;margin:.8rem 0;font-style:italic;font-size:.9rem;color:var(--gl)}
+
+/* Glossary */
+.gt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:.8rem;margin:.8rem 0}
+.gt{background:var(--bg3);border:1px solid var(--br);border-radius:7px;padding:.9rem 1rem}
+.gt-term{font-size:.82rem;font-weight:700;color:var(--gold);letter-spacing:.06em;margin-bottom:.2rem}
+.gt-grk{font-size:.75rem;color:var(--mu);font-style:italic;margin-bottom:.4rem}
+.gt-def{font-size:.82rem;color:var(--tx);line-height:1.5}
+
+/* Scripture cards */
+.sv{background:var(--bg3);border:1px solid var(--br);border-radius:7px;padding:1rem 1.2rem;margin:.7rem 0}
+.sv .ref{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+.sv .txt{font-size:.9rem;font-style:italic;line-height:1.6;margin-bottom:.5rem}
+.labels{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.4rem}
+.labels span{font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.15rem .5rem;border-radius:3px}
+.labels .oo{background:var(--bg5);color:var(--gold);border:1px solid var(--gd)}
+.labels .prot{background:#1a1a3a;color:#8a8adf;border:1px solid #2a2a6a}
+.labels .ctx{background:#1a2a1a;color:#6abf8a;border:1px solid #2a5c3a}
+.labels .pl{background:#3a2e10;color:#c9a84c;border:1px solid #5a4a20}
+
+/* Father cards */
+.fc{background:var(--bg3);border-left:3px solid var(--gold);border-radius:0 7px 7px 0;padding:1rem 1.2rem;margin:.7rem 0}
+.fc .fn{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.2rem}
+.fc .fw{font-size:.78rem;color:var(--mu);margin-bottom:.4rem;font-style:italic}
+.fc .fq{font-size:.9rem;font-style:italic;line-height:1.6}
+
+/* Saint profile */
+.saint{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:1rem 1.2rem;margin:.7rem 0;border-top:2px solid var(--gd)}
+.saint-name{font-size:.9rem;font-weight:700;color:var(--gl);margin-bottom:.15rem}
+.saint-title{font-size:.75rem;color:var(--gold);font-style:italic;margin-bottom:.5rem;letter-spacing:.04em}
+.saint-desc{font-size:.88rem;color:var(--tx);line-height:1.6}
+
+/* Comparison grid */
+.comp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1rem;margin:1rem 0}
+.comp-card{border-radius:8px;padding:1rem 1.1rem;border:1px solid var(--br)}
+.comp-card.lat{background:#1a0a0a;border-color:#6a1a1a}
+.comp-card.dul{background:#1a1a0a;border-color:#6a5a10}
+.comp-card.hyp{background:#0a1a0a;border-color:#1a5c1a}
+.comp-card h4{font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem}
+.comp-card.lat h4{color:#e08080}
+.comp-card.dul h4{color:#e8c96a}
+.comp-card.hyp h4{color:#6abf8a}
+.comp-card p{font-size:.82rem;line-height:1.5}
+
+/* Timeline */
+.timeline{border-left:2px solid var(--gd);padding-left:1.4rem;margin:1rem 0}
+.tl-item{position:relative;margin-bottom:1.2rem}
+.tl-item::before{content:'';position:absolute;left:-1.8rem;top:.45rem;width:.7rem;height:.7rem;background:var(--gold);border-radius:50%}
+.tl-date{font-size:.72rem;font-weight:700;letter-spacing:.1em;color:var(--gold);text-transform:uppercase}
+.tl-text{font-size:.88rem;color:var(--tx);margin-top:.2rem}
+
+/* Objection accordion */
+.obj{border:1px solid var(--br);border-radius:7px;margin:.7rem 0;overflow:hidden;background:var(--bg3)}
+.obj-h{width:100%;background:none;border:none;padding:.8rem 1.1rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--gl);font-family:'Georgia',serif;font-size:.88rem;font-weight:700;text-align:left}
+.obj-h:hover{background:var(--bg4)}
+.obj-h .arr{transition:transform .3s;font-size:.8rem;color:var(--gold)}
+.obj.open .arr{transform:rotate(180deg)}
+.obj-b{display:none;padding:1rem 1.1rem;border-top:1px solid var(--br);font-size:.88rem}
+.obj.open .obj-b{display:block}
+
+/* FAQ */
+.fi{border:1px solid var(--br);border-radius:7px;margin:.6rem 0;overflow:hidden}
+.fi-h{width:100%;background:var(--bg2);border:none;padding:.8rem 1.1rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--tx);font-family:'Georgia',serif;font-size:.88rem;font-weight:700;text-align:left}
+.fi-h:hover{background:var(--bg3)}
+.fi-h .arr{transition:transform .3s;font-size:.8rem;color:var(--gold)}
+.fi.open .arr{transform:rotate(180deg)}
+.fi-b{display:none;padding:1rem 1.1rem;border-top:1px solid var(--br);background:var(--bg2);font-size:.88rem}
+.fi.open .fi-b{display:block}
+
+/* Sources */
+.src-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.8rem;margin-top:.8rem}
+.src-card{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:.9rem 1rem}
+.src-card h4{font-size:.78rem;font-weight:700;color:var(--gold);margin-bottom:.4rem;letter-spacing:.06em;text-transform:uppercase}
+.src-card p,.src-card li{font-size:.8rem;color:var(--mu)}
+.src-card ul{margin-left:1rem}
+
+#btt{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--bg3);border:1px solid var(--gd);border-radius:50%;width:2.4rem;height:2.4rem;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1rem;cursor:pointer;opacity:0;transition:opacity .3s;z-index:50}
+#btt.show{opacity:1}
+
+@media(max-width:768px){
+  #sidebar{transform:translateX(-100%)}
+  #sidebar.open{transform:translateX(0)}
+  #main{margin-left:0;padding-top:48px}
+  #mob-bar{display:flex}
+  .comp-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<div id="overlay" onclick="closeMobile()"></div>
+
+<aside id="sidebar">
+  <header>
+    <span class="sb-cross">☩</span>
+    <div class="sb-title">The Orthodox Lamp</div>
+    <div class="sb-sub">Saints &amp; Intercession</div>
+  </header>
+  <nav id="nav">
+    <a href="#s1">I. Introduction</a>
+    <a href="#s2">II. Glossary of Terms</a>
+    <a href="#s3">III. What Is a Saint?</a>
+    <a href="#s4">IV. The Communion of Saints</a>
+    <a href="#s5">V. Intercession in the Old Testament</a>
+    <a href="#s6">VI. Intercession in the New Testament</a>
+    <a href="#s7">VII. The One Mediator — 1 Timothy 2:5</a>
+    <a href="#s8">VIII. Latria, Dulia, and Hyperdulia</a>
+    <a href="#s9">IX. The Dead in Christ — Are They Alive?</a>
+    <a href="#s10">X. The Cloud of Witnesses — Hebrews 12:1</a>
+    <a href="#s11">XI. The Martyrs in Revelation</a>
+    <a href="#s12">XII. The Transfiguration — Moses and Elijah</a>
+    <a href="#s13">XIII. The Church Fathers on Intercession</a>
+    <a href="#s14">XIV. Mary — Supreme Intercessor</a>
+    <a href="#s15">XV. Icons and the Veneration of Saints</a>
+    <a href="#s16">XVI. The Saints in the OO Tradition</a>
+    <a href="#s17">XVII. The Necromancy Objection</a>
+    <a href="#s18">XVIII. Protestant Objections Addressed</a>
+    <a href="#s19">XIX. Frequently Asked Questions</a>
+    <a href="#s20">XX. Sources &amp; Further Reading</a>
+  </nav>
+  <div class="sb-search">
+    <input type="text" id="srch" placeholder="Search this page…" oninput="doSearch(this.value)">
+  </div>
+</aside>
+
+<div id="main">
+  <div id="mob-bar">
+    <button id="ham" onclick="toggleSidebar()">☰</button>
+    <span class="mb-title">The Orthodox Lamp</span>
+  </div>
+
+  <div class="hero">
+    <span class="si">☩</span>
+    <h1 class="st">THE <span>ORTHODOX</span> LAMP</h1>
+    <p class="ss">Saints &amp; Intercession</p>
+    <p class="tg">A Biblical, Historical &amp; Patristic Defense</p>
+    <div class="orn">✦ ✦ ✦</div>
+  </div>
+
+  <div class="content">
+
+    <!-- I -->
+    <div class="sec open" id="s1">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">I.</span>Introduction</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <p>Among the doctrines most contested between the Oriental Orthodox tradition and Protestant Christianity is the veneration of saints and the practice of asking the saints to intercede before God on our behalf. Critics charge that praying to saints is unbiblical, that it bypasses Christ the one Mediator, and that it borders on — or crosses into — the worship of creatures rather than the Creator.</p>
+        <p>The Oriental Orthodox response is not defensive — it is exegetical, historical, and theological. The practice of invoking the saints is not a medieval corruption imported from paganism. It is rooted in the biblical understanding of the Communion of Saints, the nature of intercessory prayer, the life of the Church as one Body spanning heaven and earth, and the witness of the Church Fathers from the earliest centuries. To ask a saint to pray for you is nothing more — and nothing less — than asking a brother or sister in Christ to intercede on your behalf. The only difference is that those saints are not dead but supremely alive in God.</p>
+        <p>This site traces the full arc of the biblical and Patristic case, examines every major objection, and presents the Oriental Orthodox doctrine of the saints in its proper theological context.</p>
+        <blockquote>"Therefore, since we are surrounded by such a great cloud of witnesses, let us throw off everything that hinders and the sin that so easily entangles. And let us run with perseverance the race marked out for us." — Hebrews 12:1</blockquote>
+      </div>
+    </div>
+
+    <!-- II -->
+    <div class="sec" id="s2">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">II.</span>Glossary of Key Terms</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <div class="gt-grid">
+          <div class="gt">
+            <div class="gt-term">Saint</div>
+            <div class="gt-grk">Greek: hagios — "holy one, set apart"</div>
+            <div class="gt-def">In biblical usage, all the baptized faithful (1 Corinthians 1:2). In liturgical usage, those formally recognized by the Church as having attained the fullness of holiness and now dwelling with God in glory.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Intercession</div>
+            <div class="gt-grk">Latin: intercessio — "going between"</div>
+            <div class="gt-def">Prayer offered on behalf of another. Intercession is practiced by humans for one another throughout Scripture and is not limited to God or Christ alone.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Veneration</div>
+            <div class="gt-grk">Greek: proskynesis — "reverence, honor"</div>
+            <div class="gt-def">The honor given to saints as holy persons of God. Distinct from worship (latreia), which is owed to God alone. Veneration is the same honor given to kings, parents, or priests in Scripture.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Latria</div>
+            <div class="gt-grk">Greek: latreia — "worship, divine service"</div>
+            <div class="gt-def">The supreme worship owed to God alone — Father, Son, and Holy Spirit. It is a grave sin (idolatry) to offer latria to any creature.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Dulia</div>
+            <div class="gt-grk">Greek: douleia — "service, honor"</div>
+            <div class="gt-def">The honor given to saints and angels as servants of God. Entirely different in kind from latria. The same honor is commanded in Scripture toward parents (Exodus 20:12) and governing authorities (Romans 13:7).</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Hyperdulia</div>
+            <div class="gt-grk">Greek: hyper + douleia — "above honor"</div>
+            <div class="gt-def">The supreme honor given to the Theotokos, the Virgin Mary — exceeding that given to other saints and angels, but still entirely below the worship owed to God.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Communion of Saints</div>
+            <div class="gt-grk">Latin: communio sanctorum</div>
+            <div class="gt-def">The living fellowship of all the baptized — those on earth (the Church Militant), those being purified (the Church Expectant), and those in glory (the Church Triumphant). The saints in heaven remain members of this one Body.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Theotokia</div>
+            <div class="gt-grk">Coptic liturgical hymns to the Theotokos</div>
+            <div class="gt-def">The daily Coptic hymns addressed to the Virgin Mary, one for each day of the week. The centerpiece of Coptic Marian devotion and a primary example of intercessory invocation in liturgy.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Synaxarium</div>
+            <div class="gt-grk">Greek: synaxis — "assembly, gathering"</div>
+            <div class="gt-def">The liturgical book containing the lives of the saints read on their feast days. The Coptic Synaxarium and Ethiopian Senkessar are among the most extensive saint collections in the Christian world.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- III -->
+    <div class="sec" id="s3">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">III.</span>What Is a Saint? The Biblical Definition</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <p>The word "saint" (Greek: <em>hagios</em>, Hebrew: <em>qadosh</em>) means "holy one" or "set apart for God." In the New Testament, Paul regularly addresses entire congregations as "saints" — all the baptized are holy in Christ.</p>
+
+        <div class="sv">
+          <div class="ref">1 Corinthians 1:2</div>
+          <div class="txt">"To the church of God in Corinth, to those sanctified in Christ Jesus and called to be his holy people (hagiois), together with all those everywhere who call on the name of our Lord Jesus Christ…"</div>
+          <div class="labels"><span class="ctx">Every baptized Christian is a "saint" (hagios) in the broad Pauline sense</span></div>
+        </div>
+
+        <div class="sv">
+          <div class="ref">Ephesians 1:1</div>
+          <div class="txt">"Paul, an apostle of Christ Jesus by the will of God, to God's holy people (hagiois) in Ephesus, the faithful in Christ Jesus…"</div>
+          <div class="labels"><span class="ctx">The term "saints" is used for all the living faithful — it is the ordinary Christian title</span></div>
+        </div>
+
+        <h3>The Narrower Liturgical Sense</h3>
+        <p>Over time, the Church developed the practice of formally recognizing certain members of the faithful who had died in a state of manifest holiness — through martyrdom, asceticism, miracles, or exemplary virtue — as having attained the fullness of deification. These are the saints in the narrower liturgical sense: those the Church formally invokes as intercessors and whose feast days are celebrated in the calendar.</p>
+        <p>This is not a contradiction of the broader Pauline usage. The liturgical saints are the same "holy ones" of Paul, but are those who have completed the race (2 Timothy 4:7–8), received the crown, and now dwell fully in the presence of God. They are not exalted above other Christians in dignity — but they are recognized as having reached the goal toward which all Christians are called.</p>
+        <p>The OO tradition canonizes saints not by formal legal procedure alone but by the consensus of the faithful over time — the Coptic, Ethiopian, Syriac, and Armenian traditions each maintain their own Synaxaria recording thousands of recognized saints.</p>
+      </div>
+    </div>
+
+    <!-- IV -->
+    <div class="sec" id="s4">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">IV.</span>The Communion of Saints</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <p>The doctrine of the Communion of Saints — <em>communio sanctorum</em> — is confessed in the Apostles' Creed, recited by hundreds of millions of Christians. It expresses the truth that the Church is one Body that spans death: those on earth, those who have fallen asleep in Christ, and those who dwell with God in glory are all members of the same living Body of Christ.</p>
+
+        <div class="sv">
+          <div class="ref">Romans 8:38–39</div>
+          <div class="txt">"For I am convinced that neither death nor life, neither angels nor demons, neither the present nor the future, nor any powers, neither height nor depth, nor anything else in all creation, will be able to separate us from the love of God that is in Christ Jesus our Lord."</div>
+          <div class="labels"><span class="oo">OO: Not even death separates the saints from Christ — they remain in his love, and therefore in his Body</span></div>
+        </div>
+
+        <div class="sv">
+          <div class="ref">Romans 14:8</div>
+          <div class="txt">"If we live, we live for the Lord; and if we die, we die for the Lord. So, whether we live or die, we belong to the Lord."</div>
+          <div class="labels"><span class="oo">OO: The saints who have died still belong to the Lord — they are his, in him, united to the Body</span></div>
+        </div>
+
+        <div class="sv">
+          <div class="ref">1 Corinthians 12:12–13, 26–27</div>
+          <div class="txt">"Just as a body, though one, has many parts, but all its many parts form one body, so it is with Christ… If one part suffers, every part suffers with it; if one part is honored, every part rejoices with it. Now you are the body of Christ, and each one of you is a part of it."</div>
+          <div class="labels"><span class="oo">OO: The Body of Christ is one — and the saints in glory are not amputated from it at death. The Body's mutual care and prayer spans the boundary of physical death.</span><span class="ctx">If earthly members pray for one another, why would heavenly members do less?</span></div>
+        </div>
+
+        <h3>The Church as One — Not Divided by Death</h3>
+        <p>The Protestant conception of the Church is often implicitly limited to the living. But the OO tradition, following the Fathers, insists that the Church is one across all time and all states of existence. The Eucharistic assembly — the Divine Liturgy — is not merely a gathering of the living congregation. It is a participation in the heavenly assembly, where the saints, the angels, and the Theotokos surround the throne of God. This is why the Oriental Orthodox Divine Liturgy constantly invokes the saints by name and asks for their intercession — not as a later addition, but as the living expression of the Church's one Body spanning heaven and earth.</p>
+      </div>
+    </div>
+
+    <!-- V -->
+    <div class="sec" id="s5">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">V.</span>Intercession in the Old Testament</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <p>The practice of intercession — one person praying to God on behalf of another — runs through the entire Old Testament and is uniformly presented as pleasing to God. Critically, several passages show that even the dead righteous continue to exercise a mediating or intercessory function before God.</p>
+
+        <div class="sv">
+          <div class="ref">Genesis 18:23–32</div>
+          <div class="txt">"Then Abraham approached him and said: 'Will you sweep away the righteous with the wicked?… Far be it from you to do such a thing — to kill the righteous with the wicked…' The LORD said, 'If I find fifty righteous people in the city of Sodom, I will spare the whole place for their sake.'"</div>
+          <div class="labels"><span class="ctx">Abraham intercedes with God for Sodom — God hears a human intercessor and modifies his response</span><span class="oo">OO: God welcomes and responds to human intercession — this is not an affront to divine sovereignty but its expression</span></div>
+        </div>
+
+        <div class="sv">
+          <div class="ref">Exodus 32:11–14</div>
+          <div class="txt">"But Moses sought the favor of the LORD his God. 'LORD,' he said, 'why should your anger burn against your people?'… Then the LORD relented and did not bring on his people the disaster he had threatened."</div>
+          <div class="labels"><span class="ctx">Moses intercedes and God relents — human intercession has genuine effect before God</span></div>
+        </div>
+
+        <div class="sv">
+          <div class="ref">2 Maccabees 15:12–14</div>
+          <div class="txt">"What he saw was this: Onias, who had been high priest, a good and virtuous man… was praying with outstretched arms for the whole Jewish community. Then in the same way another man appeared, distinguished by his gray hair and dignity… Jeremiah, God's prophet, who loves his brothers and fervently prays for the people and the holy city."</div>
+          <div class="labels"><span class="oo">OO: The deceased Onias and Jeremiah appear in a vision interceding for Israel — the dead righteous pray for the living</span><span class="prot">Protestant: 2 Maccabees is deuterocanonical and not accepted as Scripture</span><span class="ctx">The OO, Catholic, and Eastern Orthodox canons include 2 Maccabees — and even as a historical text, it shows early Jewish belief in post-mortem intercession</span></div>
+        </div>
+
+        <div class="sv">
+          <div class="ref">Jeremiah 15:1</div>
+          <div class="txt">"Then the LORD said to me: 'Even if Moses and Samuel were to stand before me, my heart would not go out to this people. Send them away from my presence! Let them go!'"</div>
+          <div class="labels"><span class="oo">OO: God speaks of Moses and Samuel interceding — both already dead at this point. This assumes the dead righteous can stand before God and intercede.</span><span class="ctx">The logic of the verse requires that Moses and Samuel's intercession would normally be effective — God is saying even their intercession cannot help in this case</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VI -->
+    <div class="sec" id="s6">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">VI.</span>Intercession in the New Testament</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <p>The New Testament is saturated with the practice and theology of intercession. Paul commands it, practices it, and requests it — from living Christians. The OO argument is that exactly the same logic applies to the saints in glory.</p>
+
+        <div class="sv">
+          <div class="ref">1 Timothy 2:1–4</div>
+          <div class="txt">"I urge, then, first of all, that petitions, prayers, intercession and thanksgiving be made for all people — for kings and all those in authority, that we may live peaceful and quiet lives in all godliness and holiness. This is good, and pleases God our Savior, who wants all people to be saved and to come to a knowledge of the truth."</div>
+          <div class="labels"><span class="oo">OO: Paul commands intercessory prayer for all people — and declares it "good" and "pleasing to God." This is the same chapter that contains "one Mediator" (v.5). The two truths coexist.</span></div>
+        </div>
+
+        <div class="sv">
+          <div class="ref">James 5:16</div>
+          <div class="txt">"Therefore confess your sins to each other and pray for each other so that you may be healed. The prayer of a righteous person is powerful and effective."</div>
+          <div class="labels"><span class="oo">OO: "The prayer of a righteous person is powerful and effective" — the saints in glory are supremely righteous. Their prayer is supremely powerful and effective.</span><span class="ctx">If the prayer of a living righteous person is especially effective (James 5:17–18 cites Elijah), how much more the prayer of those who see God face to face?</span></div>
+        </div>
+
+        <div class="sv">
+          <div class="ref">Romans 15:30</div>
+          <div class="txt">"I urge you, brothers and sisters, by our Lord Jesus Christ and by the love of the Spirit, to join me in my struggle by praying to God for me."</div>
+          <div class="labels"><span class="ctx">Paul — an apostle — asks ordinary Christians to intercede for him. He does not say "pray only to Christ directly." Human intercession is assumed and valued.</span></div>
+        </div>
+
+        <div class="sv">
+          <div class="ref">Revelation 5:8</div>
+          <div class="txt">"And when he had taken it, the four living creatures and the twenty-four elders fell down before the Lamb. Each one had a harp and they were holding golden bowls full of incense, which are the prayers of God's people."</div>
+          <div class="labels"><span class="oo">OO: The elders in heaven hold the prayers of the saints on earth and present them before the Lamb. The saints in glory actively mediate the prayers of the living to God.</span><span class="prot">Protestant: The elders are symbolic — this does not teach intercessory prayer by deceased saints</span></div>
+        </div>
+
+        <div class="sv">
+          <div class="ref">Revelation 8:3–4</div>
+          <div class="txt">"Another angel, who had a golden censer, came and stood at the altar. He was given much incense to offer, with the prayers of all God's people, on the golden altar in front of the throne. The smoke of the incense, together with the prayers of God's people, went up before God from the angel's hand."</div>
+          <div class="labels"><span class="oo">OO: Heavenly beings — angels and saints — offer the prayers of the Church to God before the heavenly altar. This is the celestial intercession the Church participates in at every liturgy.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VII -->
+    <div class="sec" id="s7">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">VII.</span>The One Mediator — 1 Timothy 2:5</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <p>The central Protestant objection to the intercession of saints rests on 1 Timothy 2:5: "For there is one God and one mediator between God and mankind, the man Christ Jesus." This verse, it is argued, excludes any mediating role for the saints.</p>
+
+        <div class="sv">
+          <div class="ref">1 Timothy 2:5</div>
+          <div class="txt">"For there is one God and one mediator between God and mankind, the man Christ Jesus, who gave himself as a ransom for all people."</div>
+          <div class="labels"><span class="prot">Protestant: Only Christ mediates — asking saints to intercede adds human mediators and undermines Christ's unique role</span><span class="oo">OO: Christ is the one Mediator of salvation and redemption — no saint's death redeems us. But mediation of prayer is a different category.</span></div>
+        </div>
+
+        <h3>The Critical Distinction</h3>
+        <p>The word "mediator" (Greek: <em>mesitēs</em>) in 1 Timothy 2:5 refers specifically to Christ's unique role as the one who reconciled God and humanity through his atoning sacrifice. This mediatorial role is unrepeatable, unshared, and belongs to Christ alone. No saint intercedes in this sense — no saint's death redeems, no saint's merit justifies.</p>
+        <p>But the very same passage commands intercessory prayer by all Christians (vv. 1–4). Paul himself asks Christians to intercede for him (Romans 15:30; Colossians 4:3). These intercessory prayers pass through — not around — Christ the one Mediator. The Christian who intercedes does not replace Christ; they participate in his one high-priestly intercession (Hebrews 7:25).</p>
+
+        <blockquote>"The saints do not intercede in place of Christ but in him, with him, and through him — as members of his Body, sharing in his priestly mediation." — Orthodox theological consensus</blockquote>
+
+        <h3>The Parallel with Moses</h3>
+        <p>When Moses interceded for Israel (Exodus 32:11–14; Numbers 14:13–20), did this undermine God's sole lordship? When Paul asked Christians to pray for him, did this replace Christ? No — in every case, the intercessor acts as a vessel through whom God's grace flows, not as an independent source of grace. The saints in glory do exactly this: they present to God the prayers of the faithful, not replacing Christ's mediation but flowing within it.</p>
+      </div>
+    </div>
+
+    <!-- VIII -->
+    <div class="sec" id="s8">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">VIII.</span>Latria, Dulia, and Hyperdulia</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <p>The most fundamental theological distinction in the OO (and Catholic) doctrine of saints is the distinction between <em>latria</em> (worship) and <em>dulia</em> (veneration). Confusing these two is the root of most Protestant objections.</p>
+
+        <div class="comp-grid">
+          <div class="comp-card lat">
+            <h4>Latria — Worship</h4>
+            <p>The supreme adoration owed to God alone. Offering latria to any creature is the sin of idolatry. The OO church firmly and explicitly forbids latria toward saints, icons, relics, or any creature. The Divine Liturgy directs all latria to the Holy Trinity.</p>
+          </div>
+          <div class="comp-card dul">
+            <h4>Dulia — Veneration</h4>
+            <p>The honor given to holy persons as servants of God. The same honor Scripture commands toward parents (Exodus 20:12), rulers (Romans 13:7), and elders (1 Timothy 5:17). Giving honor to the saints honors God in them — as honoring a king's ambassador honors the king.</p>
+          </div>
+          <div class="comp-card hyp">
+            <h4>Hyperdulia — Supreme Veneration</h4>
+            <p>The unique honor given to the Theotokos, the Virgin Mary — greater than all other saints and angels by reason of her unique role in salvation history. Still infinitely below the worship owed to God alone.</p>
+          </div>
+        </div>
+
+        <h3>The Scriptural Basis for Dulia</h3>
+        <div class="sv">
+          <div class="ref">Hebrews 13:7</div>
+          <div class="txt">"Remember your leaders, who spoke the word of God to you. Consider the outcome of their way of life and imitate their faith."</div>
+          <div class="labels"><span class="ctx">We are commanded to remember holy leaders (implying they may be deceased — "the outcome of their way of life") and imitate them</span></div>
+        </div>
+
+        <div class="sv">
+          <div class="ref">Philippians 3:17</div>
+          <div class="txt">"Join together in following my example, brothers and sisters, and just as you have us as a model, keep your eyes on those who live as we do."</div>
+          <div class="labels"><span class="ctx">Paul calls Christians to honor and imitate holy examples — veneration of saints is the liturgical expression of this command</span></div>
+        </div>
+
+        <h3>The Patristic Articulation</h3>
+        <div class="fc">
+          <div class="fn">John of Damascus</div>
+          <div class="fw">Exposition of the Orthodox Faith, Book IV (c. 743 CE)</div>
+          <div class="fq">"It is not to the saints themselves that we pray, as though they were God, but we call upon them as witnesses and intercessors — that through their prayers God may have mercy on us. We do not worship the saints; we honor them. We do not offer them divine service; we entreat their intercession. The honor we give to the friends of God redounds to God himself, who is glorified in his saints."</div>
+          <div class="labels"><span class="pl">PARAPHRASE</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- IX -->
+    <div class="sec" id="s9">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">IX.</span>The Dead in Christ — Are They Alive?</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <p>A key premise of the objection to saintly intercession is that the saints are "dead" and therefore cannot hear prayers or intercede. The OO tradition, following Scripture, insists that those who die in Christ are not dead but supremely alive.</p>
+
+        <div class="sv">
+          <div class="ref">Luke 20:37–38</div>
+          <div class="txt">"But in the account of the burning bush, even Moses showed that the dead rise, for he calls the Lord 'the God of Abraham, and the God of Isaac, and the God of Jacob.' He is not the God of the dead, but of the living, for to him all are alive."</div>
+          <div class="labels"><span class="oo">OO: Christ's own words — "to him all are alive." Abraham, Isaac, and Jacob are alive to God. The dead saints are not absent but alive in God.</span></div>
+        </div>
+
+        <div class="sv">
+          <div class="ref">Philippians 1:21–23</div>
+          <div class="txt">"For to me, to live is Christ and to die is gain. If I am to go on living in the body, this will mean fruitful labor for me. Yet what shall I choose? I do not know! I am torn between the two: I desire to depart and be with Christ, which is better by far."</div>
+          <div class="labels"><span class="oo">OO: Death for the Christian is to "be with Christ" — not a state of unconsciousness or absence. The saints who have departed are with Christ, fully alive and in closer union with him than any living Christian.</span></div>
+        </div>
+
+        <div class="sv">
+          <div class="ref">2 Corinthians 5:8</div>
+          <div class="txt">"We are confident, I say, and would prefer to be away from the body and at home with the Lord."</div>
+          <div class="labels"><span class="ctx">To be absent from the body is to be present with the Lord — the saints are not sleeping but present with the Lord who hears prayer</span></div>
+        </div>
+
+        <div class="sv">
+          <div class="ref">Revelation 6:9–10</div>
+          <div class="txt">"When he opened the fifth seal, I saw under the altar the souls of those who had been slain because of the word of God and the testimony they had maintained. They called out in a loud voice, 'How long, Sovereign Lord, holy and true, until you judge the inhabitants of the earth and avenge our blood?'"</div>
+          <div class="labels"><span class="oo">OO: The martyred saints — dead — are depicted as conscious, speaking, and crying out to God. They are aware of earthly affairs and intercede about them.</span><span class="prot">Protestant: This is apocalyptic imagery, not a literal description of the afterlife state</span><span class="ctx">Even as imagery, it reflects early Christian assumptions about the consciousness and activity of the departed saints</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- X -->
+    <div class="sec" id="s10">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">X.</span>The Cloud of Witnesses — Hebrews 12:1</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <p>Hebrews 12:1 is one of the most theologically rich passages in the New Testament for the doctrine of the Communion of Saints.</p>
+
+        <div class="sv">
+          <div class="ref">Hebrews 12:1</div>
+          <div class="txt">"Therefore, since we are surrounded by such a great cloud of witnesses (martyron), let us throw off everything that hinders and the sin that so easily entangles. And let us run with perseverance the race marked out for us."</div>
+          <div class="labels"><span class="oo">OO: The "cloud of witnesses" refers to the saints of Hebrews 11 — Abel, Enoch, Noah, Abraham, Moses, etc. — who are described as surrounding us. They are not merely past examples; they are present witnesses.</span><span class="prot">Protestant: "Witnesses" means those who bore witness (martyrs in the original sense) — it describes them as examples of faith, not as observers of our current lives</span></div>
+        </div>
+
+        <h3>The Greek Word: Martyron</h3>
+        <p>The word <em>martyron</em> (witnesses) is used throughout the New Testament and early Christianity to mean those who testify — both those who testify by their lives and those who observe and can testify to what they have seen. The context of Hebrews 12:1 implies active presence: we are "surrounded" by them as runners are surrounded by a stadium crowd. They are not absent spectators from a past age but a present, surrounding reality.</p>
+        <p>The metaphor is deliberately spatial and present: the runner does not merely remember past spectators. The crowd surrounds and witnesses the race now. The OO tradition reads this as the saints in glory actively aware of and interceding for the church on earth — the living members of the Body they once ran with.</p>
+
+        <div class="fc">
+          <div class="fn">Origen of Alexandria</div>
+          <div class="fw">On Prayer, Chapter 31 (c. 233 CE)</div>
+          <div class="fq">"It may well be that the assemblies of believers also are attended by angelic powers, by the powers of our Lord and Savior himself, and indeed by the spirits of saints, including those already fallen asleep."</div>
+          <div class="labels"><span class="pl">PARAPHRASE</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- XI -->
+    <div class="sec" id="s11">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XI.</span>The Martyrs in Revelation — Prayers at the Altar</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <p>The Book of Revelation provides the most vivid biblical portrait of the saints in glory and their intercessory activity. Far from being silent or passive, the saints in Revelation are active participants in the heavenly liturgy and aware of earthly affairs.</p>
+
+        <div class="sv">
+          <div class="ref">Revelation 5:8</div>
+          <div class="txt">"And when he had taken it, the four living creatures and the twenty-four elders fell down before the Lamb. Each one had a harp and they were holding golden bowls full of incense, which are the prayers of God's people (hagiōn)."</div>
+          <div class="labels"><span class="oo">OO: The elders — representatives of the redeemed in glory — hold the prayers of the saints on earth and present them before the Lamb. This is the intercession of the saints in explicit biblical imagery.</span></div>
+        </div>
+
+        <div class="sv">
+          <div class="ref">Revelation 6:9–10</div>
+          <div class="txt">"When he opened the fifth seal, I saw under the altar the souls of those who had been slain because of the word of God and the testimony they had maintained. They called out in a loud voice, 'How long, Sovereign Lord, holy and true, until you judge the inhabitants of the earth and avenge our blood?'"</div>
+          <div class="labels"><span class="oo">OO: The martyred saints are conscious, speaking to God, and petitioning him about earthly affairs. If they can ask God about the timing of judgment, they can certainly pray for the living.</span></div>
+        </div>
+
+        <div class="sv">
+          <div class="ref">Revelation 8:3–4</div>
+          <div class="txt">"Another angel, who had a golden censer, came and stood at the altar. He was given much incense to offer, with the prayers of all God's people, on the golden altar in front of the throne. The smoke of the incense, together with the prayers of God's people, went up before God from the angel's hand."</div>
+          <div class="labels"><span class="oo">OO: The heavenly liturgy directly parallels the earthly Divine Liturgy — incense, altar, prayers presented before the throne. The OO Divine Liturgy participates in this heavenly reality.</span><span class="ctx">This passage is the scriptural basis for the use of incense in Christian worship — and for the doctrine that heavenly beings present our prayers to God</span></div>
+        </div>
+
+        <h3>The Altar in Heaven and on Earth</h3>
+        <p>The Oriental Orthodox Divine Liturgy explicitly understands itself as participating in the heavenly liturgy described in Revelation. When the priest stands at the altar, incense rises, and the saints are invoked, the earthly assembly is joined to the heavenly assembly of angels, martyrs, and saints surrounding the throne of the Lamb. This is not imagination — it is the Church's self-understanding rooted in the Book of Revelation itself.</p>
+      </div>
+    </div>
+
+    <!-- XII -->
+    <div class="sec" id="s12">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XII.</span>The Transfiguration — Moses and Elijah</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <p>The Transfiguration of Christ (Matthew 17:1–8; Mark 9:2–8; Luke 9:28–36) provides one of the most vivid New Testament examples of the saints in glory appearing, communicating, and actively participating in salvation history.</p>
+
+        <div class="sv">
+          <div class="ref">Matthew 17:1–3</div>
+          <div class="txt">"After six days Jesus took with him Peter, James and John the brother of James, and led them up a high mountain by themselves. There he was transfigured before them… Just then there appeared before them Moses and Elijah, talking with Jesus."</div>
+          <div class="labels"><span class="oo">OO: Moses had been dead for over a thousand years. Elijah had been taken to heaven. Both appear, speak, and engage with Christ on behalf of salvation history — the deceased saints are active participants in God's redemptive work.</span><span class="ctx">Luke 9:31 records what they discussed: "his departure (exodus), which he was about to bring to fulfillment at Jerusalem" — the saints in glory are aware of and engaged with saving events on earth</span></div>
+        </div>
+
+        <p>The Transfiguration demolishes the notion that the saints in glory are inaccessible, unconscious, or uninvolved with earthly affairs. Moses and Elijah discuss Christ's Passion with him — they know, they care, they participate. If they can speak with Christ about his redeeming work, they can certainly intercede for those for whom he died.</p>
+
+        <p>Furthermore, Peter's response — "Lord, it is good for us to be here" and his desire to build three booths (v. 4) — shows that the presence of glorified saints is not strange or improper but genuinely good and edifying. Christ does not rebuke Peter for acknowledging Moses and Elijah.</p>
+      </div>
+    </div>
+
+    <!-- XIII -->
+    <div class="sec" id="s13">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XIII.</span>The Church Fathers on Intercession</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <p>The invocation of the saints in intercessory prayer is not a medieval development — it is attested from the earliest centuries of the Church, in texts that predate any supposedly "corrupting" Roman influence.</p>
+
+        <div class="fc">
+          <div class="fn">Origen of Alexandria</div>
+          <div class="fw">On Prayer, Chapter 11 (c. 233 CE)</div>
+          <div class="fq">"But not the high priest [Christ] alone prays for those who pray sincerely, but also the angels… as also the souls of the saints who have already fallen asleep."</div>
+          <div class="labels"><span class="pl">PARAPHRASE</span><span class="ctx">Written c. 233 CE — Origen explicitly teaches that deceased saints pray for the living</span></div>
+        </div>
+
+        <div class="fc">
+          <div class="fn">Cyprian of Carthage</div>
+          <div class="fw">Epistle 60 (c. 253 CE)</div>
+          <div class="fq">"Let us remember one another in concord and unanimity. Let us on both sides always pray for one another. Let us relieve burdens and afflictions by mutual love, that if one of us, by the swiftness of divine condescension, shall go hence the first, our love may continue in the presence of the Lord."</div>
+          <div class="labels"><span class="pl">PARAPHRASE</span><span class="ctx">Cyprian expects the mutual prayer to continue even after death — those who die first will pray for those who remain</span></div>
+        </div>
+
+        <div class="fc">
+          <div class="fn">Ephrem the Syrian</div>
+          <div class="fw">Commentary on Mark (c. 370 CE)</div>
+          <div class="fq">"Ye victorious martyrs who endured torments gladly for the sake of the God and Savior, ye who have boldness of speech toward the Lord himself — ye, intercede for us who are timid and sinful men, full of sloth, that the grace of Christ may come upon us."</div>
+          <div class="labels"><span class="pl">PARAPHRASE</span><span class="ctx">Ephrem the Syrian — a Doctor of the Oriental Orthodox tradition — directly invokes the martyrs for intercession</span></div>
+        </div>
+
+        <div class="fc">
+          <div class="fn">Basil the Great</div>
+          <div class="fw">Homily on the Forty Martyrs of Sebaste (c. 374 CE)</div>
+          <div class="fq">"Whoever is in trouble, let him have recourse to these martyrs; whoever is in joy, let him come to them also. The former, so that he may find relief from his pains; the latter, so that his good fortune may be preserved. Here a pious woman prays for her children; let her approach the martyrs. Here a man intercedes for the healing of his diseases; let the martyrs be his helpers."</div>
+          <div class="labels"><span class="pl">PARAPHRASE</span></div>
+        </div>
+
+        <div class="fc">
+          <div class="fn">John Chrysostom</div>
+          <div class="fw">Orations 8:6 (c. 396 CE)</div>
+          <div class="fq">"When you perceive that God is chastening you, fly not to his enemies, but to his friends — the martyrs, the saints, and those who were pleasing to him, and who have great power before God."</div>
+          <div class="labels"><span class="pl">PARAPHRASE</span></div>
+        </div>
+
+        <div class="fc">
+          <div class="fn">Jerome</div>
+          <div class="fw">Against Vigilantius (c. 406 CE)</div>
+          <div class="fq">"You say in your book that while we live we are able to pray for each other, but after death the prayer of no person for another can be heard, and this is especially so since the martyrs, though they cry for the avenging of their blood, have never been able to obtain their request. But if the apostles and martyrs while still in the body can pray for others, at a time when they ought still to be anxious about themselves, how much more will they do so after their crowns, victories, and triumphs?"</div>
+          <div class="labels"><span class="pl">PARAPHRASE</span><span class="ctx">Jerome responds to exactly the Protestant-type objection — and refutes it with the argument from greater to lesser</span></div>
+        </div>
+
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-date">c. 150 CE</div>
+            <div class="tl-text">The Martyrdom of Polycarp — the earliest record of asking the saints to intercede, and of honoring the relics of martyrs</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">c. 233 CE</div>
+            <div class="tl-text">Origen — explicitly teaches the intercession of the deceased saints in On Prayer</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">c. 253 CE</div>
+            <div class="tl-text">Cyprian — expects mutual prayer to continue after death</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">c. 300 CE</div>
+            <div class="tl-text">Sub Tuum Praesidium — the oldest known prayer addressed to the Theotokos, asking her intercession, found in an Egyptian papyrus</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">c. 360 CE</div>
+            <div class="tl-text">Ephrem the Syrian — directly invokes the martyrs for intercession in his Nisibene Hymns</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">787 CE</div>
+            <div class="tl-text">Second Council of Nicaea — the Seventh Ecumenical Council affirms the veneration of icons and the invocation of saints as apostolic tradition</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- XIV -->
+    <div class="sec" id="s14">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XIV.</span>Mary — Supreme Intercessor</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <p>The Theotokos holds a unique place in the OO theology of intercession. As the one who bore God incarnate, who stood at the Cross, who was present at Pentecost, and who is now glorified in heaven as the Queen of all the saints, her intercession is sought above all others — not because she is divine, but because of her supreme closeness to her Son.</p>
+
+        <div class="sv">
+          <div class="ref">John 2:3–5</div>
+          <div class="txt">"When the wine was gone, Jesus's mother said to him, 'They have no wine.' 'Woman, why do you involve me?' Jesus replied. 'My hour has not yet come.' His mother said to the servants, 'Do whatever he tells you.'"</div>
+          <div class="labels"><span class="oo">OO: Mary intercedes with Christ on behalf of others at the wedding at Cana — and Christ acts on her intercession, performing his first miracle. This is the pattern: Mary brings needs to her Son; her Son responds.</span><span class="ctx">Mary's instruction "Do whatever he tells you" directs all attention to Christ — her intercession always leads to him, never replaces him</span></div>
+        </div>
+
+        <h3>Sub Tuum Praesidium — The Oldest Marian Prayer</h3>
+        <p>The <em>Sub Tuum Praesidium</em> ("Beneath Your Compassion") is the oldest known Christian prayer addressed directly to Mary, preserved in a Greek papyrus found in Egypt (P. Rylands 470) and dated to approximately 250–300 CE:</p>
+
+        <blockquote>"Beneath your compassion, we take refuge, O Theotokos. Do not despise our petitions in time of trouble, but rescue us from dangers, only pure, only blessed one."</blockquote>
+
+        <p>This prayer — asking Mary to intercede and rescue the faithful — was being used in Egypt within two centuries of the Apostles. It is not a medieval innovation. It is apostolic-era Christian prayer preserved in one of the oldest papyrus fragments of Christian devotion ever discovered.</p>
+
+        <div class="fc">
+          <div class="fn">Gregory of Nyssa</div>
+          <div class="fw">Life of Gregory Thaumaturgus (c. 380 CE)</div>
+          <div class="fq">"The great Gregory, while still a pagan, sought the truth and prayed in the night. There appeared to him an aged man of great dignity and, beside him, a woman of more than human beauty. He recognized the woman as the Mother of the Lord, and the old man as John the Evangelist. The blessed Virgin commanded John to reveal to Gregory the mystery of true faith."</div>
+          <div class="labels"><span class="pl">PARAPHRASE</span><span class="ctx">Mary appears to initiate Gregory Thaumaturgus into orthodox Christian faith — an early example of her intercessory and mediating role in conversion</span></div>
+        </div>
+
+        <h3>Mary in Oriental Orthodox Liturgy</h3>
+        <p>No tradition in the Christian world honors the Theotokos more consistently than the Oriental Orthodox. In the Coptic tradition, the Theotokia is chanted every day — seven sets of hymns, one for each day of the week, all addressed to Mary and seeking her intercession. The Ethiopian <em>Weddase Mariam</em> (Praise of Mary) is a daily prayer book of Marian devotion. In the Armenian tradition, the <em>Sharakan</em> (liturgical hymnal) contains numerous hymns invoking the Theotokos. In the Syriac tradition, the <em>Sughyotho</em> of the Virgin are among the most ancient Marian compositions in existence.</p>
+      </div>
+    </div>
+
+    <!-- XV -->
+    <div class="sec" id="s15">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XV.</span>Icons and the Veneration of Saints</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <p>The veneration of icons — sacred images of Christ, the Theotokos, and the saints — is an integral part of the OO practice of the Communion of Saints. An icon is not a painting of a person who is absent; it is a window into the presence of one who is alive in God and available to intercede.</p>
+
+        <div class="sv">
+          <div class="ref">Exodus 25:18–22</div>
+          <div class="txt">"And make two cherubim out of hammered gold at the ends of the cover… The cherubim are to have their wings spread upward, overshadowing the cover with them, facing each other… There, above the cover between the two cherubim that are over the ark of the covenant law, I will meet with you."</div>
+          <div class="labels"><span class="oo">OO: God commanded the making of golden images of the cherubim — heavenly beings — as part of his own sanctuary. Images of holy beings are not inherently idolatrous; the prohibition is against worshipping them as gods.</span></div>
+        </div>
+
+        <div class="sv">
+          <div class="ref">Numbers 21:8–9</div>
+          <div class="txt">"The LORD said to Moses, 'Make a snake and put it up on a pole; anyone who is bitten can look at it and live.' So Moses made a bronze snake and put it up on a pole. Then when anyone was bitten by a snake and looked at the bronze snake, they lived."</div>
+          <div class="labels"><span class="ctx">God commanded a material image to be made and looked upon for healing — a precedent for the sacramental use of material objects and images in encountering God's saving power</span></div>
+        </div>
+
+        <h3>The Theology of the Icon</h3>
+        <p>The icon does not represent an absent person. It represents a present person — one alive in God — in the mode appropriate to their glorified state. When an OO Christian venerates an icon of St. Mark or St. Antony, they are not worshipping a painting. They are honoring the person depicted and seeking the intercession of one who is alive in the presence of God. The kiss given to the icon is the same gesture of honor given to the Gospel book — both point beyond themselves to the living reality they represent.</p>
+        <p>The Second Council of Nicaea (787 CE) — the Seventh Ecumenical Council, accepted by the Eastern Orthodox and broadly respected by the Oriental Orthodox — formally distinguished between the veneration (<em>proskynesis</em>) given to icons and the worship (<em>latreia</em>) given to God alone, reaffirming the apostolic tradition of icon veneration as consistent with Scripture and Patristic practice.</p>
+      </div>
+    </div>
+
+    <!-- XVI -->
+    <div class="sec" id="s16">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XVI.</span>The Saints in the Oriental Orthodox Tradition</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <p>The Oriental Orthodox churches possess among the richest and most extensive hagiographic traditions in all of Christianity. Their calendars are filled with saints whose lives span every century from the Apostolic era to the modern age.</p>
+
+        <div class="saint">
+          <div class="saint-name">St. Antony the Great</div>
+          <div class="saint-title">Father of Monasticism · Egypt, 251–356 CE</div>
+          <div class="saint-desc">The founder of Christian monasticism, whose biography by Athanasius of Alexandria became the most widely read Christian text after the Bible for centuries. Antony is invoked across all OO traditions as a patron of monks and those struggling against spiritual adversity. His feast day (January 17 Coptic / Tobi 22) is celebrated with particular solemnity in the Coptic church.</div>
+        </div>
+
+        <div class="saint">
+          <div class="saint-name">St. Mark the Evangelist</div>
+          <div class="saint-title">Apostle and Founder of the Alexandrian Church · First Century</div>
+          <div class="saint-desc">The Coptic and Ethiopian churches trace their apostolic lineage directly to St. Mark, who brought the Gospel to Egypt and founded the Church of Alexandria. He is the patron saint of the Coptic church, whose patriarch holds the title "Pope of Alexandria and Patriarch of All Africa on the Holy Apostolic Throne of Saint Mark." His relics were taken to Venice in 828 CE.</div>
+        </div>
+
+        <div class="saint">
+          <div class="saint-name">St. Tekle Haymanot</div>
+          <div class="saint-title">Apostle of Ethiopia · 1215–1313 CE</div>
+          <div class="saint-desc">The greatest of Ethiopian saints, a monk who evangelized vast regions of Ethiopia and is said to have stood in prayer for so long that his leg fell off — and he continued to stand on the remaining one. He is depicted in Ethiopian iconography standing on one leg with six wings. He interceded to free the throne of the Solomonic dynasty; his feast is one of the most celebrated in the Ethiopian calendar.</div>
+        </div>
+
+        <div class="saint">
+          <div class="saint-name">St. Ephrem the Syrian</div>
+          <div class="saint-title">Doctor of the Church · Syria, 306–373 CE</div>
+          <div class="saint-desc">The greatest poet-theologian of the Syriac tradition. His hymns — covering Nativity, Epiphany, Lent, Holy Week, the Resurrection, and Marian devotion — are still sung in the Syriac Orthodox liturgy. He is called the "Harp of the Holy Spirit." His hymns explicitly invoke the saints for intercession and celebrate the Communion of Saints.</div>
+        </div>
+
+        <div class="saint">
+          <div class="saint-name">St. Gregory the Illuminator</div>
+          <div class="saint-title">Apostle to Armenia · c. 257–331 CE</div>
+          <div class="saint-desc">The patron saint of Armenia who converted King Tiridates III and established Armenia as the world's first Christian nation in 301 CE. His intercession is invoked in every Armenian liturgy. His right hand relic — the Surb Lousavorich Աջ — is the most venerated relic in the Armenian church and is used to bless the faithful at major celebrations.</div>
+        </div>
+
+        <div class="saint">
+          <div class="saint-name">The Twenty-One Coptic Martyrs of Libya</div>
+          <div class="saint-title">New Martyrs · February 15, 2015</div>
+          <div class="saint-desc">Twenty-one Coptic Christians beheaded on a Libyan beach by ISIS — twenty Copts from Egypt and one from Ghana who refused to deny Christ. Their last recorded words were "Lord Jesus Christ." The Coptic church canonized them immediately; their feast day is February 15. They demonstrate that the age of martyrs has not ended, and that the Communion of Saints continues to grow with new witnesses to Christ.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- XVII -->
+    <div class="sec" id="s17">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XVII.</span>The Necromancy Objection</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <p>The most serious Protestant objection — beyond the "one Mediator" argument — is that praying to saints amounts to necromancy: communication with the dead, explicitly forbidden in Deuteronomy 18:10–12.</p>
+
+        <div class="sv">
+          <div class="ref">Deuteronomy 18:10–12</div>
+          <div class="txt">"Let no one be found among you who sacrifices their son or daughter in the fire, who practices divination or sorcery, interprets omens, engages in witchcraft, or casts spells, or who is a medium or spiritist or who consults the dead. Anyone who does these things is detestable to the LORD."</div>
+          <div class="labels"><span class="prot">Protestant: Asking saints to intercede is consulting the dead — forbidden here</span><span class="oo">OO: The prohibition addresses consulting mediums, spiritists, and occult practitioners for divination — an entirely different category</span></div>
+        </div>
+
+        <h3>The Category Distinction</h3>
+        <p>The practices condemned in Deuteronomy 18 share a common character: they are attempts to access hidden knowledge or power from spiritual sources outside the covenant with God — through occult practitioners, divination, and manipulation of spirits. The condemned practices are:</p>
+        <ul>
+          <li>Seeking hidden knowledge (divination, omens)</li>
+          <li>Manipulating spiritual forces through magic (sorcery, spells)</li>
+          <li>Accessing spirits through human mediums outside God's order</li>
+        </ul>
+        <p>Asking a saint to pray to God for you shares none of these characteristics. There is no medium, no hidden knowledge sought, no occult technique, no spirit manipulation. The Christian addresses a person alive in God, asking them to pray — exactly as one would ask a living friend to pray. The request goes through the saint to God; it does not bypass God or access power outside the covenant.</p>
+
+        <h3>The Test Case: The Witch of Endor</h3>
+        <p>Some Protestants cite 1 Samuel 28 — where Saul uses a medium to summon Samuel — as proof that the saints cannot be contacted. But this narrative actually undermines the objection: Samuel does appear and does communicate. God was not absent. The problem was Saul's use of an occult medium in defiance of his own ban on such practitioners — the sin was the method, not the contact. The OO tradition does not use mediums or occult techniques. It asks the living saints, through prayer addressed to God in the liturgical assembly, to intercede — a categorically different act.</p>
+
+        <div class="fc">
+          <div class="fn">Jerome</div>
+          <div class="fw">Against Vigilantius (c. 406 CE)</div>
+          <div class="fq">"Are we, whenever we ask for the prayers of the saints, to be charged with the crime of Saul? Saul went to consult a medium for hidden knowledge in defiance of God's law. We ask the holy ones to pray for us before the throne of God. If you charge us with necromancy, you must charge Paul with it as well, for he said 'pray for one another.'"</div>
+          <div class="labels"><span class="pl">PARAPHRASE</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- XVIII -->
+    <div class="sec" id="s18">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XVIII.</span>Protestant Objections Addressed</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>⚡ "The saints cannot hear our prayers — they are not omniscient."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> The saints in glory do not need to be omniscient to hear prayers. God, who is omniscient, communicates to them what they need to know. We do not ask the saints to hear by their own power — we address them in the confidence that God, who "knows what you need before you ask him" (Matthew 6:8), also knows what the saints need to know in order to intercede. The saints see God "face to face" (1 Corinthians 13:12) — in that vision they know all things relevant to God's purposes. Moreover, the Book of Revelation shows saints conscious of and responding to earthly events (Revelation 6:9–10), and the Transfiguration shows Moses and Elijah aware of Christ's forthcoming Passion. The objection assumes the saints' knowledge is limited in the same way as ours — but this assumes the very question at issue.</p>
+          </div>
+        </div>
+
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>⚡ "We should pray directly to Christ — saints intercession adds unnecessary steps."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> The OO tradition does pray directly to Christ — every Divine Liturgy is centered on prayer addressed to the Holy Trinity. Invoking the saints does not replace direct prayer to Christ; it adds to it, in the same way that asking a friend to pray for you does not mean you have stopped praying directly to God yourself. Paul did both: he prayed directly to God and asked others to pray for him. The saints' intercession supplements, supports, and is united to the faithful's own prayer — all ascending through Christ to the Father.</p>
+          </div>
+        </div>
+
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Venerating saints leads people to idolatry in practice."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> The abuse of a practice does not abolish the practice. Money can be worshipped (mammon) — this does not make money sinful. The Lord's Supper can be received unworthily (1 Corinthians 11:27) — this does not abolish the Eucharist. Every doctrine and practice of the Church can be abused by sinful people. The OO tradition is clear and explicit: the saints receive veneration (dulia), not worship (latria). The Divine Liturgy directs all worship to the Holy Trinity. Where popular piety has crossed the line into genuine confusion of veneration with worship, the Church's response is to teach more clearly — not to abolish the apostolic practice.</p>
+          </div>
+        </div>
+
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>⚡ "The early Church did not invoke saints — this developed later."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> This is historically inaccurate. The evidence for invoking saints begins within the first three centuries: the Martyrdom of Polycarp (c. 156 CE) shows the early Christians honoring the martyrs at their tombs; Origen (c. 233 CE) explicitly teaches that the deceased saints pray for the living; the <em>Sub Tuum Praesidium</em> (c. 250–300 CE) is a direct invocatory prayer to Mary preserved in an Egyptian papyrus; Cyprian (c. 253 CE), Ephrem (c. 360 CE), Basil (c. 374 CE), and Chrysostom (c. 400 CE) all practice and teach the invocation of saints. The practice predates Constantine, predates the "corruption" narrative, and is found in the very churches — Egyptian, Syriac, Armenian — that broke from Rome and are entirely independent of any Western medieval development.</p>
+          </div>
+        </div>
+
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Hebrews 7:25 says Christ always lives to intercede — we don't need saints."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> Hebrews 7:25 ("he always lives to intercede for them") describes Christ's eternal high-priestly intercession — his continual mediatorial work on our behalf. The OO tradition affirms this completely. But this verse no more excludes saintly intercession than it excludes asking a living friend to pray for you. The saints' intercession participates in and flows from Christ's own high-priestly work — it does not compete with or supplement it as if Christ's intercession were insufficient. The question is not whether Christ's intercession is sufficient (it is) but whether God, in his wisdom and love, also uses the intercession of his saints as a means of grace — and the entirety of the biblical and Patristic evidence answers: yes.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- XIX -->
+    <div class="sec" id="s19">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XIX.</span>Frequently Asked Questions</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>Is it a sin to ask saints to intercede, or is it optional?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>In the OO tradition, the invocation of saints is not a private devotional option — it is integral to the liturgical life of the Church. The Divine Liturgy invokes the saints, the Theotokia is chanted daily, and the Synaxarium is read on every feast day. To refuse to invoke the saints is to step outside the received liturgical tradition of the Church. At the same time, the OO tradition does not teach that failing to invoke a specific saint constitutes a moral sin. The communal, liturgical invocation of the saints is the norm of Christian prayer — private communication directly with God is equally important and is practiced constantly in the liturgy.</p>
+          </div>
+        </div>
+
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>How are saints different from angels — can we invoke angels too?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>Yes — the OO tradition invokes the holy angels as well as the saints. The Archangels Michael, Gabriel, and Raphael are invoked in the liturgy; St. Michael is the patron of armies and a powerful intercessor in the Coptic tradition. The distinction between saints and angels is ontological: saints are glorified human persons (members of the Body of Christ), while angels are a separate order of spiritual beings. Both are servants of God who can intercede. The Coptic Divine Liturgy invokes both angels and saints. The Book of Revelation shows both angels and elders presenting prayers to God (Revelation 5:8; 8:3–4).</p>
+          </div>
+        </div>
+
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>Why ask the saints when God already knows what we need?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>The same question applies to all intercessory prayer. God already knows what we need before we ask (Matthew 6:8) — yet Scripture commands us to pray, to ask, to petition, and to intercede for one another. The reason is not that God needs our information but that God has ordained prayer — including intercessory prayer — as the means by which he works out his purposes in love and freedom. He invites human participation in his redemptive work not because he lacks something but because he loves us and desires our active, willing cooperation. The saints' intercession participates in this same divine pedagogy of love and participation.</p>
+          </div>
+        </div>
+
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>Do the saints know the details of our specific situation?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>The OO tradition does not require us to specify exactly how the saints know — it trusts that God, who loves us and loves his saints, communicates what is needed. The saints see God "face to face" (1 Corinthians 13:12) and in that vision participate in God's knowledge of all things relevant to his purposes. They are not watching us through a surveillance system — they are united to God, who knows all. When we address a saint in prayer, we address a person alive in God; and God, who receives the prayer, involves his saints in the response according to his wisdom. The mechanics of how this works transcend our understanding, just as the mechanics of how God answers any prayer transcend our understanding.</p>
+          </div>
+        </div>
+
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>What is the difference between the OO practice and Catholic practice on this point?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>The fundamental theology is identical: both traditions invoke the saints as intercessors, venerate icons and relics, and hold the Theotokos in supreme honor. The differences are disciplinary and cultural rather than doctrinal. The Coptic, Ethiopian, Syriac, and Armenian traditions each have their own distinctive liturgical expressions, their own saint calendars (with some unique saints not shared with Rome), and their own devotional practices. The Ethiopian tradition has particularly elaborate Marian devotion, with over thirty Marian feast days in the calendar. The Syriac tradition preserves ancient Aramaic-language prayers to the saints. In all cases, the theology of the Communion of Saints and the intercession of the departed is apostolic and shared.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- XX -->
+    <div class="sec" id="s20">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XX.</span>Sources &amp; Further Reading</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <div class="src-grid">
+          <div class="src-card">
+            <h4>Primary Patristic Sources</h4>
+            <ul>
+              <li>Origen, On Prayer (c. 233 CE)</li>
+              <li>Cyprian of Carthage, Epistles (c. 253 CE)</li>
+              <li>Ephrem the Syrian, Nisibene Hymns (c. 360 CE)</li>
+              <li>Basil the Great, Homily on the Forty Martyrs</li>
+              <li>John Chrysostom, Homilies on Hebrews</li>
+              <li>Jerome, Against Vigilantius (c. 406 CE)</li>
+              <li>John of Damascus, Exposition of the Orthodox Faith</li>
+            </ul>
+          </div>
+          <div class="src-card">
+            <h4>Patristic Collections</h4>
+            <ul>
+              <li>ANF — Ante-Nicene Fathers (10 vols.)</li>
+              <li>NPNF Series 1 &amp; 2 (28 vols.)</li>
+              <li>Martyrdom of Polycarp (c. 156 CE)</li>
+              <li>Sub Tuum Praesidium (P. Rylands 470, c. 250–300 CE)</li>
+              <li>Apophthegmata Patrum (Desert Fathers &amp; Mothers)</li>
+            </ul>
+          </div>
+          <div class="src-card">
+            <h4>OO Liturgical Sources</h4>
+            <ul>
+              <li>Coptic Divine Liturgy of St. Basil</li>
+              <li>Coptic Theotokia (daily Marian hymns)</li>
+              <li>Ethiopian Weddase Mariam</li>
+              <li>Ethiopian Senkessar (Synaxarium)</li>
+              <li>Coptic Synaxarium</li>
+              <li>Armenian Sharakan (liturgical hymns)</li>
+              <li>Syriac Sughyotho of the Virgin</li>
+            </ul>
+          </div>
+          <div class="src-card">
+            <h4>Modern Scholarship</h4>
+            <ul>
+              <li>Jaroslav Pelikan, Mary Through the Centuries (1996)</li>
+              <li>Stephen Shoemaker, Ancient Traditions of the Virgin Mary's Dormition (2002)</li>
+              <li>George Every, Understanding Eastern Christianity (1980)</li>
+              <li>John Anthony McGuckin, The Orthodox Church (2008)</li>
+              <li>Tadros Malaty, Introduction to the Coptic Orthodox Church</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+
+  <footer style="text-align:center;padding:2rem 1rem;border-top:1px solid var(--br);font-size:.8rem;color:var(--mu)">
+    <p>THE <span style="color:var(--gold)">ORTHODOX LAMP</span> &nbsp;·&nbsp; Biblical, Historical &amp; Patristic Apologetics</p>
+    <p style="margin-top:.5rem;font-size:.72rem;opacity:.6;">☩ &nbsp; In the name of the Father, and of the Son, and of the Holy Spirit &nbsp; ☩</p>
+  </footer>
+</div><!-- /main -->
+
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+function ts(h){h.closest('.sec').classList.toggle('open')}
+function tobj(h){h.closest('.obj').classList.toggle('open')}
+function tf(h){h.closest('.fi').classList.toggle('open')}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').classList.toggle('show')}
+function closeMobile(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
+
+window.addEventListener('scroll',()=>{
+  const s=document.documentElement,b=document.body;
+  const pct=(s.scrollTop||b.scrollTop)/((s.scrollHeight||b.scrollHeight)-s.clientHeight)*100;
+  document.getElementById('prog').style.width=pct+'%';
+  document.getElementById('btt').classList.toggle('show',(s.scrollTop||b.scrollTop)>300);
+});
+
+const secs=[...document.querySelectorAll('.sec')];
+const links=[...document.querySelectorAll('#nav a')];
+window.addEventListener('scroll',()=>{
+  let cur='';
+  secs.forEach(s=>{if(s.getBoundingClientRect().top<120)cur=s.id});
+  links.forEach(l=>{l.classList.toggle('active',l.getAttribute('href')==='#'+cur)});
+},{ passive:true });
+
+function doSearch(q){
+  document.querySelectorAll('.hl').forEach(e=>{
+    const p=e.parentNode;p.replaceChild(document.createTextNode(e.textContent),e);p.normalize();
+  });
+  if(!q.trim())return;
+  const re=new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi');
+  const walker=document.createTreeWalker(document.querySelector('.content'),NodeFilter.SHOW_TEXT);
+  const nodes=[];let n;
+  while((n=walker.nextNode()))nodes.push(n);
+  nodes.forEach(node=>{
+    if(!re.test(node.textContent))return;
+    re.lastIndex=0;
+    const frag=document.createDocumentFragment();
+    let last=0,m;
+    while((m=re.exec(node.textContent))!==null){
+      frag.appendChild(document.createTextNode(node.textContent.slice(last,m.index)));
+      const mark=document.createElement('mark');
+      mark.className='hl';mark.style.cssText='background:#8a6a20;color:#fff;border-radius:2px;padding:0 2px';
+      mark.textContent=m[0];frag.appendChild(mark);last=m.index+m[0].length;
+    }
+    frag.appendChild(document.createTextNode(node.textContent.slice(last)));
+    node.parentNode.replaceChild(frag,node);
+  });
+  const first=document.querySelector('.hl');if(first)first.scrollIntoView({block:'center',behavior:'smooth'});
+}
+</script>
+</body>
+</html>

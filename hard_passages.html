@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Hard Passages — The Orthodox Lamp</title>
+<style>
+:root{
+  --gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;
+  --bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--bg5:#3a2e10;
+  --tx:#e8e0d0;--mu:#a09880;--br:#2a2a2a;
+  --sidebar-w:270px;
+  --rc:#3a1a1a;--rcc:#d47070;
+  --oo:#1a2e1a;--ooc:#7dc87d;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.7;display:flex;min-height:100vh}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+mark{background:rgba(201,168,76,.28);color:var(--gl);border-radius:2px;padding:0 2px}
+#prog{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--gd),var(--gl));z-index:200;transition:width .1s}
+#sb{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:100;display:flex;flex-direction:column}
+#sb-brand{padding:18px 18px 10px;border-bottom:1px solid var(--br)}
+#sb-brand .lamp{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mu);margin-bottom:4px}
+#sb-brand h1{font-size:1rem;color:var(--gold);line-height:1.3}
+.sb-search{padding:10px 14px 4px}
+.sb-search input{width:100%;background:rgba(255,255,255,.06);border:1px solid var(--br);border-radius:6px;padding:8px 12px;font-size:.8rem;color:var(--tx);font-family:'Georgia',serif;outline:none;transition:border-color .2s}
+.sb-search input::placeholder{color:#666}
+.sb-search input:focus{border-color:var(--gd)}
+.sec.s-hidden{display:none}
+.no-match-msg{display:none;padding:14px 18px;font-size:.8rem;color:var(--mu);font-style:italic;text-align:center}
+.no-match-msg.show{display:block}
+#sb-nav{padding:10px 0 20px;flex:1}
+#sb-nav a{display:block;padding:6px 18px;font-size:.82rem;color:var(--mu);border-left:2px solid transparent;transition:all .15s;line-height:1.4}
+#sb-nav a:hover,#sb-nav a.active{color:var(--gold);border-left-color:var(--gold);background:rgba(201,168,76,.06);text-decoration:none}
+main{margin-left:var(--sidebar-w);flex:1;max-width:820px;padding:48px 48px 80px}
+.pg-title{margin-bottom:10px}
+.pg-title .lamp-label{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--mu);margin-bottom:6px}
+.pg-title h1{font-size:2rem;color:var(--gold);line-height:1.2}
+.pg-title .sub{font-size:1rem;color:var(--mu);margin-top:6px;font-style:italic}
+.pg-intro{max-width:660px;color:var(--mu);font-size:.95rem;margin:16px 0 36px;border-left:3px solid var(--gd);padding-left:14px}
+.sec{border:1px solid var(--br);border-radius:8px;margin-bottom:14px;overflow:hidden;background:var(--bg2)}
+.sec-h{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;cursor:pointer;user-select:none;gap:10px}
+.sec-h:hover{background:rgba(255,255,255,.03)}
+.sec-h h2{font-size:1rem;color:var(--tx);font-weight:600}
+.sec-h .arr{color:var(--mu);font-size:.8rem;transition:transform .2s;flex-shrink:0}
+.sec.open .arr{transform:rotate(90deg)}
+.sec-body{display:none;padding:18px 20px 20px;border-top:1px solid var(--br)}
+.sec.open .sec-body{display:block}
+.sec-body p{color:var(--mu);font-size:.92rem;margin-bottom:10px}
+.sec-body p:last-child{margin-bottom:0}
+.sv{background:var(--bg5);border:1px solid var(--gd);border-radius:6px;padding:12px 16px;margin:12px 0;font-style:italic;color:var(--gl);font-size:.92rem}
+.sv cite{display:block;text-align:right;font-size:.8rem;color:var(--gold);margin-top:6px;font-style:normal}
+.comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.comp-card{border-radius:8px;padding:14px 16px;border:1px solid}
+.comp-card.rc-card{background:var(--rc);border-color:var(--rcc)}
+.comp-card.oo-card{background:var(--oo);border-color:var(--ooc)}
+.comp-card .cc-label{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;font-weight:700}
+.comp-card.rc-card .cc-label{color:var(--rcc)}
+.comp-card.oo-card .cc-label{color:var(--ooc)}
+.comp-card ul{padding-left:16px;font-size:.88rem;line-height:1.75}
+.comp-card.rc-card ul{color:#e8c0c0}
+.comp-card.oo-card ul{color:#c8e8c8}
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin:14px 0}
+.fc{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:14px 16px}
+.fc-name{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.fc-body{font-size:.88rem;color:var(--mu);font-style:italic;line-height:1.6}
+.fc-src{font-size:.76rem;color:var(--gd);margin-top:6px}
+.fi{border:1px solid var(--br);border-radius:6px;margin-bottom:8px;overflow:hidden;background:var(--bg3)}
+.fi-h{display:flex;align-items:flex-start;padding:11px 14px;cursor:pointer;gap:8px;user-select:none}
+.fi-h:hover{background:rgba(255,255,255,.03)}
+.fi-q{font-size:.88rem;color:var(--tx);flex:1}
+.fi-arr{color:var(--mu);font-size:.75rem;transition:transform .2s;flex-shrink:0;margin-top:4px}
+.fi.open .fi-arr{transform:rotate(90deg)}
+.fi-body{display:none;padding:12px 14px 14px;border-top:1px solid var(--br);font-size:.88rem;color:var(--mu);line-height:1.65}
+.fi.open .fi-body{display:block}
+.gt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin:14px 0}
+.gt{background:var(--bg3);border:1px solid var(--br);border-radius:7px;padding:12px 14px}
+.gt-term{font-size:.8rem;font-weight:700;color:var(--gold);margin-bottom:4px}
+.gt-def{font-size:.84rem;color:var(--mu);line-height:1.55}
+/* Greek/Latin text box */
+.lang-box{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:14px 18px;margin:12px 0}
+.lb-label{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mu);margin-bottom:8px}
+.lb-row{display:flex;gap:16px;margin-bottom:8px;align-items:baseline;flex-wrap:wrap}
+.lb-lang{font-size:.72rem;color:var(--gold);min-width:60px;flex-shrink:0}
+.lb-text{font-size:.9rem;color:var(--tx);font-style:italic}
+.lb-note{font-size:.8rem;color:var(--mu);margin-top:4px}
+/* consequence vs guilt boxes */
+.distinction-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.dist-box{border-radius:8px;padding:14px 16px;border:1px solid}
+.dist-box.inherited{background:#1a1a2e;border-color:#7070d4}
+.dist-box.not-inherited{background:#2e1a1a;border-color:#d47070}
+.dist-box .db-label{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;font-weight:700}
+.dist-box.inherited .db-label{color:#a0a0e8}
+.dist-box.not-inherited .db-label{color:var(--rcc)}
+.dist-box ul{padding-left:16px;font-size:.88rem;line-height:1.75}
+.dist-box.inherited ul{color:#c8c8f0}
+.dist-box.not-inherited ul{color:#f0c8c8}
+@media(max-width:760px){#sb{transform:translateX(-100%)}main{margin-left:0;padding:24px 18px 60px}}
+
+.ev-map{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;margin:14px 0}
+.ev-card{display:block;background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:12px 14px;transition:border-color .15s}
+.ev-card:hover{border-color:var(--gold);text-decoration:none}
+.ev-num{font-size:.68rem;letter-spacing:.12em;color:var(--mu);text-transform:uppercase}
+.ev-name{color:var(--gold);font-weight:700;margin:2px 0 4px;font-size:.95rem}
+.ev-line{color:var(--tx);font-size:.8rem;line-height:1.5}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<nav id="sb">
+  <div id="sb-brand">
+    <div class="lamp">The Orthodox Lamp</div>
+    <h1>The Hard Passages</h1>
+  </div>
+  <div class="sb-search">
+    <input type="search" placeholder="Search sections…" oninput="sidebarSearch(this.value)" aria-label="Search sections">
+  </div>
+  <div id="sb-nav">
+    <a href="#objection">The Objection Stated</a>
+    <a href="#map">The Answer Map</a>
+    <a href="#method">How the Church Reads Scripture</a>
+    <a href="#rhetoric">I · Reading Ancient War Texts</a>
+    <a href="#judgment">I · Patience, Judgment &amp; Mercy</a>
+    <a href="#warfathers">I · The Fathers on the Conquest</a>
+    <a href="#christkey">I · Christ the Key</a>
+    <a href="#slavery">II · Slavery in the Law of Moses</a>
+    <a href="#slaverynt">II · The New Testament Seed</a>
+    <a href="#slaveryfathers">II · The Fathers Against Slavery</a>
+    <a href="#contradiction">III · What Counts as a Contradiction</a>
+    <a href="#examples">III · Famous "Contradictions" Answered</a>
+    <a href="#faq">FAQ</a>
+    <a href="#glossary">Glossary</a>
+    <a href="#sources">Sources</a>
+  </div>
+  <div class="no-match-msg" id="sb-no-match">No sections match.</div>
+</nav>
+<main>
+  <div class="pg-title">
+    <div class="lamp-label">The Orthodox Lamp</div>
+    <h1>The Hard Passages</h1>
+    <div class="sub">Old Testament violence, slavery, and the "contradictions" — answered from Scripture and the Fathers</div>
+  </div>
+  <p class="pg-intro">"And if in these writings I am perplexed by anything which appears to me opposed to truth, I do not hesitate to suppose that either the manuscript is faulty, or the translator has not caught the meaning of what was said, or I myself have failed to understand it" (St. Augustine, Letter 82 to Jerome, AD 405). The Church has read the hard passages closely for two thousand years — the Fathers asked these questions before the New Atheists did, and answered them. This page collects those answers in three parts: the violence, the slavery, the alleged contradictions.</p>
+
+  <div class="sec open" id="objection">
+    <div class="sec-h" onclick="ts(this)"><h2>The Objection Stated — At Its Strongest</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>Here is the objection at full volume, in the words of its most famous spokesman:</p>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">Richard Dawkins</div>
+          <div class="fc-body">"The God of the Old Testament is arguably the most unpleasant character in all fiction: jealous and proud of it; a petty, unjust, unforgiving control-freak; a vindictive, bloodthirsty ethnic cleanser; a misogynistic, homophobic, racist, infanticidal, genocidal, filicidal, pestilential, megalomaniacal, sadomasochistic, capriciously malevolent bully."</div>
+          <div class="fc-src">The God Delusion (2006), ch. 2 — the objection in its sharpest popular form</div>
+        </div>
+      </div>
+      <p>Three specific charges stand behind the rhetoric: <strong>(1)</strong> God commanded the destruction of whole peoples in Canaan — that is genocide; <strong>(2)</strong> the Law of Moses regulates slavery instead of abolishing it — that is moral failure; <strong>(3)</strong> the Bible contradicts itself — so it cannot be the word of a truthful God. Each charge deserves a serious answer, and each gets one below, with the texts on the table and the Fathers in their own words.</p>
+      <p>One observation before starting, not as a dodge but as a frame: every one of these charges is a <em>moral</em> accusation, and moral accusations presuppose an objective moral law — the very thing atheism struggles to supply (see <a href="moral_argument.html">The Moral Argument</a>). The critic who calls the conquest "wicked" is standing on borrowed ground. That does not excuse Christians from answering — Scripture must be read honestly — but it means the argument, even at its angriest, is being conducted inside God's courtroom, not outside it.</p>
+    </div>
+  </div>
+
+  <div class="sec open" id="map">
+    <div class="sec-h" onclick="ts(this)"><h2>The Answer Map — Quick Reference</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>Each answer in one sentence. Click any card for the full treatment.</p>
+      <div class="ev-map">
+        <a class="ev-card" href="#rhetoric"><div class="ev-num">Violence · Answer 1</div><div class="ev-name">Ancient War Rhetoric</div><div class="ev-line">"Destroyed everything that breathed" — yet the same people are alive in the next chapter: the conquest texts use the standard hyperbole of ancient warfare, and the Bible itself shows it.</div></a>
+        <a class="ev-card" href="#judgment"><div class="ev-num">Violence · Answer 2</div><div class="ev-name">Judgment After Patience</div><div class="ev-line">The conquest was judgment on centuries of atrocity, delayed 400 years for repentance — and any who turned, like Rahab, were spared.</div></a>
+        <a class="ev-card" href="#warfathers"><div class="ev-num">Violence · Answer 3</div><div class="ev-name">The Fathers on Joshua</div><div class="ev-line">Origen and Gregory of Nyssa: the wars are recorded for the Church as the figure of the real war — against sin in the soul.</div></a>
+        <a class="ev-card" href="#christkey"><div class="ev-num">Violence · Answer 4</div><div class="ev-name">Christ the Key</div><div class="ev-line">God's character is fully revealed not in Joshua but in Jesus — and the Church reads every page through Him.</div></a>
+        <a class="ev-card" href="#slavery"><div class="ev-num">Slavery · Answer 1</div><div class="ev-name">What the Law Actually Says</div><div class="ev-line">Debt-servitude with release, a death penalty for slave-trading, and the ancient world's only refuge law for escaped slaves.</div></a>
+        <a class="ev-card" href="#slaverynt"><div class="ev-num">Slavery · Answer 2</div><div class="ev-name">The New Testament Seed</div><div class="ev-line">"No longer a slave but a beloved brother" — the Gospel planted the idea that killed the institution.</div></a>
+        <a class="ev-card" href="#slaveryfathers"><div class="ev-num">Slavery · Answer 3</div><div class="ev-name">The First Abolitionist</div><div class="ev-line">The first outright attack on slavery as an institution in human history is a sermon by a Church Father — Gregory of Nyssa, AD 379.</div></a>
+        <a class="ev-card" href="#contradiction"><div class="ev-num">Contradictions · Answer 1</div><div class="ev-name">Difference Is Not Contradiction</div><div class="ev-line">Two true reports can differ in selection, order, and wording — and the Fathers argued the small differences prove the witnesses didn't collude.</div></a>
+        <a class="ev-card" href="#examples"><div class="ev-num">Contradictions · Answer 2</div><div class="ev-name">The Famous Cases</div><div class="ev-line">The census, Judas's death, the resurrection morning, the two creation accounts — each examined, each answered.</div></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" id="method">
+    <div class="sec-h" onclick="ts(this)"><h2>How the Church Reads Scripture</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p><strong>In one sentence:</strong> the Orthodox read the Bible as one book, whose center and key is Christ, within the Church that wrote and canonized it — not as a flat collection of equally final verses.</p>
+      <p>Most modern attacks on the hard passages assume a reading no ancient Christian ever held: every verse read alone, literally, and as God's last word on its subject. The Church's actual method has four rules, all older than these objections:</p>
+      <p><strong>1. Christ is the key.</strong> "Long ago, at many times and in many ways, God spoke to our fathers by the prophets, but in these last days he has spoken to us by his Son… the exact imprint of his nature" (Hebrews 1:1–3). Revelation is progressive: the Old Testament is true, but partial and preparatory; the full picture of God's character is the face of Christ. A passage in Joshua is never the final word about God; Jesus is.</p>
+      <p><strong>2. God condescends.</strong> The Fathers taught that God, like a good teacher, speaks to people where they are — fallen, Bronze Age, hard-hearted — and leads them forward by steps. Christ Himself states the principle: "Because of your hardness of heart Moses allowed you to divorce your wives, but from the beginning it was not so" (Matthew 19:8). The Law of Moses regulates a fallen world toward mercy; it does not describe God's ideal. What is true of divorce is true of war and servitude.</p>
+      <p><strong>3. Scripture has depths.</strong> The Fathers read the Old Testament on more than one level — history, yes, but history recorded as figure and type for the Church (1 Corinthians 10:11: "these things happened to them as an example, but they were written down for our instruction"). This is not an escape hatch invented after Darwin; it is how Origen read Joshua in the third century (<a href="#warfathers">below</a>).</p>
+      <p><strong>4. The whole canon judges the part.</strong> The Church condemned Marcion in the second century for cutting the Old Testament away from the New. The same Church refuses the opposite error: reading the Old as if Christ had never come. One God, two covenants, one story — read from the end.</p>
+      <div class="sv">"And beginning with Moses and all the Prophets, he interpreted to them in all the Scriptures the things concerning himself."<cite>Luke 24:27 — the risen Christ's own Bible study: the Old Testament read rightly is about Him</cite></div>
+    </div>
+  </div>
+
+  <div class="sec" id="rhetoric">
+    <div class="sec-h" onclick="ts(this)"><h2>Part I — Reading Ancient War Texts</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p><strong>In one sentence:</strong> the conquest narratives use the standard victory rhetoric of the ancient Near East — sweeping "totality" language that the Bible itself, a chapter later, shows was not meant as a body count.</p>
+      <p>Read the book of Joshua whole and a striking pattern appears. Joshua 10:40 reports that Joshua "devoted to destruction all that breathed" in the hill country and the Negeb. Joshua 11 says the like of Hazor and the north. Total annihilation? Keep reading. Joshua 15:63: the Jebusites still live in Jerusalem. Judges 1, set immediately after: the Canaanites are still everywhere — in Gezer, Megiddo, Taanach, Dor — and the rest of Judges is the story of Israel living alongside them. Either the author contradicted himself within a few pages and nobody noticed for three thousand years, or — far more naturally — "destroyed all that breathed" was a recognized way of saying "won a decisive victory."</p>
+      <p>It was. Ancient Near Eastern victory inscriptions talk exactly this way. Pharaoh Merneptah's stele (c. 1208 BC) boasts "Israel is laid waste; his seed is no more" — while Israel went on existing. The Moabite king Mesha's stele claims "Israel has perished forever" — during a war Israel survived. Egyptian, Assyrian, and Hittite kings all "annihilated" enemies who turn up alive in the next campaign. The biblical authors wrote in the conventions of their world, and their first readers knew it.</p>
+      <p>The Law's own dominant verb confirms this. The repeated command is to <em>drive out</em> the nations (Exodus 23:28–30 — "little by little I will drive them out before you"), and Deuteronomy 7, in the very passage commanding herem ("devote to destruction"), immediately adds: "You shall not intermarry with them" (Deuteronomy 7:2–3). You do not legislate against marrying the dead. The target of the command is the destruction of Canaanite religion and cultic identity — the altars, the pillars, the practices — not the extermination of every individual.</p>
+      <div class="sv">"You shall make no covenant with them… You shall not intermarry with them… For they would turn away your sons from following me. But thus shall you deal with them: you shall break down their altars and dash in pieces their pillars and chop down their Asherim and burn their carved images with fire."<cite>Deuteronomy 7:2–5 — the command's own explanation: the war is against idolatry; the feared outcome is intermarriage, which presupposes survivors</cite></div>
+    </div>
+  </div>
+
+  <div class="sec" id="judgment">
+    <div class="sec-h" onclick="ts(this)"><h2>Part I — Patience, Judgment &amp; Mercy</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p><strong>In one sentence:</strong> Scripture presents the conquest not as ethnic cleansing but as delayed judicial sentence — postponed four centuries for repentance, never based on Israel's merit, and waived for any who turned, like Rahab and Nineveh.</p>
+      <p>Three texts dismantle the "ethnic cleansing" reading from inside the Bible itself:</p>
+      <div class="sv">"And they shall come back here in the fourth generation, for the iniquity of the Amorites is not yet complete."<cite>Genesis 15:16 — four hundred years before Joshua, God tells Abraham the land is not yet forfeit: judgment waits until the evil is full. This is patience on a civilizational scale</cite></div>
+      <div class="sv">"Not because of your righteousness or the uprightness of your heart are you going in to possess their land, but because of the wickedness of these nations the LORD your God is driving them out from before you."<cite>Deuteronomy 9:5 — explicitly not ethnic superiority: Israel is warned in the same breath that she is "a stubborn people," and later suffers the same expulsion for the same sins (2 Kings 17)</cite></div>
+      <div class="sv">"If at any time I declare concerning a nation… that I will pluck up and break down and destroy it, and if that nation… turns from its evil, I will relent of the disaster that I intended to do to it."<cite>Jeremiah 18:7–8 — God's standing policy toward every nation. Jonah's Nineveh proves it: the Assyrians, crueler than any Canaanite, repented and were spared — to Jonah's fury</cite></div>
+      <p>What was the "iniquity of the Amorites"? The texts name it: child sacrifice by fire to Molech, cultic prostitution, and the occult arts (Deuteronomy 12:31 — "they even burn their sons and their daughters in the fire to their gods"; Leviticus 18 lists the practices and says the land "vomited out" its inhabitants). Archaeology of the Canaanite world corroborates the cult. This was not a quiet pastoral people; the conquest texts describe the demolition of a civilization built on burning children.</p>
+      <p>And the door stood open. Rahab the Canaanite — a citizen of the first city under the ban — confessed the God of Israel and was spared with all her household (Joshua 2; 6:25), entered Israel, and stands in the genealogy of Christ (Matthew 1:5). The Gibeonites who sought peace, kept it (Joshua 9). The pattern is the one Jeremiah states: the sentence falls on the unrepentant; whoever turns, lives. That is judgment, not genocide — and if God has no right to judge civilizations, then there was no moral order to be violated in the first place, and the objection dissolves itself (see <a href="problem_of_evil.html">The Problem of Evil</a> on the same boomerang).</p>
+    </div>
+  </div>
+
+  <div class="sec" id="warfathers">
+    <div class="sec-h" onclick="ts(this)"><h2>Part I — The Fathers on the Conquest</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p><strong>In one sentence:</strong> the Fathers read the conquest narratives as Scripture handed to the Church for one purpose — the war against sin — and said so seventeen centuries before the New Atheists raised the question.</p>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">Origen of Alexandria</div>
+          <div class="fc-body">"Unless those physical wars bore the figure of spiritual wars, I do not think the books of Jewish history would ever have been handed down by the apostles to the disciples of Christ, who came to teach peace, so that they could be read in the churches."</div>
+          <div class="fc-src">Homilies on Joshua 15.1 (3rd century, trans. B. Bruce) — the Church kept Joshua because Jesus (Greek: Iēsous, the same name) leads the true conquest: of sin in the soul</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Gregory of Nyssa</div>
+          <div class="fc-body">Troubled by the death of the Egyptian firstborn read literally — "how would the punishment of the child be just?" — Gregory teaches that the passage commands us to destroy the first beginnings of evil in ourselves before they grow.</div>
+          <div class="fc-src">The Life of Moses, Book II (c. AD 390) — a Father raising the moral question himself, centuries before any skeptic, and finding the text's purpose for the Christian life</div>
+        </div>
+      </div>
+      <p>Two things follow from these texts. First: the moral difficulty of the war passages is not a modern discovery that the Church has been hiding from. Origen and Gregory state the difficulty more sharply than Dawkins does — and from inside the faith. Second: the Fathers' answer is not embarrassment but interpretation. The conquest happened in history as God's judgment (the previous sections); but the reason these books are read <em>in church</em> is what they signify — Jericho's walls are the soul's fortified sins, and the command to spare nothing means: make no truce with your passions. Every Oriental Orthodox monk in the desert read Joshua exactly this way.</p>
+      <div class="sv">"For we do not wrestle against flesh and blood, but against the rulers, against the authorities, against the cosmic powers over this present darkness."<cite>Ephesians 6:12 — the New Testament's own transposition of holy war: the enemy is never again a nation; the sword is the word of God</cite></div>
+    </div>
+  </div>
+
+  <div class="sec" id="christkey">
+    <div class="sec-h" onclick="ts(this)"><h2>Part I — Christ the Key</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p><strong>In one sentence:</strong> whoever wants to know what God is like must look at Christ — and Christ, who is the same God who spoke at Sinai, forbade His Church the sword forever.</p>
+      <p>The deepest Christian answer to the war passages is not a technicality of Hebrew rhetoric; it is a Person. "Whoever has seen me has seen the Father" (John 14:9). "He is the radiance of the glory of God and the exact imprint of his nature" (Hebrews 1:3). If you want God's definitive self-portrait, it is not Jericho; it is the Cross — where God, rather than kill His enemies, dies for them (Romans 5:10).</p>
+      <div class="sv">"Put your sword back into its place. For all who take the sword will perish by the sword."<cite>Matthew 26:52 — to Peter, defending Christ Himself with arms: the most justified sword-stroke imaginable, refused</cite></div>
+      <div class="sv">"My kingdom is not of this world. If my kingdom were of this world, my servants would have been fighting."<cite>John 18:36 — the kingdom advances by witness and martyrdom, never by conquest: the Church's wars ended before they began</cite></div>
+      <p>This is why the Church — and the Oriental Orthodox churches above all — has answered persecution for two thousand years not with armies but with martyrs. The Copts under Diocletian dated their calendar from the Era of Martyrs; their descendants on a Libyan beach in 2015 died with the name of Christ on their lips and no weapon in their hands. A faith whose God commanded genocide would look like its god. Look at what the Church of the hard passages actually became, wherever it was faithful: the people who die rather than kill. The Old Testament wars were the scaffolding of a particular judgment in a particular age; the building they served is the Kingdom that forbids the sword.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="slavery">
+    <div class="sec-h" onclick="ts(this)"><h2>Part II — Slavery in the Law of Moses</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p><strong>In one sentence:</strong> the "slavery" the Law regulates was primarily debt-servitude with mandatory release — and the same Law contains a death penalty for slave-trading and the ancient world's only law protecting escaped slaves.</p>
+      <p>First, the vocabulary. The Hebrew word <em>'ebed</em> covers everything from a hired bondservant to a royal official ("Moses the servant of the LORD" — same word). The institution the Law chiefly regulates is debt-servitude: a man who could not pay his debts worked them off in a household — the ancient world's bankruptcy system, in a world with no banks, no prisons, and no welfare. The Law then hedges it with protections no neighboring code had:</p>
+      <div class="sv">"When you buy a Hebrew slave, he shall serve six years, and in the seventh he shall go out free, for nothing."<cite>Exodus 21:2 — servitude is term-limited. Deuteronomy 15:13–14 adds: "you shall not let him go empty-handed; you shall furnish him liberally" — release with severance pay</cite></div>
+      <div class="sv">"Whoever steals a man and sells him, and anyone found in possession of him, shall be put to death."<cite>Exodus 21:16 — the entire transatlantic slave trade — kidnap, transport, sale, possession — is a capital crime in the Law of Moses. Every American slaveholder who quoted the Bible owned people in defiance of this verse</cite></div>
+      <div class="sv">"You shall not give up to his master a slave who has escaped from his master to you. He shall dwell with you… in the place that he shall choose… You shall not wrong him."<cite>Deuteronomy 23:15–16 — unique in the ancient world. The Code of Hammurabi (§16) imposed death for harboring a runaway; the Torah commands sanctuary. Under this law, the institution is voluntary at the price of a walk</cite></div>
+      <p>Add the rest: striking a servant so that he dies is punishable (Exodus 21:20); maiming one frees him on the spot (21:26–27); the Sabbath rest covers servants (Deuteronomy 5:14); and Israelites are commanded to remember "you were a slave in Egypt" as the reason for mercy (Deuteronomy 15:15). Job states the theological ground a thousand years before Philemon: "Did not he who made me in the womb make him?" (Job 31:15).</p>
+      <p><strong>Honesty requires the hard part too.</strong> Leviticus 25:44–46 permits holding foreign servants without the seventh-year release, and the Law nowhere abolishes the institution outright. Why not? Christ Himself gave the principle, about a different concession: "Because of your hardness of heart Moses allowed you to divorce your wives, but from the beginning it was not so" (Matthew 19:8). The Law of Moses meets a fallen Bronze Age economy where it stands and bends it, hard, toward mercy — term limits, severance, capital protection of life and body, sanctuary for runaways — while planting the principles (one image of God, one Maker in the womb, "you were slaves in Egypt") that would eventually demand abolition. The Law is a tourniquet, not a portrait of Eden. "From the beginning it was not so."</p>
+    </div>
+  </div>
+
+  <div class="sec" id="slaverynt">
+    <div class="sec-h" onclick="ts(this)"><h2>Part II — The New Testament Seed</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p><strong>In one sentence:</strong> the New Testament, written by a persecuted minority with no political power, did not decree abolition — it did something more permanent: it declared slave and master brothers at one altar, and the institution never recovered.</p>
+      <div class="sv">"There is neither Jew nor Greek, there is neither slave nor free, there is no male and female, for you are all one in Christ Jesus."<cite>Galatians 3:28 — the charter. At the Eucharist, the slave received the same Body of Christ as his master, from the same chalice. No other institution in antiquity did this</cite></div>
+      <div class="sv">"…that you might have him back forever, no longer as a slave but more than a slave, as a beloved brother… both in the flesh and in the Lord."<cite>Philemon 15–16 — Paul returns Onesimus with a letter that makes ownership impossible: receive him "as you would receive me" (v. 17). You cannot own your brother</cite></div>
+      <div class="sv">"…the law is laid down… for the unholy and profane… for murderers, the sexually immoral, men who practice homosexuality, enslavers, liars, perjurers."<cite>1 Timothy 1:9–10 — "enslavers" (Greek andrapodistai, slave-traders) listed among murderers: the New Testament's verdict on the trade itself. Revelation 18:13 likewise damns Babylon for trafficking in "slaves — that is, human souls"</cite></div>
+      <p>Why no immediate decree of abolition? Because the Church of the first century was a scattered, illegal community of a few thousand people inside an empire with many millions of enslaved people — by common scholarly estimates roughly a third of the population of Roman Italy — where the Church could not change one law. A political program was impossible; a theological time-bomb was not. Paul also tells slaves: "if you can gain your freedom, avail yourself of the opportunity" (1 Corinthians 7:21) — freedom is the preferred state. The seed was planted in the only soil available, and Part III of this story (<a href="#slaveryfathers">next section</a>) shows it sprouting within three centuries — and bearing final fruit in the abolition movements, which were led, almost without exception, by Christians arguing from these very texts.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="slaveryfathers">
+    <div class="sec-h" onclick="ts(this)"><h2>Part II — The Fathers Against Slavery</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p><strong>In one sentence:</strong> the first frontal attack on slavery as an institution in all of recorded history is a sermon preached by a Church Father in AD 379 — from the doctrine of the image of God.</p>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">St. Gregory of Nyssa</div>
+          <div class="fc-body">"You condemn man to slavery, when his nature is free and possesses free will, and you legislate in competition with God, overturning his law for the human species."</div>
+          <div class="fc-src">Homily 4 on Ecclesiastes (AD 379) — preached against the words "I got me slaves and slave-girls" (Eccl 2:7): the slaveholder is rebuked, not the runaway</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Gregory of Nyssa, same homily</div>
+          <div class="fc-body">"God said, 'Let us make man in our own image and likeness.' If he is in the likeness of God… who is his buyer, tell me? Who is his seller?"</div>
+          <div class="fc-src">Homily 4 on Ecclesiastes — the price argument: God's image has no exchange rate; historians of antiquity recognize this homily as the first outright condemnation of the institution itself</div>
+        </div>
+      </div>
+      <p>Notice the logic: Gregory does not argue from economics or politics but from Genesis 1:27 — exactly the seed texts traced above. The same logic worked through the centuries that followed: the Church made manumission a liturgical act performed in the sanctuary, canon law protected the marriages and families of the enslaved, and serfdom and slavery withered across Christian Europe in the very centuries the Church gained influence — to be revived, significantly, in the early modern era by men chasing profit, and abolished again by Christians (Wilberforce and the Clapham evangelicals in Britain, with Quakers and churchmen in America) quoting Exodus 21:16, Philemon, and Gregory's own argument. The Bible did not lose the argument with slavery; the Bible is what won it.</p>
+      <div class="sv">"The Spirit of the Lord is upon me… he has sent me to proclaim liberty to the captives."<cite>Luke 4:18 — the manifesto Christ read in Nazareth, from Isaiah 61: the trajectory of the whole canon, announced in His first sermon</cite></div>
+    </div>
+  </div>
+
+  <div class="sec" id="contradiction">
+    <div class="sec-h" onclick="ts(this)"><h2>Part III — What Counts as a Contradiction</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p><strong>In one sentence:</strong> a contradiction requires two statements that cannot both be true — not two true reports that differ in selection, order, wording, or vantage point; and the Fathers saw the small differences as evidence of honesty, not error.</p>
+      <p>Set the standard first, because the lists of "1,001 Bible contradictions" almost never do. Two accounts genuinely contradict only if they cannot both be true at once. They do <em>not</em> contradict when one mentions what the other omits (selection); when they arrange events thematically rather than chronologically (ancient biography's normal practice); when they paraphrase the same saying differently (quotation marks are a modern invention); when they count differently ("one angel" does not assert "only one"); or when a copyist's pen slipped on a numeral in a manuscript chain three thousand years long. Apply the same charity used for any two honest newspaper reports of one event, and the famous lists shrink drastically.</p>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">St. John Chrysostom</div>
+          <div class="fc-body">"If they had agreed in all things exactly even to time, and place, and to the very words, none of our enemies would have believed but that they had met together, and had written what they wrote by some human compact… The discordance which seems to exist in little matters delivers them from all suspicion, and speaks clearly in behalf of the character of the writers."</div>
+          <div class="fc-src">Homily 1 on Matthew (c. AD 390) — the courtroom principle: independent witnesses differ in details and agree in substance; colluding ones match word for word</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Augustine</div>
+          <div class="fc-body">"And if in these writings I am perplexed by anything which appears to me opposed to truth, I do not hesitate to suppose that either the manuscript is faulty, or the translator has not caught the meaning of what was said, or I myself have failed to understand it."</div>
+          <div class="fc-src">Letter 82 to Jerome (AD 405) — the method: Scripture is inerrant in what it asserts; manuscripts, translations, and readers are not. Augustine wrote a whole book, The Harmony of the Gospels, working through the cases one by one</div>
+        </div>
+      </div>
+      <p>Note what Chrysostom's point implies: the differences between the Gospels were not discovered by modern skeptics. They were obvious to the Fathers, who read these texts in Greek, daily, for life — and who kept all four Gospels side by side anyway, refusing every attempt (like Tatian's) to blend them into one tidy harmony. A Church inventing its scriptures would have smoothed them. The Church that received them did not dare.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="examples">
+    <div class="sec-h" onclick="ts(this)"><h2>Part III — Famous "Contradictions" Answered</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>The cases that head every list, each opened and answered. Click to expand.</p>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Genesis 1 vs. Genesis 2 — two different creation orders?</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">Genesis 1 is the wide-angle account of the whole cosmos, ordered into a seven-day liturgical frame. Genesis 2 is not a second cosmology; it zooms into one scene — the sixth day, the garden, the making of man and woman. The animals in 2:19 pose no conflict: the Hebrew can naturally be read as pluperfect, "the LORD God <em>had formed</em> every beast of the field," and the verse's point is the parade before Adam, not the manufacturing schedule. Ancient readers — who put both chapters side by side on one scroll, on purpose — read them as panorama and close-up. The "contradiction" requires assuming the editor of Genesis could not notice what every modern reader notices in thirty seconds.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Who incited David's census — God (2 Samuel 24:1) or Satan (1 Chronicles 21:1)?</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">Both, at different levels — and the Bible explains its own idiom in Job 1–2, where Satan afflicts Job, yet God says "you incited me against him" (Job 2:3) because Satan acts only by divine permission. Scripture routinely attributes to God's sovereignty what He permits secondary agents to do (compare 1 Kings 22:19–23). Samuel gives the ultimate cause (God's judicial anger at Israel); Chronicles gives the instrumental cause (the tempter). The same event, described at two levels of causation — the way "the doctor put my arm in a cast" and "the nurse put my arm in a cast" can both be true.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">How did Judas die — hanging (Matthew 27:5) or falling headlong (Acts 1:18)?</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">Matthew reports the act: Judas hanged himself. Acts reports the aftermath discovered later: the body fell — a corpse left hanging, then dropping (a snapped rope or branch, or removal), "burst open" on the rocky ground of the Hinnom valley. Sequential, not contradictory. The purchase of the field fits the same way: the priests bought it <em>with Judas's blood money, in his name</em> (Matthew 27:6–8), which Acts compresses as "this man acquired a field with the reward of his wickedness." Two summaries of one sordid event, each selecting different moments.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">The resurrection morning — how many women, how many angels?</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">Count the claims, not the mentions. John follows Mary Magdalene; Matthew mentions "Mary Magdalene and the other Mary"; Mark adds Salome; Luke adds Joanna "and the others" — concentric circles of one group, no account saying "only." Same with the angels: Matthew and Mark mention the angel who spoke; Luke and John mention two present. "Two were there" and "one spoke" do not conflict. The accounts agree on every load-bearing fact — the tomb empty at dawn, women the first witnesses (an embarrassing detail no one would invent, since a woman's testimony carried no legal weight), the grave-clothes left, the Lord seen alive. The variation in detail is exactly Chrysostom's point: four independent witnesses, no collusion.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">2 Samuel 8:4 says David took 1,700 horsemen; 1 Chronicles 18:4 says 1,000 chariots and 7,000 horsemen.</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">A copyist's slip — exactly Augustine's first category ("the manuscript is faulty"). And this case shows how such slips are caught: the Greek Septuagint of 2 Samuel 8:4 and the Dead Sea Scrolls manuscript of Samuel (4QSam<sup>a</sup>) both read "1,000 chariots and 7,000 horsemen," agreeing with Chronicles — the word "chariots" dropped out of the later Hebrew copies of Samuel and the numbers were run together. Note what this case actually is: a transmission error in a list of war spoils, affecting no doctrine, no command, no promise — and detectable precisely because God preserved multiple textual streams. The Church has never claimed copyists were inspired; it claims the authors were.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">James 1:13 says God tempts no one — but Genesis 22:1 says God tempted Abraham.</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">One Greek/Hebrew word, two English senses. To <em>tempt</em> is to entice toward evil; to <em>test</em> is to prove and strengthen, like fire proving gold (1 Peter 1:7). James himself uses both senses three verses apart: God tempts no one toward sin (1:13), yet "count it all joy when you meet trials" that produce steadfastness (1:2–3). Genesis 22 is explicit that the test's purpose was revelation and blessing, not entrapment — and it ends with the sacrifice <em>stopped</em> and the lamb provided: the chapter that forever separated the God of Abraham from the child-sacrificing gods of Canaan, enacted as a test Abraham passed.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">"No one has ever seen God" (John 1:18) — yet Jacob, Moses, and Isaiah saw Him.</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">The Fathers answered with a distinction Scripture itself draws in one chapter: God tells Moses "you cannot see my face, for man shall not see me and live" — and then shows him His "back" (Exodus 33:20–23). No creature sees the divine <em>essence</em>; what the patriarchs and prophets saw were God's self-manifestations — the Angel of the LORD, the glory, the form — which the Fathers consistently identified as appearances of the Word before His incarnation. John 1:18 completes its own sentence: "No one has ever seen God; the only God, who is at the Father's side, he has made him known." The theophanies were previews; the Incarnation is the showing.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" id="faq">
+    <div class="sec-h" onclick="ts(this)"><h2>Frequently Asked Questions</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">"Is the Old Testament God a different God from the New Testament God?"</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">This is the oldest heresy on record — Marcion taught it around AD 140, and the Church condemned it immediately and universally. The God who judges in the Old Testament forgives in it too (Exodus 34:6 — "merciful and gracious, slow to anger" — is the Old Testament's own creed); and the Christ of the New speaks more of judgment than any prophet. One God, revealed progressively, fully in Christ. The Church kept the whole Bible precisely because she refused to choose between God's justice and His mercy — the Cross is both at once.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">"What about the children in the cities under the ban?"</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">Face the question honestly, with everything established above in place: the totality language is war rhetoric (the "annihilated" peoples are alive in the next chapter); the targeted cities, like Jericho and Ai, were fortified military-royal strongholds, not population centers; the command's stated object was the cult, not a bloodline; and the civilization in question burned its own children to Molech — the practice the judgment ended. What remains after these corrections is God's right to end a civilization in judgment — the same right exercised at the Flood and at Babylon, and finally at the Last Day. A God without that right could not be the guarantor of justice the critic's own outrage appeals to. And the children of every age are in the hands of the Judge of all the earth, who "shall do what is just" (Genesis 18:25) — and who showed His heart toward children by taking them in His arms (Mark 10:14–16).</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">"Elisha and the she-bears (2 Kings 2:23–24) — God kills children for name-calling?"</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">Read the Hebrew and the setting. The mockers are ne'arim qetannim — a phrase elastic enough that the adult king Solomon uses it of himself ("I am but a little child," na'ar qatan, 1 Kings 3:7), and na'ar elsewhere covers soldiers and royal servants; forty-two were mauled, so the gang was larger still. Bethel was the capital of the calf-cult, and "Go up, baldhead!" means "go up like Elijah — disappear, we're rid of God's prophets." This is an organized demonstration against God's prophet at the heart of state idolatry, at the fragile moment of prophetic succession — and the bears wound ("mauled"), the text does not say killed. It is a judgment scene in a prophetic narrative, not a policy on playground teasing.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">"Psalm 137 blesses those who dash babies against rocks."</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">Psalm 137 is a lament sung by survivors of Babylon's sack of Jerusalem — people who had watched exactly that done to their own children (the verse echoes the standard atrocity of ancient siege warfare back at its perpetrators). Scripture records the raw cry; it does not command the deed — the Law forbade Israel ever to touch enemy children in that way, and the same psalter says "the LORD is good to all, and his mercy is over all that he has made" (Psalm 145:9). The Fathers, from Origen onward, prayed the verse spiritually: the "little ones of Babylon" are sinful thoughts, to be dashed against the Rock — and "the Rock was Christ" (1 Corinthians 10:4); St. Benedict's Rule (Prologue) cites the verse exactly so. Honest grief recorded, judgment left to God, and the Church's prayer book turned even this into warfare against sin.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">"Why didn't God just ban slavery outright in the Old Testament?"</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">For the same reason He "allowed" divorce: hardness of heart (Matthew 19:8). Law can only bind the people it actually governs; a Bronze Age decree of instant abolition in a world where servitude was the only safety net for the destitute would have been a sentence of starvation, not liberation. So the Law throttled the institution (term limits, severance, sanctuary, capital punishment for the trade) and planted its killers (image of God, one Maker, Exodus memory). When the Seed Himself came, He proclaimed "liberty to the captives" — and within three centuries His Church produced the first abolitionist text in human history. Measure the trajectory, not the snapshot.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">"If there are copyist errors, how can I trust the Bible at all?"</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">Because the manuscript evidence is precisely how we know the text — and how we catch the slips. The Bible is the best-attested text of antiquity by an enormous margin: thousands of Hebrew and Greek manuscripts, ancient translations, and patristic quotations, allowing variants to be identified and weighed openly (every serious Bible footnotes them). The variants are overwhelmingly spelling and word order; no doctrine of the faith rests on a disputed reading. Compare: for most classical works we trust, a few dozen late manuscripts suffice. The Church's claim was never that scribes were sinless — it is that God gave His word through inspired authors and preserved it through an abundance of witnesses, visible and checkable to this day.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">"Didn't the Church use these same passages to defend slavery and violence?"</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">Some Christians did, to their judgment — and they had to fight the plain texts to do it: Exodus 21:16 makes the slave trade a capital crime; Deuteronomy 23:15 forbids returning the runaway; Philemon makes the slave a brother; Gregory of Nyssa had called the whole institution rebellion against God fourteen centuries before the Middle Passage. Abuse of a text is not the text's meaning — and notice who supplied the standard by which we condemn those Christians: the same Scriptures. The abolitionists did not defeat the slaveholders by abandoning the Bible; they defeated them by reading it better. That is what this whole page invites: not less Scripture, but more.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" id="glossary">
+    <div class="sec-h" onclick="ts(this)"><h2>Glossary</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <div class="gt-grid">
+        <div class="gt"><div class="gt-term">Herem ("the ban")</div><div class="gt-def">Hebrew term for devoting something wholly to God, removing it from human use — in war contexts, the total dedication of a city and its cult to destruction. Its language is formulaic and, as the texts themselves show, hyperbolic.</div></div>
+        <div class="gt"><div class="gt-term">Ancient War Rhetoric</div><div class="gt-def">The conventional totality language of ancient Near Eastern victory accounts ("destroyed all," "left none remaining") used by Egyptian, Moabite, Assyrian — and biblical — writers, never intended as a literal census of the dead.</div></div>
+        <div class="gt"><div class="gt-term">Divine Condescension</div><div class="gt-def">The Fathers' teaching (Greek synkatabasis, beloved of Chrysostom) that God accommodates His revelation to human weakness and leads His people by stages — the principle Christ states in Matthew 19:8.</div></div>
+        <div class="gt"><div class="gt-term">Marcionism</div><div class="gt-def">The 2nd-century heresy that the Old Testament's God is a different, lesser god than the Father of Jesus. Condemned universally; the Church staked her life on one God in both covenants.</div></div>
+        <div class="gt"><div class="gt-term">Typology</div><div class="gt-def">Reading Old Testament persons and events as divinely intended figures of Christ and the Christian life (1 Corinthians 10:11) — the method by which the Fathers read Joshua's wars as the soul's war on sin.</div></div>
+        <div class="gt"><div class="gt-term">Debt-servitude</div><div class="gt-def">The primary institution regulated by the Torah's "slavery" laws: labor to discharge debt, term-limited to six years for Israelites, with mandatory provision at release (Deuteronomy 15).</div></div>
+        <div class="gt"><div class="gt-term">Textual Variant</div><div class="gt-def">A difference between manuscripts arising in copying. Openly catalogued in every critical edition; overwhelmingly trivial; the reason Augustine's first rule for apparent errors is "the manuscript may be faulty."</div></div>
+        <div class="gt"><div class="gt-term">Harmony of the Gospels</div><div class="gt-def">Both a genre and Augustine's book (De Consensu Evangelistarum, c. 400) working through the Gospels' differences case by case — proof the Church has examined these questions from the beginning.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" id="sources">
+    <div class="sec-h" onclick="ts(this)"><h2>Sources &amp; Further Reading</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p><strong>Scripture:</strong> Genesis 15:16; 18:25 · Exodus 21:2, 16, 20, 26–27; 23:28–30; 33:20–23; 34:6 · Leviticus 18; 25 · Deuteronomy 5:14; 7:2–5; 9:5; 12:31; 15:12–15; 23:15–16 · Joshua 2; 6:25; 9; 10:40; 15:63 · Judges 1 · 2 Samuel 24 · 2 Kings 2:23–24; 17 · 1 Chronicles 21 · Job 31:13–15 · Psalms 137; 145:9 · Jeremiah 18:7–8 · Matthew 1:5; 19:8; 26:52; 27:3–8 · Luke 4:18; 24:27 · John 1:18; 18:36 · Acts 1:18 · 1 Corinthians 7:21; 10:4, 11 · Galatians 3:28 · Ephesians 6:12 · Philemon · 1 Timothy 1:9–10 · Hebrews 1:1–3 · James 1:2–13 · Revelation 18:13.</p>
+      <p><strong>Church Fathers:</strong> Origen, Homilies on Joshua 15.1 (trans. B. Bruce, FOTC) · St. Gregory of Nyssa, Homily 4 on Ecclesiastes (trans. S. Hall) and The Life of Moses, Book II · St. John Chrysostom, Homily 1 on Matthew · St. Augustine, Letter 82 to Jerome and The Harmony of the Gospels · St. Benedict, Rule, Prologue (on Psalm 137) · Irenaeus, Against Heresies, Book IV (against Marcion, one God of both covenants).</p>
+      <p><strong>Ancient Near East:</strong> Merneptah Stele (c. 1208 BC) · Mesha Stele (c. 840 BC) · Code of Hammurabi §16 — for the war-rhetoric and runaway-slave comparisons.</p>
+      <p><strong>The objection cited:</strong> Richard Dawkins, The God Delusion (2006), ch. 2.</p>
+      <p><strong>Companion pages:</strong> <a href="moral_argument.html">The Moral Argument</a> (the standard the objection borrows) · <a href="problem_of_evil.html">The Problem of Evil</a> · <a href="biblical_canon.html">The Biblical Canon</a> (how the books were received) · <a href="evidence_for_god.html">The Evidence for God</a>.</p>
+    </div>
+  </div>
+
+</main>
+<script>
+window.addEventListener('scroll',()=>{const h=document.documentElement;document.getElementById('prog').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100+'%';});
+const navLinks=document.querySelectorAll('#sb-nav a[href^="#"]');
+const secs2=document.querySelectorAll('main .sec[id]');
+window.addEventListener('scroll',()=>{let cur='';secs2.forEach(s=>{if(s.getBoundingClientRect().top<=120)cur=s.id;});navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur);});},{passive:true});
+function ts(h){h.closest('.sec').classList.toggle('open');}
+function tf(h){h.closest('.fi').classList.toggle('open');}
+function sidebarSearch(q){
+  q=q.trim().toLowerCase();
+  const secs=document.querySelectorAll('main .sec');
+  let matched=0;
+  secs.forEach(sec=>{
+    if(!q){sec.classList.remove('s-hidden');const h2=sec.querySelector('.sec-h h2');if(h2._orig)h2.innerHTML=h2._orig;matched++;return;}
+    const h2=sec.querySelector('.sec-h h2');
+    const body=sec.querySelector('.sec-body');
+    const hit=(h2._orig||h2.textContent).toLowerCase().includes(q)||(body?body.textContent.toLowerCase():'').includes(q);
+    sec.classList.toggle('s-hidden',!hit);
+    if(hit){matched++;if(!h2._orig)h2._orig=h2.innerHTML;const re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');h2.innerHTML=h2._orig.replace(re,'<mark>$1</mark>');sec.classList.add('open');}
+  });
+  document.getElementById('sb-no-match').classList.toggle('show',!!q&&matched===0);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Original Sin — The Orthodox Lamp</title>
+<style>
+:root{
+  --gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;
+  --bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--bg5:#3a2e10;
+  --tx:#e8e0d0;--mu:#a09880;--br:#2a2a2a;
+  --sidebar-w:270px;
+  --rc:#3a1a1a;--rcc:#d47070;
+  --oo:#1a2e1a;--ooc:#7dc87d;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.7;display:flex;min-height:100vh}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+mark{background:rgba(201,168,76,.28);color:var(--gl);border-radius:2px;padding:0 2px}
+#prog{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--gd),var(--gl));z-index:200;transition:width .1s}
+#sb{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:100;display:flex;flex-direction:column}
+#sb-brand{padding:18px 18px 10px;border-bottom:1px solid var(--br)}
+#sb-brand .lamp{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mu);margin-bottom:4px}
+#sb-brand h1{font-size:1rem;color:var(--gold);line-height:1.3}
+.sb-search{padding:10px 14px 4px}
+.sb-search input{width:100%;background:rgba(255,255,255,.06);border:1px solid var(--br);border-radius:6px;padding:8px 12px;font-size:.8rem;color:var(--tx);font-family:'Georgia',serif;outline:none;transition:border-color .2s}
+.sb-search input::placeholder{color:#666}
+.sb-search input:focus{border-color:var(--gd)}
+.sec.s-hidden{display:none}
+.no-match-msg{display:none;padding:14px 18px;font-size:.8rem;color:var(--mu);font-style:italic;text-align:center}
+.no-match-msg.show{display:block}
+#sb-nav{padding:10px 0 20px;flex:1}
+#sb-nav a{display:block;padding:6px 18px;font-size:.82rem;color:var(--mu);border-left:2px solid transparent;transition:all .15s;line-height:1.4}
+#sb-nav a:hover,#sb-nav a.active{color:var(--gold);border-left-color:var(--gold);background:rgba(201,168,76,.06);text-decoration:none}
+main{margin-left:var(--sidebar-w);flex:1;max-width:820px;padding:48px 48px 80px}
+.pg-title{margin-bottom:10px}
+.pg-title .lamp-label{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--mu);margin-bottom:6px}
+.pg-title h1{font-size:2rem;color:var(--gold);line-height:1.2}
+.pg-title .sub{font-size:1rem;color:var(--mu);margin-top:6px;font-style:italic}
+.pg-intro{max-width:660px;color:var(--mu);font-size:.95rem;margin:16px 0 36px;border-left:3px solid var(--gd);padding-left:14px}
+.sec{border:1px solid var(--br);border-radius:8px;margin-bottom:14px;overflow:hidden;background:var(--bg2)}
+.sec-h{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;cursor:pointer;user-select:none;gap:10px}
+.sec-h:hover{background:rgba(255,255,255,.03)}
+.sec-h h2{font-size:1rem;color:var(--tx);font-weight:600}
+.sec-h .arr{color:var(--mu);font-size:.8rem;transition:transform .2s;flex-shrink:0}
+.sec.open .arr{transform:rotate(90deg)}
+.sec-body{display:none;padding:18px 20px 20px;border-top:1px solid var(--br)}
+.sec.open .sec-body{display:block}
+.sec-body p{color:var(--mu);font-size:.92rem;margin-bottom:10px}
+.sec-body p:last-child{margin-bottom:0}
+.sv{background:var(--bg5);border:1px solid var(--gd);border-radius:6px;padding:12px 16px;margin:12px 0;font-style:italic;color:var(--gl);font-size:.92rem}
+.sv cite{display:block;text-align:right;font-size:.8rem;color:var(--gold);margin-top:6px;font-style:normal}
+.comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.comp-card{border-radius:8px;padding:14px 16px;border:1px solid}
+.comp-card.rc-card{background:var(--rc);border-color:var(--rcc)}
+.comp-card.oo-card{background:var(--oo);border-color:var(--ooc)}
+.comp-card .cc-label{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;font-weight:700}
+.comp-card.rc-card .cc-label{color:var(--rcc)}
+.comp-card.oo-card .cc-label{color:var(--ooc)}
+.comp-card ul{padding-left:16px;font-size:.88rem;line-height:1.75}
+.comp-card.rc-card ul{color:#e8c0c0}
+.comp-card.oo-card ul{color:#c8e8c8}
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin:14px 0}
+.fc{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:14px 16px}
+.fc-name{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.fc-body{font-size:.88rem;color:var(--mu);font-style:italic;line-height:1.6}
+.fc-src{font-size:.76rem;color:var(--gd);margin-top:6px}
+.fi{border:1px solid var(--br);border-radius:6px;margin-bottom:8px;overflow:hidden;background:var(--bg3)}
+.fi-h{display:flex;align-items:flex-start;padding:11px 14px;cursor:pointer;gap:8px;user-select:none}
+.fi-h:hover{background:rgba(255,255,255,.03)}
+.fi-q{font-size:.88rem;color:var(--tx);flex:1}
+.fi-arr{color:var(--mu);font-size:.75rem;transition:transform .2s;flex-shrink:0;margin-top:4px}
+.fi.open .fi-arr{transform:rotate(90deg)}
+.fi-body{display:none;padding:12px 14px 14px;border-top:1px solid var(--br);font-size:.88rem;color:var(--mu);line-height:1.65}
+.fi.open .fi-body{display:block}
+.gt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin:14px 0}
+.gt{background:var(--bg3);border:1px solid var(--br);border-radius:7px;padding:12px 14px}
+.gt-term{font-size:.8rem;font-weight:700;color:var(--gold);margin-bottom:4px}
+.gt-def{font-size:.84rem;color:var(--mu);line-height:1.55}
+/* Greek/Latin text box */
+.lang-box{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:14px 18px;margin:12px 0}
+.lb-label{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mu);margin-bottom:8px}
+.lb-row{display:flex;gap:16px;margin-bottom:8px;align-items:baseline;flex-wrap:wrap}
+.lb-lang{font-size:.72rem;color:var(--gold);min-width:60px;flex-shrink:0}
+.lb-text{font-size:.9rem;color:var(--tx);font-style:italic}
+.lb-note{font-size:.8rem;color:var(--mu);margin-top:4px}
+/* consequence vs guilt boxes */
+.distinction-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.dist-box{border-radius:8px;padding:14px 16px;border:1px solid}
+.dist-box.inherited{background:#1a1a2e;border-color:#7070d4}
+.dist-box.not-inherited{background:#2e1a1a;border-color:#d47070}
+.dist-box .db-label{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;font-weight:700}
+.dist-box.inherited .db-label{color:#a0a0e8}
+.dist-box.not-inherited .db-label{color:var(--rcc)}
+.dist-box ul{padding-left:16px;font-size:.88rem;line-height:1.75}
+.dist-box.inherited ul{color:#c8c8f0}
+.dist-box.not-inherited ul{color:#f0c8c8}
+@media(max-width:760px){#sb{transform:translateX(-100%)}main{margin-left:0;padding:24px 18px 60px}}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<nav id="sb">
+  <div id="sb-brand">
+    <div class="lamp">The Orthodox Lamp</div>
+    <h1>Original Sin</h1>
+  </div>
+  <div class="sb-search">
+    <input type="search" placeholder="Search sections…" oninput="sidebarSearch(this.value)" aria-label="Search sections">
+  </div>
+  <div id="sb-nav">
+    <a href="#overview">Two Frameworks</a>
+    <a href="#romans">Romans 5:12 — The Key Text</a>
+    <a href="#augustine">Augustine's Innovation</a>
+    <a href="#eastern">The Eastern Understanding</a>
+    <a href="#consequences">What We Do Inherit</a>
+    <a href="#implications">Why It Matters</a>
+    <a href="#faq">FAQ</a>
+    <a href="#glossary">Glossary</a>
+  </div>
+  <div class="no-match-msg" id="sb-no-match">No sections match.</div>
+</nav>
+<main>
+  <div class="pg-title">
+    <div class="lamp-label">The Orthodox Lamp</div>
+    <h1>Original Sin</h1>
+    <div class="sub">Inherited guilt (Augustine) vs. ancestral sin (the Eastern Tradition)</div>
+  </div>
+  <p class="pg-intro">No single doctrinal difference between Eastern/Oriental Orthodoxy and Western Christianity runs deeper than the understanding of original sin. How we read Genesis 3 and Romans 5 shapes everything: atonement, grace, baptism, the nature of salvation, and whether the Immaculate Conception is necessary or even coherent.</p>
+
+  <div class="sec open" id="overview">
+    <div class="sec-h" onclick="ts(this)"><h2>Two Frameworks Side by Side</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <div class="comp-grid">
+        <div class="comp-card rc-card">
+          <div class="cc-label">Western (Augustinian) — Original Sin</div>
+          <ul>
+            <li>Adam's guilt is <em>inherited</em> by all descendants</li>
+            <li>All humans are born <em>guilty</em> of Adam's personal act</li>
+            <li>The will is fundamentally corrupted (total depravity in its Protestant form)</li>
+            <li>Concupiscence (disordered desire) is itself sinful</li>
+            <li>Unbaptized infants bear guilt — historically: limbo</li>
+            <li>Mary must be exempted from this guilt → Immaculate Conception</li>
+          </ul>
+        </div>
+        <div class="comp-card oo-card">
+          <div class="cc-label">Eastern/Oriental Orthodox — Ancestral Sin</div>
+          <ul>
+            <li>Adam's <em>consequences</em> are inherited; his <em>guilt</em> is not</li>
+            <li>All humans are born mortal, with disordered passions — but not guilty</li>
+            <li>The image of God is wounded but not destroyed</li>
+            <li>Concupiscence is a weakness, not yet sin — it becomes sin when consented to</li>
+            <li>Infants bear no guilt; baptism is still necessary (for union with Christ, not guilt removal)</li>
+            <li>Mary's Immaculate Conception is unnecessary on this anthropology</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" id="romans">
+    <div class="sec-h" onclick="ts(this)"><h2>Romans 5:12 — The Pivotal Text</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>The entire Western doctrine of inherited guilt rests substantially on one phrase in Romans 5:12. The Greek original and the Latin translation (the Vulgate) read very differently — and Augustine, who read mainly Latin, built his theology on the Latin.</p>
+      <div class="lang-box">
+        <div class="lb-label">Romans 5:12 — The Critical Phrase</div>
+        <div class="lb-row">
+          <span class="lb-lang">Greek:</span>
+          <span class="lb-text">…eph' hō pantes hēmarton (ἐφ' ᾧ πάντες ἥμαρτον)</span>
+        </div>
+        <div class="lb-note" style="margin-bottom:12px">Meaning: "because of whom all sinned" — or more precisely, "in that [i.e., in the condition of death] all sinned." The phrase expresses consequence and imitation, not inherited guilt.</div>
+        <div class="lb-row">
+          <span class="lb-lang">Latin (Vulgate):</span>
+          <span class="lb-text">…in quo omnes peccaverunt</span>
+        </div>
+        <div class="lb-note">Meaning: "in whom all sinned" — Augustine read "in whom" as referring to Adam: all humanity literally sinned <em>in</em> Adam, as if present in him. This reading made inherited guilt seem like a direct Pauline teaching.</div>
+      </div>
+      <p>Modern scholarship is nearly unanimous: the Greek <em>eph' hō</em> does not mean "in whom." It is a causal or consecutive phrase: "because of whom," "with the result that," or "in that [death spread and] all sinned." The Eastern Fathers who read the Greek never derived inherited guilt from this passage.</p>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">St. John Chrysostom (d. 407)</div>
+          <div class="fc-body">"How did all sin in Adam? He became mortal, and transmitted mortality to his posterity; and they, when they became mortal, lived in sin — not because they bore his guilt, but because they shared his mortality and the passions that attend it."</div>
+          <div class="fc-src">Homilies on Romans 10 — mortality as the inherited consequence, not guilt</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">Theodoret of Cyrrhus (d. c. 457)</div>
+          <div class="fc-body">"Paul does not say that all were made sinners through Adam's transgression, but that death spread to all, and through death, sin became active in all."</div>
+          <div class="fc-src">Commentary on Romans 5:12 — the Greek Eastern reading</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" id="augustine">
+    <div class="sec-h" onclick="ts(this)"><h2>Augustine's Innovation</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>St. Augustine of Hippo (d. 430) was a towering genius who transformed Western theology. His doctrine of original sin developed primarily in his controversy against Pelagius, who taught that humans have the full natural capacity to choose good without divine grace. Against this extreme, Augustine swung to a position the Eastern Fathers did not follow.</p>
+      <p>Augustine's key claims: (1) Adam's sin is transmitted to all descendants through sexual generation — specifically through concupiscence (disordered sexual desire), which he associated with shame after the Fall. (2) All humans are therefore born already guilty — members of the <em>massa damnata</em> (condemned mass). (3) The unbaptized cannot be saved, including infants — they are damned, though he allowed the mildest punishment for those who die in infancy. (4) God's grace is irresistible to the elect, overriding the corrupted will.</p>
+      <p>These conclusions follow from the Latin mistranslation of Romans 5:12 and from Augustine's own Neoplatonic and Manichaean background (which he converted from, but which shaped his deep suspicion of the body and of human free will). The Eastern Fathers knew Augustine's work but did not receive these specific conclusions as authoritative.</p>
+      <div class="sv">"I find then a law, that when I would do good, evil is present with me… but I see another law in my members, warring against the law of my mind…"<cite>Romans 7:21,23 — Paul describing the struggle with sin, not inherited guilt</cite></div>
+    </div>
+  </div>
+
+  <div class="sec" id="eastern">
+    <div class="sec-h" onclick="ts(this)"><h2>The Eastern Understanding: Ancestral Sin</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>The Eastern and Oriental Orthodox call the doctrine <em>ancestral sin</em> (προπατορικὴ ἁμαρτία — <em>propatorikē hamartia</em>) rather than "original sin," because the word "original" has become loaded with Augustinian connotations. The difference in terminology signals a genuine difference in substance.</p>
+      <div class="oo-box" style="background:var(--oo);border:1px solid var(--ooc);border-radius:8px;padding:16px 18px;margin:14px 0">
+        <div style="font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ooc);margin-bottom:6px">The Eastern Teaching</div>
+        <div style="color:#c8e8c8;font-size:.92rem;line-height:1.65">From Adam we inherit his <strong>condition</strong> — mortality, the weakening of the will, the disordering of the passions. We do not inherit his <strong>guilt</strong>. Each person is responsible for their own personal sins. We are born into a world broken by Adam's choice, carrying that brokenness, and in need of healing — but we are not born already condemned for something we did not do.</div>
+      </div>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">St. Athanasius of Alexandria (d. 373)</div>
+          <div class="fc-body">"Man, having turned from the contemplation of God to evil… fell into the disorder and turbulence of bodily life… Thus he became mortal, and corruption was thenceforth master."</div>
+          <div class="fc-src">On the Incarnation §5 — mortality and disorder inherited, not guilt</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Cyril of Alexandria (d. 444)</div>
+          <div class="fc-body">"We have become sinners through the disobedience of Adam in this sense: through his disobedience, sin entered the world and death through sin, and so death spread to all men."</div>
+          <div class="fc-src">Commentary on Romans — spread of death and its effects, not transferred guilt</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Maximus the Confessor (d. 662)</div>
+          <div class="fc-body">"Adam introduced the tyranny of pleasure-seeking over our nature, and after pleasure came pain, and after pain, death. We inherit not Adam's guilt but the nature he wounded — a nature enslaved to pleasure, pain, and death."</div>
+          <div class="fc-src">Ambigua 42 — the inherited nature, not inherited personal sin</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" id="consequences">
+    <div class="sec-h" onclick="ts(this)"><h2>What We Do and Don't Inherit</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>The Oriental Orthodox position is not soft on sin. It fully acknowledges the gravity of the Fall and the reality of humanity's disordered condition. The precision matters: what exactly is passed on?</p>
+      <div class="distinction-grid">
+        <div class="dist-box inherited">
+          <div class="db-label">We Inherit (Consequences)</div>
+          <ul>
+            <li>Mortality — the body dies</li>
+            <li>Disordered passions — tendency toward sin</li>
+            <li>Weakened will — harder to choose good</li>
+            <li>Spiritual blindness — dulled perception of God</li>
+            <li>A fallen world — an environment of sin</li>
+          </ul>
+        </div>
+        <div class="dist-box not-inherited">
+          <div class="db-label">We Don't Inherit (Guilt)</div>
+          <ul>
+            <li>Adam's personal guilt for his act</li>
+            <li>Condemnation for sin we did not commit</li>
+            <li>A will so corrupted it cannot choose good</li>
+            <li>Automatic damnation prior to personal choice</li>
+          </ul>
+        </div>
+      </div>
+      <p>The image of God (imago Dei) in human beings is wounded by the Fall but not destroyed. This is why the Eastern tradition consistently emphasizes <em>healing</em> as the model of salvation — Christ the Physician restoring a sick and wounded nature — rather than the Western legal model of a judge cancelling a debt of guilt.</p>
+      <div class="sv">"For as in Adam all die, so also in Christ shall all be made alive."<cite>1 Corinthians 15:22 — death and life, the Eastern lens on what Adam gave and Christ restores</cite></div>
+    </div>
+  </div>
+
+  <div class="sec" id="implications">
+    <div class="sec-h" onclick="ts(this)"><h2>Why This Difference Matters</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>This is not an abstract theological debate. The Western Augustinian framework generates a cascade of doctrines that make sense within it but are foreign to the Eastern tradition:</p>
+      <p><strong style="color:var(--gold)">The Immaculate Conception</strong> — If all humans inherit Adam's guilt, then Mary too would inherit it, and God must intervene specially to exempt her. But on the Eastern anthropology, no one inherits guilt. Mary inherits the fallen condition — mortality and the passions — and is sanctified by grace, purified especially at the Annunciation (Luke 1:35). No special retroactive exemption is needed or theologically coherent. See: <a href="roman_catholic_dogmas.html">Roman Catholic Dogmas →</a></p>
+      <p><strong style="color:var(--gold)">Purgatory &amp; Indulgences</strong> — If sin incurs inherited guilt and must be juridically satisfied, then a mechanism for working off that punishment (purgatory, indulgences) follows logically. On the Eastern view, salvation is healing, not debt repayment — there is no ledger to clear.</p>
+      <p><strong style="color:var(--gold)">Total Depravity</strong> — The Protestant Reformation took Augustine's logic further: the will is so corrupt that it cannot even desire God without irresistible grace. The Eastern tradition has never accepted this. The image of God is wounded; it is not annihilated. Human free will, while weakened, remains genuinely free.</p>
+      <p><strong style="color:var(--gold)">Infant Baptism</strong> — The Oriental Orthodox practice infant baptism, but for union with Christ, reception of the Holy Spirit, and incorporation into the Body — not primarily for removal of inherited guilt. The emphasis is on what is gained, not what is washed away.</p>
+      <p><strong style="color:var(--gold)">Salvation as Theosis</strong> — Because sin is primarily a sickness (mortality, disorder) rather than a legal guilt, salvation is primarily a healing and deification rather than a legal acquittal. "He became man that we might become God" (Athanasius) is the summary of Eastern soteriology — and it only makes sense once we understand what was broken and how.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="faq">
+    <div class="sec-h" onclick="ts(this)"><h2>FAQ</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">If we don't inherit guilt, why do we need baptism?</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">Baptism is not only about washing away guilt — it is union with Christ, death and resurrection with him (Romans 6:3-4), adoption as children of God, and reception of the Holy Spirit. These are positive gifts, not merely cancellations of debt. Baptism heals the fallen nature by incorporating us into Christ's own death and resurrection. Infants need this healing and union just as much as adults — not because they are guilty, but because they are mortal and fallen and in need of the divine life.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Does the Eastern view deny that Adam's sin really affected us?</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">Absolutely not. The Eastern tradition takes the Fall seriously — perhaps more seriously than some Western frameworks, because it locates the problem in the very structure of human existence (mortality, disordered desire, spiritual blindness) rather than in a legal status. We are genuinely broken, genuinely in need of radical divine intervention. The difference is whether we are broken by being born already condemned for Adam's act, or whether we are broken by inheriting his wounded nature and then adding our own sins on top of it.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Was Augustine wrong?</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">Augustine was a saint and a towering theological mind who preserved vital truths — especially against Pelagius, who genuinely underestimated human fallenness and the necessity of grace. The Oriental Orthodox honor him. But his specific conclusions about inherited guilt, the transmission of sin through concupiscence, and the <em>massa damnata</em> were not received by the Eastern Fathers. The Eastern tradition holds that he overshot in response to Pelagius, and that his reading of Romans 5:12 was shaped by a mistranslation. Being a saint does not make every theological conclusion correct — the Church received what is true and left aside what is not.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Do Eastern Orthodox and Oriental Orthodox agree on this?</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">Yes, substantially. Both Eastern and Oriental Orthodox understand sin as ancestral rather than in the Augustinian inherited-guilt sense. This is one of the clearest areas of agreement between the two families. The Cappadocian Fathers, John Chrysostom, Cyril of Alexandria, and Maximus the Confessor — venerated by both traditions — all read Romans 5:12 and Genesis 3 in the way described in this site.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" id="glossary">
+    <div class="sec-h" onclick="ts(this)"><h2>Glossary</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <div class="gt-grid">
+        <div class="gt"><div class="gt-term">Original Sin</div><div class="gt-def">The Western (Augustinian) doctrine that Adam's guilt is inherited by all humans from conception, rendering them culpable before God prior to any personal act.</div></div>
+        <div class="gt"><div class="gt-term">Ancestral Sin</div><div class="gt-def">The Eastern/OO doctrine: Adam's fallen <em>condition</em> (mortality, disordered passions) is inherited, but not his personal guilt. Each person is guilty only of their own sins.</div></div>
+        <div class="gt"><div class="gt-term">Concupiscence</div><div class="gt-def">Disordered desire or inclination toward sin. Augustine treated it as itself sinful; the Eastern tradition treats it as a weakness that becomes sin only when consented to.</div></div>
+        <div class="gt"><div class="gt-term">Massa Damnata</div><div class="gt-def">Augustine's term: the "condemned mass" of humanity, born in guilt and deserving damnation. God's election saves some; the rest receive their just punishment.</div></div>
+        <div class="gt"><div class="gt-term">Eph' hō</div><div class="gt-def">The Greek phrase in Romans 5:12, meaning "because of whom" or "in that [all sinned]." Mistranslated in the Vulgate as "in whom," providing the textual basis for Augustine's inherited guilt.</div></div>
+        <div class="gt"><div class="gt-term">Theosis</div><div class="gt-def">Deification — participation in the divine nature (2 Pet 1:4). The Eastern goal of salvation: not merely forgiveness of guilt but genuine union with and transformation by God.</div></div>
+        <div class="gt"><div class="gt-term">Imago Dei</div><div class="gt-def">The image of God in humanity (Gen 1:26-27). In Eastern theology it is wounded but not destroyed by the Fall; in the darkest Augustinian formulations it is severely corrupted.</div></div>
+        <div class="gt"><div class="gt-term">Pelagianism</div><div class="gt-def">The heresy (condemned at Ephesus 431 and Orange 529) that humans can achieve salvation through natural free will without divine grace. The Eastern tradition rejects this as firmly as the West does.</div></div>
+      </div>
+    </div>
+  </div>
+</main>
+<script>
+window.addEventListener('scroll',()=>{const h=document.documentElement;document.getElementById('prog').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100+'%';});
+const navLinks=document.querySelectorAll('#sb-nav a[href^="#"]');
+const secs2=document.querySelectorAll('main .sec[id]');
+window.addEventListener('scroll',()=>{let cur='';secs2.forEach(s=>{if(s.getBoundingClientRect().top<=120)cur=s.id;});navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur);});},{passive:true});
+function ts(h){h.closest('.sec').classList.toggle('open');}
+function tf(h){h.closest('.fi').classList.toggle('open');}
+function sidebarSearch(q){
+  q=q.trim().toLowerCase();
+  const secs=document.querySelectorAll('main .sec');
+  let matched=0;
+  secs.forEach(sec=>{
+    if(!q){sec.classList.remove('s-hidden');const h2=sec.querySelector('.sec-h h2');if(h2._orig)h2.innerHTML=h2._orig;matched++;return;}
+    const h2=sec.querySelector('.sec-h h2');
+    const body=sec.querySelector('.sec-body');
+    const hit=(h2._orig||h2.textContent).toLowerCase().includes(q)||(body?body.textContent.toLowerCase():'').includes(q);
+    sec.classList.toggle('s-hidden',!hit);
+    if(hit){matched++;if(!h2._orig)h2._orig=h2.innerHTML;const re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');h2.innerHTML=h2._orig.replace(re,'<mark>$1</mark>');sec.classList.add('open');}
+  });
+  document.getElementById('sb-no-match').classList.toggle('show',!!q&&matched===0);
+}
+</script>
+</body>
+</html>

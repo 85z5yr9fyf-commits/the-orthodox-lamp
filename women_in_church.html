@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Women in the Church — The Orthodox Lamp</title>
+<style>
+:root{--gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;--bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--tx:#e8e0d0;--mu:#a09880;--red:#8b2020;--br:#2a2a2a;--bg5:#3a2e10;--sidebar-w:270px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.7;display:flex;flex-direction:column;min-height:100vh}
+a{color:var(--gold);text-decoration:none}
+a:hover{color:var(--gl)}
+
+#prog{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--gd),var(--gold),var(--gl));z-index:9999;transition:width .1s}
+
+#sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:100;display:flex;flex-direction:column;transition:transform .3s}
+#sidebar header{padding:1.4rem 1.2rem 1rem;border-bottom:1px solid var(--br)}
+.sb-cross{font-size:1.3rem;color:var(--gold);display:block;text-align:center;margin-bottom:.3rem}
+.sb-title{font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gl);text-align:center;line-height:1.3}
+.sb-sub{font-size:.62rem;color:var(--mu);text-align:center;margin-top:.25rem;font-style:italic}
+nav{padding:.8rem 0;flex:1}
+nav a{display:block;padding:.42rem 1.2rem;font-size:.78rem;color:var(--mu);transition:color .15s,background .15s;border-left:2px solid transparent;line-height:1.4}
+nav a:hover{color:var(--tx);background:var(--bg3)}
+nav a.active{color:var(--gl);border-left-color:var(--gold);background:var(--bg5)}
+.sb-search{padding:.8rem 1rem;border-top:1px solid var(--br)}
+.sb-search input{width:100%;background:var(--bg3);border:1px solid var(--br);border-radius:5px;padding:.4rem .7rem;color:var(--tx);font-size:.78rem;outline:none}
+.sb-search input:focus{border-color:var(--gd)}
+
+#main{margin-left:var(--sidebar-w);flex:1;display:flex;flex-direction:column}
+#mob-bar{display:none;position:fixed;top:0;left:0;right:0;height:48px;background:var(--bg2);border-bottom:1px solid var(--br);align-items:center;padding:0 1rem;z-index:99}
+#mob-bar .mb-title{font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gl);flex:1;text-align:center}
+#ham{background:none;border:none;color:var(--gold);font-size:1.4rem;cursor:pointer;padding:.3rem}
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:99}
+#overlay.show{display:block}
+
+.hero{text-align:center;padding:4.5rem 1.5rem 3rem;background:linear-gradient(180deg,var(--bg2) 0%,var(--bg) 100%);border-bottom:1px solid var(--br);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(201,168,76,.07) 0%,transparent 70%);pointer-events:none}
+.si{font-size:2rem;color:var(--gold);display:block;margin-bottom:.5rem}
+.st{font-size:clamp(1.5rem,4vw,2.4rem);font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--tx);line-height:1.2}
+.st span{color:var(--gold)}
+.ss{font-size:1rem;color:var(--gl);margin:.6rem 0 .3rem;font-weight:700;letter-spacing:.04em}
+.tg{font-size:.85rem;color:var(--mu);font-style:italic;margin-top:.4rem}
+.orn{color:var(--gold);font-size:.9rem;letter-spacing:.4em;margin-top:1rem;opacity:.7}
+
+.content{max-width:820px;margin:0 auto;padding:3rem 2rem 5rem;flex:1}
+
+.sec{border:1px solid var(--br);border-radius:8px;margin-bottom:1.2rem;overflow:hidden;background:var(--bg2)}
+.sec-h{width:100%;background:none;border:none;padding:1.1rem 1.4rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--tx);font-family:'Georgia',serif;font-size:1rem;font-weight:700;text-align:left;transition:background .2s}
+.sec-h:hover{background:var(--bg3)}
+.sec-h .sec-num{color:var(--gold);font-size:.8rem;font-weight:700;letter-spacing:.1em;margin-right:.7rem;min-width:2.2rem}
+.sec-h .arr{color:var(--gold);transition:transform .3s;font-size:.9rem}
+.sec.open .arr{transform:rotate(180deg)}
+.sec-b{display:none;padding:1.4rem;border-top:1px solid var(--br)}
+.sec.open .sec-b{display:block}
+
+h3{font-size:1rem;color:var(--gl);margin:1.4rem 0 .6rem;letter-spacing:.03em}
+h3:first-child{margin-top:0}
+p{margin-bottom:.9rem;font-size:.92rem}
+ul,ol{margin:.6rem 0 .9rem 1.4rem;font-size:.92rem}
+li{margin-bottom:.3rem}
+blockquote{border-left:3px solid var(--gold);padding:.6rem 1rem;background:var(--bg3);border-radius:0 5px 5px 0;margin:.8rem 0;font-style:italic;font-size:.9rem;color:var(--gl)}
+
+/* Scripture cards */
+.sv{background:var(--bg3);border:1px solid var(--br);border-radius:7px;padding:1rem 1.2rem;margin:.7rem 0}
+.sv .ref{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+.sv .txt{font-size:.9rem;font-style:italic;line-height:1.6;margin-bottom:.5rem}
+.labels{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.4rem}
+.labels span{font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.15rem .5rem;border-radius:3px}
+.labels .oo{background:var(--bg5);color:var(--gold);border:1px solid var(--gd)}
+.labels .prot{background:#1a1a3a;color:#8a8adf;border:1px solid #2a2a6a}
+.labels .ctx{background:#1a2a1a;color:#6abf8a;border:1px solid #2a5c3a}
+.labels .pl{background:#3a2e10;color:#c9a84c;border:1px solid #5a4a20}
+
+/* Father cards */
+.fc{background:var(--bg3);border-left:3px solid var(--gold);border-radius:0 7px 7px 0;padding:1rem 1.2rem;margin:.7rem 0}
+.fc .fn{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.2rem}
+.fc .fw{font-size:.78rem;color:var(--mu);margin-bottom:.4rem;font-style:italic}
+.fc .fq{font-size:.9rem;font-style:italic;line-height:1.6}
+
+/* Saint profile cards */
+.saint{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:1rem 1.2rem;margin:.7rem 0;border-top:2px solid var(--gd)}
+.saint-name{font-size:.9rem;font-weight:700;color:var(--gl);margin-bottom:.15rem}
+.saint-title{font-size:.75rem;color:var(--gold);font-style:italic;margin-bottom:.5rem;letter-spacing:.04em}
+.saint-desc{font-size:.88rem;color:var(--tx);line-height:1.6}
+
+/* Objection accordion */
+.obj{border:1px solid var(--br);border-radius:7px;margin:.7rem 0;overflow:hidden;background:var(--bg3)}
+.obj-h{width:100%;background:none;border:none;padding:.8rem 1.1rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--gl);font-family:'Georgia',serif;font-size:.88rem;font-weight:700;text-align:left}
+.obj-h:hover{background:var(--bg4)}
+.obj-h .arr{transition:transform .3s;font-size:.8rem;color:var(--gold)}
+.obj.open .arr{transform:rotate(180deg)}
+.obj-b{display:none;padding:1rem 1.1rem;border-top:1px solid var(--br);font-size:.88rem}
+.obj.open .obj-b{display:block}
+
+/* FAQ */
+.fi{border:1px solid var(--br);border-radius:7px;margin:.6rem 0;overflow:hidden}
+.fi-h{width:100%;background:var(--bg2);border:none;padding:.8rem 1.1rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--tx);font-family:'Georgia',serif;font-size:.88rem;font-weight:700;text-align:left}
+.fi-h:hover{background:var(--bg3)}
+.fi-h .arr{transition:transform .3s;font-size:.8rem;color:var(--gold)}
+.fi.open .arr{transform:rotate(180deg)}
+.fi-b{display:none;padding:1rem 1.1rem;border-top:1px solid var(--br);background:var(--bg2);font-size:.88rem}
+.fi.open .fi-b{display:block}
+
+/* Sources */
+.src-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.8rem;margin-top:.8rem}
+.src-card{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:.9rem 1rem}
+.src-card h4{font-size:.78rem;font-weight:700;color:var(--gold);margin-bottom:.4rem;letter-spacing:.06em;text-transform:uppercase}
+.src-card p,.src-card li{font-size:.8rem;color:var(--mu)}
+.src-card ul{margin-left:1rem}
+
+#btt{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--bg3);border:1px solid var(--gd);border-radius:50%;width:2.4rem;height:2.4rem;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1rem;cursor:pointer;opacity:0;transition:opacity .3s;z-index:50}
+#btt.show{opacity:1}
+
+@media(max-width:768px){
+  #sidebar{transform:translateX(-100%)}
+  #sidebar.open{transform:translateX(0)}
+  #main{margin-left:0;padding-top:48px}
+  #mob-bar{display:flex}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<div id="overlay" onclick="closeMobile()"></div>
+
+<aside id="sidebar">
+  <header>
+    <span class="sb-cross">☩</span>
+    <div class="sb-title">The Orthodox Lamp</div>
+    <div class="sb-sub">Women in the Church</div>
+  </header>
+  <nav id="nav">
+    <a href="#s1">I. Introduction</a>
+    <a href="#s2">II. The Image of God in Woman</a>
+    <a href="#s3">III. Women in the Old Testament</a>
+    <a href="#s4">IV. Jesus and Women</a>
+    <a href="#s5">V. Women in the Apostolic Church</a>
+    <a href="#s6">VI. Mary — Theotokos &amp; Model</a>
+    <a href="#s7">VII. Female Saints &amp; Martyrs</a>
+    <a href="#s8">VIII. The "Silence" Passages</a>
+    <a href="#s9">IX. The Question of Ordination</a>
+    <a href="#s10">X. The Diaconate of Women</a>
+    <a href="#s11">XI. Objections Addressed</a>
+    <a href="#s12">XII. Frequently Asked Questions</a>
+    <a href="#s13">XIII. Sources &amp; Further Reading</a>
+  </nav>
+  <div class="sb-search">
+    <input type="text" id="srch" placeholder="Search this page…" oninput="doSearch(this.value)">
+  </div>
+</aside>
+
+<div id="main">
+  <div id="mob-bar">
+    <button id="ham" onclick="toggleSidebar()">☰</button>
+    <span class="mb-title">The Orthodox Lamp</span>
+  </div>
+
+  <div class="hero">
+    <span class="si">☩</span>
+    <h1 class="st">THE <span>ORTHODOX</span> LAMP</h1>
+    <p class="ss">Women in the Church</p>
+    <p class="tg">Dignity, Vocation, and the Apostolic Tradition</p>
+    <div class="orn">✦ ✦ ✦</div>
+  </div>
+
+  <div class="content">
+
+    <div class="sec open" id="s1">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">I.</span>Introduction</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <p>Few topics generate more heat — and less light — in contemporary Christian discourse than the role of women in the Church. On one side, progressive voices argue that the Church's traditional structures represent nothing more than the baptism of ancient patriarchy, awaiting correction by enlightened modernity. On the other side, reactionary voices sometimes reduce the question to a defense of hierarchy for its own sake, without adequate engagement with the dignity and indispensable ministry of women throughout the entire biblical and patristic tradition.</p>
+        <p>The Oriental Orthodox position navigates a different path. It affirms with full conviction the complete equality of men and women in human dignity, spiritual capacity, and eternal vocation — while maintaining that the all-male ordained priesthood is not a cultural artifact but an apostolic tradition rooted in Christ's own deliberate choice. These two affirmations are not in tension: they belong together in a coherent theological anthropology.</p>
+        <p>This examination surveys the biblical witness from Genesis to Revelation, the indispensable role of women at every decisive moment of salvation history, the teaching of the Church Fathers, the veneration of female saints across the OO tradition, and a careful engagement with the passages most often cited to subordinate or silence women entirely.</p>
+        <blockquote>"There is neither Jew nor Gentile, neither slave nor free, nor is there male and female, for you are all one in Christ Jesus." — Galatians 3:28</blockquote>
+      </div>
+    </div>
+
+    <div class="sec" id="s2">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">II.</span>The Image of God in Woman</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <p>The theological foundation for the dignity of women is not found in modernity or in the feminist movement — it is found on the first page of Scripture.</p>
+
+        <div class="sv">
+          <div class="ref">Genesis 1:27</div>
+          <div class="txt">"So God created mankind in his own image, in the image of God he created them; male and female he created them."</div>
+          <div class="labels"><span class="oo">OO: Both male and female together bear the image of God (tselem Elohim) — not male alone</span><span class="ctx">The plurality "them" mirrors the plural "let us make" — the image of God is relational</span></div>
+        </div>
+
+        <p>The Hebrew <em>tselem Elohim</em> — image of God — is not divided between the sexes. It is the undivided dignity of every human person, male and female. The Fathers consistently affirm this. Gregory of Nyssa writes that the image of God is found in the soul, not the body, and therefore is equally present in man and woman. John Chrysostom, despite living in a deeply patriarchal culture, insists that the soul has no sex: "The virtue of woman is the same as the virtue of man."</p>
+
+        <div class="sv">
+          <div class="ref">Genesis 2:18, 23</div>
+          <div class="txt">"The LORD God said, 'It is not good for the man to be alone. I will make a helper suitable for him.'… The man said, 'This is now bone of my bones and flesh of my flesh; she shall be called woman, for she was taken out of man.'"</div>
+          <div class="labels"><span class="oo">OO: "Helper" (ezer) — the same word used of God himself in Psalm 121:2. Far from indicating inferiority, ezer denotes indispensable strength.</span><span class="ctx">The woman is fashioned from Adam's rib — his side, not his foot. A partner, not a servant.</span></div>
+        </div>
+
+        <h3>The Fall and Its Aftermath</h3>
+        <p>The subordination of women described in Genesis 3:16 ("your desire will be for your husband, and he will rule over you") is part of the <em>curse</em> — the disordered consequence of the Fall — not the original design of creation. The OO tradition, following Paul in Galatians 3:28 and the whole pattern of Christ's restoration, holds that redemption in Christ restores the original dignity of creation. The Church does not simply perpetuate the curse — it heals it.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s3">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">III.</span>Women in the Old Testament</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <p>The Old Testament, despite its patriarchal cultural context, is remarkably populated with women who exercise leadership, prophecy, wisdom, and decisive agency in God's redemptive purposes.</p>
+
+        <div class="saint">
+          <div class="saint-name">Miriam</div>
+          <div class="saint-title">Prophetess · Exodus 15:20</div>
+          <div class="saint-desc">Sister of Moses and Aaron, called a prophetess (neviah) and leader of Israel. Led the women of Israel in the Song of the Sea after the Exodus — the first recorded hymn of praise in Scripture. Micah 6:4 lists her alongside Moses and Aaron as one of the three leaders God gave Israel.</div>
+        </div>
+
+        <div class="saint">
+          <div class="saint-name">Deborah</div>
+          <div class="saint-title">Judge and Prophetess · Judges 4–5</div>
+          <div class="saint-desc">The only female judge in Israel's history. She held court, settled disputes, received the word of the Lord, and led Israel to military victory over Sisera. Barak refused to go to battle without her. The Song of Deborah (Judges 5) is one of the oldest poems in the Hebrew Bible.</div>
+        </div>
+
+        <div class="saint">
+          <div class="saint-name">Huldah</div>
+          <div class="saint-title">Prophetess · 2 Kings 22:14–20</div>
+          <div class="saint-desc">When King Josiah discovered the Book of the Law, he sent his officials to consult Huldah the prophetess — not Jeremiah or Zephaniah, who were alive at the same time. Her prophetic oracle authenticated the Deuteronomic scroll and catalyzed Josiah's reforms. She is an extraordinary example of female prophetic authority.</div>
+        </div>
+
+        <div class="saint">
+          <div class="saint-name">Esther</div>
+          <div class="saint-title">Queen and Deliverer · Book of Esther</div>
+          <div class="saint-desc">Through wisdom, courage, and the willingness to risk her life, Esther saved the Jewish people from annihilation. Her declaration "If I perish, I perish" (Esther 4:16) is one of the most celebrated statements of self-sacrificial courage in Scripture.</div>
+        </div>
+
+        <div class="saint">
+          <div class="saint-name">Ruth</div>
+          <div class="saint-title">Ancestress of David · Book of Ruth</div>
+          <div class="saint-desc">A Moabite woman who through faithfulness and love becomes an ancestor of King David and — by the genealogy of Matthew 1 — of Jesus Christ himself. Ruth's declaration of loyalty to Naomi (1:16–17) is among the most beautiful expressions of covenant fidelity in Scripture.</div>
+        </div>
+
+        <p>These women are not anomalies. They represent a consistent pattern: in moments of crisis and decisive importance, God raises up women to lead, prophesy, and save. This pattern reaches its culmination in the New Testament.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s4">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">IV.</span>Jesus and Women</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <p>Jesus's treatment of women is one of the most countercultural aspects of his ministry. In a first-century Jewish and Roman world where women had severely limited public roles, Jesus engaged women with radical dignity, taught them as disciples, and entrusted them with the most decisive proclamations of his ministry.</p>
+
+        <div class="sv">
+          <div class="ref">Luke 10:38–42</div>
+          <div class="txt">"Mary… sat at the Lord's feet listening to what he said. But Martha was distracted by all the preparations… 'Martha, Martha,' the Lord answered, 'you are worried and upset about many things, but few things are needed — or indeed only one. Mary has chosen what is better, and it will not be taken from her.'"</div>
+          <div class="labels"><span class="ctx">To "sit at the feet" of a teacher was the posture of a rabbinic disciple. Jesus defends Mary's place as a disciple — radical in its cultural context.</span></div>
+        </div>
+
+        <div class="sv">
+          <div class="ref">John 4:7–26</div>
+          <div class="txt">"When a Samaritan woman came to draw water, Jesus said to her, 'Will you give me a drink?'… Jesus answered, 'Everyone who drinks this water will be thirsty again, but whoever drinks the water I give them will never thirst.'… The woman said, 'I know that Messiah is coming. When he comes, he will explain everything to us.' Then Jesus declared, 'I, the one speaking to you — I am he.'"</div>
+          <div class="labels"><span class="ctx">Jesus reveals his messianic identity for the first time in John's Gospel — to a Samaritan woman</span><span class="oo">She becomes an evangelist: "Come, see a man who told me everything I ever did. Could this be the Messiah?" (v.29)</span></div>
+        </div>
+
+        <div class="sv">
+          <div class="ref">John 20:14–18</div>
+          <div class="txt">"Jesus said to her, 'Mary.' She turned toward him and cried out in Aramaic, 'Rabboni!' (which means 'Teacher'). Jesus said, '…go to my brothers and tell them…' Mary Magdalene went to the disciples with the news: 'I have seen the Lord!'"</div>
+          <div class="labels"><span class="oo">OO Tradition: Mary Magdalene is called "Equal to the Apostles" (Isapostolos) and "Apostle to the Apostles" — she announces the Resurrection to the Twelve</span><span class="ctx">The Resurrection is first entrusted to a woman — extraordinary in a culture where women's testimony was legally inadmissible</span></div>
+        </div>
+
+        <h3>Women Among the Disciples</h3>
+        <p>Luke 8:1–3 records that a group of women — Mary Magdalene, Joanna, Susanna, and "many others" — traveled with Jesus and the Twelve, providing financial support for his ministry from their own resources. This is a public, visible discipleship, not a hidden domestic role.</p>
+        <p>At the Crucifixion, while most of the male disciples had fled, the women remained: Mary Magdalene, Mary the mother of James and Joseph, and the mother of the sons of Zebedee (Matthew 27:55–56). Their steadfastness at the Cross is a silent rebuke to the notion that women occupy only peripheral roles in salvation history.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s5">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">V.</span>Women in the Apostolic Church</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <p>The Book of Acts and the Pauline epistles reveal a church in which women are indispensable ministers, prophets, teachers, patrons, and co-workers in the Gospel.</p>
+
+        <div class="sv">
+          <div class="ref">Acts 2:17–18</div>
+          <div class="txt">"'In the last days, God says, I will pour out my Spirit on all people. Your sons and daughters will prophesy… Even on my servants, both men and women, I will pour out my Spirit in those days, and they will prophesy.'"</div>
+          <div class="labels"><span class="oo">OO: The gift of prophecy — speaking the word of God — is poured out on both men and women at Pentecost</span><span class="ctx">Peter quotes Joel 2:28–29 to explain the Pentecost event — the Spirit makes no gender distinction</span></div>
+        </div>
+
+        <div class="sv">
+          <div class="ref">Romans 16:1–2</div>
+          <div class="txt">"I commend to you our sister Phoebe, a deacon of the church in Cenchreae. I ask you to receive her in the Lord in a way worthy of his people and to give her any help she may need from you, for she has been the benefactor of many people, including me."</div>
+          <div class="labels"><span class="oo">OO: Phoebe is called <em>diakonos</em> — the same word used for male deacons — and <em>prostatis</em> (patron/leader)</span><span class="ctx">She likely carried Romans to the Roman church — Paul's greatest epistle entrusted to a woman</span></div>
+        </div>
+
+        <div class="sv">
+          <div class="ref">Romans 16:7</div>
+          <div class="txt">"Greet Andronicus and Junia, my fellow Jews who have been in prison with me. They are outstanding among the apostles, and they were in Christ before I was."</div>
+          <div class="labels"><span class="oo">OO: Junia — a woman's name — is called "outstanding among the apostles" by Paul. The Church Fathers uniformly read "Junia" as female.</span><span class="ctx">Chrysostom: "O how great is the devotion of this woman, that she should be even counted worthy of the appellation of apostle!"</span></div>
+        </div>
+
+        <div class="sv">
+          <div class="ref">Acts 18:26</div>
+          <div class="txt">"He [Apollos] began to speak boldly in the synagogue. When Priscilla and Aquila heard him, they invited him to their home and explained to him the way of God more adequately."</div>
+          <div class="labels"><span class="ctx">Priscilla is named first in this account — unusual in the first century — suggesting she was the primary teacher</span><span class="oo">A woman correcting and instructing a preacher in theology, with apostolic approval</span></div>
+        </div>
+
+        <h3>Philip's Four Daughters</h3>
+        <p>Acts 21:9 records that Philip the Evangelist had "four unmarried daughters who prophesied." Paul's instruction in 1 Corinthians 11:5 — that women prophesying must cover their heads — presupposes that women's public prophecy in the congregation was normal and accepted. The question was not whether women could prophesy, but how to do so with appropriate reverence.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s6">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">VI.</span>Mary — Theotokos and Model of the Church</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <p>In the Oriental Orthodox tradition, no figure is more central to the Church's life, prayer, and theology than the Most Holy Theotokos, the Virgin Mary. Her veneration is not a cultural addition but a theological necessity: she is the supreme model of the human person's response to God and the supreme example of female dignity and vocation.</p>
+
+        <div class="sv">
+          <div class="ref">Luke 1:28, 38</div>
+          <div class="txt">"The angel went to her and said, 'Greetings, you who are highly favored! The Lord is with you.'… 'I am the Lord's servant,' Mary answered. 'May your word to me be fulfilled.'"</div>
+          <div class="labels"><span class="oo">OO: "Highly favored" (kecharitomene) — a perfect passive participle: "having been and continuing to be filled with grace." Mary's fiat (let it be done) is the model of human freedom's response to divine grace.</span></div>
+        </div>
+
+        <div class="sv">
+          <div class="ref">Luke 1:46–49</div>
+          <div class="txt">"And Mary said: 'My soul glorifies the Lord and my spirit rejoices in God my Savior, for he has been mindful of the humble state of his servant. From now on all generations will call me blessed, for the Mighty One has done great things for me — holy is his name.'"</div>
+          <div class="labels"><span class="ctx">The Magnificat — Mary's hymn — is the most extended speech by a woman in the New Testament. It is a proclamation of God's justice, echoing Hannah's prayer (1 Samuel 2).</span></div>
+        </div>
+
+        <h3>Mary as the New Eve</h3>
+        <p>Justin Martyr and Irenaeus of Lyon both develop the parallel between Eve and Mary: as Eve's disobedience brought death, Mary's obedience brought life. This is a profoundly positive theological anthropology for women: the reversal of the Fall begins through a woman's free, obedient cooperation with God.</p>
+
+        <div class="fc">
+          <div class="fn">Irenaeus of Lyon</div>
+          <div class="fw">Against Heresies, Book V (c. 180 CE)</div>
+          <div class="fq">"As Eve was seduced by the word of an angel to flee from God, having rebelled against his Word, so Mary received the good tidings by means of the angel's word, so as to bear God, being obedient to his Word. And if the former did disobey God, yet the latter was persuaded to be obedient to God, in order that the Virgin Mary might become the patroness of the virgin Eve."</div>
+          <div class="labels"><span class="pl">PARAPHRASE</span></div>
+        </div>
+
+        <h3>Mary in Oriental Orthodox Liturgy</h3>
+        <p>The Theotokos is invoked dozens of times in every Oriental Orthodox Divine Liturgy. In the Coptic tradition, the Theotokia — hymns to Mary — are sung each day of the week with a specific set for each day. In Ethiopian Orthodoxy, her intercession is central to every major feast. In Armenian liturgy, she is called <em>Astvatsatsin</em> — "Bearer of God." No Orthodox Christian could doubt that a woman — the woman Mary — stands at the summit of human holiness and at the heart of the Church's prayer.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s7">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">VII.</span>Female Saints and Martyrs in the OO Tradition</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <p>The Oriental Orthodox calendar is filled with female saints — martyrs, monastics, equals-to-the-apostles, and teachers — whose lives the Church holds up as models of Christian perfection.</p>
+
+        <div class="saint">
+          <div class="saint-name">St. Thecla of Iconium</div>
+          <div class="saint-title">Equal to the Apostles · First Century</div>
+          <div class="saint-desc">Converted through Paul's preaching, Thecla renounced her betrothal, endured torture and attempted execution multiple times, and became an evangelist in her own right. Tertullian records that some used her example to justify women's right to teach and baptize — indicating her apostolic reputation was so strong it required theological adjudication. Venerated in Coptic, Syriac, and Armenian traditions.</div>
+        </div>
+
+        <div class="saint">
+          <div class="saint-name">St. Mary Magdalene</div>
+          <div class="saint-title">Equal to the Apostles · First Century</div>
+          <div class="saint-desc">Called "Apostle to the Apostles" (Apostolorum Apostola) in the Patristic tradition. She was the first witness of the Resurrection and the first to proclaim "I have seen the Lord" (John 20:18). Her feast is celebrated with great honor in all Oriental Orthodox churches.</div>
+        </div>
+
+        <div class="saint">
+          <div class="saint-name">St. Perpetua and St. Felicity</div>
+          <div class="saint-title">Martyrs · Carthage, 203 CE</div>
+          <div class="saint-desc">Perpetua was a young noblewoman who kept a diary of her imprisonment — the earliest surviving text written by a Christian woman. She refused to renounce her faith despite her father's pleas and the needs of her nursing infant. Felicity, her slave and companion, gave birth in prison days before their martyrdom. Both were mauled by wild animals and beheaded in the Carthaginian amphitheater.</div>
+        </div>
+
+        <div class="saint">
+          <div class="saint-name">St. Macrina the Elder and St. Macrina the Younger</div>
+          <div class="saint-title">Confessors and Teachers · Fourth Century</div>
+          <div class="saint-desc">Macrina the Younger, sister of Basil the Great and Gregory of Nyssa, founded a monastic community and was described by Gregory as the teacher who shaped his own theological formation. Gregory wrote her biography (the <em>Life of Macrina</em>) and a dialogue in which she — on her deathbed — teaches him on the soul and resurrection. Gregory calls her simply "the Teacher."</div>
+        </div>
+
+        <div class="saint">
+          <div class="saint-name">St. Mary of Egypt</div>
+          <div class="saint-title">Monastic and Ascetic · Fifth Century</div>
+          <div class="saint-desc">A former prostitute who experienced radical conversion at the Church of the Holy Sepulchre and spent 47 years as an ascetic in the desert beyond the Jordan. Her life is read during the Great Lent in the Coptic, Byzantine, and Syriac traditions as a model of repentance and holiness. Fr. Zosimas found her levitating in prayer and received the Eucharist from her — a woman administering communion to a priest.</div>
+        </div>
+
+        <div class="saint">
+          <div class="saint-name">St. Syncletica of Alexandria</div>
+          <div class="saint-title">Desert Mother · Fourth Century</div>
+          <div class="saint-desc">One of the Desert Mothers (Ammas) whose sayings are preserved in the <em>Apophthegmata Patrum</em> alongside the male Desert Fathers. Her sayings on humility, spiritual warfare, and the ascetic life were transmitted with the same authority as those of Anthony and Macarius. The tradition of the Ammas demonstrates that spiritual authority in the early Church was not limited to the ordained.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s8">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">VIII.</span>The "Silence" Passages</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <p>Two passages in the Pauline corpus are most often cited to require the silence and subordination of women in all church contexts. A careful exegesis of each is required.</p>
+
+        <h3>1 Corinthians 14:34–35</h3>
+
+        <div class="sv">
+          <div class="ref">1 Corinthians 14:34–35</div>
+          <div class="txt">"Women should remain silent in the churches. They are not allowed to speak, but must be in submission, as the law says. If they want to inquire about something, they should ask their own husbands at home; for it is disgraceful for a woman to speak in the church."</div>
+          <div class="labels"><span class="ctx">Context: Chapter 14 is entirely about orderly conduct in the assembly — tongues, prophecy, and interpretation</span></div>
+        </div>
+
+        <p><strong>Key exegetical observations:</strong></p>
+        <ul>
+          <li>Paul has already instructed women on <em>how</em> to prophesy publicly (11:5) — thus a total ban on speech cannot be what he intends here.</li>
+          <li>The word for "speak" (laleō) in context likely refers to a specific disruptive kind of speech — most likely the practice of wives questioning or challenging their husbands' teachings in the assembly, a form of public dispute that would have been culturally disruptive in Corinth.</li>
+          <li>Some textual scholars (Gordon Fee and others) argue that verses 34–35 may be a non-Pauline interpolation, as they appear after verse 40 in several Western manuscripts — suggesting they may have been a marginal note that was later incorporated into the text.</li>
+          <li>Even those who read the verses as original typically limit their application to a specific kind of disruptive questioning in the Corinthian context, not to all female speech in worship.</li>
+        </ul>
+
+        <h3>1 Timothy 2:11–12</h3>
+
+        <div class="sv">
+          <div class="ref">1 Timothy 2:11–12</div>
+          <div class="txt">"A woman should learn in quietness and full submission. I do not permit a woman to teach or to assume authority over a man; she must be quiet."</div>
+          <div class="labels"><span class="ctx">Context: 1 Timothy addresses a specific congregation facing specific false teaching, likely in Ephesus</span></div>
+        </div>
+
+        <p><strong>Key exegetical observations:</strong></p>
+        <ul>
+          <li>The word translated "authority" is <em>authentein</em> — a rare word used only once in the New Testament and not used for ordinary authority (exousia). It carries a more forceful or domineering connotation, possibly related to the specific problem Paul is addressing.</li>
+          <li>The immediate context (vv. 13–14) appeals to creation and the Fall — but this does not necessarily mean the prohibition is universal and timeless. Paul also appeals to creation order in 1 Corinthians 11 in a context that scholars agree is culturally conditioned.</li>
+          <li>The false teaching in Ephesus appears to have been spread particularly through women (2 Timothy 3:6–7; 1 Timothy 5:13). Paul's instruction may be a specific corrective to a specific problem, not a permanent universal ban.</li>
+          <li>The OO tradition reads this passage as addressing the ordained teaching office (the presbyterate), not all forms of female teaching — consistent with its practice of allowing women to teach in catechetical, educational, and prophetic capacities.</li>
+        </ul>
+
+        <div class="fc">
+          <div class="fn">John Chrysostom</div>
+          <div class="fw">Homilies on 1 Timothy, Homily 9 (c. 390 CE)</div>
+          <div class="fq">"Paul does not forbid women to teach altogether — for he teaches Titus that the older women must teach the younger women (Titus 2:3–4). He forbids them to teach in public, from the teacher's seat, with authority over men — this is what he restrains."</div>
+          <div class="labels"><span class="pl">PARAPHRASE</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s9">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">IX.</span>The Question of Women's Ordination to the Priesthood</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <p>The Oriental Orthodox position on the ordained priesthood — bishop, presbyter, and deacon in the sacramental sense — is that it is restricted to men. This is not held as a cultural preference but as an apostolic tradition that the Church does not have the authority to alter. Understanding <em>why</em> the tradition holds this requires more than proof-texting — it requires engagement with the theology of the priesthood itself.</p>
+
+        <h3>The Argument from Apostolic Tradition</h3>
+        <p>Jesus chose twelve male apostles. This was not a concession to cultural convention — Jesus routinely violated cultural convention in his treatment of women (see Section IV). The deliberate choice of male apostles, maintained by the Apostles in their appointment of successors (Acts 6; 1 Timothy 3; Titus 1), is held by the OO tradition to be a binding apostolic decision that the Church inherits, not one it can reverse.</p>
+
+        <h3>The Iconic Argument</h3>
+        <p>The priest at the altar acts <em>in persona Christi</em> — in the person of Christ. Christ, the eternal Son, took on a male human body in the Incarnation. The priest represents Christ the Bridegroom to his Bride, the Church (Ephesians 5:25–32). This is not a statement about women's inferiority — it is a statement about the iconic function of the ordained ministry. The icon of the Bridegroom requires a male minister, just as the icon of the Bride (the Church) is represented collectively by all the faithful, male and female.</p>
+
+        <h3>What This Does Not Mean</h3>
+        <p>The restriction of the ordained presbyterate to men does not mean:</p>
+        <ul>
+          <li>That women are spiritually inferior to men</li>
+          <li>That women cannot teach, preach, prophesy, or exercise leadership in the Church</li>
+          <li>That women's vocations in the Church are less important than men's</li>
+          <li>That the Church has no need for female voices, female leadership, or female theological scholarship</li>
+        </ul>
+        <p>The OO tradition has throughout its history recognized abbesses, teachers, deaconesses, prophets, and doctors of the Church among its women. The ordained priesthood is one form of ministry — not the only form, nor the highest form of holiness (monasticism and martyrdom are ranked higher in the tradition).</p>
+
+        <div class="fc">
+          <div class="fn">Pope Shenouda III (Coptic Orthodox)</div>
+          <div class="fw">Various Teachings on the Church (20th century)</div>
+          <div class="fq">"The woman is not inferior to the man — she shares equally in all the spiritual gifts, in holiness, in the sacraments, in eternal life. The Church honors woman supremely in the person of the Theotokos, who stands above all the angels. The question of ordination is not about dignity — it is about apostolic tradition, which the Church received and is not free to change."</div>
+          <div class="labels"><span class="pl">PARAPHRASE</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s10">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">X.</span>The Diaconate of Women</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <p>The question of the female diaconate requires separate treatment from the presbyterate. The historical and canonical evidence for ordained deaconesses in the early Church is substantial — and the Oriental Orthodox churches have varying practices on this point.</p>
+
+        <div class="sv">
+          <div class="ref">Romans 16:1</div>
+          <div class="txt">"I commend to you our sister Phoebe, a deacon (diakonos) of the church in Cenchreae."</div>
+          <div class="labels"><span class="oo">OO: Phoebe holds the title diakonos — the same term used for male deacons like Stephanas and Timothy</span></div>
+        </div>
+
+        <div class="sv">
+          <div class="ref">1 Timothy 3:11</div>
+          <div class="txt">"In the same way, the women are to be worthy of respect, not malicious talkers but temperate and trustworthy in everything."</div>
+          <div class="labels"><span class="ctx">The word "women" (gynaikas) here may refer to deaconesses — the verse appears embedded within instructions for deacons, not as a separate section on wives</span></div>
+        </div>
+
+        <h3>Patristic Evidence for the Deaconess Office</h3>
+        <p>The office of deaconess is attested across multiple early sources:</p>
+        <ul>
+          <li><strong>Didascalia Apostolorum</strong> (c. 230 CE): Describes deaconesses as necessary for the baptism of adult women, for visiting sick women in pagan households, and for ministering to women in the congregation.</li>
+          <li><strong>Apostolic Constitutions</strong> (c. 380 CE): Contains an ordination prayer for deaconesses, indicating a liturgical rite.</li>
+          <li><strong>Council of Nicaea (325 CE)</strong>: Canon 19 mentions deaconesses, indicating they were recognized at the highest level of Church authority.</li>
+          <li><strong>Pliny the Younger</strong> (c. 112 CE): In his letter to Trajan about Christians in Bithynia, he mentions torturing "two female slaves who were called deaconesses" — evidence of the office in Asia Minor within living memory of the Apostles.</li>
+        </ul>
+
+        <div class="fc">
+          <div class="fn">Epiphanius of Salamis</div>
+          <div class="fw">Panarion 79 (c. 375 CE)</div>
+          <div class="fq">"The order of deaconesses exists in the Church and is honored — but it does not carry the rank of priesthood or any liturgical function, but rather serves for propriety's sake and for the honor of the female sex, either at the time of baptism or for examination of those who are sick."</div>
+          <div class="labels"><span class="pl">PARAPHRASE</span></div>
+        </div>
+
+        <p>The Coptic Orthodox Church has in recent decades been engaged in formal discussion about the revival of the female diaconate, which had largely lapsed. The Ethiopian Orthodox Tewahedo Church retains a tradition of women's ministry in the church that echoes the ancient deaconess function. The question remains live in OO theological discussion.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s11">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XI.</span>Objections Addressed</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Galatians 3:28 abolishes all gender distinctions in the Church."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> Galatians 3:28 ("neither male nor female, for you are all one in Christ Jesus") is a statement about equal standing before God in terms of salvation, adoption, and the reception of the Spirit — not a statement that all functional distinctions cease to exist. Paul wrote Galatians 3:28 and 1 Corinthians 14:34 and 1 Timothy 2:12 — if his intent was to abolish all gender-based distinctions in church practice, he contradicted himself in the same letter collection. The OO tradition reads Galatians 3:28 as an affirmation of equal dignity and equal access to grace, not the abolition of all distinctions of role or function.</p>
+          </div>
+        </div>
+
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Restricting ordination to men is just sanctified sexism."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> This objection assumes that the only meaningful form of ministry is the ordained priesthood — a thoroughly clerical assumption that the OO tradition rejects. The highest human person in the Christian theological hierarchy is not a bishop or a priest: it is the Virgin Mary, the Theotokos, who is exalted above all the angels and all the saints. Monasticism — a vocation fully open to women — is ranked above the ordained ministry in the spiritual hierarchy of the tradition. The martyrs — male and female equally — are the highest models of Christian witness. To reduce the question to ordination is to accept a narrow clericalism that is foreign to the tradition.</p>
+          </div>
+        </div>
+
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>⚡ "The early Church's treatment of women was just cultural — we should update it."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> The argument cuts both ways. If the Church's restriction of the priesthood to men is a cultural artifact of patriarchy, then so is the Canon of Scripture, the Trinitarian formula, the Christological councils, and every other structure of apostolic Christianity that emerged from the same patriarchal culture. The OO tradition does not apply a hermeneutic of cultural suspicion selectively — it receives the whole apostolic deposit as a unity. Moreover, the claim that Jesus simply deferred to cultural convention in choosing twelve male apostles sits uneasily with every other aspect of his ministry, which was profoundly countercultural with respect to women. His choice was deliberate, not conventional.</p>
+          </div>
+        </div>
+
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Women in the OO church have no real voice or authority."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> This is empirically inaccurate. Women in the Oriental Orthodox tradition serve as abbesses governing monastic communities (including over male monastics in some traditions), as directors of church schools and charitable organizations, as theologians and authors, as directors of Sunday school programs that form entire generations, as chanters and choir directors, as deaconesses (in some traditions), and as the primary transmitters of the faith in the family — which the Fathers consistently describe as the "domestic church." The OO tradition takes seriously the model of the Theotokos, whose influence on the life of the Church is incalculable and whose authority in prayer and intercession surpasses that of every bishop and patriarch.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="sec" id="s12">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XII.</span>Frequently Asked Questions</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>Can women preach or teach in the Oriental Orthodox Church?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>Yes — in a variety of contexts. Women teach in Sunday schools, catechetical programs, and church education at all levels. Female theologians write and lecture. Abbesses preach to their communities. The restriction that the Fathers and canonical tradition maintain is specifically on the ordained liturgical teaching office — preaching from the ambo at the Divine Liturgy as an ordained presbyter. Outside that specific context, women's teaching ministry has always been part of church life and is explicitly encouraged (Titus 2:3–4; Proverbs 31:26).</p>
+          </div>
+        </div>
+
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>Why is the Theotokos venerated so highly if women are subordinate in the Church?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>This is precisely the point: the OO tradition does not believe women are simply subordinate. The Theotokos stands at the summit of the created order — above every patriarch, prophet, apostle, martyr, and bishop. Her intercession is sought in every liturgy. Her feast days are among the most solemn of the year. Her images fill every church. If the OO tradition believed women were simply inferior beings whose role is submission, it would not honor a woman as the highest of all human persons and the Queen of Heaven. The apparent paradox dissolves when one recognizes that the OO position is not about the subordination of women — it is about the distinct vocation of the ordained ministry, which is itself a form of service (diakonia), not of power.</p>
+          </div>
+        </div>
+
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>What do the Desert Mothers (Ammas) tell us about women's spiritual authority?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>The Ammas — Sarah, Syncletica, Theodora, and others — represent a remarkable phenomenon: women whose sayings were collected alongside the Desert Fathers and transmitted with identical spiritual authority. Pilgrims traveled to consult Amma Syncletica just as they traveled to consult Abba Anthony. Her sayings were not considered less authoritative because she was a woman — they were received as words of the Spirit through a holy person. The tradition of the Ammas demonstrates that spiritual authority in the OO tradition flows from holiness, not from ordination, and that women fully participate in the transmission of the Spirit's gifts to the Church.</p>
+          </div>
+        </div>
+
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>Is there any possibility the OO churches will ordain women priests in the future?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>The current position of all Oriental Orthodox churches is that the ordained presbyterate and episcopate are reserved to men as an apostolic tradition that the Church received but did not create, and therefore does not have authority to alter. This is held as a matter of fidelity to the apostolic deposit, not as a disciplinary rule subject to change. The question of the female diaconate is in a different category — there is genuine historical precedent for ordained deaconesses, and this question remains open for theological and canonical discussion in some OO contexts. However, the presbyterate itself is considered a settled matter of apostolic tradition.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="sec" id="s13">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XIII.</span>Sources &amp; Further Reading</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <div class="src-grid">
+          <div class="src-card">
+            <h4>Scripture &amp; Patristics</h4>
+            <ul>
+              <li>Gregory of Nyssa, On the Making of Man</li>
+              <li>John Chrysostom, Homilies on Romans 16</li>
+              <li>Irenaeus, Against Heresies V</li>
+              <li>Didascalia Apostolorum (c. 230 CE)</li>
+            </ul>
+          </div>
+          <div class="src-card">
+            <h4>Early Church Sources</h4>
+            <ul>
+              <li>Perpetua, The Passion of Perpetua and Felicity</li>
+              <li>Apophthegmata Patrum (Desert Mothers)</li>
+              <li>Pliny the Younger, Epistles X.96</li>
+              <li>Apostolic Constitutions, Book VIII</li>
+            </ul>
+          </div>
+          <div class="src-card">
+            <h4>Modern Scholarship</h4>
+            <ul>
+              <li>Kyriaki FitzGerald, Women Deacons in the Orthodox Church</li>
+              <li>Valerie Karras, Female Deacons in the Byzantine Church</li>
+              <li>Verna Harrison, Gender, Generation, and Virginity in Cappadocian Theology</li>
+              <li>Ben Witherington III, Women in the Earliest Churches</li>
+            </ul>
+          </div>
+          <div class="src-card">
+            <h4>OO Sources</h4>
+            <ul>
+              <li>Pope Shenouda III, The Nature of Christ</li>
+              <li>Fr. Tadros Malaty, The Theotokos</li>
+              <li>Coptic Synaxarium (saints' lives)</li>
+              <li>Ethiopian Synaxarium (Senkessar)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+
+  <footer style="text-align:center;padding:2rem 1rem;border-top:1px solid var(--br);font-size:.8rem;color:var(--mu)">
+    <p>THE <span style="color:var(--gold)">ORTHODOX LAMP</span> &nbsp;·&nbsp; Biblical, Historical &amp; Patristic Apologetics</p>
+    <p style="margin-top:.5rem;font-size:.72rem;opacity:.6;">☩ &nbsp; In the name of the Father, and of the Son, and of the Holy Spirit &nbsp; ☩</p>
+  </footer>
+</div><!-- /main -->
+
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+function ts(h){h.closest('.sec').classList.toggle('open')}
+function tobj(h){h.closest('.obj').classList.toggle('open')}
+function tf(h){h.closest('.fi').classList.toggle('open')}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').classList.toggle('show')}
+function closeMobile(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
+
+window.addEventListener('scroll',()=>{
+  const s=document.documentElement,b=document.body;
+  const pct=(s.scrollTop||b.scrollTop)/((s.scrollHeight||b.scrollHeight)-s.clientHeight)*100;
+  document.getElementById('prog').style.width=pct+'%';
+  document.getElementById('btt').classList.toggle('show',(s.scrollTop||b.scrollTop)>300);
+});
+
+const secs=[...document.querySelectorAll('.sec')];
+const links=[...document.querySelectorAll('#nav a')];
+window.addEventListener('scroll',()=>{
+  let cur='';
+  secs.forEach(s=>{if(s.getBoundingClientRect().top<120)cur=s.id});
+  links.forEach(l=>{l.classList.toggle('active',l.getAttribute('href')==='#'+cur)});
+},{ passive:true });
+
+function doSearch(q){
+  document.querySelectorAll('.hl').forEach(e=>{
+    const p=e.parentNode;p.replaceChild(document.createTextNode(e.textContent),e);p.normalize();
+  });
+  if(!q.trim())return;
+  const re=new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi');
+  const walker=document.createTreeWalker(document.querySelector('.content'),NodeFilter.SHOW_TEXT);
+  const nodes=[];let n;
+  while((n=walker.nextNode()))nodes.push(n);
+  nodes.forEach(node=>{
+    if(!re.test(node.textContent))return;
+    re.lastIndex=0;
+    const frag=document.createDocumentFragment();
+    let last=0,m;
+    while((m=re.exec(node.textContent))!==null){
+      frag.appendChild(document.createTextNode(node.textContent.slice(last,m.index)));
+      const mark=document.createElement('mark');
+      mark.className='hl';mark.style.cssText='background:#8a6a20;color:#fff;border-radius:2px;padding:0 2px';
+      mark.textContent=m[0];frag.appendChild(mark);last=m.index+m[0].length;
+    }
+    frag.appendChild(document.createTextNode(node.textContent.slice(last)));
+    node.parentNode.replaceChild(frag,node);
+  });
+  const first=document.querySelector('.hl');if(first)first.scrollIntoView({block:'center',behavior:'smooth'});
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Salvation in the Oriental Orthodox Faith — The Orthodox Lamp</title>
+<style>
+:root{--gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;--bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--tx:#e8e0d0;--mu:#a09880;--red:#8b2020;--br:#2a2a2a;--bg5:#3a2e10;--sidebar-w:270px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.7;display:flex;flex-direction:column;min-height:100vh}
+a{color:var(--gold);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ── Progress bar ── */
+#prog{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--gd),var(--gold),var(--gl));z-index:9999;transition:width .1s}
+
+/* ── Sidebar ── */
+#sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:200;transform:translateX(0);transition:transform .3s}
+#sidebar header{padding:1.4rem 1.2rem 1rem;border-bottom:1px solid var(--br)}
+#sidebar header .logo{font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem}
+#sidebar header h2{font-size:.85rem;color:var(--gl);line-height:1.3}
+#sb-nav{padding:.8rem 0 2rem}
+#sb-nav a{display:block;padding:.42rem 1.2rem;font-size:.78rem;color:var(--mu);border-left:2px solid transparent;transition:all .2s;line-height:1.4}
+#sb-nav a:hover{color:var(--tx);background:var(--bg3);text-decoration:none}
+#sb-nav a.active{color:var(--gold);border-left-color:var(--gold);background:var(--bg5)}
+#sb-nav .sb-group{font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gd);padding:.9rem 1.2rem .3rem;display:block}
+
+/* ── Mobile toggle ── */
+#menu-btn{display:none;position:fixed;top:.8rem;left:.8rem;z-index:300;background:var(--bg3);border:1px solid var(--br);color:var(--gold);font-size:1.1rem;width:2.2rem;height:2.2rem;border-radius:6px;cursor:pointer;align-items:center;justify-content:center}
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:150}
+#overlay.show{display:block}
+
+/* ── Main ── */
+#main{margin-left:var(--sidebar-w);flex:1;min-width:0}
+
+/* ── Hero ── */
+.hero{text-align:center;padding:5rem 2rem 3.5rem;background:linear-gradient(180deg,var(--bg2) 0%,var(--bg) 100%);border-bottom:1px solid var(--br);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(201,168,76,.08) 0%,transparent 70%);pointer-events:none}
+.back{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gd);border:1px solid var(--gd);padding:.2rem .7rem;border-radius:3px;margin-bottom:1.5rem;transition:color .2s,border-color .2s}
+.back:hover{color:var(--gold);border-color:var(--gold);text-decoration:none}
+.si{font-size:2.4rem;color:var(--gold);display:block;margin-bottom:.6rem}
+.st{font-size:clamp(1.6rem,4vw,2.6rem);font-weight:700;letter-spacing:.08em;text-transform:uppercase;line-height:1.15}
+.st span{color:var(--gold)}
+.ss{font-size:1rem;color:var(--gl);margin:.7rem 0 .3rem;font-style:italic}
+.tg{font-size:.85rem;color:var(--mu);font-style:italic}
+.orn{color:var(--gold);font-size:.9rem;letter-spacing:.5em;margin-top:1.2rem;opacity:.7}
+
+/* ── Content ── */
+.content{max-width:860px;margin:0 auto;padding:3rem 2rem 5rem}
+
+/* ── Sections ── */
+.sec{background:var(--bg2);border:1px solid var(--br);border-radius:10px;margin-bottom:1.2rem;overflow:hidden}
+.sec-hd{padding:1.1rem 1.4rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;user-select:none;transition:background .2s}
+.sec-hd:hover{background:var(--bg3)}
+.sec-hd h2{font-size:1rem;font-weight:700;color:var(--gl);line-height:1.3}
+.sec-hd .num{font-size:.65rem;font-weight:700;letter-spacing:.1em;color:var(--gold);min-width:2rem;text-align:right;flex-shrink:0}
+.arr{color:var(--gd);font-size:.8rem;flex-shrink:0;transition:transform .3s}
+.sec.open .arr{transform:rotate(90deg)}
+.sec-body{display:none;padding:1.2rem 1.4rem 1.4rem;border-top:1px solid var(--br)}
+.sec.open .sec-body{display:block}
+.sec-body p{margin-bottom:1rem;font-size:.92rem}
+.sec-body h3{font-size:.85rem;font-weight:700;color:var(--gold);letter-spacing:.06em;text-transform:uppercase;margin:1.4rem 0 .6rem}
+.sec-body ul{margin:.4rem 0 1rem 1.2rem;font-size:.88rem}
+.sec-body ul li{margin-bottom:.4rem}
+.sec-body blockquote{border-left:3px solid var(--gd);padding:.6rem 1rem;background:var(--bg3);border-radius:0 6px 6px 0;font-style:italic;font-size:.88rem;color:var(--tx);margin:1rem 0}
+.sec-body blockquote cite{display:block;margin-top:.4rem;font-size:.78rem;color:var(--mu);font-style:normal}
+
+/* ── Scripture cards ── */
+.sv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin:1rem 0}
+.sv{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:1rem 1.1rem}
+.sv-ref{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+.sv-txt{font-size:.88rem;font-style:italic;color:var(--tx);margin-bottom:.6rem;line-height:1.55}
+.labels{display:flex;flex-wrap:wrap;gap:.3rem}
+.label{font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.15rem .45rem;border-radius:3px}
+.oo{background:#3a2e10;color:var(--gold);border:1px solid var(--gd)}
+.prot{background:#1a2535;color:#7aa8d0;border:1px solid #2a4060}
+.ctx{background:#1a2a1a;color:#7abf7a;border:1px solid #2a502a}
+.pl{background:#2a1a2a;color:#c07ac0;border:1px solid #502a50}
+
+/* ── Father / quote cards ── */
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin:1rem 0}
+.fc{background:var(--bg3);border:1px solid var(--br);border-left:3px solid var(--gd);border-radius:0 8px 8px 0;padding:1rem 1.1rem}
+.fc-name{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem}
+.fc-era{font-size:.65rem;color:var(--mu);margin-bottom:.5rem}
+.fc-txt{font-size:.85rem;font-style:italic;color:var(--tx);line-height:1.55}
+
+/* ── Glossary ── */
+.gt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:.9rem;margin:1rem 0}
+.gt{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:.9rem 1rem}
+.gt-term{font-size:.9rem;font-weight:700;color:var(--gl);margin-bottom:.2rem}
+.gt-gk{font-size:.75rem;color:var(--gold);font-style:italic;margin-bottom:.4rem}
+.gt-def{font-size:.8rem;color:var(--tx);opacity:.9}
+
+/* ── Comparison grid ── */
+.comp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin:1rem 0}
+.comp-card{border-radius:8px;padding:1rem 1.1rem;border:1px solid var(--br)}
+.comp-card.oo{background:#3a2e10;border-color:var(--gd)}
+.comp-card.prot{background:#1a2535;border-color:#2a4060}
+.comp-card.rc{background:#1a1a2a;border-color:#3a3060}
+.comp-card h4{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.6rem}
+.comp-card.oo h4{color:var(--gold)}
+.comp-card.prot h4{color:#7aa8d0}
+.comp-card.rc h4{color:#a090d0}
+.comp-card ul{margin-left:1rem;font-size:.8rem;color:var(--tx)}
+.comp-card ul li{margin-bottom:.3rem}
+
+/* ── Objection accordions ── */
+.obj{background:var(--bg3);border:1px solid #3a1a1a;border-radius:8px;margin-bottom:.8rem;overflow:hidden}
+.obj-hd{padding:.9rem 1.1rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:.8rem;user-select:none}
+.obj-hd:hover{background:#1f1010}
+.obj-hd strong{font-size:.87rem;color:#d08080;line-height:1.3}
+.obj-arr{color:#804040;font-size:.75rem;flex-shrink:0;transition:transform .3s}
+.obj.open .obj-arr{transform:rotate(90deg)}
+.obj-body{display:none;padding:.9rem 1.1rem 1.1rem;border-top:1px solid #3a1a1a;font-size:.87rem}
+.obj.open .obj-body{display:block}
+.obj-body p{margin-bottom:.7rem}
+.obj-resp{background:#1a2510;border-left:3px solid #4a7030;border-radius:0 6px 6px 0;padding:.7rem 1rem;font-size:.85rem;margin-top:.6rem}
+.obj-resp strong{color:#6abf6a;display:block;margin-bottom:.3rem;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase}
+
+/* ── FAQ ── */
+.fi{background:var(--bg3);border:1px solid var(--br);border-radius:8px;margin-bottom:.7rem;overflow:hidden}
+.fi-hd{padding:.85rem 1.1rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:.8rem;user-select:none}
+.fi-hd:hover{background:var(--bg4)}
+.fi-hd strong{font-size:.87rem;color:var(--gl);line-height:1.3}
+.fi-arr{color:var(--gd);font-size:.75rem;flex-shrink:0;transition:transform .3s}
+.fi.open .fi-arr{transform:rotate(90deg)}
+.fi-body{display:none;padding:.85rem 1.1rem 1.1rem;border-top:1px solid var(--br);font-size:.87rem}
+.fi.open .fi-body{display:block}
+.fi-body p{margin-bottom:.6rem}
+
+/* ── Stage cards ── */
+.stage-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin:1rem 0}
+.stage{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:1rem 1.1rem;border-top:3px solid var(--gd)}
+.stage-num{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem}
+.stage-title{font-size:.95rem;font-weight:700;color:var(--gl);margin-bottom:.4rem}
+.stage-gk{font-size:.75rem;color:var(--gd);font-style:italic;margin-bottom:.5rem}
+.stage-desc{font-size:.82rem;color:var(--tx)}
+
+/* ── Sacrament cards ── */
+.sac-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem;margin:1rem 0}
+.sac{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:1rem 1.1rem}
+.sac-icon{font-size:1.4rem;margin-bottom:.4rem;display:block}
+.sac-name{font-size:.85rem;font-weight:700;color:var(--gl);margin-bottom:.2rem}
+.sac-role{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+.sac-desc{font-size:.82rem;color:var(--tx)}
+
+/* ── Footer ── */
+footer{text-align:center;padding:2rem 1rem;border-top:1px solid var(--br);font-size:.8rem;color:var(--mu)}
+footer span{color:var(--gold)}
+
+/* ── Responsive ── */
+@media(max-width:800px){
+  #sidebar{transform:translateX(calc(-1 * var(--sidebar-w)))}
+  #sidebar.open{transform:translateX(0)}
+  #main{margin-left:0}
+  #menu-btn{display:flex}
+  .hero{padding:4rem 1.2rem 2.5rem}
+  .content{padding:2rem 1.2rem 4rem}
+}
+</style>
+</head>
+<body>
+
+<div id="prog"></div>
+
+<button id="menu-btn" onclick="toggleSidebar()" aria-label="Menu">☰</button>
+<div id="overlay" onclick="closeMobile()"></div>
+
+<nav id="sidebar">
+  <header>
+    <div class="logo">The Orthodox Lamp</div>
+    <h2>Salvation in the Oriental Orthodox Faith</h2>
+  </header>
+  <div id="sb-nav">
+    <span class="sb-group">Foundations</span>
+    <a href="#s1">I. Introduction</a>
+    <a href="#s2">II. Glossary</a>
+    <a href="#s3">III. Three Stages of Salvation</a>
+    <span class="sb-group">Biblical Foundation</span>
+    <a href="#s4">IV. Baptismal Regeneration</a>
+    <a href="#s5">V. The Role of Faith</a>
+    <a href="#s6">VI. Grace &amp; Synergy</a>
+    <span class="sb-group">Sacramental Economy</span>
+    <a href="#s7">VII. The Holy Mysteries</a>
+    <a href="#s8">VIII. Repentance &amp; Confession</a>
+    <span class="sb-group">Theosis</span>
+    <a href="#s9">IX. Theosis — The Goal of Salvation</a>
+    <a href="#s10">X. The Church &amp; Salvation</a>
+    <span class="sb-group">Patristic Witness</span>
+    <a href="#s11">XI. The Church Fathers</a>
+    <a href="#s12">XII. Comparing Traditions</a>
+    <span class="sb-group">Apologetics</span>
+    <a href="#s13">XIII. Protestant Objections</a>
+    <a href="#s14">XIV. Can Salvation Be Lost?</a>
+    <a href="#s15">XV. FAQ</a>
+    <a href="#s16">XVI. Sources</a>
+  </div>
+</nav>
+
+<div id="main">
+
+<div class="hero">
+  <a class="back" href="index.html">← Library</a>
+  <span class="si">☩</span>
+  <h1 class="st">THE <span>ORTHODOX</span> LAMP</h1>
+  <p class="ss">Salvation in the Oriental Orthodox Faith</p>
+  <p class="tg">"Work out your own salvation with fear and trembling." — Philippians 2:12</p>
+  <div class="orn">✦ ✦ ✦</div>
+</div>
+
+<div class="content">
+
+<!-- I -->
+<div class="sec open" id="s1">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>I. Introduction — What Is Salvation?</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">01</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>The question of salvation stands at the heart of every Christian confession — yet the answers given by Rome, the Protestant Reformers, and the Oriental Orthodox Churches differ in profound and important ways. For the Oriental Orthodox — the Coptic, Ethiopian, Eritrean, Syriac, Armenian, and Malankara churches — salvation is not primarily a legal transaction but a <em>healing and transformation of human nature</em>.</p>
+    <p>The Western tradition, shaped by Augustine and later by the Latin scholastics, has tended to frame salvation in juridical terms: mankind is guilty before a divine tribunal; Christ pays the penalty; the sinner is declared righteous. Lutheranism gave this its sharpest expression in <em>sola fide</em> — faith alone, apart from works or sacraments, effects justification. Rome retained a sacramental economy but still spoke primarily in legal categories of merit and satisfaction.</p>
+    <p>The Oriental Orthodox tradition — drawing from the Alexandrian, Antiochene, and Jerusalem streams of the undivided Church — takes a markedly different path. Salvation is understood through the categories of <strong>theosis</strong> (deification), <strong>synergy</strong> (divine-human cooperation), and <strong>the sacramental life of the Church</strong>. The great Alexandrian bishop Athanasius encapsulated this vision in words that have echoed through Orthodox Christianity for seventeen centuries:</p>
+    <blockquote>"He became man that we might become God."<cite>— St. Athanasius of Alexandria, <em>On the Incarnation</em>, §54 (c. AD 318)</cite></blockquote>
+    <p>This is not a peripheral idea. It is the center. Salvation, for the Oriental Orthodox, is participation in the divine life — a real, ontological transformation that begins at Baptism, deepens through the Holy Mysteries, and is completed in the resurrection of the body and the age to come.</p>
+    <p>This site examines: the three stages of salvation, baptismal regeneration, the role of faith and works, divine grace and human cooperation (synergy), the sacramental economy, theosis as the goal of salvation, the Patristic consensus, and responses to Protestant objections.</p>
+  </div>
+</div>
+
+<!-- II -->
+<div class="sec" id="s2">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>II. Key Terms — Glossary</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">02</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <div class="gt-grid">
+      <div class="gt">
+        <div class="gt-term">Theosis / Deification</div>
+        <div class="gt-gk">Greek: θέωσις (theosis)</div>
+        <div class="gt-def">The process by which the human person participates increasingly in the divine nature (2 Peter 1:4), becoming "partakers of God" without being absorbed into the Godhead. The ultimate goal and fulfillment of salvation.</div>
+      </div>
+      <div class="gt">
+        <div class="gt-term">Synergy</div>
+        <div class="gt-gk">Greek: συνέργεια (synergeia)</div>
+        <div class="gt-def">The cooperation of the human will with divine grace. God works salvation; humanity cooperates freely. Neither strict monergism (God alone) nor Pelagianism (human effort alone) — but genuine partnership (Phil 2:12–13).</div>
+      </div>
+      <div class="gt">
+        <div class="gt-term">Baptismal Regeneration</div>
+        <div class="gt-gk">Greek: ἀναγέννησις (anagennesis)</div>
+        <div class="gt-def">The teaching that Holy Baptism is the sacramental means by which the Holy Spirit effects new birth, the forgiveness of sins, and incorporation into the Body of Christ. Affirmed unanimously by the early Church.</div>
+      </div>
+      <div class="gt">
+        <div class="gt-term">Soteriology</div>
+        <div class="gt-gk">Greek: σωτηρία (soteria) — salvation</div>
+        <div class="gt-def">The theological study of salvation — its nature, means, scope, and goal. The Oriental Orthodox soteriology is therapeutic and participatory, not merely forensic/legal.</div>
+      </div>
+      <div class="gt">
+        <div class="gt-term">Justification</div>
+        <div class="gt-gk">Greek: δικαίωσις (dikaiosis)</div>
+        <div class="gt-def">In OO theology, justification is not merely a legal declaration but an actual making-righteous — a real change in the person's relationship to God. It begins in Baptism and continues through the sacramental life.</div>
+      </div>
+      <div class="gt">
+        <div class="gt-term">Sanctification</div>
+        <div class="gt-gk">Greek: ἁγιασμός (hagiasmos)</div>
+        <div class="gt-def">The ongoing process of being made holy — growing in virtue, prayer, and the sacramental life toward the likeness of Christ. Not separate from salvation but its progressive unfolding.</div>
+      </div>
+      <div class="gt">
+        <div class="gt-term">The Holy Mysteries</div>
+        <div class="gt-gk">Greek: μυστήρια (mysteria)</div>
+        <div class="gt-def">The seven sacraments of the Church — Baptism, Chrismation, Eucharist, Confession, Holy Orders, Matrimony, Holy Unction — understood as real channels of divine grace effecting what they signify.</div>
+      </div>
+      <div class="gt">
+        <div class="gt-term">Catechumen</div>
+        <div class="gt-gk">Greek: κατηχούμενος (katechoumenos)</div>
+        <div class="gt-def">One who is receiving instruction in the faith in preparation for Baptism. In the ancient Church, catechumens were dismissed before the Liturgy of the Faithful, reflecting the sacred nature of full sacramental participation.</div>
+      </div>
+      <div class="gt">
+        <div class="gt-term">Original Sin</div>
+        <div class="gt-gk">Greek: προπατορικὴ ἁμαρτία</div>
+        <div class="gt-def">In OO theology, the inherited consequence of Adam's fall — corruption, mortality, and a weakened will — rather than primarily inherited guilt (the Western Augustinian emphasis). Baptism heals this corruption through regeneration.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- III -->
+<div class="sec" id="s3">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>III. The Three Stages of Salvation</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">03</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>Salvation in the Oriental Orthodox understanding is not a single moment but a <em>lifelong journey</em> with a definite beginning, a continuous middle, and an eschatological completion. The Fathers often described this journey in three movements — though they are not rigidly separate but intertwined.</p>
+    <div class="stage-grid">
+      <div class="stage">
+        <div class="stage-num">Stage I</div>
+        <div class="stage-title">Justification / New Birth</div>
+        <div class="stage-gk">Greek: δικαίωσις / ἀναγέννησις</div>
+        <div class="stage-desc">The forgiveness of past sins and new birth in the Holy Spirit, granted sacramentally in Baptism. The person is cleansed, adopted as a child of God, and incorporated into the Body of Christ. This is the definitive break from the dominion of sin and death.</div>
+      </div>
+      <div class="stage">
+        <div class="stage-num">Stage II</div>
+        <div class="stage-title">Sanctification / Growth</div>
+        <div class="stage-gk">Greek: ἁγιασμός / αὔξησις</div>
+        <div class="stage-desc">The ongoing transformation of the person in cooperation with divine grace — through prayer, fasting, the Eucharist, Confession, virtue, and the ascetic life. The image of God (imago Dei) is progressively restored in the person. This is the life of synergy.</div>
+      </div>
+      <div class="stage">
+        <div class="stage-num">Stage III</div>
+        <div class="stage-title">Theosis / Glorification</div>
+        <div class="stage-gk">Greek: θέωσις / δόξα</div>
+        <div class="stage-desc">The fulfillment of salvation in the age to come — the resurrection of the body, the final judgment, and the blessed life of participation in God's uncreated energies forever. "We shall be like Him, for we shall see Him as He is" (1 John 3:2).</div>
+      </div>
+    </div>
+    <p>These three stages correspond loosely to the classical mystical categories known from Evagrius Ponticus and Pseudo-Dionysius: <em>katharsis</em> (purification), <em>photismos</em> (illumination), and <em>theosis</em> (union). All three are encompassed within the single word <em>soteria</em> — salvation.</p>
+    <blockquote>"The Word of God, very God, wills that the mystery of his Incarnation be actualized always and in all things."<cite>— St. Maximus the Confessor, <em>Ambiguum</em> 7 (7th century)</cite></blockquote>
+  </div>
+</div>
+
+<!-- IV -->
+<div class="sec" id="s4">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>IV. Baptismal Regeneration — The Biblical Case</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">04</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>The doctrine of baptismal regeneration — that the sacrament of Baptism is the normative means of new birth — is not a medieval invention. It is the unanimous teaching of the ancient Church from the apostolic age onward, grounded directly in Scripture.</p>
+    <h3>The Dominical Command</h3>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">John 3:5</div>
+        <div class="sv-txt">"Truly, truly, I say to you, unless one is born of water and the Spirit, he cannot enter the kingdom of God."</div>
+        <div class="labels"><span class="label oo">OO: Water = Baptism</span><span class="label prot">Prot: Water = Word / Spirit</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Matthew 28:19</div>
+        <div class="sv-txt">"Go therefore and make disciples of all nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit."</div>
+        <div class="labels"><span class="label oo">OO: Baptism is the means of discipleship</span><span class="label ctx">Context: Linked to teaching and obedience</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Acts 2:38</div>
+        <div class="sv-txt">"Repent and be baptized every one of you in the name of Jesus Christ for the forgiveness of your sins, and you will receive the gift of the Holy Spirit."</div>
+        <div class="labels"><span class="label oo">OO: Forgiveness and Spirit given in Baptism</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Acts 22:16</div>
+        <div class="sv-txt">"Rise and be baptized and wash away your sins, calling on his name."</div>
+        <div class="labels"><span class="label oo">OO: Saul's sins washed in Baptism</span><span class="label ctx">Context: Three days after road to Damascus</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Romans 6:3–4</div>
+        <div class="sv-txt">"Do you not know that all of us who have been baptized into Christ Jesus were baptized into his death? We were buried therefore with him by baptism into death, in order that, just as Christ was raised from the dead by the glory of the Father, we too might walk in newness of life."</div>
+        <div class="labels"><span class="label oo">OO: Baptism = death and resurrection with Christ</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Galatians 3:27</div>
+        <div class="sv-txt">"For as many of you as were baptized into Christ have put on Christ."</div>
+        <div class="labels"><span class="label oo">OO: Union with Christ is baptismal</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Colossians 2:12</div>
+        <div class="sv-txt">"Having been buried with him in baptism, in which you were also raised with him through faith in the powerful working of God, who raised him from the dead."</div>
+        <div class="labels"><span class="label oo">OO: Resurrection in Baptism, through faith</span><span class="label ctx">Context: Baptism and faith together</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Titus 3:5</div>
+        <div class="sv-txt">"He saved us, not because of works done by us in righteousness, but according to his own mercy, by the washing of regeneration and renewing of the Holy Spirit."</div>
+        <div class="labels"><span class="label oo">OO: "Washing of regeneration" = Baptism</span><span class="label prot">Prot: Metaphorical cleansing</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">1 Peter 3:21</div>
+        <div class="sv-txt">"Baptism, which corresponds to this [the Flood], now saves you — not as a removal of dirt from the body but as an appeal to God for a good conscience, through the resurrection of Jesus Christ."</div>
+        <div class="labels"><span class="label oo">OO: Peter explicitly says Baptism saves</span><span class="label prot">Prot: An outward pledge / symbol</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Ezekiel 36:25–27</div>
+        <div class="sv-txt">"I will sprinkle clean water on you, and you shall be clean from all your uncleannesses... And I will give you a new heart, and a new spirit I will put within you."</div>
+        <div class="labels"><span class="label ctx">Context: OT type of baptismal regeneration</span><span class="label oo">OO: Fulfilled in the font</span></div>
+      </div>
+    </div>
+    <h3>The Patristic Consensus on John 3:5</h3>
+    <p>The identification of "water" in John 3:5 with the sacrament of Baptism is the unanimous interpretation of the early Church. No significant Father before the Reformation denied it.</p>
+    <div class="fc-grid">
+      <div class="fc">
+        <div class="fc-name">Justin Martyr</div>
+        <div class="fc-era">c. AD 150</div>
+        <div class="fc-txt">"As many as are persuaded and believe that what we teach and say is true... are brought by us where there is water, and are regenerated in the same manner in which we were ourselves regenerated."</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Irenaeus of Lyon</div>
+        <div class="fc-era">c. AD 180</div>
+        <div class="fc-txt">"[Christ] came to save all through means of himself — all, I say, who through him are born again to God — infants, and children, and boys, and youths, and old men."</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Tertullian</div>
+        <div class="fc-era">c. AD 200</div>
+        <div class="fc-txt">"Happy is our sacrament of water, in that, by washing away the sins of our early blindness, we are set free and admitted into eternal life!"</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Cyril of Jerusalem</div>
+        <div class="fc-era">c. AD 350</div>
+        <div class="fc-txt">"If any man receive not baptism, he hath not salvation; except only martyrs, who even without the water receive the kingdom. For when the Saviour, in redeeming the world by his cross, was pierced in the side, he shed forth blood and water; that men, living in times of peace, might be baptized in water, and, in times of persecution, be baptized in their own blood."</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">John Chrysostom</div>
+        <div class="fc-era">c. AD 390</div>
+        <div class="fc-txt">"Baptism... purges out our sins, makes us sons instead of slaves, makes us citizens of heaven instead of strangers, and cleanses us from all uncleanness."</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Augustine of Hippo</div>
+        <div class="fc-era">c. AD 410</div>
+        <div class="fc-txt">"It is this one Spirit who makes it possible for an infant to be regenerated through the agency of another's will when that infant is brought to baptism."</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- V -->
+<div class="sec" id="s5">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>V. The Role of Faith in Salvation</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">05</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>The Oriental Orthodox tradition fully affirms that salvation is received through faith — but it understands faith in a richer, more comprehensive sense than the bare intellectual assent of later Protestant theology. Faith (πίστις) in the Patristic tradition includes trust, loyalty, love, and obedience — a total orientation of the person toward God.</p>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">Ephesians 2:8–9</div>
+        <div class="sv-txt">"For by grace you have been saved through faith. And this is not your own doing; it is the gift of God, not a result of works, so that no one may boast."</div>
+        <div class="labels"><span class="label oo">OO: Grace is primary; sacraments are grace, not human works</span><span class="label prot">Prot: Sola fide proof text</span><span class="label ctx">Context: "Works" = works of Mosaic Law, not sacraments</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">James 2:24</div>
+        <div class="sv-txt">"You see that a person is justified by works and not by faith alone."</div>
+        <div class="labels"><span class="label oo">OO: James explicitly denies sola fide</span><span class="label prot">Prot: "Different kind of justification" / "epistle of straw" (Luther)</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">John 6:29</div>
+        <div class="sv-txt">"This is the work of God, that you believe in him whom he has sent."</div>
+        <div class="labels"><span class="label oo">OO: Faith itself is a divine gift and "work"</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Galatians 5:6</div>
+        <div class="sv-txt">"For in Christ Jesus neither circumcision nor uncircumcision counts for anything, but only faith working through love."</div>
+        <div class="labels"><span class="label oo">OO: Saving faith is active, love-shaped faith</span><span class="label ctx">Context: Not passive assent but operative charity</span></div>
+      </div>
+    </div>
+    <p>The Oriental Orthodox understanding may be summarized: <strong>faith is necessary but not sufficient</strong> in isolation. Faith must be expressed in baptism (the initial act of faith), must be nourished by the sacramental life, and must bear fruit in love and virtue (synergy). This is not "works salvation" — it is the recognition that genuine faith is inherently active and transformative.</p>
+    <p>The dichotomy between "faith" and "works" is foreign to the Patristic mind. The Fathers never asked "faith <em>or</em> works?" — they asked "what kind of life is fitting for those who have been justified?" The answer was invariably: a life of love, prayer, fasting, almsgiving, and sacramental participation.</p>
+  </div>
+</div>
+
+<!-- VI -->
+<div class="sec" id="s6">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>VI. Grace and Synergy — Divine-Human Cooperation</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">06</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>One of the sharpest differences between the Oriental Orthodox and the Protestant Reformers concerns the relationship between divine grace and human freedom. The Reformers (especially Calvin) taught <em>monergism</em> — God alone acts in salvation; the human will contributes nothing and is entirely passive. The Oriental Orthodox hold <em>synergism</em> — God initiates and sustains salvation; the human person freely cooperates.</p>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">Philippians 2:12–13</div>
+        <div class="sv-txt">"Work out your own salvation with fear and trembling, for it is God who works in you, both to will and to work for his good pleasure."</div>
+        <div class="labels"><span class="label oo">OO: Both divine working and human working — synergy</span><span class="label prot">Prot: "God works" means humans are passive</span><span class="label ctx">Context: Paul addresses a community, not an individual</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">1 Corinthians 3:9</div>
+        <div class="sv-txt">"For we are God's fellow workers (synergoi)."</div>
+        <div class="labels"><span class="label oo">OO: Paul explicitly uses synergy language</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">2 Corinthians 6:1</div>
+        <div class="sv-txt">"Working together with him, then, we appeal to you not to receive the grace of God in vain."</div>
+        <div class="labels"><span class="label oo">OO: Grace can be received in vain — free cooperation required</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Revelation 3:20</div>
+        <div class="sv-txt">"Behold, I stand at the door and knock. If anyone hears my voice and opens the door, I will come in to him and eat with him, and he with me."</div>
+        <div class="labels"><span class="label oo">OO: God initiates; the human must open</span><span class="label ctx">Context: To a backsliding church — not unbelievers</span></div>
+      </div>
+    </div>
+    <p>Synergy does not mean that humanity contributes <em>merit</em> to salvation or that human effort is independent of grace. The Fathers are clear: grace always precedes and enables human cooperation. But this enabling grace does not bypass the human will — it heals and elevates it so that the person can genuinely and freely respond.</p>
+    <blockquote>"God created us without us, but He did not will to save us without us."<cite>— St. Augustine of Hippo, <em>Sermon</em> 169 (c. AD 416)</cite></blockquote>
+    <blockquote>"All indeed depends on God, but not so that our free-will is hindered… It depends then on us, and on Him. For we must first choose the good; and then He leads us to His own."<cite>— St. John Chrysostom, <em>Homilies on Hebrews</em>, Homily 12 (c. AD 403)</cite></blockquote>
+    <p>This is profoundly different from both Pelagianism (which makes salvation the result of unaided human effort) and from Calvinist double predestination (which effectively makes human choice irrelevant). The OO position maps precisely onto what the early Council of Orange (529) affirmed: grace must precede every act oriented toward salvation, yet the human will genuinely cooperates.</p>
+  </div>
+</div>
+
+<!-- VII -->
+<div class="sec" id="s7">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>VII. The Holy Mysteries and Salvation</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">07</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>The Oriental Orthodox understanding of salvation is inseparable from the sacramental life of the Church. The Holy Mysteries are not merely symbols or memorials — they are real channels of divine grace that accomplish what they signify. Salvation is not a once-and-done event but an ongoing participation in the life of God mediated through the Church and her mysteries.</p>
+    <div class="sac-grid">
+      <div class="sac">
+        <span class="sac-icon">💧</span>
+        <div class="sac-name">Holy Baptism</div>
+        <div class="sac-role">New Birth / Justification</div>
+        <div class="sac-desc">The sacrament of regeneration — the washing away of sin, adoption as God's child, death to the old Adam, and resurrection to new life in Christ. The normative entry into salvation and the Church. John 3:5; Titus 3:5; Rom 6:3–4.</div>
+      </div>
+      <div class="sac">
+        <span class="sac-icon">🕊️</span>
+        <div class="sac-name">Holy Chrismation</div>
+        <div class="sac-role">The Seal of the Holy Spirit</div>
+        <div class="sac-desc">Given immediately after Baptism — the personal Pentecost of the believer. The Holy Spirit is sealed within the person as the pledge (ἀρραβών) of eternal life, empowering the life of sanctification. Acts 2:38; 2 Cor 1:21–22.</div>
+      </div>
+      <div class="sac">
+        <span class="sac-icon">✝️</span>
+        <div class="sac-name">Holy Eucharist</div>
+        <div class="sac-role">The Medicine of Immortality</div>
+        <div class="sac-desc">The Body and Blood of Christ truly received — the primary means by which theosis is nourished and eternal life is appropriated. "Whoever feeds on my flesh and drinks my blood has eternal life, and I will raise him up on the last day" (John 6:54).</div>
+      </div>
+      <div class="sac">
+        <span class="sac-icon">🙏</span>
+        <div class="sac-name">Holy Confession</div>
+        <div class="sac-role">Healing of Post-Baptismal Sin</div>
+        <div class="sac-desc">The sacrament of reconciliation — the restoration of those who have fallen after Baptism. Understood as a "second Baptism." Christ's authority to forgive sins is delegated to the apostolic priesthood (John 20:22–23; James 5:16).</div>
+      </div>
+      <div class="sac">
+        <span class="sac-icon">🫒</span>
+        <div class="sac-name">Holy Unction</div>
+        <div class="sac-role">Healing of Body and Soul</div>
+        <div class="sac-desc">The anointing of the sick with blessed oil — for physical and spiritual healing, and the forgiveness of sins committed through weakness. James 5:14–15; Mark 6:13. Not merely for the dying — a sacrament of ongoing healing.</div>
+      </div>
+      <div class="sac">
+        <span class="sac-icon">🔗</span>
+        <div class="sac-name">Holy Orders</div>
+        <div class="sac-role">Ministry of Salvation</div>
+        <div class="sac-desc">The ordination of bishops, priests, and deacons — those through whom the other mysteries are administered and the flock is shepherded toward salvation. The apostolic succession ensures the validity and continuity of the sacramental economy.</div>
+      </div>
+      <div class="sac">
+        <span class="sac-icon">💍</span>
+        <div class="sac-name">Holy Matrimony</div>
+        <div class="sac-role">Sanctification of Family Life</div>
+        <div class="sac-desc">Christian marriage as a holy mystery — the union of a man and woman in a covenant that images the union of Christ and the Church (Eph 5:25–32). The family is the "small church" (ecclesiola) in which the Christian life is lived and transmitted.</div>
+      </div>
+    </div>
+    <h3>The Eucharist and Eternal Life</h3>
+    <p>The Eucharist holds a privileged place in Oriental Orthodox soteriology because Christ himself links reception of his Body and Blood directly to eternal life and the resurrection of the body:</p>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">John 6:53–54</div>
+        <div class="sv-txt">"Truly, truly, I say to you, unless you eat the flesh of the Son of Man and drink his blood, you have no life in you. Whoever feeds on my flesh and drinks my blood has eternal life, and I will raise him up on the last day."</div>
+        <div class="labels"><span class="label oo">OO: Literal reception of Christ — essential to salvation</span><span class="label prot">Prot: Symbolic / spiritual reception only</span></div>
+      </div>
+    </div>
+    <blockquote>"The Eucharist is the medicine of immortality, and the antidote to prevent us from dying, but a cleansing remedy driving away evil, that we should live in God through Jesus Christ."<cite>— St. Ignatius of Antioch, <em>Letter to the Ephesians</em> 20:2 (c. AD 107)</cite></blockquote>
+  </div>
+</div>
+
+<!-- VIII -->
+<div class="sec" id="s8">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>VIII. Repentance and Confession — The Path of Return</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">08</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>The Oriental Orthodox tradition holds that salvation, once initiated in Baptism, can be imperilled by grave sin — but that God, in his boundless mercy, has provided a path of return through repentance and the sacrament of Confession. This is sometimes called the "second plank after shipwreck."</p>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">John 20:22–23</div>
+        <div class="sv-txt">"He breathed on them and said to them, 'Receive the Holy Spirit. If you forgive the sins of any, they are forgiven them; if you withhold forgiveness from any, it is withheld.'"</div>
+        <div class="labels"><span class="label oo">OO: Apostolic authority to absolve — basis of sacramental Confession</span><span class="label prot">Prot: Refers to preaching the gospel</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">James 5:16</div>
+        <div class="sv-txt">"Therefore, confess your sins to one another and pray for one another, that you may be healed."</div>
+        <div class="labels"><span class="label oo">OO: Auricular confession is apostolic and healing</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">1 John 1:9</div>
+        <div class="sv-txt">"If we confess our sins, he is faithful and just to forgive us our sins and to cleanse us from all unrighteousness."</div>
+        <div class="labels"><span class="label oo">OO: Confession — ongoing cleansing, not one-time event</span></div>
+      </div>
+    </div>
+    <p>Repentance (μετάνοια) in the OO tradition means a genuine change of mind, heart, and life — not merely expressing regret, but turning decisively from sin toward God. The Fathers stressed that repentance must be sincere and total, accompanied by prayer, fasting, almsgiving, and the resolve to change one's life.</p>
+    <blockquote>"Have you sinned? Mourn, and you annul the sin… I do not require of you anything more than to mourn the sin."<cite>— St. John Chrysostom, <em>Homilies on Repentance</em> (c. AD 386)</cite></blockquote>
+  </div>
+</div>
+
+<!-- IX -->
+<div class="sec" id="s9">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>IX. Theosis — The Goal of Salvation</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">09</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>Theosis — the deification or divinization of the human person — is the summit and goal of salvation in the Oriental Orthodox tradition. It is not a fringe idea but the consistent testimony of the Greek Fathers, the Desert tradition, and the great theologians of the Christian East.</p>
+    <p>To be deified does not mean to become God by nature — that is impossible. It means to participate in the divine nature through grace, to be so thoroughly permeated by the Holy Spirit that one becomes "a partaker of the divine nature" (2 Pet 1:4). The human person does not dissolve into God; rather, the distinction between Creator and creature remains, but the creature is increasingly filled with and transformed by the uncreated life of God.</p>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">2 Peter 1:4</div>
+        <div class="sv-txt">"...that through these he has granted to us his precious and very great promises, so that through them you may become partakers of the divine nature, having escaped from the corruption that is in the world because of sinful desire."</div>
+        <div class="labels"><span class="label oo">OO: Scripture explicitly speaks of participation in the divine nature</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Psalm 82:6</div>
+        <div class="sv-txt">"I said, 'You are gods, sons of the Most High, all of you.'"</div>
+        <div class="labels"><span class="label oo">OO: Quoted by Christ in John 10:34 — humanity's theotic calling</span><span class="label ctx">Context: Cited by Jesus to show the dignity of those to whom the Word comes</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">1 John 3:2</div>
+        <div class="sv-txt">"We are God's children now, and what we will be has not yet appeared; but we know that when he appears we shall be like him, because we shall see him as he is."</div>
+        <div class="labels"><span class="label oo">OO: Eschatological theosis — conformity to the divine likeness</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Romans 8:29–30</div>
+        <div class="sv-txt">"For those whom he foreknew he also predestined to be conformed to the image of his Son... And those whom he predestined he also called, and those whom he called he also justified, and those whom he justified he also glorified."</div>
+        <div class="labels"><span class="label oo">OO: The telos is conformity to Christ — glorification / theosis</span></div>
+      </div>
+    </div>
+    <h3>The Patristic Tradition of Theosis</h3>
+    <div class="fc-grid">
+      <div class="fc">
+        <div class="fc-name">Irenaeus of Lyon</div>
+        <div class="fc-era">c. AD 185</div>
+        <div class="fc-txt">"The Word of God, our Lord Jesus Christ, through his transcendent love, became what we are, that he might bring us to be even what he is himself."</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Clement of Alexandria</div>
+        <div class="fc-era">c. AD 195</div>
+        <div class="fc-txt">"The Logos of God had become man so that you might learn from man how man may become God."</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Athanasius of Alexandria</div>
+        <div class="fc-era">c. AD 318</div>
+        <div class="fc-txt">"He became man that we might become God."</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Gregory of Nazianzus</div>
+        <div class="fc-era">c. AD 380</div>
+        <div class="fc-txt">"I must be buried with Christ, rise with Christ, be joint-heir with Christ, become the son of God, yea, God himself."</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Gregory of Nyssa</div>
+        <div class="fc-era">c. AD 385</div>
+        <div class="fc-txt">"The soul... rising always from perfection to perfection... never comes to a ceiling in its growth toward God. Such is the true meaning of seeing God: never to have this desire satisfied."</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Cyril of Alexandria</div>
+        <div class="fc-era">c. AD 420</div>
+        <div class="fc-txt">"We are made partakers of the divine nature through participation in the Holy Spirit."</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Maximus the Confessor</div>
+        <div class="fc-era">c. AD 640</div>
+        <div class="fc-txt">"God and man are paradigms of each other, God humanizing himself for man's sake and man being deified for God's sake."</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">John of Damascus</div>
+        <div class="fc-era">c. AD 750</div>
+        <div class="fc-txt">"He became man in order that man might become god. He took on himself our poverty that we might partake of his riches."</div>
+      </div>
+    </div>
+    <p>Theosis is not an abstract philosophical concept — it is the lived reality of the saints. The Desert Fathers, the great monastic traditions of Egypt, Ethiopia, and Syria, and the martyrs of every generation are its witnesses. The radiance of the saints — literally described in the Lives of the Desert Fathers and seen in the light emanating from holy persons — was understood by the ancient Church as the visible manifestation of theosis: the uncreated light of God shining through the transfigured human person.</p>
+  </div>
+</div>
+
+<!-- X -->
+<div class="sec" id="s10">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>X. The Church as the Ark of Salvation</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">10</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>For the Oriental Orthodox, salvation is not an individual transaction between a soul and God — it is inherently ecclesial. The Church is the Body of Christ, the temple of the Holy Spirit, and the community within which the new life of salvation is received, nourished, and brought to completion. "Outside the Church there is no salvation" (extra ecclesiam nulla salus) expressed the early Church's conviction that the sacramental and communal life of the Body of Christ is the normative context of salvation.</p>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">Ephesians 5:25–27</div>
+        <div class="sv-txt">"Christ loved the church and gave himself up for her, that he might sanctify her, having cleansed her by the washing of water with the word, so that he might present the church to himself in splendor, without spot or wrinkle or any such thing, that she might be holy and without blemish."</div>
+        <div class="labels"><span class="label oo">OO: The Church is the object of Christ's saving work — Baptism is the Church's water</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Acts 2:47</div>
+        <div class="sv-txt">"And the Lord added to their number day by day those who were being saved."</div>
+        <div class="labels"><span class="label oo">OO: The saved are added to the community — Church and salvation are inseparable</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">1 Peter 2:9</div>
+        <div class="sv-txt">"But you are a chosen race, a royal priesthood, a holy nation, a people for his own possession, that you may proclaim the excellencies of him who called you out of darkness into his marvelous light."</div>
+        <div class="labels"><span class="label oo">OO: Salvation is communal — a people, not isolated individuals</span></div>
+      </div>
+    </div>
+    <blockquote>"You cannot have God for your Father if you have not the Church for your Mother."<cite>— St. Cyprian of Carthage, <em>On the Unity of the Church</em> §6 (c. AD 251)</cite></blockquote>
+    <p>This does not mean that God cannot save those outside visible communion with the Church through ways known only to himself — the OO tradition affirms divine mercy is boundless. But it insists that the Church's sacramental life is the <em>ordinary</em> and <em>normative</em> path of salvation — the hospital in which the sick are healed, the ark in which the faithful are carried safely through the flood of the present age.</p>
+  </div>
+</div>
+
+<!-- XI -->
+<div class="sec" id="s11">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>XI. The Patristic Witness — Salvation Through the Ages</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">11</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>The Oriental Orthodox theology of salvation is not a departure from the early Church but its direct continuation. The following voices span the first eight centuries of Christianity and represent the Greek, Alexandrian, Syrian, and Latin traditions.</p>
+    <div class="fc-grid">
+      <div class="fc">
+        <div class="fc-name">Ignatius of Antioch</div>
+        <div class="fc-era">c. AD 107 — Martyred</div>
+        <div class="fc-txt">"Make certain, therefore, that you all observe one common Eucharist; for there is but one Body of our Lord Jesus Christ, and but one cup of union with his Blood... and only one bishop."</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Justin Martyr</div>
+        <div class="fc-era">c. AD 155</div>
+        <div class="fc-txt">"We have been taught that only those may partake of the Eucharist who have been baptized into the forgiveness of their sins and into regeneration."</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Irenaeus of Lyon</div>
+        <div class="fc-era">c. AD 185</div>
+        <div class="fc-txt">"Our way of thinking is attuned to the Eucharist, and the Eucharist in turn confirms our way of thinking... How can they deny that the flesh is capable of receiving the gift of God, which is life eternal, when it is nourished from the body and blood of the Lord?"</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Origen of Alexandria</div>
+        <div class="fc-era">c. AD 230</div>
+        <div class="fc-txt">"The Church received from the apostles the practice of baptizing infants too. For those who were entrusted with the secrets of the divine mysteries knew that all persons are tainted with the stain of original sin, which must be washed off through water and the Spirit."</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Athanasius of Alexandria</div>
+        <div class="fc-era">c. AD 318</div>
+        <div class="fc-txt">"It is the Spirit who gives life. But the Spirit is not given except through faith and baptism."</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Basil the Great</div>
+        <div class="fc-era">c. AD 370</div>
+        <div class="fc-txt">"Baptism is the ransom of captives, the remission of debts, the death of sin, the regeneration of the soul, the garment of light, the holy and indissoluble seal, the chariot to heaven, the delights of paradise, the pledge of the kingdom, the grace of adoption."</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Gregory of Nazianzus</div>
+        <div class="fc-era">c. AD 381</div>
+        <div class="fc-txt">"Baptism is God's most beautiful and magnificent gift... We call it gift, grace, anointing, enlightenment, garment of immortality, bath of regeneration, seal, and most precious gift. It is called gift because it is given to those who bring nothing of their own."</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Ephrem the Syrian</div>
+        <div class="fc-era">c. AD 360</div>
+        <div class="fc-txt">"In your fount, O Lord, I have found a paradise... Blessed is the baptism with whose white robe the soul is clothed and the stain of guilt is cleansed."</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Cyril of Jerusalem</div>
+        <div class="fc-era">c. AD 350</div>
+        <div class="fc-txt">"Think not that Baptism brings only the grace of remission of sins... but Baptism is the beginning and source of divine gifts."</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Shenoute of Atripe</div>
+        <div class="fc-era">c. AD 430 — Egyptian</div>
+        <div class="fc-txt">"Our life is Christ; our strength is Christ; our salvation is Christ. Apart from him we have nothing, are nothing, and can do nothing."</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- XII -->
+<div class="sec" id="s12">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>XII. Comparing Traditions — OO, Roman Catholic, and Protestant</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">12</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>A comparison of how the major Christian traditions understand salvation reveals both convergences and important divergences. The Oriental Orthodox position is closest to the Eastern Christian consensus but differs significantly from the Western trajectories shaped by Augustine, Anselm, and the Reformation.</p>
+    <div class="comp-grid">
+      <div class="comp-card oo">
+        <h4>Oriental Orthodox</h4>
+        <ul>
+          <li>Salvation as theosis — participation in God</li>
+          <li>Baptism effects real regeneration</li>
+          <li>Faith + sacraments + synergy</li>
+          <li>Salvation can be lost through grave sin</li>
+          <li>Repentance restores the fallen</li>
+          <li>The Church is essential, not optional</li>
+          <li>Forensic language secondary to ontological</li>
+        </ul>
+      </div>
+      <div class="comp-card prot">
+        <h4>Lutheran / Reformed</h4>
+        <ul>
+          <li>Justification as forensic declaration</li>
+          <li>Sola fide — faith alone saves</li>
+          <li>Baptism symbolic (most Reformed) or effective (Lutheran)</li>
+          <li>OSAS (Reformed) or potential loss (Lutheran)</li>
+          <li>The Church as gathering of the justified</li>
+          <li>Sacraments as "means of grace" but not salvific per se</li>
+          <li>Theosis largely absent from soteriology</li>
+        </ul>
+      </div>
+      <div class="comp-card rc">
+        <h4>Roman Catholic</h4>
+        <ul>
+          <li>Justification as real transformation (closer to OO)</li>
+          <li>Baptismal regeneration affirmed</li>
+          <li>Merit, satisfaction, purgatory (diverge from OO)</li>
+          <li>Salvation can be lost through mortal sin</li>
+          <li>The Church is essential</li>
+          <li>Papal claims are a key difference from OO</li>
+          <li>Theosis present but less central than in the East</li>
+        </ul>
+      </div>
+    </div>
+    <p>The OO tradition shares with Rome the insistence on baptismal regeneration, the sacramental economy, and the possibility of losing salvation through grave sin. It shares with Protestantism a strong emphasis on grace and the rejection of salvation by human merit alone. But it stands uniquely in its central commitment to theosis as the telos of salvation, its understanding of synergy as genuine rather than merely apparent, and its therapeutic rather than primarily forensic framework.</p>
+  </div>
+</div>
+
+<!-- XIII -->
+<div class="sec" id="s13">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>XIII. Protestant Objections &amp; Orthodox Responses</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">13</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+
+    <div class="obj">
+      <div class="obj-hd" onclick="tobj(this)">
+        <strong>Objection 1: Ephesians 2:8–9 says salvation is by grace through faith, "not of works" — so Baptism cannot be necessary for salvation.</strong>
+        <span class="obj-arr">▶</span>
+      </div>
+      <div class="obj-body">
+        <p>This is the most common Protestant objection. The argument is that if salvation is "not of works," then any requirement to be baptized (or do anything) adds a human work to the equation and compromises grace.</p>
+        <div class="obj-resp">
+          <strong>Orthodox Response</strong>
+          <p>The "works" Paul excludes in Ephesians 2:8–9 are "works of the Law" — the Mosaic Torah as a system of covenant identity markers (circumcision, dietary laws, sabbath observance). This is clear from the broader context of Paul's Galatian and Roman epistles. Baptism is not a human work but a divine gift received in faith — it is what <em>God does</em> to the sinner through water and Spirit. Even Luther, who coined sola fide, clearly taught that Baptism saves (Lutheran Small Catechism). Titus 3:5 explicitly says "the washing of regeneration" saves "not because of works done by us in righteousness, but according to his own mercy."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="obj">
+      <div class="obj-hd" onclick="tobj(this)">
+        <strong>Objection 2: The thief on the cross was saved without Baptism — so it cannot be necessary.</strong>
+        <span class="obj-arr">▶</span>
+      </div>
+      <div class="obj-body">
+        <p>The thief on the cross confessed Christ and was promised paradise (Luke 23:43), yet he was never baptized. This seems to show Baptism is not strictly required.</p>
+        <div class="obj-resp">
+          <strong>Orthodox Response</strong>
+          <p>The Fathers consistently addressed this. First, the thief lived and died before the institution of Christian Baptism — his situation was unique and transitional. Second, many Fathers affirm "Baptism of blood" — martyrdom — as equivalent to sacramental Baptism for those who cannot receive it. Third, the Orthodox tradition has always affirmed that God is not bound by the sacraments; he can save anyone through ways known to him alone. What the Church teaches is that Baptism is the <em>ordinary and normative means</em> of regeneration, not that God is incapable of mercy outside it. The exception does not negate the rule Christ himself commanded (John 3:5; Matthew 28:19).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="obj">
+      <div class="obj-hd" onclick="tobj(this)">
+        <strong>Objection 3: You are adding works to salvation — this is salvation by works, not grace.</strong>
+        <span class="obj-arr">▶</span>
+      </div>
+      <div class="obj-body">
+        <p>The OO insistence on synergy, sacraments, and ongoing cooperation with grace sounds to Protestant ears like salvation by human effort.</p>
+        <div class="obj-resp">
+          <strong>Orthodox Response</strong>
+          <p>The Oriental Orthodox have never taught that human effort earns or merits salvation. Grace is always prior — it is God who initiates, sustains, and completes salvation. Synergy does not mean human contribution of merit but the free response of a will healed by grace. The alternative — that God saves people entirely against or without their will — would make the evangelical appeals of Scripture ("repent," "believe," "be baptized," "work out your salvation") meaningless. The saints did not merit theosis; they received it as a gift. But they freely and cooperatively received what was given.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="obj">
+      <div class="obj-hd" onclick="tobj(this)">
+        <strong>Objection 4: John 3:5 means "water" = the Word of God or the Holy Spirit, not Baptism.</strong>
+        <span class="obj-arr">▶</span>
+      </div>
+      <div class="obj-body">
+        <p>Some Protestants reinterpret "born of water and Spirit" in John 3:5 to mean spiritual regeneration alone, or to identify "water" with the Word of God (based on Eph 5:26) or with the Spirit (identifying the two terms).</p>
+        <div class="obj-resp">
+          <strong>Orthodox Response</strong>
+          <p>This interpretation has no support in the early Church. Every significant Church Father who commented on John 3:5 — Justin Martyr, Irenaeus, Tertullian, Origen, Cyprian, Cyril of Jerusalem, Basil, Gregory of Nazianzus, John Chrysostom, Augustine — identified "water" with the sacrament of Baptism. The interpretation of "water = Word" was proposed by Zwingli in the 16th century and has no Patristic precedent. Moreover, Nicodemus' bewilderment ("Can he enter his mother's womb a second time?") makes perfect sense if Jesus is speaking of a concrete ritual — water Baptism — but makes no sense if Jesus is offering a purely spiritual definition he could have stated more plainly.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="obj">
+      <div class="obj-hd" onclick="tobj(this)">
+        <strong>Objection 5: "Theosis" is not biblical — it sounds like eastern mysticism or pantheism.</strong>
+        <span class="obj-arr">▶</span>
+      </div>
+      <div class="obj-body">
+        <p>The word "theosis" does not appear in Scripture, and many Protestants are suspicious that it imports non-Christian ideas about union with God into Christian theology.</p>
+        <div class="obj-resp">
+          <strong>Orthodox Response</strong>
+          <p>The concept of theosis is thoroughly biblical, even if the technical term appears first in the Fathers. "Partakers of the divine nature" (2 Pet 1:4), "we shall be like him" (1 John 3:2), "conformed to the image of his Son" (Rom 8:29), and Christ's own prayer "that they may be one, even as we are one" (John 17:22) are all theotic statements. The Fathers who taught theosis were the same men who defined the Trinity at Nicaea and the Incarnation at Ephesus — hardly enemies of orthodox Christianity. Theosis is explicitly distinguished from pantheism: the creature never becomes God by nature, only by participation. The distinction between divine essence and divine energies (the Palamite distinction) makes this philosophically coherent.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="obj">
+      <div class="obj-hd" onclick="tobj(this)">
+        <strong>Objection 6: Once saved, always saved — the elect cannot fall away. Your view makes salvation uncertain.</strong>
+        <span class="obj-arr">▶</span>
+      </div>
+      <div class="obj-body">
+        <p>Calvinist theology teaches that the truly elect will persevere infallibly to the end. The OO view — that salvation can be lost through grave unrepented sin — seems to undermine the assurance of salvation.</p>
+        <div class="obj-resp">
+          <strong>Orthodox Response</strong>
+          <p>The OO tradition does not deny assurance; it relocates it. Assurance is not the certainty that one is among the elect regardless of one's life — it is the confidence that God is faithful to those who remain faithful to him. Scripture repeatedly warns against presuming on God's grace: "let anyone who thinks that he stands take heed lest he fall" (1 Cor 10:12); the branches that do not abide in the vine are cut off (John 15:6); the angel of Ephesus has "left your first love" and is threatened with judgment (Rev 2:4–5). Once-Saved-Always-Saved has no Patristic support and contradicts the plain sense of these texts. The OO tradition offers real assurance — not the false security of presumption but the confidence of those who abide in Christ through the sacramental and moral life of the Church.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- XIV -->
+<div class="sec" id="s14">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>XIV. Can Salvation Be Lost? — Apostasy and Perseverance</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">14</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>The Oriental Orthodox tradition holds that the grace received in Baptism can be lost through willful, persistent, unrepented mortal sin or through deliberate apostasy from the faith. This is not a pessimistic view — it is a sober acknowledgment of the reality of human freedom and the seriousness of sin, balanced by the infinite mercy of God and the open door of repentance.</p>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">Hebrews 6:4–6</div>
+        <div class="sv-txt">"For it is impossible, in the case of those who have once been enlightened, who have tasted the heavenly gift... and then have fallen away, to restore them again to repentance, since they are crucifying once again the Son of God..."</div>
+        <div class="labels"><span class="label oo">OO: Those who were genuinely regenerated can apostasize</span><span class="label prot">Prot: These were not truly saved to begin with</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">John 15:6</div>
+        <div class="sv-txt">"If anyone does not abide in me he is thrown away like a branch and withers; and the branches are gathered, thrown into the fire, and burned."</div>
+        <div class="labels"><span class="label oo">OO: Branches (genuine members of Christ) can be cut off</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">1 Corinthians 9:27</div>
+        <div class="sv-txt">"But I discipline my body and keep it under control, lest after preaching to others I myself should be disqualified."</div>
+        <div class="labels"><span class="label oo">OO: Paul fears his own possible disqualification</span><span class="label ctx">Context: Paul speaks of his own potential apostasy</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Revelation 3:5</div>
+        <div class="sv-txt">"The one who conquers will be clothed thus in white garments, and I will never blot his name out of the book of life."</div>
+        <div class="labels"><span class="label oo">OO: Names can be blotted out — conditional promise</span></div>
+      </div>
+    </div>
+    <p>However, the emphasis of the OO tradition is not on the danger of losing salvation but on the lavishness of God's mercy for those who repent. The door of repentance remains open throughout this life. The great monastic tradition — especially the stories of the Desert Fathers — is filled with accounts of those who fell gravely and were restored through tears of repentance to greater holiness than before.</p>
+    <blockquote>"As a handful of sand thrown into the great sea, so are the sins of all flesh in comparison with the mind of God."<cite>— St. Isaac the Syrian, <em>Ascetical Homilies</em>, Homily 51 (7th century)</cite></blockquote>
+  </div>
+</div>
+
+<!-- XV -->
+<div class="sec" id="s15">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>XV. Frequently Asked Questions</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">15</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+
+    <div class="fi">
+      <div class="fi-hd" onclick="tf(this)">
+        <strong>Are infants who die without Baptism damned?</strong>
+        <span class="fi-arr">▶</span>
+      </div>
+      <div class="fi-body">
+        <p>The Oriental Orthodox tradition has never defined the fate of unbaptized infants with dogmatic precision. Unlike the Western tradition — which invented the concept of Limbo — the OO churches generally entrust such children to the mercy of God, who is not bound by the sacraments. The Coptic, Ethiopian, and Syriac churches strongly encourage the Baptism of infants as early as possible (40 days for boys, 80 for girls, following Levitical typology), reflecting the belief that Baptism is the normative gift of life — but they do not dogmatically condemn those who die before receiving it.</p>
+      </div>
+    </div>
+
+    <div class="fi">
+      <div class="fi-hd" onclick="tf(this)">
+        <strong>Is salvation by faith or by works in the Oriental Orthodox view?</strong>
+        <span class="fi-arr">▶</span>
+      </div>
+      <div class="fi-body">
+        <p>Neither exclusively. Salvation is by grace — entirely, from beginning to end. But grace is received through faith, expressed in Baptism, nourished through the sacraments, and worked out in a life of love and virtue (synergy). This is not a "faith-plus-works" formula but a recognition that saving faith is inherently active and transformative. The dichotomy between faith and works is a Western Protestant framing that the early Church did not share.</p>
+      </div>
+    </div>
+
+    <div class="fi">
+      <div class="fi-hd" onclick="tf(this)">
+        <strong>What happens to sincere non-Christians? Are they all damned?</strong>
+        <span class="fi-arr">▶</span>
+      </div>
+      <div class="fi-body">
+        <p>The Oriental Orthodox tradition affirms that God desires all people to be saved (1 Tim 2:4) and that his mercy is beyond human comprehension. The Church does not dogmatically pronounce on the salvation or damnation of specific individuals outside visible membership — that judgment belongs to God alone. What the Church teaches is that Jesus Christ is the only Savior (Acts 4:12) and that full incorporation into his Body through Baptism and the sacramental life is the normative path of salvation. How God's grace may work through other means in the hearts of those who sincerely seek the truth — this the Church leaves to divine mystery and mercy.</p>
+      </div>
+    </div>
+
+    <div class="fi">
+      <div class="fi-hd" onclick="tf(this)">
+        <strong>How does the OO view of original sin differ from the Western view?</strong>
+        <span class="fi-arr">▶</span>
+      </div>
+      <div class="fi-body">
+        <p>The Western (Augustinian) tradition emphasizes inherited <em>guilt</em> — that all humanity inherits not only Adam's corruption but his legal guilt before God, which must be imputed away through Christ's righteousness. The Oriental Orthodox (following the Alexandrian and Antiochene Fathers) emphasize inherited <em>corruption and mortality</em> — the consequence of Adam's fall is that human nature became subject to death, weakness, and a disordered will prone to sin. Baptism heals this corruption and restores the divine image. The difference is subtle but significant: in the West, salvation is primarily about guilt and legal status; in the East, it is primarily about healing and participation.</p>
+      </div>
+    </div>
+
+    <div class="fi">
+      <div class="fi-hd" onclick="tf(this)">
+        <strong>Can I have assurance of salvation?</strong>
+        <span class="fi-arr">▶</span>
+      </div>
+      <div class="fi-body">
+        <p>Yes — but the OO understanding of assurance differs from the Calvinist "perseverance of the saints." The OO believer can have genuine confidence that God is faithful, that the sacraments are efficacious, and that sincere repentance is always met with divine mercy. What we cannot have — what Scripture does not promise — is the certainty that we are irrevocably elect regardless of how we live. The proper response to grace is "fear and trembling" (Phil 2:12) not as panic but as the reverent seriousness of one who knows both the greatness of God's gift and the seriousness of throwing it away.</p>
+      </div>
+    </div>
+
+    <div class="fi">
+      <div class="fi-hd" onclick="tf(this)">
+        <strong>What is the relationship between Baptism and faith in OO theology?</strong>
+        <span class="fi-arr">▶</span>
+      </div>
+      <div class="fi-body">
+        <p>Baptism and faith are inseparable — they belong together. Baptism without faith is dead (hence the catechumenate and the baptismal promises). Faith without Baptism, for those who have access to it, is incomplete — like a betrothal without a wedding. For infants, the faith of the parents, godparents, and the Church surrounds and accompanies Baptism. As the child grows, the baptismal faith must be personally appropriated. This is why Chrismation and First Communion are given immediately after infant Baptism in the OO tradition — the child enters fully into the sacramental life from the beginning, and the task of a lifetime is to grow into what Baptism has made them.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- XVI -->
+<div class="sec" id="s16">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>XVI. Primary Sources &amp; Further Reading</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">16</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <h3>Patristic Sources</h3>
+    <ul>
+      <li>Ignatius of Antioch — <em>Letters</em> (c. AD 107)</li>
+      <li>Justin Martyr — <em>First Apology</em> §61 (c. AD 155)</li>
+      <li>Irenaeus of Lyon — <em>Against Heresies</em>, <em>Proof of the Apostolic Preaching</em> (c. AD 180–185)</li>
+      <li>Tertullian — <em>On Baptism</em> (c. AD 200)</li>
+      <li>Origen of Alexandria — <em>Commentary on Romans</em>, <em>Homilies on Leviticus</em> (c. AD 220–240)</li>
+      <li>Cyprian of Carthage — <em>On the Unity of the Church</em> (c. AD 251)</li>
+      <li>Athanasius of Alexandria — <em>On the Incarnation</em>, <em>Letters to Serapion</em> (c. AD 318–360)</li>
+      <li>Cyril of Jerusalem — <em>Mystagogical Catecheses</em> (c. AD 350)</li>
+      <li>Basil the Great — <em>On the Holy Spirit</em>, <em>On Baptism</em> (c. AD 370–375)</li>
+      <li>Gregory of Nazianzus — <em>Oration 40: On Holy Baptism</em> (c. AD 381)</li>
+      <li>Gregory of Nyssa — <em>The Great Catechism</em>, <em>Life of Moses</em> (c. AD 385–395)</li>
+      <li>John Chrysostom — <em>Baptismal Instructions</em>, <em>Homilies on Romans</em> (c. AD 388–400)</li>
+      <li>Ephrem the Syrian — <em>Hymns on Paradise</em>, <em>Hymns on Baptism</em> (c. AD 360)</li>
+      <li>Shenoute of Atripe — <em>Works</em> (c. AD 388–465)</li>
+      <li>Maximus the Confessor — <em>Ambigua</em>, <em>Mystagogia</em> (c. AD 630–650)</li>
+      <li>John of Damascus — <em>Exact Exposition of the Orthodox Faith</em> (c. AD 743)</li>
+      <li>Isaac the Syrian — <em>Ascetical Homilies</em> (7th century)</li>
+    </ul>
+    <h3>Modern Orthodox Scholarship</h3>
+    <ul>
+      <li>Georges Florovsky — <em>Collected Works</em>, esp. "The Patristic Witness" and "Redemption"</li>
+      <li>Vladimir Lossky — <em>The Mystical Theology of the Eastern Church</em> (1944)</li>
+      <li>Alexander Schmemann — <em>For the Life of the World</em> (1963)</li>
+      <li>John Meyendorff — <em>Byzantine Theology</em> (1974)</li>
+      <li>Christoforos Stavropoulos — <em>Partakers of Divine Nature</em></li>
+      <li>Norman Russell — <em>The Doctrine of Deification in the Greek Patristic Tradition</em> (2004)</li>
+    </ul>
+    <h3>Oriental Orthodox Catechisms</h3>
+    <ul>
+      <li>Coptic Orthodox Church — <em>Agpeya</em> and <em>Coptic Catechism</em></li>
+      <li>Ethiopian Orthodox Tewahedo Church — <em>Fetha Nagast</em></li>
+      <li>Malankara Orthodox Syrian Church — <em>Catechism of the Malankara Orthodox Church</em></li>
+      <li>Armenian Apostolic Church — <em>Jamagirk</em> (Book of Hours)</li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- /content -->
+</div><!-- /main -->
+
+<footer>
+  <p>THE <span>ORTHODOX LAMP</span> &nbsp;·&nbsp; Biblical, Historical &amp; Patristic Apologetics</p>
+  <p style="margin-top:.5rem;font-size:.72rem;opacity:.6;">☩ &nbsp; In the name of the Father, and of the Son, and of the Holy Spirit &nbsp; ☩</p>
+</footer>
+
+<script>
+function ts(h){h.closest('.sec').classList.toggle('open')}
+function tobj(h){h.closest('.obj').classList.toggle('open')}
+function tf(h){h.closest('.fi').classList.toggle('open')}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').classList.toggle('show')}
+function closeMobile(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
+
+// Scroll progress bar
+window.addEventListener('scroll',()=>{
+  const s=document.documentElement,b=document.body;
+  const h=s.scrollHeight-s.clientHeight;
+  const p=h>0?(s.scrollTop||b.scrollTop)/h*100:0;
+  document.getElementById('prog').style.width=p+'%';
+});
+
+// Sidebar active link
+const links=[...document.querySelectorAll('#sb-nav a')];
+const secs=[...document.querySelectorAll('.sec')];
+window.addEventListener('scroll',()=>{
+  let cur='';
+  secs.forEach(s=>{if(window.scrollY>=s.offsetTop-120)cur='#'+s.id});
+  links.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')===cur)});
+},{ passive:true });
+</script>
+</body>
+</html>

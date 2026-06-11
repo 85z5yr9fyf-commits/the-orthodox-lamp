@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Sacred Liturgy of the Early Church — The Orthodox Lamp</title>
+<style>
+:root{--gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;--bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--tx:#e8e0d0;--mu:#a09880;--red:#8b2020;--br:#2a2a2a;--bg5:#3a2e10;--sidebar-w:270px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.7;display:flex;flex-direction:column;min-height:100vh}
+a{color:var(--gold);text-decoration:none}
+a:hover{text-decoration:underline}
+#prog{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--gd),var(--gold),var(--gl));z-index:9999;transition:width .1s}
+#sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:200;transition:transform .3s}
+#sidebar header{padding:1.4rem 1.2rem 1rem;border-bottom:1px solid var(--br)}
+#sidebar header .logo{font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem}
+#sidebar header h2{font-size:.85rem;color:var(--gl);line-height:1.3}
+#sb-nav{padding:.8rem 0 2rem}
+#sb-nav a{display:block;padding:.42rem 1.2rem;font-size:.78rem;color:var(--mu);border-left:2px solid transparent;transition:all .2s;line-height:1.4}
+#sb-nav a:hover{color:var(--tx);background:var(--bg3);text-decoration:none}
+#sb-nav a.active{color:var(--gold);border-left-color:var(--gold);background:var(--bg5)}
+#sb-nav .sb-group{font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gd);padding:.9rem 1.2rem .3rem;display:block}
+#menu-btn{display:none;position:fixed;top:.8rem;left:.8rem;z-index:300;background:var(--bg3);border:1px solid var(--br);color:var(--gold);font-size:1.1rem;width:2.2rem;height:2.2rem;border-radius:6px;cursor:pointer;align-items:center;justify-content:center}
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:150}
+#overlay.show{display:block}
+#main{margin-left:var(--sidebar-w);flex:1;min-width:0}
+.hero{text-align:center;padding:5rem 2rem 3.5rem;background:linear-gradient(180deg,var(--bg2) 0%,var(--bg) 100%);border-bottom:1px solid var(--br);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(201,168,76,.08) 0%,transparent 70%);pointer-events:none}
+.back{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gd);border:1px solid var(--gd);padding:.2rem .7rem;border-radius:3px;margin-bottom:1.5rem;transition:color .2s,border-color .2s}
+.back:hover{color:var(--gold);border-color:var(--gold);text-decoration:none}
+.si{font-size:2.4rem;color:var(--gold);display:block;margin-bottom:.6rem}
+.st{font-size:clamp(1.6rem,4vw,2.6rem);font-weight:700;letter-spacing:.08em;text-transform:uppercase;line-height:1.15}
+.st span{color:var(--gold)}
+.ss{font-size:1rem;color:var(--gl);margin:.7rem 0 .3rem;font-style:italic}
+.tg{font-size:.85rem;color:var(--mu);font-style:italic}
+.orn{color:var(--gold);font-size:.9rem;letter-spacing:.5em;margin-top:1.2rem;opacity:.7}
+.content{max-width:860px;margin:0 auto;padding:3rem 2rem 5rem}
+.sec{background:var(--bg2);border:1px solid var(--br);border-radius:10px;margin-bottom:1.2rem;overflow:hidden}
+.sec-hd{padding:1.1rem 1.4rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;user-select:none;transition:background .2s}
+.sec-hd:hover{background:var(--bg3)}
+.sec-hd h2{font-size:1rem;font-weight:700;color:var(--gl);line-height:1.3}
+.num{font-size:.65rem;font-weight:700;letter-spacing:.1em;color:var(--gold);min-width:2rem;text-align:right;flex-shrink:0}
+.arr{color:var(--gd);font-size:.8rem;flex-shrink:0;transition:transform .3s}
+.sec.open .arr{transform:rotate(90deg)}
+.sec-body{display:none;padding:1.2rem 1.4rem 1.4rem;border-top:1px solid var(--br)}
+.sec.open .sec-body{display:block}
+.sec-body p{margin-bottom:1rem;font-size:.92rem}
+.sec-body h3{font-size:.85rem;font-weight:700;color:var(--gold);letter-spacing:.06em;text-transform:uppercase;margin:1.4rem 0 .6rem}
+.sec-body ul{margin:.4rem 0 1rem 1.2rem;font-size:.88rem}
+.sec-body ul li{margin-bottom:.4rem}
+.sec-body blockquote{border-left:3px solid var(--gd);padding:.6rem 1rem;background:var(--bg3);border-radius:0 6px 6px 0;font-style:italic;font-size:.88rem;color:var(--tx);margin:1rem 0}
+.sec-body blockquote cite{display:block;margin-top:.4rem;font-size:.78rem;color:var(--mu);font-style:normal}
+
+/* Scripture cards */
+.sv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin:1rem 0}
+.sv{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:1rem 1.1rem}
+.sv-ref{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+.sv-txt{font-size:.88rem;font-style:italic;color:var(--tx);margin-bottom:.6rem;line-height:1.55}
+.labels{display:flex;flex-wrap:wrap;gap:.3rem}
+.label{font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.15rem .45rem;border-radius:3px}
+.oo{background:#3a2e10;color:var(--gold);border:1px solid var(--gd)}
+.prot{background:#1a2535;color:#7aa8d0;border:1px solid #2a4060}
+.ctx{background:#1a2a1a;color:#7abf7a;border:1px solid #2a502a}
+.gk{background:#251a35;color:#b07ae0;border:1px solid #4a2a70}
+
+/* Father/source cards */
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin:1rem 0}
+.fc{background:var(--bg3);border:1px solid var(--br);border-left:3px solid var(--gd);border-radius:0 8px 8px 0;padding:1rem 1.1rem}
+.fc-name{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem}
+.fc-era{font-size:.65rem;color:var(--mu);margin-bottom:.5rem}
+.fc-txt{font-size:.85rem;font-style:italic;color:var(--tx);line-height:1.55}
+
+/* Glossary */
+.gt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:.9rem;margin:1rem 0}
+.gt{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:.9rem 1rem}
+.gt-term{font-size:.9rem;font-weight:700;color:var(--gl);margin-bottom:.2rem}
+.gt-gk{font-size:.75rem;color:var(--gold);font-style:italic;margin-bottom:.4rem}
+.gt-def{font-size:.8rem;color:var(--tx);opacity:.9}
+
+/* Primary source document cards */
+.doc{background:var(--bg3);border:1px solid #3a3010;border-left:4px solid var(--gold);border-radius:0 8px 8px 0;padding:1rem 1.2rem;margin:.8rem 0}
+.doc-title{font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.2rem}
+.doc-date{font-size:.65rem;color:var(--mu);margin-bottom:.5rem}
+.doc-txt{font-size:.86rem;color:var(--tx);line-height:1.6}
+
+/* Liturgy structure cards */
+.lx-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin:1rem 0}
+.lx{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:1rem 1.1rem;border-top:3px solid var(--gd)}
+.lx-num{font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem}
+.lx-name{font-size:.9rem;font-weight:700;color:var(--gl);margin-bottom:.3rem}
+.lx-desc{font-size:.8rem;color:var(--tx)}
+
+/* Timeline */
+.tl{padding:.5rem 0;margin:1rem 0}
+.tl-item{display:flex;gap:1.2rem;margin-bottom:1.2rem;align-items:flex-start}
+.tl-dot{width:2.5rem;height:2.5rem;border-radius:50%;background:var(--bg5);border:2px solid var(--gd);display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;color:var(--gold);flex-shrink:0;margin-top:.1rem;text-align:center;line-height:1.2}
+.tl-body{flex:1}
+.tl-title{font-size:.88rem;font-weight:700;color:var(--gl);margin-bottom:.2rem}
+.tl-date{font-size:.68rem;color:var(--mu);margin-bottom:.3rem}
+.tl-desc{font-size:.82rem;color:var(--tx)}
+
+/* Objection accordions */
+.obj{background:var(--bg3);border:1px solid #3a1a1a;border-radius:8px;margin-bottom:.8rem;overflow:hidden}
+.obj-hd{padding:.9rem 1.1rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:.8rem;user-select:none}
+.obj-hd:hover{background:#1f1010}
+.obj-hd strong{font-size:.87rem;color:#d08080;line-height:1.3}
+.obj-arr{color:#804040;font-size:.75rem;flex-shrink:0;transition:transform .3s}
+.obj.open .obj-arr{transform:rotate(90deg)}
+.obj-body{display:none;padding:.9rem 1.1rem 1.1rem;border-top:1px solid #3a1a1a;font-size:.87rem}
+.obj.open .obj-body{display:block}
+.obj-body p{margin-bottom:.7rem}
+.obj-resp{background:#1a2510;border-left:3px solid #4a7030;border-radius:0 6px 6px 0;padding:.7rem 1rem;font-size:.85rem;margin-top:.6rem}
+.obj-resp strong{color:#6abf6a;display:block;margin-bottom:.3rem;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase}
+
+/* FAQ */
+.fi{background:var(--bg3);border:1px solid var(--br);border-radius:8px;margin-bottom:.7rem;overflow:hidden}
+.fi-hd{padding:.85rem 1.1rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:.8rem;user-select:none}
+.fi-hd:hover{background:var(--bg4)}
+.fi-hd strong{font-size:.87rem;color:var(--gl);line-height:1.3}
+.fi-arr{color:var(--gd);font-size:.75rem;flex-shrink:0;transition:transform .3s}
+.fi.open .fi-arr{transform:rotate(90deg)}
+.fi-body{display:none;padding:.85rem 1.1rem 1.1rem;border-top:1px solid var(--br);font-size:.87rem}
+.fi.open .fi-body{display:block}
+.fi-body p{margin-bottom:.6rem}
+
+/* Parallel table */
+.par-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0}
+.par-col{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:1rem 1.1rem}
+.par-col h4{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.7rem;padding-bottom:.4rem;border-bottom:1px solid var(--br)}
+.par-col ul{margin-left:1rem;font-size:.82rem;color:var(--tx)}
+.par-col ul li{margin-bottom:.4rem}
+@media(max-width:600px){.par-grid{grid-template-columns:1fr}}
+
+footer{text-align:center;padding:2rem 1rem;border-top:1px solid var(--br);font-size:.8rem;color:var(--mu)}
+footer span{color:var(--gold)}
+
+@media(max-width:800px){
+  #sidebar{transform:translateX(calc(-1 * var(--sidebar-w)))}
+  #sidebar.open{transform:translateX(0)}
+  #main{margin-left:0}
+  #menu-btn{display:flex}
+  .hero{padding:4rem 1.2rem 2.5rem}
+  .content{padding:2rem 1.2rem 4rem}
+}
+</style>
+</head>
+<body>
+
+<div id="prog"></div>
+<button id="menu-btn" onclick="toggleSidebar()" aria-label="Menu">☰</button>
+<div id="overlay" onclick="closeMobile()"></div>
+
+<nav id="sidebar">
+  <header>
+    <div class="logo">The Orthodox Lamp</div>
+    <h2>The Sacred Liturgy of the Early Church</h2>
+  </header>
+  <div id="sb-nav">
+    <span class="sb-group">Foundations</span>
+    <a href="#s1">I. Introduction — Correcting the Myth</a>
+    <a href="#s2">II. Glossary</a>
+    <span class="sb-group">The Bible and Liturgy</span>
+    <a href="#s3">III. The Bible as a Liturgical Book</a>
+    <a href="#s4">IV. The New Testament in Liturgical Context</a>
+    <a href="#s5">V. Revelation — A Liturgical Document</a>
+    <span class="sb-group">Roots of the Liturgy</span>
+    <a href="#s6">VI. Temple and Synagogue — The Jewish Inheritance</a>
+    <a href="#s7">VII. The Breaking of Bread — From the Upper Room</a>
+    <span class="sb-group">Early Witnesses</span>
+    <a href="#s8">VIII. The Didache (c. AD 80)</a>
+    <a href="#s9">IX. Justin Martyr (c. AD 155)</a>
+    <a href="#s10">X. Hippolytus (c. AD 215)</a>
+    <a href="#s11">XI. The Patristic Liturgical Witnesses</a>
+    <span class="sb-group">Elements of the Ancient Liturgy</span>
+    <a href="#s12">XII. The Liturgy of the Word</a>
+    <a href="#s13">XIII. The Liturgy of the Eucharist</a>
+    <a href="#s14">XIV. Liturgical Time — Hours, Fasts &amp; Calendar</a>
+    <a href="#s15">XV. Liturgical Space — Altars, Orientation &amp; Icons</a>
+    <a href="#s16">XVI. Liturgical Music — The Psalter &amp; Hymnody</a>
+    <span class="sb-group">Oriental Orthodox Preservation</span>
+    <a href="#s17">XVII. The OO Liturgical Traditions</a>
+    <span class="sb-group">Apologetics</span>
+    <a href="#s18">XVIII. Protestant Objections</a>
+    <a href="#s19">XIX. FAQ</a>
+    <a href="#s20">XX. Sources</a>
+  </div>
+</nav>
+
+<div id="main">
+
+<div class="hero">
+  <a class="back" href="index.html">← Library</a>
+  <span class="si">☩</span>
+  <h1 class="st">THE <span>ORTHODOX</span> LAMP</h1>
+  <p class="ss">The Sacred Liturgy of the Early Church</p>
+  <p class="tg">"And they devoted themselves to the apostles' teaching and the fellowship, to the breaking of bread and the prayers." — Acts 2:42</p>
+  <div class="orn">✦ ✦ ✦</div>
+</div>
+
+<div class="content">
+
+<!-- I -->
+<div class="sec open" id="s1">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>I. Introduction — Correcting the Myth</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">01</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>One of the most persistent misconceptions in popular Christianity is that the early Church looked something like a modern evangelical megachurch — people gathering informally in homes, opening their Bibles, singing contemporary songs, listening to a sermon, and going home. In this imagining, the ornate, ancient liturgies of the Coptic, Ethiopian, Syriac, and Armenian churches are medieval accretions layered onto an originally simple and spontaneous faith. The truth is precisely the opposite.</p>
+    <p>The earliest Christians were Jews formed by the most liturgically rich tradition in the ancient world — the Temple service and the synagogue. They did not abandon structure when they became followers of Christ; they <em>transformed and fulfilled</em> it. The Mass of the early Church was formal, ordered, and sacred. It had fixed prayers, fixed readings, fixed gestures, fixed vestments, and a fixed structure that can be traced in unbroken continuity from the apostolic era to the present day in the Oriental Orthodox churches.</p>
+    <p>This site makes three interlocking arguments:</p>
+    <ul>
+      <li><strong>The Bible is a liturgical book.</strong> The New Testament was written in, for, and around the liturgical assembly. Its letters were read aloud in worship. Its apocalyptic visions reflect the heavenly liturgy. Its language is soaked in liturgical forms.</li>
+      <li><strong>The early church had a fixed, formal liturgy.</strong> Documents from as early as AD 80 (the Didache), AD 155 (Justin Martyr), and AD 215 (Hippolytus) describe a eucharistic liturgy structurally identical to the ancient anaphoras still celebrated today in Oriental Orthodox churches.</li>
+      <li><strong>The Oriental Orthodox churches are the living custodians of this ancient worship.</strong> The Coptic Liturgy of St. Basil and St. Mark, the Ethiopian liturgy with its fourteen anaphoras, the Syriac and Armenian rites — these are not inventions of later centuries. They are the direct liturgical descendants of apostolic worship, preserved in communities that trace their foundation to the apostles themselves.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- II -->
+<div class="sec" id="s2">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>II. Glossary — Key Liturgical Terms</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">02</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <div class="gt-grid">
+      <div class="gt">
+        <div class="gt-term">Liturgy</div>
+        <div class="gt-gk">Greek: λειτουργία (leitourgia) — public service</div>
+        <div class="gt-def">From leiton (public) + ergon (work). Originally a civic term for public service performed on behalf of the community. In the NT it describes the priestly service of worship (Luke 1:23; Heb 8:6; 9:21). The Church's liturgy is the "work of the people" — the corporate act of worship offered to God.</div>
+      </div>
+      <div class="gt">
+        <div class="gt-term">Anaphora</div>
+        <div class="gt-gk">Greek: ἀναφορά — offering, lifting up</div>
+        <div class="gt-def">The central Eucharistic Prayer — the great prayer of thanksgiving and consecration in which the bread and wine are offered to God and become the Body and Blood of Christ. Every ancient liturgical rite has an anaphora. The Ethiopian Church has fourteen distinct anaphoras.</div>
+      </div>
+      <div class="gt">
+        <div class="gt-term">Synaxis</div>
+        <div class="gt-gk">Greek: σύναξις — assembly, gathering</div>
+        <div class="gt-def">The Liturgy of the Word — the first part of the Divine Liturgy, comprising readings, psalm-singing, homily, and prayers. Directly descended from the synagogue service. Open to catechumens; the faithful alone remain for the Liturgy of the Eucharist.</div>
+      </div>
+      <div class="gt">
+        <div class="gt-term">Epiclesis</div>
+        <div class="gt-gk">Greek: ἐπίκλησις — invocation</div>
+        <div class="gt-def">The prayer within the anaphora calling upon the Holy Spirit to descend upon the bread and wine and transform them into the Body and Blood of Christ. A distinctive feature of Eastern liturgical theology — the Spirit effects the consecration through the epiclesis.</div>
+      </div>
+      <div class="gt">
+        <div class="gt-term">Doxology</div>
+        <div class="gt-gk">Greek: δοξολογία — words of glory</div>
+        <div class="gt-def">A formula of praise to the Holy Trinity. The earliest doxologies (e.g., "Glory to the Father, and to the Son, and to the Holy Spirit") appear in 2nd-century liturgical documents and are embedded throughout the New Testament epistles as pre-existing formulas Paul quotes rather than creates.</div>
+      </div>
+      <div class="gt">
+        <div class="gt-term">Prosfora / Oblation</div>
+        <div class="gt-gk">Greek: προσφορά — offering</div>
+        <div class="gt-def">The bread brought for the Eucharist. The offering of bread and wine by the faithful to be consecrated — a liturgical act with roots in the Temple offerings and in Melchizedek's offering of bread and wine (Gen 14:18).</div>
+      </div>
+      <div class="gt">
+        <div class="gt-term">Trisagion</div>
+        <div class="gt-gk">Greek: τρισάγιος — thrice-holy</div>
+        <div class="gt-def">"Holy God, Holy Mighty, Holy Immortal, have mercy upon us." One of the most ancient liturgical hymns, used in all Oriental Orthodox rites. Reflects the Seraphim's cry in Isaiah 6:3 and the worship of Revelation 4:8 — evidence that the Church's liturgy mirrors the heavenly worship.</div>
+      </div>
+      <div class="gt">
+        <div class="gt-term">Catechumen</div>
+        <div class="gt-gk">Greek: κατηχούμενος — one being instructed</div>
+        <div class="gt-def">An unbaptized person undergoing instruction in preparation for Baptism. In the ancient Church, catechumens were formally dismissed before the Liturgy of the Eucharist — demonstrating the sacred exclusivity of full sacramental participation and the careful, ordered nature of early worship.</div>
+      </div>
+      <div class="gt">
+        <div class="gt-term">Liturgy of the Hours</div>
+        <div class="gt-gk">Latin: Liturgia Horarum / Coptic: Agpeya</div>
+        <div class="gt-def">The sanctification of the day through fixed times of prayer — inherited from the Jewish practice of praying three or seven times daily. The Coptic Agpeya, the Ethiopian Weddase Maryam, and the Syriac Shehimo are living forms of this ancient practice, used daily by millions of Oriental Orthodox Christians.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- III -->
+<div class="sec" id="s3">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>III. The Bible as a Liturgical Book</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">03</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>The Bible did not fall from heaven as a finished book to be read privately in living rooms. It was written in a liturgical context, for a liturgical community, to be used in liturgical worship. Every book of the New Testament — and most of the Old — was composed to be heard aloud in a gathered assembly, not read silently by an individual.</p>
+    <h3>The NT Was Written to Be Read in Worship</h3>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">1 Timothy 4:13</div>
+        <div class="sv-txt">"Until I come, devote yourself to the public reading of Scripture (anagnōsis), to exhortation, to teaching."</div>
+        <div class="labels"><span class="label oo">OO: The public reading of Scripture is the formal liturgical act — anagnōsis = official lector's reading</span><span class="label gk">Greek: anagnōsis — the technical term for the liturgical reader's office in the synagogue</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Colossians 4:16</div>
+        <div class="sv-txt">"And when this letter has been read among you, have it also read in the church of the Laodiceans; and see that you also read the letter from Laodicea."</div>
+        <div class="labels"><span class="label oo">OO: Paul's letters were not private correspondence — they were liturgical documents, read aloud in the assembly</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">1 Thessalonians 5:27</div>
+        <div class="sv-txt">"I put you under oath before the Lord to have this letter read to all the brothers."</div>
+        <div class="labels"><span class="label oo">OO: A solemn liturgical charge — the letter belongs to the assembled community</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Revelation 1:3</div>
+        <div class="sv-txt">"Blessed is the one who reads aloud the words of this prophecy, and blessed are those who hear, and who keep what is written in it."</div>
+        <div class="labels"><span class="label oo">OO: "The one who reads aloud" — singular lector; "those who hear" — the gathered congregation. This is a liturgical reading.</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Luke 4:16–17</div>
+        <div class="sv-txt">"And he came to Nazareth... And he stood up to read. And the scroll of the prophet Isaiah was given to him."</div>
+        <div class="labels"><span class="label ctx">Context: Jesus participates in the synagogue liturgy — standing to read the appointed portion, then sitting to give the homily (v.20)</span><span class="label oo">OO: The earliest Christian worship continued this exact pattern</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Nehemiah 8:1–8</div>
+        <div class="sv-txt">"And Ezra the priest brought the Law before the assembly... He read from it facing the square... from early morning until midday... And they read from the book, from the Law of God, clearly, and they gave the sense."</div>
+        <div class="labels"><span class="label ctx">Context: The liturgical reading of Scripture — with explanation — is the prototype of the Liturgy of the Word</span></div>
+      </div>
+    </div>
+    <h3>Pre-existing Liturgical Material in the Epistles</h3>
+    <p>Modern biblical scholarship has identified dozens of pre-Pauline hymns, creeds, and doxologies embedded in the New Testament epistles — fragments of living liturgy that Paul and the other authors <em>quote</em> rather than compose. This tells us the earliest Christians had fixed liturgical formulas even before the New Testament was written:</p>
+    <div class="fc-grid">
+      <div class="fc">
+        <div class="fc-name">Philippians 2:6–11</div>
+        <div class="fc-era">The Christ Hymn — pre-Pauline, quoted by Paul</div>
+        <div class="fc-txt">"Who, being in very nature God, did not consider equality with God something to be used to his own advantage..." — Scholars universally recognize this as a pre-existing liturgical hymn Paul incorporates. It shows formal hymnody predating Paul's letter (c. AD 55).</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Colossians 1:15–20</div>
+        <div class="fc-era">The Cosmic Christ Hymn — pre-Pauline</div>
+        <div class="fc-txt">"He is the image of the invisible God, the firstborn of all creation..." — Another pre-existing liturgical hymn, embedded in Colossians, reflecting sophisticated Christological theology already sung in worship before Paul wrote.</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">1 Timothy 3:16</div>
+        <div class="fc-era">Liturgical Confession — pre-Pauline</div>
+        <div class="fc-txt">"He was manifested in the flesh, vindicated by the Spirit, seen by angels, proclaimed among the nations, believed on in the world, taken up in glory." — A six-line liturgical confession, probably sung antiphonally in worship. Paul introduces it with "as we confess" — a liturgical formula.</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Romans 16:25–27</div>
+        <div class="fc-era">Doxological Conclusion — liturgical formula</div>
+        <div class="fc-txt">"To him who is able to strengthen you... to the only wise God, through Jesus Christ, be glory forevermore. Amen." — Paul closes his letter with a doxology that echoes the formal conclusion of the synagogue service — a liturgical framing of an apostolic letter.</div>
+      </div>
+    </div>
+    <p>These embedded hymns and creeds are the fossils of early Christian worship visible within the New Testament itself. They tell us that the Church had developed fixed liturgical formulas, Christological hymns, and doxological patterns <em>before the Gospels were written</em> — perhaps within fifteen years of the Resurrection.</p>
+  </div>
+</div>
+
+<!-- IV -->
+<div class="sec" id="s4">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>IV. The New Testament in Liturgical Context</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">04</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>The Acts of the Apostles gives us the clearest early picture of how the first Christians gathered — and it is unmistakably liturgical, not casual:</p>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">Acts 2:42</div>
+        <div class="sv-txt">"And they devoted themselves to the apostles' teaching and the fellowship, to the breaking of bread and the prayers."</div>
+        <div class="labels"><span class="label oo">OO: Four fixed elements: teaching (homily), fellowship (community life), breaking of bread (Eucharist), the prayers (fixed liturgical prayer — definite article in Greek)</span><span class="label gk">Greek: "tais proseuchais" — the prayers (definite article) — specific, known prayer forms</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Acts 20:7</div>
+        <div class="sv-txt">"On the first day of the week, when we were gathered together to break bread, Paul talked with them..."</div>
+        <div class="labels"><span class="label oo">OO: Sunday Eucharist is the purpose of the gathering — the homily accompanies it</span><span class="label ctx">Context: The breaking of bread is the reason for the assembly — not the other way around</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">1 Corinthians 11:23–26</div>
+        <div class="sv-txt">"For I received from the Lord what I also delivered to you, that the Lord Jesus on the night when he was betrayed took bread... in the same way also the cup..."</div>
+        <div class="labels"><span class="label oo">OO: Paul uses formal tradition-transmission language (parelabon / paredōka — received / delivered) — this is liturgical handing-on</span><span class="label gk">Greek: parelabon / paredōka — technical rabbinic terms for receiving and handing on tradition</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">1 Corinthians 16:22</div>
+        <div class="sv-txt">"If anyone has no love for the Lord, let him be accursed. Our Lord, come! (Maranatha)"</div>
+        <div class="labels"><span class="label oo">OO: Maranatha is a liturgical acclamation — the Aramaic cry of the Eucharistic assembly. Paul uses it at the close of his letter as a liturgical marker.</span><span class="label gk">Aramaic: Maran atha — "Our Lord, come!" — appears also in the Didache's Eucharistic prayer</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">2 Corinthians 13:14</div>
+        <div class="sv-txt">"The grace of the Lord Jesus Christ and the love of God and the fellowship of the Holy Spirit be with you all."</div>
+        <div class="labels"><span class="label oo">OO: This Trinitarian blessing closes Paul's letter — it is the liturgical greeting still used to open the Divine Liturgy in all OO churches to this day</span></div>
+      </div>
+    </div>
+    <h3>The Maranatha — A Window into Eucharistic Liturgy</h3>
+    <p>The Aramaic word <em>Maranatha</em> ("Our Lord, come!") appears in 1 Corinthians 16:22 and in the Didache's Eucharistic prayer. Its presence in Paul's Greek letter as an untranslated Aramaic formula proves it was a fixed liturgical acclamation so well-known to every Christian community that Paul could cite it without explanation. It is the cry of the congregation as the Eucharist approaches — an ancient call for the Lord's real presence in the sacred meal. The Coptic liturgy still includes this acclamation at the same point in the Eucharistic Prayer where Paul cites it.</p>
+  </div>
+</div>
+
+<!-- V -->
+<div class="sec" id="s5">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>V. The Book of Revelation — A Liturgical Document</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">05</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>The Book of Revelation is not primarily a political prediction manual — it is a liturgical vision. The heavenly scenes of Revelation map almost point-for-point onto the Divine Liturgy as celebrated in the early Church. The scholarly consensus, represented by figures including Gregory Dix and Scott Hahn, is that Revelation was written to be read in a eucharistic assembly and that its imagery reflects, illuminates, and interprets that assembly.</p>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">Revelation 1:3</div>
+        <div class="sv-txt">"Blessed is the one who reads aloud the words of this prophecy, and blessed are those who hear."</div>
+        <div class="labels"><span class="label oo">OO: Singular lector + plural hearers = the liturgical assembly. This is how Scripture was always read in the Church.</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Revelation 1:10</div>
+        <div class="sv-txt">"I was in the Spirit on the Lord's day (kyriakē hēmera)."</div>
+        <div class="labels"><span class="label oo">OO: The Lord's Day — Sunday — is the day of the Eucharist. John receives his vision in the context of Sunday liturgical worship.</span><span class="label gk">Greek: kyriakē — "belonging to the Lord" — the same word used for the Lord's Supper (kyriakon deipnon) in 1 Cor 11:20</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Revelation 4:8</div>
+        <div class="sv-txt">"And the four living creatures, each of them with six wings, are full of eyes all around and within, and day and night they never cease to say: 'Holy, holy, holy, is the Lord God Almighty, who was and is and is to come!'"</div>
+        <div class="labels"><span class="label oo">OO: The Trisagion / Sanctus — the angelic cry that became the central acclamation of the Eucharistic Prayer. Already in the liturgy when Revelation was written.</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Revelation 5:8</div>
+        <div class="sv-txt">"And when he had taken the scroll, the four living creatures and the twenty-four elders fell down before the Lamb, each holding a harp, and golden bowls full of incense, which are the prayers of the saints."</div>
+        <div class="labels"><span class="label oo">OO: Incense = the prayers of the saints rising to God. Incense in liturgy is not pagan borrowing — it is the fulfillment of heavenly worship.</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Revelation 8:3–4</div>
+        <div class="sv-txt">"And another angel came and stood at the altar with a golden censer, and he was given much incense to offer with the prayers of all the saints on the golden altar before the throne."</div>
+        <div class="labels"><span class="label oo">OO: The heavenly altar, the censer, the ascending prayers — the earthly liturgy participates in the heavenly</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Revelation 22:20</div>
+        <div class="sv-txt">"He who testifies to these things says, 'Surely I am coming soon.' Amen. Come, Lord Jesus!"</div>
+        <div class="labels"><span class="label oo">OO: The Maranatha closing — "Come, Lord Jesus!" — mirrors the Eucharistic cry of the assembly. Revelation opens and closes in the liturgical context.</span></div>
+      </div>
+    </div>
+    <h3>The Heavenly Liturgy in Revelation</h3>
+    <p>Liturgical scholar Dom Gregory Dix observed that the structure of the heavenly worship in Revelation corresponds to the structure of the second-century Eucharist: the gathering of the assembly, the reading of the scroll, the Trisagion (Holy, Holy, Holy), the prostration before the Lamb, the offering of incense (prayers), the silence before the altar, the distribution of the sacred meal at the Marriage Supper of the Lamb. John is not inventing this structure — he is describing what the Church already does on earth and seeing it as a participation in what happens eternally in heaven.</p>
+    <p>This is the theological heart of Orthodox liturgiology: the earthly liturgy is not a performance that merely points to a distant God. It is a participation in the heavenly liturgy that is always and already being celebrated before the throne. When the Coptic deacon swings his censer, when the Ethiopian priest elevates the Lamb, when the Armenian choir sings the Trisagion — they are joining the four living creatures in a worship that never ceased.</p>
+  </div>
+</div>
+
+<!-- VI -->
+<div class="sec" id="s6">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>VI. Temple and Synagogue — The Jewish Inheritance</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">06</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>The Christian liturgy did not emerge from a vacuum. It grew from two roots: the Temple sacrificial service and the synagogue's liturgy of the Word. The first Christians were Jews who continued to attend the Temple and the synagogue (Acts 2:46; 3:1; Luke 4:16) while also gathering for the distinctively Christian breaking of bread. As the Church separated from the synagogue, she carried her liturgical inheritance with her and transfigured it in the light of Christ.</p>
+    <div class="par-grid">
+      <div class="par-col">
+        <h4>Synagogue → Liturgy of the Word</h4>
+        <ul>
+          <li>Fixed readings from Torah and Prophets</li>
+          <li>The Shema and fixed prayers (Amidah)</li>
+          <li>Psalm-singing between readings</li>
+          <li>Standing to read, sitting to teach</li>
+          <li>A homily (derashah) on the reading</li>
+          <li>The lector (ba'al koreh) reads aloud</li>
+          <li>The congregation responds "Amen"</li>
+          <li>Facing Jerusalem in prayer</li>
+        </ul>
+      </div>
+      <div class="par-col">
+        <h4>Temple → Liturgy of the Eucharist</h4>
+        <ul>
+          <li>The sacrifice on the altar</li>
+          <li>Incense burned before the Lord</li>
+          <li>Priestly vestments and vessels</li>
+          <li>The curtain (veil) before the Holy of Holies</li>
+          <li>Grain and wine offerings (Lev 23:13)</li>
+          <li>The twelve loaves of the Presence (Lev 24)</li>
+          <li>Levitical choirs and instruments</li>
+          <li>The sacred meal shared by priests</li>
+        </ul>
+      </div>
+    </div>
+    <h3>Melchizedek and the Eucharistic Offering</h3>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">Genesis 14:18</div>
+        <div class="sv-txt">"And Melchizedek king of Salem brought out bread and wine. (He was priest of God Most High.)"</div>
+        <div class="labels"><span class="label oo">OO: The Fathers universally saw Melchizedek's offering of bread and wine as the type of the Eucharist — Christ the eternal High Priest offers bread and wine in the order of Melchizedek (Ps 110:4; Heb 7)</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Malachi 1:11</div>
+        <div class="sv-txt">"For from the rising of the sun to its setting my name will be great among the nations, and in every place incense will be offered to my name, and a pure offering."</div>
+        <div class="labels"><span class="label oo">OO: The Fathers universally cited this as the OT prophecy of the universal Eucharist — the "pure offering" offered in every place among the nations</span></div>
+      </div>
+    </div>
+    <h3>The Fixed Hours of Prayer</h3>
+    <p>The Jewish tradition of praying at fixed hours — morning, afternoon (the ninth hour), and evening — was continued directly by the apostles and the first Christians:</p>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">Acts 3:1</div>
+        <div class="sv-txt">"Now Peter and John were going up to the temple at the hour of prayer, the ninth hour."</div>
+        <div class="labels"><span class="label oo">OO: The apostles maintained the Jewish fixed hour of afternoon prayer — the ninth hour (3pm). This is the hour of Christ's death on the cross.</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Acts 10:9</div>
+        <div class="sv-txt">"The next day, as they were on their journey and approaching the city, Peter went up on the housetop about the sixth hour to pray."</div>
+        <div class="labels"><span class="label oo">OO: Peter prays at the sixth hour (noon) — again, a fixed liturgical hour</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Daniel 6:10</div>
+        <div class="sv-txt">"He got down on his knees three times a day and prayed and gave thanks before his God, as he had done previously."</div>
+        <div class="labels"><span class="label ctx">Context: The Jewish practice of three daily prayers — continued by the apostles and codified in the Didache's instruction to pray three times daily</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- VII -->
+<div class="sec" id="s7">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>VII. The Breaking of Bread — From the Upper Room to Every Altar</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">07</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>The Eucharist was the center and summit of Christian worship from the very first generation. It was not an occasional memorial or a quarterly ordinance — it was the weekly, then daily, act of the assembled Church. The Lord's Supper was instituted in a profoundly liturgical setting — the Passover Seder — and was from the beginning performed with careful, fixed, reverential order.</p>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">Luke 22:19</div>
+        <div class="sv-txt">"And he took bread, and when he had given thanks, he broke it and gave it to them, saying, 'This is my body, which is given for you. Do this in remembrance of me.'"</div>
+        <div class="labels"><span class="label oo">OO: "Do this" (touto poieite) — a command to repeat the action, with all its sacred gestures, in the same liturgical manner</span><span class="label gk">Greek: poieite — present imperative, implying repeated, ongoing action</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">1 Corinthians 11:26</div>
+        <div class="sv-txt">"For as often as you eat this bread and drink the cup, you proclaim the Lord's death until he comes."</div>
+        <div class="labels"><span class="label oo">OO: The Eucharist is a proclamation — a liturgical act with cosmic significance. "Until he comes" — it continues as long as the Church exists.</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Acts 2:46</div>
+        <div class="sv-txt">"And day by day, attending the temple together and breaking bread in their homes, they received their food with glad and generous hearts."</div>
+        <div class="labels"><span class="label oo">OO: The earliest Christians broke bread daily — not quarterly or annually</span></div>
+      </div>
+    </div>
+    <p>The liturgical context of the Last Supper is crucial: Jesus presided at the Passover Seder — the most elaborate, scripted, and formally ordered meal in Judaism. Every cup, every word, every gesture had prescribed meaning. He did not break from this structure; he transformed it from within, fulfilling the Passover lamb in himself and replacing the Seder cups with the cup of his Blood. The Divine Liturgy is the ongoing Passover of the New Covenant — as carefully ordered and theologically dense as the Seder that gave it birth.</p>
+  </div>
+</div>
+
+<!-- VIII -->
+<div class="sec" id="s8">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>VIII. The Didache — The Oldest Liturgical Manual (c. AD 80–100)</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">08</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>The <em>Didache</em> (Teaching of the Twelve Apostles) is the oldest surviving Christian liturgical document outside the New Testament. Discovered in Constantinople in 1873 and dated by scholars to c. AD 80–100 — within living memory of the apostles — it describes a eucharistic liturgy of striking beauty and order.</p>
+    <div class="doc">
+      <div class="doc-title">Didache — Eucharistic Prayer over the Cup (c. AD 80)</div>
+      <div class="doc-date">Chapter 9</div>
+      <div class="doc-txt">"We give you thanks, our Father, for the holy vine of your servant David, which you made known to us through your servant Jesus; glory to you for evermore. Concerning the broken bread: We give you thanks, our Father, for the life and knowledge which you made known to us through your servant Jesus; glory to you for evermore."</div>
+    </div>
+    <div class="doc">
+      <div class="doc-title">Didache — The Post-Communion Prayer (c. AD 80)</div>
+      <div class="doc-date">Chapter 10</div>
+      <div class="doc-txt">"We give you thanks, Holy Father, for your holy name which you caused to dwell in our hearts, and for the knowledge and faith and immortality which you made known to us through Jesus your servant; glory to you for evermore... You, Lord Almighty, created all things for your name's sake... Remember, Lord, your Church, to deliver it from all evil and to make it perfect in your love, and gather it from the four winds, sanctified for your kingdom which you have prepared for it; for yours is the power and the glory for evermore."</div>
+    </div>
+    <div class="doc">
+      <div class="doc-title">Didache — The Eucharistic Acclamation (c. AD 80)</div>
+      <div class="doc-date">Chapter 10</div>
+      <div class="doc-txt">"Let grace come and let this world pass away. Hosanna to the God of David. If any man be holy, let him come! If any man be not, let him repent. Maranatha. Amen." — The cry "Maranatha" (Our Lord, come!) appears here as the liturgical acclamation of the eucharistic assembly — confirming Paul's use of the same term in 1 Corinthians 16:22.</div>
+    </div>
+    <p>The Didache also commands:</p>
+    <ul>
+      <li>Pray the Lord's Prayer three times daily (fixed hours of prayer)</li>
+      <li>No one may eat or drink of the Eucharist unless they are baptized</li>
+      <li>The bishop and deacons serve the community — formal hierarchical ministry</li>
+      <li>The Lord's Day (Sunday) is the day of the Eucharist — "having first confessed your transgressions" (a pre-liturgical confession)</li>
+    </ul>
+    <p>This is not a casual house-church gathering. This is a carefully ordered, theologically rich, sacramentally guarded liturgy — within a generation of the apostles.</p>
+  </div>
+</div>
+
+<!-- IX -->
+<div class="sec" id="s9">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>IX. Justin Martyr — The First Full Liturgical Description (c. AD 155)</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">09</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>Justin Martyr's <em>First Apology</em> (c. AD 155), written to the Emperor Antoninus Pius, contains the fullest description of Christian worship from the second century. Writing to a pagan emperor in defense of Christianity, Justin describes the Sunday Eucharist in sufficient detail that we can compare it directly to the liturgies of the Oriental Orthodox churches today.</p>
+    <div class="doc">
+      <div class="doc-title">Justin Martyr — First Apology §65–67 (c. AD 155)</div>
+      <div class="doc-date">Written to Emperor Antoninus Pius</div>
+      <div class="doc-txt">"On the day called Sunday, all who live in cities or in the country gather together to one place, and the memoirs of the apostles or the writings of the prophets are read, as long as time permits; then, when the reader has ceased, the president verbally instructs, and exhorts to the imitation of these good things. Then we all rise together and pray, and, as we before said, when our prayer is ended, bread and wine and water are brought, and the president in like manner offers prayers and thanksgivings, according to his ability, and the people assent, saying Amen; and there is a distribution to each, and a participation of that over which thanks have been given, and to those who are absent a portion is sent by the deacons."</div>
+    </div>
+    <h3>The Structure Justin Describes — Identical to the Ancient Liturgy</h3>
+    <div class="lx-grid">
+      <div class="lx">
+        <div class="lx-num">Part I</div>
+        <div class="lx-name">The Synaxis</div>
+        <div class="lx-desc">Readings from "the memoirs of the apostles" (Gospels) and "the writings of the prophets" (OT) — read by a lector, standing</div>
+      </div>
+      <div class="lx">
+        <div class="lx-num">Part II</div>
+        <div class="lx-name">The Homily</div>
+        <div class="lx-desc">The "president" (bishop/presbyter) instructs and exhorts based on the readings — seated, as Jesus did in Luke 4:20</div>
+      </div>
+      <div class="lx">
+        <div class="lx-num">Part III</div>
+        <div class="lx-name">The Prayers</div>
+        <div class="lx-desc">"We all rise together and pray" — the standing prayer of the faithful, the ektenia (litany of intercession)</div>
+      </div>
+      <div class="lx">
+        <div class="lx-num">Part IV</div>
+        <div class="lx-name">The Offertory</div>
+        <div class="lx-desc">Bread, wine, and water are brought to the altar — the offering of the gifts</div>
+      </div>
+      <div class="lx">
+        <div class="lx-num">Part V</div>
+        <div class="lx-name">The Anaphora</div>
+        <div class="lx-desc">The president offers "prayers and thanksgivings according to his ability" — the Eucharistic Prayer / anaphora</div>
+      </div>
+      <div class="lx">
+        <div class="lx-num">Part VI</div>
+        <div class="lx-name">The Amen</div>
+        <div class="lx-desc">"The people assent, saying Amen" — the great Amen of the congregation ratifying the anaphora</div>
+      </div>
+      <div class="lx">
+        <div class="lx-num">Part VII</div>
+        <div class="lx-name">Distribution</div>
+        <div class="lx-desc">Communion distributed to all present; deacons carry it to the absent — liturgical deaconal ministry</div>
+      </div>
+    </div>
+    <p>Every element Justin describes — the reading of Scripture, the homily, the intercessory prayers, the offertory, the eucharistic prayer, the congregational Amen, the communion, the deacons — is present in the Coptic, Ethiopian, Syriac, and Armenian liturgies today. The structure has not changed in nearly two thousand years.</p>
+    <blockquote>"This food is called among us Eucharistia [the Eucharist], of which no one is allowed to partake but the man who believes that the things which we teach are true, and who has been washed with the washing that is for the remission of sins, and unto regeneration, and who is so living as Christ has enjoined."<cite>— Justin Martyr, <em>First Apology</em> §66 (c. AD 155)</cite></blockquote>
+  </div>
+</div>
+
+<!-- X -->
+<div class="sec" id="s10">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>X. Hippolytus — The Apostolic Tradition (c. AD 215)</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">10</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>The <em>Apostolic Tradition</em> of Hippolytus of Rome (c. AD 215) is the oldest surviving full Eucharistic Prayer (anaphora) in Christian history. It was not composed by Hippolytus as a new creation — he explicitly states he is writing down what the Church already does, to preserve it against novelty. The prayer he records is the direct ancestor of the anaphoras still in use in the Oriental Orthodox churches.</p>
+    <div class="doc">
+      <div class="doc-title">Hippolytus — The Anaphora of the Apostolic Tradition (c. AD 215)</div>
+      <div class="doc-date">Apostolic Tradition §4</div>
+      <div class="doc-txt"><em>Bishop:</em> "The Lord be with you."<br><em>People:</em> "And with your spirit."<br><em>Bishop:</em> "Lift up your hearts."<br><em>People:</em> "We have them with the Lord."<br><em>Bishop:</em> "Let us give thanks to the Lord."<br><em>People:</em> "It is meet and right."<br>And then he shall continue thus: "We render thanks to you, O God, through your beloved child Jesus Christ, whom in the last times you sent to us as savior and redeemer and angel of your will; who is your inseparable Word, through whom you made all things..."</div>
+    </div>
+    <p>The opening dialogue of Hippolytus' anaphora — "The Lord be with you / And with your spirit / Lift up your hearts / We have them with the Lord / Let us give thanks / It is meet and right" — is used word-for-word in the Coptic, Ethiopian, Syriac, and Armenian liturgies to this day. It has been in continuous use for over eighteen hundred years.</p>
+    <h3>The Timeline of Liturgical Documents</h3>
+    <div class="tl">
+      <div class="tl-item">
+        <div class="tl-dot">c.80</div>
+        <div class="tl-body">
+          <div class="tl-title">The Didache</div>
+          <div class="tl-date">c. AD 80–100</div>
+          <div class="tl-desc">Eucharistic prayers, the Lord's Prayer three times daily, Sunday Eucharist, hierarchical ministry. The oldest non-canonical liturgical document.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">c.107</div>
+        <div class="tl-body">
+          <div class="tl-title">Ignatius of Antioch</div>
+          <div class="tl-date">c. AD 107</div>
+          <div class="tl-desc">Letters affirm the bishop presides at the Eucharist; warns against unauthorized Eucharist; the Eucharist is "the flesh of Christ" and "the medicine of immortality."</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">c.155</div>
+        <div class="tl-body">
+          <div class="tl-title">Justin Martyr — First Apology</div>
+          <div class="tl-date">c. AD 155</div>
+          <div class="tl-desc">Full description of Sunday Eucharist: readings, homily, intercessions, offertory, anaphora, Amen, communion, deacons. Structurally identical to living Oriental Orthodox liturgies.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">c.215</div>
+        <div class="tl-body">
+          <div class="tl-title">Hippolytus — Apostolic Tradition</div>
+          <div class="tl-date">c. AD 215</div>
+          <div class="tl-desc">The first full written anaphora. Opening dialogue still used verbatim in OO liturgies. Full Eucharistic Prayer, ordination rites, the Hours, baptismal catechesis.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">c.350</div>
+        <div class="tl-body">
+          <div class="tl-title">Cyril of Jerusalem — Mystagogical Catecheses</div>
+          <div class="tl-date">c. AD 350</div>
+          <div class="tl-desc">Detailed post-baptismal instruction on the liturgy — the Synaxis, the Kiss of Peace, the Sursum Corda, the Sanctus, the Epiclesis, the Lord's Prayer, Communion. A complete picture of the 4th-century Jerusalem liturgy.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">c.375</div>
+        <div class="tl-body">
+          <div class="tl-title">Basil of Caesarea — Liturgy of St. Basil</div>
+          <div class="tl-date">c. AD 375</div>
+          <div class="tl-desc">The anaphora of St. Basil — used to this day in the Coptic, Ethiopian, and Greek Orthodox churches. The longest of the classical anaphoras, with stunning Trinitarian and soteriological theology woven through the Eucharistic Prayer.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">c.400</div>
+        <div class="tl-body">
+          <div class="tl-title">John Chrysostom — Liturgy of St. John Chrysostom</div>
+          <div class="tl-date">c. AD 400</div>
+          <div class="tl-desc">The shorter anaphora attributed to Chrysostom — the standard liturgy of the Byzantine churches. The Coptic and other OO churches use the Liturgy of St. Basil as their primary rite.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- XI -->
+<div class="sec" id="s11">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>XI. The Patristic Witnesses to Formal Liturgy</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">11</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <div class="fc-grid">
+      <div class="fc">
+        <div class="fc-name">Ignatius of Antioch</div>
+        <div class="fc-era">c. AD 107 — Letter to the Smyrnaeans §8</div>
+        <div class="fc-txt">"Let no one do anything connected with the Church without the bishop. Let that be deemed a proper Eucharist which is administered either by the bishop, or by one to whom he has entrusted it... Wherever the bishop shall appear, there let the multitude also be; even as, wherever Jesus Christ is, there is the Catholic Church."</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Pliny the Younger</div>
+        <div class="fc-era">c. AD 112 — Letter to Emperor Trajan</div>
+        <div class="fc-txt">"They were in the habit of meeting on a certain fixed day before it was light, when they sang in alternate verses a hymn to Christ, as to a god, and bound themselves by a solemn oath not to do any wicked deeds... and afterwards to partake of food — but food of an ordinary and innocent kind." — A pagan Roman governor describes the early Christian liturgy: a fixed day, antiphonal hymnody, an oath (the creed), and a sacred meal (the Eucharist).</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Tertullian</div>
+        <div class="fc-era">c. AD 200 — Apology §39</div>
+        <div class="fc-txt">"We assemble to read our sacred writings... we join together in prayer... We come together to offer our prayers... we celebrate the Supper of the Lord... with great solemnity."</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Cyril of Jerusalem</div>
+        <div class="fc-era">c. AD 350 — Mystagogical Catechesis V</div>
+        <div class="fc-txt">"After this the priest cries aloud, 'Lift up your hearts.' Then you answer, 'We lift them up unto the Lord.' Then the priest says, 'Let us give thanks to the Lord.' Then you say, 'It is meet and right.' Then we make mention of heaven, and earth, and sea, and sun, and moon, and stars, and all the creation... Then we commemorate also those who have fallen asleep before us... Then after the spiritual sacrifice is perfected, the bloodless service... we call upon God for the common peace of the Churches, for the welfare of the world..."</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Augustine of Hippo</div>
+        <div class="fc-era">c. AD 400 — Letter 54</div>
+        <div class="fc-txt">"Those observances which are not written but handed down to us, which are kept throughout the whole world, give us to understand that they are recommended and ordained to be kept, either by the Apostles themselves, or by plenary Councils, whose authority in the Church is most useful."</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Athanasius of Alexandria</div>
+        <div class="fc-era">c. AD 330 — Easter Letter</div>
+        <div class="fc-txt">"It is not permitted to hold the Eucharist except on the appointed days and in the prescribed manner... For as there is one Lord and one faith, so also there is one Eucharist of the Church."</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- XII -->
+<div class="sec" id="s12">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>XII. The Liturgy of the Word — Ancient and Unchanged</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">12</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>The Liturgy of the Word — the first part of the Divine Liturgy — is the direct continuation of the synagogue service. It comprises fixed elements that have remained essentially unchanged since the apostolic era:</p>
+    <div class="lx-grid">
+      <div class="lx">
+        <div class="lx-num">Element 1</div>
+        <div class="lx-name">The Opening</div>
+        <div class="lx-desc">The blessing of God in the name of the Trinity — "In the name of the Father, and of the Son, and of the Holy Spirit." The liturgy begins as it was commanded: baptizing in the Trinitarian name (Matt 28:19).</div>
+      </div>
+      <div class="lx">
+        <div class="lx-num">Element 2</div>
+        <div class="lx-name">The Trisagion</div>
+        <div class="lx-desc">"Holy God, Holy Mighty, Holy Immortal, have mercy on us." The angelic hymn of Isaiah 6:3 and Revelation 4:8 — sung three times in all OO liturgies. Present in the 5th century at minimum; probably much earlier.</div>
+      </div>
+      <div class="lx">
+        <div class="lx-num">Element 3</div>
+        <div class="lx-name">The Readings</div>
+        <div class="lx-desc">Fixed readings from the Epistle, the Acts, and the Gospel — chanted by the lector and deacon respectively. The same lectionary cycle, calibrated to the liturgical year, used for centuries.</div>
+      </div>
+      <div class="lx">
+        <div class="lx-num">Element 4</div>
+        <div class="lx-name">The Psalm</div>
+        <div class="lx-desc">An appointed Psalm sung between the readings — the direct continuation of the synagogue's practice of singing Hallel Psalms between Torah and Prophetic portions.</div>
+      </div>
+      <div class="lx">
+        <div class="lx-num">Element 5</div>
+        <div class="lx-name">The Homily</div>
+        <div class="lx-desc">The bishop or priest expounds the readings — seated (as Christ in Luke 4:20). The homily is not the center of the liturgy; it serves the Word and prepares for the Eucharist.</div>
+      </div>
+      <div class="lx">
+        <div class="lx-num">Element 6</div>
+        <div class="lx-name">The Litany</div>
+        <div class="lx-desc">The intercessory prayers — the deacon or priest leads petitions for the world, the Church, the sick, the departed, and the catechumens. The congregation responds "Lord, have mercy" (Kyrie eleison / Kurillayson).</div>
+      </div>
+      <div class="lx">
+        <div class="lx-num">Element 7</div>
+        <div class="lx-name">Dismissal of Catechumens</div>
+        <div class="lx-desc">"Let all catechumens depart." The unbaptized are formally dismissed before the Eucharist — as in the ancient Church. Only the baptized faithful remain for the Liturgy of the Faithful.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- XIII -->
+<div class="sec" id="s13">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>XIII. The Liturgy of the Eucharist — The Structure of the Anaphora</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">13</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>The Eucharistic Prayer (anaphora) is the heart of the Divine Liturgy. Its structure is ancient, universal, and traceable to the first century. Every classical anaphora — whether Coptic, Ethiopian, Syriac, Armenian, or Byzantine — contains the same structural elements in essentially the same order:</p>
+    <div class="lx-grid">
+      <div class="lx">
+        <div class="lx-num">1</div>
+        <div class="lx-name">Sursum Corda</div>
+        <div class="lx-desc">"Lift up your hearts / We have them with the Lord / Let us give thanks / It is meet and right." The opening dialogue of the anaphora — present in Hippolytus (c. 215) and in all OO liturgies today.</div>
+      </div>
+      <div class="lx">
+        <div class="lx-num">2</div>
+        <div class="lx-name">Preface / Thanksgiving</div>
+        <div class="lx-desc">The great prayer of thanksgiving for creation and redemption — ranging through the history of salvation from creation to the Incarnation.</div>
+      </div>
+      <div class="lx">
+        <div class="lx-num">3</div>
+        <div class="lx-name">The Sanctus</div>
+        <div class="lx-desc">"Holy, holy, holy, Lord God of hosts, heaven and earth are full of your glory..." — The congregation joins the seraphim of Isaiah 6:3 and the four living creatures of Revelation 4:8 in the angelic hymn.</div>
+      </div>
+      <div class="lx">
+        <div class="lx-num">4</div>
+        <div class="lx-name">The Institution Narrative</div>
+        <div class="lx-desc">The Words of Institution — "This is my body / This is my blood" — from 1 Corinthians 11:23–26, quoted within the prayer as the foundation of the Eucharist.</div>
+      </div>
+      <div class="lx">
+        <div class="lx-num">5</div>
+        <div class="lx-name">The Anamnesis</div>
+        <div class="lx-desc">"Remembering therefore his death and resurrection..." — the memorial (anamnesis) of the saving acts of Christ, offered to the Father as the Church's sacrifice of praise.</div>
+      </div>
+      <div class="lx">
+        <div class="lx-num">6</div>
+        <div class="lx-name">The Epiclesis</div>
+        <div class="lx-desc">The invocation of the Holy Spirit upon the gifts — "Send your Holy Spirit upon us and upon these gifts, that they may become the Body and Blood of your Christ." The moment of consecration in Eastern theology.</div>
+      </div>
+      <div class="lx">
+        <div class="lx-num">7</div>
+        <div class="lx-name">The Intercessions</div>
+        <div class="lx-desc">Prayers for the living and the departed, for the Church throughout the world, for the faithful who have gone before — the Communion of Saints expressed in the Eucharistic Prayer.</div>
+      </div>
+      <div class="lx">
+        <div class="lx-num">8</div>
+        <div class="lx-name">The Great Amen</div>
+        <div class="lx-desc">The congregation's Amen ratifies the entire prayer. Justin Martyr describes this in AD 155. Jerome wrote: "When the Amen resounds like heavenly thunder and the empty temples of the idols tremble."</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- XIV -->
+<div class="sec" id="s14">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>XIV. Liturgical Time — The Hours, Fasts &amp; the Church Calendar</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">14</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>The early Church did not just sanctify Sunday — she sanctified <em>every day</em> through the Liturgy of the Hours, and <em>every year</em> through the liturgical calendar of feasts and fasts. This was not medieval elaboration — it was the direct continuation of Jewish practice, transformed by Christ.</p>
+    <h3>The Canonical Hours</h3>
+    <p>The Didache instructs Christians to pray the Lord's Prayer three times daily. The apostles prayed at fixed hours — the third, sixth, and ninth (Acts 2:15; 10:9; 3:1; 10:30). By the time of Hippolytus (c. 215), seven fixed hours of prayer are prescribed — explicitly linking them to the hours of Christ's passion:</p>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">Hippolytus — Apostolic Tradition §41</div>
+        <div class="sv-txt">"At the third hour let him pray... for at this hour Christ was nailed to the tree. At the sixth hour likewise... for at that hour, after Christ was nailed to the cross, the day was divided and there was darkness. At the ninth hour let him pray a great prayer and great praise... for at that hour Christ died..."</div>
+        <div class="labels"><span class="label oo">OO: The Hours of prayer are tied to the Passion of Christ — they are not arbitrary times but theological markers</span></div>
+      </div>
+    </div>
+    <p>The <strong>Coptic Agpeya</strong> (Book of Hours) contains seven canonical hours — Prime, Terce, Sext, None, Vespers, Compline, and Midnight — prayed daily by Coptic Christians. The <strong>Ethiopian Weddase Maryam</strong> and <strong>Syriac Shehimo</strong> fulfill the same function in their traditions. These are not optional — they are the daily liturgical heartbeat of the faithful.</p>
+    <h3>Fasting as Liturgical Discipline</h3>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">Didache §8 (c. AD 80)</div>
+        <div class="sv-txt">"Let not your fasts be with the hypocrites, for they fast on the second and fifth day of the week; but do ye fast on the fourth day and the Preparation [Wednesday and Friday]."</div>
+        <div class="labels"><span class="label oo">OO: Fixed fasting days from the apostolic era — Wednesday (betrayal) and Friday (crucifixion)</span></div>
+      </div>
+    </div>
+    <p>The Coptic Church maintains over 200 fasting days per year — the most demanding fasting discipline of any Christian tradition. The Ethiopian Church has nearly as many. These are not ascetic inventions of later monks — they are the continuation of the biblical and apostolic fasting tradition, applied with extraordinary faithfulness.</p>
+    <h3>The Liturgical Year</h3>
+    <p>The earliest Christians celebrated Easter (Pascha) as the center of the year — the annual commemoration of the Resurrection, preceded by a fast. By the second century, the Paschal fast and vigil were universal. The weeks before (fasting) and the weeks after (celebration) gradually expanded into the Great Lent and the Fifty Days of Pentecost. The Coptic and Ethiopian churches maintain the fullest expression of the liturgical year — with the Advent of the Apostles, the Advent of Christmas, the Great Lent, Holy Week, and the fifty days of Pentecost all given liturgical texture and assigned Scripture readings, fasts, and feasts.</p>
+  </div>
+</div>
+
+<!-- XV -->
+<div class="sec" id="s15">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>XV. Liturgical Space — Altars, Orientation &amp; Sacred Furnishings</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">15</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>The earliest Christian worship spaces were not bare lecture halls. They were sacred spaces shaped by the theology of the Temple and the vision of the heavenly sanctuary in Revelation — altars, curtains (veils), incense, dedicated vessels, and the eastward orientation of prayer.</p>
+    <h3>The Altar</h3>
+    <p>The earliest Christian meeting places (from at least the 2nd century) centered on an altar — the table on which the bread and wine were offered. This is not a medieval development: Paul uses the word <em>thysiastērion</em> (altar) for the Christian assembly's table (1 Cor 10:21; Heb 13:10). Ignatius of Antioch (c. 107) speaks of "the one altar." The altar was understood as the new table of the Presence, fulfilling the twelve loaves of the Temple.</p>
+    <h3>The Veil / Iconostasis</h3>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">Hebrews 10:19–20</div>
+        <div class="sv-txt">"Therefore, brothers, since we have confidence to enter the holy places by the blood of Jesus, by the new and living way that he opened for us through the curtain, that is, through his flesh..."</div>
+        <div class="labels"><span class="label oo">OO: Christ's body is the new Temple veil. The sanctuary veil in OO churches — through which only the ordained pass — embodies this theology.</span></div>
+      </div>
+    </div>
+    <p>Every Oriental Orthodox church maintains the distinction between the nave (for the faithful) and the sanctuary (for the clergy) — separated by a curtain or screen. This is not medieval ceremony. The earliest church building discovered — at Dura-Europos (c. AD 232) — already shows a dedicated sanctuary area distinct from the assembly space. The distinction continues the Temple's concentric zones of holiness: court, Holy Place, Holy of Holies.</p>
+    <h3>Facing East in Prayer</h3>
+    <div class="fc-grid">
+      <div class="fc">
+        <div class="fc-name">Origen of Alexandria</div>
+        <div class="fc-era">c. AD 230 — On Prayer §32</div>
+        <div class="fc-txt">"Since there are four parts of the world — north, south, west, and east — and since east is the image of our soul's looking toward the rising of the true Light, who can doubt that prayer should be made toward the east as a figure of the soul's looking for the rising of the Sun of Righteousness?"</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Basil the Great</div>
+        <div class="fc-era">c. AD 375 — On the Holy Spirit §66</div>
+        <div class="fc-txt">"We all look toward the east when we pray... Most of us know not that we are seeking our own ancient fatherland, Paradise, which God planted in Eden, in the east."</div>
+      </div>
+    </div>
+    <p>All Oriental Orthodox churches orient their altars toward the east — where the sun rises, symbol of Christ the Sun of Righteousness (Mal 4:2) and of his return "from the east" (Matt 24:27). This is not aesthetic preference; it is liturgical theology embodied in architecture, practiced from the earliest centuries.</p>
+    <h3>Incense</h3>
+    <p>The use of incense in Christian worship is not borrowed from paganism — it is directly commanded in the Old Testament (Exod 30:7–8) and described in the heavenly worship of Revelation (Rev 5:8; 8:3–4). The Fathers understood incense as the ascending prayers of the saints, a theological statement about the nature of prayer. Every Oriental Orthodox liturgy uses incense abundantly — the Coptic deacon swings the censer twelve times at the Gospel reading, once for each apostle.</p>
+  </div>
+</div>
+
+<!-- XVI -->
+<div class="sec" id="s16">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>XVI. Liturgical Music — The Psalter &amp; Ancient Hymnody</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">16</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>The music of the early Church was not contemporary praise music with drums and guitars. It was the ancient music of the Psalter — sung antiphonally, responsively, and with extraordinary care — plus a growing body of Christian hymnody rooted in the liturgical hymns already embedded in the New Testament.</p>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">Ephesians 5:19</div>
+        <div class="sv-txt">"Addressing one another in psalms and hymns and spiritual songs, singing and making melody to the Lord with your heart."</div>
+        <div class="labels"><span class="label oo">OO: Three categories of liturgical music: the Psalter (psalms), fixed hymns (hymnoi), and inspired songs (ōdai pneumatikai)</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Colossians 3:16</div>
+        <div class="sv-txt">"Let the word of Christ dwell in you richly, teaching and admonishing one another in all wisdom, singing psalms and hymns and spiritual songs, with thankfulness in your hearts to God."</div>
+        <div class="labels"><span class="label oo">OO: Liturgical singing is itself a form of teaching — the theology of the faith is transmitted through song</span></div>
+      </div>
+    </div>
+    <h3>The Coptic Musical Tradition</h3>
+    <p>The Coptic Church maintains one of the oldest continuous musical traditions in the world. Its liturgical chants — some of which scholars believe preserve pre-Christian Egyptian musical elements transformed by Christian theology — have been transmitted orally from generation to generation for nearly two thousand years. The great cantor Farag (known as the Blind Cantor) in the 20th century was responsible for preserving and systematizing this tradition, which had nearly been lost. Coptic liturgical music is a living artifact of the earliest Christian East — austere, ancient, and magnificent.</p>
+    <h3>The Ethiopian Musical Tradition</h3>
+    <p>The Ethiopian Orthodox Church attributes its liturgical musical tradition to St. Yared (c. AD 505–571) — who, according to tradition, received the three modes of Ethiopian church music (Ge'ez, Ezil, and Araray) by divine inspiration. Ethiopian church music uses the sistrum (a rattling instrument of ancient Egyptian Temple origin), drums, and prayer sticks (maqwamia). The full celebration of the Ethiopian liturgy includes elaborate, choreographed liturgical dance (aquaquam) — explicitly grounded in 2 Samuel 6:14, where David "danced before the LORD." This is not entertainment; it is worship.</p>
+    <h3>The Psalter as the Church's Hymnbook</h3>
+    <p>Athanasius of Alexandria wrote to a young monk that the Psalter is "a mirror in which each man sees himself." The 150 Psalms were the Church's primary liturgical hymnbook — not replaced but fulfilled in Christ. Every canonical hour in every OO tradition includes appointed Psalms. The Ethiopian church has an elaborate system of Psalm use that covers every aspect of human experience. The Psalter was not merely read — it was sung, chanted, and prayed, in fixed patterns, day after day, year after year, until the words became the Church's own.</p>
+  </div>
+</div>
+
+<!-- XVII -->
+<div class="sec" id="s17">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>XVII. The Oriental Orthodox Churches — Custodians of Apostolic Worship</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">17</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>The Oriental Orthodox churches are not merely ancient — they are the direct liturgical descendants of the apostolic communities. Their liturgies were not composed by medieval committees; they grew organically from the worship of the apostles and their immediate successors, shaped by the great theologians of Alexandria, Antioch, and Jerusalem.</p>
+    <div class="fc-grid">
+      <div class="fc">
+        <div class="fc-name">The Coptic Liturgy of St. Basil</div>
+        <div class="fc-era">Coptic Orthodox Church — Egypt</div>
+        <div class="fc-txt">The primary anaphora of the Coptic Church, attributed to Basil the Great (c. AD 375). One of the most theologically rich Eucharistic Prayers in all of Christianity — its epiclesis, its intercessions for the departed, and its Trinitarian preface have shaped Coptic worship for sixteen centuries. Celebrated entirely in Coptic (with Arabic translation), it connects the faithful directly to the language of ancient Egypt.</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">The Liturgy of St. Mark (Anaphora of St. Cyril)</div>
+        <div class="fc-era">Coptic Orthodox Church — Egypt</div>
+        <div class="fc-txt">Attributed to St. Mark the Apostle — the founder of the Coptic Church — and later redacted by Cyril of Alexandria. One of the oldest anaphoras in existence, preserving Alexandrian liturgical theology in its most ancient form. Used on special feast days in the Coptic Church.</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">The Ethiopian Liturgy — Fourteen Anaphoras</div>
+        <div class="fc-era">Ethiopian Orthodox Tewahedo Church</div>
+        <div class="fc-txt">The Ethiopian Church possesses fourteen distinct anaphoras — the largest collection of eucharistic prayers of any Christian tradition. These include anaphoras attributed to the Apostles, to Mary the Theotokos, to Athanasius, to Basil, to Gregory of Nazianzus, to Epiphanius, and to the Ethiopian saints. They range from spare simplicity to elaborate poetic density, together representing a treasury of early Christian Eucharistic theology.</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">The West Syriac Liturgy of St. James</div>
+        <div class="fc-era">Syriac Orthodox Church / Malankara Orthodox</div>
+        <div class="fc-txt">The Liturgy of St. James of Jerusalem — one of the oldest surviving liturgical forms, associated with the Jerusalem church. Used in the Syriac and Malankara traditions, it preserves the liturgical tradition of the mother church of Christianity. Scholars regard it as one of the most ancient liturgical forms in existence.</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">The Armenian Badarak</div>
+        <div class="fc-era">Armenian Apostolic Church</div>
+        <div class="fc-txt">The Divine Liturgy (Badarak) of the Armenian Church — derived from the Liturgy of St. Basil and the ancient Jerusalem rite, developed by St. Sahak and St. Mashtots in the 5th century alongside the creation of the Armenian alphabet. The liturgical language (Classical Armenian / Grabar) is itself a sacred inheritance — the language in which St. Gregory the Illuminator catechized the first Christian nation.</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">The Eritrean Orthodox Liturgy</div>
+        <div class="fc-era">Eritrean Orthodox Tewahedo Church</div>
+        <div class="fc-txt">Sharing the Ethiopian liturgical tradition including the fourteen anaphoras, the Eritrean Church — autocephalous since 1994 — preserves the same apostolic worship in the Ge'ez language, continuing the ancient tradition of the Aksumite church evangelized in the 4th century by St. Frumentius.</div>
+      </div>
+    </div>
+    <blockquote>Pope Shenouda III often taught that Orthodox worship is nothing newly invented: the Church worships as the apostles worshipped, joining the unceasing heavenly worship of the angels.<cite>— summarizing the teaching of Pope Shenouda III of Alexandria (1923–2012)</cite></blockquote>
+  </div>
+</div>
+
+<!-- XVIII -->
+<div class="sec" id="s18">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>XVIII. Protestant Objections &amp; Orthodox Responses</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">18</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+
+    <div class="obj">
+      <div class="obj-hd" onclick="tobj(this)">
+        <strong>Objection 1: "The early church met in homes and had simple, Spirit-led worship — the elaborate liturgy came later."</strong>
+        <span class="obj-arr">▶</span>
+      </div>
+      <div class="obj-body">
+        <p>House churches were informal by nature — they couldn't have had vested priests, altars, and fixed prayers. The elaborate liturgy must be a post-Constantinian development.</p>
+        <div class="obj-resp">
+          <strong>Orthodox Response</strong>
+          <p>Meeting in a home does not preclude ordered, formal worship — the Jewish Passover Seder was celebrated in homes with elaborate ritual. The Didache (c. AD 80), written when Christians still met in homes, contains fixed Eucharistic prayers, fixed fasting days, and strict sacramental rules. Justin Martyr (c. 155), still in the pre-Constantinian era, describes a fully structured liturgy indistinguishable from what the OO churches celebrate today. The house church at Dura-Europos (c. 232), the oldest known Christian building, already had a dedicated sanctuary and baptistery with iconographic program. "House church" does not mean "informal" — it means the community's gathering place was a dedicated room in a private home, adapted into a proper church space.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="obj">
+      <div class="obj-hd" onclick="tobj(this)">
+        <strong>Objection 2: "Jesus said to worship 'in spirit and truth,' not in temples, altars, and ceremonies."</strong>
+        <span class="obj-arr">▶</span>
+      </div>
+      <div class="obj-body">
+        <p>Jesus told the Samaritan woman that "the hour is coming when neither on this mountain nor in Jerusalem will you worship the Father" (John 4:21) — implying that the new worship transcends sacred places and sacred ceremonies.</p>
+        <div class="obj-resp">
+          <strong>Orthodox Response</strong>
+          <p>Jesus is correcting the Samaritan claim that true worship requires a specific geographic location (Mount Gerizim vs. Jerusalem) — not abolishing the concept of ordered liturgical worship altogether. "In spirit and truth" means authentic, sincere, Spirit-empowered worship of the true God — as opposed to the schismatic and theologically defective worship of the Samaritans. Jesus himself worshipped in the Temple and synagogue regularly (Luke 4:16; John 10:22–23), instituted a solemn liturgical meal with fixed words and actions, and promised to be present wherever two or three are gathered in his name. The Letter to the Hebrews describes the Christian gathering as participation in the heavenly liturgy of Mount Zion (Heb 12:22–24) — not the abolition of sacred worship but its glorification.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="obj">
+      <div class="obj-hd" onclick="tobj(this)">
+        <strong>Objection 3: "Liturgy is 'vain repetition' — Jesus said don't use meaningless repetition in prayer (Matthew 6:7)."</strong>
+        <span class="obj-arr">▶</span>
+      </div>
+      <div class="obj-body">
+        <p>Jesus warns against "babbling like pagans" (Matthew 6:7) and says God knows what we need before we ask — suggesting long, elaborate, repeated prayers are contrary to his teaching.</p>
+        <div class="obj-resp">
+          <strong>Orthodox Response</strong>
+          <p>The Greek word in Matthew 6:7 is <em>battalogeo</em> — "to babble" or "to speak emptily." Jesus is condemning mindless, empty, magical use of words (as in pagan incantations) — not repetition per se. Immediately after warning against this, he gives the disciples the Lord's Prayer — a fixed, memorized prayer to be prayed regularly. In Revelation 4:8, the four living creatures repeat "Holy, holy, holy" before the throne "day and night, never ceasing" — and this is the highest worship in existence. The Psalms themselves are full of refrains and repetitions ("His steadfast love endures forever," repeated 26 times in Psalm 136). The Lord's Prayer is prayed in every Christian liturgy in the world — it is itself liturgical repetition that Jesus commanded.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="obj">
+      <div class="obj-hd" onclick="tobj(this)">
+        <strong>Objection 4: "The liturgy is man-made tradition that replaces Scripture — Jesus condemned the 'traditions of men.'"</strong>
+        <span class="obj-arr">▶</span>
+      </div>
+      <div class="obj-body">
+        <p>Jesus rebuked the Pharisees for "making void the word of God through your tradition" (Mark 7:13). The elaborate liturgical traditions of the OO church are precisely the kind of human tradition Jesus condemned.</p>
+        <div class="obj-resp">
+          <strong>Orthodox Response</strong>
+          <p>Jesus condemned specific Pharisaic legal traditions that <em>contradicted</em> the Word of God — specifically, the Corban rule that allowed people to dedicate money to God in order to avoid caring for their parents (Mark 7:10–13). He was not condemning all tradition. Paul explicitly commands "hold fast to the traditions (paradoseis) that I delivered to you" (1 Cor 11:2; 2 Thess 2:15; 3:6) — using the same word. The liturgy is not a tradition that opposes Scripture; it is the tradition that <em>carries</em> Scripture, reads it aloud, expounds it, and enacts it in the Eucharist. The liturgy is the original context in which the New Testament was written, read, and preserved. To oppose liturgy to Scripture is to saw off the branch you are sitting on.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="obj">
+      <div class="obj-hd" onclick="tobj(this)">
+        <strong>Objection 5: "The early church's worship was spontaneous and Spirit-led — fixed liturgy quenches the Holy Spirit."</strong>
+        <span class="obj-arr">▶</span>
+      </div>
+      <div class="obj-body">
+        <p>The Spirit moves where he wills (John 3:8). Fixed, scripted liturgy leaves no room for the Spirit — it reduces worship to performance rather than genuine encounter.</p>
+        <div class="obj-resp">
+          <strong>Orthodox Response</strong>
+          <p>This objection assumes a false dichotomy between structure and the Spirit. The Spirit breathed through the most structured worship in history — the Temple service, with its elaborate sacrificial rituals and Levitical choirs. The Spirit filled the synagogue. The Spirit descended upon the fixed Passover Seder at the Last Supper. 1 Corinthians 14, which is cited for spontaneous worship, also insists on order: "all things should be done decently and in order" (v.40). The Didache (c. AD 80) describes fixed prayers while allowing bishops to improvise "as much as they are able" — order and inspiration together. Moreover, the Oriental Orthodox liturgy is not mechanical performance — it is the Church's total act of self-offering, in which thousands of years of prayer and theology are offered to God. The Trisagion of the Coptic deacon, the antiphonal chant of the Ethiopian liturgy, the deep bowing of the Armenian faithful — these are not quenching the Spirit but being moved by him in the ancient ways he himself established.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- XIX -->
+<div class="sec" id="s19">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>XIX. Frequently Asked Questions</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">19</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+
+    <div class="fi">
+      <div class="fi-hd" onclick="tf(this)">
+        <strong>Why do the Oriental Orthodox churches use ancient languages in their liturgy?</strong>
+        <span class="fi-arr">▶</span>
+      </div>
+      <div class="fi-body">
+        <p>The Coptic Church uses the ancient Coptic language (a direct descendant of the language of the Pharaohs), the Ethiopian Church uses Ge'ez, the Syriac churches use Classical Syriac, and the Armenian Church uses Grabar. These are not dead languages in OO liturgy — they are sacred liturgical languages, windows into the apostolic and patristic inheritance of each community. The use of a liturgical language distinct from the vernacular has deep theological roots: it marks the liturgy as sacred, preserves ancient doxological formulas intact, and connects the worshipping community to its apostolic origins. Many OO communities provide vernacular translations alongside the liturgical language.</p>
+      </div>
+    </div>
+
+    <div class="fi">
+      <div class="fi-hd" onclick="tf(this)">
+        <strong>Didn't Constantine invent Christian liturgy in the 4th century?</strong>
+        <span class="fi-arr">▶</span>
+      </div>
+      <div class="fi-body">
+        <p>This is one of the most persistent historical myths about early Christianity. Constantine (d. 337) did not invent the liturgy — he built buildings to house it. The Didache (c. AD 80), Justin Martyr (c. 155), Hippolytus (c. 215), and Tertullian (c. 200) all describe a fully developed liturgy that predates Constantine by over a century. What Constantine provided was basilicas — large public buildings — in which the liturgy that already existed could be celebrated publicly and on a grand scale. The structure of the liturgy did not change with Constantine; the architecture grew to match it.</p>
+      </div>
+    </div>
+
+    <div class="fi">
+      <div class="fi-hd" onclick="tf(this)">
+        <strong>Is liturgical worship biblical?</strong>
+        <span class="fi-arr">▶</span>
+      </div>
+      <div class="fi-body">
+        <p>Profoundly so. The entire Old Testament is a liturgical document — the Torah prescribes elaborate sacrificial and priestly rituals; the Psalms are a hymnbook; the Prophets are full of liturgical poetry. The New Testament is soaked in liturgical language: fixed prayers (the Lord's Prayer), liturgical acclamations (Maranatha, Amen, Kyrie eleison, Hosanna, Alleluia), pre-existing hymns (Phil 2:6–11; Col 1:15–20; 1 Tim 3:16), doxologies (Rom 16:25–27), and the Revelation's extended vision of the heavenly liturgy. The God of the Bible is a God who commands specific, ordered worship — from the tabernacle to the Temple to the Upper Room to the Divine Liturgy.</p>
+      </div>
+    </div>
+
+    <div class="fi">
+      <div class="fi-hd" onclick="tf(this)">
+        <strong>How long is the Oriental Orthodox Divine Liturgy?</strong>
+        <span class="fi-arr">▶</span>
+      </div>
+      <div class="fi-body">
+        <p>The length varies by tradition and occasion. The Coptic Divine Liturgy typically lasts two to three hours on a regular Sunday, and can extend to four or five hours on major feast days. The Ethiopian liturgy — especially on feast days — can last the entire night, from midnight to dawn. The Armenian Badarak is typically about ninety minutes. These are not performances to be endured — they are the totality of the community's prayer, offered with their entire selves. Many OO faithful arrive early and remain for the full celebration as an act of love and devotion. The length is itself a theological statement: we do not rush into the presence of God.</p>
+      </div>
+    </div>
+
+    <div class="fi">
+      <div class="fi-hd" onclick="tf(this)">
+        <strong>Why do Oriental Orthodox Christians do prostrations and stand for so long?</strong>
+        <span class="fi-arr">▶</span>
+      </div>
+      <div class="fi-body">
+        <p>The body is not absent from prayer — it participates. Standing is the resurrection posture (we stand to honor the Risen Lord and because we share in his resurrection). Prostrations (full bowing to the floor) are the posture of utter humility and adoration before the living God — the posture of the prophets (Ezek 1:28), the seraphim (Isa 6), and the elders of Revelation (Rev 4:10). The 21 prostrations of Coptic liturgy are a physical engagement of the whole person in worship. The early Church stood for Sunday prayers as a rule — Basil the Great explains: "We stand on Sunday as a symbol of the Resurrection." The body prays with the soul — this has been the Christian tradition from the beginning.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- XX -->
+<div class="sec" id="s20">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>XX. Primary Sources &amp; Further Reading</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">20</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <h3>Primary Liturgical Documents</h3>
+    <ul>
+      <li><em>The Didache</em> (c. AD 80–100) — esp. chapters 7–10, 14</li>
+      <li>Ignatius of Antioch — <em>Letters</em> (c. AD 107) — esp. Smyrnaeans, Philadelphians</li>
+      <li>Pliny the Younger — <em>Letter to Emperor Trajan</em> X.96 (c. AD 112)</li>
+      <li>Justin Martyr — <em>First Apology</em> §65–67 (c. AD 155)</li>
+      <li>Tertullian — <em>Apology</em> §39; <em>On Prayer</em>; <em>On Fasting</em> (c. AD 197–210)</li>
+      <li>Hippolytus — <em>Apostolic Tradition</em> (c. AD 215)</li>
+      <li>Origen — <em>On Prayer</em> §32 — eastward orientation (c. AD 230)</li>
+      <li>Cyril of Jerusalem — <em>Mystagogical Catecheses</em> I–V (c. AD 350)</li>
+      <li>Basil the Great — <em>On the Holy Spirit</em> §66 — liturgical traditions (c. AD 375)</li>
+      <li>Egeria — <em>Travels</em> (c. AD 381–384) — description of Jerusalem liturgy</li>
+      <li>John Chrysostom — <em>Baptismal Instructions</em>; <em>Homilies on 1 Corinthians</em> (c. AD 390)</li>
+      <li>Augustine — <em>Letter 54</em>; <em>Confessions</em> IX (c. AD 400)</li>
+    </ul>
+    <h3>Oriental Orthodox Liturgical Texts</h3>
+    <ul>
+      <li>The Coptic <em>Agpeya</em> (Book of Hours) — seven canonical hours</li>
+      <li>The Coptic <em>Liturgy of St. Basil</em> and <em>Liturgy of St. Mark</em></li>
+      <li>The Ethiopian <em>Liturgy of the Apostles</em> (Me'eraf) and the Fourteen Anaphoras</li>
+      <li>The <em>Weddase Maryam</em> (Ethiopian Book of Hours)</li>
+      <li>The Syriac <em>Shehimo</em> (Book of Hours) — Malankara and Syriac Orthodox</li>
+      <li>The <em>Liturgy of St. James of Jerusalem</em></li>
+      <li>The Armenian <em>Badarak</em> and <em>Zhamagirk</em> (Book of Hours)</li>
+    </ul>
+    <h3>Modern Scholarly Works</h3>
+    <ul>
+      <li>Gregory Dix — <em>The Shape of the Liturgy</em> (1945) — the definitive study of early liturgical structure</li>
+      <li>Alexander Schmemann — <em>Introduction to Liturgical Theology</em> (1966); <em>For the Life of the World</em> (1963)</li>
+      <li>Scott Hahn — <em>The Lamb's Supper: The Mass as Heaven on Earth</em> (1999)</li>
+      <li>Lawrence Hoffman — <em>The Canonization of the Synagogue Service</em> (1979)</li>
+      <li>Paul Bradshaw — <em>The Search for the Origins of Christian Worship</em> (2002)</li>
+      <li>Robert Taft — <em>The Liturgy of the Hours in East and West</em> (1986)</li>
+      <li>Brock &amp; Vasey — <em>The Liturgical Portions of the Didascalia</em></li>
+      <li>Hatchett — <em>Commentary on the American Prayer Book</em> — liturgical history</li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- /content -->
+</div><!-- /main -->
+
+<footer>
+  <p>THE <span>ORTHODOX LAMP</span> &nbsp;·&nbsp; Biblical, Historical &amp; Patristic Apologetics</p>
+  <p style="margin-top:.5rem;font-size:.72rem;opacity:.6;">☩ &nbsp; In the name of the Father, and of the Son, and of the Holy Spirit &nbsp; ☩</p>
+</footer>
+
+<script>
+function ts(h){h.closest('.sec').classList.toggle('open')}
+function tobj(h){h.closest('.obj').classList.toggle('open')}
+function tf(h){h.closest('.fi').classList.toggle('open')}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').classList.toggle('show')}
+function closeMobile(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
+window.addEventListener('scroll',()=>{
+  const s=document.documentElement,b=document.body;
+  const h=s.scrollHeight-s.clientHeight;
+  const p=h>0?(s.scrollTop||b.scrollTop)/h*100:0;
+  document.getElementById('prog').style.width=p+'%';
+});
+const links=[...document.querySelectorAll('#sb-nav a')];
+const secs=[...document.querySelectorAll('.sec')];
+window.addEventListener('scroll',()=>{
+  let cur='';
+  secs.forEach(s=>{if(window.scrollY>=s.offsetTop-120)cur='#'+s.id});
+  links.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')===cur)});
+},{passive:true});
+</script>
+</body>
+</html>

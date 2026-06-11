@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Moral Argument — The Orthodox Lamp</title>
+<style>
+:root{
+  --gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;
+  --bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--bg5:#3a2e10;
+  --tx:#e8e0d0;--mu:#a09880;--br:#2a2a2a;
+  --sidebar-w:270px;
+  --rc:#3a1a1a;--rcc:#d47070;
+  --oo:#1a2e1a;--ooc:#7dc87d;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.7;display:flex;min-height:100vh}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+mark{background:rgba(201,168,76,.28);color:var(--gl);border-radius:2px;padding:0 2px}
+#prog{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--gd),var(--gl));z-index:200;transition:width .1s}
+#sb{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:100;display:flex;flex-direction:column}
+#sb-brand{padding:18px 18px 10px;border-bottom:1px solid var(--br)}
+#sb-brand .lamp{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mu);margin-bottom:4px}
+#sb-brand h1{font-size:1rem;color:var(--gold);line-height:1.3}
+.sb-search{padding:10px 14px 4px}
+.sb-search input{width:100%;background:rgba(255,255,255,.06);border:1px solid var(--br);border-radius:6px;padding:8px 12px;font-size:.8rem;color:var(--tx);font-family:'Georgia',serif;outline:none;transition:border-color .2s}
+.sb-search input::placeholder{color:#666}
+.sb-search input:focus{border-color:var(--gd)}
+.sec.s-hidden{display:none}
+.no-match-msg{display:none;padding:14px 18px;font-size:.8rem;color:var(--mu);font-style:italic;text-align:center}
+.no-match-msg.show{display:block}
+#sb-nav{padding:10px 0 20px;flex:1}
+#sb-nav a{display:block;padding:6px 18px;font-size:.82rem;color:var(--mu);border-left:2px solid transparent;transition:all .15s;line-height:1.4}
+#sb-nav a:hover,#sb-nav a.active{color:var(--gold);border-left-color:var(--gold);background:rgba(201,168,76,.06);text-decoration:none}
+main{margin-left:var(--sidebar-w);flex:1;max-width:820px;padding:48px 48px 80px}
+.pg-title{margin-bottom:10px}
+.pg-title .lamp-label{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--mu);margin-bottom:6px}
+.pg-title h1{font-size:2rem;color:var(--gold);line-height:1.2}
+.pg-title .sub{font-size:1rem;color:var(--mu);margin-top:6px;font-style:italic}
+.pg-intro{max-width:660px;color:var(--mu);font-size:.95rem;margin:16px 0 36px;border-left:3px solid var(--gd);padding-left:14px}
+.sec{border:1px solid var(--br);border-radius:8px;margin-bottom:14px;overflow:hidden;background:var(--bg2)}
+.sec-h{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;cursor:pointer;user-select:none;gap:10px}
+.sec-h:hover{background:rgba(255,255,255,.03)}
+.sec-h h2{font-size:1rem;color:var(--tx);font-weight:600}
+.sec-h .arr{color:var(--mu);font-size:.8rem;transition:transform .2s;flex-shrink:0}
+.sec.open .arr{transform:rotate(90deg)}
+.sec-body{display:none;padding:18px 20px 20px;border-top:1px solid var(--br)}
+.sec.open .sec-body{display:block}
+.sec-body p{color:var(--mu);font-size:.92rem;margin-bottom:10px}
+.sec-body p:last-child{margin-bottom:0}
+.sv{background:var(--bg5);border:1px solid var(--gd);border-radius:6px;padding:12px 16px;margin:12px 0;font-style:italic;color:var(--gl);font-size:.92rem}
+.sv cite{display:block;text-align:right;font-size:.8rem;color:var(--gold);margin-top:6px;font-style:normal}
+.comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.comp-card{border-radius:8px;padding:14px 16px;border:1px solid}
+.comp-card.rc-card{background:var(--rc);border-color:var(--rcc)}
+.comp-card.oo-card{background:var(--oo);border-color:var(--ooc)}
+.comp-card .cc-label{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;font-weight:700}
+.comp-card.rc-card .cc-label{color:var(--rcc)}
+.comp-card.oo-card .cc-label{color:var(--ooc)}
+.comp-card ul{padding-left:16px;font-size:.88rem;line-height:1.75}
+.comp-card.rc-card ul{color:#e8c0c0}
+.comp-card.oo-card ul{color:#c8e8c8}
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin:14px 0}
+.fc{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:14px 16px}
+.fc-name{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.fc-body{font-size:.88rem;color:var(--mu);font-style:italic;line-height:1.6}
+.fc-src{font-size:.76rem;color:var(--gd);margin-top:6px}
+.fi{border:1px solid var(--br);border-radius:6px;margin-bottom:8px;overflow:hidden;background:var(--bg3)}
+.fi-h{display:flex;align-items:flex-start;padding:11px 14px;cursor:pointer;gap:8px;user-select:none}
+.fi-h:hover{background:rgba(255,255,255,.03)}
+.fi-q{font-size:.88rem;color:var(--tx);flex:1}
+.fi-arr{color:var(--mu);font-size:.75rem;transition:transform .2s;flex-shrink:0;margin-top:4px}
+.fi.open .fi-arr{transform:rotate(90deg)}
+.fi-body{display:none;padding:12px 14px 14px;border-top:1px solid var(--br);font-size:.88rem;color:var(--mu);line-height:1.65}
+.fi.open .fi-body{display:block}
+.gt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin:14px 0}
+.gt{background:var(--bg3);border:1px solid var(--br);border-radius:7px;padding:12px 14px}
+.gt-term{font-size:.8rem;font-weight:700;color:var(--gold);margin-bottom:4px}
+.gt-def{font-size:.84rem;color:var(--mu);line-height:1.55}
+/* Greek/Latin text box */
+.lang-box{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:14px 18px;margin:12px 0}
+.lb-label{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mu);margin-bottom:8px}
+.lb-row{display:flex;gap:16px;margin-bottom:8px;align-items:baseline;flex-wrap:wrap}
+.lb-lang{font-size:.72rem;color:var(--gold);min-width:60px;flex-shrink:0}
+.lb-text{font-size:.9rem;color:var(--tx);font-style:italic}
+.lb-note{font-size:.8rem;color:var(--mu);margin-top:4px}
+/* consequence vs guilt boxes */
+.distinction-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.dist-box{border-radius:8px;padding:14px 16px;border:1px solid}
+.dist-box.inherited{background:#1a1a2e;border-color:#7070d4}
+.dist-box.not-inherited{background:#2e1a1a;border-color:#d47070}
+.dist-box .db-label{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;font-weight:700}
+.dist-box.inherited .db-label{color:#a0a0e8}
+.dist-box.not-inherited .db-label{color:var(--rcc)}
+.dist-box ul{padding-left:16px;font-size:.88rem;line-height:1.75}
+.dist-box.inherited ul{color:#c8c8f0}
+.dist-box.not-inherited ul{color:#f0c8c8}
+@media(max-width:760px){#sb{transform:translateX(-100%)}main{margin-left:0;padding:24px 18px 60px}}
+
+.ev-map{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;margin:14px 0}
+.ev-card{display:block;background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:12px 14px;transition:border-color .15s}
+.ev-card:hover{border-color:var(--gold);text-decoration:none}
+.ev-num{font-size:.68rem;letter-spacing:.12em;color:var(--mu);text-transform:uppercase}
+.ev-name{color:var(--gold);font-weight:700;margin:2px 0 4px;font-size:.95rem}
+.ev-line{color:var(--tx);font-size:.8rem;line-height:1.5}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<nav id="sb">
+  <div id="sb-brand">
+    <div class="lamp">The Orthodox Lamp</div>
+    <h1>The Moral Argument</h1>
+  </div>
+  <div class="sb-search">
+    <input type="search" placeholder="Search sections…" oninput="sidebarSearch(this.value)" aria-label="Search sections">
+  </div>
+  <div id="sb-nav">
+    <a href="#objection">The Objection Stated</a>
+    <a href="#map">The Argument Map</a>
+    <a href="#argument">The Argument in Plain Words</a>
+    <a href="#law">Step 1 · A Real Moral Law</a>
+    <a href="#instinct">Step 2 · Not Mere Instinct</a>
+    <a href="#convention">Step 3 · Not Mere Custom</a>
+    <a href="#evolution">Step 4 · Evolution Cannot Ground It</a>
+    <a href="#atheism">Step 5 · Atheism Cannot Pay the Bill</a>
+    <a href="#lawgiver">Step 6 · From Law to Lawgiver</a>
+    <a href="#euthyphro">The Euthyphro Dilemma Answered</a>
+    <a href="#imago">The Image of God &amp; Human Dignity</a>
+    <a href="#conscience">Conscience in Scripture</a>
+    <a href="#fathers">The Fathers on the Law Within</a>
+    <a href="#christ">The Law Fulfilled in Christ</a>
+    <a href="#goodatheists">"But Atheists Are Good People"</a>
+    <a href="#faq">FAQ</a>
+    <a href="#glossary">Glossary</a>
+    <a href="#sources">Sources</a>
+  </div>
+  <div class="no-match-msg" id="sb-no-match">No sections match.</div>
+</nav>
+<main>
+  <div class="pg-title">
+    <div class="lamp-label">The Orthodox Lamp</div>
+    <h1>The Moral Argument</h1>
+    <div class="sub">Right and wrong are real — and that fact points to God</div>
+  </div>
+  <p class="pg-intro">"Human beings, all over the earth, have this curious idea that they ought to behave in a certain way, and cannot really get rid of it" (C.S. Lewis, Mere Christianity, 1952). This page takes the famous argument of Mere Christianity, strips away the literary style, and lays it out step by step in plain words — with Scripture and the Church Fathers at every stage.</p>
+
+  <div class="sec open" id="objection">
+    <div class="sec-h" onclick="ts(this)"><h2>The Objection Stated — At Its Strongest</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>The atheist objection runs like this: <em>"You do not need God to be good. Atheists love their children, give to charity, and keep their promises. Morality comes from evolution, which gave us empathy, and from society, which teaches us rules. And if morality did come from God, that would make it worse, not better — the old Euthyphro dilemma shows that divine commands are either arbitrary or unnecessary."</em></p>
+      <p>Taken at its strongest, the objection makes three claims: that moral behavior does not require belief in God; that moral feelings can be explained by natural causes; and that grounding morality in God creates more problems than it solves. The first claim is true — and Scripture itself teaches it (Romans 2:14–15). The argument on this page never denies it. The question is not whether an atheist can <em>behave</em> morally. The question is whether, if atheism is true, morality is <em>real</em> — whether "cruelty is wrong" is a fact about the world, or just a feeling some primates happen to have.</p>
+      <div class="sv">"They show that the work of the law is written on their hearts, while their conscience also bears witness, and their conflicting thoughts accuse or even excuse them."<cite>Romans 2:14–15 — Scripture predicts moral atheists: the law is written on every heart, believing and unbelieving alike</cite></div>
+    </div>
+  </div>
+
+  <div class="sec open" id="map">
+    <div class="sec-h" onclick="ts(this)"><h2>The Argument Map — Quick Reference</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>The whole argument at a glance. Click any card for the full step below.</p>
+      <div class="ev-map">
+        <a class="ev-card" href="#law"><div class="ev-num">Step 1 · Observation</div><div class="ev-name">A Real Moral Law</div><div class="ev-line">Everyone, everywhere, already appeals to a standard of right and wrong — every quarrel proves it.</div></a>
+        <a class="ev-card" href="#instinct"><div class="ev-num">Step 2 · Elimination</div><div class="ev-name">Not Mere Instinct</div><div class="ev-line">The moral law judges between our instincts, so it cannot be one of them.</div></a>
+        <a class="ev-card" href="#convention"><div class="ev-num">Step 3 · Elimination</div><div class="ev-name">Not Mere Custom</div><div class="ev-line">We rank cultures and praise reformers — impossible unless a standard stands above all cultures.</div></a>
+        <a class="ev-card" href="#evolution"><div class="ev-num">Step 4 · Elimination</div><div class="ev-name">Evolution Cannot Ground It</div><div class="ev-line">Evolution may explain moral feelings; it cannot turn a feeling into an obligation.</div></a>
+        <a class="ev-card" href="#atheism"><div class="ev-num">Step 5 · Concession</div><div class="ev-name">Atheism Cannot Pay the Bill</div><div class="ev-line">Nietzsche, Mackie, Sartre — honest atheists admit objective morality dies with God.</div></a>
+        <a class="ev-card" href="#lawgiver"><div class="ev-num">Step 6 · Conclusion</div><div class="ev-name">From Law to Lawgiver</div><div class="ev-line">A binding law above humanity requires a Mind above humanity — obligations are owed to persons.</div></a>
+        <a class="ev-card" href="#euthyphro"><div class="ev-num">Defense · Philosophy</div><div class="ev-name">Euthyphro Answered</div><div class="ev-line">Goodness is neither above God nor arbitrary — it is God's own unchanging nature.</div></a>
+        <a class="ev-card" href="#imago"><div class="ev-num">Defense · Dignity</div><div class="ev-name">The Image of God</div><div class="ev-line">Equal human dignity rests on the image of God — atheism has no substitute for it.</div></a>
+        <a class="ev-card" href="#christ"><div class="ev-num">Destination · Gospel</div><div class="ev-name">The Law Fulfilled in Christ</div><div class="ev-line">The moral law is a signpost: it shows the standard, proves we break it, and points to the One who restores us.</div></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" id="argument">
+    <div class="sec-h" onclick="ts(this)"><h2>The Argument in Plain Words</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p><strong>In one sentence:</strong> if there is no God, nothing is really right or wrong — but some things are really wrong — therefore God exists.</p>
+      <p>Set out formally, the argument has just two premises and a conclusion:</p>
+      <p><strong>Premise 1.</strong> If God does not exist, objective moral facts do not exist — only feelings, customs, and survival strategies.<br>
+      <strong>Premise 2.</strong> Objective moral facts do exist — some things (torturing children for fun, genocide, betrayal of the innocent) are really wrong, wrong even if every human being approved of them.<br>
+      <strong>Conclusion.</strong> Therefore God exists.</p>
+      <p>The logic is airtight; the only question is whether the premises are true. Premise 2 is the one nobody can live without — even the people who deny it in the seminar room affirm it the moment they are wronged. And Premise 1, remarkably, is defended most loudly not by Christians but by the most serious atheist philosophers themselves (<a href="#atheism">Step 5</a>). The Christian and the honest nihilist agree about the conditional; they disagree only about which end of it to keep.</p>
+      <p>Notice what the argument does <em>not</em> claim. It does not claim atheists are bad people. It does not claim you must read the Bible to know stealing is wrong. It claims that the moral law every person already knows — believer and unbeliever alike — cannot be what it plainly is (universal, binding, above all opinion) unless there is a Lawgiver above all opinion.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="law">
+    <div class="sec-h" onclick="ts(this)"><h2>Step 1 — There Is a Real Moral Law</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p><strong>In one sentence:</strong> every human being appeals to a standard of fair and unfair, right and wrong — and expects everyone else to know it too.</p>
+      <p>Listen to people quarrel. Nobody says merely "I dislike what you did." They say: "That's not fair." "You promised." "How would you like it if someone did that to you?" "He was there first." Each of these appeals to a <em>standard</em> — and expects the other person to recognize it. And the striking thing is that the other person almost never rejects the standard. He makes excuses: "I didn't mean it," "things were different," "I had no choice." Excusing yourself is admitting the law — you only excuse what you know was wrong.</p>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">C.S. Lewis</div>
+          <div class="fc-body">"Quarrelling means trying to show that the other man is in the wrong."</div>
+          <div class="fc-src">Mere Christianity (1952), Book I — a quarrel is impossible unless both sides already accept a shared standard of right</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Paul</div>
+          <div class="fc-body">"For when Gentiles, who do not have the law, by nature do what the law requires, they are a law to themselves… They show that the work of the law is written on their hearts."</div>
+          <div class="fc-src">Romans 2:14–15 — the moral law is universal because God wrote it into human nature, not because Moses published it</div>
+        </div>
+      </div>
+      <p>The standard is also remarkably consistent across cultures. Details differ — how many wives, which foods, what counts as polite — but no culture in history has admired cowardice in battle, praised betraying your friends, or honored the man who takes everything and gives nothing. Selfishness has never been admired anywhere. Cultures disagree about <em>applications</em> of the moral law the way they disagree about applications of arithmetic; nobody concludes from a disputed bill that numbers are a matter of taste.</p>
+      <div class="sv">"He gave them the law of life as a heritage… He set His eye upon their hearts, to show them the majesty of His works."<cite>Sirach 17:11, 8 — the Wisdom literature of the wider canon: the law of life given to mankind as such, before and beneath the law of Sinai</cite></div>
+    </div>
+  </div>
+
+  <div class="sec" id="instinct">
+    <div class="sec-h" onclick="ts(this)"><h2>Step 2 — The Moral Law Is Not Mere Instinct</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p><strong>In one sentence:</strong> the moral law judges between our instincts, so it cannot itself be one of them.</p>
+      <p>The first natural reply is: "That standard is just herd instinct — an inherited urge to help the group." But watch what actually happens inside you. A man hears someone drowning. Two instincts fire at once: the urge to help (herd instinct) and the urge to stay safe (self-preservation). And then a <em>third thing</em> speaks — not an urge, but something that judges between the urges and says the weaker one (helping, usually) is the one you <em>ought</em> to obey. A referee between two players cannot be one of the players. The thing that ranks instincts cannot be an instinct.</p>
+      <p>Here is the simple test: no instinct is right all the time, and none is wrong all the time. Mother-love is good — until it becomes spoiling favoritism. Fighting spirit is good in defense — and evil in cruelty. The moral law is the thing that tells you <em>when</em> each impulse is right. It is not one of the notes on the piano; it is the sheet music that says which note to play and when. The notes are given by nature; the music is not.</p>
+      <div class="sv">"The spirit of man is the lamp of the LORD, searching all his innermost parts."<cite>Proverbs 20:27 — conscience as a lamp God placed inside the man: it illuminates the impulses, it is not one of them</cite></div>
+    </div>
+  </div>
+
+  <div class="sec" id="convention">
+    <div class="sec-h" onclick="ts(this)"><h2>Step 3 — The Moral Law Is Not Mere Custom</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p><strong>In one sentence:</strong> we measure cultures against each other and call reformers "better" — which is impossible unless a standard stands above every culture.</p>
+      <p>The second natural reply: "We learned morality from parents and society — it is just convention, like driving on the right." It is true we learned it from parents, but that proves nothing about where it comes from. We learned the multiplication table from parents too, and arithmetic is not a human invention. The question is whether morality is like the times tables (taught, but true) or like traffic rules (taught, and merely agreed).</p>
+      <p>Two facts settle it. First: we compare moralities. Everyone — including every atheist — believes Nazi morality was <em>worse</em> than the morality that opposed it, not just different from it. But "worse" requires a measuring stick outside both. If each culture's morality is its own final standard, then the sentence "that culture's values were evil" is meaningless — and nobody believes it is meaningless. Second: we praise moral reformers. The abolitionist who condemned slavery was condemning the settled custom of his own society. If morality <em>is</em> the custom of society, the reformer is by definition immoral. Yet we know he was right and his society was wrong — which means both were answerable to something above both.</p>
+      <div class="sv">"Woe to those who call evil good and good evil, who put darkness for light and light for darkness!"<cite>Isaiah 5:20 — the prophets assume a fixed standard that whole societies can get wrong; relativism cannot even state this verse</cite></div>
+      <div class="sv">"For three transgressions of Moab, and for four, I will not revoke the punishment, because he burned to lime the bones of the king of Edom."<cite>Amos 2:1 — God judges a pagan nation for a crime against another pagan nation: the moral law binds nations that never received Sinai</cite></div>
+    </div>
+  </div>
+
+  <div class="sec" id="evolution">
+    <div class="sec-h" onclick="ts(this)"><h2>Step 4 — Evolution Cannot Ground It</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p><strong>In one sentence:</strong> evolution may explain why we <em>feel</em> moral impulses, but a feeling produced for survival is not an obligation — and was never aimed at truth.</p>
+      <p>The strongest modern version of the objection says: "Kin altruism and reciprocity evolved because cooperative apes out-reproduced selfish ones. Morality needs no further explanation." Grant every word of the biology. It explains the existence of moral <em>feelings</em>. It does not — cannot — explain moral <em>facts</em>. "This impulse helped my ancestors survive" and "therefore I am bound to obey it" are two different kinds of statement, and no amount of the first adds up to the second. Philosophers call this the is–ought gap: from what <em>is</em> (descriptions of nature), you can never derive what <em>ought</em> to be (obligations). Hunger evolved too; that does not make eating your neighbor's food right or wrong. The biology is silent exactly where morality speaks.</p>
+      <p>Worse for the objector: if our moral convictions were produced by selection pressure — aimed at reproduction, not at truth — why trust them at all? The evolutionary story does not support morality; it debunks it. The most candid evolutionary philosophers say exactly this:</p>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">Michael Ruse, atheist philosopher of biology</div>
+          <div class="fc-body">"Morality is a biological adaptation no less than are hands and feet and teeth. Considered as a rationally justifiable set of claims about an objective something, ethics is illusory."</div>
+          <div class="fc-src">"Evolutionary Theory and Christian Ethics," in The Darwinian Paradigm (1989) — the evolutionary account, followed honestly, ends in illusion, not in ethics</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">Richard Dawkins</div>
+          <div class="fc-body">"The universe that we observe has precisely the properties we should expect if there is, at bottom, no design, no purpose, no evil, no good, nothing but blind, pitiless indifference."</div>
+          <div class="fc-src">River Out of Eden (1995) — consistent naturalism stated plainly: no evil, no good. Yet its author condemns religion as evil — using the standard his own book dissolved</div>
+        </div>
+      </div>
+      <p>So the choice is stark. Either moral obligation is real — in which case it needs a ground that survival stories cannot supply — or it is an adaptive illusion, in which case "genocide is wrong" is on the same shelf as a peacock's tail. Nobody believes the second. Not even the people who write it.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="atheism">
+    <div class="sec-h" onclick="ts(this)"><h2>Step 5 — Honest Atheists Concede the Point</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p><strong>In one sentence:</strong> the claim "no God, no objective morality" is not Christian propaganda — it is the published verdict of the most serious atheist thinkers.</p>
+      <p>Premise 1 of the argument (<a href="#argument">above</a>) is often called question-begging. It is not. It has been asserted, in print, by the hardest-headed atheists of the last two centuries — men with no motive to help the Christian case:</p>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">Friedrich Nietzsche</div>
+          <div class="fc-body">"When one gives up the Christian faith, one pulls the right to Christian morality out from under one's feet. This morality is by no means self-evident… Christianity is a system, a whole view of things thought out together. By breaking one main concept out of it, the faith in God, one breaks the whole."</div>
+          <div class="fc-src">Twilight of the Idols (1889), "Expeditions of an Untimely Man" §5 — the most consistent atheist in history despised those who kept Christian ethics after dropping Christian faith</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">J.L. Mackie, atheist philosopher</div>
+          <div class="fc-body">"There are no objective values."</div>
+          <div class="fc-src">Ethics: Inventing Right and Wrong (1977), opening sentence of chapter 1 — the title says it: on atheism, right and wrong must be invented, not discovered</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">J.L. Mackie, again</div>
+          <div class="fc-body">"Moral properties constitute so odd a cluster of properties and relations that they are most unlikely to have arisen in the ordinary course of events without an all-powerful god to create them."</div>
+          <div class="fc-src">The Miracle of Theism (1982), p. 115 — the 20th century's leading atheist philosopher concedes: if objective moral values DO exist, they point to God</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">Jean-Paul Sartre</div>
+          <div class="fc-body">"The existentialist finds it extremely embarrassing that God does not exist, for there disappears with Him all possibility of finding values in an intelligible heaven."</div>
+          <div class="fc-src">Existentialism Is a Humanism (1946) — Sartre, endorsing the point he credits to Dostoevsky's Ivan Karamazov: without God, everything is permitted</div>
+        </div>
+      </div>
+      <p>Hold these together with Mackie's two statements and the logic closes like a trap. Mackie the atheist says: objective values would point to God; therefore (being an atheist) he denies objective values exist. The Christian runs the same conditional the other way: objective values would point to God; objective values plainly exist (Step 1); therefore God. Same premise — the only question left is whether the torture of innocents is really wrong. That question answers itself.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="lawgiver">
+    <div class="sec-h" onclick="ts(this)"><h2>Step 6 — From Law to Lawgiver</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p><strong>In one sentence:</strong> a command requires a commander, and an obligation is always owed to a person — an impersonal universe of atoms cannot oblige anyone to do anything.</p>
+      <p>Run the eliminations together. The moral law is real (Step 1). It is not instinct (Step 2), not custom (Step 3), not a survival trick (Step 4) — and the best atheists agree it cannot float free in a godless universe (Step 5). Then what is it? Notice its peculiar character: it comes to us as a <em>demand</em>. It does not describe what we do (we break it constantly); it prescribes what we ought to do. It presses on us from outside our desires, often against them. It behaves, in short, exactly like a command.</p>
+      <p>But commands come from minds. Rocks do not issue demands; equations do not hold you responsible; the Big Bang does not care whom you betrayed. And obligations are owed to <em>someone</em> — break a promise and you wrong a person, not a principle. If the moral law stands above every human person and every human society (Steps 1–3 showed it does), then the Person to whom we are answerable stands above humanity itself. That is the Lawgiver: a Mind behind the universe that is intensely interested in fair play, honesty, courage, and love — interested enough to write the law into every heart He made.</p>
+      <div class="sv">"The law of the LORD is perfect, reviving the soul; the testimony of the LORD is sure, making wise the simple."<cite>Psalm 19:7 — the same psalm that hears the heavens declare God's glory hears the law declare His character: two witnesses, sky and conscience</cite></div>
+      <p>This is as far as the bare argument carries: not yet the Trinity, not yet the Incarnation — but already a personal, moral God, which is to say, already the end of atheism. Who this Lawgiver is, He has shown us Himself (<a href="#christ">below</a>; and see <a href="evidence_for_god.html">The Evidence for God</a> for the nine other converging lines).</p>
+    </div>
+  </div>
+
+  <div class="sec" id="euthyphro">
+    <div class="sec-h" onclick="ts(this)"><h2>The Euthyphro Dilemma Answered</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p><strong>In one sentence:</strong> goodness is neither a standard above God nor an arbitrary choice of God — it is God's own unchanging nature, and His commands express what He is.</p>
+      <p>The objection, from Plato's <em>Euthyphro</em>, modernized: "Is something good because God commands it? Then morality is arbitrary — had God commanded cruelty, cruelty would be good. Or does God command it because it is already good? Then goodness exists above God, and you don't need Him for morality after all." Either horn is supposed to wound: arbitrary tyranny or unnecessary middleman.</p>
+      <p>The dilemma only works if those are the only two options. They are not. The classical Christian answer — held by the Fathers long before the objection was revived — is a third option: <strong>the standard of goodness is God's own eternal nature.</strong> God does not consult a rulebook above Himself (so the second horn fails), and He does not invent values by whim (so the first horn fails). He commands love, faithfulness, and justice because He <em>is</em> love, faithfulness, and justice. Asking "could God have commanded cruelty?" is asking "could God be other than God?" The question is not deep; it is malformed.</p>
+      <div class="sv">"Jesus said to him, 'Why do you call me good? No one is good except God alone.'"<cite>Mark 10:18 — goodness is not a quality God happens to have; it is what God is. Christ's question presses the young man toward exactly this</cite></div>
+      <div class="sv">"Every good gift and every perfect gift is from above, coming down from the Father of lights, with whom there is no variation or shadow due to change."<cite>James 1:17 — the standard cannot shift, because the Nature it expresses cannot change</cite></div>
+      <p>Notice the quiet irony: the Euthyphro objection was Plato's argument against the quarrelsome, changeable gods of paganism — gods who were themselves <em>under</em> fate and <em>given to</em> whim. Against those gods it succeeds. Against the eternal, simple, unchangeable God of Christian confession, it never connects: there is nothing above Him to measure Him, and nothing changeable in Him to be arbitrary.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="imago">
+    <div class="sec-h" onclick="ts(this)"><h2>The Image of God &amp; Human Dignity</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p><strong>In one sentence:</strong> the equal and immeasurable worth of every human being rests on the image of God — and atheism, having removed the image, has nothing to put under the worth.</p>
+      <p>Here the moral argument touches the ground. Modern people — atheists most loudly — believe every human being has equal dignity and inviolable rights: the disabled infant and the genius, the stranger and the kinsman. But look at human beings as nature presents them: unequal in every measurable way — strength, intelligence, usefulness, beauty. If value tracks any measurable property, equality is false. Equal dignity is only true if every person bears something <em>non-measurable and identical</em> — and that is precisely the Christian doctrine of the image of God. Secular human rights are a branch cut from this tree; the leaves have not yet withered, but nothing feeds them.</p>
+      <div class="sv">"So God created man in his own image, in the image of God he created him; male and female he created them."<cite>Genesis 1:27 — the foundation: worth bestowed by creation, not achieved by capacity</cite></div>
+      <div class="sv">"Whoever sheds the blood of man, by man shall his blood be shed, for God made man in his own image."<cite>Genesis 9:6 — the reason murder is absolutely wrong is the image: to strike the icon is to insult the One it images</cite></div>
+      <p>This is why the Church's moral witness has always been concrete: the early Christians rescued exposed infants, honored slaves as brothers, and built the first hospitals — not because evolution whispered it, but because every face is an icon of God. The same conviction grounds the Oriental Orthodox witness today, often under persecution: the martyr refuses to deny Christ for the same reason the Church refuses to abandon the poor — the image of God is not negotiable.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="conscience">
+    <div class="sec-h" onclick="ts(this)"><h2>Conscience in Scripture</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p><strong>In one sentence:</strong> Scripture teaches everything the moral argument observes — a universal law written within, a conscience that bears witness, and a God who judges by it.</p>
+      <div class="sv">"For when Gentiles, who do not have the law, by nature do what the law requires, they are a law to themselves, even though they do not have the law."<cite>Romans 2:14 — the charter text: the moral law is in human nature itself, prior to all revelation</cite></div>
+      <div class="sv">"He has told you, O man, what is good; and what does the LORD require of you but to do justice, and to love kindness, and to walk humbly with your God?"<cite>Micah 6:8 — the law's content in one verse: justice, mercy, humility — addressed to "man" as man</cite></div>
+      <div class="sv">"So whatever you wish that others would do to you, do also to them, for this is the Law and the Prophets."<cite>Matthew 7:12 — the Golden Rule: Christ states the law every conscience already recognizes, and claims it as the sum of revelation</cite></div>
+      <div class="sv">"Owe no one anything, except to love each other, for the one who loves another has fulfilled the law… love is the fulfilling of the law."<cite>Romans 13:8, 10 — the moral law is not finally a list but a Person's character: love</cite></div>
+      <p>Scripture is also realistic about conscience: it can be trained or damaged. Paul speaks of consciences that are "weak" (1 Corinthians 8) and "seared" (1 Timothy 4:2) — which is exactly why cultures and individuals can go badly wrong about applications while the underlying law remains. A bent lamp is still a lamp; the possibility of a seared conscience presupposes a true standard it deviates from.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="fathers">
+    <div class="sec-h" onclick="ts(this)"><h2>The Fathers on the Law Written Within</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>The argument of this page is not a modern invention polished by C.S. Lewis. The Fathers of the undivided Church taught the natural moral law and the witness of conscience from the beginning:</p>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">St. John Chrysostom</div>
+          <div class="fc-body">"When God formed man, he implanted within him from the beginning a natural law… He gave utterance to conscience within us; and made the knowledge of good things, and of those which are the contrary, to be self-taught."</div>
+          <div class="fc-src">Homilies on the Statues 12 (AD 387) — Abel, Noah, and Abraham knew right from wrong with no written law: conscience taught them</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">Tertullian</div>
+          <div class="fc-body">"O testimony of the soul, by nature Christian!"</div>
+          <div class="fc-src">Apology 17 (c. AD 197) — even pagans cry out "God sees" and "God will judge": the soul testifies to its Maker before any catechism reaches it</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Justin Martyr</div>
+          <div class="fc-body">"Every race of men knows that adultery, and fornication, and homicide, and such like, are sinful."</div>
+          <div class="fc-src">Dialogue with Trypho 93 (c. AD 160) — written a century before Constantine: the universality of the moral law was already a Christian argument</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Irenaeus of Lyons</div>
+          <div class="fc-body">The righteous patriarchs before Moses "had the meaning of the Decalogue written in their hearts and souls."</div>
+          <div class="fc-src">Against Heresies 4.16.3 (c. AD 180) — the Ten Commandments publish what creation had already inscribed</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Augustine</div>
+          <div class="fc-body">"Theft is punished by Thy law, O Lord, and the law written in the hearts of men, which iniquity itself effaces not."</div>
+          <div class="fc-src">Confessions 2.4 (c. AD 397) — reflecting on his boyhood theft of pears: he knew it was wrong while doing it, by a law sin cannot erase</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Anthony the Great, father of monks</div>
+          <div class="fc-body">"Virtue is not far from us, nor is it without ourselves, but it is within us, and is easy if only we are willing."</div>
+          <div class="fc-src">St. Athanasius, Life of Anthony 20 (c. AD 360) — the Coptic desert father: the moral law is native to the soul, planted there by its Creator</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Basil the Great</div>
+          <div class="fc-body">"The bread which you hold back belongs to the hungry; the coat, which you guard in your locked storage-chests, belongs to the naked."</div>
+          <div class="fc-src">Homily on "I Will Tear Down My Barns" (c. AD 368) — the moral law in action: not a philosophy but a demand with names and faces</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" id="christ">
+    <div class="sec-h" onclick="ts(this)"><h2>The Law Fulfilled in Christ</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p><strong>In one sentence:</strong> the moral law is a signpost, not a destination — it shows the standard, proves that every one of us breaks it, and so drives us to the One who kept it and restores us.</p>
+      <p>This is where Lewis's argument was always heading, and where this page ends. The moral law gives two pieces of information: there is a standard of behavior pressing on every human heart, and not one of us meets it. Honest self-examination confirms the second as firmly as quarreling confirmed the first. "None is righteous, no, not one" (Romans 3:10) is not pessimism; it is the plain reading of anyone's own record against the law written in his own heart.</p>
+      <p>So the law, taken seriously, produces a need it cannot satisfy. It diagnoses; it does not heal. That is its God-given function: "through the law comes knowledge of sin" (Romans 3:20). The answer to the diagnosis is not a better philosophy of ethics but a Person — the Lawgiver Himself entering His creation, fulfilling the law He wrote, and then doing what no law could: rewriting it from the inside.</p>
+      <div class="sv">"Do not think that I have come to abolish the Law or the Prophets; I have not come to abolish them but to fulfill them."<cite>Matthew 5:17 — the Sermon on the Mount does not relax the moral law; it deepens it from acts to the heart, and the Preacher embodies it</cite></div>
+      <div class="sv">"I will put my law within them, and I will write it on their hearts. And I will be their God, and they shall be my people."<cite>Jeremiah 31:33 — the new covenant: the law that was written on hearts at creation, and smudged by sin, is rewritten by the Spirit in Christ</cite></div>
+      <p>In the Oriental Orthodox understanding, salvation is exactly this restoration: the image of God (<a href="#imago">above</a>), darkened by the fall (see <a href="original_sin.html">Original Sin</a>), is renewed in Christ, and the believer grows into His likeness. The moral argument begins with a quarrel on the street and ends in the liturgy: the law that condemned us is fulfilled in the One we receive at the altar.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="goodatheists">
+    <div class="sec-h" onclick="ts(this)"><h2>"But Atheists Are Good People" — The Boomerang</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p><strong>In one sentence:</strong> moral atheists do not weaken this argument — they are its evidence, and every moral protest the atheist makes borrows the law he denies.</p>
+      <p>The most common reply to everything above is: "I'm an atheist and I'm a decent person — so morality clearly doesn't need God." But re-read the argument: it never claimed <em>belief in God</em> is required for moral behavior. It claimed <em>God</em> is required for morality to be real. Romans 2 predicts moral atheists — the law is written on every heart, and no one's unbelief erases the handwriting. The kindness of the atheist is not a problem for the argument; it is Exhibit A.</p>
+      <p>And the objection boomerangs, just as the problem of evil does (see <a href="problem_of_evil.html">The Problem of Evil</a>). When the atheist condemns the Crusades, religious hypocrisy, or the God of the Old Testament as <em>wicked</em>, he is not expressing a preference like disliking olives — he means it is really, objectively wrong. But "really, objectively wrong" is exactly what his own worldview cannot supply (Steps 4–5). Every moral accusation against God is launched from a platform only God can hold up.</p>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">C.S. Lewis</div>
+          <div class="fc-body">"My argument against God was that the universe seemed so cruel and unjust. But how had I got this idea of just and unjust? A man does not call a line crooked unless he has some idea of a straight line."</div>
+          <div class="fc-src">Mere Christianity (1952), Book II — Lewis's own path out of atheism: his strongest objection to God presupposed God</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" id="faq">
+    <div class="sec-h" onclick="ts(this)"><h2>Frequently Asked Questions</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Objection: "Cultures disagree about morality, so it can't be objective."</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">Disagreement does not disprove truth — cultures disagreed about the shape of the earth, and the earth had a shape the whole time. Moreover the disagreement is shallower than advertised: it concerns applications (whom the rules cover, how they apply), not the core. No culture has prized cowardice, treachery, or ingratitude. And the objection refutes itself the moment its user condemns another culture's practice — slavery, say — as wrong rather than merely different.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Objection: "Morality is just empathy."</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">Empathy is a feeling — selective, partial, and easily switched off, strongest for the near and the similar. Obligation binds precisely where empathy fails: toward the stranger, the enemy, the unborn, the unappealing. If morality were empathy, you would owe nothing to anyone you don't happen to feel for — and the man with weak empathy would have weak duties. Empathy is one of the instincts the moral law judges (Step 2); it cannot be the judge.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Objection: "Religious people do terrible things too."</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">True, and Scripture says so more fiercely than any atheist — read the prophets, or Romans 2:21–24. But notice: the objection is a <em>moral</em> accusation. Calling the Church's sins "evil" invokes the objective standard this whole page is about. The argument is not "Christians are good, therefore God"; it is "the law both Christians and atheists break and appeal to is real, therefore the Lawgiver is real." Hypocrisy proves the standard; it does not abolish it.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Objection: "Can't we be good for goodness' sake, without God?"</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">You can certainly behave well without believing — Romans 2 again. But "for goodness' sake" assumes goodness is a real thing with a claim on you. That is the whole question. On consistent naturalism (Mackie, Ruse, Step 5), "goodness" is an invented label for evolved preferences — and nobody owes obedience to a label. The phrase "for goodness' sake" is a fossil of theism: it treats Goodness as something almost personal, with a sake. Christians simply know its name.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Objection: "Divine-command morality is just obedience out of fear."</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">This misreads the conclusion. The standard is not God's arbitrary decree backed by threats (the Euthyphro section answers that); it is God's own nature, and we are made in His image. So the moral life is not a slave placating a master — it is an icon growing into its likeness. "Perfect love casts out fear" (1 John 4:18). Fear of judgment is a beginning the Fathers acknowledge, but the goal is love: the law fulfilled, not merely obeyed (Romans 13:10).</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Objection: "The Old Testament itself contains commands I find immoral."</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">Two things are true at once. First: the difficulty is real and the Church reads those passages within the whole canon, completed in Christ — who is the full revelation of God's character and the key to everything before Him. Second: notice the shape of the objection. "I find this immoral" appeals to an objective standard above human opinion — which is the very thing atheism cannot supply and this argument establishes. The objection, whatever its force against an interpretation of Scripture, is itself evidence for the moral law, and so for the Lawgiver. You cannot borrow God's measuring stick to beat God with.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Objection: "Sam Harris showed science can determine morality."</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">Harris's argument (The Moral Landscape, 2010) defines goodness as "the well-being of conscious creatures" and then lets science measure well-being. But the definition is the whole trick: science can measure well-being once you've decided well-being is what's good — it cannot tell you that well-being is good, or why anyone is <em>obliged</em> to maximize the stranger's well-being at cost to himself. The is–ought gap (Step 4) is assumed away on page one, not bridged. Even sympathetic philosophers made this point in reviews.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" id="glossary">
+    <div class="sec-h" onclick="ts(this)"><h2>Glossary</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <div class="gt-grid">
+        <div class="gt"><div class="gt-term">Moral Argument</div><div class="gt-def">The argument that objective moral facts exist and require God as their ground; classically stated for modern readers in Book I of C.S. Lewis's Mere Christianity.</div></div>
+        <div class="gt"><div class="gt-term">Objective vs. Subjective</div><div class="gt-def">Objective: true independently of anyone's opinion (the earth is round). Subjective: dependent on the subject's feeling (olives taste good). The argument claims basic moral truths are objective.</div></div>
+        <div class="gt"><div class="gt-term">Natural Law</div><div class="gt-def">The moral law God implanted in human nature at creation, knowable by conscience without special revelation (Romans 2:14–15; Chrysostom, Statues 12).</div></div>
+        <div class="gt"><div class="gt-term">Conscience</div><div class="gt-def">The God-given inner witness that applies the moral law to one's own acts — "the lamp of the LORD" (Proverbs 20:27). Can be trained, weakened, or seared, which explains moral variation.</div></div>
+        <div class="gt"><div class="gt-term">Euthyphro Dilemma</div><div class="gt-def">Plato's question: is the good good because God wills it, or willed because it is good? Answered by a third option — goodness is God's own unchanging nature.</div></div>
+        <div class="gt"><div class="gt-term">Is–Ought Gap</div><div class="gt-def">The logical point (associated with David Hume) that no description of what IS can by itself yield what OUGHT to be. Evolution gives only "is"; morality speaks in "ought."</div></div>
+        <div class="gt"><div class="gt-term">Moral Relativism</div><div class="gt-def">The view that moral truth is relative to cultures or individuals. Self-defeating in practice: it cannot condemn any atrocity, rank any reform as progress, or even state "tolerance is good" as more than local custom.</div></div>
+        <div class="gt"><div class="gt-term">Image of God</div><div class="gt-def">The doctrine (Genesis 1:27) that every human bears God's image — the only available ground for equal, immeasurable human dignity, and the reason murder is absolutely forbidden (Genesis 9:6).</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" id="sources">
+    <div class="sec-h" onclick="ts(this)"><h2>Sources &amp; Further Reading</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p><strong>Scripture:</strong> Genesis 1:27; 9:6 · Psalm 19:7 · Proverbs 20:27 · Isaiah 5:20 · Jeremiah 31:33 · Amos 2:1 · Micah 6:8 · Sirach 17 · Matthew 5:17; 7:12 · Mark 10:18 · Romans 2:14–15; 3:10, 20; 13:8–10 · 1 Timothy 4:2 · James 1:17 · 1 John 4:18.</p>
+      <p><strong>Church Fathers:</strong> St. Justin Martyr, Dialogue with Trypho 93 · Tertullian, Apology 17 · St. Irenaeus, Against Heresies 4.16.3 · St. Athanasius, Life of Anthony 20 · St. Basil the Great, Homily on "I Will Tear Down My Barns" · St. John Chrysostom, Homilies on the Statues 12 · St. Augustine, Confessions 2.4.</p>
+      <p><strong>Modern statements of the argument:</strong> C.S. Lewis, Mere Christianity (1952), Book I. The argument is presented here simplified and re-grounded in the Fathers.</p>
+      <p><strong>Atheist concessions cited:</strong> Friedrich Nietzsche, Twilight of the Idols (1889) · J.L. Mackie, Ethics: Inventing Right and Wrong (1977) and The Miracle of Theism (1982) · Jean-Paul Sartre, Existentialism Is a Humanism (1946) · Michael Ruse, "Evolutionary Theory and Christian Ethics," The Darwinian Paradigm (1989) · Richard Dawkins, River Out of Eden (1995) · Sam Harris, The Moral Landscape (2010), discussed in the FAQ.</p>
+      <p><strong>Companion pages:</strong> <a href="evidence_for_god.html">The Evidence for God</a> (the moral law as Evidence 7 of ten) · <a href="problem_of_evil.html">The Problem of Evil</a> (the same boomerang from the other side) · <a href="original_sin.html">Original Sin</a> (why the law is broken) · <a href="what_is_a_christian.html">What Is a Christian?</a></p>
+    </div>
+  </div>
+
+</main>
+<script>
+window.addEventListener('scroll',()=>{const h=document.documentElement;document.getElementById('prog').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100+'%';});
+const navLinks=document.querySelectorAll('#sb-nav a[href^="#"]');
+const secs2=document.querySelectorAll('main .sec[id]');
+window.addEventListener('scroll',()=>{let cur='';secs2.forEach(s=>{if(s.getBoundingClientRect().top<=120)cur=s.id;});navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur);});},{passive:true});
+function ts(h){h.closest('.sec').classList.toggle('open');}
+function tf(h){h.closest('.fi').classList.toggle('open');}
+function sidebarSearch(q){
+  q=q.trim().toLowerCase();
+  const secs=document.querySelectorAll('main .sec');
+  let matched=0;
+  secs.forEach(sec=>{
+    if(!q){sec.classList.remove('s-hidden');const h2=sec.querySelector('.sec-h h2');if(h2._orig)h2.innerHTML=h2._orig;matched++;return;}
+    const h2=sec.querySelector('.sec-h h2');
+    const body=sec.querySelector('.sec-body');
+    const hit=(h2._orig||h2.textContent).toLowerCase().includes(q)||(body?body.textContent.toLowerCase():'').includes(q);
+    sec.classList.toggle('s-hidden',!hit);
+    if(hit){matched++;if(!h2._orig)h2._orig=h2.innerHTML;const re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');h2.innerHTML=h2._orig.replace(re,'<mark>$1</mark>');sec.classList.add('open');}
+  });
+  document.getElementById('sb-no-match').classList.toggle('show',!!q&&matched===0);
+}
+</script>
+</body>
+</html>

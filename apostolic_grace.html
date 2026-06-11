@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Grace Beyond Communion — The Orthodox Lamp</title>
+<style>
+:root{--gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;--bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--tx:#e8e0d0;--mu:#a09880;--br:#2a2a2a;--bg5:#3a2e10;--sidebar-w:270px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Georgia',serif;background:var(--bg);color:var(--tx);line-height:1.75}
+a{color:var(--gold);text-decoration:none}
+a:hover{text-decoration:underline}
+
+#prog{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--gd),var(--gl));z-index:9999;transition:width .1s}
+
+#sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:100;transition:transform .3s}
+#sidebar header{padding:22px 18px 14px;border-bottom:1px solid var(--br)}
+#sidebar header .site-label{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mu);margin-bottom:4px}
+#sidebar header h2{font-size:.95rem;color:var(--gold);line-height:1.3}
+#sidebar nav{padding:10px 0 80px}
+#sidebar nav a{display:block;padding:8px 18px;font-size:.81rem;color:var(--mu);border-left:3px solid transparent;transition:all .2s}
+#sidebar nav a:hover,#sidebar nav a.active{color:var(--gold);border-left-color:var(--gold);background:rgba(201,168,76,.07);text-decoration:none}
+#sidebar nav .sec-label{padding:14px 18px 4px;font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;color:#555}
+.sb-search{padding:10px 14px 4px}
+.sb-search input{width:100%;background:rgba(255,255,255,.06);border:1px solid var(--br);border-radius:6px;padding:8px 12px;font-size:.8rem;color:var(--tx);font-family:'Georgia',serif;outline:none;transition:border-color .2s}
+.sb-search input::placeholder{color:#666}
+.sb-search input:focus{border-color:var(--gd)}
+.sec.s-hidden{display:none}
+.no-match-msg{display:none;padding:10px 18px;font-size:.78rem;color:var(--mu);font-style:italic;text-align:center}
+.no-match-msg.show{display:block}
+
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:90}
+#overlay.show{display:block}
+#ham{display:none;position:fixed;top:12px;left:12px;z-index:200;background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:8px 10px;cursor:pointer;flex-direction:column;gap:5px}
+#ham span{display:block;width:22px;height:2px;background:var(--gold)}
+
+main{margin-left:var(--sidebar-w);padding:0 0 80px}
+
+.hero{background:linear-gradient(160deg,#0d0d0d 0%,#1a1308 50%,#0d0d0d 100%);border-bottom:1px solid var(--br);padding:60px 48px 44px;position:relative;overflow:hidden}
+.hero::before{content:'🕊';position:absolute;right:44px;top:28px;font-size:7rem;opacity:.05;pointer-events:none}
+.hero .tag{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gd);margin-bottom:12px}
+.hero h1{font-size:2.15rem;color:var(--gold);line-height:1.25;max-width:680px;margin-bottom:14px}
+.hero p{font-size:1.02rem;color:var(--mu);max-width:640px;line-height:1.8}
+
+.content{padding:0 48px}
+
+.sec{border:1px solid var(--br);border-radius:10px;margin:26px 0;background:var(--bg2);overflow:hidden}
+.sec-h{display:flex;justify-content:space-between;align-items:center;padding:18px 22px;cursor:pointer;user-select:none;gap:12px}
+.sec-h:hover{background:var(--bg3)}
+.sec-h h2{font-size:1.06rem;color:var(--gold)}
+.sec-h .arr{color:var(--mu);font-size:1.1rem;transition:transform .25s;flex-shrink:0}
+.sec.open .arr{transform:rotate(180deg)}
+.sec-body{display:none;padding:22px 24px;border-top:1px solid var(--br)}
+.sec.open .sec-body{display:block}
+.sec-body p{color:var(--tx);margin-bottom:14px;font-size:.96rem;line-height:1.78}
+.sec-body p:last-child{margin-bottom:0}
+
+.sv{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:17px 20px;margin:13px 0}
+.sv .ref{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gd);margin-bottom:8px}
+.sv .txt{font-style:italic;color:var(--tx);font-size:.96rem;margin-bottom:10px;line-height:1.7}
+.sv .interp{font-size:.84rem;color:var(--mu);line-height:1.6;border-top:1px solid var(--br);padding-top:10px}
+.labels{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+.labels span{font-size:.67rem;padding:3px 8px;border-radius:20px;letter-spacing:.05em;font-family:sans-serif}
+.oo{background:rgba(201,168,76,.15);color:var(--gold);border:1px solid rgba(201,168,76,.3)}
+.ctx{background:rgba(160,152,128,.12);color:var(--mu);border:1px solid rgba(160,152,128,.25)}
+.gk{background:rgba(180,120,60,.15);color:#d4956a;border:1px solid rgba(180,120,60,.3)}
+
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(275px,1fr));gap:15px;margin:15px 0}
+.fc{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:17px}
+.fc .fname{font-size:.93rem;color:var(--gold);font-weight:bold;margin-bottom:4px}
+.fc .fdate{font-size:.71rem;color:var(--mu);margin-bottom:9px;font-family:sans-serif}
+.fc .fq{font-style:italic;font-size:.87rem;color:var(--tx);line-height:1.65;border-left:3px solid var(--gd);padding-left:12px}
+.fc .fsrc{font-size:.71rem;color:var(--mu);margin-top:8px;font-family:sans-serif}
+
+.key-text{background:var(--bg5);border-left:4px solid var(--gold);padding:15px 20px;border-radius:0 8px 8px 0;margin:13px 0;font-size:.94rem;color:var(--tx);line-height:1.75;font-style:italic}
+
+.note{background:rgba(138,106,32,.1);border:1px solid var(--gd);border-radius:8px;padding:15px 18px;margin:13px 0;font-size:.87rem;color:var(--tx);line-height:1.7}
+.note strong{color:var(--gold)}
+
+.dist-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+.dist-box{border-radius:8px;padding:16px;border:1px solid var(--br)}
+.dist-box.yes{background:rgba(80,160,80,.07);border-color:rgba(80,160,80,.3)}
+.dist-box.limit{background:rgba(201,168,76,.07);border-color:rgba(201,168,76,.3)}
+.dist-box h4{font-size:.8rem;text-transform:uppercase;letter-spacing:.09em;font-family:sans-serif;margin-bottom:9px}
+.dist-box.yes h4{color:#6abf6a}
+.dist-box.limit h4{color:var(--gold)}
+.dist-box ul{list-style:none;padding:0}
+.dist-box ul li{font-size:.84rem;color:var(--tx);padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05);line-height:1.5}
+.dist-box ul li:last-child{border-bottom:none}
+.dist-box ul li::before{content:'· ';color:var(--gd)}
+
+.church-row{display:flex;flex-direction:column;gap:10px;margin:14px 0}
+.church-item{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:15px 18px;display:flex;gap:14px;align-items:flex-start}
+.church-item .ci-icon{font-size:1.4rem;flex-shrink:0;margin-top:2px}
+.church-item .ci-body{}
+.church-item .ci-name{font-size:.92rem;color:var(--gold);font-weight:bold;margin-bottom:4px}
+.church-item .ci-status{font-size:.7rem;font-family:sans-serif;padding:2px 8px;border-radius:10px;display:inline-block;margin-bottom:6px}
+.ci-status.valid{background:rgba(80,160,80,.15);color:#6abf6a;border:1px solid rgba(80,160,80,.3)}
+.ci-status.partial{background:rgba(201,168,76,.12);color:var(--gold);border:1px solid rgba(201,168,76,.3)}
+.ci-status.absent{background:rgba(180,80,80,.12);color:#d47070;border:1px solid rgba(180,80,80,.3)}
+.church-item .ci-desc{font-size:.84rem;color:var(--tx);line-height:1.6}
+
+.fi{border:1px solid var(--br);border-radius:8px;margin:10px 0;background:var(--bg3);overflow:hidden}
+.fi-h{display:flex;justify-content:space-between;align-items:center;padding:13px 18px;cursor:pointer;user-select:none;gap:10px}
+.fi-h:hover{background:var(--bg4)}
+.fi-h h3{font-size:.88rem;color:var(--tx)}
+.fi-h .arr{color:var(--mu);transition:transform .25s;flex-shrink:0}
+.fi.open .fi-h .arr{transform:rotate(180deg)}
+.fi-body{display:none;padding:14px 18px;border-top:1px solid var(--br)}
+.fi.open .fi-body{display:block}
+.fi-body p{font-size:.85rem;color:var(--tx);line-height:1.72;margin-bottom:8px}
+.fi-body p:last-child{margin-bottom:0}
+
+.gt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:13px;margin:14px 0}
+.gt{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:15px}
+.gt .term{font-size:.9rem;color:var(--gold);font-weight:bold;margin-bottom:2px}
+.gt .gterm{font-size:.76rem;color:#d4956a;font-style:italic;margin-bottom:7px;font-family:sans-serif}
+.gt .def{font-size:.84rem;color:var(--tx);line-height:1.6}
+
+@media(max-width:768px){
+  #sidebar{transform:translateX(-100%)}
+  #sidebar.open{transform:translateX(0)}
+  #ham{display:flex}
+  main{margin-left:0}
+  .hero{padding:54px 20px 32px}
+  .hero h1{font-size:1.55rem}
+  .content{padding:0 16px}
+  .dist-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<button id="ham" onclick="toggleSidebar()" aria-label="Menu"><span></span><span></span><span></span></button>
+<div id="overlay" onclick="closeMobile()"></div>
+
+<nav id="sidebar">
+  <header>
+    <div class="site-label">The Orthodox Lamp</div>
+    <h2>Grace Beyond Communion</h2>
+  </header>
+  <div class="sb-search">
+    <input type="search" placeholder="Search sections…" autocomplete="off" oninput="sidebarSearch(this.value)">
+  </div>
+  <p class="no-match-msg" id="sb-no-match">No sections match.</p>
+  <nav>
+    <div class="sec-label">The Question</div>
+    <a href="#the_question">The Question Stated Precisely</a>
+    <a href="#foundation">The Theological Foundation</a>
+    <div class="sec-label">The Doctrine</div>
+    <a href="#succession">Apostolic Succession &amp; Sacramental Validity</a>
+    <a href="#baptism">Baptism — Once and for All</a>
+    <a href="#economia">The Principle of Economia</a>
+    <a href="#spirit_free">The Spirit Is Not Imprisoned</a>
+    <div class="sec-label">Application</div>
+    <a href="#which_churches">Which Churches &amp; Why</a>
+    <a href="#valid_licit">Valid vs. Licit — A Critical Distinction</a>
+    <a href="#cyprian_augustine">The Cyprian–Augustine Debate</a>
+    <div class="sec-label">Conclusion</div>
+    <a href="#faq">FAQ</a>
+    <a href="#glossary">Glossary</a>
+  </nav>
+</nav>
+
+<main>
+<div class="hero">
+  <div class="tag">The Orthodox Lamp — Ecclesiology</div>
+  <h1>Grace Beyond Communion</h1>
+  <p>The Oriental Orthodox Church is not in full communion with the Eastern Orthodox, Roman Catholic, or other Apostolic churches. Yet she recognizes the baptism administered in those churches — and the presence of the Holy Spirit within them — as genuine. This is not contradiction. It is a precise and ancient theological position rooted in Scripture, the Fathers, and the nature of Apostolic succession itself.</p>
+</div>
+
+<div class="content">
+
+<!-- THE QUESTION -->
+<div id="the_question" class="sec open">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>The Question Stated Precisely</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>People sometimes ask: if the Oriental Orthodox and Eastern Orthodox are not in full communion — if they are, formally speaking, separated churches — how can the OO recognize Eastern Orthodox baptism as valid? Doesn't separation mean the other church lacks the Holy Spirit? Doesn't accepting their baptism imply they are within the Church after all?</p>
+    <p>These are good questions, and they reveal a common confusion between two things the OO tradition carefully distinguishes:</p>
+    <div class="dist-grid">
+      <div class="dist-box yes">
+        <h4>What the OO Recognize</h4>
+        <ul>
+          <li>Valid Apostolic succession in separated churches</li>
+          <li>Genuine sacramental grace in their baptism</li>
+          <li>The real presence of the Holy Spirit in their communities</li>
+          <li>Their clergy as truly ordained priests and bishops</li>
+          <li>Their faithful as genuinely baptized Christians</li>
+        </ul>
+      </div>
+      <div class="dist-box limit">
+        <h4>What This Does Not Mean</h4>
+        <ul>
+          <li>Full eucharistic communion between the churches</li>
+          <li>That doctrinal or canonical separation is unimportant</li>
+          <li>That all theological differences are resolved</li>
+          <li>That their members may freely receive OO sacraments</li>
+          <li>That the OO endorses every teaching of those churches</li>
+        </ul>
+      </div>
+    </div>
+    <p>The Oriental Orthodox position is this: <strong>sacramental validity and ecclesial communion are real but distinct realities</strong>. A church can possess valid sacraments — because it has preserved Apostolic succession — while not being in full communion with us due to doctrinal, canonical, or historical divisions. Grace flows through the channel of Apostolic succession; communion is the full expression of shared faith and sacramental life. The presence of one does not automatically create the other.</p>
+  </div>
+</div>
+
+<!-- FOUNDATION -->
+<div id="foundation" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>The Theological Foundation — What Makes a Sacrament Valid?</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>In the Apostolic tradition, a sacrament's validity rests on three pillars: the right <em>matter</em> (physical elements — water, oil, bread, wine), the right <em>form</em> (the words and intention of the rite), and valid <em>orders</em> (the minister standing in unbroken Apostolic succession). Where all three are present, the sacrament is real — regardless of whether the administering church is in full communion with every other church.</p>
+    <div class="sv">
+      <div class="ref">Ephesians 4:4–6</div>
+      <div class="txt">"There is one body and one Spirit — just as you were called to the one hope that belongs to your call — one Lord, one faith, one baptism, one God and Father of all…"</div>
+      <div class="interp">Paul's "one baptism" is not the baptism of one particular denomination — it is the one baptism of the one Lord, administered in His name. Wherever this one baptism is administered in the proper form with proper intention by a validly ordained minister, it is the same baptism — because there is only one.</div>
+      <div class="labels"><span class="oo">Oriental Orthodox</span><span class="ctx">Foundation of Sacramental Unity</span></div>
+    </div>
+    <p>This is why the OO — in common with Eastern Orthodoxy and Roman Catholicism — do not re-baptize Christians coming from other Apostolic churches. Re-baptism would imply their original baptism was not real. The OO receive converts from Apostolic churches through Chrismation (confirmation of their baptismal grace and reception into the OO communion) rather than a new baptism — a practice with roots going back to the early councils.</p>
+    <div class="note"><strong>The key insight:</strong> The grace of baptism belongs to Christ, not to the administering church. The church is the instrument — the ordained minister acts <em>in persona Christi</em>. Where valid ordination is present, Christ acts through the minister. The separated church's sin of schism does not erase what Christ has done through her sacraments.</div>
+  </div>
+</div>
+
+<!-- APOSTOLIC SUCCESSION -->
+<div id="succession" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>Apostolic Succession — The Channel of Sacramental Grace</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>The reason the OO recognize Eastern Orthodox, Roman Catholic, and other ancient Apostolic churches' sacraments is straightforward: those churches have preserved an unbroken chain of episcopal ordination reaching back to the Apostles. That chain — Apostolic succession — is the necessary condition for valid sacramental ministry.</p>
+    <div class="sv">
+      <div class="ref">2 Timothy 2:2 — The Chain of Transmission</div>
+      <div class="txt">"And what you have heard from me in the presence of many witnesses, entrust to faithful men, who will be able to teach others also."</div>
+      <div class="interp">The pattern: Paul → Timothy → faithful men → others. The same logic applies to ordination — the laying on of hands passes the ministerial authority entrusted by Christ to the Apostles down through an unbroken succession. Where the succession is intact, the authority is intact.</div>
+      <div class="labels"><span class="oo">Oriental Orthodox</span><span class="ctx">Apostolic Transmission</span></div>
+    </div>
+    <p>The Eastern Orthodox Church separated from the OO over the Council of Chalcedon in 451 AD — but their episcopal succession was not broken at the point of separation. Their bishops were legitimately ordained before and after the schism; they continued to ordain in the same unbroken line. The same holds for Rome's separation from the East in 1054: the break was ecclesiastical and doctrinal, not a rupture of the physical chain of ordination.</p>
+    <div class="fc-grid">
+      <div class="fc">
+        <div class="fname">St. Irenaeus of Lyon</div>
+        <div class="fdate">c. 180 AD — Against Heresies</div>
+        <div class="fq">"It is within the power of all… to reckon up those who were by the apostles instituted bishops in the churches, and the successors of these men to our own times… True knowledge is the doctrine of the apostles, and the ancient constitution of the Church throughout all the world."</div>
+        <div class="fsrc">Adversus Haereses, III.3.1 — Succession preserves the deposit, wherever it is found</div>
+      </div>
+      <div class="fc">
+        <div class="fname">St. Augustine of Hippo</div>
+        <div class="fdate">c. 400 AD — On Baptism</div>
+        <div class="fq">"The baptism of Christ, consecrated by the words of the Gospel, is holy, however administered — whether among those who are within or without… nor does it lose its holiness because the one who administers it is a heretic."</div>
+        <div class="fsrc">De Baptismo, III.10.15</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BAPTISM -->
+<div id="baptism" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>Baptism — Once and for All, Belonging to Christ</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>Of all the sacraments, baptism holds a unique place in the OO recognition of other Apostolic churches — because baptism, by its nature, is administered once. It leaves an indelible mark on the soul. It cannot be repeated. Its effects are permanent whether or not the recipient remains in the church that administered it.</p>
+    <div class="sv">
+      <div class="ref">Romans 6:3–4</div>
+      <div class="txt">"Do you not know that all of us who have been baptized into Christ Jesus were baptized into his death? We were buried therefore with him by baptism into death, in order that, just as Christ was raised from the dead by the glory of the Father, we too might walk in newness of life."</div>
+      <div class="interp">Baptism is a dying and rising with Christ — a real participation in the Paschal Mystery. This is not a ritual of a particular denomination; it is incorporation into the death and resurrection of the Lord Himself. Wherever it is administered in His name with water and the Trinitarian formula, that is what it is.</div>
+      <div class="labels"><span class="oo">Oriental Orthodox</span><span class="gk">Greek: εἰς Χριστὸν Ἰησοῦν — into Christ Jesus</span></div>
+    </div>
+    <div class="sv">
+      <div class="ref">Matthew 28:19 — The Universal Baptismal Command</div>
+      <div class="txt">"Go therefore and make disciples of all nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit…"</div>
+      <div class="interp">The criterion Christ gives for valid baptism is the Trinitarian formula — not membership in one particular communion. Where water is applied with the Trinitarian invocation by a minister standing in Apostolic order, the Lord's command is being fulfilled. The OO receive this reality wherever it occurs.</div>
+      <div class="labels"><span class="oo">Oriental Orthodox</span><span class="ctx">Dominical Command</span></div>
+    </div>
+    <p>This is why a Coptic Orthodox Christian who was baptized as an infant in the Eastern Orthodox Church and later joins the Coptic Church is not re-baptized. Their baptism is complete, real, and permanent. They receive Chrismation — the anointing of the Holy Spirit — as the sacrament of reception into the OO communion, sealing and completing their initiation within the OO community. But the baptism itself stands.</p>
+    <div class="note"><strong>Practical note:</strong> The OO practice of receiving converts by Chrismation rather than re-baptism is precisely the theological statement that the original baptism was genuine. It was Christ's act through a validly ordained minister. It remains.</div>
+  </div>
+</div>
+
+<!-- ECONOMIA -->
+<div id="economia" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>The Principle of Economia — God's Gracious Condescension</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>The Greek word <em>oikonomia</em> (οἰκονομία) means "household management" or "stewardship" — and in patristic theology it refers to God's gracious condescension in working through imperfect human instruments and situations. The Church applies economia when she recognizes grace operating through channels that fall short of the ideal fullness she holds.</p>
+    <div class="key-text">Economia is not lowering the standard — it is recognizing that God, in His mercy, does not withhold His grace from souls who come to Him sincerely through imperfect human channels, so long as the essential Apostolic form is preserved. The Church "economizes" by acknowledging what God has already done, rather than treating schism as if it had the power to undo the Lord's own sacramental acts.</div>
+    <p>The opposite of economia is <em>akriveia</em> (ἀκρίβεια) — strict exactness, full application of canonical norms without dispensation. The Church holds both principles in tension. Akriveia governs the fullness of sacramental and canonical life within the OO communion; economia governs the Church's recognition of what grace operates outside it.</p>
+    <p>When a separated church has preserved the Apostolic succession, maintained the Trinitarian faith, and administered the sacraments with correct matter, form, and intention — the OO apply economia: they recognize what Christ has done through that church's ministry, even while they cannot share full eucharistic communion with it.</p>
+    <div class="fc-grid">
+      <div class="fc">
+        <div class="fname">St. Basil the Great</div>
+        <div class="fdate">c. 375 AD — First Canonical Letter to Amphilochius</div>
+        <div class="fq">"The ancient authorities decided to accept as valid the baptism that deviates in nothing from the faith… but schismatics, since they still belong to the Church, should be received by the economy of many Fathers."</div>
+        <div class="fsrc">Canon 1 — the earliest and most authoritative statement of the economia principle for separated Christians</div>
+      </div>
+      <div class="fc">
+        <div class="fname">St. Basil the Great</div>
+        <div class="fdate">c. 375 AD — Canonical Letter</div>
+        <div class="fq">"Schismatics are those who have separated for some ecclesiastical reasons and questions capable of mutual healing… those who split off from the Church have still retained the ordination."</div>
+        <div class="fsrc">Canon 1, First Letter to Amphilochius — distinguishing heretics (invalid orders) from schismatics (valid orders, separated)</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- THE SPIRIT IS NOT IMPRISONED -->
+<div id="spirit_free" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>The Spirit Is Not Imprisoned — Pneumatological Foundations</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>Behind the doctrine of recognizing grace in separated Apostolic churches is a fundamental conviction about the nature of the Holy Spirit: <strong>He is not imprisoned within any one ecclesiastical structure</strong>. He is sovereign, moving "where He wills" (John 3:8). He operates through the Apostolic succession He has sustained — wherever that succession has been faithfully maintained, He acts.</p>
+    <div class="sv">
+      <div class="ref">John 3:8</div>
+      <div class="txt">"The wind blows where it wishes, and you hear its sound, but you do not know where it comes from or where it goes. So it is with everyone who is born of the Spirit."</div>
+      <div class="interp">The Spirit's freedom is a first principle of pneumatology. The Church does not generate the Spirit — she receives and transmits Him. She cannot contain or limit Him. Recognizing His presence in an Apostolic church outside her communion is not a concession to relativism; it is an acknowledgment of His sovereign freedom.</div>
+      <div class="labels"><span class="oo">Oriental Orthodox</span><span class="gk">Greek: τὸ πνεῦμα ὅπου θέλει πνεῖ</span></div>
+    </div>
+    <div class="sv">
+      <div class="ref">Numbers 11:26–29 — The Spirit Falls Outside the Tent</div>
+      <div class="txt">"Now two men remained in the camp… and the Spirit rested on them… and they prophesied in the camp. And Joshua… said, 'My lord Moses, stop them.' But Moses said to him, 'Are you jealous for my sake? Would that all the Lord's people were prophets, that the Lord would put his Spirit on them!'"</div>
+      <div class="interp">Moses refuses to restrict the Spirit's activity to those formally gathered at the Tent of Meeting. The Spirit's presence outside the canonical structure is not a threat — Moses sees it as cause for joy. The OO read this as a pattern: do not restrict the Spirit where He genuinely moves, even outside the expected channels.</div>
+      <div class="labels"><span class="oo">Oriental Orthodox</span><span class="ctx">OT Typology</span></div>
+    </div>
+    <div class="sv">
+      <div class="ref">Mark 9:38–40 — The Man Casting Out Demons</div>
+      <div class="txt">"John said to him, 'Teacher, we saw someone casting out demons in your name, and we tried to stop him, because he was not following us.' But Jesus said, 'Do not stop him, for no one who does a mighty work in my name will be able soon afterward to speak evil of me. For the one who is not against us is for us.'"</div>
+      <div class="interp">The disciples tried to restrict the Lord's power to those formally attached to their group. Jesus refused. Where His name is genuinely invoked in faith, He acts — and no ecclesiastical body can override that act by declaring it null because the minister was not "one of us."</div>
+      <div class="labels"><span class="oo">Oriental Orthodox</span><span class="ctx">Dominical Principle</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- WHICH CHURCHES -->
+<div id="which_churches" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>Which Churches — and Why</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>The OO recognition of grace in other churches is not a blanket endorsement of every community that calls itself Christian. It is grounded in specific, verifiable criteria: unbroken Apostolic succession, Trinitarian faith, and faithful administration of the sacraments with correct matter and form. Where these are present, grace is recognized; where they are absent, the OO do not recognize the sacraments as valid.</p>
+    <div class="church-row">
+      <div class="church-item">
+        <div class="ci-icon">☦</div>
+        <div class="ci-body">
+          <div class="ci-name">Eastern Orthodox Church</div>
+          <span class="ci-status valid">Valid Apostolic Succession — Baptism Recognized</span>
+          <div class="ci-desc">The Eastern Orthodox share with the OO the same pre-Chalcedonian Apostolic succession, the same Trinitarian faith, and the same sacramental theology. The division at Chalcedon (451 AD) was a theological-canonical rupture, not a break in the chain of ordination. The 1989–1990 joint agreed statements confirmed both sides confess the same Christological faith. The OO fully recognize Eastern Orthodox baptism, orders, and Eucharist as valid — though not currently shared in full communion.</div>
+        </div>
+      </div>
+      <div class="church-item">
+        <div class="ci-icon">⛪</div>
+        <div class="ci-body">
+          <div class="ci-name">Roman Catholic Church</div>
+          <span class="ci-status valid">Valid Apostolic Succession — Baptism Recognized</span>
+          <div class="ci-desc">Rome preserved unbroken Apostolic succession through the Great Schism of 1054 and beyond. The Roman church's episcopal ordinations have maintained the required form and intention throughout. The OO recognize Roman Catholic baptism as valid. The doctrinal divisions — papal infallibility, Filioque, Immaculate Conception, universal jurisdiction — are real and significant, but they do not invalidate the sacramental acts Rome has performed through her Apostolically ordained ministers.</div>
+        </div>
+      </div>
+      <div class="church-item">
+        <div class="ci-icon">✝️</div>
+        <div class="ci-body">
+          <div class="ci-name">Ancient Eastern Churches (Assyrian, Nestorian)</div>
+          <span class="ci-status valid">Valid Apostolic Succession — Case-by-Case</span>
+          <div class="ci-desc">The Assyrian Church of the East — which rejected the Council of Ephesus (431) and holds what the OO regard as a Nestorian Christology — nonetheless preserved an unbroken Apostolic succession from the ancient see of Ctesiphon-Seleucia. The OO recognize their ordinations as valid while not being in doctrinal agreement. Reception of their members follows the same economy principle.</div>
+        </div>
+      </div>
+      <div class="church-item">
+        <div class="ci-icon">✟</div>
+        <div class="ci-body">
+          <div class="ci-name">Protestant and Evangelical Churches</div>
+          <span class="ci-status absent">Apostolic Succession Absent — Baptism Status Varies</span>
+          <div class="ci-desc">Most Protestant denominations deliberately broke the chain of Apostolic succession at the Reformation, rejecting episcopal ordination and the sacramental theology that accompanies it. Without valid Apostolic orders, the ordained ministry required for valid Eucharist, Confession, and other sacraments is absent. However, baptism administered with water in the Trinitarian formula — even by a lay person in emergency, or in a Protestant setting — carries a different status: its validity rests on the Lord's command and the intention to do what the Church does, not solely on the ordination of the minister. Many OO communities apply economia to Protestant Trinitarian baptism while requiring full reception into orders for other sacramental acts.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- VALID VS LICIT -->
+<div id="valid_licit" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>Valid vs. Licit — The Critical Distinction</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>The most precise theological tool for understanding the OO position is the ancient distinction between a sacrament that is <em>valid</em> and one that is <em>licit</em>. This distinction is found in both Eastern and Western canonical traditions and perfectly expresses what the OO mean when they recognize grace in separated churches.</p>
+    <div class="dist-grid">
+      <div class="dist-box yes">
+        <h4>Valid (Ἔγκυρος)</h4>
+        <ul>
+          <li>The sacrament truly happens — it is real</li>
+          <li>Grace is genuinely conveyed</li>
+          <li>Christ acts through it</li>
+          <li>Requires: proper matter, form, and valid orders</li>
+          <li>Eastern Orthodox baptism = valid</li>
+          <li>Roman Catholic baptism = valid</li>
+          <li>Not re-administered when recognized</li>
+        </ul>
+      </div>
+      <div class="dist-box limit">
+        <h4>Licit (Κανονικόν)</h4>
+        <ul>
+          <li>The sacrament is administered within full canonical order</li>
+          <li>Minister is in communion with the Church</li>
+          <li>Recipient receives the fullness of ecclesial life</li>
+          <li>Requires: valid sacrament + full canonical communion</li>
+          <li>Eastern Orthodox baptism (for OO): valid but not licit</li>
+          <li>Only OO sacraments are fully licit for OO faithful</li>
+          <li>Full communion = valid + licit together</li>
+        </ul>
+      </div>
+    </div>
+    <div class="key-text">A sacrament can be valid without being licit. An Eastern Orthodox baptism is a real baptism — Christ truly acted, the Holy Spirit truly came upon the person, they were truly incorporated into His death and resurrection. But it was not administered within the full canonical order of the Oriental Orthodox Church. It is valid but not fully licit from the OO perspective. This is why OO faithful may not simply receive the Eucharist at an Eastern Orthodox liturgy — full sacramental sharing requires full communion, not merely the recognition that the other church's sacraments are real.</div>
+  </div>
+</div>
+
+<!-- CYPRIAN VS AUGUSTINE -->
+<div id="cyprian_augustine" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>The Cyprian–Augustine Debate — How the Tradition Settled This</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>The question of whether separated churches' sacraments are valid is not modern — it erupted in the 3rd century in a major controversy between two giants of the Patristic tradition: Cyprian of Carthage and Stephen of Rome, with Augustine later providing the theological resolution the Church received.</p>
+    <div class="fc-grid">
+      <div class="fc">
+        <div class="fname">St. Cyprian of Carthage</div>
+        <div class="fdate">c. 255 AD — On the Rebaptism of Heretics</div>
+        <div class="fq">"Baptism cannot exist outside the Church, since there is one baptism, and it exists in the Catholic Church alone… How can one who is not himself holy give holiness? How can one who has not the Holy Spirit give the Holy Spirit?"</div>
+        <div class="fsrc">Epistle 70 — Cyprian's position: schismatics' baptism is invalid; re-baptism is required</div>
+      </div>
+      <div class="fc">
+        <div class="fname">St. Augustine of Hippo</div>
+        <div class="fdate">c. 400 AD — On Baptism Against the Donatists</div>
+        <div class="fq">"The sacrament of baptism is what the person possesses who is baptized; and the sacrament of conferring baptism is what he possesses who is ordained. Either of these sacraments is holy, and can be possessed by a person who is unworthy… but it is one thing to lack the sacrament, another to lack righteousness."</div>
+        <div class="fsrc">De Baptismo, I.12 — Augustine's resolution: the sacrament belongs to Christ, not to the minister's personal or ecclesiastical state</div>
+      </div>
+    </div>
+    <p>The Church received Augustine's resolution, not Cyprian's. This is not because Cyprian was wrong about the Church's unity being essential — he was right about that. It is because Augustine identified the precise mechanism more accurately: the sacrament's validity depends on Christ's institution and the minister's valid ordination, not on the minister's or the administering church's perfect communion with every other church.</p>
+    <p>The key Augustinian principle, received by the whole tradition: <em>ex opere operato</em> — the sacrament works by virtue of the act performed (the rite with proper matter, form, and intention), not by virtue of the personal holiness or the canonical status of the minister. Christ is the true minister of every sacrament; the priest or bishop is his instrument. A broken instrument can still do what the craftsman wills — especially when the instrument retains the essential form he gave it.</p>
+    <div class="note"><strong>How the OO apply this:</strong> The OO stand with Augustine and the received tradition. When a separated Apostolic church has preserved the essential form of ordination — bishop ordaining bishop in unbroken succession, with correct matter (laying on of hands), form (the prayer of ordination), and intention (to do what the Church has always done) — Christ acts through that ordination. The separation is a wound on the Body; it does not amputate the limb entirely.</div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div id="faq" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>Frequently Asked Questions</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <div class="fi">
+      <div class="fi-h" onclick="tf(this)">
+        <h3>If the OO recognize Eastern Orthodox baptism, why can't OO and EO share the Eucharist?</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="fi-body">
+        <p>Because the Eucharist is not merely a valid sacramental act — it is the fullest expression of ecclesial unity. To share the Eucharist is to declare: we are one Body, one faith, one Church. The OO and EO are not yet in that full unity. Recognizing the validity of each other's sacraments is an important first step — and a real one — but it is not the same as full communion. The Eucharist crowns full unity; it does not substitute for it.</p>
+        <p>Think of it this way: two family members estranged by a serious dispute may still be genuinely family — that relationship is real and not destroyed. But they do not share the family table as if the estrangement never happened. Restoring full table fellowship requires genuine reconciliation, not just the recognition that both are truly family members.</p>
+      </div>
+    </div>
+    <div class="fi">
+      <div class="fi-h" onclick="tf(this)">
+        <h3>Does this mean the OO believe the Eastern Orthodox and Catholics are "saved"?</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="fi-body">
+        <p>The OO do not pronounce on the salvation of individuals — that belongs to God alone, who judges the heart. What the OO affirm is that Eastern Orthodox and Roman Catholic Christians have received a real baptism, real Apostolic grace, real sacramental life — and that they are genuinely Christian in the fullest historical and theological sense. Whether any individual is saved is between them and God. But the OO do not regard them as outside of Christ's redemptive activity simply because they are outside of full communion with the OO churches.</p>
+      </div>
+    </div>
+    <div class="fi">
+      <div class="fi-h" onclick="tf(this)">
+        <h3>Why doesn't the OO just re-baptize everyone who comes from another church, to be safe?</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="fi-body">
+        <p>Because re-baptism would be a sacramental lie. It would imply the first baptism was not real — that Christ did not act, that the Holy Spirit did not come. To repeat a valid baptism is to declare it invalid; and to declare a genuinely valid baptism invalid is to deny what Christ truly did. St. Paul's "one baptism" (Ephesians 4:5) is not a spiritual platitude — it is a doctrinal statement. There is one baptism because there is one Christ who acts in it. His act cannot be nullified by the subsequent canonical status of the church that administered it.</p>
+      </div>
+    </div>
+    <div class="fi">
+      <div class="fi-h" onclick="tf(this)">
+        <h3>Does the OO recognition of grace in other churches mean all churches are equally valid?</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="fi-body">
+        <p>No. The OO hold that the fullness of the Apostolic faith, the complete sacramental life, and the true conciliar expression of the Church's teaching subsist in the Oriental Orthodox communion. Recognizing that grace is present in separated Apostolic churches does not mean those churches are equal expressions of the one Church. A doctor can acknowledge that a patient who received imperfect treatment still received some real benefit — without concluding that all treatments are equally good. Grace operates through imperfect instruments; the OO seek the fullest and most faithful expression of what those instruments imperfectly convey.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GLOSSARY -->
+<div id="glossary" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>Glossary</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <div class="gt-grid">
+      <div class="gt">
+        <div class="term">Economia</div>
+        <div class="gterm">Οἰκονομία — stewardship, dispensation</div>
+        <div class="def">The Church's gracious application of flexibility in recognizing sacramental grace operating through imperfect or separated Apostolic channels. Distinct from akriveia (strict canonical exactness).</div>
+      </div>
+      <div class="gt">
+        <div class="term">Akriveia</div>
+        <div class="gterm">Ἀκρίβεια — strictness, exactness</div>
+        <div class="def">Full application of canonical norms without dispensation. Governs the OO's own internal sacramental life and requirements for full communion.</div>
+      </div>
+      <div class="gt">
+        <div class="term">Valid Sacrament</div>
+        <div class="gterm">Ἔγκυρον μυστήριον</div>
+        <div class="def">A sacrament in which Christ genuinely acts — with correct matter, form, intention, and valid orders. May exist outside full canonical communion.</div>
+      </div>
+      <div class="gt">
+        <div class="term">Licit Sacrament</div>
+        <div class="gterm">Κανονικὸν μυστήριον</div>
+        <div class="def">A sacrament administered within full canonical communion and order. All fully licit sacraments are valid; not all valid sacraments are licit.</div>
+      </div>
+      <div class="gt">
+        <div class="term">Apostolic Succession</div>
+        <div class="gterm">Ἀποστολικὴ διαδοχή</div>
+        <div class="def">The unbroken chain of episcopal ordination from the Apostles to the present. Its preservation is the necessary condition for valid sacramental ministry.</div>
+      </div>
+      <div class="gt">
+        <div class="term">Ex Opere Operato</div>
+        <div class="gterm">Latin: from the work performed</div>
+        <div class="def">The principle (received from Augustine) that a sacrament's validity depends on the rite being performed correctly, not on the personal holiness or canonical standing of the minister.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /content -->
+</main>
+
+<script>
+function ts(h){h.closest('.sec').classList.toggle('open')}
+function tf(h){h.closest('.fi').classList.toggle('open')}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').classList.toggle('show')}
+function closeMobile(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
+
+window.addEventListener('scroll',()=>{
+  const sc=document.documentElement;
+  document.getElementById('prog').style.width=(sc.scrollTop/(sc.scrollHeight-sc.clientHeight)*100)+'%';
+});
+
+const links=document.querySelectorAll('#sidebar nav a[href^="#"]');
+const secs=[...links].map(l=>document.querySelector(l.getAttribute('href'))).filter(Boolean);
+window.addEventListener('scroll',()=>{
+  let cur='';
+  secs.forEach(s=>{if(s.getBoundingClientRect().top<=120)cur=s.id});
+  links.forEach(l=>{l.classList.toggle('active',l.getAttribute('href')==='#'+cur)});
+},{passive:true});
+
+function sidebarSearch(q){
+  q=q.trim().toLowerCase();
+  const sections=document.querySelectorAll('main .sec');
+  let matched=0;
+  sections.forEach(sec=>{
+    if(!q){sec.classList.remove('s-hidden');const h2=sec.querySelector('.sec-h h2');if(h2._orig)h2.innerHTML=h2._orig;matched++;return;}
+    const h2=sec.querySelector('.sec-h h2');
+    const body=sec.querySelector('.sec-body');
+    const hit=(h2._orig||h2.textContent).toLowerCase().includes(q)||(body?body.textContent.toLowerCase().includes(q):false);
+    sec.classList.toggle('s-hidden',!hit);
+    if(hit){matched++;if(!h2._orig)h2._orig=h2.innerHTML;const re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');h2.innerHTML=h2._orig.replace(re,'<mark style="background:rgba(201,168,76,.3);color:var(--gold);border-radius:2px;padding:0 2px">$1</mark>');sec.classList.add('open');}
+  });
+  document.getElementById('sb-no-match').classList.toggle('show',!!q&&matched===0);
+}
+</script>
+</body>
+</html>

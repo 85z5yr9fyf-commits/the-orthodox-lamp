@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Problem of Evil — The Orthodox Lamp</title>
+<style>
+:root{
+  --gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;
+  --bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--bg5:#3a2e10;
+  --tx:#e8e0d0;--mu:#a09880;--br:#2a2a2a;
+  --sidebar-w:270px;
+  --rc:#3a1a1a;--rcc:#d47070;
+  --oo:#1a2e1a;--ooc:#7dc87d;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.7;display:flex;min-height:100vh}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+mark{background:rgba(201,168,76,.28);color:var(--gl);border-radius:2px;padding:0 2px}
+#prog{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--gd),var(--gl));z-index:200;transition:width .1s}
+#sb{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:100;display:flex;flex-direction:column}
+#sb-brand{padding:18px 18px 10px;border-bottom:1px solid var(--br)}
+#sb-brand .lamp{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mu);margin-bottom:4px}
+#sb-brand h1{font-size:1rem;color:var(--gold);line-height:1.3}
+.sb-search{padding:10px 14px 4px}
+.sb-search input{width:100%;background:rgba(255,255,255,.06);border:1px solid var(--br);border-radius:6px;padding:8px 12px;font-size:.8rem;color:var(--tx);font-family:'Georgia',serif;outline:none;transition:border-color .2s}
+.sb-search input::placeholder{color:#666}
+.sb-search input:focus{border-color:var(--gd)}
+.sec.s-hidden{display:none}
+.no-match-msg{display:none;padding:14px 18px;font-size:.8rem;color:var(--mu);font-style:italic;text-align:center}
+.no-match-msg.show{display:block}
+#sb-nav{padding:10px 0 20px;flex:1}
+#sb-nav a{display:block;padding:6px 18px;font-size:.82rem;color:var(--mu);border-left:2px solid transparent;transition:all .15s;line-height:1.4}
+#sb-nav a:hover,#sb-nav a.active{color:var(--gold);border-left-color:var(--gold);background:rgba(201,168,76,.06);text-decoration:none}
+main{margin-left:var(--sidebar-w);flex:1;max-width:820px;padding:48px 48px 80px}
+.pg-title{margin-bottom:10px}
+.pg-title .lamp-label{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--mu);margin-bottom:6px}
+.pg-title h1{font-size:2rem;color:var(--gold);line-height:1.2}
+.pg-title .sub{font-size:1rem;color:var(--mu);margin-top:6px;font-style:italic}
+.pg-intro{max-width:660px;color:var(--mu);font-size:.95rem;margin:16px 0 36px;border-left:3px solid var(--gd);padding-left:14px}
+.sec{border:1px solid var(--br);border-radius:8px;margin-bottom:14px;overflow:hidden;background:var(--bg2)}
+.sec-h{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;cursor:pointer;user-select:none;gap:10px}
+.sec-h:hover{background:rgba(255,255,255,.03)}
+.sec-h h2{font-size:1rem;color:var(--tx);font-weight:600}
+.sec-h .arr{color:var(--mu);font-size:.8rem;transition:transform .2s;flex-shrink:0}
+.sec.open .arr{transform:rotate(90deg)}
+.sec-body{display:none;padding:18px 20px 20px;border-top:1px solid var(--br)}
+.sec.open .sec-body{display:block}
+.sec-body p{color:var(--mu);font-size:.92rem;margin-bottom:10px}
+.sec-body p:last-child{margin-bottom:0}
+.sv{background:var(--bg5);border:1px solid var(--gd);border-radius:6px;padding:12px 16px;margin:12px 0;font-style:italic;color:var(--gl);font-size:.92rem}
+.sv cite{display:block;text-align:right;font-size:.8rem;color:var(--gold);margin-top:6px;font-style:normal}
+.comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.comp-card{border-radius:8px;padding:14px 16px;border:1px solid}
+.comp-card.rc-card{background:var(--rc);border-color:var(--rcc)}
+.comp-card.oo-card{background:var(--oo);border-color:var(--ooc)}
+.comp-card .cc-label{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;font-weight:700}
+.comp-card.rc-card .cc-label{color:var(--rcc)}
+.comp-card.oo-card .cc-label{color:var(--ooc)}
+.comp-card ul{padding-left:16px;font-size:.88rem;line-height:1.75}
+.comp-card.rc-card ul{color:#e8c0c0}
+.comp-card.oo-card ul{color:#c8e8c8}
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin:14px 0}
+.fc{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:14px 16px}
+.fc-name{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.fc-body{font-size:.88rem;color:var(--mu);font-style:italic;line-height:1.6}
+.fc-src{font-size:.76rem;color:var(--gd);margin-top:6px}
+.fi{border:1px solid var(--br);border-radius:6px;margin-bottom:8px;overflow:hidden;background:var(--bg3)}
+.fi-h{display:flex;align-items:flex-start;padding:11px 14px;cursor:pointer;gap:8px;user-select:none}
+.fi-h:hover{background:rgba(255,255,255,.03)}
+.fi-q{font-size:.88rem;color:var(--tx);flex:1}
+.fi-arr{color:var(--mu);font-size:.75rem;transition:transform .2s;flex-shrink:0;margin-top:4px}
+.fi.open .fi-arr{transform:rotate(90deg)}
+.fi-body{display:none;padding:12px 14px 14px;border-top:1px solid var(--br);font-size:.88rem;color:var(--mu);line-height:1.65}
+.fi.open .fi-body{display:block}
+.gt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin:14px 0}
+.gt{background:var(--bg3);border:1px solid var(--br);border-radius:7px;padding:12px 14px}
+.gt-term{font-size:.8rem;font-weight:700;color:var(--gold);margin-bottom:4px}
+.gt-def{font-size:.84rem;color:var(--mu);line-height:1.55}
+/* Greek/Latin text box */
+.lang-box{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:14px 18px;margin:12px 0}
+.lb-label{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mu);margin-bottom:8px}
+.lb-row{display:flex;gap:16px;margin-bottom:8px;align-items:baseline;flex-wrap:wrap}
+.lb-lang{font-size:.72rem;color:var(--gold);min-width:60px;flex-shrink:0}
+.lb-text{font-size:.9rem;color:var(--tx);font-style:italic}
+.lb-note{font-size:.8rem;color:var(--mu);margin-top:4px}
+/* consequence vs guilt boxes */
+.distinction-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.dist-box{border-radius:8px;padding:14px 16px;border:1px solid}
+.dist-box.inherited{background:#1a1a2e;border-color:#7070d4}
+.dist-box.not-inherited{background:#2e1a1a;border-color:#d47070}
+.dist-box .db-label{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;font-weight:700}
+.dist-box.inherited .db-label{color:#a0a0e8}
+.dist-box.not-inherited .db-label{color:var(--rcc)}
+.dist-box ul{padding-left:16px;font-size:.88rem;line-height:1.75}
+.dist-box.inherited ul{color:#c8c8f0}
+.dist-box.not-inherited ul{color:#f0c8c8}
+@media(max-width:760px){#sb{transform:translateX(-100%)}main{margin-left:0;padding:24px 18px 60px}}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<nav id="sb">
+  <div id="sb-brand">
+    <div class="lamp">The Orthodox Lamp</div>
+    <h1>The Problem of Evil</h1>
+  </div>
+  <div class="sb-search">
+    <input type="search" placeholder="Search sections…" oninput="sidebarSearch(this.value)" aria-label="Search sections">
+  </div>
+  <div id="sb-nav">
+    <a href="#objection">The Objection Stated</a>
+    <a href="#definitions">What Evil Is — Privation</a>
+    <a href="#isaiah">"I Create Evil"? — Isaiah 45:7</a>
+    <a href="#freewill">Freedom: Why Evil Is Possible</a>
+    <a href="#fall">The Fall: How Death Entered</a>
+    <a href="#scripture">Scripture Does Not Flinch</a>
+    <a href="#cross">The Cross: God's Answer in Person</a>
+    <a href="#refutation">The Three Formulations Answered</a>
+    <a href="#boomerang">The Objection Turned Around</a>
+    <a href="#martyrs">The Church of the Martyrs</a>
+    <a href="#faq">FAQ</a>
+    <a href="#glossary">Glossary</a>
+    <a href="#sources">Sources</a>
+  </div>
+  <div class="no-match-msg" id="sb-no-match">No sections match.</div>
+</nav>
+<main>
+  <div class="pg-title">
+    <div class="lamp-label">The Orthodox Lamp</div>
+    <h1>The Problem of Evil</h1>
+    <div class="sub">Why does a good God permit suffering? — The Oriental Orthodox answer to the oldest objection</div>
+  </div>
+  <p class="pg-intro">No argument against the existence of God carries more emotional force than the problem of evil. The Oriental Orthodox Church does not meet it with embarrassment, because she has never been a stranger to it: she is the Church of the Martyrs, whose calendar itself begins with a persecution. Her answer is not a tidy syllogism but the whole shape of the faith — what evil is, why freedom matters, what the Fall broke, and above all Who hung on the Cross.</p>
+
+  <div class="sec open" id="objection">
+    <div class="sec-h" onclick="ts(this)"><h2>The Objection Stated — At Its Strongest</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>Honesty requires stating the objection at full strength. The classical form is the trilemma attributed to Epicurus, transmitted by the Christian writer Lactantius:</p>
+      <div class="lang-box">
+        <div class="lb-label">The Epicurean Trilemma — as transmitted by Lactantius, On the Anger of God 13 (c. AD 313)</div>
+        <div class="lb-text">"God either wishes to take away evils, and is unable; or He is able, and is unwilling; or He is neither willing nor able; or He is both willing and able. If He is willing and is unable, He is feeble. If He is able and unwilling, He is envious. If He is neither willing nor able, He is both envious and feeble. If He is both willing and able — which alone is suitable to God — from what source then are evils? Or why does He not remove them?"</div>
+        <div class="lb-note">Lactantius records the argument precisely in order to answer it — the Church has been engaging this objection since before Nicaea.</div>
+      </div>
+      <p>Modern philosophy sharpened it into three distinct forms, and each needs a different answer:</p>
+      <div class="comp-grid">
+        <div class="comp-card rc-card">
+          <div class="cc-label">The Three Modern Formulations</div>
+          <ul>
+            <li><strong>The logical problem</strong> (J. L. Mackie, "Evil and Omnipotence," 1955): the mere existence of any evil logically contradicts an all-good, all-powerful God.</li>
+            <li><strong>The evidential problem</strong> (William Rowe, 1979): perhaps not a strict contradiction, but apparently pointless suffering — a fawn burning slowly in a forest fire no one sees — makes God improbable.</li>
+            <li><strong>The emotional problem</strong> (Ivan Karamazov in Dostoevsky's <em>The Brothers Karamazov</em>, 1880): even if heaven justifies everything, the torture of one innocent child is a price no decent person should accept. Ivan does not disprove God — he "returns his ticket."</li>
+          </ul>
+        </div>
+        <div class="comp-card oo-card">
+          <div class="cc-label">The Shape of the Orthodox Response</div>
+          <ul>
+            <li>Evil is not a <em>thing</em> God made — it is the privation and parasite of good (Athanasius, Basil).</li>
+            <li>A world with genuine creaturely freedom — the precondition of love — is a world where evil is <em>possible</em> (Irenaeus, Justin, Gregory of Nyssa).</li>
+            <li>Death and natural corruption entered through the Fall; creation itself is wounded (Romans 5, Romans 8).</li>
+            <li>God's answer is not an explanation delivered from a safe distance but His own entry into suffering: the Word of God suffered in the flesh (Cyril of Alexandria).</li>
+            <li>Evil will not merely be outweighed but <em>undone</em>: "death shall be no more" (Revelation 21:4).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" id="definitions">
+    <div class="sec-h" onclick="ts(this)"><h2>What Evil Is — The Privation of Good</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>The trilemma asks "from what source are evils?" as though evil were a substance that must have been manufactured by someone. The Fathers reject the premise. Scripture is explicit that everything God made is good, and that death is an intruder:</p>
+      <div class="sv">"And God saw everything that he had made, and behold, it was very good."<cite>Genesis 1:31</cite></div>
+      <div class="sv">"God did not make death, and he does not delight in the death of the living. For he created all things so that they might exist; the generative forces of the world are wholesome, and there is no destructive poison in them."<cite>Wisdom of Solomon 1:13–14 — in the Oriental Orthodox canon</cite></div>
+      <div class="sv">"God created us for incorruption, and made us in the image of his own eternity, but through the devil's envy death entered the world."<cite>Wisdom of Solomon 2:23–24</cite></div>
+      <p>Evil, then, is not a created <em>thing</em> but a corruption, absence, or twisting of created good — as blindness is not a thing added to the eye but the loss of sight, and rust is nothing without the iron it eats. Evil is parasitic: it can only exist in and against something good. This is why the question "why did God create evil?" is malformed — He didn't, and it isn't a creature.</p>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">St. Athanasius of Alexandria (c. 296–373)</div>
+          <div class="fc-body">"But evil is not from God, nor in God, nor was it in the beginning, nor has it any substantive existence; but men, in default of the vision of good, began to devise and imagine for themselves what was not."</div>
+          <div class="fc-src">Against the Heathen (Contra Gentes) 7 — evil as a privation devised by the misuse of freedom, not a creation of God</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Basil the Great (c. 330–379)</div>
+          <div class="fc-body">"Evil is not a living and animated substance, but a condition of the soul which is opposed to virtue, and which springs up in the careless on account of their falling away from good. Do not, then, look upon evil as having an existence of its own, nor imagine that there is some original evil nature."</div>
+          <div class="fc-src">Hexaemeron, Homily 2.4 — and at length in his homily "That God Is Not the Author of Evil"</div>
+        </div>
+      </div>
+      <p>This first move already dissolves half the trilemma: God is not the "source" of evils, because evils have no source in the sense the objection assumes. They are the shadow cast when free creatures turn away from the Good — and a shadow is not manufactured by the sun.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="isaiah">
+    <div class="sec-h" onclick="ts(this)"><h2>"I Create Evil"? — The Isaiah 45:7 Objection</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>Atheist polemics often quote the King James rendering of Isaiah 45:7 — "I make peace, and create evil" — as a divine confession. The objection rests on an English ambiguity, not on the Hebrew.</p>
+      <div class="lang-box">
+        <div class="lb-label">Isaiah 45:7 — What the Hebrew Says</div>
+        <div class="lb-row"><span class="lb-lang">Hebrew</span><span class="lb-text">עֹשֶׂה שָׁלוֹם וּבוֹרֵא רָע — <em>oseh shalom u-vore ra</em></span></div>
+        <div class="lb-row"><span class="lb-lang">The word <em>ra&#699;</em></span><span class="lb-text">Has a wide range: "disaster, calamity, adversity" as well as "moral evil." The poetic parallel in the verse fixes the meaning: light/darkness, <em>shalom</em> (peace, well-being) / <em>ra</em> (calamity, woe).</span></div>
+        <div class="lb-row"><span class="lb-lang">Modern translations</span><span class="lb-text">"I make well-being and create calamity" (ESV); "I bring prosperity and create disaster" (NIV).</span></div>
+        <div class="lb-note">The context is God telling Cyrus of Persia that history — the rise and fall of empires, victory and catastrophe — is in His sovereign hand, against Persian dualism which assigned light and darkness to two rival gods. It is a claim about providence over calamity, not a confession of authoring wickedness. The same idiom appears in Amos 3:6. Scripture elsewhere flatly excludes God as author of moral evil: "God cannot be tempted with evil, and he himself tempts no one" (James 1:13); "God is light, and in him is no darkness at all" (1 John 1:5).</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" id="freewill">
+    <div class="sec-h" onclick="ts(this)"><h2>Freedom: Why Evil Is Possible at All</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>If evil has no substance, why does God permit free creatures to introduce it? Because the purpose of creation is love — communion between God and rational creatures — and love that is coerced is not love. A being incapable of refusing God is also incapable of freely loving Him. Scripture places the choice squarely in human hands:</p>
+      <div class="sv">"I have set before you life and death, blessing and curse. Therefore choose life."<cite>Deuteronomy 30:19</cite></div>
+      <div class="sv">"Do not say, 'It was the Lord's doing that I fell away' … It was he who created humankind in the beginning, and he left them in the power of their own free choice. If you choose, you can keep the commandments … Before each person are life and death, and whichever one chooses will be given."<cite>Sirach 15:11–17 — in the Oriental Orthodox canon</cite></div>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">St. Irenaeus of Lyons (c. 130–202)</div>
+          <div class="fc-body">"Man is possessed of free will from the beginning, and God is possessed of free will, in whose likeness man was created … And in man, as well as in angels, He has placed the power of choice, so that those who had yielded obedience might justly possess what is good, given indeed by God, but preserved by themselves."</div>
+          <div class="fc-src">Against Heresies 4.37 — the same chapter insists "there is no coercion with God"</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Justin Martyr (c. 100–165)</div>
+          <div class="fc-body">"Unless the human race have the power of avoiding evil and choosing good by free choice, they are not accountable for their actions, of whatever kind they be."</div>
+          <div class="fc-src">First Apology 43 — the earliest sustained Christian rejection of fatalism</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Gregory of Nyssa (c. 335–395)</div>
+          <div class="fc-body">"He who made man for the participation of His own peculiar good … would never have deprived him of that most excellent and precious of all goods — I mean the gift of liberty and self-determination. For if necessity in any way was the master of the life of man, the image would have been falsified in that part."</div>
+          <div class="fc-src">The Great Catechism 5 — freedom as constitutive of the image of God</div>
+        </div>
+      </div>
+      <p>Note what this argument does and does not claim. It does not say every particular evil produces a greater good. It says that a world containing free creatures — the only kind of world in which love, virtue, courage, repentance, and sanctity are possible — is a world in which evil <em>can</em> occur, and that God judged such a world worth creating and worth redeeming at the cost of His own Son. Angels and men fell by the same gift by which the saints stand.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="fall">
+    <div class="sec-h" onclick="ts(this)"><h2>The Fall: How Death and Natural Evil Entered</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>Free creatures did, in fact, turn away — and the consequences were not confined to the morally guilty. The Oriental Orthodox understanding of <a href="original_sin.html">ancestral sin</a> holds that what we inherit from Adam is not his guilt but his condition: mortality, corruption, and a world knocked off its axis.</p>
+      <div class="sv">"Therefore, just as sin came into the world through one man, and death through sin, and so death spread to all men…"<cite>Romans 5:12</cite></div>
+      <div class="sv">"For the creation was subjected to futility, not willingly, but because of him who subjected it … the whole creation has been groaning together in the pains of childbirth until now."<cite>Romans 8:20–22 — the biblical root of "natural evil": a wounded cosmos, not a divine design specification</cite></div>
+      <p>This is the Orthodox frame for earthquakes, disease, and death itself: they belong to a creation in bondage to corruption, awaiting liberation — not to God's original intent, and not to His final word. St. Athanasius describes the catastrophe and its remedy in one sweep:</p>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">St. Athanasius — On the Incarnation 4–5 (c. AD 318)</div>
+          <div class="fc-body">Transgression set in motion a return to non-existence: "for the transgression of the commandment was making them turn back again according to their nature; and as they had at the beginning come into being out of non-existence, so were they now on the way to returning, through corruption, to non-existence again."</div>
+          <div class="fc-src">Death as disintegration intruding on creation — the disease the Incarnation came to cure</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">The Epistle to the Hebrews</div>
+          <div class="fc-body">"That through death he might destroy the one who has the power of death, that is, the devil, and deliver all those who through fear of death were subject to lifelong slavery."</div>
+          <div class="fc-src">Hebrews 2:14–15 — evil and death treated as an enemy occupation to be broken, not a divine arrangement to be excused</div>
+        </div>
+      </div>
+      <p>Notice the consistent biblical grammar: God is never the ally of death. Death is "the last enemy" (1 Corinthians 15:26). Any theodicy that makes God comfortable with evil has parted company with Scripture, which portrays Him at war with it.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="scripture">
+    <div class="sec-h" onclick="ts(this)"><h2>Scripture Does Not Flinch — The Bible Raises the Problem Itself</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>The problem of evil is not an outside attack the Bible never anticipated. It is raised, at full volume, <em>inside</em> the canon — which means the faith was never built on ignorance of it.</p>
+      <div class="sv">"O Lord, how long shall I cry for help, and you will not hear? … Why do you make me see iniquity, and why do you idly look at wrong?"<cite>Habakkuk 1:2–3 — a prophet interrogating God; the answer he receives is "the righteous shall live by his faith" (2:4)</cite></div>
+      <div class="sv">"But when I thought how to understand this, it seemed to me a wearisome task, until I went into the sanctuary of God; then I discerned their end."<cite>Psalm 73:16–17 — the prosperity of the wicked, resolved not by argument but in worship and eschatology</cite></div>
+      <p>The Book of Job is the longest sustained treatment. Job's comforters defend a tidy theology — suffering is always punishment — and God condemns them for it (Job 42:7). God's own answer comes not as a theory but as a whirlwind of questions ("Where were you when I laid the foundation of the earth?" — Job 38:4) and, decisively, as presence:</p>
+      <div class="sv">"I had heard of you by the hearing of the ear, but now my eye sees you."<cite>Job 42:5 — the sufferer is satisfied by encounter, not by explanation; and note Job 1–2: the reader is shown a cosmic context the sufferer never sees</cite></div>
+      <p>Jesus Himself explicitly severs the automatic link between suffering and personal guilt — twice:</p>
+      <div class="sv">"Those eighteen on whom the tower in Siloam fell and killed them: do you think that they were worse offenders than all the others who lived in Jerusalem? No, I tell you…"<cite>Luke 13:4–5</cite></div>
+      <div class="sv">"Rabbi, who sinned, this man or his parents, that he was born blind?" Jesus answered, "It was not that this man sinned, or his parents, but that the works of God might be displayed in him."<cite>John 9:2–3</cite></div>
+      <p>And at the tomb of Lazarus — knowing He was about to raise him — "Jesus wept" (John 11:35). The Word of God stood before death, the thing He would shortly destroy, and His response was tears and anger (John 11:33,38). That is God's emotional posture toward evil.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="cross">
+    <div class="sec-h" onclick="ts(this)"><h2>The Cross: God's Answer in Person</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>Here the Oriental Orthodox tradition speaks with particular force. Every other worldview answers suffering from outside it. In the Gospel, God answers from inside: the Word became flesh and went to the place of maximum injustice, betrayal, torture, and godforsakenness — and made it the instrument of salvation. The Oriental Orthodox Churches confess this with unmatched directness: it is why our Trisagion is addressed to Christ — "Holy God, Holy Mighty, Holy Immortal, <em>who was crucified for us</em>, have mercy on us."</p>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">St. Cyril of Alexandria (c. 376–444)</div>
+          <div class="fc-body">"Whosoever shall not confess that the Word of God suffered in the flesh, and was crucified in the flesh, and tasted death in the flesh … let him be anathema."</div>
+          <div class="fc-src">Twelfth Anathema, Third Letter to Nestorius (AD 430) — received by the Council of Ephesus (431). Cyril adds elsewhere that the impassible Word "suffered impassibly": the divine nature is not diminished, yet the suffering is truly His own, because the One who suffers is God the Word incarnate.</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Athanasius — On the Incarnation 27</div>
+          <div class="fc-body">"Death has become like a tyrant who has been completely conquered … all who believe in Christ tread him under as nought, and choose rather to die than deny their faith in Christ. For they truly know that when they die they are not destroyed, but actually begin to live."</div>
+          <div class="fc-src">Written within living memory of the Diocletian persecution — this was an empirical claim about the martyrs of Egypt</div>
+        </div>
+      </div>
+      <div class="sv">"Surely he has borne our griefs and carried our sorrows … he was pierced for our transgressions; he was crushed for our iniquities; upon him was the chastisement that brought us peace, and with his wounds we are healed."<cite>Isaiah 53:4–5</cite></div>
+      <p>The pattern was laid down in Genesis: Joseph, betrayed and sold by his brothers, tells them, "You meant evil against me, but God meant it for good" (Genesis 50:20). The Cross is that verse written across the cosmos: the worst act in history — the murder of the incarnate God — became the salvation of the world. This does not make the evil good; Judas remains Judas. It reveals a God whose providence is so deep that even evil freely committed cannot escape being woven into redemption.</p>
+      <p>And the answer is unfinished by design. Christian hope is not that evil will be philosophically balanced, but that it will be <em>abolished</em>:</p>
+      <div class="sv">"He will wipe away every tear from their eyes, and death shall be no more, neither shall there be mourning, nor crying, nor pain anymore, for the former things have passed away."<cite>Revelation 21:4</cite></div>
+      <div class="sv">"In the world you will have tribulation. But take heart; I have overcome the world."<cite>John 16:33</cite></div>
+    </div>
+  </div>
+
+  <div class="sec" id="refutation">
+    <div class="sec-h" onclick="ts(this)"><h2>The Three Formulations Answered</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">1. The logical problem: "Any evil at all contradicts an omnipotent, all-good God."</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">The argument requires a hidden premise: <em>a good God would prevent every evil He is able to prevent.</em> That premise is false if God can have morally sufficient reasons to permit an evil — and creaturely freedom is exactly such a reason: not even omnipotence can <em>force</em> a free act of love, any more than it can make a square circle, for "forced free love" is not a thing power could produce but a contradiction in terms. This is the substance of Alvin Plantinga's free-will defense (<em>God, Freedom, and Evil</em>, 1974), and it is now widely conceded. J. L. Mackie himself, the author of the modern logical argument, wrote in his final book: "We can concede that the problem of evil does not, after all, show that the central doctrines of theism are logically inconsistent with one another" (<em>The Miracle of Theism</em>, 1982). The strict logical argument is, by the admission of its own champion, dead. The Fathers had said it sixteen centuries earlier: "there is no coercion with God" (Irenaeus).</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">2. The evidential problem: "So much suffering looks pointless — a God is improbable."</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">The argument moves from "I can see no justifying reason for this evil" to "there is no justifying reason." But that inference is only as strong as the assumption that a finite observer would <em>see</em> God's reasons if they existed — precisely what Job 38–41 denies with sixty chapters' worth of irony. We routinely accept this logic elsewhere: a child cannot see the reason for the surgeon's knife, yet the reason exists. The Book of Job is structured to make the point formally: the reader sees the heavenly context of chapters 1–2; Job never does. St. Anthony of Egypt received the same answer in the desert — asked why the wicked prosper and the innocent die young, he heard: "Antony, attend to yourself; these are the judgments of God, and it is not for you to know them" (Sayings of the Desert Fathers, Anthony 2). This is not evasion; it is the honest epistemology of finitude. The evidential argument cannot get off the ground without claiming a God's-eye view — the very thing the objector denies anyone has.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">3. The emotional problem: Ivan Karamazov — "Even if it all works out, I return my ticket."</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">Ivan's protest deserves reverence, not refutation — and Dostoevsky, a Christian, gives the answer in the novel itself: not an argument, but Alyosha's silent kiss, and the figure of Christ who kisses the Grand Inquisitor. The Church's answer to the emotional problem has never been a syllogism. It is the crucified Christ, the tears at Lazarus' tomb, and the practical presence of the Church beside the suffering: "the God of all comfort, who comforts us in all our affliction, so that we may be able to comfort those who are in any affliction" (2 Corinthians 1:3–4). Note also what Ivan's outrage presupposes: that the child's suffering <em>objectively matters</em> — that it is not merely chemistry he happens to dislike. That intuition is correct, and it is borrowed capital from theism (see next section). The Orthodox do not ask the grieving to admire a theodicy. We ask them to look at the wounds in the risen Christ's hands — evil neither denied, nor explained away, but borne by God Himself and turned to glory.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" id="boomerang">
+    <div class="sec-h" onclick="ts(this)"><h2>The Objection Turned Around: Evil Presupposes Good</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>The argument from evil is the atheist's strongest weapon — and it is borrowed. To call the torture of a child <em>evil</em> — not "unpleasant to me," not "disadvantageous to the species," but objectively, absolutely wrong — is to invoke a standard of goodness that transcends opinion, culture, and evolutionary utility. Materialism has no shelf to keep such a standard on. If humans are accidental arrangements of matter, the torture of a child is an event like erosion: regrettable to some observers, but not <em>wrong</em> in any sense the universe underwrites.</p>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">C. S. Lewis (1898–1963)</div>
+          <div class="fc-body">"My argument against God was that the universe seemed so cruel and unjust. But how had I got this idea of just and unjust? A man does not call a line crooked unless he has some idea of a straight line. What was I comparing this universe with when I called it unjust?"</div>
+          <div class="fc-src">Mere Christianity, Book II.1 — Lewis describing the collapse of his own atheism</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">The Apostle Paul</div>
+          <div class="fc-body">"They show that the work of the law is written on their hearts, while their conscience also bears witness…"</div>
+          <div class="fc-src">Romans 2:15 — the moral outrage of the unbeliever is itself evidence of the Lawgiver</div>
+        </div>
+      </div>
+      <p>So the objection boomerangs: the louder the protest against evil, the more it testifies to an objective Good — and an objective Good is precisely what atheism cannot supply. The atheist also inherits a mirror-image problem rarely acknowledged: the <em>problem of good</em>. If the universe is blind and indifferent, why is it saturated with beauty, self-sacrifice, forgiveness, and saints? Evil is a problem for the Christian; good and evil are both problems for the atheist — and he has only one of the two even in principle.</p>
+      <p>One more asymmetry deserves notice: the argument from evil, even if it worked, would prove at most that God is not good — a conclusion in tension with the atheist's other arguments, which deny He exists at all. It is a protest <em>addressed to</em> Someone. As the Psalms show, protest addressed to God is not atheism; it is prayer's rawest form.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="martyrs">
+    <div class="sec-h" onclick="ts(this)"><h2>The Church of the Martyrs — Theodicy Lived, Not Theorized</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>The Oriental Orthodox Churches did not learn about suffering from a philosophy seminar. The Coptic Church dates her calendar from AD 284 — the accession of Diocletian, her fiercest persecutor: the <em>Anno Martyrum</em>, the Era of the Martyrs. The Armenian Church passed through the genocide of 1915. The Syriac Church through Sayfo. The Ethiopian Church through invasion and revolution. And in February 2015, twenty Coptic laborers and one Ghanaian companion were beheaded on a Libyan beach with the name of Jesus on their lips — canonized by the Coptic Church as the 21 Martyrs of Libya.</p>
+      <div class="sv">"These martyrs were baptized not only in water and the Spirit, but also in blood — blood that is a seed of unity for all followers of Christ."<cite>Pope Francis on the 21 Libyan Martyrs, canonized by Pope Tawadros II in 2015 — echoing Tertullian's "the blood of the martyrs is the seed of the Church"</cite></div>
+      <p>A Church that responds to seventeen centuries of persecution with hymns rather than apostasy is itself a datum in this debate. The martyrs are what the doctrine looks like when it is believed: evil is real, evil is temporary, and evil loses.</p>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">St. John Chrysostom (c. 347–407)</div>
+          <div class="fc-body">"The waters have risen and severe storms are upon us, but we do not fear drowning, for we stand firmly upon a rock. Let the sea rage, it cannot break the rock. Let the waves rise, they cannot sink the boat of Jesus."</div>
+          <div class="fc-src">Homily before his first exile (AD 403). Deposed and exiled unjustly, he died on the forced march in 407; his reported last words were "Glory be to God for all things" (Palladius, Dialogue on the Life of Chrysostom)</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Severus of Antioch (c. 465–538)</div>
+          <div class="fc-body">Deposed from his see in 518 for refusing Chalcedon, Severus — the great theological voice of Oriental Orthodoxy — spent his final twenty years a hunted exile in the monasteries of Egypt, governing his suffering church by letter, and never once treating his persecution as evidence against the goodness of God.</div>
+          <div class="fc-src">The patriarch-in-exile as a living commentary on Romans 8:18</div>
+        </div>
+      </div>
+      <div class="sv">"For I consider that the sufferings of this present time are not worth comparing with the glory that is to be revealed to us."<cite>Romans 8:18 — and 8:28: "for those who love God all things work together for good"</cite></div>
+      <div class="sv">"Beloved, do not be surprised at the fiery trial when it comes upon you to test you, as though something strange were happening to you. But rejoice insofar as you share Christ's sufferings…"<cite>1 Peter 4:12–13</cite></div>
+    </div>
+  </div>
+
+  <div class="sec" id="faq">
+    <div class="sec-h" onclick="ts(this)"><h2>FAQ — Honest Questions, Honest Answers</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Why doesn't God just stop each atrocity as it begins?</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">Follow the request to its end: a world where God overrides every evil choice is a world with no effective choices at all — a puppet theater. The intuition "God should stop the big ones" also has no stable stopping point: once murder is prevented, assault becomes the worst evil and the argument repeats, all the way down to a world where no one can so much as wound another's feelings — which is to say, a world without persons. God's actual policy is stranger and costlier: He permits, He enters, He suffers, He redeems, and He will judge. "He has fixed a day on which he will judge the world in righteousness" (Acts 17:31). Evil has a deadline.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Free will may explain murder — but earthquakes? Cancer? Animal suffering?</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">Scripture's category for this is the wounded cosmos: creation "subjected to futility … in bondage to corruption" (Romans 8:20–21), groaning for liberation. The Fall was not a private moral event; humanity was creation's priest, and the rupture ran through everything he was head of. The Fathers add that a stable, law-governed world — the only kind in which free agents can act meaningfully — is also a world whose fixed laws (tectonics, biology) can wound. What Orthodoxy refuses to say is that cancer is God's design or an earthquake His preference: death is "the last enemy" (1 Corinthians 15:26), and Christ's miracles — healing the sick, calming the storm, raising the dead — are previews of nature restored, not violations of it.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Did God create the devil evil?</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">No. Satan was created a good angel and fell by the same free will by which angels stand — "through the devil's envy death entered the world" (Wisdom 2:24); "he was a murderer from the beginning" describes his choice, not his manufacture (John 8:44). The Fathers are unanimous: nothing God made is evil by nature; evil is always a use, never a substance.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Is my suffering a punishment for my sin?</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">Christ explicitly forbids that arithmetic (Luke 13:1–5; John 9:1–3), and God rebukes Job's friends for practicing it (Job 42:7). Suffering may discipline, refine, or simply befall; only God sees which. The pastoral rule of the Fathers: examine yourself in your own suffering if it bears fruit, but never construct guilt for another from theirs. "Antony, attend to yourself."</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Couldn't God have created free beings who always freely choose good?</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">If "free" means genuinely able to do otherwise, then "guaranteed always to choose good" contradicts it — what is guaranteed is not chosen. This is Plantinga's point against Mackie, and the Fathers' before him. Heaven, note, is not such a world retroactively: the saints confirmed in glory <em>passed through</em> real choice to get there. God's plan produces creatures who freely and finally love Him — but produced is the wrong word; they are persons, and persons must arrive.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Doesn't hell make the problem infinitely worse?</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">Hell is the problem of evil's solution misread as its aggravation: it is the quarantine of evil, not its eternalization in God's good world. The Orthodox tradition understands damnation primarily as the self-chosen state of a creature that refuses the only Source of joy — "the doors of hell are locked on the inside," as Lewis put it. God "desires all people to be saved" (1 Timothy 2:4) and "is patient … not wishing that any should perish" (2 Peter 3:9). What He will not do is the one thing the objector keeps demanding elsewhere in this debate: override freedom.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">If God has reasons, why does He hide them — and Himself?</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">He has not hidden Himself; He has hidden the ledger. The difference matters. "He has not left himself without witness" (Acts 14:17) — creation, conscience, Scripture, the Church, and above all the Incarnation are public. But the particular accounting of each evil is withheld, as it was from Job, because the creature who demanded it could not audit infinity anyway. What is offered instead is a Person whose scars certify that He is not aloof from the cost. Faith is trusting the surgeon you know in the operation you don't understand.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" id="glossary">
+    <div class="sec-h" onclick="ts(this)"><h2>Glossary</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <div class="gt-grid">
+        <div class="gt"><div class="gt-term">Theodicy vs. Defense</div><div class="gt-def">A <em>theodicy</em> claims to give God's actual reasons for permitting evil; a <em>defense</em> shows only that good reasons are possible, defeating the charge of contradiction. The Fathers offer elements of both, but Orthodoxy's final word is neither — it is the Cross.</div></div>
+        <div class="gt"><div class="gt-term">Privatio Boni</div><div class="gt-def">"Privation of good" — the patristic teaching (Athanasius, Basil, Gregory of Nyssa) that evil has no substance or independent existence; it is the corruption, absence, or misuse of created good, as blindness is to sight.</div></div>
+        <div class="gt"><div class="gt-term">Ancestral Sin</div><div class="gt-def">The Eastern and Oriental understanding of the Fall: we inherit Adam's mortality and a corrupted condition, not his personal guilt. See the dedicated page on this site.</div></div>
+        <div class="gt"><div class="gt-term">Logical / Evidential / Emotional Problem</div><div class="gt-def">The three modern forms of the objection: strict contradiction (Mackie, 1955 — now conceded to fail), improbability from apparently pointless suffering (Rowe, 1979), and existential protest (Dostoevsky's Ivan Karamazov).</div></div>
+        <div class="gt"><div class="gt-term">Ra&#699; (רָע)</div><div class="gt-def">Hebrew word in Isaiah 45:7 covering both moral evil and calamity/disaster; context determines sense. In Isaiah 45 it means calamity, paralleling "darkness" against "peace."</div></div>
+        <div class="gt"><div class="gt-term">"Who was crucified for us"</div><div class="gt-def">The clause the Oriental Orthodox add to the Trisagion hymn, addressing it to Christ — the liturgical confession that the Crucified One is true God, the heart of the OO answer to suffering.</div></div>
+        <div class="gt"><div class="gt-term">Era of the Martyrs (Anno Martyrum)</div><div class="gt-def">The Coptic calendar, counted from AD 284, the accession of Diocletian. The Coptic Church literally tells time from her greatest persecution.</div></div>
+        <div class="gt"><div class="gt-term">"Suffered impassibly"</div><div class="gt-def">St. Cyril of Alexandria's formula: the divine nature is beyond suffering, yet the sufferings of the flesh are truly the Word's own, because the one subject who suffers is God the Word incarnate.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" id="sources">
+    <div class="sec-h" onclick="ts(this)"><h2>Sources</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p><strong>Scripture:</strong> Genesis 1; 50:20 · Deuteronomy 30:19 · Job · Psalm 73 · Isaiah 45:7; 53 · Habakkuk 1–2 · Wisdom of Solomon 1:13–14; 2:23–24 · Sirach 15:11–17 · Luke 13:1–5 · John 9:1–3; 11; 16:33 · Acts 14:17; 17:31 · Romans 2:15; 5:12; 8:18–28 · 1 Corinthians 15:26 · 2 Corinthians 1:3–4 · Hebrews 2:14–15 · James 1:13 · 1 Peter 4:12–13 · 2 Peter 3:9 · 1 John 1:5 · Revelation 21:4. (Wisdom and Sirach are canonical in the Oriental Orthodox Churches.)</p>
+      <p><strong>Patristic:</strong> Athanasius, <em>Against the Heathen</em> 2–7; <em>On the Incarnation</em> 4–10, 27 · Basil the Great, <em>Hexaemeron</em> 2.4; Homily <em>That God Is Not the Author of Evil</em> · Irenaeus, <em>Against Heresies</em> 4.37–39 · Justin Martyr, <em>First Apology</em> 43 · Gregory of Nyssa, <em>The Great Catechism</em> 5–8; <em>On Infants' Early Deaths</em> · John Chrysostom, Homily before his exile; Letters to Olympias; Palladius, <em>Dialogue</em> · Cyril of Alexandria, Third Letter to Nestorius with the Twelve Anathemas · <em>Sayings of the Desert Fathers</em> (Anthony 2) · Lactantius, <em>On the Anger of God</em> 13 · Severus of Antioch, <em>Cathedral Homilies</em> and correspondence from exile.</p>
+      <p><strong>Modern:</strong> J. L. Mackie, "Evil and Omnipotence" (<em>Mind</em>, 1955); <em>The Miracle of Theism</em> (1982) · Alvin Plantinga, <em>God, Freedom, and Evil</em> (1974) · William Rowe, "The Problem of Evil and Some Varieties of Atheism" (1979) · Fyodor Dostoevsky, <em>The Brothers Karamazov</em> (1880) · C. S. Lewis, <em>Mere Christianity</em>; <em>The Problem of Pain</em> · Martin Mosebach, <em>The 21: A Journey into the Land of Coptic Martyrs</em> (2019).</p>
+      <p>Related pages on this site: <a href="original_sin.html">Ancestral vs. Original Sin</a> · <a href="salvation.html">Salvation</a> · <a href="assurance_of_salvation.html">Assurance of Salvation</a> · <a href="trinity.html">The Holy Trinity</a> · <a href="what_is_a_christian.html">What Is a Christian?</a></p>
+      <p style="margin-top:18px;color:var(--mu);font-size:.85rem">THE ORTHODOX LAMP · Biblical, Historical &amp; Patristic Apologetics ☩ In the name of the Father, and of the Son, and of the Holy Spirit, One God. Amen.</p>
+    </div>
+  </div>
+</main>
+<script>
+window.addEventListener('scroll',()=>{const h=document.documentElement;document.getElementById('prog').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100+'%';});
+const navLinks=document.querySelectorAll('#sb-nav a[href^="#"]');
+const secs2=document.querySelectorAll('main .sec[id]');
+window.addEventListener('scroll',()=>{let cur='';secs2.forEach(s=>{if(s.getBoundingClientRect().top<=120)cur=s.id;});navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur);});},{passive:true});
+function ts(h){h.closest('.sec').classList.toggle('open');}
+function tf(h){h.closest('.fi').classList.toggle('open');}
+function sidebarSearch(q){
+  q=q.trim().toLowerCase();
+  const secs=document.querySelectorAll('main .sec');
+  let matched=0;
+  secs.forEach(sec=>{
+    if(!q){sec.classList.remove('s-hidden');const h2=sec.querySelector('.sec-h h2');if(h2._orig)h2.innerHTML=h2._orig;matched++;return;}
+    const h2=sec.querySelector('.sec-h h2');
+    const body=sec.querySelector('.sec-body');
+    const hit=(h2._orig||h2.textContent).toLowerCase().includes(q)||(body?body.textContent.toLowerCase():'').includes(q);
+    sec.classList.toggle('s-hidden',!hit);
+    if(hit){matched++;if(!h2._orig)h2._orig=h2.innerHTML;const re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');h2.innerHTML=h2._orig.replace(re,'<mark>$1</mark>');sec.classList.add('open');}
+  });
+  document.getElementById('sb-no-match').classList.toggle('show',!!q&&matched===0);
+}
+</script>
+</body>
+</html>

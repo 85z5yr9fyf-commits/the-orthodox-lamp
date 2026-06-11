@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Spiritual Gifts — The Orthodox Lamp</title>
+<style>
+:root{--gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;--bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--tx:#e8e0d0;--mu:#a09880;--red:#8b2020;--br:#2a2a2a;--bg5:#3a2e10;--sidebar-w:270px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.7;display:flex;flex-direction:column;min-height:100vh}
+a{color:var(--gold);text-decoration:none}
+a:hover{text-decoration:underline}
+#prog{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--gd),var(--gold),var(--gl));z-index:9999;transition:width .1s}
+#sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:200;transition:transform .3s}
+#sidebar header{padding:1.4rem 1.2rem 1rem;border-bottom:1px solid var(--br)}
+#sidebar header .logo{font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem}
+#sidebar header h2{font-size:.85rem;color:var(--gl);line-height:1.3}
+#sb-nav{padding:.8rem 0 2rem}
+#sb-nav a{display:block;padding:.42rem 1.2rem;font-size:.78rem;color:var(--mu);border-left:2px solid transparent;transition:all .2s;line-height:1.4}
+#sb-nav a:hover{color:var(--tx);background:var(--bg3);text-decoration:none}
+#sb-nav a.active{color:var(--gold);border-left-color:var(--gold);background:var(--bg5)}
+#sb-nav .sb-group{font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gd);padding:.9rem 1.2rem .3rem;display:block}
+#menu-btn{display:none;position:fixed;top:.8rem;left:.8rem;z-index:300;background:var(--bg3);border:1px solid var(--br);color:var(--gold);font-size:1.1rem;width:2.2rem;height:2.2rem;border-radius:6px;cursor:pointer;align-items:center;justify-content:center}
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:150}
+#overlay.show{display:block}
+#main{margin-left:var(--sidebar-w);flex:1;min-width:0}
+.hero{text-align:center;padding:5rem 2rem 3.5rem;background:linear-gradient(180deg,var(--bg2) 0%,var(--bg) 100%);border-bottom:1px solid var(--br);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(201,168,76,.08) 0%,transparent 70%);pointer-events:none}
+.back{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gd);border:1px solid var(--gd);padding:.2rem .7rem;border-radius:3px;margin-bottom:1.5rem;transition:color .2s,border-color .2s}
+.back:hover{color:var(--gold);border-color:var(--gold);text-decoration:none}
+.si{font-size:2.4rem;color:var(--gold);display:block;margin-bottom:.6rem}
+.st{font-size:clamp(1.6rem,4vw,2.6rem);font-weight:700;letter-spacing:.08em;text-transform:uppercase;line-height:1.15}
+.st span{color:var(--gold)}
+.ss{font-size:1rem;color:var(--gl);margin:.7rem 0 .3rem;font-style:italic}
+.tg{font-size:.85rem;color:var(--mu);font-style:italic}
+.orn{color:var(--gold);font-size:.9rem;letter-spacing:.5em;margin-top:1.2rem;opacity:.7}
+.content{max-width:860px;margin:0 auto;padding:3rem 2rem 5rem}
+.sec{background:var(--bg2);border:1px solid var(--br);border-radius:10px;margin-bottom:1.2rem;overflow:hidden}
+.sec-hd{padding:1.1rem 1.4rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;user-select:none;transition:background .2s}
+.sec-hd:hover{background:var(--bg3)}
+.sec-hd h2{font-size:1rem;font-weight:700;color:var(--gl);line-height:1.3}
+.num{font-size:.65rem;font-weight:700;letter-spacing:.1em;color:var(--gold);min-width:2rem;text-align:right;flex-shrink:0}
+.arr{color:var(--gd);font-size:.8rem;flex-shrink:0;transition:transform .3s}
+.sec.open .arr{transform:rotate(90deg)}
+.sec-body{display:none;padding:1.2rem 1.4rem 1.4rem;border-top:1px solid var(--br)}
+.sec.open .sec-body{display:block}
+.sec-body p{margin-bottom:1rem;font-size:.92rem}
+.sec-body h3{font-size:.85rem;font-weight:700;color:var(--gold);letter-spacing:.06em;text-transform:uppercase;margin:1.4rem 0 .6rem}
+.sec-body ul{margin:.4rem 0 1rem 1.2rem;font-size:.88rem}
+.sec-body ul li{margin-bottom:.4rem}
+.sec-body blockquote{border-left:3px solid var(--gd);padding:.6rem 1rem;background:var(--bg3);border-radius:0 6px 6px 0;font-style:italic;font-size:.88rem;color:var(--tx);margin:1rem 0}
+.sec-body blockquote cite{display:block;margin-top:.4rem;font-size:.78rem;color:var(--mu);font-style:normal}
+/* Scripture */
+.sv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin:1rem 0}
+.sv{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:1rem 1.1rem}
+.sv-ref{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+.sv-txt{font-size:.88rem;font-style:italic;color:var(--tx);margin-bottom:.6rem;line-height:1.55}
+.labels{display:flex;flex-wrap:wrap;gap:.3rem}
+.label{font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.15rem .45rem;border-radius:3px}
+.oo{background:#3a2e10;color:var(--gold);border:1px solid var(--gd)}
+.prot{background:#1a2535;color:#7aa8d0;border:1px solid #2a4060}
+.ctx{background:#1a2a1a;color:#7abf7a;border:1px solid #2a502a}
+.gk{background:#251a35;color:#b07ae0;border:1px solid #4a2a70}
+/* Father cards */
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin:1rem 0}
+.fc{background:var(--bg3);border:1px solid var(--br);border-left:3px solid var(--gd);border-radius:0 8px 8px 0;padding:1rem 1.1rem}
+.fc-name{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem}
+.fc-era{font-size:.65rem;color:var(--mu);margin-bottom:.5rem}
+.fc-txt{font-size:.85rem;font-style:italic;color:var(--tx);line-height:1.55}
+/* Glossary */
+.gt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.9rem;margin:1rem 0}
+.gt{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:.9rem 1rem}
+.gt-term{font-size:.9rem;font-weight:700;color:var(--gl);margin-bottom:.2rem}
+.gt-gk{font-size:.75rem;color:var(--gold);font-style:italic;margin-bottom:.4rem}
+.gt-def{font-size:.8rem;color:var(--tx);opacity:.9}
+/* Gift cards */
+.gift-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;margin:1rem 0}
+.gift{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:1.1rem;border-top:3px solid var(--gd)}
+.gift-icon{font-size:1.4rem;margin-bottom:.4rem;display:block}
+.gift-name{font-size:.92rem;font-weight:700;color:var(--gl);margin-bottom:.2rem}
+.gift-gk{font-size:.7rem;color:var(--gold);font-style:italic;margin-bottom:.5rem}
+.gift-oo{font-size:.82rem;color:var(--tx);margin-bottom:.5rem}
+.gift-vs{background:var(--bg4);border-radius:5px;padding:.4rem .6rem;margin-top:.4rem}
+.gift-vs-label{font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.2rem}
+.gift-vs.oo-v .gift-vs-label{color:var(--gold)}
+.gift-vs.prot-v .gift-vs-label{color:#7aa8d0}
+.gift-vs p{font-size:.78rem;color:var(--tx);margin:0}
+/* Position banners */
+.pos{border-radius:8px;padding:1rem 1.2rem;margin:1rem 0;font-size:.88rem;display:flex;gap:.8rem;align-items:flex-start}
+.pos.cont{background:#0d1f0d;border:1px solid #1a4a1a}
+.pos.nuanced{background:#1a1a0d;border:1px solid #4a4a1a}
+.pos-icon{font-size:1.3rem;flex-shrink:0;margin-top:.1rem}
+.pos-body strong{display:block;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem}
+.pos.cont .pos-body strong{color:#80d080}
+.pos.nuanced .pos-body strong{color:#d0d080}
+/* Objections */
+.obj{background:var(--bg3);border:1px solid #3a1a1a;border-radius:8px;margin-bottom:.8rem;overflow:hidden}
+.obj-hd{padding:.9rem 1.1rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:.8rem;user-select:none}
+.obj-hd:hover{background:#1f1010}
+.obj-hd strong{font-size:.87rem;color:#d08080;line-height:1.3}
+.obj-arr{color:#804040;font-size:.75rem;flex-shrink:0;transition:transform .3s}
+.obj.open .obj-arr{transform:rotate(90deg)}
+.obj-body{display:none;padding:.9rem 1.1rem 1.1rem;border-top:1px solid #3a1a1a;font-size:.87rem}
+.obj.open .obj-body{display:block}
+.obj-body p{margin-bottom:.7rem}
+.obj-resp{background:#1a2510;border-left:3px solid #4a7030;border-radius:0 6px 6px 0;padding:.7rem 1rem;font-size:.85rem;margin-top:.6rem}
+.obj-resp strong{color:#6abf6a;display:block;margin-bottom:.3rem;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase}
+/* FAQ */
+.fi{background:var(--bg3);border:1px solid var(--br);border-radius:8px;margin-bottom:.7rem;overflow:hidden}
+.fi-hd{padding:.85rem 1.1rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:.8rem;user-select:none}
+.fi-hd:hover{background:var(--bg4)}
+.fi-hd strong{font-size:.87rem;color:var(--gl);line-height:1.3}
+.fi-arr{color:var(--gd);font-size:.75rem;flex-shrink:0;transition:transform .3s}
+.fi.open .fi-arr{transform:rotate(90deg)}
+.fi-body{display:none;padding:.85rem 1.1rem 1.1rem;border-top:1px solid var(--br);font-size:.87rem}
+.fi.open .fi-body{display:block}
+.fi-body p{margin-bottom:.6rem}
+footer{text-align:center;padding:2rem 1rem;border-top:1px solid var(--br);font-size:.8rem;color:var(--mu)}
+footer span{color:var(--gold)}
+@media(max-width:800px){
+  #sidebar{transform:translateX(calc(-1 * var(--sidebar-w)))}
+  #sidebar.open{transform:translateX(0)}
+  #main{margin-left:0}
+  #menu-btn{display:flex}
+  .hero{padding:4rem 1.2rem 2.5rem}
+  .content{padding:2rem 1.2rem 4rem}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<button id="menu-btn" onclick="toggleSidebar()" aria-label="Menu">☰</button>
+<div id="overlay" onclick="closeMobile()"></div>
+<nav id="sidebar">
+  <header>
+    <div class="logo">The Orthodox Lamp</div>
+    <h2>Spiritual Gifts — The Oriental Orthodox Interpretation</h2>
+  </header>
+  <div id="sb-nav">
+    <span class="sb-group">Foundations</span>
+    <a href="#s1">I. Introduction</a>
+    <a href="#s2">II. Glossary</a>
+    <a href="#s3">III. The Gift Lists in Scripture</a>
+    <span class="sb-group">Gifts of Power</span>
+    <a href="#s4">IV. Tongues &amp; Interpretation</a>
+    <a href="#s5">V. Prophecy</a>
+    <a href="#s6">VI. Healing</a>
+    <a href="#s7">VII. Miracles &amp; Signs</a>
+    <a href="#s8">VIII. Discernment of Spirits</a>
+    <span class="sb-group">Gifts of Word</span>
+    <a href="#s9">IX. Word of Wisdom &amp; Knowledge</a>
+    <a href="#s10">X. Faith</a>
+    <span class="sb-group">Gifts of Service</span>
+    <a href="#s11">XI. Teaching, Exhortation &amp; Evangelism</a>
+    <a href="#s12">XII. Helps, Giving, Leadership &amp; Mercy</a>
+    <span class="sb-group">The Big Questions</span>
+    <a href="#s13">XIII. Cessationism vs. Continuationism</a>
+    <a href="#s14">XIV. The Charismatic Movement — OO Assessment</a>
+    <a href="#s15">XV. The Gifts in the OO Tradition</a>
+    <a href="#s16">XVI. Protestant Objections</a>
+    <a href="#s17">XVII. FAQ</a>
+    <a href="#s18">XVIII. Sources</a>
+  </div>
+</nav>
+<div id="main">
+<div class="hero">
+  <a class="back" href="index.html">← Library</a>
+  <span class="si">☩</span>
+  <h1 class="st">THE <span>ORTHODOX</span> LAMP</h1>
+  <p class="ss">Spiritual Gifts — The Oriental Orthodox Interpretation</p>
+  <p class="tg">"Now there are varieties of gifts, but the same Spirit." — 1 Corinthians 12:4</p>
+  <div class="orn">✦ ✦ ✦</div>
+</div>
+<div class="content">
+
+<!-- I -->
+<div class="sec open" id="s1">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>I. Introduction — A Different Framework</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">01</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>The spiritual gifts (Greek: <em>charismata</em>) are one of the most contested areas of Protestant theology today. Pentecostals and Charismatics insist that speaking in tongues is the initial evidence of Spirit baptism, that prophecy continues as a regular congregational phenomenon, and that healing miracles should be a normal feature of Christian life. Cessationists — many Reformed and Baptist — argue that the miraculous gifts ceased with the apostolic age. Between these two poles, a vast middle ground of Protestant evangelicalism is perpetually unsettled.</p>
+    <p>The Oriental Orthodox tradition offers a different framework entirely — one grounded in Scripture, in the continuous Patristic witness, and in eighteen centuries of lived experience. The OO neither denies the charismata nor misidentifies them. Its key convictions are:</p>
+    <ul>
+      <li><strong>The gifts of the Spirit are real and continue.</strong> The Holy Spirit has never withdrawn his gifts from the Church. The charismata described in 1 Corinthians 12, Romans 12, and Ephesians 4 are genuine expressions of the Spirit's life in the Body of Christ, present in every generation.</li>
+      <li><strong>The gifts are given for the building up of the Church, not for personal experience.</strong> The purpose of the charismata is the <em>oikodomē</em> — the edification — of the whole Body (1 Cor 14:12). Gifts are not badges of spiritual achievement or evidence of a "second blessing."</li>
+      <li><strong>The primary channels of the Spirit's charismata are the sacramental life and the holy persons of each generation.</strong> The gifts are not primarily expressed in charismatic worship services but in the healing sacrament of unction, the prophetic ministry of holy elders (startsy / abba), the miraculous works of the saints, and the teaching office of the bishops.</li>
+      <li><strong>Discernment is essential.</strong> Not every spiritual manifestation is from the Holy Spirit. The Fathers developed an elaborate theology of <em>diakrisis</em> (discernment) to distinguish authentic charismata from diabolical counterfeits and self-deception.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- II -->
+<div class="sec" id="s2">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>II. Glossary</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">02</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <div class="gt-grid">
+      <div class="gt">
+        <div class="gt-term">Charisma (pl. Charismata)</div>
+        <div class="gt-gk">Greek: χάρισμα — gift of grace</div>
+        <div class="gt-def">A gift freely given by the Holy Spirit to a member of the Body of Christ for the benefit of the whole Church. From charis (grace) — a charisma is a grace-gift, unearned and undeserved, given for service.</div>
+      </div>
+      <div class="gt">
+        <div class="gt-term">Pneumatika</div>
+        <div class="gt-gk">Greek: πνευματικά — spiritual things</div>
+        <div class="gt-def">The broader term Paul uses in 1 Cor 12:1 — "spiritual gifts" or "spiritual matters." Encompasses the entire range of the Spirit's manifestations in the community, including charismata proper.</div>
+      </div>
+      <div class="gt">
+        <div class="gt-term">Glossolalia</div>
+        <div class="gt-gk">Greek: γλωσσολαλία — tongue-speaking</div>
+        <div class="gt-def">The gift of tongues. In the OO reading: the Spirit-given ability to speak in a human language unknown to the speaker — for the purpose of proclamation to those of that language. Not ecstatic utterance or a private prayer language.</div>
+      </div>
+      <div class="gt">
+        <div class="gt-term">Prophecy (Propheteia)</div>
+        <div class="gt-gk">Greek: προφητεία — speaking forth</div>
+        <div class="gt-def">Spirit-inspired proclamation of God's word — not necessarily future prediction. In the OO tradition, prophecy continues in the Church through the teaching of holy elders, the decrees of councils, and occasional direct divine communication to holy persons.</div>
+      </div>
+      <div class="gt">
+        <div class="gt-term">Cessationism</div>
+        <div class="gt-gk">Protestant theological position</div>
+        <div class="gt-def">The view that miraculous gifts (tongues, healing, prophecy, miracles) ceased with the death of the last apostle or the closing of the NT canon. Held by most Reformed and Baptist theologians. Rejected by the OO tradition.</div>
+      </div>
+      <div class="gt">
+        <div class="gt-term">Diakrisis</div>
+        <div class="gt-gk">Greek: διάκρισις — discernment, judgment</div>
+        <div class="gt-def">The gift and practice of discerning spirits — distinguishing what is truly from the Holy Spirit from what is from evil spirits, human self-deception, or psychological phenomena. Central to the OO ascetic tradition.</div>
+      </div>
+      <div class="gt">
+        <div class="gt-term">Nepsis</div>
+        <div class="gt-gk">Greek: νῆψις — sobriety, watchfulness</div>
+        <div class="gt-def">The spiritual discipline of watchful sobriety — the opposite of spiritual enthusiasm or emotionalism. Essential to OO discernment of spiritual phenomena. The Philokalia is largely devoted to neptic (watchful) spirituality.</div>
+      </div>
+      <div class="gt">
+        <div class="gt-term">Prelest</div>
+        <div class="gt-gk">Slavonic: прельсть — spiritual deception</div>
+        <div class="gt-def">Spiritual delusion — the condition of one who mistakes demonic or self-generated spiritual experiences for genuine gifts of the Holy Spirit. A major concern of the OO ascetic tradition. Many false "spiritual gifts" are understood as prelest.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- III -->
+<div class="sec" id="s3">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>III. The Gift Lists in Scripture — A Unified Picture</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">03</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>The New Testament contains four major lists of spiritual gifts, each with a different emphasis. Together they provide a comprehensive picture of how the Spirit equips the Body of Christ:</p>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">1 Corinthians 12:8–10</div>
+        <div class="sv-txt">Word of wisdom · Word of knowledge · Faith · Gifts of healing · Miracles · Prophecy · Discernment of spirits · Tongues · Interpretation of tongues</div>
+        <div class="labels"><span class="label oo">OO: The "sign gifts" — supernatural manifestations for the edification of the assembly</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">1 Corinthians 12:28</div>
+        <div class="sv-txt">Apostles · Prophets · Teachers · Miracles · Gifts of healing · Helps · Administration · Tongues</div>
+        <div class="labels"><span class="label oo">OO: Gifts within the ordered life of the Church — apostolic, prophetic, and diaconal</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Romans 12:6–8</div>
+        <div class="sv-txt">Prophecy · Service · Teaching · Exhortation · Giving · Leadership · Mercy</div>
+        <div class="labels"><span class="label oo">OO: The "service gifts" — ministry-oriented charismata for the practical life of the community</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Ephesians 4:11</div>
+        <div class="sv-txt">Apostles · Prophets · Evangelists · Pastors · Teachers</div>
+        <div class="labels"><span class="label oo">OO: The ordained ministry gifts — given for the equipping of the saints and the building up of the Body</span><span class="label ctx">Context: Given "until we all attain to the unity of the faith" — ongoing, not temporary</span></div>
+      </div>
+    </div>
+    <p>The OO reads these four lists as complementary, not competing. Together they show that the Spirit gives gifts across a wide spectrum — from the spectacular (miracles, tongues) to the ordinary (mercy, administration). No single gift is the mark of Spirit-fullness. The Pentecostal insistence that tongues is the necessary evidence of Spirit baptism has no scriptural basis — Paul explicitly states "not all speak in tongues" (1 Cor 12:30) and places tongues last in the list.</p>
+  </div>
+</div>
+
+<!-- IV -->
+<div class="sec" id="s4">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>IV. Tongues &amp; Interpretation — The Most Contested Gift</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">04</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <div class="pos nuanced">
+      <span class="pos-icon">△</span>
+      <div class="pos-body"><strong>OO Position: The gift of tongues is real but widely misidentified</strong>The Oriental Orthodox affirm the biblical gift of tongues but understand it as the Spirit-given ability to speak in a genuine human language for the purpose of proclamation — as at Pentecost. Private "prayer tongues" as ecstatic utterance is not the biblical gift.</div>
+    </div>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">Acts 2:4–11</div>
+        <div class="sv-txt">"And they were all filled with the Holy Spirit and began to speak in other tongues as the Spirit gave them utterance... each one was hearing them speak in his own language... 'we hear them telling in our own tongues the mighty works of God.'"</div>
+        <div class="labels"><span class="label oo">OO: The Pentecost tongues were real human languages — each hearer understood in their native dialect. This is the paradigm for the gift.</span><span class="label prot">Charismatic: Tongues is ecstatic language — Acts 2 is one expression; 1 Cor 14 is another (private prayer)</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">1 Corinthians 14:2</div>
+        <div class="sv-txt">"For one who speaks in a tongue speaks not to men but to God; for no one understands him, but he utters mysteries in the Spirit."</div>
+        <div class="labels"><span class="label prot">Charismatic: Proof of a private prayer language beyond human understanding</span><span class="label oo">OO: "No one understands him" = no one present happens to speak that language. The point is it is unintelligible without an interpreter — not that it is inherently supernatural babble.</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">1 Corinthians 14:19</div>
+        <div class="sv-txt">"Nevertheless, in church I would rather speak five words with my mind in order to instruct others, than ten thousand words in a tongue."</div>
+        <div class="labels"><span class="label oo">OO: Paul subordinates tongues to intelligible edification — a corrective to Corinthian enthusiasm</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">1 Corinthians 14:27–28</div>
+        <div class="sv-txt">"If any speak in a tongue, let there be only two or at most three, and each in turn, and let someone interpret. But if there is no one to interpret, let each of them keep silent in church."</div>
+        <div class="labels"><span class="label oo">OO: Strict regulation — tongues requires interpretation or silence. Not the centerpiece of worship but its most regulated element.</span></div>
+      </div>
+    </div>
+    <h3>The OO Interpretation</h3>
+    <p>The gift of tongues in the OO reading is the miraculous ability to speak in a human language one has not naturally learned — given by the Spirit for the proclamation of the Gospel to peoples of other tongues. This is the clear reading of Acts 2 (where each hearer understood in their own language) and is the unanimous interpretation of the Patristic tradition. The idea of a "private prayer language" — an ecstatic utterance that bypasses the mind and communicates directly with God beyond human language — has no Patristic support and is a modern Pentecostal innovation (originating c. 1900–1906 at Azusa Street).</p>
+    <p><strong>Interpretation of Tongues:</strong> The companion gift — the Spirit-given ability to translate what is spoken in an unknown language so the congregation can benefit. Without this gift present, Paul commands silence. The OO tradition has no liturgical practice of tongues-speaking in services — because the liturgical languages of the OO (Coptic, Ge'ez, Syriac, Armenian) are themselves ancient, sacred tongues through which the Spirit has spoken for millennia.</p>
+    <div class="fc-grid">
+      <div class="fc">
+        <div class="fc-name">John Chrysostom</div>
+        <div class="fc-era">c. AD 390 — Homilies on 1 Corinthians</div>
+        <div class="fc-txt">"This whole place is very obscure: but the obscurity is produced by our ignorance of the facts referred to and by their cessation, being such as then used to occur but now no longer take place." — Chrysostom acknowledges the diminishing of the spectacular manifestations while affirming the gifts in principle.</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Augustine of Hippo</div>
+        <div class="fc-era">c. AD 406 — Homilies on 1 John</div>
+        <div class="fc-txt">"In the earliest times, the Holy Spirit fell upon them that believed, and they spoke with tongues which they had not learned, as the Spirit gave them utterance. These were signs adapted to the time. For there behooved to be that betokening of the Holy Spirit... It was done for a betokening, and it passed away."</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- V -->
+<div class="sec" id="s5">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>V. Prophecy — The Living Voice of the Spirit</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">05</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <div class="pos cont">
+      <span class="pos-icon">✓</span>
+      <div class="pos-body"><strong>OO Position: Prophecy continues in the Church — primarily through holy persons, councils, and Scripture</strong>The Oriental Orthodox affirm that the prophetic gift of the Holy Spirit continues in every generation. It is not primarily expressed as spontaneous congregational declarations but through the prophetic ministry of holy elders, the authoritative teaching of bishops in council, and the lived witness of the saints.</div>
+    </div>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">1 Corinthians 14:1</div>
+        <div class="sv-txt">"Pursue love, and earnestly desire the spiritual gifts, especially that you may prophesy."</div>
+        <div class="labels"><span class="label oo">OO: Prophecy is the most desirable gift — because it edifies the whole assembly. The OO tradition has always honored prophetic voices.</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">1 Corinthians 14:3</div>
+        <div class="sv-txt">"On the other hand, the one who prophesies speaks to people for their upbuilding and encouragement and consolation."</div>
+        <div class="labels"><span class="label oo">OO: Prophecy is defined by its fruit — edification, encouragement, consolation. It is primarily pastoral, not sensational.</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Acts 2:17–18</div>
+        <div class="sv-txt">"And in the last days it shall be, God declares, that I will pour out my Spirit on all flesh, and your sons and your daughters shall prophesy... even on my male servants and female servants in those days I will pour out my Spirit, and they shall prophesy."</div>
+        <div class="labels"><span class="label oo">OO: The prophetic gift is poured out on all flesh in the age of the Church — it does not cease</span><span class="label ctx">Context: Peter quotes Joel 2 at Pentecost — the "last days" are the entire Church age</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">1 Thessalonians 5:19–21</div>
+        <div class="sv-txt">"Do not quench the Spirit. Do not despise prophecies, but test everything; hold fast what is good."</div>
+        <div class="labels"><span class="label oo">OO: Three commands — don't suppress, don't despise, but test. The OO tradition tests through discernment (diakrisis).</span></div>
+      </div>
+    </div>
+    <h3>Prophecy in the OO Tradition</h3>
+    <p>The OO tradition has always had prophetic figures — holy persons whose words carried the weight of divine insight. The Desert Fathers were frequently asked to give a "word" (Greek: <em>logos</em>) — a brief, Spirit-inspired utterance of guidance and truth. The great abbots of Egypt, Syria, and Ethiopia were consulted as prophetic figures. The Coptic Pope's formal teaching, the decrees of synods, and the witness of canonized saints all partake of the prophetic function of the Spirit in the Church. This is not "open microphone" congregational prophecy — it is the sober, tested, communal exercise of the gift within the ordered life of the Body.</p>
+  </div>
+</div>
+
+<!-- VI -->
+<div class="sec" id="s6">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>VI. Gifts of Healing</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">06</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <div class="pos cont">
+      <span class="pos-icon">✓</span>
+      <div class="pos-body"><strong>OO Position: Healing is among the most abundantly attested gifts in the OO tradition — primarily through Holy Unction, the prayers of the saints, and holy relics</strong></div>
+    </div>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">James 5:14–15</div>
+        <div class="sv-txt">"Is anyone among you sick? Let him call for the elders of the church, and let them pray over him, anointing him with oil in the name of the Lord. And the prayer of faith will save the one who is sick, and the Lord will raise him up."</div>
+        <div class="labels"><span class="label oo">OO: This is the biblical institution of Holy Unction — the sacrament of healing given to the Church for all ages</span><span class="label prot">Prot: A description of elder-prayer, not a sacrament; fulfilled in the apostolic age</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Mark 16:17–18</div>
+        <div class="sv-txt">"And these signs will accompany those who believe... they will lay their hands on the sick, and they will recover."</div>
+        <div class="labels"><span class="label oo">OO: Christ's promise — healing accompanies faith in every generation</span></div>
+      </div>
+    </div>
+    <p>The Oriental Orthodox tradition does not organize healing crusades or healing services in the Pentecostal manner. It has instead a rich, sacramental theology of healing: Holy Unction (the anointing of the sick) is administered by the Church's ordained priests as a means of healing for both body and soul. The healing prayers of the saints — both living and departed — are also understood as a channel of the Spirit's healing power. The OO hagiographic literature is replete with authenticated healing miracles, from the Coptic Desert Fathers through the Ethiopian saints to modern figures such as St. Bishoy Kamel (Coptic, 1931–1979) and Abune Petros of Ethiopia.</p>
+    <blockquote>Chrysostom taught that the gifts of healing were given not for the glory of the healer, but to build up faith and lead the one healed to God.<cite>— summarizing St. John Chrysostom, <em>Homilies on Matthew</em></cite></blockquote>
+  </div>
+</div>
+
+<!-- VII -->
+<div class="sec" id="s7">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>VII. Miracles &amp; Signs</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">07</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <div class="pos cont">
+      <span class="pos-icon">✓</span>
+      <div class="pos-body"><strong>OO Position: Miracles and signs continue — primarily through the saints and the sacraments, tested by the Church</strong></div>
+    </div>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">John 14:12</div>
+        <div class="sv-txt">"Truly, truly, I say to you, whoever believes in me will also do the works that I do; and greater works than these will he do, because I am going to the Father."</div>
+        <div class="labels"><span class="label oo">OO: Christ's own promise — the works of the Spirit continue through believers</span><span class="label prot">Cessationist: "Greater works" = greater scope of evangelism, not more spectacular miracles</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Acts 19:11–12</div>
+        <div class="sv-txt">"And God was doing extraordinary miracles by the hands of Paul, so that even handkerchiefs or aprons that had touched his skin were carried away to the sick, and their diseases left them and the evil spirits came out of them."</div>
+        <div class="labels"><span class="label oo">OO: The biblical basis for the healing power of relics — objects associated with holy persons carry the Spirit's power</span></div>
+      </div>
+    </div>
+    <p>The OO miracle tradition is not the theatrical, stage-managed world of televangelist healing crusades. It is the quiet, tested, communally-verified world of the saints. Miracles in the OO tradition are typically associated with: the relics of saints (their bodies and associated objects), icons (especially weeping or myrrh-streaming icons), the prayers of holy elders, and the sacraments. The Coptic, Ethiopian, and Syriac churches have extensive documented traditions of miracles — including apparitions of the Virgin Mary at Zeitoun, Egypt (1968–1971), witnessed by hundreds of thousands including non-Christians and atheists. These are not claimed uncritically — the Church carefully investigates before acknowledging them.</p>
+  </div>
+</div>
+
+<!-- VIII -->
+<div class="sec" id="s8">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>VIII. Discernment of Spirits</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">08</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <div class="pos cont">
+      <span class="pos-icon">✓</span>
+      <div class="pos-body"><strong>OO Position: Discernment of spirits is one of the most vital gifts — and one of the most developed in the OO ascetic tradition</strong></div>
+    </div>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">1 John 4:1</div>
+        <div class="sv-txt">"Beloved, do not believe every spirit, but test the spirits to see whether they are from God, for many false prophets have gone out into the world."</div>
+        <div class="labels"><span class="label oo">OO: The command to test spirits — essential, because not all spiritual phenomena are divine</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">1 Corinthians 12:10</div>
+        <div class="sv-txt">"...to another the ability to distinguish between spirits..."</div>
+        <div class="labels"><span class="label oo">OO: Diakrisis pneumaton — discernment of spirits is a distinct spiritual gift, not merely natural wisdom</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">2 Corinthians 11:14</div>
+        <div class="sv-txt">"And no wonder, for even Satan disguises himself as an angel of light."</div>
+        <div class="labels"><span class="label oo">OO: The demonic can mimic spiritual gifts — making discernment indispensable</span></div>
+      </div>
+    </div>
+    <p>The Oriental Orthodox tradition has developed the most sophisticated theology of discernment in all of Christianity — far surpassing anything found in Protestant or Catholic traditions. The <em>Philokalia</em> (a collection of writings by the Desert and Byzantine Fathers), the <em>Ladder of Divine Ascent</em> (John Climacus), the <em>Sayings of the Desert Fathers</em> — all are substantially concerned with the discernment of spirits. The key principles: genuine spiritual gifts produce humility, not pride; they conform to Scripture and tradition; they are submitted to the judgment of a spiritual father; they bear the fruit of love, peace, and holiness. Manifestations that produce excitement, pride, spiritual superiority, or independence from the Church's authority are deeply suspect.</p>
+    <p>The OO tradition's concept of <em>prelest</em> (spiritual delusion) is directly relevant here. Many of what the Charismatic movement presents as gifts of the Spirit — frenzied "manifestations," uncontrolled laughter, "slaying in the Spirit," fortune-telling "words of knowledge" — the OO Fathers would identify as spiritual self-deception at best and demonic at worst.</p>
+  </div>
+</div>
+
+<!-- IX -->
+<div class="sec" id="s9">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>IX. Word of Wisdom &amp; Word of Knowledge</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">09</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <div class="gift-grid">
+      <div class="gift">
+        <span class="gift-icon">💡</span>
+        <div class="gift-name">Word of Wisdom</div>
+        <div class="gift-gk">Greek: logos sophias — utterance of wisdom</div>
+        <div class="gift-oo">Spirit-given insight to apply divine truth rightly to a concrete situation. The practical, pastoral wisdom that enables a holy elder, a bishop, or a gifted teacher to speak the right word at the right time for the edification of souls.</div>
+        <div class="gift-vs oo-v"><div class="gift-vs-label">OO Reading</div><p>Primarily manifested in the abbots of the desert tradition, holy elders (startsy), and bishops whose pastoral counsel carries divine authority beyond their natural capacity.</p></div>
+        <div class="gift-vs prot-v"><div class="gift-vs-label">Charismatic Reading</div><p>Often used as a designation for prophetic revelation about a person's situation — "God is showing me a word of wisdom about your marriage..."</p></div>
+      </div>
+      <div class="gift">
+        <span class="gift-icon">🔍</span>
+        <div class="gift-name">Word of Knowledge</div>
+        <div class="gift-gk">Greek: logos gnōseōs — utterance of knowledge</div>
+        <div class="gift-oo">Spirit-given knowledge of a fact or situation that could not be known through natural means — distinct from general wisdom. In the OO tradition, associated with the gift of "reading hearts" (kardiognōsia) found in holy persons.</div>
+        <div class="gift-vs oo-v"><div class="gift-vs-label">OO Reading</div><p>Attested throughout the Desert Father literature — holy elders who knew the state of a person's soul before they spoke, or who revealed sins the penitent had concealed.</p></div>
+        <div class="gift-vs prot-v"><div class="gift-vs-label">Charismatic Reading</div><p>Used in healing contexts — "I sense someone here has pain in their left knee" — as a form of diagnostic revelation.</p></div>
+      </div>
+    </div>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">1 Corinthians 12:8</div>
+        <div class="sv-txt">"For to one is given through the Spirit the utterance of wisdom, and to another the utterance of knowledge according to the same Spirit."</div>
+        <div class="labels"><span class="label oo">OO: Both gifts are "utterances" (logoi) — spoken wisdom and spoken knowledge, not mere inner states</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- X -->
+<div class="sec" id="s10">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>X. The Gift of Faith</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">10</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">1 Corinthians 12:9</div>
+        <div class="sv-txt">"...to another faith by the same Spirit..."</div>
+        <div class="labels"><span class="label oo">OO: This is not saving faith (which all believers have) but a supernatural measure of trust — enabling the believer to act with confidence in God's power in impossible situations</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Matthew 17:20</div>
+        <div class="sv-txt">"For truly, I say to you, if you have faith like a grain of mustard seed, you will say to this mountain, 'Move from here to there,' and it will move, and nothing will be impossible for you."</div>
+        <div class="labels"><span class="label oo">OO: The charismatic gift of faith — operative trust in God's power that enables extraordinary acts of prayer and intercession</span></div>
+      </div>
+    </div>
+    <p>The OO tradition associates the gift of faith especially with the martyrs — who faced death with supernatural peace and confidence — and with the great monastic founders, who built communities and churches in impossible circumstances on the strength of this gift. It is not the "name it and claim it" faith of prosperity theology; it is the faith that moves mountains by aligning itself with God's will, not by asserting human desire.</p>
+  </div>
+</div>
+
+<!-- XI -->
+<div class="sec" id="s11">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>XI. Teaching, Exhortation &amp; Evangelism</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">11</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <div class="gift-grid">
+      <div class="gift">
+        <span class="gift-icon">📖</span>
+        <div class="gift-name">Teaching (Didaskalia)</div>
+        <div class="gift-gk">Greek: διδασκαλία</div>
+        <div class="gift-oo">The Spirit-given ability to expound, explain, and apply Scripture and the Tradition with clarity and power. The primary charism of the bishop and the catechist. In the OO tradition, teaching is inseparable from the Church's liturgy and the Patristic inheritance — it is never solo interpretation.</div>
+      </div>
+      <div class="gift">
+        <span class="gift-icon">🗣️</span>
+        <div class="gift-name">Exhortation (Paraklēsis)</div>
+        <div class="gift-gk">Greek: παράκλησις — encouragement, comfort</div>
+        <div class="gift-oo">The gift of speaking words of encouragement, comfort, and moral exhortation that move people to action and fidelity. The same word used of the Holy Spirit as "the Paraclete" (John 14:16) — exhortation partakes of the Spirit's own ministry.</div>
+      </div>
+      <div class="gift">
+        <span class="gift-icon">✝️</span>
+        <div class="gift-name">Evangelism (Euangelizomenos)</div>
+        <div class="gift-gk">Greek: εὐαγγελιστής — herald of good news</div>
+        <div class="gift-oo">The Ephesians 4:11 gift — Spirit-given ability to proclaim the Gospel effectively to the unconverted. Not all are evangelists (Eph 4:11 distinguishes evangelists from pastors and teachers), but the gift is essential for the Church's mission. The great OO missionary saints — Frumentius of Ethiopia, Gregory the Illuminator of Armenia, Thomas in India — exemplify this gift.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- XII -->
+<div class="sec" id="s12">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>XII. Helps, Giving, Leadership &amp; Mercy</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">12</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>The Romans 12 gifts are often overlooked in discussions of spiritual gifts because they are less spectacular than tongues and miracles. But for the OO tradition, these are the gifts that constitute the daily texture of the Spirit's life in the Church — and they are no less supernatural for being less dramatic.</p>
+    <div class="gift-grid">
+      <div class="gift">
+        <span class="gift-icon">🤝</span>
+        <div class="gift-name">Helps / Service</div>
+        <div class="gift-gk">Greek: antilēmpsis (1 Cor 12:28); diakonia (Rom 12:7)</div>
+        <div class="gift-oo">The gift of practical assistance — supporting others' ministries, meeting practical needs with supernatural effectiveness. The deaconal gift. In the OO tradition, the diaconate is precisely the institutionalization of this charism within the ordained ministry.</div>
+      </div>
+      <div class="gift">
+        <span class="gift-icon">💰</span>
+        <div class="gift-name">Giving</div>
+        <div class="gift-gk">Greek: metadidous — sharing</div>
+        <div class="gift-oo">The Spirit-given impulse and ability to give generously and effectively. Not simply donating money but knowing where, when, and how much to give in a way that transforms situations. The OO tradition's emphasis on almsgiving as a spiritual discipline is the communal expression of this gift.</div>
+      </div>
+      <div class="gift">
+        <span class="gift-icon">🏛️</span>
+        <div class="gift-name">Leadership / Administration</div>
+        <div class="gift-gk">Greek: proistamenos (Rom 12:8); kubernēsis (1 Cor 12:28)</div>
+        <div class="gift-oo">The gift of governing and directing the community with wisdom. Kubernēsis is the navigator's art — steering a ship through complex waters. In the OO tradition, this is the gift of the bishop and abbot — those who govern the Church and the monastery with the Spirit's wisdom.</div>
+      </div>
+      <div class="gift">
+        <span class="gift-icon">❤️</span>
+        <div class="gift-name">Mercy</div>
+        <div class="gift-gk">Greek: eleon — compassionate action</div>
+        <div class="gift-oo">The Spirit-given capacity to show compassion with cheerfulness — particularly to those who are suffering, marginalized, or difficult. The gift of the hospital-founder, the prison visitor, the stranger-welcomer. Abundantly attested in OO monastic and social history.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- XIII -->
+<div class="sec" id="s13">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>XIII. Cessationism vs. Continuationism — The OO Position</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">13</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>The debate between cessationism and continuationism — whether miraculous gifts ceased after the apostolic age — is a distinctively Protestant debate. The Oriental Orthodox tradition stands outside it: it has never taught cessationism, and it has never needed the modern Pentecostal-Charismatic corrective to cessationism, because it never lost the genuine gifts in the first place.</p>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">1 Corinthians 13:8–10</div>
+        <div class="sv-txt">"Love never ends. As for prophecies, they will pass away; as for tongues, they will cease... when the perfect comes, the partial will pass away."</div>
+        <div class="labels"><span class="label prot">Cessationist: "The perfect" = the completed NT canon — gifts ceased when Scripture was finished</span><span class="label oo">OO: "The perfect" = the eschaton — the fullness of the Kingdom at Christ's return. Until then, the gifts continue.</span><span class="label ctx">Context: v.12 — "then I shall know fully, even as I have been fully known" — this is the beatific vision, not the canon</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Ephesians 4:11–13</div>
+        <div class="sv-txt">"And he gave the apostles, the prophets, the evangelists, the shepherds and teachers... until we all attain to the unity of the faith and of the knowledge of the Son of God, to mature manhood..."</div>
+        <div class="labels"><span class="label oo">OO: The gifts are given "until" full maturity and unity — which has not been reached. They continue.</span><span class="label prot">Cessationist: "Apostles and prophets" in the foundational sense ceased — ongoing offices remain</span></div>
+      </div>
+    </div>
+    <p>The OO position is unambiguously continuationist — but it is a <em>sober, patristic, sacramental continuationism</em>, not the emotionally-driven, experience-centered continuationism of the Charismatic movement. The gifts have never ceased in the Church; they have been exercised in every generation — primarily through the sacraments, the holy persons recognized by the Church, and the ordinary faithful in their various callings.</p>
+    <div class="fc-grid">
+      <div class="fc">
+        <div class="fc-name">Irenaeus of Lyon</div>
+        <div class="fc-era">c. AD 185</div>
+        <div class="fc-txt">"Those who are in truth His disciples, receiving grace from Him, do in His name perform miracles... Others still, heal the sick by laying their hands upon them, and they are made whole. Yea, moreover, as I have said, the dead even have been raised up."</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Origen of Alexandria</div>
+        <div class="fc-era">c. AD 248</div>
+        <div class="fc-txt">"And some give evidence of having received through this faith a marvelous power by the cures which they perform, invoking no other name over those who need their help than that of the God of all things."</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Cyril of Jerusalem</div>
+        <div class="fc-era">c. AD 350</div>
+        <div class="fc-txt">"The Holy Spirit gives different gifts to different people in view of the profit of each one, as he wills... One man receives the gift of wisdom, another receives faith, another receives gifts of healing."</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- XIV -->
+<div class="sec" id="s14">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>XIV. The Charismatic Movement — An OO Assessment</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">14</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>The Charismatic and Pentecostal movements — born in the early 20th century and now representing over 600 million Christians — claim to have recovered the apostolic gifts. The Oriental Orthodox tradition, which never lost them, assesses the movement with a mixture of recognition and serious concern.</p>
+    <h3>What the OO Affirms</h3>
+    <ul>
+      <li>The genuine desire for a living, Spirit-filled Christianity, not a dead formalism</li>
+      <li>The recognition that the gifts of the Spirit are real and continue</li>
+      <li>The emphasis on prayer, fasting, and expectation of God's action</li>
+      <li>Authentic healings and genuine conversions that have occurred in these movements</li>
+    </ul>
+    <h3>What the OO Critiques</h3>
+    <ul>
+      <li><strong>Tongues as evidence of Spirit baptism</strong> — no biblical or Patristic support. "Not all speak in tongues" (1 Cor 12:30). This teaching has no precedent before 1901.</li>
+      <li><strong>Absence of discernment</strong> — the movement largely lacks the sophisticated diakrisis of the Patristic tradition. Emotional excitement is often mistaken for spiritual gift.</li>
+      <li><strong>Prelest / spiritual delusion</strong> — many Charismatic manifestations (uncontrolled laughter, "Toronto blessing," "slaying in the Spirit") have no Scriptural or Patristic basis and bear the marks of prelest.</li>
+      <li><strong>Individualism</strong> — gifts are exercised outside the ordered life of the Church, without submission to apostolic authority. Paul's instructions require order and submission (1 Cor 14:32–33).</li>
+      <li><strong>Prosperity gospel</strong> — the perversion of the gift of faith into a technique for obtaining wealth, health, and success is a heresy the Fathers would have condemned without hesitation.</li>
+    </ul>
+    <blockquote>"The spirits of prophets are subject to prophets. For God is not a God of confusion but of peace."<cite>— 1 Corinthians 14:32–33</cite></blockquote>
+  </div>
+</div>
+
+<!-- XV -->
+<div class="sec" id="s15">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>XV. The Gifts in the OO Tradition — Where Are They?</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">15</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>If the gifts continue, where are they in the Oriental Orthodox churches? The OO tradition has never organized healing rallies or tongues-speaking services — yet it has produced an extraordinary abundance of spiritual gifts across every generation. Here is where the discerning eye finds them:</p>
+    <ul>
+      <li><strong>In the sacraments:</strong> Healing in Holy Unction; prophecy in the authoritative teaching of bishops; wisdom in Confession; discernment in the spiritual father's counsel; all gifts mediated through the living Body of Christ.</li>
+      <li><strong>In the saints:</strong> Every generation of the OO churches has produced holy persons credited with gifts of healing, prophecy, knowledge, miracles, and discernment — from Anthony the Great and Pachomius to Yared of Ethiopia, Gregory the Illuminator of Armenia, and modern figures like Pope Kyrillos VI of Alexandria (1902–1971), whose documented miracles of healing and prophecy are attested by thousands.</li>
+      <li><strong>In the monasteries:</strong> The desert tradition — Coptic, Syrian, Ethiopian, Armenian — has always been the primary locus of the charismatic life in the OO churches. The monastery is not a flight from the world but the spiritual powerhouse that sustains the entire Church's life in the Spirit.</li>
+      <li><strong>In the faithful:</strong> The daily practice of the Agpeya (Coptic Hours), fasting, almsgiving, and holy living among ordinary OO Christians is itself an expression of the Spirit's gifts of faith, mercy, and service — unpretentious, sustained, and real.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- XVI -->
+<div class="sec" id="s16">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>XVI. Protestant Objections &amp; Orthodox Responses</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">16</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <div class="obj">
+      <div class="obj-hd" onclick="tobj(this)">
+        <strong>Objection 1 (Cessationist): The miraculous gifts ceased with the apostles — 1 Corinthians 13:10 says they pass away when "the perfect" comes, meaning the completed canon.</strong>
+        <span class="obj-arr">▶</span>
+      </div>
+      <div class="obj-body">
+        <p>When the NT was completed, the foundation was laid. Miraculous gifts were scaffolding — now removed since the building is done.</p>
+        <div class="obj-resp">
+          <strong>Orthodox Response</strong>
+          <p>"The perfect" in 1 Corinthians 13:10–12 cannot mean the completed canon. Paul describes it as the state in which "I shall know fully, even as I have been fully known" — complete, face-to-face knowledge of God. This is the beatific vision, the eschaton, not the closing of the biblical canon. Moreover, the Patristic witnesses — Irenaeus (c. 185), Origen (c. 248), Cyril of Jerusalem (c. 350) — all describe miraculous gifts as operative in their own times, long after the apostles. If gifts ceased with the last apostle (d. c. 100), these Fathers were either lying or deluded. The cessationist position has no Patristic support whatsoever. It was developed by Protestant theologians in the 17th century to explain the absence of gifts in Reformed churches — not as a positive scriptural doctrine.</p>
+        </div>
+      </div>
+    </div>
+    <div class="obj">
+      <div class="obj-hd" onclick="tobj(this)">
+        <strong>Objection 2 (Charismatic): The OO church has lost the gifts by relying on ritual rather than Spirit-led worship. Liturgy quenches the Spirit.</strong>
+        <span class="obj-arr">▶</span>
+      </div>
+      <div class="obj-body">
+        <p>The OO's formal, liturgical worship suppresses genuine Spirit-manifestation. Real Spirit-filled churches are spontaneous and free.</p>
+        <div class="obj-resp">
+          <strong>Orthodox Response</strong>
+          <p>This objection assumes the Holy Spirit operates primarily through emotional spontaneity — an assumption nowhere found in Scripture. The Spirit descended on the structured Passover Seder at the Last Supper. The Spirit filled the highly ordered Temple worship. The four living creatures of Revelation 4 repeat "Holy, holy, holy" in a perfectly fixed liturgical pattern — and this is the highest worship in the universe. The OO church has produced an extraordinary stream of spiritual gifts across two millennia, centered precisely in its sacramental and liturgical life. The gifts are not absent — they are where they have always been: in the sacraments, in the saints, in the ordered Body of Christ. The Charismatic movement, by contrast, is 120 years old and already showing the signs of spiritual inflation and doctrinal confusion that the Fathers predicted when gifts are divorced from the ordered Church.</p>
+        </div>
+      </div>
+    </div>
+    <div class="obj">
+      <div class="obj-hd" onclick="tobj(this)">
+        <strong>Objection 3: Speaking in tongues is the sign that you have been baptized in the Holy Spirit — this is what Acts shows.</strong>
+        <span class="obj-arr">▶</span>
+      </div>
+      <div class="obj-body">
+        <p>Acts 2, Acts 10, and Acts 19 all show tongues accompanying the outpouring of the Spirit — establishing a pattern that tongues signals Spirit baptism.</p>
+        <div class="obj-resp">
+          <strong>Orthodox Response</strong>
+          <p>Acts records three instances of tongues at Pentecost — and several conversions and Spirit-fillings where no tongues are mentioned (Acts 8:17; Acts 9:17–18; Acts 16:15; Acts 16:33). If tongues were the universal sign, why does Paul say "not all speak in tongues" (1 Cor 12:30)? Paul explicitly denies that any single gift is the universal mark of Spirit-baptism — instead listing the variety of gifts given to different members (1 Cor 12:4–11). The three Acts passages are historically unique occasions: Pentecost (founding of the Jewish church), Cornelius (founding of the Gentile church), and Ephesus (correction of an incomplete baptism). They are not a repeatable pattern for every conversion — any more than the earthquake at Paul's prison (Acts 16:26) means earthquakes should accompany every church service.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- XVII -->
+<div class="sec" id="s17">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>XVII. Frequently Asked Questions</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">17</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <div class="fi">
+      <div class="fi-hd" onclick="tf(this)">
+        <strong>Can an OO Christian speak in tongues?</strong>
+        <span class="fi-arr">▶</span>
+      </div>
+      <div class="fi-body">
+        <p>If God grants the genuine gift — the miraculous ability to speak in a human language one has not learned — yes. The OO affirms the reality of the gift. What the OO does not affirm is the Pentecostal doctrine that a specific form of ecstatic utterance is the necessary mark of Spirit-baptism, or that all Christians should seek and expect this gift. The OO Christian who genuinely receives a miraculous linguistic gift would be expected to use it in submission to the Church's pastoral authority, not as a personal spiritual experience pursued for its own sake.</p>
+      </div>
+    </div>
+    <div class="fi">
+      <div class="fi-hd" onclick="tf(this)">
+        <strong>Does the OO church have healing services?</strong>
+        <span class="fi-arr">▶</span>
+      </div>
+      <div class="fi-body">
+        <p>Not in the Pentecostal sense. The OO form of healing service is the sacrament of Holy Unction — a solemn liturgical rite administered by priests, in which the sick person is anointed with blessed oil and the Church's prayers are offered for their healing. In the Coptic Church, Unction is often administered communally on Holy Wednesday (the Wednesday of Holy Week). This is not a prayer rally or a healing crusade — it is the sacramental healing ministry of the Church as instituted by the apostles (James 5:14–15).</p>
+      </div>
+    </div>
+    <div class="fi">
+      <div class="fi-hd" onclick="tf(this)">
+        <strong>What is the OO view of Pentecostalism?</strong>
+        <span class="fi-arr">▶</span>
+      </div>
+      <div class="fi-body">
+        <p>The OO views Pentecostalism with a mixture of sympathy and serious concern. The desire for a living, experiential faith is entirely understandable — and in many Protestant churches, cessationism has produced a dry, intellectualized Christianity that genuinely lacks the Spirit's evident presence. Pentecostalism is, in part, a reaction to this failure. However, the Pentecostal solution — making tongues the necessary sign, encouraging unordered congregational manifestations, and divorcing charismatic experience from the apostolic and sacramental life of the Church — creates new and serious problems. The OO tradition believes the answer to dead formalism is not chaotic enthusiasm but genuine ascetic life, sacramental depth, and patient submission to the Church's patristic wisdom.</p>
+      </div>
+    </div>
+    <div class="fi">
+      <div class="fi-hd" onclick="tf(this)">
+        <strong>Are the gifts of the Spirit ranked in order of importance?</strong>
+        <span class="fi-arr">▶</span>
+      </div>
+      <div class="fi-body">
+        <p>Paul does rank the gifts in 1 Corinthians 12:28 ("first apostles, second prophets, third teachers, then miracles, then gifts of healing, helping, administrating, and various kinds of tongues") — placing tongues last. And in 1 Corinthians 14:1 he urges the Corinthians to "earnestly desire the spiritual gifts, especially that you may prophesy" — elevating prophecy above tongues in the congregational context. The OO tradition reads this as: the gifts that build up the community (prophecy, teaching, wisdom) are more desirable than the gifts that are unintelligible without interpretation (tongues). Charity — love — is above all gifts (1 Cor 13:1–3). The gift of love, expressed in a life of holiness and service, surpasses any spectacular charism.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- XVIII -->
+<div class="sec" id="s18">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>XVIII. Primary Sources &amp; Further Reading</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">18</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <h3>Scripture</h3>
+    <ul>
+      <li>1 Corinthians 12–14 — the central Pauline treatment of spiritual gifts</li>
+      <li>Romans 12:6–8 — the service gifts</li>
+      <li>Ephesians 4:11–13 — the ministry gifts</li>
+      <li>1 Peter 4:10–11 — gifts as stewardship</li>
+    </ul>
+    <h3>Patristic Sources</h3>
+    <ul>
+      <li>Irenaeus — <em>Against Heresies</em> II.32 (c. AD 185)</li>
+      <li>Origen — <em>Against Celsus</em> I.46; III.24 (c. AD 248)</li>
+      <li>Cyril of Jerusalem — <em>Catechetical Lectures</em> XVI–XVII (c. AD 350)</li>
+      <li>John Chrysostom — <em>Homilies on 1 Corinthians</em> XXIX–XXXVI (c. AD 390)</li>
+      <li>John Climacus — <em>The Ladder of Divine Ascent</em> — discernment (c. AD 600)</li>
+      <li><em>The Philokalia</em> — esp. writings of Evagrius, Makarios, Hesychios — nepsis and diakrisis</li>
+      <li><em>Sayings of the Desert Fathers</em> — the charismatic holy elders of Egypt</li>
+    </ul>
+    <h3>Modern OO and Scholarly Works</h3>
+    <ul>
+      <li>Thomas Hopko — <em>The Spirit of God</em></li>
+      <li>Sergius Bulgakov — <em>The Comforter</em> (1936)</li>
+      <li>D.A. Carson — <em>Showing the Spirit</em> (1987) — irenic cessationist critique</li>
+      <li>Gordon Fee — <em>God's Empowering Presence</em> (1994) — continuationist exegesis</li>
+      <li>Mark Cartledge — <em>Charismatic Glossolalia</em> (2002)</li>
+    </ul>
+  </div>
+</div>
+
+</div></div>
+<footer>
+  <p>THE <span>ORTHODOX LAMP</span> &nbsp;·&nbsp; Biblical, Historical &amp; Patristic Apologetics</p>
+  <p style="margin-top:.5rem;font-size:.72rem;opacity:.6;">☩ &nbsp; In the name of the Father, and of the Son, and of the Holy Spirit &nbsp; ☩</p>
+</footer>
+<script>
+function ts(h){h.closest('.sec').classList.toggle('open')}
+function tobj(h){h.closest('.obj').classList.toggle('open')}
+function tf(h){h.closest('.fi').classList.toggle('open')}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').classList.toggle('show')}
+function closeMobile(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
+window.addEventListener('scroll',()=>{const s=document.documentElement,b=document.body;const h=s.scrollHeight-s.clientHeight;document.getElementById('prog').style.width=(h>0?(s.scrollTop||b.scrollTop)/h*100:0)+'%';});
+const links=[...document.querySelectorAll('#sb-nav a')];
+const secs=[...document.querySelectorAll('.sec')];
+window.addEventListener('scroll',()=>{let c='';secs.forEach(s=>{if(window.scrollY>=s.offsetTop-120)c='#'+s.id});links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')===c));},{passive:true});
+</script>
+</body>
+</html>

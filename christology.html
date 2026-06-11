@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Miaphysitism &amp; Dyophysitism — The Orthodox Lamp</title>
+<style>
+:root{--gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;--bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--tx:#e8e0d0;--mu:#a09880;--red:#8b2020;--br:#2a2a2a;--bg5:#3a2e10;--sidebar-w:270px;--mia:#1a3060;--mia-b:#3060c0;--dyo:#2a1a40;--dyo-b:#8060c0;--nes:#1a2510;--nes-b:#4a7030;--eut:#3a1515;--eut-b:#a03030}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.7;display:flex;flex-direction:column;min-height:100vh}
+a{color:var(--gold);text-decoration:none}
+a:hover{color:var(--gl)}
+
+#prog{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--gd),var(--gold),var(--gl));z-index:9999;transition:width .1s}
+
+#sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:100;display:flex;flex-direction:column;transition:transform .3s}
+#sidebar header{padding:1.4rem 1.2rem 1rem;border-bottom:1px solid var(--br)}
+.sb-cross{font-size:1.3rem;color:var(--gold);display:block;text-align:center;margin-bottom:.3rem}
+.sb-title{font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gl);text-align:center;line-height:1.3}
+.sb-sub{font-size:.62rem;color:var(--mu);text-align:center;margin-top:.25rem;font-style:italic}
+nav{padding:.8rem 0;flex:1}
+nav a{display:block;padding:.42rem 1.2rem;font-size:.78rem;color:var(--mu);transition:color .15s,background .15s;border-left:2px solid transparent;line-height:1.4}
+nav a:hover{color:var(--tx);background:var(--bg3)}
+nav a.active{color:var(--gl);border-left-color:var(--gold);background:var(--bg5)}
+.sb-search{padding:.8rem 1rem;border-top:1px solid var(--br)}
+.sb-search input{width:100%;background:var(--bg3);border:1px solid var(--br);border-radius:5px;padding:.4rem .7rem;color:var(--tx);font-size:.78rem;outline:none}
+.sb-search input:focus{border-color:var(--gd)}
+
+#main{margin-left:var(--sidebar-w);flex:1;display:flex;flex-direction:column}
+#mob-bar{display:none;position:fixed;top:0;left:0;right:0;height:48px;background:var(--bg2);border-bottom:1px solid var(--br);align-items:center;padding:0 1rem;z-index:99}
+#mob-bar .mb-title{font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gl);flex:1;text-align:center}
+#ham{background:none;border:none;color:var(--gold);font-size:1.4rem;cursor:pointer;padding:.3rem}
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:99}
+#overlay.show{display:block}
+
+.hero{text-align:center;padding:4.5rem 1.5rem 3rem;background:linear-gradient(180deg,var(--bg2) 0%,var(--bg) 100%);border-bottom:1px solid var(--br);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(201,168,76,.07) 0%,transparent 70%);pointer-events:none}
+.si{font-size:2rem;color:var(--gold);display:block;margin-bottom:.5rem}
+.st{font-size:clamp(1.5rem,4vw,2.4rem);font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--tx);line-height:1.2}
+.st span{color:var(--gold)}
+.ss{font-size:1rem;color:var(--gl);margin:.6rem 0 .3rem;font-weight:700;letter-spacing:.04em}
+.tg{font-size:.85rem;color:var(--mu);font-style:italic;margin-top:.4rem}
+.orn{color:var(--gold);font-size:.9rem;letter-spacing:.4em;margin-top:1rem;opacity:.7}
+
+.content{max-width:860px;margin:0 auto;padding:3rem 2rem 5rem;flex:1}
+
+.sec{border:1px solid var(--br);border-radius:8px;margin-bottom:1.2rem;overflow:hidden;background:var(--bg2)}
+.sec-h{width:100%;background:none;border:none;padding:1.1rem 1.4rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--tx);font-family:'Georgia',serif;font-size:1rem;font-weight:700;text-align:left;transition:background .2s}
+.sec-h:hover{background:var(--bg3)}
+.sec-h .sec-num{color:var(--gold);font-size:.8rem;font-weight:700;letter-spacing:.1em;margin-right:.7rem;min-width:2.2rem}
+.sec-h .arr{color:var(--gold);transition:transform .3s;font-size:.9rem}
+.sec.open .arr{transform:rotate(180deg)}
+.sec-b{display:none;padding:1.4rem;border-top:1px solid var(--br)}
+.sec.open .sec-b{display:block}
+
+h3{font-size:1rem;color:var(--gl);margin:1.4rem 0 .6rem;letter-spacing:.03em}
+h3:first-child{margin-top:0}
+p{margin-bottom:.9rem;font-size:.92rem}
+ul,ol{margin:.6rem 0 .9rem 1.4rem;font-size:.92rem}
+li{margin-bottom:.3rem}
+blockquote{border-left:3px solid var(--gold);padding:.6rem 1rem;background:var(--bg3);border-radius:0 5px 5px 0;margin:.8rem 0;font-style:italic;font-size:.9rem;color:var(--gl)}
+
+/* Glossary terms */
+.gt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.8rem;margin:.8rem 0}
+.gt{background:var(--bg3);border:1px solid var(--br);border-radius:7px;padding:.9rem 1rem}
+.gt-term{font-size:.82rem;font-weight:700;color:var(--gold);letter-spacing:.06em;margin-bottom:.2rem}
+.gt-grk{font-size:.75rem;color:var(--mu);font-style:italic;margin-bottom:.4rem}
+.gt-def{font-size:.82rem;color:var(--tx);line-height:1.5}
+
+/* Comparison grid */
+.comp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin:1rem 0}
+.comp-card{border-radius:8px;padding:1rem 1.1rem;border:1px solid var(--br)}
+.comp-card.mia{background:var(--mia);border-color:var(--mia-b)}
+.comp-card.dyo{background:var(--dyo);border-color:var(--dyo-b)}
+.comp-card.nes{background:var(--nes);border-color:var(--nes-b)}
+.comp-card.eut{background:var(--eut);border-color:var(--eut-b)}
+.comp-card h4{font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem}
+.comp-card.mia h4{color:#8ab0ff}
+.comp-card.dyo h4{color:#b090ff}
+.comp-card.nes h4{color:#80b060}
+.comp-card.eut h4{color:#e07070}
+.comp-card p{font-size:.82rem;line-height:1.5}
+
+/* Scripture cards with dual interpretation */
+.sv{background:var(--bg3);border:1px solid var(--br);border-radius:7px;padding:1rem 1.2rem;margin:.7rem 0}
+.sv .ref{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+.sv .txt{font-size:.9rem;font-style:italic;line-height:1.6;margin-bottom:.5rem}
+.sv .mia-note{background:var(--mia);border:1px solid var(--mia-b);border-radius:5px;padding:.5rem .7rem;font-size:.8rem;margin:.4rem 0}
+.sv .dyo-note{background:var(--dyo);border:1px solid var(--dyo-b);border-radius:5px;padding:.5rem .7rem;font-size:.8rem;margin:.4rem 0}
+.labels{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.4rem}
+.labels span{font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.15rem .5rem;border-radius:3px}
+.labels .mia{background:var(--mia);color:#8ab0ff;border:1px solid var(--mia-b)}
+.labels .dyo{background:var(--dyo);color:#b090ff;border:1px solid var(--dyo-b)}
+.labels .ctx{background:#1a1a3a;color:#8a8adf;border:1px solid #2a2a6a}
+.labels .pl{background:#3a2e10;color:#c9a84c;border:1px solid #5a4a20}
+
+/* Anathema cards */
+.ana{background:var(--eut);border:1px solid var(--eut-b);border-radius:7px;padding:.9rem 1.1rem;margin:.6rem 0}
+.ana-num{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#e07070;margin-bottom:.3rem}
+.ana-txt{font-size:.88rem;font-style:italic;line-height:1.6}
+
+/* Father cards */
+.fc{background:var(--bg3);border-left:3px solid var(--gold);border-radius:0 7px 7px 0;padding:1rem 1.2rem;margin:.7rem 0}
+.fc .fn{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.2rem}
+.fc .fw{font-size:.78rem;color:var(--mu);margin-bottom:.4rem;font-style:italic}
+.fc .fq{font-size:.9rem;font-style:italic;line-height:1.6;margin-bottom:.3rem}
+
+/* Objection accordion */
+.obj{border:1px solid var(--br);border-radius:7px;margin:.7rem 0;overflow:hidden;background:var(--bg3)}
+.obj-h{width:100%;background:none;border:none;padding:.8rem 1.1rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--gl);font-family:'Georgia',serif;font-size:.88rem;font-weight:700;text-align:left}
+.obj-h:hover{background:var(--bg4)}
+.obj-h .arr{transition:transform .3s;font-size:.8rem;color:var(--gold)}
+.obj.open .arr{transform:rotate(180deg)}
+.obj-b{display:none;padding:1rem 1.1rem;border-top:1px solid var(--br);font-size:.88rem}
+.obj.open .obj-b{display:block}
+
+/* FAQ */
+.fi{border:1px solid var(--br);border-radius:7px;margin:.6rem 0;overflow:hidden}
+.fi-h{width:100%;background:var(--bg2);border:none;padding:.8rem 1.1rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--tx);font-family:'Georgia',serif;font-size:.88rem;font-weight:700;text-align:left}
+.fi-h:hover{background:var(--bg3)}
+.fi-h .arr{transition:transform .3s;font-size:.8rem;color:var(--gold)}
+.fi.open .arr{transform:rotate(180deg)}
+.fi-b{display:none;padding:1rem 1.1rem;border-top:1px solid var(--br);background:var(--bg2);font-size:.88rem}
+.fi.open .fi-b{display:block}
+
+/* Timeline */
+.timeline{border-left:2px solid var(--gd);padding-left:1.4rem;margin:1rem 0}
+.tl-item{position:relative;margin-bottom:1.2rem}
+.tl-item::before{content:'';position:absolute;left:-1.8rem;top:.45rem;width:.7rem;height:.7rem;background:var(--gold);border-radius:50%}
+.tl-date{font-size:.72rem;font-weight:700;letter-spacing:.1em;color:var(--gold);text-transform:uppercase}
+.tl-text{font-size:.88rem;color:var(--tx);margin-top:.2rem}
+
+/* Sources */
+.src-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.8rem;margin-top:.8rem}
+.src-card{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:.9rem 1rem}
+.src-card h4{font-size:.78rem;font-weight:700;color:var(--gold);margin-bottom:.4rem;letter-spacing:.06em;text-transform:uppercase}
+.src-card p,.src-card li{font-size:.8rem;color:var(--mu)}
+.src-card ul{margin-left:1rem}
+
+#btt{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--bg3);border:1px solid var(--gd);border-radius:50%;width:2.4rem;height:2.4rem;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1rem;cursor:pointer;opacity:0;transition:opacity .3s;z-index:50}
+#btt.show{opacity:1}
+
+@media(max-width:768px){
+  #sidebar{transform:translateX(-100%)}
+  #sidebar.open{transform:translateX(0)}
+  #main{margin-left:0;padding-top:48px}
+  #mob-bar{display:flex}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<div id="overlay" onclick="closeMobile()"></div>
+
+<aside id="sidebar">
+  <header>
+    <span class="sb-cross">☩</span>
+    <div class="sb-title">The Orthodox Lamp</div>
+    <div class="sb-sub">Miaphysitism &amp; Dyophysitism</div>
+  </header>
+  <nav id="nav">
+    <a href="#s1">I. Introduction</a>
+    <a href="#s2">II. Glossary of Terms</a>
+    <a href="#s3">III. The Alexandrian School</a>
+    <a href="#s4">IV. The Antiochene School</a>
+    <a href="#s5">V. Council of Nicaea (325)</a>
+    <a href="#s6">VI. Council of Ephesus (431)</a>
+    <a href="#s7">VII. Council of Chalcedon (451)</a>
+    <a href="#s8">VIII. The Oriental Orthodox Response</a>
+    <a href="#s9">IX. Cyril's Twelve Anathemas</a>
+    <a href="#s10">X. Biblical Evidence</a>
+    <a href="#s11">XI. Position Comparison Chart</a>
+    <a href="#s12">XII. Nestorius &amp; the Theotokos</a>
+    <a href="#s13">XIII. Eutyches &amp; Radical Monophysitism</a>
+    <a href="#s14">XIV. The OO Clarification</a>
+    <a href="#s15">XV. Key Church Fathers</a>
+    <a href="#s16">XVI. The Post-Chalcedonian Divide</a>
+    <a href="#s17">XVII. Modern Ecumenical Dialogues</a>
+    <a href="#s18">XVIII. Chalcedonian Objections</a>
+    <a href="#s19">XIX. Frequently Asked Questions</a>
+    <a href="#s20">XX. Sources &amp; Further Reading</a>
+  </nav>
+  <div class="sb-search">
+    <input type="text" id="srch" placeholder="Search this page…" oninput="doSearch(this.value)">
+  </div>
+</aside>
+
+<div id="main">
+  <div id="mob-bar">
+    <button id="ham" onclick="toggleSidebar()">☰</button>
+    <span class="mb-title">The Orthodox Lamp</span>
+  </div>
+
+  <div class="hero">
+    <span class="si">☩</span>
+    <h1 class="st">THE <span>ORTHODOX</span> LAMP</h1>
+    <p class="ss">Miaphysitism &amp; Dyophysitism</p>
+    <p class="tg">A Patristic Examination of the Nature of Christ</p>
+    <div class="orn">✦ ✦ ✦</div>
+  </div>
+
+  <div class="content">
+
+    <div class="sec open" id="s1">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">I.</span>Introduction: The Central Question</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <p>The most fundamental question in Christian theology — after the existence of God — is the question of who Jesus Christ is. The answer to this question divides not just Christianity from other religions, but the Oriental Orthodox churches from the Eastern Orthodox and Roman Catholic traditions to this day.</p>
+        <p>The debate turns on the precise theological language used to describe the relationship between Christ's divinity and humanity. Is Christ one nature (mia physis) or two natures (dyo physeis)? The answer one gives determines whether one is, in technical terms, a Miaphysite or a Dyophysite.</p>
+        <p>This examination traces the historical development of Christological doctrine through the great ecumenical councils, presents the primary theological positions and their defenders, examines the key scriptural evidence, and explains why the Oriental Orthodox churches — Coptic, Ethiopian, Syriac, Armenian, Malankara, and Eritrean — rejected the Council of Chalcedon (451 CE) and have maintained their position for over fifteen centuries.</p>
+        <blockquote>"Who do people say the Son of Man is?… But what about you? Who do you say I am?" — Matthew 16:13,15</blockquote>
+      </div>
+    </div>
+
+    <div class="sec" id="s2">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">II.</span>Glossary of Key Terms</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <div class="gt-grid">
+          <div class="gt">
+            <div class="gt-term">Physis</div>
+            <div class="gt-grk">φύσις — Greek: "nature"</div>
+            <div class="gt-def">The essential nature or being of something. The central disputed term: does Christ have one physis or two?</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Hypostasis</div>
+            <div class="gt-grk">ὑπόστασις — Greek: "subsistence, person"</div>
+            <div class="gt-def">Individual existence or personal subsistence. Chalcedon uses this to describe Christ's one personal identity despite two natures.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Ousia</div>
+            <div class="gt-grk">οὐσία — Greek: "essence, substance"</div>
+            <div class="gt-def">The essential being or substance. The Trinity shares one ousia; the Persons are three hypostaseis.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Miaphysitism</div>
+            <div class="gt-grk">μία φύσις — "one nature"</div>
+            <div class="gt-def">The OO position: Christ has one united nature — divine and human — united without mixture, confusion, separation, or division.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Dyophysitism</div>
+            <div class="gt-grk">δύο φύσεις — "two natures"</div>
+            <div class="gt-def">The Chalcedonian position: Christ has two complete natures — divine and human — in one Person, without confusion or change, without division or separation.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Theotokos</div>
+            <div class="gt-grk">Θεοτόκος — "God-bearer"</div>
+            <div class="gt-def">Title for Mary as "Mother of God." Affirmed at Ephesus (431) against Nestorius, who preferred Christotokos ("Christ-bearer").</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Nestorius</div>
+            <div class="gt-grk">Archbishop of Constantinople (d. c. 451)</div>
+            <div class="gt-def">Antiochene theologian whose apparent teaching of two separate persons in Christ was condemned at Ephesus (431).</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Eutyches</div>
+            <div class="gt-grk">Archimandrite of Constantinople (d. c. 456)</div>
+            <div class="gt-def">Archimandrite in Constantinople, of extreme Alexandrian sympathies, who taught that after the incarnation Christ's humanity was absorbed into divinity — true monophysitism. Condemned at Chalcedon.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Monophysitism</div>
+            <div class="gt-grk">μόνη φύσις — "sole nature"</div>
+            <div class="gt-def">The heresy that Christ had only one nature, the divine, absorbing or replacing the human. Condemned at Chalcedon. OO churches explicitly reject this.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Perichoresis</div>
+            <div class="gt-grk">περιχώρησις — "mutual indwelling"</div>
+            <div class="gt-def">The mutual interpenetration of the divine and human in Christ — a patristic concept (developed especially by later fathers such as John of Damascus) describing a reality both traditions affirm: union without confusion.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s3">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">III.</span>The Alexandrian School</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <p>The Alexandrian tradition in Christology, rooted in the theology of Athanasius and Cyril of Alexandria, emphasizes the unity of Christ's person. The starting point is the eternal Logos who took flesh: the subject of the incarnation is always and only the divine Son.</p>
+        <p>Key features of the Alexandrian approach:</p>
+        <ul>
+          <li><strong>Logos-sarx (Word-flesh) framework</strong>: The divine Logos is directly united to human flesh (sarx), forming one subject.</li>
+          <li><strong>Emphasis on unity</strong>: The union is so intimate that what is said of the human can be attributed to the divine and vice versa (communicatio idiomatum).</li>
+          <li><strong>Theotokos</strong>: Because the Logos is the subject of the incarnation, Mary rightly bears the title "Mother of God."</li>
+          <li><strong>Cyril's formula</strong>: <em>mia physis tou Theou Logou sesarkōmenē</em> — "one nature of God the Logos incarnate" — preserves Christ's unity while affirming his full humanity.</li>
+        </ul>
+
+        <div class="fc">
+          <div class="fn">Cyril of Alexandria</div>
+          <div class="fw">Second Letter to Nestorius (430 CE)</div>
+          <div class="fq">"We do not say that the nature of the Word was changed and became flesh, or that it was converted into a whole man consisting of soul and body; but rather that the Word, having personally united to himself flesh animated by a rational soul, did in an ineffable and inconceivable manner become man."</div>
+          <div class="labels"><span class="mia">Miaphysite</span><span class="pl">VERBATIM — NPNF TRANSLATION</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s4">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">IV.</span>The Antiochene School</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <p>The Antiochene tradition, associated with Theodore of Mopsuestia and later Nestorius, emphasizes the completeness and integrity of Christ's humanity. The concern is that Alexandrian language threatens to make Christ's humanity unreal or absorbed.</p>
+        <p>Key features of the Antiochene approach:</p>
+        <ul>
+          <li><strong>Logos-anthropos (Word-human) framework</strong>: The Logos assumes a complete human being, not merely a body.</li>
+          <li><strong>Emphasis on distinction</strong>: The divine and human must be kept distinct to preserve real human development, temptation, and suffering in Christ.</li>
+          <li><strong>Prosopon of union</strong>: Antiochenes sometimes speak of one "prosopon" (face/appearance) of union — a unity of personal presentation rather than of nature.</li>
+          <li><strong>Concern about theopaschism</strong>: God cannot suffer — so the Logos, strictly speaking, did not die. It was the human nature that died.</li>
+        </ul>
+
+        <div class="fc">
+          <div class="fn">Theodore of Mopsuestia</div>
+          <div class="fw">On the Incarnation (c. 390 CE)</div>
+          <div class="fq">"The natures must be distinguished — the divine impassible and eternal, the human capable of growth and suffering. It is the man in whom the Logos dwells who grew in wisdom, who was tempted, who wept at the tomb of Lazarus. We must not confuse what belongs to each nature."</div>
+          <div class="labels"><span class="dyo">Dyophysite</span><span class="pl">PARAPHRASE</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s5">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">V.</span>Council of Nicaea (325 CE)</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <p>The First Ecumenical Council was convened by Emperor Constantine to address the Arian controversy — not the nature of Christ's two natures, but the relationship of the Son to the Father. Arius taught that the Son was the first and greatest creature, subordinate to the Father: "there was a time when he was not."</p>
+        <p>Nicaea condemned Arianism and affirmed that the Son is <em>homoousios</em> (of the same substance) with the Father. This established the foundation on which all subsequent Christology builds: if the Son is truly divine, the question of how this divine Son became human takes on its full weight.</p>
+
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-date">318 CE</div>
+            <div class="tl-text">Arius begins teaching subordinationism in Alexandria</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">325 CE</div>
+            <div class="tl-text">Council of Nicaea: 318 bishops; condemns Arianism; affirms homoousios</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">381 CE</div>
+            <div class="tl-text">Council of Constantinople I: Expands Nicene Creed; affirms full divinity of Holy Spirit</div>
+          </div>
+        </div>
+
+        <p>Both Miaphysites and Chalcedonians fully affirm Nicaea. The Nicene Creed — in its expanded 381 form — is the shared foundation of all Orthodox, Catholic, and Oriental Orthodox Christianity.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s6">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">VI.</span>Council of Ephesus (431 CE)</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <p>The Third Ecumenical Council was called primarily to address the teaching of Nestorius, Archbishop of Constantinople. Nestorius opposed the title <em>Theotokos</em> ("God-bearer") for Mary, preferring <em>Christotokos</em> ("Christ-bearer"). His reasoning: Mary bore the man Christ; she did not bear the divine nature.</p>
+        <p>Cyril of Alexandria, leading the opposition, argued that Nestorius effectively divided Christ into two persons — a divine Logos and a human Jesus — which destroyed the unity of Christ and the soteriological claim that God himself, in the person of the Son, took on human nature to redeem it.</p>
+
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-date">428 CE</div>
+            <div class="tl-text">Nestorius becomes Archbishop of Constantinople; preaches against Theotokos</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">429–430 CE</div>
+            <div class="tl-text">Cyril writes his letters to Nestorius; attaches Twelve Anathemas</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">431 CE</div>
+            <div class="tl-text">Council of Ephesus: Nestorius condemned; Theotokos affirmed</div>
+          </div>
+        </div>
+
+        <p>Ephesus is accepted by all Orthodox, Catholic, and <strong>Oriental Orthodox</strong> churches. It is the Council of Chalcedon (451), not Ephesus, that divides them. The OO churches affirm Theotokos fully and condemn Nestorius.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s7">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">VII.</span>Council of Chalcedon (451 CE)</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <p>The Fourth Ecumenical Council — accepted by the Eastern Orthodox, Roman Catholic, and most Protestant traditions, but rejected by the Oriental Orthodox — produced the famous "Definition of Chalcedon," which declared that Christ is one Person in two natures:</p>
+
+        <blockquote>"We teach… one and the same Christ, Son, Lord, Only-begotten, acknowledged in two natures which undergo no confusion, no change, no division, no separation; at no point was the difference between the natures taken away through the union, but rather the property of both natures is preserved and comes together into a single person and a single subsistent being; he is not parted or divided into two persons, but is one and the same only-begotten Son, God, Word, Lord Jesus Christ."</blockquote>
+
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-date">449 CE</div>
+            <div class="tl-text">"Robber Synod" of Ephesus: Dioscorus of Alexandria rehabilitates Eutyches; Flavian of Constantinople deposed and beaten (dies from injuries)</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">450 CE</div>
+            <div class="tl-text">Emperor Theodosius II dies; new Emperor Marcian and Empress Pulcheria call a new council</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">451 CE</div>
+            <div class="tl-text">Council of Chalcedon: ~520 bishops; "two natures" definition adopted; Dioscorus of Alexandria exiled</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">451–500 CE</div>
+            <div class="tl-text">Alexandrian, Syriac, Armenian, and Ethiopian churches reject Chalcedon; schism begins</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s8">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">VIII.</span>The Oriental Orthodox Response to Chalcedon</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <p>The Oriental Orthodox churches did not reject Chalcedon out of ignorance or political convenience. Their objections were substantive and theological.</p>
+
+        <h3>1. The Formula Was Novel</h3>
+        <p>Cyril's formula — <em>mia physis tou Theou Logou sesarkōmenē</em> — had been the language of Alexandrian Orthodoxy for decades. The Chalcedonian "two natures" formula introduced new language that Cyril had specifically guarded against. OO theologians argued this amounted to a Nestorian rehabilitation.</p>
+
+        <h3>2. Dioscorus Was Unjustly Condemned</h3>
+        <p>Dioscorus of Alexandria, the leading OO figure at Chalcedon, was condemned not on doctrinal grounds but on procedural and political ones. The OO churches hold he was an orthodox bishop exiled for opposing imperial policy, not heresy.</p>
+
+        <h3>3. The Political Dimension</h3>
+        <p>The Council of Chalcedon was called by the Emperor and was deeply political. Canon 28 elevated Constantinople to second place after Rome — a purely jurisdictional decree that Alexandrian and other Eastern churches resented as an imperial power grab.</p>
+
+        <h3>4. "Two Natures" Opens the Door to Nestorianism</h3>
+        <p>OO theologians argued that saying Christ has "two natures" after the union risks implying two subjects, two agents, or two Christs — exactly the error Cyril had spent his life fighting. The language of "one nature" preserves the Christological unity that is the foundation of soteriology: it is God the Son who died for us, not a human associate of God.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s9">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">IX.</span>Cyril's Twelve Anathemas</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <p>Cyril appended Twelve Anathemas to his Third Letter to Nestorius (430 CE). These define the boundaries of Alexandrian orthodoxy and remain authoritative for the OO churches. Selected anathemas:</p>
+
+        <div class="ana">
+          <div class="ana-num">Anathema I</div>
+          <div class="ana-txt">"If anyone does not confess that Emmanuel is truly God, and therefore the Holy Virgin is the Mother of God (Theotokos), since she begot according to the flesh the Word of God made flesh — let him be anathema."</div>
+        </div>
+
+        <div class="ana">
+          <div class="ana-num">Anathema II</div>
+          <div class="ana-txt">"If anyone does not confess that the Word of God the Father was hypostatically united to flesh and is one Christ with his own flesh — the same both God and man — let him be anathema."</div>
+        </div>
+
+        <div class="ana">
+          <div class="ana-num">Anathema IV</div>
+          <div class="ana-txt">"If anyone distributes between two persons or hypostases the expressions used either in the gospels or the apostolic letters, whether spoken of Christ by the saints or by him about himself — let him be anathema."</div>
+        </div>
+
+        <div class="ana">
+          <div class="ana-num">Anathema VIII</div>
+          <div class="ana-txt">"If anyone dares to say that the man who was assumed ought to be worshipped together with God the Word, and glorified together with him, and called God as one with another — and does not rather honor Emmanuel with a single veneration and ascribe to him a single doxology, as the Word made flesh — let him be anathema."</div>
+        </div>
+
+        <div class="ana">
+          <div class="ana-num">Anathema XII</div>
+          <div class="ana-txt">"If anyone does not confess that the Word of God suffered in the flesh and was crucified in the flesh and tasted death in the flesh, and that he is the first-born from the dead as God being life and life-giving — let him be anathema."</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s10">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">X.</span>Biblical Evidence</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <p>The Christological debate is not merely philosophical — it is exegetical. Both sides appeal to the same Scriptures with differing interpretive emphases.</p>
+
+        <div class="sv">
+          <div class="ref">John 1:14</div>
+          <div class="txt">"And the Word became flesh and dwelt among us, and we have seen his glory, glory as of the only Son from the Father, full of grace and truth."</div>
+          <div class="mia-note">🔵 Miaphysite reading: The Logos himself became flesh — one subject, one nature after the union. The incarnation is a real transformation of mode of existence, not a mere association.</div>
+          <div class="dyo-note">🟣 Dyophysite reading: "Became flesh" means took on a human nature. The Logos remains fully divine; the incarnation adds a full human nature. "Became" describes assumption, not transformation.</div>
+        </div>
+
+        <div class="sv">
+          <div class="ref">Philippians 2:6–8</div>
+          <div class="txt">"…who, though he was in the form of God, did not count equality with God a thing to be grasped, but emptied himself, by taking the form of a servant, being born in the likeness of men."</div>
+          <div class="mia-note">🔵 Miaphysite reading: The self-emptying (kenosis) describes the one Christ taking on the mode of human existence. The subject throughout is the one incarnate Word.</div>
+          <div class="dyo-note">🟣 Dyophysite reading: "Emptied himself" refers to the voluntary limitation of the divine nature's prerogatives as exercised through the human nature. Two natures are required to explain the paradox.</div>
+        </div>
+
+        <div class="sv">
+          <div class="ref">Luke 2:52</div>
+          <div class="txt">"And Jesus increased in wisdom and in stature and in favor with God and man."</div>
+          <div class="mia-note">🔵 Miaphysite reading: The one Christ genuinely grew in human wisdom — the human dimension is real and complete. Growth belongs to the incarnate mode of the one nature.</div>
+          <div class="dyo-note">🟣 Dyophysite reading: This growth belongs to the human nature alone. The divine nature, being perfect, does not grow. The two-nature framework explains how Christ can grow in one dimension and be omniscient in another.</div>
+        </div>
+
+        <div class="sv">
+          <div class="ref">Hebrews 4:15</div>
+          <div class="txt">"For we do not have a high priest who is unable to sympathize with our weaknesses, but one who in every respect has been tempted as we are, yet without sin."</div>
+          <div class="mia-note">🔵 Miaphysite reading: The one incarnate Word truly experienced temptation in the flesh — the human reality is fully preserved within the united nature.</div>
+          <div class="dyo-note">🟣 Dyophysite reading: Temptation belongs specifically to the human nature. A two-nature formula explains how Christ can be genuinely tempted (human) and yet without sin (divine-human synergy).</div>
+          <div class="labels"><span class="ctx">Both traditions affirm full humanity; the dispute is in the framework of description</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s11">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XI.</span>Position Comparison Chart</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <div class="comp-grid">
+          <div class="comp-card mia">
+            <h4>Oriental Orthodox (Miaphysitism)</h4>
+            <p>One united nature — divine and human. United without mixture, confusion, separation, or division. Follows Cyril's formula. Rejects Chalcedon. Accepts Nicaea, Constantinople I, Ephesus.</p>
+          </div>
+          <div class="comp-card dyo">
+            <h4>Chalcedonian (Dyophysitism)</h4>
+            <p>Two natures — divine and human — in one Person (hypostasis). No confusion, change, division, or separation. Follows Leo's Tome and the Chalcedonian Definition. Accepts all four councils.</p>
+          </div>
+          <div class="comp-card nes">
+            <h4>Nestorianism (Condemned)</h4>
+            <p>Two natures and effectively two persons united by moral harmony. Rejects Theotokos. Condemned at Ephesus (431). Survives in the Assyrian Church of the East (which disputes the "Nestorian" label).</p>
+          </div>
+          <div class="comp-card eut">
+            <h4>Eutychianism / Monophysitism (Condemned)</h4>
+            <p>One nature after the union — the divine absorbs and replaces the human. Christ is not consubstantial with us. Condemned at Chalcedon (451). OO churches explicitly reject this position.</p>
+          </div>
+        </div>
+        <p style="margin-top:.8rem;font-size:.85rem;color:var(--mu);font-style:italic;">Note: The Oriental Orthodox emphatically distinguish Miaphysitism from Monophysitism. Miaphysitism affirms both natures fully; only the word used to describe their union differs from Chalcedonian language.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s12">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XII.</span>Nestorius and the Theotokos Controversy</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <p>Nestorius became Archbishop of Constantinople in 428 CE and almost immediately sparked controversy by opposing the title <em>Theotokos</em> for Mary. His reasoning: Mary was a human woman; she gave birth to a human being. If we say she gave birth to God, we seem to imply that God has a mother, that divinity was born in time, or that Mary predates God — all absurdities.</p>
+        <p>Cyril's response was decisive: the question is not whether Mary gave birth to the divine nature (she did not — the divine nature is eternal and uncreated), but whether the person born of Mary was God the Son. Because the subject of the incarnation is the eternal Logos, and the Logos is God, Mary rightly bears the title "God-bearer."</p>
+        <blockquote>"If anyone does not acknowledge that Emmanuel is very God, and that on this account the Holy Virgin is the Mother of God, inasmuch as in the flesh she bore the Word of God made flesh: let him be anathema." — Cyril, Anathema I</blockquote>
+        <p>The OO position holds firmly to <em>Theotokos</em>. In Coptic liturgy, Mary is called "Theotokos" dozens of times in each Divine Liturgy. The Ethiopic tradition uses <em>Weladite Amlak</em> ("Bearer of God") — a direct Ge'ez rendering of Theotokos.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s13">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XIII.</span>Eutyches and Radical Monophysitism</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <p>Eutyches (c. 378–456) was an Archimandrite in Constantinople who, in opposing Nestorianism, went to the opposite extreme. He taught that before the incarnation there were two natures, but after the union there was only one — the divine nature, which absorbed the human. The result was that Christ was <em>not</em> consubstantial with us in his humanity.</p>
+
+        <div class="fc">
+          <div class="fn">Eutyches (reported position)</div>
+          <div class="fw">As recorded at the Synod of Constantinople (448 CE)</div>
+          <div class="fq">"I confess that our Lord was of two natures before the union, but after the union I confess one nature only… I follow the teaching of the holy fathers and especially Blessed Cyril."</div>
+          <div class="labels"><span class="eut" style="background:var(--eut);color:#e07070;border:1px solid var(--eut-b);font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.15rem .5rem;border-radius:3px;">Monophysite</span><span class="pl">PARAPHRASE</span></div>
+        </div>
+
+        <p>This is precisely the position the Oriental Orthodox churches reject. Eutyches appealed to Cyril, but Cyril never denied Christ's humanity or consubstantiality with us. The OO formula — one united nature, divine and human — insists that both the divinity and humanity are real, complete, and preserved in the union. This is why "Miaphysitism" is the technically correct term for the OO position, not "Monophysitism."</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s14">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XIV.</span>The OO Clarification: Not Monophysite</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <p>One of the most persistent mischaracterizations of the Oriental Orthodox churches is the label "Monophysite" — as if the OO tradition teaches that Christ has only one nature, the divine, and his humanity was merely apparent. This is historically and theologically inaccurate.</p>
+        <p>The OO position, as articulated by Dioscorus, Severus of Antioch, and all subsequent OO theology, teaches:</p>
+        <ul>
+          <li>Christ's humanity is <strong>real, complete, and consubstantial with ours</strong></li>
+          <li>Christ's divinity is <strong>real, complete, and consubstantial with the Father</strong></li>
+          <li>These two are united <strong>without mixture, confusion, change, separation, or division</strong></li>
+          <li>The result is <strong>one Christ, one Person, one nature</strong> — the one nature of God the Logos incarnate</li>
+        </ul>
+        <p>The dispute with Chalcedon is not over whether Christ is fully divine and fully human — both sides affirm this. The dispute is over whether the word "nature" (physis) in the formula "two natures" adequately preserves the unity of Christ or risks implying two subjects.</p>
+
+        <div class="fc">
+          <div class="fn">Severus of Antioch</div>
+          <div class="fw">Letter to Sergius the Grammarian (c. 515 CE)</div>
+          <div class="fq">"We do not dissolve the union by speaking of the properties of divinity and humanity: the fire and the iron that is made red-hot are one — you can speak of the burning and the hardness as distinct, but there is only one red-hot iron. So in Christ: the properties of each nature are preserved, but there is one Christ, the incarnate Logos."</div>
+          <div class="labels"><span class="mia">Miaphysite</span><span class="pl">PARAPHRASE</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s15">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XV.</span>Key Church Fathers</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <div class="fc">
+          <div class="fn">Athanasius of Alexandria</div>
+          <div class="fw">On the Incarnation (early 4th century)</div>
+          <div class="fq">"He assumed humanity that we might become God. He manifested himself by means of a body in order that we might perceive the Mind of the unseen Father. He endured the insolence of men that we might inherit immortality."</div>
+          <div class="labels"><span class="mia">Alexandrian Foundation</span><span class="pl">PARAPHRASE</span></div>
+        </div>
+
+        <div class="fc">
+          <div class="fn">Cyril of Alexandria</div>
+          <div class="fw">Letter to the Monks of Egypt (Letter 1, 429 CE)</div>
+          <div class="fq">"I am amazed that there are some who are entirely in doubt as to whether the holy Virgin should be called Theotokos or not. For if our Lord Jesus Christ is God, how is the holy Virgin who bore him not the Mother of God?"</div>
+          <div class="labels"><span class="mia">Miaphysite</span><span class="pl">PARAPHRASE</span></div>
+        </div>
+
+        <div class="fc">
+          <div class="fn">Leo of Rome (Pope Leo I)</div>
+          <div class="fw">Tome of Leo (449 CE)</div>
+          <div class="fq">"For each form does the acts which belong to it, in communion with the other; the Word, that is, performing what belongs to the Word, and the flesh carrying out what belongs to the flesh; the one of these shines out in miracles, the other succumbs to injuries."</div>
+          <div class="labels"><span class="dyo">Chalcedonian</span><span class="pl">VERBATIM — NPNF TRANSLATION</span></div>
+        </div>
+
+        <div class="fc">
+          <div class="fn">Dioscorus of Alexandria</div>
+          <div class="fw">Defense at Chalcedon (451 CE)</div>
+          <div class="fq">"I accept the formula of Cyril: one nature of God the Logos incarnate. I do not accept the novelty of two natures after the union. To speak of two natures after the union is to divide Christ and to follow Nestorius. I stand with Nicaea, Constantinople, and Ephesus."</div>
+          <div class="labels"><span class="mia">Miaphysite</span><span class="pl">PARAPHRASE</span></div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="sec" id="s16">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XVI.</span>The Post-Chalcedonian Divide</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <p>The rejection of Chalcedon by the OO churches created one of the oldest enduring schisms in Christian history — predating by six centuries the 1054 Great Schism between Rome and Constantinople.</p>
+        <p>The Oriental Orthodox communion today comprises:</p>
+        <ul>
+          <li><strong>Coptic Orthodox Church of Alexandria</strong> — Egypt, ~15–20 million faithful</li>
+          <li><strong>Ethiopian Orthodox Tewahedo Church</strong> — ~40–50 million faithful, the world's largest OO body</li>
+          <li><strong>Eritrean Orthodox Tewahedo Church</strong> — became autocephalous in 1994</li>
+          <li><strong>Syriac Orthodox Church of Antioch</strong> — Syria, Lebanon, India diaspora</li>
+          <li><strong>Armenian Apostolic Church</strong> — Armenia and global diaspora</li>
+          <li><strong>Malankara Orthodox Syrian Church</strong> — Kerala, India (~2–2.5 million)</li>
+        </ul>
+        <p>All six churches are in full communion with one another and share the same Christological confession.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s17">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XVII.</span>Modern Ecumenical Dialogues</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <p>One of the most significant developments in twentieth-century ecumenism has been the formal dialogue between the Oriental Orthodox and Eastern Orthodox (Chalcedonian) traditions. These dialogues have produced remarkable agreements that suggest the 1,500-year-old schism may rest more on linguistic differences than substantive doctrinal disagreement.</p>
+
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-date">1964–1971</div>
+            <div class="tl-text">Informal consultations at Aarhus (1964), Bristol (1967), Geneva (1970), Addis Ababa (1971)</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">1989</div>
+            <div class="tl-text">First Agreed Statement (Anba Bishoy Monastery, Egypt): Both families "have loyally maintained the same authentic Orthodox Christological faith"</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">1990</div>
+            <div class="tl-text">Second Agreed Statement (Chambésy, Switzerland): Recommends lifting of anathemas and working toward full communion</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">Ongoing</div>
+            <div class="tl-text">Some Eastern Orthodox churches (e.g., Romanian, Antiochian) have moved toward agreement; others remain cautious</div>
+          </div>
+        </div>
+
+        <blockquote>"We have inherited from our fathers in Christ the one apostolic faith and tradition, though as Churches we have been separated from each other for centuries. As two families of Orthodox Churches long out of communion with each other we now pray and trust in God to restore that communion on the basis of the common apostolic faith of the undivided church of the first centuries." — First Agreed Statement, 1989</blockquote>
+      </div>
+    </div>
+
+    <div class="sec" id="s18">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XVIII.</span>Chalcedonian Objections &amp; OO Responses</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Miaphysitism is just Monophysitism by another name."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> The two positions are categorically distinct. Eutyches taught that Christ's humanity was absorbed by his divinity. The OO tradition insists that Christ's humanity is real, complete, and preserved in the union. The word "mia" (one) in Miaphysitism does not describe the elimination of one nature but the real, inseparable union of both. Cyril himself wrote that "two natures come together with one another, without confusion or change, in an indivisible union" (First Letter to Succensus). To call the OO tradition "Monophysite" is as inaccurate as calling Chalcedonians Nestorian.</p>
+          </div>
+        </div>
+
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Without two natures, you cannot explain Christ's real human experiences."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> The OO framework fully accounts for Christ's real human experiences. The one united nature of the incarnate Logos is a nature that includes both divinity and humanity — not mixed or confused, but genuinely united. Christ's hunger, weariness, temptation, suffering, and death are all real because his humanity is real. The OO position does not require a two-nature framework to preserve these realities — it preserves them within the one nature of the incarnate Son.</p>
+          </div>
+        </div>
+
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>⚡ "The Chalcedonian Definition has four negative safeguards — it is more precise."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> The OO tradition applies the same four safeguards — without mixture, without confusion, without division, without separation — to describe the union of Christ's divinity and humanity. The difference is that OO theology uses these safeguards to describe the union within one nature, while Chalcedonian theology uses them to describe the relationship between two natures. The content is the same; the framework differs. The 1989–1990 Agreed Statements between OO and Eastern Orthodox representatives affirm that both traditions confess the same Christ.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="sec" id="s19">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XIX.</span>Frequently Asked Questions</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>Are Oriental Orthodox and Eastern Orthodox the same?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>No. "Eastern Orthodox" refers to the Chalcedonian churches in communion with the Ecumenical Patriarch of Constantinople: Greek, Russian, Serbian, Romanian, Bulgarian, Georgian, Antiochian, etc. "Oriental Orthodox" refers to the non-Chalcedonian churches: Coptic, Ethiopian, Eritrean, Syriac, Armenian, and Malankara. Both traditions are Orthodox in the sense of holding apostolic faith and order, but they have been in formal schism since 451 CE over Christological terminology.</p>
+          </div>
+        </div>
+
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>Did the OO churches always reject Chalcedon, or did they accept it at some point?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>The rejection was immediate and never reversed. Dioscorus of Alexandria refused to sign the Chalcedonian Definition at the council itself in 451 CE. The Coptic church, the Syriac church (under Severus of Antioch), and the Armenian church rejected Chalcedon within decades of the council. The Ethiopian church rejected it through its dependence on the Coptic Patriarchate. None of these churches have formally accepted Chalcedon at any point in their history.</p>
+          </div>
+        </div>
+
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>Is the disagreement really just about words?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>This is a serious question. The 1989–1990 Agreed Statements suggest that both traditions actually confess the same Christological faith and that the schism rests primarily on terminological differences. Many theologians on both sides accept this conclusion. However, some Chalcedonians argue that the terminological difference carries a real theological weight: the two-nature formula provides a more precise framework for understanding how Christ can be both omniscient and ignorant, both impassible and suffering, both eternal and born in time. The OO response is that these paradoxes are addressed within the one-nature framework by the same logic — the difference is in how the framework is constructed, not in what it is meant to protect.</p>
+          </div>
+        </div>
+
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>Why does this matter for salvation?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>Christology is the foundation of soteriology — the doctrine of salvation. The OO tradition holds that unless it is truly God the Son who took on human flesh, suffered, died, and rose again, the redemption of humanity is not accomplished. A Christ who is a mere human associated with God (Nestorianism) cannot deify human nature. A Christ whose humanity is illusory or absorbed (Monophysitism/Docetism) did not truly enter and transform the human condition. The OO formula — one united nature, divine and human — is designed precisely to protect these soteriological realities: it is God who died for us, and he truly died as one of us.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="sec" id="s20">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XX.</span>Sources &amp; Further Reading</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <div class="src-grid">
+          <div class="src-card">
+            <h4>Primary Sources</h4>
+            <ul>
+              <li>Cyril of Alexandria, Letters and Anathemas</li>
+              <li>Leo I, Tome of Leo (449)</li>
+              <li>Chalcedonian Definition (451)</li>
+              <li>Severus of Antioch, Letters</li>
+            </ul>
+          </div>
+          <div class="src-card">
+            <h4>Patristic Collections</h4>
+            <ul>
+              <li>NPNF Series 1 &amp; 2 (Schaff &amp; Wace)</li>
+              <li>ACO (Acta Conciliorum Oecumenicorum)</li>
+              <li>Athanasius, On the Incarnation</li>
+              <li>Irenaeus, Against Heresies III</li>
+            </ul>
+          </div>
+          <div class="src-card">
+            <h4>Modern Scholarship</h4>
+            <ul>
+              <li>John Meyendorff, Christ in Eastern Christian Thought</li>
+              <li>John McGuckin, St. Cyril of Alexandria</li>
+              <li>Aloys Grillmeier, Christ in Christian Tradition (2 vols.)</li>
+              <li>Sebastian Brock, Fire from Heaven (Syriac tradition)</li>
+            </ul>
+          </div>
+          <div class="src-card">
+            <h4>OO Sources</h4>
+            <ul>
+              <li>V.C. Samuel, The Council of Chalcedon Re-examined</li>
+              <li>W.H.C. Frend, The Rise of the Monophysite Movement</li>
+              <li>Ecumenical Agreed Statements (1989, 1990)</li>
+              <li>Coptic Encyclopedia (Aziz Atiya, ed.)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+
+  <footer style="text-align:center;padding:2rem 1rem;border-top:1px solid var(--br);font-size:.8rem;color:var(--mu)">
+    <p>THE <span style="color:var(--gold)">ORTHODOX LAMP</span> &nbsp;·&nbsp; Biblical, Historical &amp; Patristic Apologetics</p>
+    <p style="margin-top:.5rem;font-size:.72rem;opacity:.6;">☩ &nbsp; In the name of the Father, and of the Son, and of the Holy Spirit &nbsp; ☩</p>
+  </footer>
+</div><!-- /main -->
+
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+function ts(h){h.closest('.sec').classList.toggle('open')}
+function tobj(h){h.closest('.obj').classList.toggle('open')}
+function tf(h){h.closest('.fi').classList.toggle('open')}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').classList.toggle('show')}
+function closeMobile(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
+
+window.addEventListener('scroll',()=>{
+  const s=document.documentElement,b=document.body;
+  const pct=(s.scrollTop||b.scrollTop)/((s.scrollHeight||b.scrollHeight)-s.clientHeight)*100;
+  document.getElementById('prog').style.width=pct+'%';
+  document.getElementById('btt').classList.toggle('show',(s.scrollTop||b.scrollTop)>300);
+});
+
+const secs=[...document.querySelectorAll('.sec')];
+const links=[...document.querySelectorAll('#nav a')];
+window.addEventListener('scroll',()=>{
+  let cur='';
+  secs.forEach(s=>{if(s.getBoundingClientRect().top<120)cur=s.id});
+  links.forEach(l=>{l.classList.toggle('active',l.getAttribute('href')==='#'+cur)});
+},{ passive:true });
+
+function doSearch(q){
+  document.querySelectorAll('.hl').forEach(e=>{
+    const p=e.parentNode;p.replaceChild(document.createTextNode(e.textContent),e);p.normalize();
+  });
+  if(!q.trim())return;
+  const re=new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi');
+  const walker=document.createTreeWalker(document.querySelector('.content'),NodeFilter.SHOW_TEXT);
+  const nodes=[];let n;
+  while((n=walker.nextNode()))nodes.push(n);
+  nodes.forEach(node=>{
+    if(!re.test(node.textContent))return;
+    re.lastIndex=0;
+    const frag=document.createDocumentFragment();
+    let last=0,m;
+    while((m=re.exec(node.textContent))!==null){
+      frag.appendChild(document.createTextNode(node.textContent.slice(last,m.index)));
+      const mark=document.createElement('mark');
+      mark.className='hl';mark.style.cssText='background:#8a6a20;color:#fff;border-radius:2px;padding:0 2px';
+      mark.textContent=m[0];frag.appendChild(mark);last=m.index+m[0].length;
+    }
+    frag.appendChild(document.createTextNode(node.textContent.slice(last)));
+    node.parentNode.replaceChild(frag,node);
+  });
+  const first=document.querySelector('.hl');if(first)first.scrollIntoView({block:'center',behavior:'smooth'});
+}
+</script>
+</body>
+</html>

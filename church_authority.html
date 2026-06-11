@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Authorial Power of the Church — The Orthodox Lamp</title>
+<style>
+:root{--gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;--bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--tx:#e8e0d0;--mu:#a09880;--red:#8b2020;--br:#2a2a2a;--bg5:#3a2e10;--sidebar-w:270px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Georgia',serif;background:var(--bg);color:var(--tx);line-height:1.75}
+a{color:var(--gold);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* Progress bar */
+#prog{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--gd),var(--gl));z-index:9999;transition:width .1s}
+
+/* Sidebar */
+#sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:100;transition:transform .3s}
+#sidebar header{padding:22px 18px 14px;border-bottom:1px solid var(--br)}
+#sidebar header .site-label{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mu);margin-bottom:4px}
+#sidebar header h2{font-size:1rem;color:var(--gold);line-height:1.3}
+#sidebar nav{padding:10px 0 80px}
+#sidebar nav a{display:block;padding:8px 18px;font-size:.82rem;color:var(--mu);border-left:3px solid transparent;transition:all .2s}
+#sidebar nav a:hover,#sidebar nav a.active{color:var(--gold);border-left-color:var(--gold);background:rgba(201,168,76,.07);text-decoration:none}
+#sidebar nav .sec-label{padding:14px 18px 4px;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:#555}
+.back-link{display:block;margin:16px 14px 0;padding:7px 12px;background:var(--bg5);border:1px solid var(--gd);border-radius:6px;font-size:.78rem;color:var(--gold);text-align:center}
+.back-link:hover{background:#4a3e18;text-decoration:none}
+
+/* Overlay */
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:90}
+#overlay.show{display:block}
+
+/* Hamburger */
+#ham{display:none;position:fixed;top:12px;left:12px;z-index:200;background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:8px 10px;cursor:pointer;flex-direction:column;gap:5px}
+#ham span{display:block;width:22px;height:2px;background:var(--gold)}
+
+/* Main */
+main{margin-left:var(--sidebar-w);padding:0 0 80px}
+.hero{background:linear-gradient(160deg,#0d0d0d 0%,#1a1308 50%,#0d0d0d 100%);border-bottom:1px solid var(--br);padding:64px 48px 48px;position:relative;overflow:hidden}
+.hero::before{content:'☦';position:absolute;right:40px;top:30px;font-size:8rem;opacity:.04;pointer-events:none}
+.hero .tag{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gd);margin-bottom:12px}
+.hero h1{font-size:2.4rem;color:var(--gold);line-height:1.2;max-width:720px;margin-bottom:14px}
+.hero p{font-size:1.05rem;color:var(--mu);max-width:680px;line-height:1.8}
+
+/* Sections */
+.content{padding:0 48px}
+.sec{border:1px solid var(--br);border-radius:10px;margin:28px 0;background:var(--bg2);overflow:hidden}
+.sec-h{display:flex;justify-content:space-between;align-items:center;padding:18px 22px;cursor:pointer;user-select:none;gap:12px}
+.sec-h:hover{background:var(--bg3)}
+.sec-h h2{font-size:1.08rem;color:var(--gold)}
+.sec-h .arr{color:var(--mu);font-size:1.1rem;transition:transform .25s;flex-shrink:0}
+.sec.open .arr{transform:rotate(180deg)}
+.sec-body{display:none;padding:22px 24px;border-top:1px solid var(--br)}
+.sec.open .sec-body{display:block}
+.sec-body p{color:var(--tx);margin-bottom:14px;font-size:.97rem}
+.sec-body p:last-child{margin-bottom:0}
+
+/* Scripture verse cards */
+.sv{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:18px 20px;margin:14px 0}
+.sv .ref{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gd);margin-bottom:8px}
+.sv .txt{font-style:italic;color:var(--tx);font-size:.97rem;margin-bottom:10px;line-height:1.7}
+.sv .interp{font-size:.85rem;color:var(--mu);line-height:1.6;border-top:1px solid var(--br);padding-top:10px}
+.labels{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.labels span{font-size:.67rem;padding:3px 8px;border-radius:20px;letter-spacing:.06em;font-family:sans-serif}
+.oo{background:rgba(201,168,76,.15);color:var(--gold);border:1px solid rgba(201,168,76,.3)}
+.prot{background:rgba(100,140,200,.15);color:#8aabde;border:1px solid rgba(100,140,200,.3)}
+.ctx{background:rgba(160,152,128,.12);color:var(--mu);border:1px solid rgba(160,152,128,.25)}
+.gk{background:rgba(180,120,60,.15);color:#d4956a;border:1px solid rgba(180,120,60,.3)}
+.lat{background:rgba(120,80,160,.15);color:#b08ed4;border:1px solid rgba(120,80,160,.3)}
+
+/* Father cards */
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin:16px 0}
+.fc{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:18px}
+.fc .fname{font-size:.95rem;color:var(--gold);font-weight:bold;margin-bottom:4px}
+.fc .fdate{font-size:.72rem;color:var(--mu);margin-bottom:10px;font-family:sans-serif}
+.fc .fq{font-style:italic;font-size:.88rem;color:var(--tx);line-height:1.65;border-left:3px solid var(--gd);padding-left:12px}
+.fc .fsrc{font-size:.72rem;color:var(--mu);margin-top:8px;font-family:sans-serif}
+
+/* Glossary */
+.gt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin:16px 0}
+.gt{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:16px}
+.gt .term{font-size:.92rem;color:var(--gold);font-weight:bold;margin-bottom:2px}
+.gt .gterm{font-size:.78rem;color:#d4956a;font-style:italic;margin-bottom:8px;font-family:sans-serif}
+.gt .def{font-size:.85rem;color:var(--tx);line-height:1.6}
+
+/* Comparison grid */
+.comp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin:16px 0}
+.comp-card{border-radius:8px;padding:18px;border:1px solid var(--br)}
+.comp-card.oo-c{background:rgba(201,168,76,.08);border-color:rgba(201,168,76,.3)}
+.comp-card.prot-c{background:rgba(100,140,200,.08);border-color:rgba(100,140,200,.25)}
+.comp-card.rc-c{background:rgba(180,80,80,.08);border-color:rgba(180,80,80,.25)}
+.comp-card h4{font-size:.88rem;color:var(--gold);margin-bottom:10px;text-transform:uppercase;letter-spacing:.07em}
+.comp-card.prot-c h4{color:#8aabde}
+.comp-card.rc-c h4{color:#d47070}
+.comp-card ul{list-style:none;padding:0}
+.comp-card ul li{font-size:.84rem;color:var(--tx);padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05);line-height:1.5}
+.comp-card ul li:last-child{border-bottom:none}
+.comp-card ul li::before{content:'→ ';color:var(--gd)}
+
+/* Council cards */
+.council-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin:16px 0}
+.council{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:18px;border-top:3px solid var(--gd)}
+.council .cname{font-size:.93rem;color:var(--gold);font-weight:bold;margin-bottom:3px}
+.council .cdate{font-size:.72rem;color:var(--mu);margin-bottom:8px;font-family:sans-serif}
+.council .cdesc{font-size:.85rem;color:var(--tx);line-height:1.6}
+.council .cissue{font-size:.78rem;color:var(--mu);margin-top:8px;border-top:1px solid var(--br);padding-top:8px;font-family:sans-serif}
+
+/* Succession chain */
+.succ-chain{margin:16px 0}
+.succ-item{display:flex;align-items:flex-start;gap:14px;margin:10px 0}
+.succ-dot{width:12px;height:12px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:5px}
+.succ-line{width:2px;background:var(--br);margin-left:5px;height:30px;margin-top:-8px}
+.succ-text{flex:1}
+.succ-text strong{color:var(--gold);font-size:.9rem}
+.succ-text p{font-size:.84rem;color:var(--mu);line-height:1.5}
+
+/* Pillar visual */
+.pillar-box{background:var(--bg5);border:1px solid var(--gd);border-radius:10px;padding:28px;text-align:center;margin:18px 0}
+.pillar-box .pil-title{font-size:1.3rem;color:var(--gold);margin-bottom:8px}
+.pillar-box .pil-ref{font-size:.78rem;color:var(--mu);margin-bottom:18px;font-family:sans-serif}
+.pillar-box .pil-quote{font-style:italic;font-size:1.05rem;color:var(--tx);line-height:1.8;max-width:600px;margin:0 auto 16px}
+.pillar-cols{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;text-align:left}
+.pillar-col h4{font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gd);margin-bottom:8px}
+.pillar-col p{font-size:.85rem;color:var(--tx);line-height:1.6}
+
+/* Objection accordions */
+.obj{border:1px solid var(--br);border-radius:8px;margin:12px 0;background:var(--bg3);overflow:hidden}
+.obj-h{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;cursor:pointer;user-select:none;gap:10px}
+.obj-h:hover{background:var(--bg4)}
+.obj-h h3{font-size:.92rem;color:#ccc}
+.obj-h .arr{color:var(--mu);transition:transform .25s;flex-shrink:0}
+.obj.open .obj-h .arr{transform:rotate(180deg)}
+.obj-body{display:none;padding:16px 18px;border-top:1px solid var(--br)}
+.obj.open .obj-body{display:block}
+.obj-body p{font-size:.88rem;color:var(--tx);line-height:1.7;margin-bottom:10px}
+.obj-body p:last-child{margin-bottom:0}
+.obj-body .sv{margin:10px 0}
+
+/* FAQ */
+.fi{border:1px solid var(--br);border-radius:8px;margin:10px 0;background:var(--bg3);overflow:hidden}
+.fi-h{display:flex;justify-content:space-between;align-items:center;padding:13px 18px;cursor:pointer;user-select:none;gap:10px}
+.fi-h:hover{background:var(--bg4)}
+.fi-h h3{font-size:.88rem;color:var(--tx)}
+.fi-h .arr{color:var(--mu);transition:transform .25s;flex-shrink:0}
+.fi.open .fi-h .arr{transform:rotate(180deg)}
+.fi-body{display:none;padding:14px 18px;border-top:1px solid var(--br)}
+.fi.open .fi-body{display:block}
+.fi-body p{font-size:.85rem;color:var(--tx);line-height:1.7;margin-bottom:8px}
+.fi-body p:last-child{margin-bottom:0}
+
+/* Note box */
+.note{background:rgba(138,106,32,.1);border:1px solid var(--gd);border-radius:8px;padding:16px 18px;margin:14px 0;font-size:.87rem;color:var(--tx);line-height:1.7}
+.note strong{color:var(--gold)}
+
+/* Key text highlight */
+.key-text{background:var(--bg5);border-left:4px solid var(--gold);padding:16px 20px;border-radius:0 8px 8px 0;margin:14px 0;font-size:.95rem;color:var(--tx);line-height:1.75;font-style:italic}
+
+/* Responsive */
+@media(max-width:768px){
+  #sidebar{transform:translateX(-100%)}
+  #sidebar.open{transform:translateX(0)}
+  #ham{display:flex}
+  main{margin-left:0}
+  .hero{padding:56px 20px 32px}
+  .hero h1{font-size:1.6rem}
+  .content{padding:0 16px}
+  .pillar-cols{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<button id="ham" onclick="toggleSidebar()" aria-label="Menu">
+  <span></span><span></span><span></span>
+</button>
+<div id="overlay" onclick="closeMobile()"></div>
+
+<nav id="sidebar">
+  <header>
+    <div class="site-label">The Orthodox Lamp</div>
+    <h2>The Authorial Power of the Church</h2>
+  </header>
+  <a class="back-link" href="index.html">&#8592; Back to Library</a>
+  <nav>
+    <div class="sec-label">Foundation</div>
+    <a href="#foundation">1 Timothy 3:15 — Pillar of Truth</a>
+    <a href="#keys">Matthew 16 — Keys of the Kingdom</a>
+    <a href="#binding">Matthew 18 — Binding &amp; Loosing</a>
+    <a href="#acts15">Acts 15 — Jerusalem Council</a>
+    <div class="sec-label">Authority in Practice</div>
+    <a href="#canon">The Church Defined the Canon</a>
+    <a href="#succession">Apostolic Succession</a>
+    <a href="#councils">The Ecumenical Councils</a>
+    <a href="#interpretation">Interpretive Authority</a>
+    <div class="sec-label">Comparative Theology</div>
+    <a href="#comparison">OO vs. Sola Scriptura vs. Papalism</a>
+    <a href="#scripture_church">Scripture and Church Together</a>
+    <div class="sec-label">Objections &amp; FAQ</div>
+    <a href="#objections">Protestant Objections</a>
+    <a href="#faq">FAQ</a>
+    <a href="#glossary">Glossary</a>
+  </nav>
+</nav>
+
+<main>
+<div class="hero">
+  <div class="tag">The Orthodox Lamp</div>
+  <h1>The Authorial Power of the Church</h1>
+  <p>Christ did not leave a book — He founded a Church. The Holy Spirit guides not individual readers but the Body of Christ assembled in council, preserving the Faith once delivered to the saints. This is the pillar and bulwark of the truth.</p>
+</div>
+
+<div class="content">
+
+<!-- FOUNDATION -->
+<div id="foundation" class="sec open">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>1 Timothy 3:15 — The Church as Pillar and Bulwark of Truth</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <div class="pillar-box">
+      <div class="pil-title">The Foundational Text</div>
+      <div class="pil-ref">1 Timothy 3:15 — Written c. AD 62–65</div>
+      <div class="pil-quote">"…so that you may know how one ought to behave in the household of God, which is the Church of the living God, the pillar and bulwark of the truth."</div>
+      <div class="pillar-cols">
+        <div class="pillar-col">
+          <h4>στῦλος (stulos) — Pillar</h4>
+          <p>A load-bearing column that holds up the structure above it. The Church upholds truth — truth does not float free of the Church, waiting to be discovered by individual readers.</p>
+        </div>
+        <div class="pillar-col">
+          <h4>ἑδραίωμα (hedraiōma) — Bulwark</h4>
+          <p>A foundation or stay that prevents collapse. The Church stabilizes truth against error, heresy, and private misinterpretation. It is the ground of certainty, not Scripture alone.</p>
+        </div>
+      </div>
+    </div>
+    <p>Notice what Paul does not say. He does not say the Bible is the pillar and bulwark of truth — he says the <em>Church</em> is. This does not pit Scripture against the Church; both are authoritative. But the living organism through which truth is preserved, proclaimed, and defended is the Church, not a text floating independently of its community.</p>
+    <p>This was the universal understanding of the pre-Reformation church. Patristic writers cited this verse consistently when defending the authority of councils and the episcopate. It was not a Catholic invention — it was the received tradition of East and West.</p>
+    <div class="sv">
+      <div class="ref">Acts 20:28 — Paul to the Ephesian Elders</div>
+      <div class="txt">"Pay careful attention to yourselves and to all the flock, in which the Holy Spirit has made you overseers, to care for the church of God, which he obtained with his own blood."</div>
+      <div class="interp">The Holy Spirit appoints overseers (ἐπισκόπους — bishops) to guard the Church. Authority over God's flock is pneumatically conferred, not self-assumed.</div>
+      <div class="labels"><span class="oo">Oriental Orthodox</span><span class="ctx">Ecclesiology</span></div>
+    </div>
+    <div class="sv">
+      <div class="ref">John 16:13 — Promise of the Spirit</div>
+      <div class="txt">"When the Spirit of truth comes, he will guide you into all the truth…"</div>
+      <div class="interp">The "you" is plural — addressed to the Apostles and their successors as a body, not to every individual Christian privately. The Spirit's guidance is ecclesial, not individualistic.</div>
+      <div class="labels"><span class="oo">Oriental Orthodox</span><span class="gk">Greek: ὑμᾶς (hymas) — plural</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- MATTHEW 16 -->
+<div id="keys" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>Matthew 16:18–19 — The Keys of the Kingdom</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <div class="sv">
+      <div class="ref">Matthew 16:18–19</div>
+      <div class="txt">"And I tell you, you are Peter, and on this rock I will build my church, and the gates of hell shall not prevail against it. I will give you the keys of the kingdom of heaven, and whatever you bind on earth shall be bound in heaven, and whatever you loose on earth shall be loosed in heaven."</div>
+      <div class="interp">The Church is Christ's own — He builds it, He owns it, and He promises it indestructibility. The keys represent governing authority, entrusted first to the Apostolic college.</div>
+      <div class="labels"><span class="oo">Oriental Orthodox</span><span class="ctx">Apostolic Authority</span></div>
+    </div>
+    <p>The Oriental Orthodox reading of this passage is neither Roman Catholic nor Protestant. We do not read it as granting permanent monarchical supremacy to one bishop (the Pope), nor do we dismiss it as merely Peter's personal confession. We read it ecclesiologically: <strong>Christ builds His Church on the Apostolic faith</strong>, entrusting governance to the Apostles collectively, carried forward in the episcopate.</p>
+    <p>The "keys" in Jewish tradition are administrative — they govern access and authority within the household (cf. Isaiah 22:22 — the key of David placed on Eliakim's shoulder as a type). This is an image of genuine governing authority granted to the Church's leadership.</p>
+    <div class="sv">
+      <div class="ref">Isaiah 22:22 — OT Type of the Keys</div>
+      <div class="txt">"And I will place on his shoulder the key of the house of David. He shall open, and none shall shut; and he shall shut, and none shall open."</div>
+      <div class="interp">The key of the house of David is a symbol of stewardship and administrative authority. Matthew 16 deliberately echoes this — the Church exercises stewardship over the Kingdom under Christ the King.</div>
+      <div class="labels"><span class="ctx">Typology</span><span class="oo">OT Fulfillment</span></div>
+    </div>
+    <div class="note"><strong>OO Position:</strong> The keys were given to Peter as head of the Apostolic college and, through him, to the entire episcopate in Apostolic succession. Authority belongs to the Church as a whole, exercised collegially through her bishops — not concentrated in any single bishop as a jurisdictional monarch.</div>
+  </div>
+</div>
+
+<!-- MATTHEW 18 -->
+<div id="binding" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>Matthew 18:15–20 — Binding and Loosing</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <div class="sv">
+      <div class="ref">Matthew 18:17–20</div>
+      <div class="txt">"If he refuses to listen to them, tell it to the church. And if he refuses to listen even to the church, let him be to you as a Gentile and a tax collector. Truly, I say to you, whatever you bind on earth shall be bound in heaven, and whatever you loose on earth shall be loosed in heaven… For where two or three are gathered in my name, there am I among them."</div>
+      <div class="interp">Binding and loosing authority here is given not just to Peter but to the Church assembled. The Church has genuine judicial authority over her members — including discipline, canon law, and doctrinal definition.</div>
+      <div class="labels"><span class="oo">Oriental Orthodox</span><span class="ctx">Church Discipline</span></div>
+    </div>
+    <p>Here binding and loosing extend to the full community of believers under apostolic leadership. The phrase "tell it to the church" (εἰπὲ τῇ ἐκκλησίᾳ) presupposes an actual structured body capable of rendering authoritative judgment — not a vague spiritual community where each member decides for themselves.</p>
+    <p>This passage was understood from the earliest centuries as establishing the Church's authority to:</p>
+    <ul style="margin:10px 0 14px 20px;color:var(--tx);font-size:.92rem;line-height:1.8">
+      <li>Excommunicate unrepentant sinners</li>
+      <li>Define dogma in council</li>
+      <li>Pronounce on disputed interpretations of Scripture</li>
+      <li>Regulate liturgical and canonical practice</li>
+    </ul>
+    <div class="fc-grid">
+      <div class="fc">
+        <div class="fname">St. Cyprian of Carthage</div>
+        <div class="fdate">c. 250 AD — On the Unity of the Church</div>
+        <div class="fq">"He cannot have God as his Father who does not have the Church as his Mother… Whoever is separated from the Church is joined to an adulteress."</div>
+        <div class="fsrc">De Catholicae Ecclesiae Unitate, §6</div>
+      </div>
+      <div class="fc">
+        <div class="fname">St. Ignatius of Antioch</div>
+        <div class="fdate">c. 107 AD — To the Smyrnaeans</div>
+        <div class="fq">"Wherever the bishop appears, there let the congregation be… wherever Jesus Christ is, there is the Catholic Church."</div>
+        <div class="fsrc">To the Smyrnaeans, §8</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ACTS 15 -->
+<div id="acts15" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>Acts 15 — The Jerusalem Council as the Conciliar Model</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>Acts 15 is the New Testament's own precedent for how doctrinal disputes are resolved. When controversy arose over circumcision and the Law, the Church did not appeal to private interpretation of Scripture. She convened a council.</p>
+    <div class="sv">
+      <div class="ref">Acts 15:6, 28</div>
+      <div class="txt">"The apostles and the elders were gathered together to consider this matter… For it has seemed good to the Holy Spirit and to us to lay on you no greater burden than these requirements…"</div>
+      <div class="interp">The council's decree is issued with co-authorship: "the Holy Spirit and us." This is the foundational pattern of conciliar authority — the bishops assembled in the Spirit speak with binding authority for the whole Church.</div>
+      <div class="labels"><span class="oo">Oriental Orthodox</span><span class="ctx">Conciliarity</span></div>
+    </div>
+    <p>The phrase <strong>"It seemed good to the Holy Spirit and to us"</strong> (ἔδοξεν γὰρ τῷ πνεύματι τῷ ἁγίῳ καὶ ἡμῖν) became the template for every subsequent ecumenical council. This is not arrogance — it is faith that the Spirit of truth keeps His promise to guide the Church into all truth.</p>
+    <div class="note">
+      <strong>Key observation:</strong> The Jerusalem Council did not resolve the controversy by having each believer read Leviticus privately and reach their own conclusion. It resolved it through the authoritative judgment of the Apostles and elders gathered in the name of Christ. This is the biblical model of church authority.
+    </div>
+    <div class="fc-grid">
+      <div class="fc">
+        <div class="fname">St. Athanasius of Alexandria</div>
+        <div class="fdate">c. 369 AD — Letter to the Bishops of Africa</div>
+        <div class="fq">"The word of the Lord which was given through the ecumenical council at Nicaea abides forever. Whatever the synod determined was not determined by mere human reasoning, but was taught by the Spirit."</div>
+        <div class="fsrc">De Decretis, §4</div>
+      </div>
+      <div class="fc">
+        <div class="fname">St. Vincent of Lérins</div>
+        <div class="fdate">c. 434 AD — Commonitory</div>
+        <div class="fq">"What has been believed everywhere, always, and by all — this is truly and properly Catholic. This is what is indicated by the authority of the universal Church herself."</div>
+        <div class="fsrc">Commonitorium, §II</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CANON -->
+<div id="canon" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>The Church Defined the Biblical Canon</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>One of the most decisive demonstrations of the Church's authority is this: <strong>the Bible did not produce the Church — the Church produced the Bible's canon.</strong> The New Testament canon did not fall from heaven as a table of contents. It was discerned, debated, and defined by the Church.</p>
+    <div class="key-text">If sola scriptura — Scripture alone — is the final authority, then on what authority does the Protestant know which books belong in Scripture? The canon itself is a Church decision. To accept the canon is to trust the Church. To reject the Church's authority is to saw off the branch you are sitting on.</div>
+    <div class="council-grid">
+      <div class="council">
+        <div class="cname">Council of Laodicea</div>
+        <div class="cdate">c. 363 AD</div>
+        <div class="cdesc">Among the earliest councils to list approved canonical books for public reading in churches.</div>
+        <div class="cissue">First canonical list excluding Revelation</div>
+      </div>
+      <div class="council">
+        <div class="cname">Council of Hippo</div>
+        <div class="cdate">393 AD</div>
+        <div class="cdesc">North African synod affirms the 27-book NT canon and sends its decision to wider churches for confirmation.</div>
+        <div class="cissue">Canon ratified with deuterocanon included</div>
+      </div>
+      <div class="council">
+        <div class="cname">Council of Carthage III</div>
+        <div class="cdate">397 AD</div>
+        <div class="cdesc">Reaffirms the canon of Hippo. The canonical list is accepted East and West.</div>
+        <div class="cissue">Canon consensus across major sees</div>
+      </div>
+      <div class="council">
+        <div class="cname">Quinisext Council (Trullo)</div>
+        <div class="cdate">692 AD</div>
+        <div class="cdesc">Eastern ecumenical council reaffirms the canonical list for the universal Church. The OO tradition receives this.</div>
+        <div class="cissue">Eastern canonical confirmation</div>
+      </div>
+    </div>
+    <p>The process of canonical discernment used criteria: apostolicity (was it from an apostle or apostolic companion?), catholicity (was it received throughout the churches?), and orthodoxy (did its content accord with the rule of faith?). All three criteria are ecclesial — they presuppose a Church with the authority to judge.</p>
+    <div class="note"><strong>Historical footnote:</strong> Martin Luther himself doubted James ("an epistle of straw"), Hebrews, Jude, and Revelation. His personal canon would have been smaller than the Church's. This illustrates exactly where private judgment leads when severed from the Church's authority.</div>
+  </div>
+</div>
+
+<!-- APOSTOLIC SUCCESSION -->
+<div id="succession" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>Apostolic Succession — The Unbroken Chain of Authority</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>The Church's authority is not self-generated by each generation. It is transmitted. The Apostles ordained bishops; those bishops ordained more bishops; and that chain of ordination — each bishop receiving the laying on of hands from another bishop in an unbroken line back to the Apostles — is apostolic succession.</p>
+    <div class="sv">
+      <div class="ref">2 Timothy 2:2</div>
+      <div class="txt">"And what you have heard from me in the presence of many witnesses, entrust to faithful men, who will be able to teach others also."</div>
+      <div class="interp">Paul explicitly instructs Timothy to pass on the deposit of faith through a chain of trustworthy transmission: Paul → Timothy → faithful men → others. This is the logic of apostolic succession.</div>
+      <div class="labels"><span class="oo">Oriental Orthodox</span><span class="ctx">Succession of Teaching</span></div>
+    </div>
+    <div class="sv">
+      <div class="ref">Titus 1:5</div>
+      <div class="txt">"This is why I left you in Crete, so that you might put what remained into order, and appoint elders in every town as I directed you."</div>
+      <div class="interp">Apostolic authority to appoint clergy is delegated and structured — bishops serve as Apostolic representatives in each locale.</div>
+      <div class="labels"><span class="oo">Oriental Orthodox</span><span class="ctx">Episcopal Office</span></div>
+    </div>
+    <div class="succ-chain">
+      <div class="succ-item"><div class="succ-dot"></div><div class="succ-text"><strong>Christ</strong><p>Commissions the Apostles: "As the Father has sent me, even so I am sending you." (John 20:21)</p></div></div>
+      <div class="succ-item"><div class="succ-dot"></div><div class="succ-text"><strong>The Twelve Apostles</strong><p>Lay hands on deacons (Acts 6:6), ordain elders (Acts 14:23), consecrate bishops</p></div></div>
+      <div class="succ-item"><div class="succ-dot"></div><div class="succ-text"><strong>First Generation Bishops</strong><p>Timothy, Titus, Clement, Ignatius, Polycarp — ordained by Apostles or their immediate delegates</p></div></div>
+      <div class="succ-item"><div class="succ-dot"></div><div class="succ-text"><strong>Patristic Episcopate</strong><p>The great Fathers — Athanasius, Basil, Chrysostom, Cyril of Alexandria — all in the unbroken chain</p></div></div>
+      <div class="succ-item"><div class="succ-dot"></div><div class="succ-text"><strong>Today's OO Bishops</strong><p>Coptic, Ethiopian, Syriac, Armenian, Malankara — all in direct succession from the Apostolic age</p></div></div>
+    </div>
+    <div class="fc-grid">
+      <div class="fc">
+        <div class="fname">St. Irenaeus of Lyon</div>
+        <div class="fdate">c. 180 AD — Against Heresies</div>
+        <div class="fq">"It is within the power of all… who may wish to see the truth, to contemplate clearly the tradition of the apostles manifested throughout the whole world; and we are in a position to reckon up those who were by the apostles instituted bishops in the churches, and the successors of these men to our own times."</div>
+        <div class="fsrc">Adversus Haereses, III.3.1</div>
+      </div>
+      <div class="fc">
+        <div class="fname">Tertullian</div>
+        <div class="fdate">c. 200 AD — Prescription Against Heretics</div>
+        <div class="fq">"Let them produce the origins of their churches; let them unfold the roll of their bishops, running down in succession from the beginning… For this is the manner in which the apostolic churches transmit their registers."</div>
+        <div class="fsrc">De Praescriptione Haereticorum, §32</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COUNCILS -->
+<div id="councils" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>The Ecumenical Councils — Conciliar Authority in History</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>The Oriental Orthodox Church receives the first three Ecumenical Councils as authoritative definitions of the faith. The conciliar process — bishops gathered from across the Church, debating, praying, and defining — is the Spirit-guided mechanism by which the Church authoritatively interprets and guards the Apostolic deposit.</p>
+    <div class="council-grid">
+      <div class="council">
+        <div class="cname">First Council of Nicaea</div>
+        <div class="cdate">325 AD</div>
+        <div class="cdesc">Defined the full divinity of the Son against Arianism. Established the Nicene Creed. 318 bishops gathered from across the Roman Empire.</div>
+        <div class="cissue">Condemned Arianism — "of the same substance" (ὁμοούσιος)</div>
+      </div>
+      <div class="council">
+        <div class="cname">First Council of Constantinople</div>
+        <div class="cdate">381 AD</div>
+        <div class="cdesc">Defined the full divinity of the Holy Spirit. Expanded the Nicene Creed. Condemned Macedonianism and Apollinarianism.</div>
+        <div class="cissue">Niceno-Constantinopolitan Creed finalized</div>
+      </div>
+      <div class="council">
+        <div class="cname">Council of Ephesus</div>
+        <div class="cdate">431 AD</div>
+        <div class="cdesc">Defined Mary as Theotokos (God-bearer), affirming the full unity of Christ's person. Condemned Nestorianism.</div>
+        <div class="cissue">Unity of Christ's person — one prosopon</div>
+      </div>
+    </div>
+    <p>Regarding Chalcedon (451 AD) and the councils after: the Oriental Orthodox reject Chalcedon not because they reject conciliar authority, but because they believe Chalcedon erred in its formulation of Christ's nature — introducing a Nestorian tendency. This itself is an exercise of conciliar discernment, not its abandonment.</p>
+    <div class="note"><strong>The OO principle:</strong> Councils are authoritative when they truly speak for the whole Church, confirmed by apostolic sees, received by the faithful (sensus fidelium). A council that errs — as the OO believe Chalcedon did on Christology — can be recognized as such by the broader tradition. Authority is real but not unconditional.</div>
+  </div>
+</div>
+
+<!-- INTERPRETIVE AUTHORITY -->
+<div id="interpretation" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>The Church's Interpretive Authority Over Scripture</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>The Oriental Orthodox tradition does not teach that the Church invented doctrines or stands above Scripture. Rather, <strong>the Church is the God-appointed community within which Scripture was written, collected, preserved, and rightly interpreted.</strong> Scripture and Tradition are not two separate channels — they are one Apostolic deposit, of which the Church is the keeper.</p>
+    <div class="sv">
+      <div class="ref">2 Peter 1:20–21</div>
+      <div class="txt">"Knowing this first of all, that no prophecy of Scripture comes from someone's own interpretation. For no prophecy was ever produced by the will of man, but men spoke from God as they were carried along by the Holy Spirit."</div>
+      <div class="interp">If prophecy does not originate in private human will, neither is it properly interpreted by private human will. The same Spirit who inspired it guides its interpretation — through the Church.</div>
+      <div class="labels"><span class="oo">Oriental Orthodox</span><span class="ctx">Interpretation</span></div>
+    </div>
+    <div class="sv">
+      <div class="ref">2 Peter 3:16</div>
+      <div class="txt">"…as he does in all his letters when he speaks in them of these matters. There are some things in them that are hard to understand, which the ignorant and unstable twist to their own destruction, as they do the other Scriptures."</div>
+      <div class="interp">Peter explicitly warns that Scripture can be twisted. The existence of this danger implies the necessity of an authoritative interpreter — the Church — to guard against distortion.</div>
+      <div class="labels"><span class="oo">Oriental Orthodox</span><span class="ctx">Hermeneutics</span></div>
+    </div>
+    <div class="fc-grid">
+      <div class="fc">
+        <div class="fname">St. Augustine of Hippo</div>
+        <div class="fdate">c. 400 AD — Against the Fundamental Epistle of Manichaeus</div>
+        <div class="fq">"I would not believe in the Gospel if the authority of the Catholic Church did not move me to do so."</div>
+        <div class="fsrc">Contra Epistulam Manichaei, §5</div>
+      </div>
+      <div class="fc">
+        <div class="fname">St. John Chrysostom</div>
+        <div class="fdate">c. 390 AD — On the First Epistle to the Corinthians</div>
+        <div class="fq">"Many disputes have arisen, and yet the Church stands. Heresies have beaten against her, yet she has not been overthrown, because she is founded on the Rock."</div>
+        <div class="fsrc">Homily 3 on 1 Corinthians</div>
+      </div>
+    </div>
+    <p>The Oriental Orthodox Fathers consistently read Scripture within the "rule of faith" (κανὼν τῆς πίστεως / kanon tes pisteos) — the summary of Apostolic teaching, preserved and taught by the Church. A text interpreted outside this rule is a text misread, however sincerely.</p>
+  </div>
+</div>
+
+<!-- COMPARISON -->
+<div id="comparison" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>Three Models: OO Conciliarism vs. Sola Scriptura vs. Roman Papalism</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <div class="comp-grid">
+      <div class="comp-card oo-c">
+        <h4>Oriental Orthodox</h4>
+        <ul>
+          <li>Authority is conciliar — bishops gathered in the Spirit</li>
+          <li>Scripture and Tradition as one unified Apostolic deposit</li>
+          <li>Ecumenical councils define and protect the faith</li>
+          <li>No single bishop has universal jurisdiction</li>
+          <li>Reception by the faithful confirms conciliar truth</li>
+          <li>The Church interprets Scripture; Scripture judges proposed councils</li>
+          <li>Apostolic succession guarantees continuity of ministry</li>
+        </ul>
+      </div>
+      <div class="comp-card prot-c">
+        <h4>Protestant Sola Scriptura</h4>
+        <ul>
+          <li>Scripture alone is the final authority</li>
+          <li>Individual or community interprets Scripture directly</li>
+          <li>Church traditions are secondary and revisable</li>
+          <li>No binding conciliar authority beyond Scripture</li>
+          <li>Apostolic succession not required or recognized</li>
+          <li>Result: thousands of denominations, each with its own reading</li>
+          <li>Canon accepted without account for who defined it</li>
+        </ul>
+      </div>
+      <div class="comp-card rc-c">
+        <h4>Roman Catholic Papalism</h4>
+        <ul>
+          <li>Pope holds supreme and universal jurisdiction</li>
+          <li>Ex cathedra papal definitions are infallible</li>
+          <li>Scripture, Tradition, and Magisterium as three sources</li>
+          <li>Councils derive authority from papal confirmation</li>
+          <li>Apostolic succession through Roman succession emphasized</li>
+          <li>Developed dogmas (Immaculate Conception, Assumption) added</li>
+          <li>OO view: papalism is an innovation beyond the early Church</li>
+        </ul>
+      </div>
+    </div>
+    <p>The OO position occupies a distinct space: genuine authority that is neither individualistic (sola scriptura) nor monarchical (papalism). It is <strong>collegial, conciliar, and pneumatic</strong> — the bishops together in the Spirit, confirmed by the reception of the faithful, rooted in the Apostolic succession.</p>
+  </div>
+</div>
+
+<!-- SCRIPTURE AND CHURCH -->
+<div id="scripture_church" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>Scripture and Church — Not Rivals but Partners</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>A common misunderstanding is that upholding Church authority means denigrating Scripture. This is a false dilemma. The Oriental Orthodox position is that Scripture is the inspired Word of God — authoritative, sufficient for salvation when rightly understood — but its right understanding requires the community that produced it, preserved it, and is guided by the same Spirit who inspired it.</p>
+    <div class="sv">
+      <div class="ref">Ephesians 2:19–20</div>
+      <div class="txt">"So then you are no longer strangers and aliens, but you are fellow citizens with the saints and members of the household of God, built on the foundation of the apostles and prophets, Christ Jesus himself being the cornerstone."</div>
+      <div class="interp">The Church is built on the Apostles — their persons, their teaching, their authority — not on texts floating free of that community. The Apostles are the foundation; Scripture is their inspired testimony within that foundation.</div>
+      <div class="labels"><span class="oo">Oriental Orthodox</span><span class="ctx">Ecclesiology</span></div>
+    </div>
+    <div class="sv">
+      <div class="ref">Acts 8:30–31 — The Ethiopian Eunuch</div>
+      <div class="txt">"And Philip ran to him and heard him reading Isaiah the prophet and asked, 'Do you understand what you are reading?' And he said, 'How can I, unless someone guides me?' And he invited Philip to come up and sit with him."</div>
+      <div class="interp">Even a devout man reading Scripture could not understand it without a guide. Philip — an ordained deacon in the Apostolic community — provides the authoritative interpretation. This is the Church's role.</div>
+      <div class="labels"><span class="oo">Oriental Orthodox</span><span class="ctx">Interpretation</span></div>
+    </div>
+    <p>The Oriental Orthodox do not pit Scripture against Tradition or Tradition against Scripture. Both are expressions of the one Apostolic Faith. Tradition is the living transmission of that faith — in liturgy, in councils, in the writings of the Fathers, in the prayers of the Church. Scripture is its primary written expression. Together, they are guarded by the Church and interpreted by her bishops in council.</p>
+  </div>
+</div>
+
+<!-- OBJECTIONS -->
+<div id="objections" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>Protestant Objections Answered</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <div class="obj">
+      <div class="obj-h" onclick="tobj(this)">
+        <h3>"The Church has been wrong before — councils have contradicted each other. How can you trust it?"</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="obj-body">
+        <p>Local and regional councils have erred. The OO tradition does not claim that every gathering of bishops is infallible. True ecumenical councils — received by the whole Church, conforming to the Apostolic rule of faith — carry the Spirit's guidance. The test is reception: a council that contradicts the faith once delivered is recognized and rejected, as the Oriental Orthodox rejected Chalcedon's Christological formulation.</p>
+        <p>Crucially, the existence of erring councils does not vindicate sola scriptura. Protestants also have "councils" — denominations, confessions, synods — that contradict each other at least as dramatically as any disputed councils in Church history. The question is not whether human gatherings can err, but what the Spirit-guided mechanism for discernment is. The OO answer: the conciliar process of the episcopate, confirmed by the faithful.</p>
+      </div>
+    </div>
+    <div class="obj">
+      <div class="obj-h" onclick="tobj(this)">
+        <h3>"Acts 17:11 — the Bereans tested Paul against Scripture. Scripture judges everything, including the Church."</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="obj-body">
+        <p>The Bereans were commended for checking whether Paul's preaching matched the Old Testament Scriptures they already had. This is good practice — but notice what they were checking: not private impressions, but a received body of scripture interpreted within a community. They were verifying apostolic teaching against authoritative text, not deciding doctrine independently.</p>
+        <p>More importantly, the Bereans were not deciding the canon of the New Testament, defining Trinitarian doctrine, or settling Christological controversies. For those tasks, the Apostles and their successors — not the private Bible-reading individual — were the appointed instruments. The Berean example does not underwrite the Protestant doctrine of sola scriptura.</p>
+      </div>
+    </div>
+    <div class="obj">
+      <div class="obj-h" onclick="tobj(this)">
+        <h3>"Church authority produced the papacy and all its abuses. Church authority always corrupts."</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="obj-body">
+        <p>The Oriental Orthodox agree that the monarchical papacy as it developed in Rome is an innovation beyond the early Church's conciliar model. This is precisely our critique of Rome. But the solution to a corrupt form of authority is not the abolition of authority — it is the restoration of its proper, conciliar, collegial form.</p>
+        <p>Every human institution can be corrupted. But the answer to a corrupt government is not anarchy; the answer to abuse of church authority is not the radical individualism of sola scriptura, which has produced thousands of contradictory denominations each claiming to read the Bible correctly. The OO commends the ancient conciliar model, not the monarchical model, as the Spirit's intended instrument.</p>
+      </div>
+    </div>
+    <div class="obj">
+      <div class="obj-h" onclick="tobj(this)">
+        <h3>"Matthew 16 is about Peter's confession, not about any office or institution."</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="obj-body">
+        <p>Many Protestants argue that the "rock" on which Christ builds His Church is Peter's confession of faith, not Peter himself or any office. This is a defensible reading — even Augustine held it at times — and the Oriental Orthodox do not require a strictly papal reading.</p>
+        <p>But the keys given in verse 19 cannot be limited to a confession. Keys are administrative instruments. "Whatever you bind on earth shall be bound in heaven" refers to ongoing governance, not a one-time act of faith. The promise of indestructibility (v.18) belongs to the institutional Church, not merely to a correct doctrinal position floating in the air. At minimum, this passage establishes that Christ founded an enduring Church with governing authority — which is precisely the OO claim.</p>
+      </div>
+    </div>
+    <div class="obj">
+      <div class="obj-h" onclick="tobj(this)">
+        <h3>"The early church was decentralized — there was no single authoritative voice."</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="obj-body">
+        <p>The early Church was decentralized geographically but united structurally. Each bishop governed his see; the Apostolic sees (Jerusalem, Antioch, Alexandria, Rome, later Constantinople) carried special weight; and doctrinal questions were settled by councils whose decisions were binding on all.</p>
+        <p>Ignatius of Antioch (c. 107 AD) — within living memory of the Apostles — already describes a fully structured Church with bishops, presbyters, and deacons as essential, not optional. By the time of Irenaeus (c. 180 AD) the logic of apostolic succession and conciliar authority is fully articulated. The "decentralized early church" is a historical myth constructed to validate later Protestant practice.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div id="faq" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>Frequently Asked Questions</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <div class="fi">
+      <div class="fi-h" onclick="tf(this)">
+        <h3>Does the OO Church claim to be infallible?</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="fi-body">
+        <p>The Oriental Orthodox Church claims that the Holy Spirit guides the Church into all truth (John 16:13) and that the gates of hell will not prevail against her (Matthew 16:18). This means the Church will not definitively and permanently err in defining the Apostolic faith. This is not the same as claiming that every bishop, synod, or council is automatically infallible. Regional councils can err; the conciliar process, guided by the Spirit and confirmed by reception of the faithful, discerns and corrects such errors.</p>
+      </div>
+    </div>
+    <div class="fi">
+      <div class="fi-h" onclick="tf(this)">
+        <h3>What is the difference between the OO view and the Roman Catholic view of authority?</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="fi-body">
+        <p>Rome locates final authority in the office of the Bishop of Rome, whose ex cathedra definitions are infallible. Councils derive their authority from papal confirmation. The OO locates authority in the episcopate gathered in council — a collegial body, not a monarchy. No single bishop holds universal jurisdiction over the others. The Bishop of Rome is honored as "first among equals" in the early Church (as is the OO Pope of Alexandria in our tradition), but "first among equals" is not supreme governor. The Chalcedonian formula granting Rome primacy of honor was always understood in the East as honorific, not jurisdictional.</p>
+      </div>
+    </div>
+    <div class="fi">
+      <div class="fi-h" onclick="tf(this)">
+        <h3>How does the OO Church handle new moral or social questions not addressed in Scripture?</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="fi-body">
+        <p>The Church applies the Apostolic deposit — Scripture, Tradition, the mind of the Fathers, and the principles discerned by ecumenical councils — to new questions. This is not innovation; it is the living application of a received deposit. The same Spirit who guided the Jerusalem Council to answer the circumcision question guides the Church today. A question unaddressed in Scripture is not therefore unanswerable — the Church, as pillar and bulwark of truth, has the authority and the Spirit-given capacity to discern.</p>
+      </div>
+    </div>
+    <div class="fi">
+      <div class="fi-h" onclick="tf(this)">
+        <h3>What does Oriental Orthodox authority look like in practice today?</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="fi-body">
+        <p>Each of the Oriental Orthodox churches (Coptic, Ethiopian/Eritrean, Syriac, Armenian, Malankara) is governed by its patriarch and Holy Synod. Major questions are addressed by synodal decisions. The churches maintain communion with one another, sharing the same Christological faith. Pan-Oriental Orthodox gatherings address common concerns. While there is no single supreme head, the churches are united in faith, sacraments, and apostolic order — a genuine koinonia (communion) rather than a confederation of independent congregations.</p>
+      </div>
+    </div>
+    <div class="fi">
+      <div class="fi-h" onclick="tf(this)">
+        <h3>Isn't saying "the Church defines the canon" circular? The Church uses the Bible to prove its authority.</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="fi-body">
+        <p>The relationship is not circular but organic. The Apostolic community preceded the New Testament documents — the Church was there before the letters were written. The documents were produced within the community, addressed to the community, and preserved by the community. When the Church later defined the canon, she was not arrogating a foreign authority over an alien book; she was recognizing her own Apostolic testimony. Scripture and Church are not rivals; they are inseparable expressions of the one Apostolic deposit.</p>
+        <p>The Protestant position, by contrast, has a genuine circularity problem: the Bible is authoritative because it says so (Sola Scriptura justified by 2 Timothy 3:16–17 is circular), and the canon is whatever books the individual believes belong — without any external criterion beyond private judgment.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GLOSSARY -->
+<div id="glossary" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>Glossary of Key Terms</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <div class="gt-grid">
+      <div class="gt">
+        <div class="term">Apostolic Succession</div>
+        <div class="gterm">διαδοχή — diadochē</div>
+        <div class="def">The unbroken chain of episcopal ordination from the Apostles to the present bishops of the Church, guaranteeing continuity of ministry and authority.</div>
+      </div>
+      <div class="gt">
+        <div class="term">Conciliarity</div>
+        <div class="gterm">συνοδικότης — synodikotēs</div>
+        <div class="def">The principle that doctrinal authority is exercised by the bishops assembled in council, not by any single bishop. The Spirit guides the Church through this collegial process.</div>
+      </div>
+      <div class="gt">
+        <div class="term">Canon</div>
+        <div class="gterm">κανών — kanōn</div>
+        <div class="def">Literally "rule" or "measuring rod." The list of books recognized by the Church as divinely inspired Scripture, defined through a conciliar process over several centuries.</div>
+      </div>
+      <div class="gt">
+        <div class="term">Sola Scriptura</div>
+        <div class="gterm">Latin: Scripture Alone</div>
+        <div class="def">The Protestant doctrine that Scripture alone, without Tradition or Church, is the final authority for Christian faith and practice. The OO regards this as an innovation absent from the early Church.</div>
+      </div>
+      <div class="gt">
+        <div class="term">Sensus Fidelium</div>
+        <div class="gterm">Latin: Sense of the Faithful</div>
+        <div class="def">The instinct of the whole faithful body — laity and clergy — by which the truth is recognized and received. Councils are confirmed when received by the people of God.</div>
+      </div>
+      <div class="gt">
+        <div class="term">Rule of Faith</div>
+        <div class="gterm">κανὼν τῆς πίστεως — kanōn tēs pisteōs</div>
+        <div class="def">The summary of Apostolic doctrine — essentially the Creed — used as a hermeneutical guide for interpreting Scripture. Irenaeus and Tertullian both appeal to it against Gnostic misreadings.</div>
+      </div>
+      <div class="gt">
+        <div class="term">Ecumenical Council</div>
+        <div class="gterm">Οἰκουμενικὴ Σύνοδος</div>
+        <div class="def">A gathering of bishops from across the whole Church, whose definitions on faith and morals carry binding authority when received by the universal Church.</div>
+      </div>
+      <div class="gt">
+        <div class="term">Koinonia</div>
+        <div class="gterm">κοινωνία — communion</div>
+        <div class="def">The deep sharing of faith, sacraments, and apostolic life that constitutes the unity of the Church. The OO churches maintain koinonia with one another as the visible expression of ecclesial unity.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /content -->
+</main>
+
+<script>
+function ts(h){h.closest('.sec').classList.toggle('open')}
+function tobj(h){h.closest('.obj').classList.toggle('open')}
+function tf(h){h.closest('.fi').classList.toggle('open')}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').classList.toggle('show')}
+function closeMobile(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
+
+// Scroll progress
+window.addEventListener('scroll',()=>{
+  const sc=document.documentElement;
+  const pct=(sc.scrollTop/(sc.scrollHeight-sc.clientHeight))*100;
+  document.getElementById('prog').style.width=pct+'%';
+});
+
+// Active sidebar link
+const links=document.querySelectorAll('#sidebar nav a[href^="#"]');
+const secs=[...links].map(l=>document.querySelector(l.getAttribute('href'))).filter(Boolean);
+window.addEventListener('scroll',()=>{
+  let cur='';
+  secs.forEach(s=>{if(s.getBoundingClientRect().top<=120)cur=s.id});
+  links.forEach(l=>{
+    l.classList.toggle('active',l.getAttribute('href')==='#'+cur);
+  });
+},{passive:true});
+</script>
+</body>
+</html>

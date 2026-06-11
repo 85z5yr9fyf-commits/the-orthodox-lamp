@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>What Is a Christian? | The Orthodox Lamp</title>
+<style>
+:root{
+  --gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;
+  --bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--bg5:#3a2e10;
+  --tx:#e8e0d0;--mu:#a09880;--br:#2a2a2a;--sidebar-w:270px;
+  --oo:#1a2e1a;--ooc:#7dc87d;
+  --prot:#2a1e12;--protc:#d49050;
+  --rc:#3a1a1a;--rcc:#d47070;
+  --warn:#2e1e10;--warnc:#d4a050;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.7;display:flex;min-height:100vh}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+mark{background:rgba(201,168,76,.28);color:var(--gl);border-radius:2px;padding:0 2px}
+#prog{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--gd),var(--gl));z-index:200;transition:width .1s}
+#sb{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:100;display:flex;flex-direction:column}
+#sb-brand{padding:18px 18px 10px;border-bottom:1px solid var(--br)}
+#sb-brand .lamp{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mu);margin-bottom:4px}
+#sb-brand h1{font-size:1rem;color:var(--gold);line-height:1.3}
+.sb-search{padding:10px 14px 4px}
+.sb-search input{width:100%;background:rgba(255,255,255,.06);border:1px solid var(--br);border-radius:6px;padding:8px 12px;font-size:.8rem;color:var(--tx);font-family:'Georgia',serif;outline:none;transition:border-color .2s}
+.sb-search input::placeholder{color:#666}
+.sb-search input:focus{border-color:var(--gd)}
+.sec.s-hidden{display:none}
+.no-match-msg{display:none;padding:14px 18px;font-size:.8rem;color:var(--mu);font-style:italic;text-align:center}
+.no-match-msg.show{display:block}
+#sb-nav{padding:8px 0 20px;flex:1}
+.sb-part{padding:8px 18px 2px;font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mu)}
+#sb-nav a{display:block;padding:5px 18px;font-size:.79rem;color:var(--mu);border-left:2px solid transparent;transition:all .15s;line-height:1.35}
+#sb-nav a:hover,#sb-nav a.active{color:var(--gold);border-left-color:var(--gold);background:rgba(201,168,76,.06);text-decoration:none}
+main{margin-left:var(--sidebar-w);flex:1;max-width:900px;padding:48px 48px 80px}
+.pg-title .lamp-label{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--mu);margin-bottom:6px}
+.pg-title h1{font-size:2rem;color:var(--gold);line-height:1.2;margin-bottom:8px}
+.pg-title .sub{font-size:1rem;color:var(--mu);margin-top:6px;font-style:italic}
+.pg-intro{max-width:700px;color:var(--mu);font-size:.93rem;margin:14px 0 32px;border-left:3px solid var(--gd);padding-left:14px}
+.sec{border:1px solid var(--br);border-radius:8px;margin-bottom:14px;overflow:hidden;background:var(--bg2)}
+.sec-h{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;cursor:pointer;user-select:none;gap:10px}
+.sec-h:hover{background:rgba(255,255,255,.03)}
+.sec-h h2{font-size:1rem;color:var(--tx);font-weight:600}
+.sec-h .arr{color:var(--mu);font-size:.8rem;transition:transform .2s;flex-shrink:0}
+.sec.open .arr{transform:rotate(90deg)}
+.sec-body{display:none;padding:18px 20px 22px;border-top:1px solid var(--br)}
+.sec.open .sec-body{display:block}
+.sec-body p{color:var(--mu);font-size:.92rem;margin-bottom:10px}
+.sec-body p:last-child{margin-bottom:0}
+.sec-body h3{font-size:.84rem;color:var(--gold);letter-spacing:.07em;text-transform:uppercase;margin:18px 0 8px}
+.sv{background:var(--bg5);border:1px solid var(--gd);border-radius:6px;padding:10px 14px;margin:10px 0;font-style:italic;color:var(--gl);font-size:.9rem}
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin:14px 0}
+.fc{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:14px 16px}
+.fc-name{font-size:.88rem;color:var(--gold);font-weight:600;margin-bottom:2px}
+.fc-date{font-size:.74rem;color:var(--mu);margin-bottom:8px}
+.fc-body{font-size:.83rem;color:var(--mu);line-height:1.6}
+.comp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin:14px 0}
+.comp-card{background:var(--bg3);border:1px solid var(--br);border-left:4px solid var(--gold);border-radius:8px;padding:14px 16px}
+.comp-label{font-size:.78rem;color:var(--gold);letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px;font-weight:700}
+.comp-card p{font-size:.83rem;color:var(--mu);margin-bottom:0}
+.fi{border:1px solid var(--br);border-radius:6px;margin-bottom:8px;overflow:hidden;background:var(--bg3)}
+.fi-h{display:flex;justify-content:space-between;align-items:center;padding:11px 16px;cursor:pointer;gap:10px}
+.fi-h:hover{background:rgba(255,255,255,.03)}
+.fi-h span:first-child{font-size:.88rem;color:var(--tx);flex:1}
+.fi-arr{color:var(--mu);font-size:.75rem;transition:transform .2s;flex-shrink:0}
+.fi.open .fi-arr{transform:rotate(90deg)}
+.fi-body{display:none;padding:12px 16px 14px;border-top:1px solid var(--br)}
+.fi.open .fi-body{display:block}
+.fi-body p{font-size:.85rem;color:var(--mu);margin-bottom:8px}
+.fi-body .sv{font-size:.82rem}
+.gt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin:12px 0}
+.gt{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:12px 14px}
+.gt-term{font-size:.84rem;color:var(--gold);font-weight:600;margin-bottom:4px}
+.gt-def{font-size:.8rem;color:var(--mu);line-height:1.55}
+.obj{border:1px solid var(--br);border-radius:6px;margin-bottom:8px;overflow:hidden;background:var(--bg3)}
+.obj-h{display:flex;align-items:center;gap:10px;padding:11px 16px;cursor:pointer}
+.obj-h:hover{background:rgba(255,255,255,.03)}
+.obj-q{font-size:.87rem;color:var(--tx);flex:1}
+.obj-arr{color:var(--mu);font-size:.75rem;transition:transform .2s;flex-shrink:0}
+.obj.open .obj-arr{transform:rotate(90deg)}
+.obj-body{display:none;padding:12px 16px 14px;border-top:1px solid var(--br)}
+.obj.open .obj-body{display:block}
+.obj-body p{font-size:.85rem;color:var(--mu);margin-bottom:8px}
+.obj-tag{display:inline-block;font-size:.72rem;padding:2px 8px;border-radius:4px;font-weight:700;flex-shrink:0}
+.tag-oo{background:var(--oo);color:var(--ooc)}
+.tag-prot{background:var(--prot);color:var(--protc)}
+.tag-warn{background:var(--warn);color:var(--warnc)}
+.tl{padding:4px 0 4px 20px;border-left:2px solid var(--br);margin:14px 0}
+.tl-item{position:relative;margin-bottom:20px;padding-left:20px}
+.tl-dot{position:absolute;left:-26px;top:5px;width:10px;height:10px;border-radius:50%;background:var(--gold);border:2px solid var(--bg)}
+.tl-date{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:3px}
+.tl-title{font-size:.9rem;color:var(--tx);font-weight:600;margin-bottom:5px}
+.tl-item p{font-size:.84rem;color:var(--mu)}
+.pull-quote{border-left:4px solid var(--gd);padding:12px 18px;margin:14px 0;background:var(--bg3);border-radius:0 6px 6px 0;font-style:italic;color:var(--gl);font-size:.92rem}
+.pillar-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:14px 0}
+.pillar{background:var(--bg3);border:1px solid var(--br);border-top:4px solid var(--gold);border-radius:8px;padding:16px 14px}
+.pillar-num{font-size:1.6rem;color:var(--gd);font-weight:700;line-height:1;margin-bottom:6px}
+.pillar-title{font-size:.88rem;color:var(--gold);font-weight:600;margin-bottom:6px}
+.pillar p{font-size:.8rem;color:var(--mu)}
+.lang-box{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:14px 16px;margin:12px 0}
+.lang-box .lang-label{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mu);margin-bottom:4px}
+.lang-box .lang-word{font-size:1.3rem;color:var(--gold);font-style:italic;margin-bottom:4px}
+.lang-box .lang-def{font-size:.84rem;color:var(--mu)}
+.lang-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin:10px 0}
+.yes-box{background:var(--oo);border:1px solid var(--ooc);border-radius:6px;padding:12px 14px;margin:8px 0}
+.yes-box p{color:#a8dca8;font-size:.87rem;margin-bottom:0}
+.warn-box{background:var(--warn);border:1px solid var(--warnc);border-radius:6px;padding:12px 14px;margin:8px 0}
+.warn-box p{color:#d4b87a;font-size:.87rem;margin-bottom:0}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<nav id="sb">
+  <div id="sb-brand">
+    <div class="lamp">The Orthodox Lamp</div>
+    <h1>What Is a Christian?</h1>
+  </div>
+  <div class="sb-search">
+    <input type="text" id="sb-inp" placeholder="Search sections..." oninput="sidebarSearch(this.value)">
+  </div>
+  <div class="no-match-msg" id="no-match">No sections match</div>
+  <div id="sb-nav">
+    <div class="sb-part">The Question</div>
+    <a href="#intro">Introduction</a>
+    <a href="#belief">Is It Just Belief?</a>
+    <a href="#pistis">What Faith Actually Means</a>
+    <div class="sb-part">Foundations</div>
+    <a href="#creed">Creedal Christianity</a>
+    <a href="#baptism">Baptism &amp; New Birth</a>
+    <a href="#church">The Church as Body of Christ</a>
+    <div class="sb-part">The Christian Life</div>
+    <a href="#salvation">Salvation as Transformation</a>
+    <a href="#repentance">Repentance &amp; Metanoia</a>
+    <a href="#sacraments">The Sacraments</a>
+    <a href="#prayer">Prayer, Fasting &amp; Almsgiving</a>
+    <div class="sb-part">Hard Questions</div>
+    <a href="#invisible">Visible vs. Invisible Church</a>
+    <a href="#nominal">Nominal Christianity</a>
+    <a href="#marks">Marks of a True Christian</a>
+    <div class="sb-part">Reference</div>
+    <a href="#fathers">Church Fathers Speak</a>
+    <a href="#faq">FAQ</a>
+    <a href="#glossary">Glossary</a>
+  </div>
+</nav>
+
+<main>
+  <div class="pg-title" id="intro">
+    <div class="lamp-label">The Orthodox Lamp</div>
+    <h1>What Is a Christian?</h1>
+    <div class="sub">Belief, Creed, Baptism, the Church, and the Fullness of Christian Life</div>
+  </div>
+  <div class="pg-intro">
+    "Christian" is one of the most used words in the world and one of the least examined. Is it enough to believe Jesus existed? To say a prayer? To be baptized as an infant? To attend church occasionally? To follow his moral teachings? The Oriental Orthodox tradition, rooted in the apostolic faith of Alexandria, Antioch, Jerusalem, and Ethiopia, offers a rich and demanding answer &#8212; one that neither reduces Christianity to mere opinion nor makes it an impossible legal performance.
+  </div>
+
+  <!-- IS IT JUST BELIEF? -->
+  <div class="sec open" id="belief">
+    <div class="sec-h" onclick="ts(this)"><h2>Is Christianity Just Belief?</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>The most common modern Western answer to &#8220;what makes someone a Christian&#8221; is: belief. Believe that Jesus is Lord, believe he died for your sins, believe he rose from the dead &#8212; and you are a Christian. This view has deep Protestant roots and enormous popular influence. But it creates immediate problems.</p>
+      <h3>The Problem of Demons</h3>
+      <p>The Letter of James poses the problem directly: &#8220;You believe that God is one; you do well. Even the demons believe &#8212; and shudder!&#8221; (James 2:19). Demons have impeccably correct theological beliefs. They know Jesus is the Son of God &#8212; they declared it to his face (Mark 1:24; 5:7). Correct belief, by itself, is not what distinguishes a Christian from a demon.</p>
+      <div class="sv">&#8220;What good is it, my brothers and sisters, if someone claims to have faith but has no deeds? Can such faith save them?&#8221; &#8212; James 2:14</div>
+      <h3>The Problem of Intellectual Assent</h3>
+      <p>Reducing Christianity to belief also confuses two different kinds of assent. I can &#8220;believe&#8221; that exercise is healthy without exercising. I can &#8220;believe&#8221; a bridge is safe without crossing it. Intellectual assent to a set of propositions &#8212; even true propositions about God &#8212; is not the same as trusting a person, following a Lord, or being transformed by a relationship. The New Testament uses the word <em>pistis</em> for something far more demanding than mental agreement.</p>
+      <div class="warn-box">
+        <p><strong>A common misreading:</strong> The &#8220;believe and be saved&#8221; passages (John 3:16, Romans 10:9) are often read as requiring only intellectual assent. But in their original Greek and their first-century Jewish context, &#8220;believing in&#8221; someone meant entrusting yourself to them, pledging allegiance, and orienting your whole life around them &#8212; not simply agreeing they exist.</p>
+      </div>
+      <h3>What the Early Church Said</h3>
+      <p>No church father ever defined Christianity as &#8220;holding correct beliefs.&#8221; The fathers were preoccupied with transformation &#8212; what they called <em>theosis</em> or deification. Clement of Alexandria wrote: &#8220;The Gnostic [i.e., true Christian] is not a Christian because he avoids evil, but he avoids evil because he is a Christian.&#8221; The Christian life was understood as a new mode of being, not a subscription to a theological system.</p>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">St. James the Apostle</div>
+          <div class="fc-date">d. c. AD 62</div>
+          <div class="fc-body">&#8220;Faith by itself, if it does not have works, is dead. But someone will say, &#8216;You have faith and I have works.&#8217; Show me your faith apart from your works, and I will show you my faith by my works.&#8221; (James 2:17&#8211;18). James was the Bishop of Jerusalem, writing to the earliest Jewish Christian community. His letter predates most of the NT and represents the most primitive apostolic understanding of faith.</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. John the Theologian</div>
+          <div class="fc-date">d. c. AD 100</div>
+          <div class="fc-body">&#8220;Whoever says &#8216;I know him&#8217; but does not keep his commandments is a liar, and the truth is not in him.&#8221; (1 John 2:4). John makes the claim of Christian identity directly conditional on moral transformation &#8212; not on correctness of belief. For John, &#8220;knowing&#8221; God and &#8220;keeping his commandments&#8221; are inseparable. Christianity is not information about God; it is participation in God.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PISTIS -->
+  <div class="sec" id="pistis">
+    <div class="sec-h" onclick="ts(this)"><h2>What &#8220;Faith&#8221; Actually Means &#8212; Pistis</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>The English word &#8220;faith&#8221; has been flattened, in modern usage, to mean &#8220;belief without evidence&#8221; or &#8220;holding a religious opinion.&#8221; Neither meaning captures what the Greek New Testament word <em>pistis</em> (&#960;&#237;&#963;&#964;&#953;&#962;) actually meant in its first-century context.</p>
+      <div class="lang-grid">
+        <div class="lang-box">
+          <div class="lang-label">Greek (NT)</div>
+          <div class="lang-word">&#960;&#237;&#963;&#964;&#953;&#962; (pistis)</div>
+          <div class="lang-def">Trust, allegiance, faithfulness, loyalty. In political usage: the trust a citizen pledges to a ruler. The word implies active, lived commitment &#8212; not passive mental acceptance.</div>
+        </div>
+        <div class="lang-box">
+          <div class="lang-label">Greek (NT)</div>
+          <div class="lang-word">&#960;&#953;&#963;&#964;&#949;&#973;&#969; (pisteu&#333;)</div>
+          <div class="lang-def">To trust, to entrust oneself to, to be faithful toward. &#8220;Believing in&#8221; Jesus (John 3:16) uses this verb with <em>eis</em> (into) &#8212; meaning to cast yourself into his care, not merely to accept his existence.</div>
+        </div>
+        <div class="lang-box">
+          <div class="lang-label">Hebrew (OT)</div>
+          <div class="lang-word">&#1488;&#1502;&#1493;&#1504;&#1492; (emunah)</div>
+          <div class="lang-def">Faithfulness, steadfastness, reliability. The Hebrew root behind &#8220;Amen.&#8221; Faith in the OT tradition is not about believing propositions but about being a person of reliability and covenant loyalty.</div>
+        </div>
+      </div>
+      <h3>Faith as Allegiance</h3>
+      <p>Recent New Testament scholarship has recovered a powerful reading of <em>pistis</em>: faith as <em>allegiance</em>. In the Roman world, <em>pistis</em> was the word for the loyalty a subject pledged to a king at his coronation. When Paul writes &#8220;faith in Jesus Christ,&#8221; he is not primarily talking about intellectual assent but about pledging allegiance to Jesus as Lord and King. This reading changes everything about what it means to be a Christian &#8212; it involves a total reorientation of life, not just a change of opinion.</p>
+      <div class="sv">&#8220;If you confess with your mouth that Jesus is Lord and believe in your heart that God raised him from the dead, you will be saved.&#8221; &#8212; Romans 10:9</div>
+      <p>The confession &#8220;Jesus is Lord&#8221; (<em>Kyrios Iesous</em>) was a political as much as a theological statement. In the Roman Empire, the required oath was <em>Kyrios Kaiser</em> &#8212; Caesar is Lord. To say instead &#8220;Jesus is Lord&#8221; was to transfer one&#8217;s ultimate allegiance from Rome to Christ. It was a life-altering act, not an opinion.</p>
+      <h3>Faith and Love</h3>
+      <p>Paul clarifies the relationship between faith and works not by separating them but by grounding both in love: &#8220;The only thing that counts is faith expressing itself through love&#8221; (Galatians 5:6). Faith is not alone &#8212; it is alive in love, which produces action. A faith that does not express itself in love is, for Paul, not yet the faith that saves.</p>
+    </div>
+  </div>
+
+  <!-- CREEDAL CHRISTIANITY -->
+  <div class="sec" id="creed">
+    <div class="sec-h" onclick="ts(this)"><h2>Creedal Christianity &#8212; What Do We Actually Believe?</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>While Christianity is not <em>merely</em> belief, it is not <em>without</em> specific content either. The Christian faith has a definite shape &#8212; a body of conviction about who God is, who Jesus is, and what he has done. This shape was formally expressed in the great creeds of the early Church.</p>
+      <h3>Why Creeds Exist</h3>
+      <p>The creeds were not invented by theologians looking for precision. They were born in the crisis of heresy &#8212; specifically the challenge of teaching that threatened to dissolve the identity of Jesus Christ. Arianism taught that Jesus was a superior creature, not fully God. Gnosticism taught that the material world was evil and the Creator a lesser deity. Nestorianism divided Christ into two persons. Each heresy had its own version of &#8220;Christianity&#8221; &#8212; and the Church had to declare, in the most careful language available, what it actually confessed.</p>
+      <div class="pull-quote">&#8220;The creed is not a cage for the mind. It is a map of the territory of God &#8212; given not to restrict exploration but to ensure you do not fall off the edge.&#8221;</div>
+      <h3>The Nicene Creed (AD 325 / 381)</h3>
+      <p>The Nicene Creed, formulated at the First Ecumenical Council (Nicaea, 325 AD) and expanded at the Second (Constantinople, 381 AD), is accepted by Oriental Orthodox, Eastern Orthodox, Roman Catholic, and most Protestant traditions as the foundational summary of Christian belief. It defines:</p>
+      <div class="pillar-grid">
+        <div class="pillar">
+          <div class="pillar-num">&#9312;</div>
+          <div class="pillar-title">One God, Father Almighty</div>
+          <p>Creator of all things visible and invisible. Christianity is strictly monotheist &#8212; but the One God is understood as Trinity: Father, Son, and Holy Spirit, one being in three persons.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">&#9313;</div>
+          <div class="pillar-title">Jesus Christ, True God</div>
+          <p>&#8220;God from God, Light from Light, true God from true God, begotten not made, of one being with the Father.&#8221; The Son is not a creature or an angel but fully divine &#8212; the decisive claim of Nicaea.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">&#9314;</div>
+          <div class="pillar-title">Incarnation, Death, Resurrection</div>
+          <p>The eternal Son became human, was crucified, died, was buried, and rose on the third day. These are historical claims as well as theological ones &#8212; Christianity is not mythology but anchored in events.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">&#9315;</div>
+          <div class="pillar-title">The Holy Spirit, Lord and Life-Giver</div>
+          <p>The Spirit is not a force or an influence but a divine Person who &#8220;proceeds from the Father,&#8221; who with the Father and Son is &#8220;worshipped and glorified,&#8221; and who spoke through the prophets.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">&#9316;</div>
+          <div class="pillar-title">One Holy Catholic and Apostolic Church</div>
+          <p>The Church is not optional. The Creed places the Church within the content of faith &#8212; to believe in the Triune God is simultaneously to confess the Church as the Body through which this God acts in the world.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">&#9317;</div>
+          <div class="pillar-title">Resurrection of the Dead</div>
+          <p>Christianity affirms the resurrection of the body and the life of the world to come. The final state of the saved is not disembodied heaven but the full renewal of creation &#8212; a new heavens and a new earth.</p>
+        </div>
+      </div>
+      <h3>The Creed Is Not the Ceiling &#8212; It Is the Floor</h3>
+      <p>Confessing the Nicene Creed defines the minimum shape of Christian identity. It rules out the most fundamental distortions &#8212; a Jesus who is merely human, a God who did not create matter, a resurrection that is only spiritual. But the Creed is the beginning of the Christian journey, not its completion. The Fathers who wrote it went to great lengths to worship, fast, pray, and serve &#8212; and they would have found the idea of a &#8220;Christian&#8221; who only recites the Creed deeply strange.</p>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">St. Athanasius of Alexandria</div>
+          <div class="fc-date">296&#8211;373 AD</div>
+          <div class="fc-body">&#8220;God became man so that man might become God.&#8221; (<em>On the Incarnation</em> 54). Athanasius understood the Creed he helped write at Nicaea not as a boundary fence but as the entry point to participation in divine life. Correct doctrine about Christ is not an end in itself &#8212; it is the precondition for the real goal: deification (theosis).</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Gregory of Nazianzus</div>
+          <div class="fc-date">329&#8211;390 AD</div>
+          <div class="fc-body">&#8220;Let us theologize in a spirit of reverence. We are not talking about a doctrine we have invented; we are confronting a reality that exceeds us.&#8221; The Cappadocian Fathers who expanded the Creed at Constantinople (381) approached the task with awe rather than confidence &#8212; aware that the Creed gestures toward a mystery that no formula exhausts.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BAPTISM -->
+  <div class="sec" id="baptism">
+    <div class="sec-h" onclick="ts(this)"><h2>Baptism &#8212; The New Birth</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>In the Oriental Orthodox understanding, becoming a Christian is not merely a decision made in the mind &#8212; it is a rebirth effected in water and the Spirit. Baptism is not a symbol of something that already happened; it is the event in which new birth happens.</p>
+      <div class="sv">&#8220;Jesus answered, &#8216;Truly, truly, I say to you, unless one is born of water and the Spirit, he cannot enter the kingdom of God.&#8217;&#8221; &#8212; John 3:5</div>
+      <h3>Baptism in the New Testament</h3>
+      <p>Every conversion account in Acts includes baptism as its immediate consequence &#8212; not as an optional next step but as the moment of incorporation into Christ. Pentecost: &#8220;Repent and be baptized, every one of you, in the name of Jesus Christ for the forgiveness of your sins. And you will receive the gift of the Holy Spirit.&#8221; (Acts 2:38). The Ethiopian eunuch (Acts 8): as soon as he hears the Gospel, he asks, &#8220;See, here is water! What prevents me from being baptized?&#8221; The Philippian jailer (Acts 16): baptized the same night of his conversion, along with his household.</p>
+      <h3>What Baptism Does</h3>
+      <div class="comp-grid">
+        <div class="comp-card" style="border-color:var(--ooc)">
+          <div class="comp-label" style="color:var(--ooc)">Forgiveness of Sins</div>
+          <p>Acts 2:38: baptism is for the forgiveness of sins. The slate is not merely declared clean &#8212; it is actually cleansed. Baptism is not a work we perform to earn forgiveness but the sacramental means through which God&#8217;s forgiveness is applied.</p>
+        </div>
+        <div class="comp-card" style="border-color:var(--ooc)">
+          <div class="comp-label" style="color:var(--ooc)">New Birth / Regeneration</div>
+          <p>John 3:3&#8211;5; Titus 3:5: baptism is &#8220;the washing of regeneration.&#8221; The person who emerges from the water is not the same person who entered. A new principle of life &#8212; divine life &#8212; has been implanted.</p>
+        </div>
+        <div class="comp-card" style="border-color:var(--ooc)">
+          <div class="comp-label" style="color:var(--ooc)">Union with Christ</div>
+          <p>Romans 6:3&#8211;4: &#8220;We were baptized into his death&#8230; buried with him&#8230; raised with him.&#8221; Baptism is not a metaphor for union with Christ &#8212; it is the act of union. The baptized person has died with Christ and risen with him.</p>
+        </div>
+        <div class="comp-card" style="border-color:var(--ooc)">
+          <div class="comp-label" style="color:var(--ooc)">Reception of the Holy Spirit</div>
+          <p>Acts 2:38; 1 Corinthians 12:13: &#8220;We were all baptized by one Spirit so as to form one body.&#8221; Baptism is the entry point into the life of the Holy Spirit. In Oriental Orthodox practice, Chrismation (anointing with holy oil) follows immediately as the personal Pentecost.</p>
+        </div>
+        <div class="comp-card" style="border-color:var(--ooc)">
+          <div class="comp-label" style="color:var(--ooc)">Incorporation into the Church</div>
+          <p>Galatians 3:27&#8211;28: &#8220;As many of you as were baptized into Christ have put on Christ.&#8221; There is no such thing in the New Testament as a Christian who is not in the Church. Baptism incorporates the believer into the Body of Christ, which is the Church.</p>
+        </div>
+        <div class="comp-card" style="border-color:var(--ooc)">
+          <div class="comp-label" style="color:var(--ooc)">New Identity</div>
+          <p>The baptized person receives a Christian name &#8212; often a saint&#8217;s name &#8212; as a sign of new identity. This is not merely cultural. The person has been renamed in the Trinity: &#8220;baptizing them in the name of the Father and of the Son and of the Holy Spirit&#8221; (Matthew 28:19).</p>
+        </div>
+      </div>
+      <h3>Against Mere Decisionism</h3>
+      <p>Some Protestant traditions &#8212; especially evangelical and Baptist traditions &#8212; teach that baptism is only a symbol of a prior inner conversion, with no regenerating power of its own. The Oriental Orthodox position, shared with Eastern Orthodoxy and Roman Catholicism, is that this view, however sincere, represents a significant departure from both the New Testament and universal early Church practice. Justin Martyr (c. 150 AD), the Didache (c. 80&#8211;120 AD), Tertullian (c. 200 AD), Origen, Cyril of Jerusalem, John Chrysostom &#8212; all treat baptism as genuinely effecting new birth, not merely signifying it.</p>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">St. Cyril of Jerusalem</div>
+          <div class="fc-date">313&#8211;386 AD</div>
+          <div class="fc-body">&#8220;If a man receive not Baptism, he hath not salvation; except only Martyrs, who even without the water receive the kingdom. For when the Savior says, &#8216;Unless a man be born of water and of the Spirit, he cannot enter the Kingdom of God,&#8217; those who are not baptized are excluded from the Kingdom.&#8221; (<em>Catechetical Lectures</em> 3.4)</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">Tertullian of Carthage</div>
+          <div class="fc-date">c. 155&#8211;220 AD</div>
+          <div class="fc-body">&#8220;Happy is our sacrament of water, in that, by washing away the sins of our early blindness, we are set free and admitted into eternal life!&#8230; The angel, in troubling the water, was introducing a figure of future things for us, making plain, by the help of a kindred element, the simplicity of the divine power, which is to come upon men in water.&#8221; (<em>On Baptism</em> 5)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THE CHURCH -->
+  <div class="sec" id="church">
+    <div class="sec-h" onclick="ts(this)"><h2>The Church as Body of Christ</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>One of the most common modern ideas is that you can be a Christian without belonging to a church &#8212; that institutional religion is separate from personal faith in Jesus. This idea would have been literally incomprehensible to the New Testament writers and every Church Father.</p>
+      <h3>The Body Metaphor Is Not a Metaphor</h3>
+      <p>When Paul calls the Church the &#8220;Body of Christ&#8221; (1 Corinthians 12; Romans 12; Ephesians 4&#8211;5; Colossians 1), he is not choosing a flattering image for a human organization. He is making a claim about ontology &#8212; about what the Church actually <em>is</em>. Christ is present in the world through his Body; the Church is the mode of Christ&#8217;s continued presence and action. To be &#8220;in Christ&#8221; (a phrase Paul uses over 150 times) is to be in the Body, which is the Church.</p>
+      <div class="sv">&#8220;And he is the head of the body, the church. He is the beginning, the firstborn from the dead, that in everything he might be preeminent.&#8221; &#8212; Colossians 1:18</div>
+      <h3>The Church Is Not an Option</h3>
+      <p>The entire structure of early Christian life presupposed the assembly (&#949;&#954;&#954;&#955;&#951;&#963;&#943;&#945;, <em>ekklesia</em>). Baptism was performed in the presence of the community. The Eucharist was the weekly gathering of the Body. Confession was made before the community&#8217;s representative, the bishop or priest. The scriptures were read aloud together. Fasting was done in concert. The Christian life was by definition communal, sacramental, and structured &#8212; not an individual transaction between a soul and God.</p>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">St. Ignatius of Antioch</div>
+          <div class="fc-date">d. c. AD 108</div>
+          <div class="fc-body">&#8220;Where the bishop is present, there let the congregation gather, just as where Jesus Christ is, there is the Catholic Church.&#8221; (<em>Letter to the Smyrnaeans</em> 8.2). Writing on his way to martyrdom in Rome, Ignatius makes the local bishop-led Eucharistic assembly the criterion of authentic Christianity. He is the first writer to use the phrase &#8220;Catholic Church&#8221; (meaning universal, undivided).</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Cyprian of Carthage</div>
+          <div class="fc-date">c. 200&#8211;258 AD</div>
+          <div class="fc-body">&#8220;He can no longer have God for his Father who has not the Church for his mother. He who gathers elsewhere than in the Church, scatters the Church of Christ.&#8221; (<em>On the Unity of the Church</em> 6). Cyprian&#8217;s famous formulation &#8212; &#8220;Outside the Church there is no salvation&#8221; &#8212; was not a declaration of condemnation but a statement about where the life of God is normatively found: in the Body of Christ.</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. John Chrysostom</div>
+          <div class="fc-date">347&#8211;407 AD</div>
+          <div class="fc-body">&#8220;You cannot have God as your Father if you refuse to have the Church as your mother. Membership in the Church is not a luxury but a necessity. The Body cannot live without its members, and the members cannot live apart from the Body.&#8221; (<em>On the Epistle to the Ephesians</em> 11). Chrysostom sees Christian isolation as a kind of spiritual suicide.</div>
+        </div>
+      </div>
+      <h3>The Church&#39;s Apostolic Structure</h3>
+      <p>The Church is not just any community of people who like Jesus. The New Testament depicts a structured community with apostles, elders (presbyters/priests), and deacons. The apostolic succession &#8212; the unbroken chain of ordained ministry from the apostles through history &#8212; is how the Oriental Orthodox Church understands the continuity of the Church through time. The bishop who baptizes, the priest who celebrates the Eucharist, stands in a line reaching back to Christ himself.</p>
+    </div>
+  </div>
+
+  <!-- SALVATION AS TRANSFORMATION -->
+  <div class="sec" id="salvation">
+    <div class="sec-h" onclick="ts(this)"><h2>Salvation as Transformation &#8212; Theosis</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>The dominant Protestant understanding of salvation is <em>forensic</em> &#8212; a legal declaration. God, as judge, declares the sinner &#8220;not guilty&#8221; because Christ&#8217;s righteousness is imputed (credited) to the believer. You remain exactly the same person; your legal status changes. This view has its roots in Western medieval theology and was sharpened by Luther and Calvin.</p>
+      <p>The Oriental Orthodox understanding &#8212; shared with Eastern Orthodoxy and patristic Christianity &#8212; is fundamentally different: salvation is <em>transformation</em>. The goal is not a change of legal status but a change of nature &#8212; participation in the divine life itself.</p>
+      <h3>Theosis &#8212; Deification</h3>
+      <p>The Greek word <em>theosis</em> (&#952;&#941;&#969;&#963;&#953;&#962;) means &#8220;becoming God&#8221; or &#8220;deification.&#8221; This does not mean becoming a second god or dissolving into the divine essence &#8212; it means becoming, by grace, what God is by nature: sharing in the divine life, light, love, and holiness. Athanasius&#8217; formula captures it: &#8220;God became man so that man might become God.&#8221;</p>
+      <div class="sv">&#8220;He has given us his very great and precious promises, so that through them you may participate in the divine nature, having escaped the corruption in the world caused by evil desires.&#8221; &#8212; 2 Peter 1:4</div>
+      <p>This verse &#8212; <em>theias koin&#333;noi phuse&#333;s</em> (partakers of the divine nature) &#8212; is the scriptural cornerstone of theosis theology. The goal of the Christian life, in Oriental Orthodox understanding, is literal participation in God &#8212; not earning points toward heaven but being genuinely transfigured.</p>
+      <h3>The Image and Likeness</h3>
+      <p>Genesis 1:26 says God created humanity &#8220;in our image, after our likeness.&#8221; Early Christian theology &#8212; especially in the Alexandrian school &#8212; distinguished between the <em>image</em> of God (the rational nature, given at creation, never fully lost) and the <em>likeness</em> of God (moral and spiritual resemblance to God, the goal of the Christian life). The Fall did not destroy the image but damaged the likeness. Salvation is the restoration of the likeness &#8212; being conformed to the image of Christ (Romans 8:29) until &#8220;we shall be like him, for we shall see him as he is&#8221; (1 John 3:2).</p>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">St. Athanasius of Alexandria</div>
+          <div class="fc-date">296&#8211;373 AD</div>
+          <div class="fc-body">&#8220;For the Son of God became man so that we might become God. And he manifested himself by means of a body so that we might perceive the mind of the unseen Father.&#8221; (<em>On the Incarnation</em> 54.3). The entire reason for the Incarnation, in Athanasius&#8217; theology, is theosis &#8212; making human beings participants in the divine life by taking human nature into the Godhead.</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Irenaeus of Lyon</div>
+          <div class="fc-date">c. 130&#8211;202 AD</div>
+          <div class="fc-body">&#8220;Our Lord Jesus Christ, who did, through his transcendent love, become what we are, that he might bring us to be even what he himself is.&#8221; (<em>Against Heresies</em> 5, preface). Irenaeus coined the concept of <em>anakephalai&#333;sis</em> (recapitulation): Christ retraced and renewed the entire story of humanity, so that humanity could follow his path into divine life.</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Maximus the Confessor</div>
+          <div class="fc-date">c. 580&#8211;662 AD</div>
+          <div class="fc-body">&#8220;A firm and reliable pledge of our hope for the deification of human nature is God&#8217;s Incarnation, which makes man god to the same degree as God himself became man. For clearly, the one who became man without sin will deify human nature without changing it into the divine nature, and will raise it up for his own sake.&#8221; (<em>Ambigua</em> 10). Maximus provides the most developed patristic theology of theosis, linking it directly to the Incarnation and the union of divine and human natures in Christ.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REPENTANCE -->
+  <div class="sec" id="repentance">
+    <div class="sec-h" onclick="ts(this)"><h2>Repentance &#8212; What Metanoia Actually Means</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>The first word of Jesus&#8217; public ministry in Matthew&#8217;s Gospel is <em>metanoeite</em> &#8212; &#8220;repent&#8221; (Matthew 4:17). And John the Baptist&#8217;s message was the same. Repentance is not the beginning and end of Christianity; it is the mode of the entire Christian life.</p>
+      <div class="lang-grid">
+        <div class="lang-box">
+          <div class="lang-label">Greek (NT)</div>
+          <div class="lang-word">&#956;&#949;&#964;&#940;&#957;&#959;&#953;&#945; (metanoia)</div>
+          <div class="lang-def">Literally &#8220;change of mind&#8221; &#8212; but in practice, a total reorientation of one&#8217;s whole being: mind, will, emotion, and action. Not guilt and self-punishment but a fundamental turning: away from the self-centered life and toward God.</div>
+        </div>
+        <div class="lang-box">
+          <div class="lang-label">Latin (Vulgate)</div>
+          <div class="lang-word">paenitentia</div>
+          <div class="lang-def">The Latin translation of <em>metanoia</em> by Jerome. It means &#8220;penitence&#8221; or &#8220;doing penance&#8221; &#8212; a subtle but significant shift toward the performance of acts of satisfaction, rather than the inner reorientation the Greek implies.</div>
+        </div>
+      </div>
+      <p>The translation of <em>metanoia</em> as <em>paenitentia</em> had enormous consequences. Luther&#8217;s first of his 95 Theses was: &#8220;When our Lord and Master Jesus Christ said &#8216;Repent,&#8217; he willed the entire life of believers to be one of repentance.&#8221; Luther was recovering the Greek meaning against medieval distortions &#8212; and on this point, Orthodox theology fully agrees with him. Repentance is not a single act or a sacramental performance; it is the ongoing posture of the whole Christian life.</p>
+      <h3>Repentance Is Not Guilt</h3>
+      <p>In Oriental Orthodox spiritual tradition, repentance is profoundly distinguished from mere guilt or remorse. Judas <em>felt terrible</em> about betraying Jesus &#8212; but went and hanged himself (Matthew 27:3&#8211;5). Peter <em>wept bitterly</em> and returned to the Lord (Luke 22:62; John 21). The difference is not the intensity of the feeling but its direction: Peter&#8217;s grief turned him <em>toward</em> God; Judas&#8217; turned him away. The Coptic tradition calls this distinction <em>repentance versus despair</em>.</p>
+      <div class="sv">&#8220;Godly grief produces a repentance that leads to salvation without regret, whereas worldly grief produces death.&#8221; &#8212; 2 Corinthians 7:10</div>
+      <h3>Repentance and Confession</h3>
+      <p>In the Oriental Orthodox Church, repentance has a sacramental expression: confession (also called the Sacrament of Repentance or Absolution). The priest acts as a physician of souls &#8212; not as a judge pronouncing a verdict but as a healer helping the penitent identify and address the wounds of sin. James 5:16 commands: &#8220;Confess your sins to one another and pray for one another, that you may be healed.&#8221; The Didache (c. 80&#8211;120 AD) already prescribes confession before the Eucharist: &#8220;On the Lord&#8217;s Day, gather together&#8230; first confessing your transgressions, so that your sacrifice may be pure.&#8221;</p>
+    </div>
+  </div>
+
+  <!-- SACRAMENTS -->
+  <div class="sec" id="sacraments">
+    <div class="sec-h" onclick="ts(this)"><h2>The Sacraments &#8212; Mysteries of the Kingdom</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>The Oriental Orthodox Church calls the sacraments <em>mysteries</em> (<em>mysteri&#333;n</em> / <em>mystir&#257;t</em>) rather than &#8220;sacraments.&#8221; This name is deliberate: these are not merely ceremonies or symbolic rituals but genuine encounters with the divine &#8212; points where heaven and earth meet, where the invisible grace of God is conveyed through visible material means.</p>
+      <p>The number of sacraments recognized varies &#8212; Coptic tradition typically lists seven; other Oriental churches have similar lists. The essential point is that the Christian life is <em>sacramental</em>: material reality &#8212; water, oil, bread, wine, hands &#8212; is taken up into the work of divine grace.</p>
+      <div class="comp-grid">
+        <div class="comp-card" style="border-color:var(--gold)">
+          <div class="comp-label">Baptism</div>
+          <p>New birth in water and the Spirit (John 3:5). Entry into the Body of Christ. Forgiveness of all prior sin. In OO practice, usually triple immersion in the name of the Trinity.</p>
+        </div>
+        <div class="comp-card" style="border-color:var(--gold)">
+          <div class="comp-label">Chrismation (Confirmation)</div>
+          <p>Anointing with holy oil (myron) immediately after baptism. The personal gift of the Holy Spirit &#8212; the individual&#8217;s Pentecost. Based on 1 John 2:27 and Acts 8:14&#8211;17.</p>
+        </div>
+        <div class="comp-card" style="border-color:var(--gold)">
+          <div class="comp-label">Eucharist (Holy Communion)</div>
+          <p>The bread and wine become the Body and Blood of Christ. Not symbolism &#8212; Jesus said &#8220;This is my body&#8221; (Matthew 26:26). The Eucharist is the center of Christian worship and the primary means of ongoing union with Christ.</p>
+        </div>
+        <div class="comp-card" style="border-color:var(--gold)">
+          <div class="comp-label">Confession (Repentance)</div>
+          <p>The sacramental absolution of post-baptismal sin. The priest prays over the penitent as a physician of souls. Grounded in John 20:23: &#8220;If you forgive anyone&#8217;s sins, their sins are forgiven.&#8221;</p>
+        </div>
+        <div class="comp-card" style="border-color:var(--gold)">
+          <div class="comp-label">Holy Orders (Ordination)</div>
+          <p>The ordination of bishops, priests, and deacons through laying on of hands. Transmits the apostolic ministry from generation to generation (Acts 6:6; 1 Timothy 4:14; 2 Timothy 1:6).</p>
+        </div>
+        <div class="comp-card" style="border-color:var(--gold)">
+          <div class="comp-label">Holy Matrimony</div>
+          <p>Marriage as a sacred covenant and mystery. The union of husband and wife as an image of Christ&#8217;s union with the Church (Ephesians 5:32). Not a civil contract but a sacred rite within the Body of Christ.</p>
+        </div>
+        <div class="comp-card" style="border-color:var(--gold)">
+          <div class="comp-label">Unction (Holy Oil)</div>
+          <p>Anointing the sick with oil for healing and spiritual strengthening (James 5:14&#8211;15). Applied to the dying as final anointing but also practiced for healing among the living. Matter becomes the vehicle of divine grace.</p>
+        </div>
+      </div>
+      <h3>Why Material Means?</h3>
+      <p>The use of material elements in the sacraments is not primitive or magical &#8212; it is a direct consequence of the Incarnation. If God took on a human body &#8212; matter &#8212; to save the world, then matter is redeemable, capable of bearing the divine. The sacraments continue the Incarnation&#8217;s logic: God uses the material to convey the spiritual.</p>
+      <div class="pull-quote">&#8220;The Son of God became Son of Man so that the sons of men might become sons of God.&#8221; &#8212; St. Irenaeus of Lyon</div>
+    </div>
+  </div>
+
+  <!-- PRAYER FASTING ALMSGIVING -->
+  <div class="sec" id="prayer">
+    <div class="sec-h" onclick="ts(this)"><h2>Prayer, Fasting &amp; Almsgiving &#8212; The Three Pillars</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>In Matthew 6, Jesus assumes his disciples will practice three things: prayer, fasting, and almsgiving. He does not say &#8220;if you fast&#8221; but &#8220;when you fast.&#8221; He does not say &#8220;if you give to the needy&#8221; but &#8220;when you give to the needy.&#8221; These three practices &#8212; which Jesus gave detailed instructions for in the Sermon on the Mount &#8212; form the backbone of Christian spiritual life in the Oriental Orthodox tradition.</p>
+      <div class="pillar-grid">
+        <div class="pillar">
+          <div class="pillar-num">I</div>
+          <div class="pillar-title">Prayer</div>
+          <p>The Coptic Church prays seven times daily (the Agpeya / Liturgy of the Hours). Prayer is not a technique for getting things from God but a relationship &#8212; the ongoing conversation and communion with the living God. &#8220;Pray without ceasing&#8221; (1 Thess 5:17) is not hyperbole but a description of the saint&#8217;s life.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">II</div>
+          <div class="pillar-title">Fasting</div>
+          <p>The Coptic Church fasts approximately 210 days per year. Fasting disciplines the body, trains the will, expresses mourning and longing, and joins the faster to the sufferings of Christ. It is not punishment but medicine &#8212; training the passions rather than being controlled by them.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">III</div>
+          <div class="pillar-title">Almsgiving</div>
+          <p>&#8220;Almsgiving delivers from death&#8221; (Tobit 12:9). Giving to the poor is not charity in the modern sense &#8212; it is justice, the return of what belongs to God. The Fathers are uncompromising: wealth hoarded while the poor suffer is theft. St. Basil: &#8220;The bread you withhold belongs to the hungry.&#8221;</p>
+        </div>
+      </div>
+      <h3>The Ascetic Tradition</h3>
+      <p>Oriental Orthodoxy gave the world Christian monasticism. The Desert Fathers of Egypt &#8212; Anthony the Great, Macarius, Pachomius &#8212; developed a way of life in which prayer, fasting, manual labor, and solitude were organized into a continuous pursuit of transformation. Their writings (the <em>Apophthegmata Patrum</em> &#8212; Sayings of the Desert Fathers) remain among the most influential spiritual texts in Christian history. This tradition shows that the goal of the Christian life is not merely moral improvement but genuine encounter with the living God.</p>
+      <div class="sv">&#8220;But when you give to the needy, do not let your left hand know what your right hand is doing, so that your giving may be in secret. And your Father who sees in secret will reward you.&#8221; &#8212; Matthew 6:3&#8211;4</div>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">St. Anthony the Great</div>
+          <div class="fc-date">251&#8211;356 AD</div>
+          <div class="fc-body">&#8220;I saw the snares that the enemy spreads out over the world and I said groaning, &#8216;What can get through from such snares?&#8217; Then I heard a voice saying to me, &#8216;Humility.&#8217;&#8221; Anthony, the father of Christian monasticism, taught that prayer and fasting were tools of humility, not self-achievement. The monastic life was not an escape from Christianity but its intensification.</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Basil the Great</div>
+          <div class="fc-date">330&#8211;379 AD</div>
+          <div class="fc-body">&#8220;The bread which you do not use is the bread of the hungry; the garment hanging in your wardrobe is the garment of the naked; the shoes that you do not wear are the shoes of the one who is barefoot; the money that you keep locked away is the money of the poor.&#8221; Basil founded the first systematic Christian hospital and wrote rules for monastic communities that shaped all subsequent Eastern and Western monasticism.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VISIBLE VS INVISIBLE CHURCH -->
+  <div class="sec" id="invisible">
+    <div class="sec-h" onclick="ts(this)"><h2>Visible vs. Invisible Church &#8212; A Protestant Innovation</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>A significant Protestant theological tradition &#8212; especially in the Reformed/Calvinist stream &#8212; distinguishes between the &#8220;visible church&#8221; (the institutional church with its sacraments and ordained ministry) and the &#8220;invisible church&#8221; (the true spiritual community of the elect, known only to God). The point was to explain how hypocrites and unregenerate people can be members of the institutional church without being truly saved.</p>
+      <h3>The Problem with This Distinction</h3>
+      <p>While the distinction addresses a genuine pastoral problem &#8212; not everyone who attends church is actually living a Christian life &#8212; the Oriental Orthodox tradition argues it introduces a fatal confusion. Once you establish an &#8220;invisible church&#8221; of truly saved individuals known only to God, you effectively undercut the visible, sacramental, institutional Church&#8217;s authority and necessity. If the &#8220;real&#8221; Church is invisible, why does it matter which visible church you belong to? This logic was not the Reformers&#8217; intention but it is the eventual outcome &#8212; the fragmentation of Protestant Christianity into tens of thousands of denominations, each claiming to be the true expression of the invisible church.</p>
+      <div class="warn-box">
+        <p><strong>The ancient answer:</strong> The Church Fathers did not distinguish invisible from visible Church. They acknowledged that sinners were in the Church &#8212; this was the whole problem Cyprian dealt with in schism controversies &#8212; but they insisted the answer was repentance and discipline within the visible Church, not the postulation of a different &#8220;real&#8221; Church behind it.</p>
+      </div>
+      <h3>The Tares Among the Wheat</h3>
+      <p>Jesus&#8217; parable of the tares (Matthew 13:24&#8211;30) is often cited to support the visible/invisible distinction. But Jesus&#8217; point is precisely the opposite: the tares and wheat grow together <em>until the harvest</em> &#8212; the judgment belongs to God at the end, not to us now. We cannot and should not try to separate the true from the false Christians in the present age. The Church contains both; the final judgment belongs to Christ, not to our assessment of who is truly in the &#8220;invisible church.&#8221;</p>
+    </div>
+  </div>
+
+  <!-- NOMINAL CHRISTIANITY -->
+  <div class="sec" id="nominal">
+    <div class="sec-h" onclick="ts(this)"><h2>Nominal Christianity &#8212; Christian in Name Only</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>The most serious challenge to the question &#8220;what is a Christian&#8221; is not theoretical but practical: millions of people call themselves Christians who show no evidence of the transformed life the New Testament describes. This is nominal Christianity &#8212; Christianity in name only.</p>
+      <h3>What the New Testament Says</h3>
+      <p>Jesus&#8217; words in the Sermon on the Mount are unambiguous and alarming: &#8220;Not everyone who says to me, &#8216;Lord, Lord,&#8217; will enter the kingdom of heaven, but the one who does the will of my Father who is in heaven&#8221; (Matthew 7:21). And: &#8220;On that day many will say to me, &#8216;Lord, Lord, did we not prophesy in your name, and cast out demons in your name, and do many mighty works in your name?&#8217; And then will I declare to them, &#8216;I never knew you; depart from me, you workers of lawlessness&#8217;&#8221; (Matthew 7:22&#8211;23). These words are addressed not to atheists or pagans but to people who considered themselves disciples.</p>
+      <div class="sv">&#8220;Let everyone who names the name of the Lord depart from iniquity.&#8221; &#8212; 2 Timothy 2:19</div>
+      <h3>The Orthodox Assessment</h3>
+      <p>Oriental Orthodoxy resists two temptations: the temptation to judge individuals as definitely saved or damned (this belongs to God), and the temptation to pretend that nominal Christianity is adequate. The Church calls all its members to authentic discipleship. Receiving the sacraments without living the Christian life is not neutral &#8212; Paul warns that receiving the Eucharist &#8220;unworthily&#8221; is to eat and drink judgment on oneself (1 Corinthians 11:29). The sacraments are medicine for the sick and a strengthening for those fighting the good fight &#8212; not a ritual insurance policy.</p>
+      <h3>Gradual Transformation vs. Sudden Conversion</h3>
+      <p>The Oriental Orthodox tradition does not demand that every Christian be a saint today. Growth in the Christian life is gradual &#8212; a lifelong process of repentance, prayer, fasting, and participation in the sacramental life. What is required is not perfection but direction: is the person genuinely oriented toward God, genuinely fighting sin with the Church&#8217;s weapons, genuinely growing? The Desert Fathers taught that the Christian life is less about reaching the destination today than about facing the right direction and walking.</p>
+    </div>
+  </div>
+
+  <!-- MARKS -->
+  <div class="sec" id="marks">
+    <div class="sec-h" onclick="ts(this)"><h2>Marks of a True Christian</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>Drawing together the biblical and patristic tradition, here are the markers of authentic Christian life as understood in the Oriental Orthodox tradition. These are not entrance requirements to be achieved before becoming a Christian &#8212; they are the ongoing shape of a life being lived in Christ.</p>
+      <div class="pillar-grid">
+        <div class="pillar">
+          <div class="pillar-num">1</div>
+          <div class="pillar-title">Baptized into Christ</div>
+          <p>Has entered the Body of Christ through the waters of baptism. The new birth has been received, not merely aspired to.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">2</div>
+          <div class="pillar-title">Confesses the Creed</div>
+          <p>Holds the apostolic faith: One God, Trinity, full divinity and humanity of Christ, his death and resurrection, the Church, bodily resurrection.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">3</div>
+          <div class="pillar-title">Belongs to the Church</div>
+          <p>Is a member of the Body of Christ &#8212; not merely attending services as a cultural activity but genuinely belonging and participating in the sacramental life.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">4</div>
+          <div class="pillar-title">Practices Repentance</div>
+          <p>Regularly examines conscience, confesses sin, and seeks to turn from patterns of sin. Does not treat grace as a license for indulgence.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">5</div>
+          <div class="pillar-title">Receives the Eucharist</div>
+          <p>Participates in the principal act of Christian worship &#8212; the Eucharist &#8212; regularly and with preparation. The Body and Blood of Christ is the primary means of ongoing union with him.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">6</div>
+          <div class="pillar-title">Prays, Fasts, Gives</div>
+          <p>Maintains the three pillars of the spiritual life. Not perfectly &#8212; but genuinely, in accordance with one&#8217;s capacity and the Church&#8217;s guidance.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">7</div>
+          <div class="pillar-title">Loves God &amp; Neighbor</div>
+          <p>&#8220;By this everyone will know that you are my disciples, if you love one another.&#8221; (John 13:35). Love is the sign and the substance. No list of spiritual practices replaces it.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">8</div>
+          <div class="pillar-title">Seeking Transformation</div>
+          <p>The Christian life is not maintenance of a position but movement toward God &#8212; theosis. The authentic Christian is someone who genuinely desires to be changed, not merely to be safe.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHURCH FATHERS -->
+  <div class="sec" id="fathers">
+    <div class="sec-h" onclick="ts(this)"><h2>Church Fathers on What It Means to Be a Christian</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">The Didache</div>
+          <div class="fc-date">c. AD 80&#8211;120</div>
+          <div class="fc-body">The earliest non-canonical Christian text describes what a Christian does: &#8220;There are two ways, one of life and one of death, and there is a great difference between the two ways.&#8221; The <em>Way of Life</em> involves loving God and neighbor, serving the poor, confessing sins before the Eucharist, fasting on Wednesdays and Fridays, and praying the Lord&#8217;s Prayer three times daily. From the very beginning, Christian identity was practical and structured.</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Ignatius of Antioch</div>
+          <div class="fc-date">d. c. AD 108</div>
+          <div class="fc-body">&#8220;Christianity is not a matter of persuasion, but of greatness, especially when it is hated by the world. Let us not merely call ourselves Christians, but be Christians.&#8221; (<em>Letter to the Magnesians</em> 4). Writing on his way to be executed in Rome, Ignatius distinguishes the claim of the name from the reality. His letters &#8212; among the earliest Christian writings outside the NT &#8212; constantly emphasize Eucharist, unity with the bishop, and the concrete assembly of the Church.</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">Justin Martyr</div>
+          <div class="fc-date">c. 100&#8211;165 AD</div>
+          <div class="fc-body">In his <em>First Apology</em> (c. 155 AD), Justin describes Christian practice to the pagan emperor: baptism, the weekly Eucharist, care for the poor, reading of the prophets and gospels, and the bishop&#8217;s presidency. He describes how Christians &#8220;who had been wealthier than before, bring what we have to the common fund, and distribute it to those who need.&#8221; Christian identity, for Justin, is inseparable from this communal, eucharistic, socially active life.</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">Clement of Alexandria</div>
+          <div class="fc-date">c. 150&#8211;215 AD</div>
+          <div class="fc-body">&#8220;The true Gnostic [i.e., mature Christian] prays throughout his entire life. He tries by prayer to have a fellowship with God&#8230; he is no longer the slave of pleasure, but the friend of God.&#8221; (<em>Stromata</em> 7.7). Clement describes Christian maturity as a state of continuous prayer and divine friendship &#8212; not a point reached but a mode of existence continuously inhabited.</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Athanasius of Alexandria</div>
+          <div class="fc-date">296&#8211;373 AD</div>
+          <div class="fc-body">&#8220;One must not only read the scriptures, but one must also go to those who practice the truth. For those who practice the truth, their way of life is a proof of the words they have written&#8230; whoever sees a genuine Christian sees Christ.&#8221; (<em>Life of Anthony</em>). In Athanasius&#8217; account of St. Anthony the Great, the saint&#8217;s whole way of life &#8212; ascetic, prayerful, humble, healing &#8212; is presented as the fullest expression of what it means to be a Christian.</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. John Chrysostom</div>
+          <div class="fc-date">347&#8211;407 AD</div>
+          <div class="fc-body">&#8220;Do you wish to honor the Body of Christ? Do not ignore him when he is naked. Do not pay him homage in the temple clad in silk, only then to neglect him outside where he is cold and ill-clad. He who said: &#8216;This is my body&#8217; is the same who said: &#8216;You saw me hungry and you gave me no food.&#8217;&#8221; (<em>Homily on Matthew</em> 50.3). Chrysostom is merciless in connecting Eucharistic devotion with care for the poor &#8212; the two are not separate acts of piety but one continuous reality.</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Shenoute of Atripe</div>
+          <div class="fc-date">c. 347&#8211;465 AD</div>
+          <div class="fc-body">&#8220;We shall not be asked on that day whether we have shone with fasting or gleamed with vigil, but whether we have done what is good.&#8221; Shenoute, Archimandrite of the White Monastery in Egypt and the greatest Coptic theologian before the Arab conquest, embodied the Oriental Orthodox conviction that the Christian life must unite ascetic discipline with radical care for the poor. He organized relief for thousands of refugees and confronted the wealthy and powerful in direct defense of the vulnerable &#8212; modeling a Christianity that was simultaneously mystical and fiercely practical.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="sec" id="faq">
+    <div class="sec-h" onclick="ts(this)"><h2>Frequently Asked Questions</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span>Can someone be saved without being baptized?</span><span class="fi-arr">&#9654;</span></div>
+        <div class="fi-body">
+          <p>The Oriental Orthodox tradition holds that baptism is the normative means of entry into salvation and the Body of Christ. However, the Fathers consistently recognized exceptions: the baptism of blood (martyrdom &#8212; dying for Christ before receiving water baptism) and the baptism of desire (sincere desire for baptism, dying before it is possible). These are not loopholes but recognitions that God is not bound by his sacraments even though we are. The Church does not limit God&#8217;s mercy; it points to the normal path God has established.</p>
+          <div class="sv">&#8220;Truly, truly, I say to you, unless one is born of water and the Spirit, he cannot enter the kingdom of God.&#8221; &#8212; John 3:5</div>
+        </div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span>Are Protestants considered Christians by the Oriental Orthodox Church?</span><span class="fi-arr">&#9654;</span></div>
+        <div class="fi-body">
+          <p>Yes &#8212; the Oriental Orthodox Church recognizes valid trinitarian baptism performed in Protestant communities. Most Protestants receive baptism in the name of the Father, Son, and Holy Spirit, which the OO tradition recognizes as genuine even if outside full sacramental communion. Protestant communities are therefore considered Christian communities with valid baptism, even though they lack the fullness of the apostolic sacramental life. The OO position is neither &#8220;all Protestants are saved&#8221; nor &#8220;all Protestants are damned&#8221; &#8212; both are judgments belonging to God. The Church recognizes what it can recognize, prays for all, and judges no one&#8217;s final standing.</p>
+        </div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span>Is Christianity just a set of moral guidelines?</span><span class="fi-arr">&#9654;</span></div>
+        <div class="fi-body">
+          <p>No &#8212; and this is one of the most important things the Oriental Orthodox tradition insists on. Christianity is not primarily a moral code; it is a relationship with the living God and a participation in his life. Moral transformation is the result of this participation, not the means of achieving it. The Sermon on the Mount is not a new and more demanding legal code to replace the Torah &#8212; it is a description of what humanity looks like when the Holy Spirit is at work. The Fathers consistently warned against reducing the faith to moralism: &#8220;Be a Christian,&#8221; Ignatius wrote, &#8220;not merely someone who behaves well.&#8221;</p>
+        </div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span>Do Oriental Orthodox Christians believe in &#8220;once saved, always saved&#8221;?</span><span class="fi-arr">&#9654;</span></div>
+        <div class="fi-body">
+          <p>No. The doctrine of the eternal security of the elect &#8212; &#8220;once saved, always saved&#8221; &#8212; is a Calvinist/Reformed position not accepted in Oriental Orthodoxy. The OO tradition understands salvation as a relationship and a process, not a one-time event with guaranteed permanent outcome. Paul says &#8220;work out your own salvation with fear and trembling&#8221; (Philippians 2:12) &#8212; which implies it can be lost through persistent rejection of God. The Fathers speak of apostasy as a real possibility. At the same time, OO theology is not anxious &#8212; God is faithful, the sacraments are genuine means of grace, and the Christian who perseveres in repentance and prayer has every reason for confident hope.</p>
+          <div class="sv">&#8220;But he who endures to the end will be saved.&#8221; &#8212; Matthew 24:13</div>
+        </div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span>What is the relationship between faith and works in Oriental Orthodox theology?</span><span class="fi-arr">&#9654;</span></div>
+        <div class="fi-body">
+          <p>The Protestant Reformation created the impression of a stark opposition between faith (Paul) and works (James). Oriental Orthodoxy sees no contradiction: genuine faith is a living thing that naturally expresses itself in love and action (Galatians 5:6; James 2:26). Neither faith without works nor works without faith is salvific. The OO tradition does not teach that we earn salvation by our works &#8212; salvation is always God&#8217;s gift. But a &#8220;faith&#8221; that produces no transformation of life is, by biblical definition, dead faith &#8212; which is no faith at all. The question is not &#8220;faith or works&#8221; but &#8220;what kind of faith?&#8221; A living, active faith &#8212; what Galatians calls &#8220;faith working through love&#8221; &#8212; is the kind that saves.</p>
+        </div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span>Can a Christian ever be certain of their salvation?</span><span class="fi-arr">&#9654;</span></div>
+        <div class="fi-body">
+          <p>The Oriental Orthodox tradition distinguishes between assurance of hope and certainty of final destiny. A Christian who is living in repentance, receiving the sacraments, praying, and fighting against sin with the Church&#8217;s weapons has every reason for confident hope &#8212; because these are the means God has given. But absolute certainty about one&#8217;s final state involves presuming on God&#8217;s judgment, which belongs to him alone. The Fathers often describe authentic Christian maturity as paradoxically combining deep hope with honest awareness of one&#8217;s unworthiness &#8212; not anxious doubt, but humble confidence that God is more powerful than our sins.</p>
+        </div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span>Why does the Oriental Orthodox Church have so many fasting days? Is that a requirement for being a Christian?</span><span class="fi-arr">&#9654;</span></div>
+        <div class="fi-body">
+          <p>Fasting is not a condition for salvation but a discipline of the Christian life given by Christ himself (&#8220;when you fast&#8230;&#8221; Matthew 6:16). The Church&#8217;s fasting calendar &#8212; approximately 210 days in the Coptic tradition &#8212; structures the whole year around the feasts and fasts of Christ&#8217;s life and the saints. Fasting trains the will, disciplines the passions, expresses solidarity with the poor, and creates space for God. A Christian who never fasts is not necessarily damned, but they are missing one of the primary tools God has given for growth. The tradition holds fasting, prayer, and almsgiving together &#8212; the three cannot easily be separated without loss.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GLOSSARY -->
+  <div class="sec" id="glossary">
+    <div class="sec-h" onclick="ts(this)"><h2>Glossary</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <div class="gt-grid">
+        <div class="gt"><div class="gt-term">Pistis (&#960;&#237;&#963;&#964;&#953;&#962;)</div><div class="gt-def">Greek NT word usually translated &#8220;faith.&#8221; Means trust, allegiance, faithful commitment &#8212; not merely intellectual belief. The faith that saves is active, entrusting, and loyalty-pledging.</div></div>
+        <div class="gt"><div class="gt-term">Metanoia (&#956;&#949;&#964;&#940;&#957;&#959;&#953;&#945;)</div><div class="gt-def">&#8220;Repentance&#8221; &#8212; literally &#8220;change of mind/being.&#8221; A total reorientation of life toward God. Not guilt or self-punishment but genuine turning. The ongoing posture of the Christian life.</div></div>
+        <div class="gt"><div class="gt-term">Theosis</div><div class="gt-def">&#8220;Deification&#8221; &#8212; the Eastern Christian understanding of salvation as genuine participation in the divine nature (2 Peter 1:4). The goal of the Christian life: becoming by grace what God is by nature.</div></div>
+        <div class="gt"><div class="gt-term">Ekklesia (&#949;&#954;&#954;&#955;&#951;&#963;&#943;&#945;)</div><div class="gt-def">&#8220;Assembly, gathering.&#8221; The NT word for Church. Not a building or institution but an assembly of people called out by God. Both the local congregation and the universal Church.</div></div>
+        <div class="gt"><div class="gt-term">Mystery (Mysterion)</div><div class="gt-def">The Eastern Christian term for sacrament. A rite in which the invisible grace of God is genuinely conveyed through visible material means. Not magic but genuine divine action through matter.</div></div>
+        <div class="gt"><div class="gt-term">Nicene Creed</div><div class="gt-def">The foundational summary of Christian belief, formulated at Nicaea (325 AD) and expanded at Constantinople (381 AD). Accepted by OO, EO, RC, and most Protestant traditions as the basic definition of orthodox Christianity.</div></div>
+        <div class="gt"><div class="gt-term">Chrismation</div><div class="gt-def">Anointing with holy oil (myron) immediately after baptism. Confers the personal gift of the Holy Spirit &#8212; the individual&#8217;s Pentecost. Corresponds to Confirmation in Western practice.</div></div>
+        <div class="gt"><div class="gt-term">Apophthegmata Patrum</div><div class="gt-def">&#8220;Sayings of the Desert Fathers.&#8221; A collection of wisdom from the early Egyptian and Syrian monks &#8212; the foundational texts of Christian ascetic and contemplative tradition.</div></div>
+        <div class="gt"><div class="gt-term">Anakephalai&#333;sis</div><div class="gt-def">&#8220;Recapitulation.&#8221; Irenaeus&#8217; term for Christ&#8217;s work: he retraced and renewed the entire human story, enabling humanity to follow him into divine life. Latin: <em>recapitulatio</em>.</div></div>
+        <div class="gt"><div class="gt-term">Imago Dei</div><div class="gt-def">&#8220;Image of God&#8221; &#8212; the quality in which humanity was created (Genesis 1:26). The Eastern tradition distinguishes between the <em>image</em> (rational nature, not fully lost in the Fall) and the <em>likeness</em> (moral/spiritual resemblance, restored through salvation).</div></div>
+        <div class="gt"><div class="gt-term">Sola Fide</div><div class="gt-def">&#8220;Faith alone.&#8221; The Protestant Reformation principle that salvation is received through faith alone, apart from works. OO theology agrees that salvation is not earned by works but insists genuine saving faith is always a living faith that produces love and transformation.</div></div>
+        <div class="gt"><div class="gt-term">Apostolic Succession</div><div class="gt-def">The unbroken chain of ordained ministry from the apostles through history. The bishop who ordains today stands in a line traceable to the apostles. Guarantees the continuity of authentic teaching and sacramental ministry.</div></div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+var sections=document.querySelectorAll('.sec');
+var links=document.querySelectorAll('#sb-nav a');
+function ts(h){var s=h.closest('.sec');s.classList.toggle('open')}
+function tobj(h){var o=h.closest('.obj');o.classList.toggle('open')}
+function tf(h){var f=h.closest('.fi');f.classList.toggle('open')}
+window.addEventListener('scroll',function(){
+  var st=window.scrollY,dh=document.documentElement.scrollHeight-window.innerHeight;
+  document.getElementById('prog').style.width=(dh>0?Math.min(st/dh*100,100):0)+'%';
+  var cur='';
+  sections.forEach(function(s){if(window.scrollY+120>=s.offsetTop)cur='#'+s.id});
+  links.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')===cur)});
+});
+function sidebarSearch(v){
+  var q=v.trim().toLowerCase();
+  var anyVis=false;
+  sections.forEach(function(s){
+    if(!q){s.classList.remove('s-hidden');anyVis=true;return;}
+    var h=s.querySelector('h2');
+    if(!h)return;
+    if(h._orig===undefined)h._orig=h.innerHTML;
+    var txt=h._orig.toLowerCase();
+    if(txt.includes(q)){
+      s.classList.remove('s-hidden');
+      h.innerHTML=h._orig.replace(new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'),'<mark>$1</mark>');
+      anyVis=true;
+    } else {
+      s.classList.add('s-hidden');
+      h.innerHTML=h._orig;
+    }
+  });
+  document.getElementById('no-match').classList.toggle('show',!anyVis&&q.length>0);
+}
+</script>
+</body>
+</html>

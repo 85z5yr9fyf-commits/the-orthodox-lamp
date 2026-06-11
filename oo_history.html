@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>History of the Oriental Orthodox Church | The Orthodox Lamp</title>
+<style>
+:root{
+  --gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;
+  --bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--bg5:#3a2e10;
+  --tx:#e8e0d0;--mu:#a09880;--br:#2a2a2a;--sidebar-w:270px;
+  --cop:#1a2a1e;--copc:#6ec87a;
+  --eth:#2a1e10;--ethc:#d4a060;
+  --arm:#2a1010;--armc:#d47060;
+  --syr:#101a2a;--syrc:#60a8d4;
+  --mal:#1a1a2e;--malc:#9080d4;
+  --isl:#2a2010;--islc:#c8b040;
+  --mir:#1e1028;--mirc:#b880d4;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.7;display:flex;min-height:100vh}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+mark{background:rgba(201,168,76,.28);color:var(--gl);border-radius:2px;padding:0 2px}
+#prog{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--gd),var(--gl));z-index:200;transition:width .1s}
+#sb{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:100;display:flex;flex-direction:column}
+#sb-brand{padding:18px 18px 10px;border-bottom:1px solid var(--br)}
+#sb-brand .lamp{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mu);margin-bottom:4px}
+#sb-brand h1{font-size:1rem;color:var(--gold);line-height:1.3}
+.sb-search{padding:10px 14px 4px}
+.sb-search input{width:100%;background:rgba(255,255,255,.06);border:1px solid var(--br);border-radius:6px;padding:8px 12px;font-size:.8rem;color:var(--tx);font-family:'Georgia',serif;outline:none;transition:border-color .2s}
+.sb-search input::placeholder{color:#666}
+.sb-search input:focus{border-color:var(--gd)}
+.sec.s-hidden{display:none}
+.no-match-msg{display:none;padding:14px 18px;font-size:.8rem;color:var(--mu);font-style:italic;text-align:center}
+.no-match-msg.show{display:block}
+#sb-nav{padding:8px 0 20px;flex:1}
+.sb-part{padding:8px 18px 2px;font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mu)}
+#sb-nav a{display:block;padding:5px 18px;font-size:.79rem;color:var(--mu);border-left:2px solid transparent;transition:all .15s;line-height:1.35}
+#sb-nav a:hover,#sb-nav a.active{color:var(--gold);border-left-color:var(--gold);background:rgba(201,168,76,.06);text-decoration:none}
+main{margin-left:var(--sidebar-w);flex:1;max-width:900px;padding:48px 48px 80px}
+.pg-title .lamp-label{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--mu);margin-bottom:6px}
+.pg-title h1{font-size:2rem;color:var(--gold);line-height:1.2;margin-bottom:8px}
+.pg-title .sub{font-size:1rem;color:var(--mu);margin-top:6px;font-style:italic}
+.pg-intro{max-width:700px;color:var(--mu);font-size:.93rem;margin:14px 0 32px;border-left:3px solid var(--gd);padding-left:14px}
+.sec{border:1px solid var(--br);border-radius:8px;margin-bottom:14px;overflow:hidden;background:var(--bg2)}
+.sec-h{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;cursor:pointer;user-select:none;gap:10px}
+.sec-h:hover{background:rgba(255,255,255,.03)}
+.sec-h h2{font-size:1rem;color:var(--tx);font-weight:600}
+.sec-h .arr{color:var(--mu);font-size:.8rem;transition:transform .2s;flex-shrink:0}
+.sec.open .arr{transform:rotate(90deg)}
+.sec-body{display:none;padding:18px 20px 22px;border-top:1px solid var(--br)}
+.sec.open .sec-body{display:block}
+.sec-body p{color:var(--mu);font-size:.92rem;margin-bottom:10px}
+.sec-body p:last-child{margin-bottom:0}
+.sec-body h3{font-size:.84rem;color:var(--gold);letter-spacing:.07em;text-transform:uppercase;margin:18px 0 8px}
+.sv{background:var(--bg5);border:1px solid var(--gd);border-radius:6px;padding:10px 14px;margin:10px 0;font-style:italic;color:var(--gl);font-size:.9rem}
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin:14px 0}
+.fc{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:14px 16px}
+.fc-name{font-size:.88rem;color:var(--gold);font-weight:600;margin-bottom:2px}
+.fc-date{font-size:.74rem;color:var(--mu);margin-bottom:8px}
+.fc-body{font-size:.83rem;color:var(--mu);line-height:1.6}
+.pull-quote{border-left:4px solid var(--gd);padding:12px 18px;margin:14px 0;background:var(--bg3);border-radius:0 6px 6px 0;font-style:italic;color:var(--gl);font-size:.92rem}
+.tl{padding:4px 0 4px 20px;border-left:2px solid var(--br);margin:14px 0}
+.tl-item{position:relative;margin-bottom:22px;padding-left:20px}
+.tl-dot{position:absolute;left:-26px;top:5px;width:10px;height:10px;border-radius:50%;background:var(--gold);border:2px solid var(--bg)}
+.tl-date{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:3px}
+.tl-title{font-size:.9rem;color:var(--tx);font-weight:600;margin-bottom:5px}
+.tl-item p{font-size:.84rem;color:var(--mu)}
+.church-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin:14px 0}
+.church-card{border-radius:8px;padding:16px 14px;border-width:1px;border-style:solid}
+.cc-label{font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;font-weight:700;margin-bottom:6px}
+.church-card p{font-size:.82rem;line-height:1.6}
+.cc-cop{background:var(--cop);border-color:var(--copc)}.cc-cop .cc-label{color:var(--copc)}.cc-cop p{color:#90d890}
+.cc-eth{background:var(--eth);border-color:var(--ethc)}.cc-eth .cc-label{color:var(--ethc)}.cc-eth p{color:#d0b080}
+.cc-arm{background:var(--arm);border-color:var(--armc)}.cc-arm .cc-label{color:var(--armc)}.cc-arm p{color:#d09090}
+.cc-syr{background:var(--syr);border-color:var(--syrc)}.cc-syr .cc-label{color:var(--syrc)}.cc-syr p{color:#80b8d0}
+.cc-mal{background:var(--mal);border-color:var(--malc)}.cc-mal .cc-label{color:var(--malc)}.cc-mal p{color:#a090d0}
+.isl-box{background:var(--isl);border:1px solid var(--islc);border-radius:8px;padding:14px 16px;margin:10px 0}
+.isl-box p{color:#c8c080;font-size:.87rem;margin-bottom:0}
+.mir-box{background:var(--mir);border:1px solid var(--mirc);border-radius:8px;padding:14px 16px;margin:12px 0}
+.mir-label{font-size:.7rem;color:var(--mirc);letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-bottom:6px}
+.mir-box p{color:#c0a0d8;font-size:.87rem;margin-bottom:6px}
+.mir-box p:last-child{margin-bottom:0}
+.patriarch-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin:14px 0}
+.patriarch{background:var(--bg3);border:1px solid var(--br);border-top:4px solid var(--gold);border-radius:8px;padding:14px 16px}
+.pat-name{font-size:.9rem;color:var(--gold);font-weight:600;margin-bottom:2px}
+.pat-title{font-size:.75rem;color:var(--mu);margin-bottom:3px}
+.pat-dates{font-size:.72rem;color:var(--gd);margin-bottom:8px}
+.pat-body{font-size:.82rem;color:var(--mu);line-height:1.6}
+.gt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin:12px 0}
+.gt{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:12px 14px}
+.gt-term{font-size:.84rem;color:var(--gold);font-weight:600;margin-bottom:4px}
+.gt-def{font-size:.8rem;color:var(--mu);line-height:1.55}
+.badge{display:inline-block;font-size:.7rem;padding:2px 9px;border-radius:4px;font-weight:700;letter-spacing:.04em;margin-right:4px}
+.b-cop{background:var(--cop);color:var(--copc)}
+.b-eth{background:var(--eth);color:var(--ethc)}
+.b-arm{background:var(--arm);color:var(--armc)}
+.b-syr{background:var(--syr);color:var(--syrc)}
+.b-mal{background:var(--mal);color:var(--malc)}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<nav id="sb">
+  <div id="sb-brand">
+    <div class="lamp">The Orthodox Lamp</div>
+    <h1>History of the Oriental Orthodox Church</h1>
+  </div>
+  <div class="sb-search">
+    <input type="text" id="sb-inp" placeholder="Search sections..." oninput="sidebarSearch(this.value)">
+  </div>
+  <div class="no-match-msg" id="no-match">No sections match</div>
+  <div id="sb-nav">
+    <div class="sb-part">Origins</div>
+    <a href="#intro">Introduction</a>
+    <a href="#apostolic">Apostolic Origins</a>
+    <a href="#alexandrian">The Alexandrian School</a>
+    <a href="#martyrs">The Era of Martyrs</a>
+    <div class="sb-part">The Great Schism</div>
+    <a href="#chalcedon">Council of Chalcedon 451</a>
+    <a href="#byzantine">Byzantine Persecution</a>
+    <div class="sb-part">Islamic Rule</div>
+    <a href="#arab-conquest">The Arab Conquest</a>
+    <a href="#coptic-islam">Coptic Church Under Islam</a>
+    <a href="#ethiopian-islam">Ethiopia &amp; Ahmad Gran</a>
+    <a href="#armenian-islam">Armenia: Seljuks to Genocide</a>
+    <a href="#syriac-islam">Syriac Church Under Islam</a>
+    <div class="sb-part">Faith Under Fire</div>
+    <a href="#miracles">Miracles &amp; Signs</a>
+    <a href="#schisms">Schisms &amp; Challenges</a>
+    <div class="sb-part">Great Leaders</div>
+    <a href="#patriarchs">Great Fathers and Leaders</a>
+    <div class="sb-part">Modern Era</div>
+    <a href="#modern">The Modern Church</a>
+    <a href="#ecumenism">Ecumenical Dialogue</a>
+    <a href="#glossary">Glossary</a>
+  </div>
+</nav>
+
+<main>
+  <div class="pg-title" id="intro">
+    <div class="lamp-label">The Orthodox Lamp</div>
+    <h1>History of the Oriental Orthodox Church</h1>
+    <div class="sub">Two Thousand Years of Faith, Persecution, and Endurance</div>
+  </div>
+  <div class="pg-intro">
+    The Oriental Orthodox churches are among the oldest Christian institutions on earth. Planted by apostles in Egypt, Ethiopia, Armenia, Syria, and India, they survived Roman persecution, Byzantine theological assault, Arab conquest, Mongol devastation, Ottoman oppression, and in Armenia the first genocide of the twentieth century. Through every century they preserved the apostolic faith, produced towering saints and scholars, and witnessed miracles that have no natural explanation. This is their story.
+  </div>
+
+  <!-- APOSTOLIC ORIGINS -->
+  <div class="sec open" id="apostolic">
+    <div class="sec-h" onclick="ts(this)"><h2>Apostolic Origins &#8212; How Each Church Was Founded</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>Each of the Oriental Orthodox churches traces its founding directly to an apostle or apostolic figure of the first century. This is not legend but historical tradition corroborated by early Christian writers.</p>
+      <div class="church-grid">
+        <div class="church-card cc-cop">
+          <div class="cc-label">Coptic Church &#8212; Egypt</div>
+          <p><strong>Founded by St. Mark the Evangelist, c. AD 42&#8211;68.</strong> Mark arrived in Alexandria &#8212; then the second city of the Roman Empire and its intellectual capital &#8212; and healed a cobbler named Anianus, who became the first convert. Mark established what Coptic tradition holds to be the first Christian school in history: the Catechetical School of Alexandria, which would become the greatest intellectual institution of the ancient Church. He was martyred in Alexandria on Paschal Monday, AD 68, dragged through the streets on a rope.</p>
+        </div>
+        <div class="church-card cc-eth">
+          <div class="cc-label">Ethiopian Church</div>
+          <p><strong>Biblical roots: Acts 8:26&#8211;40.</strong> The Ethiopian eunuch, treasurer of Queen Candace, was baptized by Philip the Evangelist on his return from Jerusalem. This is the first recorded Gentile Christian baptism. The Church formally established c. AD 330 when King Ezana of Aksum was converted by <strong>St. Frumentius</strong> (Abba Salama), who was consecrated bishop by Athanasius of Alexandria. Ethiopia became the second officially Christian kingdom in history, after Armenia.</p>
+        </div>
+        <div class="church-card cc-arm">
+          <div class="cc-label">Armenian Church</div>
+          <p><strong>Founded by Sts. Thaddeus and Bartholomew, 1st century AD.</strong> The apostles Thaddeus (Jude) and Bartholomew preached in Armenia and were both martyred there. The Church was formally established as a state religion in <strong>AD 301</strong> when King Tiridates III was baptized by <strong>St. Gregory the Illuminator</strong>, making Armenia the first nation in history to adopt Christianity as its official state religion &#8212; twelve years before Constantine&#8217;s Edict of Milan.</p>
+        </div>
+        <div class="church-card cc-syr">
+          <div class="cc-label">Syriac Orthodox Church</div>
+          <p><strong>Apostolic see of Antioch, founded 1st century AD.</strong> The church of Antioch is described in Acts as the place where disciples were first called &#8220;Christians&#8221; (Acts 11:26). Its first bishop was <strong>St. Peter the Apostle</strong>, followed by <strong>St. Evodius</strong> and then St. Ignatius. The Syriac Orthodox Church considers itself the direct continuation of the original Antiochene see, preserving the apostolic tradition of Syria and Mesopotamia in the Syriac language closest to the Aramaic Jesus spoke.</p>
+        </div>
+        <div class="church-card cc-mal">
+          <div class="cc-label">Malankara / Indian Church</div>
+          <p><strong>Founded by St. Thomas the Apostle, AD 52.</strong> Thomas traveled to Kerala (southwest India) and established seven churches &#8212; the Ezharappallikal (seven and a half churches). He was martyred near Madras (Chennai) around AD 72. The Thomas Christians of Kerala are one of the oldest continuous Christian communities on earth, maintaining their apostolic identity through 2,000 years of Indian history. Their tradition predates Western Christianity&#8217;s arrival in India by 1,500 years.</p>
+        </div>
+      </div>
+      <div class="sv">&#8220;So the eunuch said, &#8216;Here is water. What hinders me from being baptized?&#8217;&#8230; And he commanded the chariot to stand still, and they both went down into the water, both Philip and the eunuch, and he baptized him.&#8221; &#8212; Acts 8:36&#8211;38</div>
+    </div>
+  </div>
+
+  <!-- ALEXANDRIAN SCHOOL -->
+  <div class="sec" id="alexandrian">
+    <div class="sec-h" onclick="ts(this)"><h2>The Alexandrian School &#8212; Golden Age of Theology</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>The Catechetical School of Alexandria, founded by St. Mark and developed through the 2nd&#8211;5th centuries, was the intellectual engine of the entire early Church. Its teachers produced the most profound theological writings of Christian antiquity and shaped every subsequent tradition &#8212; Catholic, Protestant, and Orthodox alike.</p>
+      <div class="tl">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-date">c. AD 42</div>
+            <div class="tl-title">St. Mark Founds the School</div>
+            <p>Mark establishes the first Christian educational institution in Alexandria, the Roman Empire&#8217;s center of learning. The school&#8217;s mission: training catechumens in both scripture and philosophy, engaging the educated pagan world on its own terms.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-date">c. AD 160&#8211;180</div>
+            <div class="tl-title">Pantaenus &#8212; First Named Head</div>
+            <p>Pantaenus, a former Stoic philosopher, becomes head of the school. According to Eusebius, he traveled as far as India to preach the Gospel and found a community using a Hebrew copy of Matthew&#8217;s Gospel, brought earlier by Bartholomew.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-date">c. AD 180&#8211;202</div>
+            <div class="tl-title">Clement of Alexandria</div>
+            <p>Clement makes the first systematic attempt to bring Greek philosophy into dialogue with Christian theology. His trilogy &#8212; <em>Protrepticus, Paedagogus, Stromata</em> &#8212; argues that Greek philosophy was a preparation for the Gospel, as the Law was for the Jews. He quotes over 360 classical authors, demonstrating that Christianity need not fear intellectual engagement.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-date">c. AD 202&#8211;232</div>
+            <div class="tl-title">Origen &#8212; The Greatest Scholar</div>
+            <p>Origen produces the <em>Hexapla</em> (six-column Bible comparing OT texts), writes the first systematic theology (<em>On First Principles</em>), produces commentaries on nearly every biblical book, and establishes the allegorical method of interpretation that shaped biblical exegesis for a thousand years. He traveled the known world, corresponded with emperors, and attracted students from across the Empire. His influence on Athanasius, the Cappadocians, and Jerome is incalculable.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-date">AD 328&#8211;373</div>
+            <div class="tl-title">Athanasius &#8212; Champion of Orthodoxy</div>
+            <p>Athanasius becomes Patriarch of Alexandria at age 30 and spends his life defending the full divinity of Christ against Arianism. Exiled five times by four different emperors, he stands alone when the entire Roman imperial church embraces Arianism &#8212; giving rise to the phrase <em>Athanasius contra mundum</em> (Athanasius against the world). He also writes the <em>Life of Anthony</em>, which launches the monastic movement across the Christian world.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-date">AD 412&#8211;444</div>
+            <div class="tl-title">Cyril of Alexandria &#8212; Seal of the Fathers</div>
+            <p>Cyril fights the Nestorian heresy (which divided Christ into two persons) and secures the title <em>Theotokos</em> (God-bearer) for the Virgin Mary at the Council of Ephesus in 431. His Christological writings &#8212; twelve anathemas against Nestorius &#8212; define the miaphysite understanding that the OO tradition carries to the present day. He is called the &#8220;Seal of the Fathers&#8221; for being the last of the great patristic theologians.</p>
+          </div>
+        </div>
+      </div>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">Origen of Alexandria</div>
+          <div class="fc-date">c. 185&#8211;253 AD</div>
+          <div class="fc-body">&#8220;We must not think of God as we think of man. We can form no adequate conception of His greatness&#8230; If anyone could know what is the end of each thing, he would know why it was created so. And this too would lead to the knowledge of God.&#8221; (<em>On First Principles</em>). Origen&#8217;s vision of theology as endless ascent toward God remained the animating spirit of the Alexandrian school for three centuries.</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Athanasius of Alexandria</div>
+          <div class="fc-date">296&#8211;373 AD</div>
+          <div class="fc-body">&#8220;Even if the whole world were against Athanasius, Athanasius is against the world.&#8221; (<em>Historia Arianorum</em>). During his third exile, when virtually every bishop in the Empire had signed an Arian formula and he was told &#8220;the world is against you,&#8221; Athanasius replied: &#8220;Then it is Athanasius against the world.&#8221; He was recalled to his see after each exile &#8212; five times &#8212; eventually dying in his own bed, having outlasted every emperor who persecuted him.</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Cyril of Alexandria</div>
+          <div class="fc-date">376&#8211;444 AD</div>
+          <div class="fc-body">&#8220;One is Christ the Son and Lord, not as if a man were merely joined to God by a unity of dignity and authority&#8230; but a true union by which the Word, by his Incarnation, is God and man at once.&#8221; (<em>On the Unity of Christ</em>). This formulation &#8212; one nature of the incarnate Word (<em>mia physis</em>) &#8212; is the theological cornerstone of miaphysitism. The Council of Ephesus vindicated Cyril completely in 431.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ERA OF MARTYRS -->
+  <div class="sec" id="martyrs">
+    <div class="sec-h" onclick="ts(this)"><h2>The Era of Martyrs &#8212; Diocletian&#39;s Persecution</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>No persecution in Roman history equaled in ferocity and duration what Emperor Diocletian unleashed against Egyptian Christians beginning with the Great Persecution of AD 303 (the Coptic calendar counts from 284, the year Diocletian became emperor, for symbolic reasons). The numbers preserved in Coptic tradition are staggering: the Coptic Church remembers hundreds of thousands of martyrs from Diocletian&#8217;s reign &#8212; traditional counts reach 800,000 &#8212; while modern historians give far lower figures, though all agree the persecution in Egypt was exceptionally severe. The martyrs died &#8212; beheaded, burned, crucified, drowned, and tortured in every conceivable way across Egypt and North Africa.</p>
+      <div class="isl-box" style="background:var(--arm);border-color:var(--armc)">
+        <p><strong style="color:var(--armc)">The Coptic Calendar (Anno Martyrum):</strong> The Coptic Church counts its years from AD 284 &#8212; the year Diocletian came to power. It is called the <em>Era of the Martyrs</em> (AM). The year 2025 AD is therefore 1741 AM in the Coptic calendar. This is not merely a historical curiosity; it is a theological statement that the identity of the Coptic Church is inseparable from the blood of its martyrs.</p>
+      </div>
+      <h3>The Scale of the Persecution</h3>
+      <p>Diocletian&#8217;s Great Persecution (AD 303&#8211;311) demanded that all Christians hand over their scriptures for burning (giving rise to the word &#8220;traditor&#8221; &#8212; traitor &#8212; for those who complied, and to the later Donatist controversy). Churches were demolished. Clergy were imprisoned and tortured until they sacrificed to Roman gods. In Egypt, entire towns were Christian, and entire towns were massacred. The city of Esna, for example, lost over 10,000 martyrs in a single day.</p>
+      <div class="sv">&#8220;Be faithful unto death, and I will give you the crown of life.&#8221; &#8212; Revelation 2:10</div>
+      <h3>The Holy Family in Egypt</h3>
+      <p>The Coptic Church also preserves the tradition of the Holy Family&#8217;s flight into Egypt (Matthew 2:13&#8211;15), tracing a detailed route through Egyptian towns where Jesus, Mary, and Joseph stayed. Every site along the route &#8212; from Sinai to Assiut &#8212; became a center of Christian community. The prophecy of Isaiah 19:19 (&#8220;In that day there will be an altar to the Lord in the midst of the land of Egypt&#8221;) is read by Copts as fulfilled in this journey. Egypt was prepared to receive the Messiah &#8212; and later to die for him.</p>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">St. Peter of Alexandria</div>
+          <div class="fc-date">d. AD 311</div>
+          <div class="fc-body">The last Patriarch of Alexandria martyred under Diocletian. Called the &#8220;Seal of the Martyrs,&#8221; Peter was beheaded in his own cathedral. He had spent years pastoring a church living under threat of death &#8212; writing canons about how to treat those who had lapsed under torture, with pastoral precision and mercy. He is commemorated on November 25 in the Coptic calendar as the seal of the martyr age.</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Menas of Egypt</div>
+          <div class="fc-date">d. c. AD 296</div>
+          <div class="fc-body">An Egyptian soldier in the Roman army who publicly declared his Christianity before his regiment and was executed. His tomb near Alexandria became one of the great pilgrimage sites of the ancient world. The Abu Mena basilica, built over his tomb by Emperor Arcadius, attracted pilgrims from across the Mediterranean. Thousands of ceramic flasks bearing his image &#8212; filled with oil from his tomb &#8212; have been found from Britain to Mesopotamia.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHALCEDON -->
+  <div class="sec" id="chalcedon">
+    <div class="sec-h" onclick="ts(this)"><h2>The Council of Chalcedon (451) &#8212; The Defining Schism</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>The Council of Chalcedon in AD 451 is the event that divided the Christian East and has defined the Oriental Orthodox identity ever since. Understanding what happened there &#8212; and what was actually at stake &#8212; is essential for understanding the OO tradition.</p>
+      <h3>The Background</h3>
+      <p>The Council of Ephesus (431) had vindicated Cyril of Alexandria&#8217;s Christology against Nestorius: Christ is one person, not two. But within decades, a monk named Eutyches went too far in the opposite direction, teaching that Christ&#8217;s humanity was absorbed into his divinity like a drop of vinegar in the sea. Patriarch Flavian of Constantinople condemned Eutyches. The Alexandrian Patriarch Dioscorus, Cyril&#8217;s successor, supported Eutyches. At a council in Ephesus in 449 &#8212; called the &#8220;Robber Synod&#8221; by Pope Leo I &#8212; Dioscorus had Flavian beaten so severely he died shortly after.</p>
+      <h3>The Council and Its Formula</h3>
+      <p>Emperor Marcian called a new council at Chalcedon in 451. The council deposed Dioscorus and defined Christ as having <strong>two natures</strong> (divine and human) in one person, united &#8220;without confusion, without change, without division, without separation&#8221; (the four adverbs). The Oriental Orthodox churches rejected this formula &#8212; not because they believed in Eutyches&#8217; error &#8212; but because they believed it contradicted the Cyrillian formula they had always confessed: <em>one nature of the incarnate Word</em> (<em>mia physis tou Theou Logou sesarkomene</em>).</p>
+      <div class="isl-box" style="background:#1a1e2a;border-color:#7090d4">
+        <p style="color:#a0b8d8"><strong style="color:#90a8e0">The Christological Position:</strong> The Oriental Orthodox are <em>miaphysites</em> &#8212; they confess one united nature in Christ, divine and human, without separation or confusion. This is not Eutychianism (which collapsed the human into the divine) but a different philosophical framework for expressing the same mystery that Chalcedon was trying to define. As the 1990 Agreed Statement between OO and EO affirms: both families confess the same Christ &#8212; the separation was a tragedy of terminology, politics, and mutual misunderstanding.</p>
+      </div>
+      <h3>Dioscorus of Alexandria</h3>
+      <p>Dioscorus was deposed at Chalcedon and exiled to Gangra in Paphlagonia, where he died in AD 454. The Oriental Orthodox tradition venerates him as a confessor &#8212; one who suffered for the faith. His crime, in Chalcedonian eyes, was defending Eutyches. His defense, in OO eyes, was defending the Cyrillian theology he had received. The deposition of Dioscorus was the moment the Oriental Orthodox churches became a distinct family.</p>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">St. Severus of Antioch</div>
+          <div class="fc-date">c. 465&#8211;538 AD</div>
+          <div class="fc-body">&#8220;We confess one nature of God the Word incarnate. This is not the teaching of Eutyches but of Cyril. We do not deny the completeness of his humanity or divinity &#8212; we affirm their perfect union.&#8221; Severus became the greatest theological defender of the Oriental Orthodox position after Chalcedon. His 3,000 surviving letters and homilies represent the fullest exposition of miaphysite Christology. He was deposed by the Chalcedonian Emperor Justin I and died in exile in Egypt &#8212; but his theology became the permanent doctrinal foundation of the OO churches.</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">Patriarch Dioscorus of Alexandria</div>
+          <div class="fc-date">d. AD 454</div>
+          <div class="fc-body">&#8220;Though I am in exile, I am not alone. The same Christ who was exiled with the prophets is exiled with me.&#8221; (words attributed to Dioscorus in exile). His three years of exile at Gangra, maintaining his theological position without recanting, established the pattern of holy resistance that the OO churches would follow through every subsequent persecution.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BYZANTINE PERSECUTION -->
+  <div class="sec" id="byzantine">
+    <div class="sec-h" onclick="ts(this)"><h2>Byzantine Persecution &#8212; The Church Under Imperial Pressure</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>After Chalcedon, the Byzantine Empire launched a sustained effort to impose the Chalcedonian formula on the Oriental Orthodox populations of Egypt, Syria, and Palestine. What followed was more than a century of theological persecution &#8212; bishops deposed, replaced by imperial appointees, populations coerced &#8212; that left permanent wounds.</p>
+      <h3>The Henotikon and Its Failure (AD 482&#8211;519)</h3>
+      <p>Emperor Zeno attempted a compromise formula &#8212; the <em>Henotikon</em> &#8212; which affirmed Cyril and condemned both Nestorius and Eutyches without endorsing Chalcedon. It satisfied no one: Rome broke communion with Constantinople (the Acacian Schism, 484&#8211;519), and the Oriental Orthodox rejected it as insufficient. The attempt to paper over theological differences with vague imperial formulae failed completely.</p>
+      <h3>The Dual Hierarchies</h3>
+      <p>The most damaging consequence of the post-Chalcedon period was the installation of parallel Chalcedonian patriarchs alongside the Oriental Orthodox patriarchs. In Alexandria, Egypt had simultaneously a Coptic patriarch and an imperial &#8220;Melkite&#8221; (king&#8217;s man) patriarch &#8212; two claimants to the same see. The same occurred in Antioch. This created centuries of conflict, property disputes, and occasional violence. The Coptic faithful remained stubbornly loyal to their own patriarch, resisting imperial pressure at great personal cost.</p>
+      <h3>Emperor Justinian&#39;s Persecutions (527&#8211;565)</h3>
+      <p>Justinian I &#8212; who also built the Hagia Sophia &#8212; was the most aggressive persecutor of the Oriental Orthodox churches. He deposed and exiled multiple Oriental Orthodox patriarchs, sent imperial troops to force Chalcedonian communion on Egyptian monasteries, and at one point had Coptic monks tortured and killed for refusing to accept his theological formula. His wife, the Empress Theodora, secretly favored the Oriental Orthodox &#8212; a fact that gave the OO churches some protection and enabled the eventual consecration of miaphysite bishops for Syria, creating what became the Syriac Orthodox Church&#8217;s episcopal succession under Jacob Baradaeus.</p>
+      <div class="isl-box" style="background:#1a1a28;border-color:#9090d0">
+        <p style="color:#c0b8e8"><strong style="color:#b0a8e8">Jacob Baradaeus (c. 500&#8211;578 AD):</strong> A monk who was secretly consecrated bishop and spent four decades traveling in disguise across Syria, Mesopotamia, Egypt, and Arabia &#8212; ordaining hundreds of priests and bishops for the Oriental Orthodox under Byzantine noses. He is single-handedly credited with saving the Syriac Orthodox Church from extinction under Justinian&#8217;s persecution. The Syriac Orthodox Church was for centuries known as the &#8220;Jacobite&#8221; church in his honor.</p>
+      </div>
+      <div class="pull-quote">&#8220;They can exile our bodies. They cannot exile our faith. For where the faith is, there is the Church &#8212; and no emperor can baptize heresy into truth.&#8221; &#8212; attributed to Coptic Patriarch Timothy III (d. AD 535), during Justinian&#8217;s persecutions</div>
+    </div>
+  </div>
+
+  <!-- ARAB CONQUEST -->
+  <div class="sec" id="arab-conquest">
+    <div class="sec-h" onclick="ts(this)"><h2>The Arab Conquest &#8212; Islam Arrives (AD 639&#8211;641)</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>In AD 639, Arab armies under General Amr ibn al-As invaded Byzantine Egypt. By 641 the Byzantine garrison at Alexandria had surrendered and Egypt &#8212; Christian for three centuries &#8212; passed into Arab hands. The conquest was swift, and its consequences for the Oriental Orthodox churches were permanent and transformative.</p>
+      <div class="isl-box">
+        <p><strong style="color:var(--islc)">Why Copts Initially Welcomed the Arabs:</strong> After a century and a half of Byzantine theological persecution &#8212; coercion, exiled patriarchs, murdered monks &#8212; many Egyptian Christians saw the Arab conquest as liberation from a Christian empire that had treated them as heretics. Patriarch Benjamin I of Alexandria, who had spent thirteen years hiding in the desert to escape the Byzantines, came out of hiding to cooperate with Amr ibn al-As. This is not a romanticization &#8212; Coptic sources record genuine initial relief from Byzantine oppression.</p>
+      </div>
+      <h3>The Status of Dhimmi</h3>
+      <p>Under Islamic law, Christians and Jews became <em>dhimmis</em> &#8212; protected non-Muslim subjects. This status was a profound double-edged reality. On one hand, dhimmis could practice their religion, maintain their churches, and live without forced conversion (in most periods). On the other hand, dhimmis paid a special poll tax (<em>jizya</em>), faced legal disadvantages in disputes with Muslims, could not build new churches or repair old ones without permission, could not ride horses or bear arms, had to wear distinctive clothing, and were systematically disadvantaged in commerce and government. The condition of the Oriental Orthodox churches under Islam fluctuated dramatically depending on which dynasty ruled and which individual caliph was in power.</p>
+      <div class="tl">
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--islc)"></div>
+          <div class="tl-content">
+            <div class="tl-date">AD 639&#8211;641</div>
+            <div class="tl-title">Arab Conquest of Egypt</div>
+            <p>Amr ibn al-As defeats Byzantine forces. Patriarch Benjamin I cooperates with the new rulers. Initial period of relative tolerance under the Rashidun Caliphate.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--islc)"></div>
+          <div class="tl-content">
+            <div class="tl-date">AD 661&#8211;750</div>
+            <div class="tl-title">Umayyad Period &#8212; Increasing Restrictions</div>
+            <p>The jizya is systematized. Copts are prohibited from public religious expression. Church construction is restricted. The Arabization of Egypt begins, gradually displacing Coptic as the daily language.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--islc)"></div>
+          <div class="tl-content">
+            <div class="tl-date">AD 750&#8211;969</div>
+            <div class="tl-title">Abbasid Period &#8212; Mixed Experience</div>
+            <p>Under some Abbasid caliphs, Coptic Christians serve as high officials and the Church enjoys relative freedom. Under others, systematic persecution: forced conversions, destruction of churches, seizure of monasteries. The Coptic revolts of the 8th&#8211;9th centuries are crushed brutally.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--islc)"></div>
+          <div class="tl-content">
+            <div class="tl-date">AD 969&#8211;1171</div>
+            <div class="tl-title">Fatimid Period &#8212; Relative Golden Age</div>
+            <p>The Fatimid caliphs &#8212; Shia Muslims &#8212; are generally tolerant of Copts, who serve in high government positions. A Fatimid caliph (Coptic tradition names al-Muizz li-Dīn Allāh; chronological analysis of Abraham ibn Zaraa&#8217;s patriarchate, 975&#8211;978, points to his successor al-Aziz Billah, r. 975&#8211;996) famously engages Patriarch Abraham in theological debate and witnesses the Miracle of the Muqattam Mountain. This is the high point of Coptic life under Arab rule.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--islc)"></div>
+          <div class="tl-content">
+            <div class="tl-date">AD 1171&#8211;1517</div>
+            <div class="tl-title">Ayyubid &amp; Mamluk Periods &#8212; Systematic Persecution</div>
+            <p>The Ayyubids (Saladin&#8217;s dynasty) and especially the Mamluks bring waves of severe persecution. Churches burned, entire communities forcibly converted, Copts barred from government service. The Mamluk period (1250&#8211;1517) sees the Coptic population decline dramatically from a majority to a significant minority through forced conversion and emigration.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COPTIC UNDER ISLAM -->
+  <div class="sec" id="coptic-islam">
+    <div class="sec-h" onclick="ts(this)"><h2>The Coptic Church Under Islamic Rule &#8212; Endurance &amp; Identity</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>Over fourteen centuries of Islamic rule, the Coptic Church survived not through political power &#8212; which it never had &#8212; but through its monasteries, its liturgy, its patriarchs, and the stubborn identity of a people who refused to disappear.</p>
+      <h3>The Monasteries as Fortresses of Identity</h3>
+      <p>The great Coptic monasteries of the Nitrian desert &#8212; Deir Anba Bishoy, Deir Abu Maqar (St. Macarius), Deir al-Baramous, Deir Anba Antonyos &#8212; were founded in the 4th century and have been in continuous operation ever since. During the most severe periods of persecution, they became literal fortresses: the monasteries of Wadi Natrun were built with high walls, retractable bridges, and storage rooms for years of supplies. They preserved Coptic manuscripts, maintained the Coptic language in liturgy, trained bishops, and provided a physical and spiritual anchor for the community in every generation.</p>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">Pope Abraham ibn Zaraa</div>
+          <div class="fc-date">975&#8211;978 AD</div>
+          <div class="fc-body">The Coptic Patriarch who was challenged by a Fatimid caliph to prove Matthew 17:20 (moving mountains by faith). Coptic tradition names this caliph as al-Muizz li-Dīn Allāh; chronological analysis of Abraham&#8217;s patriarchate (975&#8211;978) places it under al-Aziz Billah (r. 975&#8211;996) &#8212; the sources preserve both attributions. When Abraham called the community to three days of fasting and prayer, the Muqattam Mountain reportedly moved visibly three times &#8212; witnessed by the Caliph and his court. The Caliph then allowed the Coptic Church significant new freedoms. Abraham is commemorated as a saint on the 29th of Hathor in the Coptic calendar.</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">Pope Cyril II</div>
+          <div class="fc-date">1078&#8211;1092 AD</div>
+          <div class="fc-body">Cyril II served during the Fatimid period and worked to maintain the church&#8217;s institutional life during a period of internal disorder and the beginning of Fatimid decline. His pontificate established administrative practices &#8212; the systematic collection of church revenues, the organization of episcopal sees &#8212; that helped the church survive the coming Mamluk era. His pastoral letters reveal a church under constant economic pressure from the jizya and land confiscations.</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Simon the Tanner</div>
+          <div class="fc-date">10th century AD</div>
+          <div class="fc-body">A Coptic cobbler from Old Cairo who is credited as the central human instrument in the Muqattam miracle. A humble man who had heard Matthew 5:29 (&#8220;if your eye causes you to sin, pluck it out&#8221;) and literally obeyed it &#8212; plucking out his right eye after a moment of lust. Despite his self-mutilation, he is venerated as the saint whose holiness made him worthy to be God&#8217;s instrument in the greatest public miracle of the medieval Coptic Church.</div>
+        </div>
+      </div>
+      <h3>The Gradual Decline of Coptic Christianity</h3>
+      <p>When Arab armies arrived in Egypt in 639, Egypt was approximately 90% Christian. By the end of the Mamluk period in 1517, Christians had declined to perhaps 10&#8211;15% of the population. This was not primarily through voluntary conversion but through economic pressure (the jizya impoverished Christian families), legal disadvantage (dhimmi restrictions made commerce and government service nearly impossible), and periodic waves of forced conversion and massacre. The resilience of those who remained is the story of the Coptic Church.</p>
+    </div>
+  </div>
+
+  <!-- ETHIOPIA AND AHMAD GRAN -->
+  <div class="sec" id="ethiopian-islam">
+    <div class="sec-h" onclick="ts(this)"><h2>Ethiopia &#8212; Ahmad Gran and the Islamic Jihad (1529&#8211;1543)</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>While Ethiopia had maintained relative independence from the Arab-Islamic world for centuries &#8212; protected partly by geography and partly by the mutual respect established when Ethiopian Christians sheltered the first Muslim refugees at the Prophet Muhammad&#8217;s request &#8212; the 16th century brought existential catastrophe.</p>
+      <h3>Ahmad ibn Ibrahim al-Ghazi (&#8220;Ahmad Gran&#8221;)</h3>
+      <p>Ahmad ibn Ibrahim al-Ghazi &#8212; called <em>Gran</em> (the Left-Handed) &#8212; was the Imam of Adal Sultanate (present-day Somalia and eastern Ethiopia). Armed with Ottoman firearms, he launched a jihad against the Christian Ethiopian Empire in 1529. Within a decade he had conquered roughly three-quarters of Ethiopia, destroying hundreds of ancient churches and monasteries, forcing mass conversions, and killing or enslaving hundreds of thousands of Christians.</p>
+      <div class="isl-box">
+        <p><strong style="color:var(--islc)">The Devastation:</strong> Ancient rock-hewn churches at Lalibela were desecrated. The treasuries of Aksum were looted. The monastery of Debre Damo &#8212; founded in the 6th century &#8212; was attacked. Manuscripts representing centuries of Ethiopian theological scholarship were burned. The Ethiopian church lost more in fourteen years under Ahmad Gran than in any other period of its history.</p>
+      </div>
+      <h3>The Portuguese Alliance and Deliverance</h3>
+      <p>Ethiopian Emperor Lebna Dengel sent desperate letters to Portugal requesting military assistance. A force of 400 Portuguese musketeers under Cristov&#227;o da Gama &#8212; son of the explorer Vasco da Gama &#8212; arrived in 1541. In 1543, Ethiopian Emperor Gelawdewos and the Portuguese allies defeated Ahmad Gran at the Battle of Wayna Daga. Ahmad Gran was killed in battle. Ethiopia was saved &#8212; but the destruction of churches, manuscripts, and Christian communities that had been centuries in the building was irreversible.</p>
+      <h3>The Aftermath and the Oromo Migration</h3>
+      <p>The wars weakened the Ethiopian state so severely that the great Oromo migration of the mid-16th century was able to sweep through the highlands, permanently altering the ethnic and religious composition of Ethiopia. The Ethiopian church spent the next century slowly rebuilding, re-establishing monasteries, and reconverting populations that had been forcibly Islamized. The experience of Ahmad Gran is the defining trauma of Ethiopian Christian historical memory.</p>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">Emperor Gelawdewos of Ethiopia</div>
+          <div class="fc-date">r. 1540&#8211;1559</div>
+          <div class="fc-body">The emperor who defeated Ahmad Gran and then spent his reign rebuilding the Ethiopian church. He wrote a theological treatise &#8212; the <em>Confessio Claudii</em> &#8212; defending Ethiopian Orthodox doctrine against Portuguese Jesuit missionaries who had arrived with the military alliance and immediately began attempting to convert Ethiopia to Roman Catholicism. Gelawdewos&#8217; treatise is a remarkable instance of a monarch personally defending his church&#8217;s theology in writing.</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Tekle Haymanot</div>
+          <div class="fc-date">c. 1215&#8211;1313 AD</div>
+          <div class="fc-body">Though he lived before Ahmad Gran, Tekle Haymanot is the patron saint of Ethiopia and represents the spiritual depth that sustained the church through every trial. He reportedly stood on one leg in prayer for 22 years until the other leg fell off &#8212; and then stood on the stump. He founded the monastery of Debre Libanos, which became the center of Ethiopian Orthodox monastic life and survived as a refuge during the Ahmad Gran catastrophe. He is venerated in both OO and EO traditions.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ARMENIA -->
+  <div class="sec" id="armenian-islam">
+    <div class="sec-h" onclick="ts(this)"><h2>Armenia &#8212; From Seljuks to Genocide</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>Armenia&#8217;s story under Islamic rule is the longest and bloodiest of any Oriental Orthodox church &#8212; culminating in the Armenian Genocide of 1915&#8211;1923, among the first systematic genocides of the 20th century, in which approximately 1.5 million Armenians were killed and the Armenian homeland was depopulated.</p>
+      <div class="tl">
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--armc)"></div>
+          <div class="tl-content">
+            <div class="tl-date">AD 301</div>
+            <div class="tl-title">Armenia Becomes the First Christian Nation</div>
+            <p>King Tiridates III is baptized by St. Gregory the Illuminator. Armenia adopts Christianity as state religion &#8212; the first nation in history to do so. St. Gregory had been imprisoned by Tiridates for 13 years in the Khor Virap dungeon before healing the king of a disease that traditional priests could not cure.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--armc)"></div>
+          <div class="tl-content">
+            <div class="tl-date">AD 405</div>
+            <div class="tl-title">St. Mesrop Mashtots Creates the Armenian Alphabet</div>
+            <p>Mashtots invents the Armenian alphabet expressly to translate the Bible into Armenian, ending the dependence on Greek and Syriac liturgical books. Within decades, the &#8220;Golden Age&#8221; of Armenian literature produces original theological, historical, and philosophical works. The alphabet is considered a national and ecclesiastical treasure to this day.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--armc)"></div>
+          <div class="tl-content">
+            <div class="tl-date">AD 451</div>
+            <div class="tl-title">Battle of Avarayr &#8212; Martyrs for Faith</div>
+            <p>The Sasanian Persian Empire demands that Armenians convert to Zoroastrianism. According to the 5th-century chronicler Yeghishe, Armenian noble Vartan Mamikonian led 66,000 Armenians against 300,000 Persian troops. The Armenians are militarily defeated, but the Persians eventually grant religious freedom in 484. Vartan and his fallen soldiers are commemorated as martyrs &#8212; &#8220;the first Christian nation to die for its faith as a nation.&#8221;</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--armc)"></div>
+          <div class="tl-content">
+            <div class="tl-date">1064&#8211;1375</div>
+            <div class="tl-title">Seljuk Conquest &amp; Kingdom of Cilicia</div>
+            <p>Seljuk Turks overrun historic Armenia in 1064 (sack of Ani). Armenian nobles flee to Cilicia in southern Anatolia, establishing the Armenian Kingdom of Cilicia (1198&#8211;1375) &#8212; a Christian kingdom that maintained contact with Crusader states. The Catholicate (Armenian patriarchate) relocates to Cilicia. Eventually the Mongols, then the Mamluks, destroy Cilicia in 1375.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--armc)"></div>
+          <div class="tl-content">
+            <div class="tl-date">1375&#8211;1914</div>
+            <div class="tl-title">Ottoman Rule &#8212; The Long Subjugation</div>
+            <p>Armenians under Ottoman rule are dhimmis &#8212; subject to religious taxes, legal discrimination, periodic massacres (the Hamidian massacres of 1894&#8211;1896 kill 100,000&#8211;300,000). The Armenian community maintains its church, schools, and culture despite constant pressure. Armenian patriarchs in Constantinople attempt to negotiate protection from the Ottoman government with little success.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--armc)"></div>
+          <div class="tl-content">
+            <div class="tl-date">1915&#8211;1923</div>
+            <div class="tl-title">The Armenian Genocide</div>
+            <p>On the night of April 23&#8211;24, 1915, the Ottoman government arrests and executes 235&#8211;270 Armenian intellectual and community leaders in Constantinople. This is the beginning of the systematic extermination of the Armenian people. Death marches into the Syrian desert, mass shootings, drownings, and deliberate starvation kill approximately 1&#8211;1.5 million Armenians. The Armenian Catholicosate of Sis (Cilicia) is destroyed. Over 2,000 Armenian churches are demolished or converted to mosques. The Armenian homeland &#8212; 3,000 years of continuous habitation &#8212; is depopulated.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--armc)"></div>
+          <div class="tl-content">
+            <div class="tl-date">Post-1923</div>
+            <div class="tl-title">Diaspora &amp; Survival</div>
+            <p>The Armenian Church survives in diaspora. Two Catholicosates now exist: Etchmiadzin (in present-day Armenia, the ancient see) and Antelias in Lebanon (the Catholicosate of Cilicia, reconstituted from survivors). The Armenian Apostolic Church canonizes the genocide victims as martyrs &#8212; the first formal canonization of modern genocide victims in Christian history.</p>
+          </div>
+        </div>
+      </div>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">St. Gregory the Illuminator</div>
+          <div class="fc-date">c. 257&#8211;331 AD</div>
+          <div class="fc-body">&#8220;If we call ourselves Christians, let us do as Christ did.&#8221; Gregory, imprisoned for 13 years in a pit (Khor Virap &#8212; &#8220;deep dungeon&#8221;) by the king he would eventually convert, emerged to baptize King Tiridates and transform Armenia forever. He is the patron saint of Armenia and the founding father of the Armenian church. The Khor Virap monastery built over his prison pit is now the most visited site in Armenia, with Mount Ararat visible in the background.</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">Catholicos Nerses IV &#8220;the Gracious&#8221;</div>
+          <div class="fc-date">b. 1102, d. 1173 AD (Catholicos 1166&#8211;1173)</div>
+          <div class="fc-body">&#8220;The church is the mother of all. Do not strike her children.&#8221; Nerses the Gracious, the greatest medieval Armenian theologian and poet, wrote hymns still sung in the Armenian liturgy today. His <em>Havstak</em> (I Confess with Repentance) is one of the most beautiful penitential texts in Christian literature. He sought to reconcile the Armenian Church with the Byzantine church &#8212; negotiations that failed but showed the OO tradition&#8217;s consistent commitment to Christian unity.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SYRIAC -->
+  <div class="sec" id="syriac-islam">
+    <div class="sec-h" onclick="ts(this)"><h2>The Syriac Church &#8212; From Baghdad&#39;s Golden Age to Near Extinction</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>The Syriac Orthodox Church, with its see at Antioch, experienced perhaps the most dramatic reversal of fortune of any Christian community: from intellectual dominance at the heart of Islamic civilization to near-extermination in less than a millennium.</p>
+      <h3>The Abbasid Golden Age &#8212; Syriac Christians and Islamic Science</h3>
+      <p>Under the Abbasid Caliphate (750&#8211;1258) and especially in Baghdad, Syriac Christian scholars played an indispensable role in the transmission of Greek learning to the Arab world. The <em>Bayt al-Hikma</em> (House of Wisdom) in Baghdad &#8212; the greatest library and translation center of the medieval world &#8212; depended heavily on Syriac Christian translators who rendered Aristotle, Galen, and Ptolemy into Arabic. Syriac Christians served as court physicians, astronomers, and philosophers under multiple caliphs.</p>
+      <div class="isl-box">
+        <p><strong style="color:var(--islc)">Hunayn ibn Ishaq (809&#8211;873 AD):</strong> A Syriac Christian physician and translator who single-handedly translated more than 100 works of Greek medicine, philosophy, and science into Arabic and Syriac. His translations of Galen shaped Islamic and European medicine for centuries. He served as chief physician to Caliph Al-Mutawakkil and is considered one of the most important figures in the history of science. He was also a deacon of the Syriac church.</p>
+      </div>
+      <h3>The Mongol Catastrophe (1258)</h3>
+      <p>The Mongol sack of Baghdad in 1258 &#8212; in which the Tigris River allegedly ran black with ink from the libraries and red with blood from the inhabitants &#8212; destroyed the center of Syriac Christian intellectual life. Hundreds of thousands were killed. The Syriac community never recovered its previous prominence. Ironically, some Mongol leaders had Christian wives and initially protected Christian communities &#8212; but the subsequent conversion of the Il-Khanate to Islam ended this protection.</p>
+      <h3>Timur&#39;s Massacres and the Seyfo (1914&#8211;1918)</h3>
+      <p>The conqueror Timur (Tamerlane) conducted a series of massacres of Syriac Christians in the late 14th and early 15th centuries. Then, simultaneous with the Armenian Genocide, the Ottoman government and Kurdish irregular forces killed an estimated 250,000&#8211;750,000 Syriac Christians in what Syriac survivors call the <em>Seyfo</em> (sword). The Syriac Orthodox population of southeastern Turkey &#8212; the Tur Abdin region, home to monasteries continuously occupied since the 4th century &#8212; was reduced from hundreds of thousands to a tiny remnant.</p>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">Patriarch Bar Hebraeus (Barhebraeus)</div>
+          <div class="fc-date">1226&#8211;1286 AD</div>
+          <div class="fc-body">&#8220;Wisdom has no nation. Truth has no sect.&#8221; Bar Hebraeus was the Maphrian (bishop) of the East and the most encyclopedic scholar of medieval Syriac Christianity. He wrote on theology, philosophy, medicine, grammar, and history &#8212; producing a universal chronicle (<em>Chronography</em>) that remains a primary source for medieval Middle Eastern history. He lived through the Mongol destruction of Baghdad and still managed to produce work of extraordinary depth and breadth.</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">Patriarch Mor Ignatius Aphrem I Barsoum</div>
+          <div class="fc-date">1887&#8211;1957 AD</div>
+          <div class="fc-body">&#8220;The Seyfo did not kill the Syriac people; it tested and revealed who we truly were.&#8221; Barsoum was Patriarch of the Syriac Orthodox Church from 1933&#8211;1957, a genocide survivor who spent his patriarchate rebuilding the shattered community. His <em>History of Syriac Literature</em> is the definitive scholarly account of Syriac Christian intellectual culture &#8212; written by a man who had witnessed its near-total destruction.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MIRACLES -->
+  <div class="sec" id="miracles">
+    <div class="sec-h" onclick="ts(this)"><h2>Miracles &amp; Signs &#8212; God&#39;s Presence in the Church&#39;s History</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>The Oriental Orthodox tradition does not treat miracles as curiosities. They are understood as God&#8217;s confirmation of his presence with his Church in moments of extremity &#8212; often at the intersection of faith and political power, when the Church&#8217;s survival was genuinely in question.</p>
+
+      <div class="mir-box">
+        <div class="mir-label">The Miracle of the Muqattam Mountain &#8212; Cairo, c. AD 975</div>
+        <p>A Fatimid caliph &#8212; named in Coptic tradition as al-Muizz li-Dīn Allāh, though the dates of Abraham&#8217;s patriarchate (975&#8211;978) suggest his successor al-Aziz Billah (r. 975&#8211;996); both attributions appear in the sources &#8212; summoned Coptic Patriarch Abraham ibn Zaraa and challenged him to prove Matthew 17:20 &#8212; that faith can move mountains. If the Patriarch could not demonstrate this, the Caliph threatened to force the conversion of the Coptic community. Abraham called the church to three days of total fasting and prayer. He received a vision of the Virgin Mary, who told him that a certain cobbler &#8212; Simon the Tanner &#8212; was the man of sufficient holiness to be God&#8217;s instrument.</p>
+        <p>On the appointed day, with the Caliph and his entire court watching from the banks of the Nile, the Muqattam mountain near Cairo shook and rose visibly three times. The Caliph, profoundly shaken, withdrew his threat and granted the Coptic Church significant new freedoms. The event is recorded in Arabic, Coptic, and Byzantine sources. The site of the miracle is now home to the Cave Church of St. Simeon, carved entirely into the Muqattam cliffs.</p>
+      </div>
+
+      <div class="mir-box">
+        <div class="mir-label">The Apparitions at Zeitoun &#8212; Egypt, 1968&#8211;1971</div>
+        <p>Beginning on April 2, 1968, a luminous figure of the Virgin Mary appeared above the Coptic Orthodox Church of St. Mary in Zeitoun, Cairo. The apparitions were seen by millions of people over three years &#8212; including Muslims, Christians, and secular observers. Egyptian state television broadcast the apparitions live. The government of President Gamal Abdel Nasser dispatched investigators who found no mechanical or electrical source for the light. Pope Cyril VI authenticated the apparitions officially. The Zeitoun apparitions are among the most extensively documented Marian appearances in history &#8212; witnessed by more people than any other such event.</p>
+        <p>Notably, the apparition appeared without words or messages &#8212; only light, the figure of Mary, doves of light, and incense-like fragrance. Pope Shenouda III later commented: &#8220;She came not to deliver a message but to be present with her people in their time of suffering.&#8221; Egypt had just been defeated in the Six-Day War; the Coptic community was living through one of its most difficult periods.</p>
+      </div>
+
+      <div class="mir-box">
+        <div class="mir-label">St. Mark&#39;s Relics &#8212; Alexandria to Venice and Back</div>
+        <p>St. Mark was martyred and buried in Alexandria in AD 68. His relics remained there through centuries of Arab rule until 828 AD, when two Venetian merchants smuggled them to Venice (the story is that they hid the relics under layers of pork and cabbages to discourage Muslim inspection). The Basilica of San Marco in Venice was built to house them. In 1968, Pope Paul VI returned a portion of the relics to the Coptic Church, which received them with extraordinary ceremony. The return was seen as both an ecumenical gesture and a recognition of Alexandria&#8217;s ancient apostolic claim. The relics rest today at the Cathedral of St. Mark in Cairo.</p>
+      </div>
+
+      <div class="mir-box">
+        <div class="mir-label">The Miracle of King Tiridates &#8212; Armenia, AD 301</div>
+        <p>King Tiridates III of Armenia was afflicted with a mental illness that caused him to behave as a wild boar (Armenian sources describe it as the king literally running on all fours in the forests). His sister had a vision that only Gregory &#8212; whom Tiridates himself had imprisoned for 13 years &#8212; could heal him. Gregory was brought out of the Khor Virap dungeon. He healed the king immediately. Tiridates&#8217; conversion and the baptism of Armenia followed directly from this miraculous healing. The event is the founding miracle of the Armenian church.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCHISMS -->
+  <div class="sec" id="schisms">
+    <div class="sec-h" onclick="ts(this)"><h2>Internal Schisms &amp; Challenges</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>The Oriental Orthodox family has faced not only external persecution but internal divisions. Understanding these honestly &#8212; without pretending the Church was always unified &#8212; is part of knowing its history.</p>
+      <h3>The Ethiopian Church and the Alexandrian Patriarchate</h3>
+      <p>For 1,600 years, the head of the Ethiopian Orthodox Church (called the <em>Abuna</em>) was always an Egyptian Copt appointed by the Coptic Patriarch of Alexandria. The Ethiopian church had no power to elect its own head. This arrangement &#8212; rooted in the fact that Frumentius was consecrated by Athanasius of Alexandria &#8212; created genuine tension. Ethiopian emperors periodically clashed with their Coptic-appointed bishops. In 1951, Emperor Haile Selassie negotiated with Pope Yusab II the appointment of the first Ethiopian Abuna from among the Ethiopian clergy. Full autocephaly &#8212; the right to elect their own Patriarch independently &#8212; was granted by Pope Cyril VI of Alexandria in 1959. A painful but necessary step: the daughter church had matured to full independence.</p>
+      <h3>The Eritrean Church (1994)</h3>
+      <p>When Eritrea became independent from Ethiopia in 1993, the Eritrean Orthodox Church followed, receiving autocephaly from the Coptic Orthodox Church in 1994; its first Patriarch was enthroned in 1998. The separation was politically driven by national independence, not theological dispute &#8212; but it was still a painful division within what had been a single church community for centuries.</p>
+      <h3>The Malankara Church Divisions</h3>
+      <p>The Malankara (Indian Thomas Christian) church has experienced the most complex division of any OO community. When the Syriac Orthodox Patriarch attempted to exercise direct authority over the Indian church in the 19th century, it triggered a decades-long legal dispute over church property that went all the way to the British colonial courts. The result was a permanent split into multiple factions: the Malankara Orthodox Syrian Church (independent, in communion with the OO family), the Malankara Jacobite Syrian Christian Church (under the Syriac Orthodox Patriarch of Antioch), the Mar Thoma Church (reformed, influenced by Anglicanism), and others. This family of Thomas Christians &#8212; united by 2,000 years of apostolic identity &#8212; remains divided over questions of authority and jurisdiction to the present day.</p>
+      <h3>The Three Chapters Controversy</h3>
+      <p>In the 6th century, Emperor Justinian attempted to reconcile the Chalcedonian and Oriental Orthodox churches by condemning the &#8220;Three Chapters&#8221; &#8212; the writings of three theologians associated with Nestorian tendencies. This created its own controversy, with the Western church initially refusing to accept the condemnation. The attempt to achieve unity by condemnation without genuine theological reconciliation was characteristic of imperial church policy &#8212; and characteristic of why it always failed.</p>
+    </div>
+  </div>
+
+  <!-- GREAT PATRIARCHS -->
+  <div class="sec" id="patriarchs">
+    <div class="sec-h" onclick="ts(this)"><h2>Great Fathers and Leaders</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>Through every century of pressure, persecution, and upheaval, the Oriental Orthodox churches produced saints of extraordinary stature &#8212; theologians, mystics, pastors, and martyrs who embodied the faith they defended.</p>
+      <div class="patriarch-grid">
+        <div class="patriarch">
+          <div class="pat-name">St. Athanasius I of Alexandria</div>
+          <div class="pat-title">20th Patriarch of Alexandria</div>
+          <div class="pat-dates">r. AD 328&#8211;373</div>
+          <div class="pat-body">Exiled five times, he defended the full divinity of Christ against an Arian empire. Never compromised, never recanted. Outlasted every emperor who persecuted him. His phrase &#8220;God became man that man might become God&#8221; defines the OO understanding of salvation. The Council of Nicaea would have been forgotten without Athanasius&#8217; lifelong defense of its definition.</div>
+        </div>
+        <div class="patriarch">
+          <div class="pat-name">St. Cyril I of Alexandria</div>
+          <div class="pat-title">24th Patriarch of Alexandria</div>
+          <div class="pat-dates">r. AD 412&#8211;444</div>
+          <div class="pat-body">Defeated Nestorianism at Ephesus (431) and secured the Theotokos title for the Virgin Mary. His Christological writings &#8212; twelve anathemas against Nestorius &#8212; became the permanent theological foundation of the OO tradition. Called &#8220;the Seal of the Fathers&#8221; and &#8220;the Pillar of Faith.&#8221; His collected works fill ten volumes.</div>
+        </div>
+        <div class="patriarch">
+          <div class="pat-name">St. Severus of Antioch</div>
+          <div class="pat-title">Patriarch of Antioch</div>
+          <div class="pat-dates">r. AD 512&#8211;518 (exiled 518&#8211;538)</div>
+          <div class="pat-body">The greatest theologian of the post-Chalcedonian OO tradition. His miaphysite theology, developed in exile in Egypt, gave the entire OO family its mature doctrinal vocabulary. Over 3,000 letters survive. Deposed by Emperor Justin I, he spent his last 20 years in Egyptian exile producing theological works that shaped the church for centuries.</div>
+        </div>
+        <div class="patriarch">
+          <div class="pat-name">St. Gregory the Illuminator</div>
+          <div class="pat-title">First Catholicos of Armenia</div>
+          <div class="pat-dates">d. c. AD 331</div>
+          <div class="pat-body">Imprisoned for 13 years in a pit before healing King Tiridates and baptizing Armenia as the first Christian nation. His imprisonment became a site of pilgrimage &#8212; the Khor Virap monastery. He established the Armenian church&#8217;s episcopal structure and is venerated as the founder and patron of Armenia.</div>
+        </div>
+        <div class="patriarch">
+          <div class="pat-name">St. Mesrop Mashtots</div>
+          <div class="pat-title">Creator of the Armenian Alphabet</div>
+          <div class="pat-dates">c. AD 361&#8211;440</div>
+          <div class="pat-body">Invented the Armenian alphabet to translate the Bible, ending dependence on foreign-language liturgy. His act of linguistic creation was simultaneously an act of theological and national liberation. Without Mashtots, the Armenian church would have been absorbed into Greek or Syriac Christianity; with him, it became a distinct intellectual and spiritual civilization.</div>
+        </div>
+        <div class="patriarch">
+          <div class="pat-name">Pope Cyril VI of Alexandria</div>
+          <div class="pat-title">116th Patriarch of Alexandria</div>
+          <div class="pat-dates">r. AD 1959&#8211;1971</div>
+          <div class="pat-body">A hermit and monk who became the great Patriarch of the Coptic renewal. He oversaw the return of St. Mark&#8217;s relics from Venice, granted autocephaly to the Ethiopian church, and was present during the Zeitoun apparitions which he formally authenticated. Known for miracles of healing during his lifetime. Canonized in 2013.</div>
+        </div>
+        <div class="patriarch">
+          <div class="pat-name">Pope Shenouda III of Alexandria</div>
+          <div class="pat-title">117th Patriarch of Alexandria</div>
+          <div class="pat-dates">r. AD 1971&#8211;2012</div>
+          <div class="pat-body">The greatest Coptic patriarch of the modern era. He transformed the Coptic church from a declining minority institution into a globally active church with diaspora communities on every continent. Spent three and a half years under house arrest — imposed by President Sadat in September 1981 and maintained by President Mubarak until January 1985 — for opposing the Camp David Accords. Wrote theology, poetry, and biblical commentary. Founded over 100 new churches and trained a generation of bishops and priests. Under his leadership, the Coptic church grew from 300 priests to over 3,000.</div>
+        </div>
+        <div class="patriarch">
+          <div class="pat-name">St. Anthony the Great</div>
+          <div class="pat-title">Father of Christian Monasticism</div>
+          <div class="pat-dates">c. AD 251&#8211;356</div>
+          <div class="pat-body">An Egyptian farmer who at 18 gave away his possessions after hearing Matthew 19:21 and went into the desert. He lived to 105, spending 85 years in solitary prayer and combat with spiritual forces. His biography, written by Athanasius, launched the worldwide monastic movement. The Desert Father tradition he founded &#8212; which produced the Rule of St. Benedict and all Western monasticism &#8212; is one of Egypt&#8217;s greatest gifts to the entire Christian world.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODERN ERA -->
+  <div class="sec" id="modern">
+    <div class="sec-h" onclick="ts(this)"><h2>The Modern Era &#8212; Renewal, Persecution &amp; Global Growth</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>The 20th and 21st centuries have brought both new persecution and extraordinary renewal to the Oriental Orthodox churches.</p>
+      <h3>The Coptic Renaissance</h3>
+      <p>The 20th century saw a remarkable revival in Coptic church life beginning with the Sunday School Movement of the 1940s&#8211;50s, led by figures like Archdeacon Habib Girgis and the young monk who would become Pope Shenouda III. This movement produced a generation of deeply educated lay Christians and future clergy who transformed the church from a passive inherited identity into an active, intellectually engaged community. Monasteries that had shrunk to a handful of elderly monks by the 1950s now number hundreds of educated young monks. The Coptic church today is one of the fastest-growing Christian communities in Africa and the West.</p>
+      <h3>Modern Persecution</h3>
+      <p>The 21st century has brought intensified persecution of Oriental Orthodox communities. In Egypt, church bombings, sectarian attacks, and anti-Christian violence marked the post-2011 period. The 2017 Palm Sunday bombings in Alexandria and Tanta killed 47 Coptic worshippers. In Iraq and Syria, the ancient Syriac Christian communities &#8212; who had lived continuously in the land of Abraham for 2,000 years &#8212; were devastated by ISIS violence between 2013&#8211;2018, with hundreds of thousands fleeing or killed. The Nineveh Plains of Iraq &#8212; home to Syriac Christians since the apostolic age &#8212; were emptied.</p>
+      <div class="isl-box" style="background:#2a1010;border-color:#d06060">
+        <p style="color:#e09090"><strong style="color:#e06060">The 21 Coptic Martyrs &#8212; Libya, February 15, 2015:</strong> Twenty-one Coptic Christians from the village of Al-Our in Upper Egypt were beheaded on a Libyan beach by ISIS. On the video, the men&#8217;s last words were &#8220;Lord Jesus Christ.&#8221; One of them &#8212; a non-Coptic Ghanaian Christian named Matthew Ayairga &#8212; was not originally scheduled to be killed but, when asked if he would deny Christ, said: &#8220;Their God is my God.&#8221; He was killed with them. The Coptic Church canonized all 21 as martyrs immediately. Their feast day is February 15.</p>
+      </div>
+      <h3>Ethiopian Orthodoxy Today</h3>
+      <p>The Ethiopian Orthodox Tewahedo Church is the largest Oriental Orthodox church in the world &#8212; approximately 40&#8211;50 million members. It survived Communist persecution under the Derg regime (1974&#8211;1991), which nationalized church property and killed many clergy. It emerged with its institutional life intact. Today it is one of the fastest-growing Christian churches globally. The Eritrean Orthodox Church, its daughter, serves a diaspora scattered worldwide by war and poverty.</p>
+      <h3>The Armenian Church After the Genocide</h3>
+      <p>The Republic of Armenia, established after Soviet collapse in 1991, restored the Armenian Apostolic Church to its central place in national life. The Catholicate of Etchmiadzin &#8212; the ancient see of St. Gregory the Illuminator &#8212; functions again as a national institution. The diaspora church &#8212; in Lebanon, France, the United States, and elsewhere &#8212; maintains the second Catholicosate at Antelias, Lebanon. Every April 24, Armenians worldwide commemorate the Genocide with liturgical services, insisting that remembrance is not bitterness but faithfulness to the martyrs.</p>
+    </div>
+  </div>
+
+  <!-- ECUMENISM -->
+  <div class="sec" id="ecumenism">
+    <div class="sec-h" onclick="ts(this)"><h2>Ecumenical Dialogue &#8212; The Long Road to Reconciliation</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>After 1,500 years of separation, the Oriental Orthodox and Eastern Orthodox churches have engaged in serious theological dialogue since the 1960s, with remarkable results.</p>
+      <div class="tl">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-date">1964</div>
+            <div class="tl-title">Aarhus Consultation</div>
+            <p>The first formal theological meeting between Oriental Orthodox and Eastern Orthodox theologians in modern times. Held in Aarhus, Denmark. Both sides discover that the Chalcedonian dispute was partly a problem of terminology rather than doctrine &#8212; a possibility the sides had not seriously explored in 1,500 years.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-date">1989</div>
+            <div class="tl-title">Anba Bishoy Statement</div>
+            <p>The most important theological agreement of the dialogue: both families agree they confess the same Christological faith &#8212; that the separation of 451 was a tragedy of misunderstanding, political manipulation, and linguistic confusion rather than genuine theological difference. The statement declares: &#8220;Both families have always loyally maintained the same authentic Orthodox Christological faith and the unbroken continuity of the apostolic tradition.&#8221;</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-date">1993</div>
+            <div class="tl-title">Chamb&#233;sy Agreed Statement</div>
+            <p>A further agreed statement proposes procedures for restoring full communion. Full unity has not yet been achieved &#8212; there are remaining questions about the reception of the agreements by individual churches &#8212; but the theological basis for reunion has been firmly established. The separation of 451 may finally be healed.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-date">2023</div>
+            <div class="tl-title">Ongoing Dialogue</div>
+            <p>Dialogue continues between OO and EO churches, as well as between the Coptic church and Rome. Pope Francis and Pope Tawadros II of Alexandria have met multiple times and issued joint declarations. The full visible unity of Eastern Christianity remains the prayer of all these churches &#8212; and the wounds of 1,500 years are genuinely, slowly, healing.</p>
+          </div>
+        </div>
+      </div>
+      <div class="pull-quote">&#8220;We are not strangers to one another. We share the same apostolic faith, the same sacraments, the same martyrs, the same Lord. What divided us was a word &#8212; and words can be healed.&#8221; &#8212; Pope Shenouda III, on the dialogue with Eastern Orthodoxy</div>
+    </div>
+  </div>
+
+  <!-- GLOSSARY -->
+  <div class="sec" id="glossary">
+    <div class="sec-h" onclick="ts(this)"><h2>Glossary</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <div class="gt-grid">
+        <div class="gt"><div class="gt-term">Miaphysitism</div><div class="gt-def">The Christological position of the Oriental Orthodox: Christ has one united nature &#8212; divine and human &#8212; without confusion, mixture, or separation. Distinct from Eutychianism (which absorbed humanity into divinity) and from Chalcedonian dyophysitism (two natures).</div></div>
+        <div class="gt"><div class="gt-term">Dyophysitism</div><div class="gt-def">The Chalcedonian position: Christ has two natures (divine and human) in one person. Accepted by Eastern Orthodox, Roman Catholics, and most Protestants. Rejected by the Oriental Orthodox after 451.</div></div>
+        <div class="gt"><div class="gt-term">Dhimmi</div><div class="gt-def">The legal status of non-Muslim monotheists (Christians and Jews) under Islamic law. Protected from forced conversion but subject to the jizya tax and numerous legal disabilities.</div></div>
+        <div class="gt"><div class="gt-term">Jizya</div><div class="gt-def">The poll tax paid by dhimmis in Islamic states. Its economic weight was one of the primary drivers of gradual Christian decline in Egypt, Syria, and Mesopotamia over centuries.</div></div>
+        <div class="gt"><div class="gt-term">Anno Martyrum (AM)</div><div class="gt-def">The &#8220;Era of Martyrs&#8221; &#8212; the Coptic calendar epoch beginning AD 284 (Diocletian&#8217;s accession). Used by the Coptic Church to commemorate the martyrs of Diocletian&#8217;s persecution.</div></div>
+        <div class="gt"><div class="gt-term">Mia Physis</div><div class="gt-def">Greek for &#8220;one nature.&#8221; The shorthand for the Oriental Orthodox Christological formula: <em>mia physis tou Theou Logou sesarkomene</em> &#8212; one nature of God the Word incarnate. This is Cyril of Alexandria&#8217;s formula.</div></div>
+        <div class="gt"><div class="gt-term">Catholicos</div><div class="gt-def">The title of the supreme head of the Armenian and Malankara Orthodox churches, equivalent to Patriarch. From Greek <em>katholikos</em> (universal).</div></div>
+        <div class="gt"><div class="gt-term">Abuna</div><div class="gt-def">&#8220;Our Father&#8221; &#8212; the title of the head of the Ethiopian and Eritrean Orthodox churches.</div></div>
+        <div class="gt"><div class="gt-term">Jacob Baradaeus</div><div class="gt-def">6th-century Syriac bishop who secretly ordained hundreds of clergy for the Oriental Orthodox church under Justinian&#8217;s persecution, saving the Syriac church from extinction. The church was called &#8220;Jacobite&#8221; in his honor.</div></div>
+        <div class="gt"><div class="gt-term">Seyfo</div><div class="gt-def">Syriac word for &#8220;sword.&#8221; The term used by Syriac Christians for the genocide of 250,000&#8211;750,000 Syriac Christians by Ottoman forces and Kurdish irregulars during 1914&#8211;1918, concurrent with the Armenian Genocide.</div></div>
+        <div class="gt"><div class="gt-term">Catechetical School of Alexandria</div><div class="gt-def">The first Christian academic institution, founded by St. Mark c. AD 42. Produced Clement, Origen, Athanasius, and Cyril. The intellectual engine of early Christianity and the source of most patristic theology.</div></div>
+        <div class="gt"><div class="gt-term">Athanasius Contra Mundum</div><div class="gt-def">&#8220;Athanasius against the world.&#8221; The phrase describing Athanasius&#8217; willingness to stand alone for the full divinity of Christ when the entire imperial church had embraced Arianism.</div></div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+var sections=document.querySelectorAll('.sec');
+var links=document.querySelectorAll('#sb-nav a');
+function ts(h){var s=h.closest('.sec');s.classList.toggle('open')}
+window.addEventListener('scroll',function(){
+  var st=window.scrollY,dh=document.documentElement.scrollHeight-window.innerHeight;
+  document.getElementById('prog').style.width=(dh>0?Math.min(st/dh*100,100):0)+'%';
+  var cur='';
+  sections.forEach(function(s){if(window.scrollY+120>=s.offsetTop)cur='#'+s.id});
+  links.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')===cur)});
+});
+function sidebarSearch(v){
+  var q=v.trim().toLowerCase();
+  var anyVis=false;
+  sections.forEach(function(s){
+    if(!q){s.classList.remove('s-hidden');anyVis=true;return;}
+    var h=s.querySelector('h2');
+    if(!h)return;
+    if(h._orig===undefined)h._orig=h.innerHTML;
+    var txt=h._orig.toLowerCase();
+    if(txt.includes(q)){
+      s.classList.remove('s-hidden');
+      h.innerHTML=h._orig.replace(new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'),'<mark>$1</mark>');
+      anyVis=true;
+    } else {
+      s.classList.add('s-hidden');
+      h.innerHTML=h._orig;
+    }
+  });
+  document.getElementById('no-match').classList.toggle('show',!anyVis&&q.length>0);
+}
+</script>
+</body>
+</html>

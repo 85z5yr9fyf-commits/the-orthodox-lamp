@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Theotokos — The Orthodox Lamp</title>
+<style>
+:root{
+  --gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;
+  --bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--bg5:#3a2e10;
+  --tx:#e8e0d0;--mu:#a09880;--br:#2a2a2a;
+  --sidebar-w:270px;
+  --bl:#1a1a2e;--blc:#8080d4;
+  --oo:#1a2e1a;--ooc:#7dc87d;
+  --rc:#3a1a1a;--rcc:#d47070;
+  --ap:#1e1628;--apc:#c08fd0;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.7;display:flex;min-height:100vh}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+mark{background:rgba(201,168,76,.28);color:var(--gl);border-radius:2px;padding:0 2px}
+#prog{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--gd),var(--gl));z-index:200;transition:width .1s}
+#sb{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:100;display:flex;flex-direction:column}
+#sb-brand{padding:18px 18px 10px;border-bottom:1px solid var(--br)}
+#sb-brand .lamp{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mu);margin-bottom:4px}
+#sb-brand h1{font-size:1rem;color:var(--gold);line-height:1.3}
+.sb-search{padding:10px 14px 4px}
+.sb-search input{width:100%;background:rgba(255,255,255,.06);border:1px solid var(--br);border-radius:6px;padding:8px 12px;font-size:.8rem;color:var(--tx);font-family:'Georgia',serif;outline:none;transition:border-color .2s}
+.sb-search input::placeholder{color:#666}
+.sb-search input:focus{border-color:var(--gd)}
+.sec.s-hidden{display:none}
+.no-match-msg{display:none;padding:14px 18px;font-size:.8rem;color:var(--mu);font-style:italic;text-align:center}
+.no-match-msg.show{display:block}
+#sb-nav{padding:10px 0 20px;flex:1}
+.sb-part{padding:8px 18px 2px;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mu)}
+#sb-nav a{display:block;padding:6px 18px;font-size:.82rem;color:var(--mu);border-left:2px solid transparent;transition:all .15s;line-height:1.4}
+#sb-nav a:hover,#sb-nav a.active{color:var(--gold);border-left-color:var(--gold);background:rgba(201,168,76,.06);text-decoration:none}
+main{margin-left:var(--sidebar-w);flex:1;max-width:860px;padding:48px 48px 80px}
+.pg-title{margin-bottom:10px}
+.pg-title .lamp-label{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--mu);margin-bottom:6px}
+.pg-title h1{font-size:2rem;color:var(--gold);line-height:1.2}
+.pg-title .sub{font-size:1rem;color:var(--mu);margin-top:6px;font-style:italic}
+.pg-intro{max-width:680px;color:var(--mu);font-size:.95rem;margin:16px 0 36px;border-left:3px solid var(--gd);padding-left:14px}
+.sec{border:1px solid var(--br);border-radius:8px;margin-bottom:14px;overflow:hidden;background:var(--bg2)}
+.sec-h{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;cursor:pointer;user-select:none;gap:10px}
+.sec-h:hover{background:rgba(255,255,255,.03)}
+.sec-h h2{font-size:1rem;color:var(--tx);font-weight:600}
+.sec-h .arr{color:var(--mu);font-size:.8rem;transition:transform .2s;flex-shrink:0}
+.sec.open .arr{transform:rotate(90deg)}
+.sec-body{display:none;padding:18px 20px 20px;border-top:1px solid var(--br)}
+.sec.open .sec-body{display:block}
+.sec-body p{color:var(--mu);font-size:.92rem;margin-bottom:10px}
+.sec-body p:last-child{margin-bottom:0}
+/* verse */
+.sv{background:var(--bg5);border:1px solid var(--gd);border-radius:6px;padding:12px 16px;margin:12px 0;font-style:italic;color:var(--gl);font-size:.92rem}
+.sv cite{display:block;text-align:right;font-size:.8rem;color:var(--gold);margin-top:6px;font-style:normal}
+/* church fathers */
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin:14px 0}
+.fc{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:14px 16px}
+.fc-name{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.fc-body{font-size:.88rem;color:var(--mu);font-style:italic;line-height:1.6}
+.fc-src{font-size:.76rem;color:var(--gd);margin-top:6px}
+/* apparition box */
+.ap-box{background:var(--ap);border:1px solid var(--apc);border-radius:8px;padding:18px 20px;margin:14px 0}
+.ap-label{font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;color:var(--apc);margin-bottom:8px}
+.ap-text{font-size:.92rem;color:#ddd8f0;line-height:1.7}
+/* witness cards */
+.witness-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin:14px 0}
+.witness{background:var(--bg3);border:1px solid var(--br);border-radius:7px;padding:12px 14px;border-left:3px solid var(--apc)}
+.w-name{font-size:.78rem;color:var(--apc);margin-bottom:4px;font-weight:600}
+.w-text{font-size:.85rem;color:var(--mu);line-height:1.55;font-style:italic}
+/* title cards */
+.title-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin:14px 0}
+.title-card{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:14px 16px;text-align:center}
+.title-card .tc-greek{font-size:1.1rem;color:var(--gold);margin-bottom:4px}
+.title-card .tc-trans{font-size:.8rem;color:var(--gl);margin-bottom:6px}
+.title-card .tc-def{font-size:.82rem;color:var(--mu);line-height:1.5}
+/* feast timeline */
+.tl{margin:14px 0;border-left:2px solid var(--gd);padding-left:18px}
+.tl-item{position:relative;margin-bottom:14px}
+.tl-item::before{content:'';position:absolute;left:-23px;top:6px;width:8px;height:8px;border-radius:50%;background:var(--gold);border:2px solid var(--bg2)}
+.tl-year{font-size:.75rem;color:var(--gold);margin-bottom:3px;font-weight:600}
+.tl-text{font-size:.88rem;color:var(--mu);line-height:1.55}
+/* comparison */
+.comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.comp-card{border-radius:8px;padding:14px 16px;border:1px solid}
+.comp-card.oo-card{background:var(--oo);border-color:var(--ooc)}
+.comp-card.rc-card{background:var(--rc);border-color:var(--rcc)}
+.comp-card .cc-label{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;font-weight:700}
+.comp-card.oo-card .cc-label{color:var(--ooc)}
+.comp-card.rc-card .cc-label{color:var(--rcc)}
+.comp-card ul{padding-left:16px;font-size:.88rem;line-height:1.75}
+.comp-card.oo-card ul{color:#c8e8c8}
+.comp-card.rc-card ul{color:#e8c0c0}
+/* FAQ */
+.fi{border:1px solid var(--br);border-radius:6px;margin-bottom:8px;overflow:hidden;background:var(--bg3)}
+.fi-h{display:flex;align-items:flex-start;padding:11px 14px;cursor:pointer;gap:8px;user-select:none}
+.fi-h:hover{background:rgba(255,255,255,.03)}
+.fi-q{font-size:.88rem;color:var(--tx);flex:1}
+.fi-arr{color:var(--mu);font-size:.75rem;transition:transform .2s;flex-shrink:0;margin-top:4px}
+.fi.open .fi-arr{transform:rotate(90deg)}
+.fi-body{display:none;padding:12px 14px 14px;border-top:1px solid var(--br);font-size:.88rem;color:var(--mu);line-height:1.65}
+.fi.open .fi-body{display:block}
+/* glossary */
+.gt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin:14px 0}
+.gt{background:var(--bg3);border:1px solid var(--br);border-radius:7px;padding:12px 14px}
+.gt-term{font-size:.8rem;font-weight:700;color:var(--gold);margin-bottom:4px}
+.gt-def{font-size:.84rem;color:var(--mu);line-height:1.55}
+/* apparition timeline */
+.ap-tl{margin:14px 0}
+.ap-tl-item{display:flex;gap:14px;margin-bottom:12px;align-items:flex-start}
+.ap-date{flex-shrink:0;font-size:.75rem;color:var(--apc);background:var(--ap);border:1px solid var(--apc);border-radius:4px;padding:3px 8px;margin-top:3px;white-space:nowrap}
+.ap-desc{font-size:.88rem;color:var(--mu);line-height:1.55}
+/* quote highlight */
+.pull-quote{border-left:3px solid var(--apc);padding:10px 16px;margin:12px 0;font-style:italic;color:var(--tx);font-size:.9rem;background:var(--ap);border-radius:0 6px 6px 0}
+@media(max-width:760px){#sb{transform:translateX(-100%)}main{margin-left:0;padding:24px 18px 60px}}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<nav id="sb">
+  <div id="sb-brand">
+    <div class="lamp">The Orthodox Lamp</div>
+    <h1>The Theotokos</h1>
+  </div>
+  <div class="sb-search">
+    <input type="search" placeholder="Search sections…" oninput="sidebarSearch(this.value)" aria-label="Search sections">
+  </div>
+  <div id="sb-nav">
+    <div class="sb-part">Veneration</div>
+    <a href="#intro">Mary in the OO Church</a>
+    <a href="#titles">Her Titles</a>
+    <a href="#theotokos">Theotokos — Ephesus 431</a>
+    <a href="#panagia">All-Holy: Panagia</a>
+    <a href="#liturgy">In the Liturgy</a>
+    <a href="#dormition">The Dormition</a>
+    <a href="#intercession">Her Intercession</a>
+    <div class="sb-part">The Apparitions</div>
+    <a href="#zeitoun">Zeitoun, Egypt (1968)</a>
+    <a href="#other-apparitions">Other Egyptian Apparitions</a>
+    <div class="sb-part">Dialogue</div>
+    <a href="#oo-rc">OO vs. RC on Mary</a>
+    <a href="#faq">FAQ</a>
+    <a href="#glossary">Glossary</a>
+  </div>
+  <div class="no-match-msg" id="sb-no-match">No sections match.</div>
+</nav>
+
+<main>
+  <div class="pg-title">
+    <div class="lamp-label">The Orthodox Lamp</div>
+    <h1>The Theotokos</h1>
+    <div class="sub">Mary in the Oriental Orthodox Church — veneration, theology, and her appearances in Egypt</div>
+  </div>
+  <p class="pg-intro">No figure in the Oriental Orthodox tradition is venerated more deeply or more continuously than the Virgin Mary. She is not merely the mother of a great teacher — she is the Theotokos, the God-bearer, in whose womb the eternal Word took flesh. To honor her is inseparable from honoring the Incarnation itself.</p>
+
+  <!-- INTRO -->
+  <div class="sec open" id="intro">
+    <div class="sec-h" onclick="ts(this)"><h2>Mary in the Oriental Orthodox Church</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>The Oriental Orthodox churches — Coptic, Ethiopian, Eritrean, Armenian, Syriac, and Malankara — share among the richest and most ancient traditions of Marian devotion in all of Christianity. The Ethiopian and Eritrean churches celebrate thirty-three feasts of Mary annually. The Coptic church commemorates her on the 21st of every Coptic month. The Armenian church calls her <em>Astvatsatsin</em> — "God-birthgiver." In all these traditions, devotion to Mary is not an addition to the faith but an expression of its center: the Incarnation of God.</p>
+      <p>This veneration is not Mary-worship. It is the honor due to the one who said yes — whose <em>fiat</em> ("let it be to me according to your word," Luke 1:38) made the Incarnation possible in the most direct human sense. The angels bow before her not because she is divine, but because she carried and bore the One who is. In Eastern and Oriental theology, to dishonor the Theotokos is to dishonor the Incarnation.</p>
+      <div class="sv">"Henceforth all generations will call me blessed, for he who is mighty has done great things for me, and holy is his name."<cite>Luke 1:48-49 — Mary's own prophecy of her honor in the Church</cite></div>
+      <p>The Coptic tradition holds a special bond with Mary rooted in history: the Holy Family fled to Egypt (Matthew 2:13-15), and Coptic Christians treasure every site along the route — Matariyya, Assiut, the cave at Babylon. Mary is not a distant figure in a Western painting — she walked on Egyptian soil, and Egyptians have never forgotten it.</p>
+    </div>
+  </div>
+
+  <!-- TITLES -->
+  <div class="sec" id="titles">
+    <div class="sec-h" onclick="ts(this)"><h2>Her Titles</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>The Oriental Orthodox tradition uses many titles for Mary, each one a window into a different facet of her person and role. These are not pious decorations — they are theological confessions.</p>
+      <div class="title-grid">
+        <div class="title-card">
+          <div class="tc-greek">Θεοτόκος</div>
+          <div class="tc-trans">Theotokos</div>
+          <div class="tc-def">God-bearer / God-birthgiver. The most important theological title, defined at Ephesus 431. She who bore God in the flesh.</div>
+        </div>
+        <div class="title-card">
+          <div class="tc-greek">Παναγία</div>
+          <div class="tc-trans">Panagia</div>
+          <div class="tc-def">All-Holy. The highest title of sanctity given to any human being. Used especially in Greek, Syriac, and Coptic traditions.</div>
+        </div>
+        <div class="title-card">
+          <div class="tc-greek">Aeiparthenos</div>
+          <div class="tc-trans">Ever-Virgin</div>
+          <div class="tc-def">She remained a virgin before, during, and after the birth of Christ. Affirmed universally in the ancient Church.</div>
+        </div>
+        <div class="title-card">
+          <div class="tc-greek">Astvatsatsin</div>
+          <div class="tc-trans">Armenian</div>
+          <div class="tc-def">"God-birthgiver" in Armenian. The Armenian Apostolic Church calls her by this title as its primary confession of the Incarnation.</div>
+        </div>
+        <div class="title-card">
+          <div class="tc-greek">Ϯⲑⲉⲟⲧⲟⲕⲟⲥ</div>
+          <div class="tc-trans">Coptic</div>
+          <div class="tc-def">The Theotokos in the Coptic language. Her name is invoked at every Coptic liturgy, dozens of times, in the ancient tongue of Egypt.</div>
+        </div>
+        <div class="title-card">
+          <div class="tc-greek">Yaldä Maryam</div>
+          <div class="tc-trans">Ethiopian/Eritrean</div>
+          <div class="tc-def">"Mary's Child" — the Ethiopian way of naming Christ himself points to how inseparable Mary and the Incarnation are in the Tewahedo tradition.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THEOTOKOS -->
+  <div class="sec" id="theotokos">
+    <div class="sec-h" onclick="ts(this)"><h2>Theotokos — The Council of Ephesus (431)</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>The title <em>Theotokos</em> was not invented at the Council of Ephesus — it was already in liturgical use, found in papyri from the third century. But it was at Ephesus in 431 that the Church formally defined it as the touchstone of orthodox Christology, against Nestorius of Constantinople.</p>
+      <p>Nestorius had proposed <em>Christotokos</em> (Christ-bearer) instead, arguing that Mary bore the human Christ but not the divine. St. Cyril of Alexandria led the opposition: if the one born of Mary is not God himself, then the Incarnation is merely a union of two persons, not the taking of human flesh by the eternal Word. The title <em>Theotokos</em> is therefore a statement about <em>Christ</em> before it is a statement about <em>Mary</em>.</p>
+      <div class="ap-box">
+        <div class="ap-label">Third Ecumenical Council — Ephesus (431)</div>
+        <div class="ap-text">"If anyone does not confess that Emmanuel is God in truth and therefore the Holy Virgin is Theotokos — for she bore according to the flesh the Word of God made flesh — let him be anathema."</div>
+      </div>
+      <p>When the definition was read aloud in Ephesus, the crowds in the streets reportedly spent the night singing and carrying torches in celebration — not because of abstract Christology but because they understood: to call Mary Theotokos is to confess that God truly became one of us. The Council of Ephesus is the Third Ecumenical Council accepted by all Oriental Orthodox churches.</p>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">St. Cyril of Alexandria (d. 444)</div>
+          <div class="fc-body">"I am amazed that any doubt should have arisen about whether the Holy Virgin should be called Theotokos. For if our Lord Jesus Christ is God, how is the Holy Virgin who bore him not Theotokos?"</div>
+          <div class="fc-src">Letter to Nestorius, Second Letter (430)</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Proclus of Constantinople (d. 446)</div>
+          <div class="fc-body">"Mary, the holy Virgin, is the workshop of the union of natures, the market-place of the saving exchange, the bridal chamber in which the Word took flesh."</div>
+          <div class="fc-src">Homily on the Theotokos — preached at Constantinople before Nestorius</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANAGIA -->
+  <div class="sec" id="panagia">
+    <div class="sec-h" onclick="ts(this)"><h2>Panagia — The All-Holy</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>Beyond the Christological title <em>Theotokos</em>, the Oriental Orthodox tradition honors Mary as <em>Panagia</em> — All-Holy. This is the highest degree of holiness ascribed to any human being. It does not mean she was sinless by an exemption from ancestral sin (the Eastern tradition does not teach the Immaculate Conception — see <a href="original_sin.html">Original Sin →</a>). It means she was so wholly given to God, so completely cooperating with grace, that she stands as the summit of human holiness.</p>
+      <p>In the Eastern understanding, Mary was prepared and purified by the Holy Spirit — above all at the Annunciation, when "the Holy Spirit came upon her and the power of the Most High overshadowed her" (Luke 1:35). This was not a retroactive exemption from a guilt she never had — it was a positive transfiguration, filling her with grace (<em>kecharitomene</em> — Luke 1:28) so that she could bear the One who is Holiness itself.</p>
+      <div class="sv">"Greetings, O favored one [<em>kecharitomene</em> — you who are endued with grace], the Lord is with you!"<cite>Luke 1:28 — Gabriel's greeting, read by the Fathers as the highest honor given to any human</cite></div>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">St. Athanasius of Alexandria (d. 373)</div>
+          <div class="fc-body">"O noble Virgin, truly you are greater than any other greatness. For who is your equal in greatness, O dwelling place of God the Word? To whom among all creatures shall I compare you?"</div>
+          <div class="fc-src">Homily on the Papyrus of Turin — earliest known Marian hymn attributed to Athanasius</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Ephrem the Syrian (d. 373)</div>
+          <div class="fc-body">"You alone and your Mother are more beautiful than everything; for there is no blemish in you, nor any stain in your Mother. Who of my children can compare in beauty to these?"</div>
+          <div class="fc-src">Nisibene Hymns 27 — Christ addressing Mary as uniquely beautiful in holiness</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Gregory of Nazianzus (d. 390)</div>
+          <div class="fc-body">"If anyone does not accept Mary as Theotokos, he is cut off from the Godhead. If anyone says she is Theotokos but treats her as a mere vessel, without reverence, he too has missed the point."</div>
+          <div class="fc-src">Letter 101 — reverence for the Theotokos as inseparable from Christological faith</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LITURGY -->
+  <div class="sec" id="liturgy">
+    <div class="sec-h" onclick="ts(this)"><h2>Mary in the Oriental Orthodox Liturgy</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>In no Christian tradition is Mary more continuously present in worship than in the Oriental Orthodox churches. Her name, her intercession, and her praises are woven into the daily rhythm of prayer.</p>
+      <p><strong style="color:var(--gold)">Coptic Orthodox:</strong> The Divine Liturgy invokes the Theotokos by name at least a dozen times during a single service. The prayer <em>Axios</em> ("Worthy") is sung in her honor. The twenty-first of every Coptic month is her feast day, observed monthly without exception. The <em>Kiahk</em> season (the Coptic Advent, corresponding to December) is entirely dedicated to Mary — its hymns, called <em>Theotokias</em>, are among the most beautiful in all of Coptic music and are sung daily for the entire month.</p>
+      <p><strong style="color:var(--gold)">Ethiopian and Eritrean (Tewahedo):</strong> Thirty-three feasts of Mary are celebrated annually — a feast for each year of Christ's earthly life, counted as Mary's gift to the world. The book <em>Weddase Maryam</em> ("Praise of Mary") is recited every day of the week. The largest church in Africa, the Cathedral of Our Lady Mary of Zion in Axum, is dedicated to her.</p>
+      <p><strong style="color:var(--gold)">Armenian Apostolic:</strong> Five major Marian feasts, including the Feast of the Holy Theotokos and the Dormition. The <em>Sharakan</em> (hymnbook) contains centuries of Marian poetry of extraordinary beauty.</p>
+      <p><strong style="color:var(--gold)">Syriac Orthodox:</strong> The <em>Bo'utho d'Yoldath Aloho</em> — the prayer of the God-birthgiver — is part of the daily office. The Syriac tradition produced some of the earliest Marian hymns in Christian history, many attributed to St. Ephrem.</p>
+      <div class="sv">"Sub tuum praesidium…" — "Under your protection we take refuge, O Theotokos…"<cite>The oldest known Marian prayer, found on a Greek papyrus from Egypt dated to c. 250 AD</cite></div>
+      <p>The papyrus prayer above — the oldest known Marian prayer in existence — was found in Egypt. It is already in the form of liturgical intercession, addressed to the Theotokos, asking for her protection. The Coptic church has been praying this prayer since before the Council of Nicaea.</p>
+    </div>
+  </div>
+
+  <!-- DORMITION -->
+  <div class="sec" id="dormition">
+    <div class="sec-h" onclick="ts(this)"><h2>The Dormition of the Theotokos</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>All Oriental Orthodox churches celebrate the Feast of the Dormition of the Theotokos — her "falling asleep" and bodily assumption into heaven. In the Coptic calendar this falls on 16 Mesra (usually August 22). In the Ethiopian, Armenian, Syriac, and other traditions it is celebrated in August, as in the Byzantine East.</p>
+      <p>The word <em>dormition</em> (Greek <em>koimesis</em> — "falling asleep") reflects the Eastern conviction that death, for the saints, is not an ending but a transition — a rest before the Resurrection. For the Theotokos, the Church has always believed that she was taken body and soul into heaven, united with her Son in the fullest way possible before the general resurrection. This is not primarily a doctrinal proposition to be proved; it is a liturgical fact, celebrated in every Oriental Orthodox church for fifteen centuries.</p>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">St. John of Damascus (d. c. 749)</div>
+          <div class="fc-body">"It was fitting that she who had kept her virginity intact through the birth process should also have her body kept from corruption after death. She who had carried the Creator as a child on her breast was fittingly brought to dwell in the tabernacles of God."</div>
+          <div class="fc-src">Homily on the Dormition II — the theological logic of the bodily assumption</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">Coptic Synaxarium — 16 Mesra</div>
+          <div class="fc-body">"On this day the pure body of our Lady, the Virgin Mary, the Theotokos, was taken up into the heavens… and the Lord granted that her holy body should not see corruption but be raised incorruptible."</div>
+          <div class="fc-src">Synaxarium of the Coptic Orthodox Church — the Dormition feast entry</div>
+        </div>
+      </div>
+      <p>Note: this is not the Roman Catholic dogma of the Assumption defined by Pius XII in 1950. The OO has believed and celebrated this for centuries without requiring a papal definition to make it binding. The OO objection to the 1950 definition is to the <em>method</em> — a single pope defining a binding dogma ex cathedra without an Ecumenical Council — not to the content itself. See: <a href="roman_catholic_dogmas.html">Roman Catholic Dogmas →</a></p>
+    </div>
+  </div>
+
+  <!-- INTERCESSION -->
+  <div class="sec" id="intercession">
+    <div class="sec-h" onclick="ts(this)"><h2>Her Intercession</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>The Oriental Orthodox ask Mary to pray for them — not because she is a mediator apart from Christ, but because she is alive in him and her prayers are powerful before him. This is the same reason Christians ask each other to pray; asking Mary is asking the greatest of the saints.</p>
+      <div class="sv">"The effective, fervent prayer of a righteous man avails much."<cite>James 5:16 — the basis for asking any saint to intercede; Mary is the most righteous of the saints</cite></div>
+      <p>The wedding at Cana is paradigmatic (John 2:1-11): Mary notices a need, brings it to Jesus, and tells the servants "do whatever he tells you." She does not act independently of Christ — she directs everyone to him. This is the model of Marian intercession: she points, she intercedes, she leads to her Son. The Cana miracle is the first sign of his ministry, and it happens at her prompting.</p>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">St. Cyril of Alexandria (d. 444)</div>
+          <div class="fc-body">"Hail, Mary Theotokos, for through you the Trinity is glorified… through you the fallen creature is lifted up to heaven."</div>
+          <div class="fc-src">Homily at Ephesus 431 — Mary as the one through whom humanity reaches God</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Gregory of Nyssa (d. c. 395)</div>
+          <div class="fc-body">"She who gave birth to the Life itself became the chief cause of salvation for all humanity… she is a refuge for sinners, a comfort to those who mourn."</div>
+          <div class="fc-src">On Virginity — Mary as refuge and intercessor</div>
+        </div>
+      </div>
+      <p>The Coptic prayer <em>Hail to you, O Mary</em> (<em>Ti Khini Nak</em>) is sung at every Divine Liturgy. The Ethiopian <em>Weddase Maryam</em> addresses her as "intercessor of all the world." The Armenian church begins every liturgy invoking her protection. This is not theology constructed in seminaries — it is the instinct of the Church at prayer.</p>
+    </div>
+  </div>
+
+  <!-- ZEITOUN -->
+  <div class="sec" id="zeitoun">
+    <div class="sec-h" onclick="ts(this)"><h2>The Apparition at Zeitoun, Egypt (1968–1971)</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>Among the most remarkable events in modern Christian history — and certainly the most witnessed and documented Marian apparition on record — is the appearance of the Virgin Mary over the domes of St. Mary's Coptic Orthodox Church in the Zeitoun district of Cairo, Egypt, between 1968 and 1971.</p>
+      <div class="ap-box">
+        <div class="ap-label">The Church</div>
+        <div class="ap-text">St. Mary's Coptic Orthodox Church, Tomanbay Street, Zeitoun, Cairo. Built in 1925 on the site traditionally identified as the resting place of the Holy Family during their flight to Egypt (Matthew 2:13-15). The church has twin domes. It was on and above these domes that the apparitions appeared.</div>
+      </div>
+      <p><strong style="color:var(--gold)">The First Night — April 2, 1968:</strong> Muslim workers at a garage across from the church first saw a luminous white figure on the dome. One of the workers, Farouk Mohammed Atwa, shouted that a woman was about to throw herself from the top of the church. Police were called. As they arrived, the crowd swelling around them recognized the figure as the Virgin Mary — shining, clothed in white light, surrounded by doves of light that flew without moving their wings.</p>
+      <p>Farouk Mohammed Atwa, who had a gangrenous hand and was due for surgery the next day, was reportedly healed that night. He went to the hospital — and was sent home. His hand was well.</p>
+
+      <div class="ap-tl">
+        <div class="ap-tl-item">
+          <span class="ap-date">Apr 2, 1968</span>
+          <span class="ap-desc">First apparition. Muslim garage workers raise the alarm. Crowds gather. The luminous figure is clearly a woman in blue and white light, sometimes bowing, sometimes standing with arms extended.</span>
+        </div>
+        <div class="ap-tl-item">
+          <span class="ap-date">Apr–Jun 1968</span>
+          <span class="ap-desc">The apparitions intensify and become more prolonged — sometimes lasting hours. Hundreds of thousands fill the streets. Egyptian state television broadcasts footage. Newspapers across the Arab world carry photographs.</span>
+        </div>
+        <div class="ap-tl-item">
+          <span class="ap-date">May 1968</span>
+          <span class="ap-desc">Pope Cyril VI of Alexandria investigates and officially authenticates the apparitions as a genuine appearance of the Blessed Virgin Mary. A commission of church and medical officials confirms multiple healings among those present.</span>
+        </div>
+        <div class="ap-tl-item">
+          <span class="ap-date">1968–1969</span>
+          <span class="ap-desc">The most active period. Apparitions occur on multiple nights per week. Witnesses number in the millions — Christians, Muslims, Jews, foreign journalists, and government officials. The Egyptian state (under President Nasser) conducts an official investigation and cannot find any natural or mechanical explanation.</span>
+        </div>
+        <div class="ap-tl-item">
+          <span class="ap-date">1969–1971</span>
+          <span class="ap-desc">Apparitions become less frequent but continue intermittently. Eventually they cease, leaving behind an archive of photographs, film footage, medical testimonies, and eyewitness accounts from millions of people across religious lines.</span>
+        </div>
+      </div>
+
+      <p><strong style="color:var(--gold)">What Was Seen:</strong> A luminous figure, clearly female, dressed in white and blue light, sometimes crowned with a luminous olive branch wreath. She appeared standing, kneeling, and with arms outstretched in prayer. She was sometimes accompanied by luminous dove-like forms that moved without flapping their wings. The entire church at times glowed with a blue-white light. No human manipulation — floodlights, projectors, wires — could be found by the investigative committees.</p>
+
+      <p><strong style="color:var(--gold)">What Was Not Said:</strong> Unlike Fatima or Lourdes, no messages were delivered. No secrets, no prophetic warnings, no instructions. She came, she appeared, she was present. The Coptic theological interpretation: she came to comfort her people. The Coptic church was under pressure; Christians in Egypt faced difficulties; and she — whose Son had walked this land — appeared simply to be with them.</p>
+
+      <div class="pull-quote">"I myself was there. I saw her with my own eyes, standing on the dome, luminous, moving. I am a Muslim. I have no reason to lie. She appeared. That is all I can say." — Account of one of many Muslim eyewitnesses, recorded by journalists at the time.</div>
+
+      <div class="witness-grid">
+        <div class="witness">
+          <div class="w-name">Farouk Mohammed Atwa — First Witness</div>
+          <div class="w-text">The Muslim worker who first saw the figure and raised the alarm. His gangrenous hand was reportedly healed that night. He later converted to Christianity.</div>
+        </div>
+        <div class="witness">
+          <div class="w-name">Egyptian Government Investigation</div>
+          <div class="w-text">Officials investigated the possibility of hoax, mass hallucination, or projection. All mechanical explanations were ruled out. The Egyptian state never officially explained the phenomenon.</div>
+        </div>
+        <div class="witness">
+          <div class="w-name">Pope Cyril VI of Alexandria</div>
+          <div class="w-text">The Coptic Pope visited, witnessed, and officially authenticated the apparitions in May 1968. He regarded them as a divine gift to the church and nation.</div>
+        </div>
+        <div class="witness">
+          <div class="w-name">Millions of Witnesses Across Faiths</div>
+          <div class="w-text">Conservative estimates put the total number of witnesses over the full period at one to two million people — Muslims, Coptic Christians, Catholic Christians, Protestants, secular Egyptians, and foreign journalists.</div>
+        </div>
+      </div>
+      <p>The photographs taken during the Zeitoun apparitions are among the most extraordinary in the history of religious experience — clear images of a luminous female figure above the church domes, visible at night, with no identifiable natural source. They have been examined by photographers and skeptics without a consensus natural explanation being produced.</p>
+    </div>
+  </div>
+
+  <!-- OTHER APPARITIONS -->
+  <div class="sec" id="other-apparitions">
+    <div class="sec-h" onclick="ts(this)"><h2>Other Apparitions in Egypt</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>Zeitoun was not the only modern apparition of Mary in Egypt. The Coptic church has authenticated several subsequent appearances, maintaining a pattern in which Mary appears over Coptic churches in times of difficulty.</p>
+      <div class="ap-box">
+        <div class="ap-label">Edfu, Upper Egypt — 1982</div>
+        <div class="ap-text">Apparitions reported over St. George's Church in Edfu. Seen by crowds of Christians and Muslims. Authenticated by the local Coptic diocese.</div>
+      </div>
+      <div class="ap-box">
+        <div class="ap-label">Shentana al-Hagar, Menoufia — 1997</div>
+        <div class="ap-text">A luminous Marian figure appeared over a church in this Nile Delta village over several weeks. Attracted crowds of thousands. Photographed and filmed.</div>
+      </div>
+      <div class="ap-box">
+        <div class="ap-label">Assiut, Upper Egypt — 2000</div>
+        <div class="ap-text">One of the most well-documented post-Zeitoun apparitions. Luminous figures appeared over the Church of the Virgin in Assiut beginning August 2000, coinciding with the Muslim feast of Eid and witnessed heavily by Muslims as well as Christians. Pope Shenouda III authenticated the apparitions. Lasted through early 2001.</div>
+      </div>
+      <div class="ap-box">
+        <div class="ap-label">Warraq Island, Cairo — 2009</div>
+        <div class="ap-text">A luminous figure appeared over the Church of the Virgin and Archangel Michael in the island district of Warraq, Cairo, in December 2009. Witnessed by thousands on multiple nights. Occurred during a period of particular tension for Coptic Christians. Video footage captured the apparition widely.</div>
+      </div>
+      <p>The pattern across all these apparitions is consistent: she appears over Coptic churches, she appears without message, she is visible to Muslims and Christians alike, and she comes at moments of difficulty for her people. The Coptic theological interpretation sees this as a continuation of the Holy Family's visit to Egypt — a mother who does not abandon her children.</p>
+    </div>
+  </div>
+
+  <!-- OO VS RC ON MARY -->
+  <div class="sec" id="oo-rc">
+    <div class="sec-h" onclick="ts(this)"><h2>Oriental Orthodox vs. Roman Catholic on Mary</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>The Oriental Orthodox and Roman Catholic churches share a profound reverence for Mary — more than many Western Protestants realize. But there are real differences, mostly concerning post-schism Western doctrinal developments.</p>
+      <div class="comp-grid">
+        <div class="comp-card oo-card">
+          <div class="cc-label">Oriental Orthodox</div>
+          <ul>
+            <li>Theotokos — defined, accepted, celebrated</li>
+            <li>Ever-Virgin (Aeiparthenos) — affirmed</li>
+            <li>Panagia (All-Holy) — the highest human holiness</li>
+            <li>Bodily assumption celebrated in the Dormition feast</li>
+            <li>Intercessor and patroness of the Church</li>
+            <li>No Immaculate Conception — not needed on Eastern anthropology</li>
+            <li>No Co-redemptrix title — she cooperates with, not alongside, Christ's redeeming work</li>
+          </ul>
+        </div>
+        <div class="comp-card rc-card">
+          <div class="cc-label">Roman Catholic</div>
+          <ul>
+            <li>Theotokos — affirmed</li>
+            <li>Ever-Virgin — affirmed</li>
+            <li>Immaculate Conception — defined dogma (1854)</li>
+            <li>Bodily Assumption — defined dogma (1950)</li>
+            <li>Mediatrix, Co-redemptrix — theological proposals (not yet defined)</li>
+            <li>Defined by papal decree, not Ecumenical Council</li>
+          </ul>
+        </div>
+      </div>
+      <p>The core OO position: Mary is the Theotokos, the greatest of the saints, worthy of the highest veneration. The OO does not need the Latin doctrinal additions to honor her with the fullness she deserves — the ancient titles and the ancient liturgy already do this. The additions are not more honorable to Mary; they are more specifically Latin.</p>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="sec" id="faq">
+    <div class="sec-h" onclick="ts(this)"><h2>FAQ</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Is venerating Mary the same as worshipping her?</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">No. The Eastern tradition carefully distinguishes <em>latreia</em> (worship, due to God alone) from <em>proskynesis/douleia/hyperdulia</em> (honor/veneration, given to saints). Asking Mary to pray for us is the same act as asking a living friend to pray — except that Mary is alive in Christ, sinless, and intimately close to him. We do not pray <em>to</em> her as the source of grace; we ask her to pray <em>with</em> us to God. The Coptic and Ethiopian traditions, which have the most elaborate Marian devotion, also have the clearest theology about this distinction.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Why are there so many Marian apparitions in Egypt specifically?</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">The Coptic theological answer: Egypt has a special bond with Mary because the Holy Family sought refuge here (Matthew 2:13-15). God did not bring his Son to Egypt for nothing — and Mary, who walked its roads, has a maternal bond with its people. The apparitions at Zeitoun, Assiut, Warraq, and elsewhere tend to appear in moments of stress for the Coptic community. The Coptic faithful read them as acts of maternal protection and presence — she appears to remind them they are not forgotten. Theologians also note that the absence of any verbal message in these apparitions is significant: she comes not to prophesy or instruct but simply to be present, as a mother would.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Does the OO church teach that Mary is a mediator?</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">"There is one mediator between God and man, the man Christ Jesus" (1 Tim 2:5) — this is the non-negotiable foundation. Mary mediates in no sense that competes with or parallels Christ. She intercedes as the greatest of the saints intercede — bringing prayers before God, not dispensing grace from herself. The Coptic Theotokia prayers speak of her as one who "intercedes for the salvation of our souls" — always directing attention to her Son, not to herself. The wedding at Cana (John 2) is the biblical icon: she notices the need, she brings it to Christ, and she tells us "do whatever he tells you."</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Have the Zeitoun photographs been proven to be fabricated?</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">No. Multiple independent investigations — including by the Egyptian government under President Nasser, who had no motive to promote Christian phenomena — failed to identify any mechanical, optical, or other natural explanation for the phenomena. The photographs have been examined by photography experts without a consensus explanation. Skeptics have proposed various hypotheses (gas, ball lightning, mass suggestion) but none adequately accounts for the multi-night, multi-witness, photographed phenomenon over several years. The Egyptian state investigation concluded it could not explain what had occurred. The phenomenon remains unexplained by natural science.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Do Protestants have reason to dismiss Marian veneration entirely?</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">The Protestant reaction against Marian excess was historically understandable given late medieval Western excesses. But the correction overshot. Gabriel said she is "favored above all women" (Luke 1:28); Elizabeth said she is "blessed among women" (Luke 1:42); Mary herself prophesied "all generations will call me blessed" (Luke 1:48). These are not optional decorations in Scripture — they are divine testimonies to her unique role. To refuse to call her blessed — out of fear of excess — is to fail to obey her own Spirit-inspired prophecy. The OO tradition simply takes these words of Scripture seriously.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GLOSSARY -->
+  <div class="sec" id="glossary">
+    <div class="sec-h" onclick="ts(this)"><h2>Glossary</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <div class="gt-grid">
+        <div class="gt"><div class="gt-term">Theotokos</div><div class="gt-def">God-bearer / God-birthgiver. The title defined at Ephesus 431 affirming that Mary bore not merely the human Christ but the eternal Word made flesh.</div></div>
+        <div class="gt"><div class="gt-term">Panagia</div><div class="gt-def">All-Holy. The highest title of holiness given to any human being in the Eastern and Oriental Orthodox traditions. Reflects her total cooperation with divine grace.</div></div>
+        <div class="gt"><div class="gt-term">Aeiparthenos</div><div class="gt-def">Ever-Virgin. The teaching that Mary was virgin before, during, and after the birth of Christ — affirmed by the early Church councils and all Oriental Orthodox traditions.</div></div>
+        <div class="gt"><div class="gt-term">Dormition</div><div class="gt-def">The "falling asleep" of Mary — her death and bodily assumption into heaven. From the Greek <em>koimesis</em>. Celebrated as a major feast in all OO churches, typically in August.</div></div>
+        <div class="gt"><div class="gt-term">Kecharitomene</div><div class="gt-def">Greek: "you who are endued with grace" or "favored one" (Luke 1:28). Gabriel's unique greeting to Mary — a perfect passive participle indicating a completed state of being filled with grace.</div></div>
+        <div class="gt"><div class="gt-term">Latreia</div><div class="gt-def">Greek: worship due to God alone. Contrasted with <em>dulia</em> (honor given to saints) and <em>hyperdulia</em> (the highest honor given to Mary). The OO gives Mary hyperdulia, never latreia.</div></div>
+        <div class="gt"><div class="gt-term">Kiahk</div><div class="gt-def">The fourth Coptic month (approximately December), entirely dedicated to Mary in the Coptic liturgical calendar. The Kiahk Theotokias are ancient hymns sung daily throughout the month.</div></div>
+        <div class="gt"><div class="gt-term">Zeitoun</div><div class="gt-def">District of Cairo, Egypt, site of St. Mary's Coptic Orthodox Church, over whose domes the Virgin Mary appeared in luminous form from 1968 to 1971, witnessed by millions.</div></div>
+        <div class="gt"><div class="gt-term">Weddase Maryam</div><div class="gt-def">"Praise of Mary" — the Ethiopian/Eritrean daily prayer book dedicated to Mary, recited for each day of the week, one of the richest Marian prayer collections in all of Christianity.</div></div>
+      </div>
+    </div>
+  </div>
+
+</main>
+<script>
+window.addEventListener('scroll',()=>{const h=document.documentElement;document.getElementById('prog').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100+'%';});
+const navLinks=document.querySelectorAll('#sb-nav a[href^="#"]');
+const secs2=document.querySelectorAll('main .sec[id]');
+window.addEventListener('scroll',()=>{let cur='';secs2.forEach(s=>{if(s.getBoundingClientRect().top<=120)cur=s.id;});navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur);});},{passive:true});
+function ts(h){h.closest('.sec').classList.toggle('open');}
+function tf(h){h.closest('.fi').classList.toggle('open');}
+function sidebarSearch(q){
+  q=q.trim().toLowerCase();
+  const secs=document.querySelectorAll('main .sec');
+  let matched=0;
+  secs.forEach(sec=>{
+    if(!q){sec.classList.remove('s-hidden');const h2=sec.querySelector('.sec-h h2');if(h2._orig)h2.innerHTML=h2._orig;matched++;return;}
+    const h2=sec.querySelector('.sec-h h2');
+    const body=sec.querySelector('.sec-body');
+    const hit=(h2._orig||h2.textContent).toLowerCase().includes(q)||(body?body.textContent.toLowerCase():'').includes(q);
+    sec.classList.toggle('s-hidden',!hit);
+    if(hit){matched++;if(!h2._orig)h2._orig=h2.innerHTML;const re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');h2.innerHTML=h2._orig.replace(re,'<mark>$1</mark>');sec.classList.add('open');}
+  });
+  document.getElementById('sb-no-match').classList.toggle('show',!!q&&matched===0);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Eastern &amp; Oriental Orthodoxy — The Orthodox Lamp</title>
+<style>
+:root{
+  --gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;
+  --bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--bg5:#3a2e10;
+  --tx:#e8e0d0;--mu:#a09880;--br:#2a2a2a;--sidebar-w:270px;
+  --eo:#1a1e2e;--eoc:#7090d4;
+  --oo:#1a2e1a;--ooc:#7dc87d;
+  --both:#2a2218;--bothc:#c9a84c;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.7;display:flex;min-height:100vh}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+mark{background:rgba(201,168,76,.28);color:var(--gl);border-radius:2px;padding:0 2px}
+#prog{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--gd),var(--gl));z-index:200;transition:width .1s}
+#sb{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:100;display:flex;flex-direction:column}
+#sb-brand{padding:18px 18px 10px;border-bottom:1px solid var(--br)}
+#sb-brand .lamp{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mu);margin-bottom:4px}
+#sb-brand h1{font-size:1rem;color:var(--gold);line-height:1.3}
+.sb-search{padding:10px 14px 4px}
+.sb-search input{width:100%;background:rgba(255,255,255,.06);border:1px solid var(--br);border-radius:6px;padding:8px 12px;font-size:.8rem;color:var(--tx);font-family:'Georgia',serif;outline:none;transition:border-color .2s}
+.sb-search input::placeholder{color:#666}
+.sb-search input:focus{border-color:var(--gd)}
+.sec.s-hidden{display:none}
+.no-match-msg{display:none;padding:14px 18px;font-size:.8rem;color:var(--mu);font-style:italic;text-align:center}
+.no-match-msg.show{display:block}
+#sb-nav{padding:8px 0 20px;flex:1}
+.sb-part{padding:8px 18px 2px;font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mu)}
+#sb-nav a{display:block;padding:5px 18px;font-size:.8rem;color:var(--mu);border-left:2px solid transparent;transition:all .15s;line-height:1.4}
+#sb-nav a:hover,#sb-nav a.active{color:var(--gold);border-left-color:var(--gold);background:rgba(201,168,76,.06);text-decoration:none}
+main{margin-left:var(--sidebar-w);flex:1;max-width:880px;padding:48px 48px 80px}
+.pg-title .lamp-label{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--mu);margin-bottom:6px}
+.pg-title h1{font-size:2rem;color:var(--gold);line-height:1.2;margin-bottom:8px}
+.pg-title .sub{font-size:1rem;color:var(--mu);margin-top:6px;font-style:italic}
+.pg-intro{max-width:700px;color:var(--mu);font-size:.93rem;margin:14px 0 32px;border-left:3px solid var(--gd);padding-left:14px}
+/* sections */
+.sec{border:1px solid var(--br);border-radius:8px;margin-bottom:14px;overflow:hidden;background:var(--bg2)}
+.sec-h{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;cursor:pointer;user-select:none;gap:10px}
+.sec-h:hover{background:rgba(255,255,255,.03)}
+.sec-h h2{font-size:1rem;color:var(--tx);font-weight:600}
+.sec-h .arr{color:var(--mu);font-size:.8rem;transition:transform .2s;flex-shrink:0}
+.sec.open .arr{transform:rotate(90deg)}
+.sec-body{display:none;padding:18px 20px 22px;border-top:1px solid var(--br)}
+.sec.open .sec-body{display:block}
+.sec-body p{color:var(--mu);font-size:.92rem;margin-bottom:10px}
+.sec-body p:last-child{margin-bottom:0}
+.sec-body h3{font-size:.85rem;color:var(--gold);letter-spacing:.06em;text-transform:uppercase;margin:16px 0 8px}
+/* comparison grid */
+.comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.comp-card{border-radius:8px;padding:14px 16px;border:1px solid}
+.comp-card.eo{background:var(--eo);border-color:var(--eoc)}
+.comp-card.oo{background:var(--oo);border-color:var(--ooc)}
+.comp-card.shared{background:var(--both);border-color:var(--bothc)}
+.comp-card .cc-label{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;font-weight:700}
+.comp-card.eo .cc-label{color:var(--eoc)}
+.comp-card.oo .cc-label{color:var(--ooc)}
+.comp-card.shared .cc-label{color:var(--bothc)}
+.comp-card ul{padding-left:16px;font-size:.88rem;line-height:1.75}
+.comp-card.eo ul{color:#c0c8f0}
+.comp-card.oo ul{color:#c8e8c8}
+.comp-card.shared ul{color:#e8d8b0}
+.comp-card p{font-size:.88rem;line-height:1.65}
+.comp-card.eo p{color:#c0c8f0}
+.comp-card.oo p{color:#c8e8c8}
+/* church cards */
+.church-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin:14px 0}
+.church-card{border-radius:8px;padding:12px 14px;border:1px solid}
+.church-card.eo{background:var(--eo);border-color:var(--eoc)}
+.church-card.oo{background:var(--oo);border-color:var(--ooc)}
+.church-card .cht{font-size:.78rem;font-weight:700;margin-bottom:3px}
+.church-card.eo .cht{color:var(--eoc)}
+.church-card.oo .cht{color:var(--ooc)}
+.church-card .chd{font-size:.82rem;line-height:1.5}
+.church-card.eo .chd{color:#b8c4ec}
+.church-card.oo .chd{color:#b8dcc0}
+/* council table */
+.council-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.86rem}
+.council-table th{padding:8px 12px;text-align:left;border-bottom:2px solid var(--br);color:var(--gold);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase}
+.council-table td{padding:8px 12px;border-bottom:1px solid var(--br);color:var(--mu);vertical-align:top}
+.council-table tr:last-child td{border-bottom:none}
+.badge{font-size:.7rem;padding:2px 8px;border-radius:10px;font-weight:600;white-space:nowrap}
+.badge.yes-eo{background:var(--eo);color:var(--eoc);border:1px solid var(--eoc)}
+.badge.yes-oo{background:var(--oo);color:var(--ooc);border:1px solid var(--ooc)}
+.badge.yes-both{background:var(--both);color:var(--bothc);border:1px solid var(--bothc)}
+.badge.no{background:#2a1a1a;color:#d47070;border:1px solid #d47070}
+/* verse */
+.sv{background:var(--bg5);border:1px solid var(--gd);border-radius:6px;padding:10px 14px;margin:10px 0;font-style:italic;color:var(--gl);font-size:.9rem}
+.sv cite{display:block;text-align:right;font-size:.76rem;color:var(--gold);margin-top:4px;font-style:normal}
+/* father */
+.fc{background:var(--bg3);border:1px solid var(--br);border-radius:7px;padding:12px 14px;margin:10px 0;border-left:3px solid var(--gd)}
+.fc-name{font-size:.75rem;letter-spacing:.09em;text-transform:uppercase;color:var(--gold);margin-bottom:5px}
+.fc-body{font-size:.87rem;color:var(--mu);font-style:italic;line-height:1.6}
+/* fc grid */
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin:12px 0}
+/* accord */
+.obj{border:1px solid var(--br);border-radius:6px;margin-bottom:8px;overflow:hidden;background:var(--bg3)}
+.obj-h{display:flex;align-items:flex-start;padding:11px 14px;cursor:pointer;gap:10px;user-select:none}
+.obj-h:hover{background:rgba(255,255,255,.03)}
+.obj-h span{font-size:.88rem;color:var(--tx)}
+.obj-h .arr2{color:var(--mu);font-size:.75rem;transition:transform .2s;margin-left:auto;margin-top:3px;flex-shrink:0}
+.obj.open .arr2{transform:rotate(90deg)}
+.obj-body{display:none;padding:12px 14px 14px;border-top:1px solid var(--br);font-size:.88rem;color:var(--mu);line-height:1.65}
+.obj.open .obj-body{display:block}
+/* FAQ */
+.fi{border:1px solid var(--br);border-radius:6px;margin-bottom:8px;overflow:hidden;background:var(--bg3)}
+.fi-h{display:flex;align-items:flex-start;padding:10px 14px;cursor:pointer;gap:8px;user-select:none}
+.fi-h:hover{background:rgba(255,255,255,.03)}
+.fi-q{font-size:.88rem;color:var(--tx);flex:1}
+.fi-arr{color:var(--mu);font-size:.74rem;transition:transform .2s;flex-shrink:0;margin-top:4px}
+.fi.open .fi-arr{transform:rotate(90deg)}
+.fi-body{display:none;padding:12px 14px 14px;border-top:1px solid var(--br);font-size:.88rem;color:var(--mu);line-height:1.65}
+.fi.open .fi-body{display:block}
+/* glossary */
+.gt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin:12px 0}
+.gt{background:var(--bg3);border:1px solid var(--br);border-radius:7px;padding:12px 14px}
+.gt-term{font-size:.8rem;font-weight:700;color:var(--gold);margin-bottom:4px}
+.gt-def{font-size:.83rem;color:var(--mu);line-height:1.55}
+/* agreement box */
+.agree-box{background:var(--both);border:1px solid var(--bothc);border-radius:8px;padding:16px 18px;margin:14px 0}
+.agree-label{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--bothc);margin-bottom:7px}
+.agree-text{font-size:.92rem;color:#e8d8b0;line-height:1.65}
+/* rite card */
+.rite-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin:12px 0}
+.rite-card{border-radius:8px;padding:13px 15px;border:1px solid}
+.rite-card.eo{background:var(--eo);border-color:var(--eoc)}
+.rite-card.oo{background:var(--oo);border-color:var(--ooc)}
+.rite-card .rt{font-size:.78rem;font-weight:700;margin-bottom:4px}
+.rite-card.eo .rt{color:var(--eoc)}
+.rite-card.oo .rt{color:var(--ooc)}
+.rite-card .rd{font-size:.85rem;line-height:1.55}
+.rite-card.eo .rd{color:#b8c4ec}
+.rite-card.oo .rd{color:#b8dcc0}
+/* fast comparison */
+.fast-row{display:flex;gap:12px;margin-bottom:8px}
+.fast-label{font-size:.78rem;color:var(--gold);min-width:120px;flex-shrink:0;margin-top:2px}
+.fast-bar{flex:1;background:var(--bg3);border-radius:4px;height:22px;position:relative;overflow:hidden}
+.fast-fill{height:100%;border-radius:4px;display:flex;align-items:center;padding-left:8px;font-size:.75rem;font-weight:600}
+.fast-fill.eo{background:rgba(112,144,212,.3);color:var(--eoc)}
+.fast-fill.oo{background:rgba(125,200,125,.3);color:var(--ooc)}
+@media(max-width:760px){#sb{transform:translateX(-100%)}main{margin-left:0;padding:24px 18px 60px}}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<nav id="sb">
+  <div id="sb-brand">
+    <div class="lamp">The Orthodox Lamp</div>
+    <h1>Eastern &amp; Oriental Orthodoxy</h1>
+  </div>
+  <div class="sb-search">
+    <input type="search" placeholder="Search sections&#8230;" oninput="sidebarSearch(this.value)" aria-label="Search">
+  </div>
+  <div id="sb-nav">
+    <div class="sb-part">Overview</div>
+    <a href="#intro">One Root, Two Families</a>
+    <a href="#churches">The Churches</a>
+    <div class="sb-part">The Core Divide</div>
+    <a href="#chalcedon">The Chalcedonian Schism</a>
+    <a href="#councils">Ecumenical Councils</a>
+    <a href="#christology">Christological Formulas</a>
+    <div class="sb-part">Practical Differences</div>
+    <a href="#liturgy">Liturgical Rites</a>
+    <a href="#fasting">Fasting Practices</a>
+    <a href="#canon">Biblical Canon</a>
+    <a href="#calendar">Liturgical Calendar</a>
+    <a href="#governance">Governance &amp; Primacy</a>
+    <div class="sb-part">Theology</div>
+    <a href="#palamism">Palamism &amp; Uncreated Energies</a>
+    <a href="#hesychasm">Hesychasm</a>
+    <a href="#theosis">Theosis &amp; Soteriology</a>
+    <div class="sb-part">Reunion</div>
+    <a href="#common">What We Share</a>
+    <a href="#dialogue">The Path to Reunion</a>
+    <a href="#faq">FAQ</a>
+    <a href="#glossary">Glossary</a>
+  </div>
+  <div class="no-match-msg" id="sb-no-match">No sections match.</div>
+</nav>
+
+<main>
+<div class="pg-title">
+  <div class="lamp-label">The Orthodox Lamp</div>
+  <h1>Eastern &amp; Oriental Orthodoxy</h1>
+  <div class="sub">Two families of the one apostolic faith — their history, differences, and shared inheritance</div>
+</div>
+<p class="pg-intro">Eastern Orthodox and Oriental Orthodox Christians are closer to each other than either is to Rome or to Protestantism. They share the same apostolic faith, the same sacramental life, the same veneration of the Theotokos, the same rejection of the Filioque, and the same understanding of theosis. The divide — rooted in the Council of Chalcedon (451) — is real but narrow, and the modern ecumenical dialogue has clarified that it is largely a difference of vocabulary, not of faith.</p>
+
+<!-- ═══ ONE ROOT ═══ -->
+<div class="sec open" id="intro">
+<div class="sec-h" onclick="ts(this)"><h2>One Root, Two Families</h2><span class="arr">&#9658;</span></div>
+<div class="sec-body">
+<p>For the first four centuries, the Church was one. The councils of Nicaea (325), Constantinople (381), and Ephesus (431) were received by all — East and West, Greek and Coptic, Syrian and Armenian. The Fathers who defined the Trinity and the Incarnation — Athanasius, Cyril, Basil, Gregory — are venerated by both Eastern and Oriental Orthodox to this day.</p>
+<p>The rupture came at the Council of Chalcedon in 451. The Emperor Marcian convened it to settle the controversy following the Robber Council of 449. The resulting definition — that Christ exists in two natures, without confusion, without change, without division, without separation — was accepted by the sees of Constantinople, Rome, Antioch, and Jerusalem. It was rejected by Alexandria, large parts of Syria, and eventually Armenia, because they believed the formula opened the door to Nestorianism — the very heresy that Ephesus had condemned. That rejection, and the subsequent centuries of theological and political separation, created two distinct Orthodox families that have lived in parallel ever since.</p>
+<div class="comp-grid">
+<div class="comp-card eo">
+  <div class="cc-label">Eastern Orthodox (Chalcedonian)</div>
+  <ul>
+    <li>Accept 7 Ecumenical Councils</li>
+    <li>Chalcedonian Christology: two natures in one person</li>
+    <li>Byzantine liturgical tradition</li>
+    <li>~260 million faithful worldwide</li>
+    <li>Primacy of honor: Ecumenical Patriarch of Constantinople</li>
+  </ul>
+</div>
+<div class="comp-card oo">
+  <div class="cc-label">Oriental Orthodox (Non-Chalcedonian)</div>
+  <ul>
+    <li>Accept 3 Ecumenical Councils</li>
+    <li>Miaphysite Christology: one united nature</li>
+    <li>Alexandrian, Antiochene, and Armenian liturgical traditions</li>
+    <li>~86 million faithful worldwide</li>
+    <li>No single primate — collegial patriarchates</li>
+  </ul>
+</div>
+</div>
+<p>The 1990 Agreed Statement between representatives of both families confirmed what theologians had long been saying: the difference is terminological. Both confess the same Lord — perfect God and perfect man — and both condemn the heresies of Nestorius and Eutyches. The schism has lasted 1,575 years on a misunderstanding of vocabulary that could, in principle, be resolved.</p>
+</div></div>
+
+<!-- ═══ THE CHURCHES ═══ -->
+<div class="sec" id="churches">
+<div class="sec-h" onclick="ts(this)"><h2>The Churches</h2><span class="arr">&#9658;</span></div>
+<div class="sec-body">
+<h3>Eastern Orthodox Churches</h3>
+<div class="church-grid">
+<div class="church-card eo"><div class="cht">Ecumenical Patriarchate of Constantinople</div><div class="chd">Based in Istanbul (Phanar). Primus inter pares among EO. Patriarch: Bartholomew I. Greek-speaking tradition.</div></div>
+<div class="church-card eo"><div class="cht">Russian Orthodox Church</div><div class="chd">Largest EO church by membership (~100-150 million). Moscow Patriarchate. Slavonic liturgical tradition.</div></div>
+<div class="church-card eo"><div class="cht">Greek Orthodox Church</div><div class="chd">Church of Greece, closely tied to Constantinople. Heart of Byzantine theological tradition.</div></div>
+<div class="church-card eo"><div class="cht">Serbian Orthodox Church</div><div class="chd">Autocephalous Patriarchate of Peć. Slavonic tradition. Strong monastic heritage.</div></div>
+<div class="church-card eo"><div class="cht">Romanian Orthodox Church</div><div class="chd">Largest Latin-language EO church. Uses Romanian in liturgy. Uses Revised Julian Calendar.</div></div>
+<div class="church-card eo"><div class="cht">Bulgarian Orthodox Church</div><div class="chd">Ancient Patriarchate. Slavonic tradition. Significant role in spreading Christianity to the Slavs.</div></div>
+<div class="church-card eo"><div class="cht">Georgian Orthodox Church</div><div class="chd">Ancient apostolic church (founded by St. Nino). Uses Georgian language. Patriarch: Shio III (elected 2026, succeeding Ilia II).</div></div>
+<div class="church-card eo"><div class="cht">Antiochian Orthodox Church</div><div class="chd">Greek Orthodox Patriarchate of Antioch. Arabic-speaking. Strong diaspora presence in North America.</div></div>
+<div class="church-card eo"><div class="cht">Jerusalem, Cyprus, Albania, others</div><div class="chd">Plus churches of Poland, Czech lands, Slovakia, OCA (North America), and others — ~15 autocephalous churches total.</div></div>
+</div>
+<h3>Oriental Orthodox Churches</h3>
+<div class="church-grid">
+<div class="church-card oo"><div class="cht">Coptic Orthodox Church</div><div class="chd">Founded by St. Mark the Evangelist. Egypt and worldwide diaspora. ~15-20 million faithful. Pope of Alexandria: Tawadros II.</div></div>
+<div class="church-card oo"><div class="cht">Ethiopian Orthodox Tewahedo Church</div><div class="chd">One of the oldest Christian churches. ~40-50 million faithful — the largest OO church. Patriarch: Abune Mathias.</div></div>
+<div class="church-card oo"><div class="cht">Eritrean Orthodox Tewahedo Church</div><div class="chd">Separated from Ethiopian church in 1994 following Eritrean independence. Shares Ge&#8217;ez tradition.</div></div>
+<div class="church-card oo"><div class="cht">Armenian Apostolic Church</div><div class="chd">Founded by Apostles Thaddaeus and Bartholomew. Two Catholicosates: Etchmiadzin and Cilicia. ~7-9 million faithful.</div></div>
+<div class="church-card oo"><div class="cht">Syriac Orthodox Church</div><div class="chd">Patriarchate of Antioch. Classical Syriac liturgical language. Diaspora across Middle East and worldwide. Patriarch of Antioch: Ignatius Aphrem II.</div></div>
+<div class="church-card oo"><div class="cht">Malankara Orthodox Syrian Church</div><div class="chd">Kerala, India. Founded by the Apostle Thomas. ~2 million faithful. Rich Syriac liturgical heritage in Indian context.</div></div>
+</div>
+</div></div>
+
+<!-- ═══ CHALCEDON ═══ -->
+<div class="sec" id="chalcedon">
+<div class="sec-h" onclick="ts(this)"><h2>The Chalcedonian Schism</h2><span class="arr">&#9658;</span></div>
+<div class="sec-body">
+<p>The Council of Chalcedon (451) is the single event that separates the two families. Understanding it requires understanding what came before it. St. Cyril of Alexandria had defended the formula "one nature of the Word of God Incarnate" (mia physis tou Theou Logou sesarkomene) against Nestorius at the Council of Ephesus (431). Cyril&#8217;s formula used the word "one" not arithmetically but to express the complete union of divine and human in the single person of the Incarnate Word.</p>
+<p>After Cyril&#8217;s death, the monk Eutyches took Cyril&#8217;s formula in a direction Cyril never intended: he taught that Christ&#8217;s human nature was absorbed into his divinity — genuine Monophysitism. Eutyches was condemned. But the subsequent Council of Chalcedon, in correcting Eutyches, produced a formula — "one person in two natures" — which the Alexandrian theologians believed went too far in the opposite direction, risking the Nestorian division of Christ into two persons.</p>
+<div class="comp-grid">
+<div class="comp-card eo">
+  <div class="cc-label">Chalcedonian Definition (EO accepted)</div>
+  <p>"One and the same Christ, Son, Lord, only-begotten, acknowledged in two natures, without confusion, without change, without division, without separation — the distinction of natures being in no way annulled by the union."</p>
+</div>
+<div class="comp-card oo">
+  <div class="cc-label">OO Position (Cyrilline formula)</div>
+  <p>"One nature of the Word of God Incarnate" — one composite, undivided nature that is fully divine and fully human. The word "two natures" was rejected as implying a Nestorian division, not because the OO denied Christ&#8217;s full humanity or divinity.</p>
+</div>
+</div>
+<p>The key point, confirmed by the 1990 Agreed Statement: both sides reject Nestorius (who divided Christ into two persons) and both sides reject Eutyches (who absorbed Christ&#8217;s humanity into his divinity). The real difference is whether Chalcedon&#8217;s "two natures" language is a safe way to express this, or whether it opens a Nestorian door. For a full treatment see <a href="chalcedon_schism.html">The Chalcedonian Schism &#8594;</a></p>
+<div class="fc">
+<div class="fc-name">Second Agreed Statement (1990) — Common Christological Faith</div>
+<div class="fc-body">"Both families have always loyally maintained the same authentic Orthodox Christological faith, and the unbroken continuity of the apostolic tradition, though they may have used Christological terms in different ways."</div>
+</div>
+</div></div>
+
+<!-- ═══ COUNCILS ═══ -->
+<div class="sec" id="councils">
+<div class="sec-h" onclick="ts(this)"><h2>Ecumenical Councils: 3 vs. 7</h2><span class="arr">&#9658;</span></div>
+<div class="sec-body">
+<p>The number of Ecumenical Councils accepted by each family is the most visible structural difference. The OO accept the first three; the EO accept seven. Both families agree entirely on the first three — these are the theological foundations both share.</p>
+
+<table class="council-table">
+<thead><tr><th>Council</th><th>Year</th><th>Defined</th><th>EO</th><th>OO</th></tr></thead>
+<tbody>
+<tr><td>Nicaea I</td><td>325</td><td>Divinity of Christ; Nicene Creed; consubstantial (homoousios)</td><td><span class="badge yes-both">&#10003; Accepted</span></td><td><span class="badge yes-both">&#10003; Accepted</span></td></tr>
+<tr><td>Constantinople I</td><td>381</td><td>Divinity of the Holy Spirit; Nicene-Constantinopolitan Creed</td><td><span class="badge yes-both">&#10003; Accepted</span></td><td><span class="badge yes-both">&#10003; Accepted</span></td></tr>
+<tr><td>Ephesus</td><td>431</td><td>Theotokos; condemnation of Nestorius; one subject in the Incarnation</td><td><span class="badge yes-both">&#10003; Accepted</span></td><td><span class="badge yes-both">&#10003; Accepted</span></td></tr>
+<tr><td>Chalcedon</td><td>451</td><td>Two natures in one person; Tome of Leo; condemnation of Eutyches</td><td><span class="badge yes-eo">&#10003; Accepted</span></td><td><span class="badge no">&#10007; Rejected</span></td></tr>
+<tr><td>Constantinople II</td><td>553</td><td>Three Chapters controversy; clarification of Chalcedon in Cyrillian direction</td><td><span class="badge yes-eo">&#10003; Accepted</span></td><td><span class="badge no">&#10007; Not received</span></td></tr>
+<tr><td>Constantinople III</td><td>680&#8211;81</td><td>Two wills in Christ (against Monothelitism); condemned Pope Honorius I</td><td><span class="badge yes-eo">&#10003; Accepted</span></td><td><span class="badge no">&#10007; Not received</span></td></tr>
+<tr><td>Nicaea II</td><td>787</td><td>Veneration of icons; against Iconoclasm; Seventh Ecumenical Council</td><td><span class="badge yes-eo">&#10003; Accepted</span></td><td><span class="badge no">&#10007; Not formally received</span></td></tr>
+</tbody>
+</table>
+
+<p>It is important to note that the OO&#8217;s rejection of Chalcedon and the post-Chalcedonian councils is not rejection of their content wholesale. Constantinople III condemned Monothelitism (the teaching that Christ has only one will) — and the OO also reject Monothelitism. Constantinople II clarified Chalcedon in a more Cyrillian direction that the OO might largely accept on content. The issue is whether these councils, held after and premised on Chalcedon, can be received as binding ecumenical councils by a church that did not receive Chalcedon.</p>
+<p>Nicaea II (icons) is a special case: the OO venerate icons and the theology of John of Damascus, but have not formally received the council as ecumenical — partly because the council is premised on Chalcedon, and partly because the OO practice of icon veneration was never interrupted by Iconoclasm in the same way (the Iconoclast heresy was primarily a Byzantine controversy).</p>
+</div></div>
+
+<!-- ═══ CHRISTOLOGICAL FORMULAS ═══ -->
+<div class="sec" id="christology">
+<div class="sec-h" onclick="ts(this)"><h2>Christological Formulas in Practice</h2><span class="arr">&#9658;</span></div>
+<div class="sec-body">
+<p>The difference in Christological vocabulary has real implications for how each tradition speaks about Christ, reads the Fathers, and conducts theology. Understanding the practical expression of each formula helps clarify where the actual difference lies.</p>
+<h3>The Four Adverbs (Chalcedon)</h3>
+<p>Chalcedon defined Christ&#8217;s two natures as existing: (1) without confusion — the two are not mixed into a third thing; (2) without change — neither nature is transformed by the union; (3) without division — they are inseparably united in one person; (4) without separation — they cannot be pulled apart. The OO accepts all four adverbs as descriptions of the truth. The disagreement is whether the phrase "two natures" is the right way to express it, not whether these four qualifications are accurate.</p>
+<div class="comp-grid">
+<div class="comp-card eo">
+  <div class="cc-label">Eastern Orthodox Formula</div>
+  <ul>
+    <li>"Two natures, one person (hypostasis)"</li>
+    <li>Uses Chalcedonian language as precise and safe</li>
+    <li>The Tome of Leo is authoritative</li>
+    <li>Dyophysite: two complete natures preserved in union</li>
+    <li>Reads Cyril through Chalcedon</li>
+  </ul>
+</div>
+<div class="comp-card oo">
+  <div class="cc-label">Oriental Orthodox Formula</div>
+  <ul>
+    <li>"One united nature of the Incarnate Word"</li>
+    <li>Uses Cyril&#8217;s formula as the safe expression</li>
+    <li>Fully divine and fully human — not a mixture</li>
+    <li>Miaphysite: one composite nature, both realities present</li>
+    <li>Reads Chalcedon through Cyril</li>
+  </ul>
+</div>
+</div>
+<p>In practice, the difference plays out in how each tradition reads the Church Fathers. Eastern Orthodox theologians tend to interpret Cyril&#8217;s "one nature" formula as anticipating or compatible with Chalcedon&#8217;s "two natures." Oriental Orthodox theologians argue that Cyril&#8217;s formula is itself the correct one and that Chalcedon introduced an unnecessary and dangerous novelty. Both say the same things about Christ when they preach, pray, and celebrate the Eucharist. The difference is visible primarily in formal theology and conciliar documents.</p>
+<div class="fc">
+<div class="fc-name">Metropolitan Bishoy of Damietta (Coptic) and Metropolitan Damaskinos (EO) &#8212; Geneva, 1990</div>
+<div class="fc-body">"The confusion and misunderstandings of the past are now behind us. Both families have always loyally preserved the same authentic Orthodox Christological faith, and the unbroken continuity of the Apostolic Tradition, though they have sometimes used Christological terms in different ways."</div>
+</div>
+</div></div>
+
+<!-- ═══ LITURGICAL RITES ═══ -->
+<div class="sec" id="liturgy">
+<div class="sec-h" onclick="ts(this)"><h2>Liturgical Rites and Worship</h2><span class="arr">&#9658;</span></div>
+<div class="sec-body">
+<p>This is one of the most immediately visible differences between the two families. Eastern Orthodox churches all use the Byzantine Rite — a single, shared liturgical tradition developed in Constantinople. Oriental Orthodox churches use four distinct ancient rites, each with its own language, music, and theological character.</p>
+<div class="rite-grid">
+<div class="rite-card eo">
+<div class="rt">Byzantine Rite (EO)</div>
+<div class="rd">Used by all Eastern Orthodox churches. Divine Liturgy of St. John Chrysostom (daily use) and St. Basil the Great (Sundays of Lent, major feasts). Liturgy of the Presanctified Gifts (Wednesdays and Fridays of Lent). Sung in Greek, Church Slavonic, Romanian, Arabic, and vernacular languages. Iconostasis (icon screen) separates nave from sanctuary.</div>
+</div>
+<div class="rite-card oo">
+<div class="rt">Alexandrian Rite (Coptic &amp; Ethiopian)</div>
+<div class="rd">Used by Coptic and Ethiopian/Eritrean Orthodox. Divine Liturgy of St. Basil (daily), St. Gregory (feast days), St. Cyril/Mark (Lent). Sung in Coptic (Egypt), Ge&#8217;ez (Ethiopia/Eritrea). No iconostasis but a sanctuary curtain. Incredibly ancient — Coptic liturgy contains elements from 2nd-3rd century Alexandria.</div>
+</div>
+<div class="rite-card oo">
+<div class="rt">Antiochene Rite (Syriac &amp; Malankara)</div>
+<div class="rd">Used by Syriac Orthodox and Malankara Orthodox. Liturgy of St. James of Jerusalem (oldest continuous liturgy in use) and St. Basil. Classical Syriac language (closest living language to Aramaic, the language of Jesus). Rich hymnographic tradition: qolo (melodies), bo&#8217;utho (intercessions), madrash (teaching hymns of Ephrem the Syrian).</div>
+</div>
+<div class="rite-card oo">
+<div class="rt">Armenian Rite</div>
+<div class="rd">Used by the Armenian Apostolic Church. Liturgy of St. Athanasius (Armenian version). Classical Armenian (Grabar). Distinctive choral polyphony. Sharakan hymnbook — centuries of Marian and liturgical poetry. The Armenian church uses unleavened bread (unlike all other OO churches which use leavened).</div>
+</div>
+</div>
+<h3>Key Practical Differences in Worship</h3>
+<div class="comp-grid">
+<div class="comp-card eo">
+  <div class="cc-label">Eastern Orthodox</div>
+  <ul>
+    <li>Iconostasis — tiered icon screen with Royal Doors</li>
+    <li>Typically no instruments — acapella chant</li>
+    <li>Congregation stands throughout</li>
+    <li>Priest faces east (ad orientem) at most prayers</li>
+    <li>Leavened bread (artos) for Eucharist</li>
+    <li>Proskomedia (preparation of gifts) before liturgy</li>
+  </ul>
+</div>
+<div class="comp-card oo">
+  <div class="cc-label">Oriental Orthodox</div>
+  <ul>
+    <li>Sanctuary curtain (not iconostasis) in Coptic/Syriac practice</li>
+    <li>Coptic: percussion instruments (triangle, cymbals) used in some contexts</li>
+    <li>Ethiopian: drums and sistrum in liturgy — ancient Israelite heritage</li>
+    <li>Armenian: unleavened bread; organ in some diaspora churches</li>
+    <li>Leavened bread in Coptic, Syriac, Ethiopian, Malankara</li>
+    <li>Coptic: congregation prostrates (metania) more frequently</li>
+  </ul>
+</div>
+</div>
+<p>Despite these differences, any EO Christian entering an OO liturgy will immediately recognize it as Orthodox worship: the same veneration of icons, the same Eucharistic prayer structure, the same commemoration of the Theotokos, the same anaphora rooted in Apostolic Tradition. The experience of the same mysteries in different clothing.</p>
+</div></div>
+
+<!-- ═══ FASTING ═══ -->
+<div class="sec" id="fasting">
+<div class="sec-h" onclick="ts(this)"><h2>Fasting Practices</h2><span class="arr">&#9658;</span></div>
+<div class="sec-body">
+<p>Both traditions are among the most rigorous fasting traditions in all of Christianity — far more demanding than Roman Catholic or Protestant practice. The Oriental Orthodox, particularly the Coptic and Ethiopian traditions, fast more extensively than Eastern Orthodox.</p>
+<div style="margin:14px 0">
+  <div class="fast-row"><span class="fast-label">EO Fasting Days</span><div class="fast-bar"><div class="fast-fill eo" style="width:49%">~180 days/year</div></div></div>
+  <div class="fast-row"><span class="fast-label">Coptic OO</span><div class="fast-bar"><div class="fast-fill oo" style="width:56%">~210 days/year</div></div></div>
+  <div class="fast-row"><span class="fast-label">Ethiopian OO</span><div class="fast-bar"><div class="fast-fill oo" style="width:55%">~200+ days/year</div></div></div>
+</div>
+<div class="comp-grid">
+<div class="comp-card eo">
+  <div class="cc-label">Eastern Orthodox Fasting Seasons</div>
+  <ul>
+    <li>Great Lent (7 weeks before Pascha)</li>
+    <li>Apostles&#8217; Fast (after Pentecost, variable)</li>
+    <li>Dormition Fast (Aug 1&#8211;14)</li>
+    <li>Nativity Fast (Nov 15 &#8211; Dec 24)</li>
+    <li>Wednesday &amp; Friday every week</li>
+    <li>Eve of Theophany, Beheading of John Baptist, Exaltation of the Cross</li>
+  </ul>
+</div>
+<div class="comp-card oo">
+  <div class="cc-label">Coptic/Ethiopian OO Fasting Seasons</div>
+  <ul>
+    <li>Great Lent (55 days for Coptic; 56 days Ethiopian)</li>
+    <li>Apostles&#8217; Fast (after Pentecost)</li>
+    <li>Fast of Advent (43 days Coptic)</li>
+    <li>Fast of the Virgin Mary (15 days, Aug)</li>
+    <li>Fast of Nineveh (3 days, before Lent)</li>
+    <li>Fast of the Apostles, Wednesday &amp; Friday year-round</li>
+    <li>Ethiopian: additional fasts including Fast of the Prophets, Fast of Heraclides</li>
+  </ul>
+</div>
+</div>
+<h3>What Is Avoided During Fasting</h3>
+<div class="comp-grid">
+<div class="comp-card eo">
+  <div class="cc-label">EO Fast</div>
+  <ul>
+    <li>Meat, poultry, dairy, eggs</li>
+    <li>Fish permitted on some fasting days (varies by season)</li>
+    <li>Oil and wine restricted on strict fasting days</li>
+    <li>One meal per day on strictest days</li>
+  </ul>
+</div>
+<div class="comp-card oo">
+  <div class="cc-label">Coptic/Ethiopian OO Fast</div>
+  <ul>
+    <li>All animal products: meat, fish, dairy, eggs</li>
+    <li>No fish even on most fasting days (stricter than EO)</li>
+    <li>Oil and wine restricted</li>
+    <li>No food before 9am&#8211;3pm (vesperal fast)</li>
+    <li>Some Ethiopian fasts are extremely strict — total abstinence</li>
+  </ul>
+</div>
+</div>
+<p>The Armenian Apostolic tradition has fewer obligatory fasting days than Coptic or Ethiopian practice. The Syriac and Malankara traditions are broadly similar to Coptic fasting. The common thread across all OO and EO traditions: fasting is bodily prayer, the training of the will, and the expression of longing for God.</p>
+</div></div>
+
+<!-- ═══ BIBLICAL CANON ═══ -->
+<div class="sec" id="canon">
+<div class="sec-h" onclick="ts(this)"><h2>Biblical Canon</h2><span class="arr">&#9658;</span></div>
+<div class="sec-body">
+<p>The biblical canons of the two families differ in detail, though both use the Septuagint as the basis for the Old Testament. The most significant difference is the Ethiopian Orthodox canon — by far the largest in all of Christianity.</p>
+<div class="comp-grid">
+<div class="comp-card eo">
+  <div class="cc-label">Eastern Orthodox Canon</div>
+  <ul>
+    <li>NT: 27 books (same as Protestant/Catholic)</li>
+    <li>OT: Includes deuterocanonicals (Tobit, Judith, 1-2 Maccabees, Sirach, Wisdom, Baruch, additions to Daniel &amp; Esther)</li>
+    <li>Some traditions include 3 Maccabees, 1 Esdras, Prayer of Manasseh, Psalm 151</li>
+    <li>No single formally defined canon — variation between national churches</li>
+    <li>The Septuagint (LXX) is the primary OT text</li>
+  </ul>
+</div>
+<div class="comp-card oo">
+  <div class="cc-label">Oriental Orthodox Canons</div>
+  <ul>
+    <li>Coptic: similar to EO; includes deuterocanonicals</li>
+    <li>Armenian: close to EO with some differences</li>
+    <li>Syriac/Malankara: use Peshitta (Syriac Bible); originally 22 NT books, now accepting 27</li>
+    <li><strong>Ethiopian/Eritrean: 81 books</strong> — includes 1 Enoch, Book of Jubilees, Shepherd of Hermas, Clementine Epistles, and others</li>
+    <li>Ethiopian canon is the only Christian tradition to include 1 Enoch as scripture (Jude 14-15 quotes it)</li>
+  </ul>
+</div>
+</div>
+<p>The Ethiopian canon deserves special mention. It includes texts that other Christians know as important non-canonical writings — 1 Enoch (quoted by Jude), the Book of Jubilees, Shepherd of Hermas, and the Clementine Epistles. This is not theological eccentricity: Ethiopia received Christianity in the 4th century through a Syriac-Alexandrian tradition that was working with a broader collection of texts. The Ethiopian church regards this extended canon as apostolic patrimony. It is one of the most striking markers of the antiquity and distinctiveness of the Ethiopian tradition.</p>
+<div class="fc">
+<div class="fc-name">The Book of Enoch in Scripture</div>
+<div class="fc-body">"It was also about these that Enoch, the seventh from Adam, prophesied, saying, &#8216;Behold, the Lord comes with ten thousands of his holy ones&#8217;" — Jude 14-15, quoting 1 Enoch 1:9. Ethiopia preserved 1 Enoch as Scripture; it was lost to the West until a copy was discovered in Ethiopia in the 18th century.</div>
+</div>
+</div></div>
+
+<!-- ═══ CALENDAR ═══ -->
+<div class="sec" id="calendar">
+<div class="sec-h" onclick="ts(this)"><h2>Liturgical Calendars</h2><span class="arr">&#9658;</span></div>
+<div class="sec-body">
+<p>Both families sanctify time through a liturgical year, but the specific calendars differ — both internally within each family and between the two families. Christmas and Pascha can fall on different dates, which is a practical marker of the divide that outsiders often notice first.</p>
+<div class="comp-grid">
+<div class="comp-card eo">
+  <div class="cc-label">Eastern Orthodox Calendars</div>
+  <ul>
+    <li><strong>Old Calendar (Julian):</strong> Russian, Serbian, Georgian, Jerusalem Orthodox — Christmas: January 7</li>
+    <li><strong>New Calendar (Revised Julian):</strong> Greek, Romanian, Antiochian, Bulgarian Orthodox — Christmas: December 25</li>
+    <li>Pascha (Easter) calculated differently from Western Easter — all EO use the same Julian-based calculation regardless of calendar used for fixed feasts</li>
+    <li>EO Pascha is often later than Western Easter by 1&#8211;5 weeks</li>
+  </ul>
+</div>
+<div class="comp-card oo">
+  <div class="cc-label">Oriental Orthodox Calendars</div>
+  <ul>
+    <li><strong>Coptic:</strong> Coptic calendar (solar, 13 months) — Christmas: January 7 (Coptic: 29 Kiahk)</li>
+    <li><strong>Ethiopian/Eritrean:</strong> Ethiopian calendar (similar to Coptic) — Christmas: January 7 (Ethiopian: Genna, 29 Tahsas)</li>
+    <li><strong>Armenian:</strong> January 6 (combines Nativity and Epiphany, as in the ancient undivided Church)</li>
+    <li><strong>Syriac/Malankara:</strong> December 25 in many communities; some observe January 7</li>
+  </ul>
+</div>
+</div>
+<p>The Armenian practice of celebrating the Nativity and Epiphany together on January 6 is actually the most ancient — it reflects the pre-4th-century universal practice before Rome separated them into December 25 and January 6. The Armenian church has preserved this ancient unity, making it the only ancient church that celebrates Christ&#8217;s birth, the visit of the Magi, and the baptism all on the same day.</p>
+<h3>Coptic and Ethiopian Year Counting</h3>
+<p>The Coptic church uses the Era of the Martyrs (Anno Martyrum) — a calendar that begins with the reign of Diocletian (284 AD), who launched the Great Persecution of Christians. The year 2025 AD is approximately 1741-1742 AM. The Ethiopian calendar is similarly distinct — Ethiopia currently runs approximately 7-8 years behind the Gregorian calendar, which is why Ethiopia celebrated its year 2000 in 2007-2008. These calendrical identities are not mere curiosities; they are expressions of each tradition&#8217;s deep historical self-understanding.</p>
+</div></div>
+
+<!-- ═══ GOVERNANCE ═══ -->
+<div class="sec" id="governance">
+<div class="sec-h" onclick="ts(this)"><h2>Church Governance and Primacy</h2><span class="arr">&#9658;</span></div>
+<div class="sec-body">
+<p>Both families are conciliarist — they reject papal supremacy and hold that authority in the Church belongs to episcopal councils. But the structures of that conciliarism differ in practice.</p>
+<div class="comp-grid">
+<div class="comp-card eo">
+  <div class="cc-label">Eastern Orthodox Governance</div>
+  <ul>
+    <li>Ecumenical Patriarch of Constantinople: <em>primus inter pares</em> (first among equals) — honor without jurisdictional supremacy</li>
+    <li>~15 autocephalous churches, each internally governed by their Holy Synod</li>
+    <li>Diptychs — the official order of commemoration — are a major ecclesiological issue (currently disputed between Constantinople and Moscow)</li>
+    <li>No universal council since Nicaea II (787); the Pan-Orthodox Council of 2016 (Crete) was contested by several churches</li>
+    <li>Autocephaly granted by Constantinople (or historically by existing autocephalous churches) — this is disputed</li>
+  </ul>
+</div>
+<div class="comp-card oo">
+  <div class="cc-label">Oriental Orthodox Governance</div>
+  <ul>
+    <li>No single primate with universal honor — the patriarchs are collegial equals</li>
+    <li>Six autocephalous churches, each internally governed</li>
+    <li>The Pope of Alexandria (Coptic), the Catholicos of All Armenians, and others meet in Pan-Oriental Synods but have no jurisdictional authority over each other</li>
+    <li>Historically less entangled with Byzantine imperial politics — the OO churches were outside the empire after Chalcedon</li>
+    <li>Unity is expressed through communion, not through a hierarchical center</li>
+  </ul>
+</div>
+</div>
+<p>The EO struggle over primacy — particularly the ongoing conflict between Constantinople and Moscow over who controls autocephaly — is essentially absent from the OO world. The OO churches have never had a Constantinople equivalent: no single see claiming primacy over all others. This may actually be a point in the OO&#8217;s favor ecclesiologically — the conciliarity they profess is more closely matched by their practice.</p>
+</div></div>
+
+<!-- ═══ PALAMISM ═══ -->
+<div class="sec" id="palamism">
+<div class="sec-h" onclick="ts(this)"><h2>Palamism and the Uncreated Energies</h2><span class="arr">&#9658;</span></div>
+<div class="sec-body">
+<p>This is one of the most theologically significant differences between the two families, though it is less well-known than the Chalcedonian dispute. In the 14th century, the Byzantine theologian Gregory Palamas developed a theological distinction between God&#8217;s unknowable essence and his knowable, truly divine energies — defending the possibility of genuine union with God against Barlaam the Calabrian, who argued such union was impossible. The Palamite councils of Constantinople (1341, 1347, 1351) defined this distinction as a binding dogma for the Eastern Orthodox church.</p>
+<div class="comp-grid">
+<div class="comp-card eo">
+  <div class="cc-label">Eastern Orthodox</div>
+  <ul>
+    <li>Palamite distinction between essence and energies is <strong>binding dogma</strong></li>
+    <li>Gregory Palamas is venerated as a saint and "defender of Orthodoxy"</li>
+    <li>The second Sunday of Lent is the Sunday of Gregory Palamas (EO)</li>
+    <li>Uncreated light of Tabor is a central theological concept</li>
+    <li>Hesychasm (inner prayer, stillness) is closely tied to Palamite theology</li>
+  </ul>
+</div>
+<div class="comp-card oo">
+  <div class="cc-label">Oriental Orthodox</div>
+  <ul>
+    <li>The Palamite councils are post-Chalcedon Byzantine councils — not formally received</li>
+    <li>The <em>content</em> of Palamism — genuine union with God, uncreated grace — is broadly affirmed</li>
+    <li>Coptic, Syriac, and Malankara theology speak of union with God in similar terms</li>
+    <li>Gregory Palamas is not specifically venerated, but his teachings are not condemned</li>
+    <li>The OO hesychast tradition (Isaac of Nineveh, the desert fathers) predates Palamas and shares his concerns</li>
+  </ul>
+</div>
+</div>
+<p>This is an important asymmetry: the EO have a formal dogmatic framework for theosis (Palamism) that the OO lack. But the OO&#8217;s patristic tradition — rooted in Athanasius, Cyril, the Cappadocians, and Isaac of Nineveh — expresses the same theological convictions in different language. The OO&#8217;s saint Isaac the Syrian (Isaac of Nineveh), venerated by both EO and many OO, is one of the greatest mystical theologians of hesychasm — yet he wrote before Palamas and does not use Palamite categories. This suggests the underlying spiritual tradition is shared even where the formal dogmatic expression differs.</p>
+<div class="fc">
+<div class="fc-name">St. Gregory Palamas (d. 1359) — venerated by EO; influential for OO</div>
+<div class="fc-body">"God in his entirety penetrates the whole of the deified being, and the whole of the deified being is permeated by God&#8230; The saints are truly united to God, not to some created intermediary."</div>
+</div>
+</div></div>
+
+<!-- ═══ HESYCHASM ═══ -->
+<div class="sec" id="hesychasm">
+<div class="sec-h" onclick="ts(this)"><h2>Hesychasm and the Interior Life</h2><span class="arr">&#9658;</span></div>
+<div class="sec-body">
+<p>Hesychasm — the tradition of inner stillness, heart-prayer, and the pursuit of God through silence — is one of the great gifts of Eastern Christianity to the universal Church. Both families share it, but they express and institutionalize it differently.</p>
+<div class="comp-grid">
+<div class="comp-card eo">
+  <div class="cc-label">Eastern Orthodox Hesychasm</div>
+  <ul>
+    <li>Centered on the Jesus Prayer as the primary vehicle</li>
+    <li>Mount Athos (Greece) — the Holy Mountain — is the global center of EO hesychasm</li>
+    <li>Philokalia: the 5-volume anthology of hesychast writings compiled by Nikodimos of the Holy Mountain (18th c.)</li>
+    <li>Palamite theology gives hesychasm its dogmatic foundation</li>
+    <li>Russian hesychasm: the tradition of the startsy (spiritual elders) — Seraphim of Sarov, Optina Elders</li>
+  </ul>
+</div>
+<div class="comp-card oo">
+  <div class="cc-label">Oriental Orthodox Hesychasm</div>
+  <ul>
+    <li>The <strong>Egyptian desert fathers are the origin</strong> of all Christian hesychasm — Anthony the Great, Macarius, Evagrius</li>
+    <li>Sayings of the Desert Fathers (Apophthegmata Patrum) — the foundational hesychast text</li>
+    <li>Ethiopian monasticism: highly developed tradition of inner prayer, with long periods of standing prayer</li>
+    <li>Isaac of Nineveh (Syriac): one of the greatest mystical writers in any tradition</li>
+    <li>The Jesus Prayer is used in OO practice; the exact Palamite framework is not formally taught</li>
+  </ul>
+</div>
+</div>
+<p>It is a historical irony that the hesychast tradition — which Eastern Orthodoxy claims most formally — was founded by the Oriental Orthodox. Anthony the Great was a Coptic Egyptian; the desert mothers and fathers who pioneered contemplative prayer were the spiritual ancestors of the Coptic church. The Philokalia itself begins with figures who lived long before the Chalcedonian divide. In the interior life, the two families are drawing from the same well.</p>
+<div class="fc">
+<div class="fc-name">St. Anthony the Great (d. 356) — father of all Christian monasticism; venerated by both families</div>
+<div class="fc-body">"The one who sits alone and is quiet has escaped from three wars: hearing, speaking, seeing. But there is one battle he must face — the battle of the heart."</div>
+</div>
+</div></div>
+
+<!-- ═══ THEOSIS ═══ -->
+<div class="sec" id="theosis">
+<div class="sec-h" onclick="ts(this)"><h2>Theosis and Soteriology</h2><span class="arr">&#9658;</span></div>
+<div class="sec-body">
+<p>Both families share the same fundamental vision of salvation: theosis — deification, genuine participation in the divine nature (2 Pet 1:4). "He became man that we might become God" (Athanasius). This is the deepest point of unity between the two families, and it is the central feature that distinguishes both from Western Christianity.</p>
+<div class="agree-box">
+<div class="agree-label">Shared Soteriological Vision</div>
+<div class="agree-text">Both Eastern and Oriental Orthodox understand salvation as theosis — not primarily a legal transaction (forgiveness of a debt owed to divine justice) but a genuine transformation of the human person through union with God. Both reject Augustine&#8217;s doctrine of inherited guilt in favor of the Eastern understanding of ancestral sin. Both affirm that grace is God himself, present and operative — not a created quality infused into the soul. Both see the Incarnation, Cross, and Resurrection as the healing and deification of human nature, not the satisfaction of divine retribution.</div>
+</div>
+<p>The EO have formalized this theology through Palamite dogma (uncreated energies). The OO express the same conviction through the patristic tradition of Alexandria and Antioch without a post-Chalcedon dogmatic framework. In practice the two families pray, fast, receive the sacraments, and pursue the interior life in pursuit of the same goal — union with the Triune God.</p>
+<p>Both families also share the same anthropology: the image of God (imago Dei) in humanity is wounded but not destroyed by the Fall; human free will is weakened but not annihilated; salvation requires both God&#8217;s grace and human synergy (cooperation). Neither teaches the Calvinist doctrine of total depravity or unconditional election. Neither teaches Pelagian self-sufficiency. The balance of grace and freedom, preserved in the East through the great tradition of free will theology (Chrysostom, Maximus the Confessor), is equally present in both families.</p>
+</div></div>
+
+<!-- ═══ SHARED ═══ -->
+<div class="sec" id="common">
+<div class="sec-h" onclick="ts(this)"><h2>What Eastern and Oriental Orthodoxy Share</h2><span class="arr">&#9658;</span></div>
+<div class="sec-body">
+<p>The list of what both families share is far longer than the list of what divides them. This section is essential context for understanding the scale of the differences — they are real, but they are narrow against the background of enormous common ground.</p>
+<div class="comp-card shared" style="margin:14px 0">
+<div class="cc-label">Shared by Both Eastern and Oriental Orthodox</div>
+<ul>
+  <li>The Nicene-Constantinopolitan Creed (without Filioque)</li>
+  <li>The Councils of Nicaea (325), Constantinople (381), and Ephesus (431)</li>
+  <li>Theotokos: Mary as God-bearer; the same Christological confession</li>
+  <li>Apostolic succession through valid episcopal ordination</li>
+  <li>Seven (or more) sacraments (mysteries) as the means of grace</li>
+  <li>Real Presence of Christ in the Eucharist — the Body and Blood truly present</li>
+  <li>Theosis as the goal of salvation — genuine union with God</li>
+  <li>Rejection of the Filioque addition to the Creed</li>
+  <li>Rejection of Augustinian inherited guilt; Eastern doctrine of ancestral sin</li>
+  <li>Rejection of the papal claims of Vatican I (universal jurisdiction, infallibility)</li>
+  <li>Veneration of icons and saints as expressions of the Incarnation</li>
+  <li>The monastic tradition as the heart of the Church&#8217;s life</li>
+  <li>Prayer for the dead as an expression of the Body&#8217;s unity across death</li>
+  <li>The desert fathers and the early Church Fathers as shared patrimony</li>
+  <li>Rejection of the Latin purgatorial system and indulgences</li>
+  <li>Liturgical worship as the primary form of Christian life</li>
+  <li>Extensive fasting traditions</li>
+  <li>A theology of marriage as a sacrament and icon of Christ and the Church</li>
+  <li>Male-only priesthood and episcopate</li>
+  <li>Married parish clergy and celibate bishop-monks</li>
+</ul>
+</div>
+</div></div>
+
+<!-- ═══ DIALOGUE ═══ -->
+<div class="sec" id="dialogue">
+<div class="sec-h" onclick="ts(this)"><h2>The Path to Reunion</h2><span class="arr">&#9658;</span></div>
+<div class="sec-body">
+<p>The modern dialogue between the two families has produced remarkable results and revealed how narrow the actual divide is. The dialogue did not begin in the 20th century — there were informal contacts in the 7th and 8th centuries that almost produced a reunion. But the sustained formal process began in the 1960s.</p>
+<div class="comp-grid" style="grid-template-columns:1fr">
+<div class="comp-card shared">
+<div class="cc-label">Key Milestones in EO-OO Dialogue</div>
+<ul>
+  <li><strong>1964 — Aarhus, Denmark:</strong> First modern informal consultation. Both sides agree the Christological difference is terminological, not substantial.</li>
+  <li><strong>1967 — Bristol:</strong> Second consultation confirms the Aarhus finding. Joint statement on common faith.</li>
+  <li><strong>1970 — Geneva:</strong> Third consultation. Proposed theological formula for reunion drafted.</li>
+  <li><strong>1971 — Addis Ababa:</strong> Fourth consultation. Ethiopian church plays a hosting role — symbolically significant.</li>
+  <li><strong>1989 — Anba Bishoy Monastery, Egypt:</strong> First <em>Agreed Statement</em>. The landmark document: both families confess the same Christological faith. "The confusion and misunderstandings of the past are now behind us."</li>
+  <li><strong>1990 — Chambésy, Switzerland:</strong> Second Agreed Statement on the councils — both sides acknowledge the councils must be re-examined in light of the agreed Christological faith. Recommendations for lifting the anathemas passed at Chalcedon and subsequent councils.</li>
+  <li><strong>Present:</strong> Full implementation stalled — some EO churches (particularly the Russian) have reservations about the pace. No formal lifting of mutual anathemas has occurred. But no formal break in dialogue either.</li>
+</ul>
+</div>
+</div>
+<p>The practical obstacles to reunion are not primarily theological but institutional. Church leaders on both sides need to explain to their faithful — who have been separated for 1,575 years — why the other family, which uses different terminology and was anathematized at their councils, is in fact confessing the same faith. This is a pastoral challenge of enormous magnitude, even when the theological work has been done.</p>
+<p>There is also a structural question: if the EO and OO reunite, which councils bind the reunited church? Can the OO be asked to formally receive Chalcedon — even if agreed that the formula is orthodox? Can the EO acknowledge that the post-Chalcedon anathemas on the OO were unjust? These questions have answers, but they require courage and humility on both sides.</p>
+<div class="agree-box">
+<div class="agree-label">Second Agreed Statement — Chambésy (1990)</div>
+<div class="agree-text">"Both families agree that the anathemas and condemnations of the past should be lifted by the churches in order that the last obstacle to the restoration of full communion between the two families may be removed."</div>
+</div>
+</div></div>
+
+<!-- ═══ FAQ ═══ -->
+<div class="sec" id="faq">
+<div class="sec-h" onclick="ts(this)"><h2>FAQ</h2><span class="arr">&#9658;</span></div>
+<div class="sec-body">
+
+<div class="fi"><div class="fi-h" onclick="tf(this)"><span class="fi-q">Can an Eastern Orthodox Christian receive communion in an Oriental Orthodox church?</span><span class="fi-arr">&#9658;</span></div>
+<div class="fi-body">Not officially — the two families are not in full communion. Each church disciplines its own members, and intercommunion is not authorized. In practice, at the local level, individual clergy sometimes exercise pastoral discretion, particularly in situations where no church of one&#8217;s own family is accessible. But this is not the official policy of either side. The ecumenical dialogue aims precisely at restoring the full communion that would make this question moot.</div></div>
+
+<div class="fi"><div class="fi-h" onclick="tf(this)"><span class="fi-q">Are the Oriental Orthodox considered heretics by Eastern Orthodox?</span><span class="fi-arr">&#9658;</span></div>
+<div class="fi-body">Formally, in canon law, the OO are classified as "ancient Eastern churches" or "heretics" depending on which EO canonical tradition one follows — different EO churches apply different canonical categories. In practice, most EO theologians and bishops today do not regard the OO as heretics in a meaningful sense: the 1990 Agreed Statement established that both sides hold the same Christological faith. The historical condemnations were based on a misunderstanding. Whether those condemnations have been formally lifted depends on which EO church you ask.</div></div>
+
+<div class="fi"><div class="fi-h" onclick="tf(this)"><span class="fi-q">Which family is older?</span><span class="fi-arr">&#9658;</span></div>
+<div class="fi-body">The question is a bit like asking which twin is older by a minute — both families have Apostolic foundations. The Coptic church was founded by St. Mark in the 1st century; the Armenian church claims the Apostles Thaddaeus and Bartholomew; the Syriac church traces its origins to the Apostle Thomas and the early Jerusalem community. What is accurate is that the OO churches solidified their distinct identity after 451, while the Byzantine East continued in communion with Rome until 1054. The founding events of both families&#8217; churches predate the schism by centuries.</div></div>
+
+<div class="fi"><div class="fi-h" onclick="tf(this)"><span class="fi-q">Do both families have the same view on the Filioque?</span><span class="fi-arr">&#9658;</span></div>
+<div class="fi-body">Yes — this is one of the clearest points of agreement. Both Eastern and Oriental Orthodox reject the Filioque addition to the Creed as (a) theologically problematic — compromising the monarchy of the Father as the sole source within the Trinity — and (b) canonically invalid — no single church has the authority to alter a creed defined by an Ecumenical Council. This shared rejection of the Filioque is one of the markers that the two Orthodox families belong to the same theological world, in contrast to the entire Western tradition (Catholic and Protestant) which accepts or tolerates it.</div></div>
+
+<div class="fi"><div class="fi-h" onclick="tf(this)"><span class="fi-q">Why hasn&#8217;t reunion happened if both sides agree on the key point?</span><span class="fi-arr">&#9658;</span></div>
+<div class="fi-body">Several reasons. (1) Institutional inertia: 1,575 years of separation creates its own momentum. Liturgical practices, administrative structures, and popular piety have developed independently. (2) The question of councils: even if the Christological formulas are compatible, there remains the question of the post-Chalcedon councils — is Nicaea II (icons) now binding on the OO? Is Constantinople III (two wills) acceptable? (3) Political complications: some EO churches (particularly Moscow) are suspicious that the pro-reunion impulse reflects Western pressure or a weakening of Orthodox identity. (4) Popular reception: ordinary faithful in both families have lived with the separation so long that reunion feels threatening rather than joyful. The theological work is largely done; the pastoral and institutional work is barely begun.</div></div>
+
+<div class="fi"><div class="fi-h" onclick="tf(this)"><span class="fi-q">Do Eastern Orthodox venerate the Coptic or Ethiopian desert fathers?</span><span class="fi-arr">&#9658;</span></div>
+<div class="fi-body">Yes — abundantly. Anthony the Great, Macarius the Great, Pachomius, Mary of Egypt, Moses the Black, John the Dwarf, and dozens of other figures from the Egyptian and Syriac desert tradition are venerated as saints in the Eastern Orthodox calendar. The Philokalia — the EO&#8217;s central anthology of hesychast spirituality — begins with figures who were, historically, in the Oriental Orthodox tradition (or who lived before the divide). Isaac the Syrian (Isaac of Nineveh), a bishop in the Church of the East, is venerated in both EO and some OO traditions. The sanctoral calendar is one of the most concrete signs that both families draw from the same deep well.</div></div>
+
+</div></div>
+
+<!-- ═══ GLOSSARY ═══ -->
+<div class="sec" id="glossary">
+<div class="sec-h" onclick="ts(this)"><h2>Glossary</h2><span class="arr">&#9658;</span></div>
+<div class="sec-body">
+<div class="gt-grid">
+<div class="gt"><div class="gt-term">Chalcedonian</div><div class="gt-def">Accepting the Council of Chalcedon (451) and its definition of Christ in two natures. Eastern Orthodox, Roman Catholic, and most Protestant traditions are Chalcedonian.</div></div>
+<div class="gt"><div class="gt-term">Non-Chalcedonian</div><div class="gt-def">Not accepting Chalcedon. The Oriental Orthodox (Coptic, Ethiopian, Armenian, Syriac, Malankara) are non-Chalcedonian — they follow the Council of Ephesus (431) as the last binding Ecumenical Council.</div></div>
+<div class="gt"><div class="gt-term">Miaphysitism</div><div class="gt-def">OO Christology: one united nature (mia physis) of the Incarnate Word, fully divine and fully human. Contrasted with Monophysitism (one nature with humanity absorbed) and Dyophysitism (two natures — Chalcedonian).</div></div>
+<div class="gt"><div class="gt-term">Dyophysitism</div><div class="gt-def">Two-nature Christology. The Chalcedonian/EO position: Christ has two complete natures — divine and human — united in one person (hypostasis) without confusion or separation.</div></div>
+<div class="gt"><div class="gt-term">Palamism</div><div class="gt-def">The theology of Gregory Palamas (d. 1359), defined as dogma in the EO by the Palamite Councils (1341-1351): the distinction between God&#8217;s unknowable essence and his knowable, truly divine energies, grounding the possibility of genuine theosis.</div></div>
+<div class="gt"><div class="gt-term">Hesychasm</div><div class="gt-def">The tradition of inner stillness (Greek: hesychia) and heart-prayer. Rooted in the Egyptian desert fathers; formalized in EO through Palamite theology; present in OO through Isaac of Nineveh and the Syriac tradition.</div></div>
+<div class="gt"><div class="gt-term">Primus inter pares</div><div class="gt-def">Latin: "first among equals." The Ecumenical Patriarch of Constantinople holds this honor in the EO — a primacy of honor without universal jurisdiction.</div></div>
+<div class="gt"><div class="gt-term">Autocephalous</div><div class="gt-def">A church that governs itself, elects its own head, and is not subordinate to any other bishop. Both EO and OO are structured as autocephalous national or patriarchal churches.</div></div>
+<div class="gt"><div class="gt-term">Byzantine Rite</div><div class="gt-def">The liturgical tradition of Constantinople, used by all Eastern Orthodox churches. Centered on the Divine Liturgy of St. John Chrysostom and St. Basil the Great.</div></div>
+<div class="gt"><div class="gt-term">Alexandrian Rite</div><div class="gt-def">The liturgical tradition of Alexandria, used by the Coptic and Ethiopian/Eritrean Orthodox. One of the oldest living liturgical traditions, containing elements from 2nd-3rd century Christian Egypt.</div></div>
+<div class="gt"><div class="gt-term">Peshitta</div><div class="gt-def">The Syriac Bible, the primary scriptural text of the Syriac Orthodox and Malankara Orthodox traditions. An ancient Aramaic translation predating most other Christian biblical translations.</div></div>
+<div class="gt"><div class="gt-term">Agreed Statement (1989)</div><div class="gt-def">The landmark document signed at Anba Bishoy Monastery, Egypt, by representatives of Eastern and Oriental Orthodox churches, declaring that both families hold the same Christological faith despite different terminological traditions.</div></div>
+</div>
+</div></div>
+
+</main>
+<script>
+window.addEventListener('scroll',()=>{const h=document.documentElement;document.getElementById('prog').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100+'%';});
+const navLinks=document.querySelectorAll('#sb-nav a[href^="#"]');
+const secs2=document.querySelectorAll('main .sec[id]');
+window.addEventListener('scroll',()=>{let cur='';secs2.forEach(s=>{if(s.getBoundingClientRect().top<=120)cur=s.id;});navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur);});},{passive:true});
+function ts(h){h.closest('.sec').classList.toggle('open');}
+function tf(h){h.closest('.fi').classList.toggle('open');}
+function tobj(h){h.closest('.obj').classList.toggle('open');}
+function sidebarSearch(q){
+  q=q.trim().toLowerCase();
+  const secs=document.querySelectorAll('main .sec');
+  let matched=0;
+  secs.forEach(sec=>{
+    if(!q){sec.classList.remove('s-hidden');const h2=sec.querySelector('.sec-h h2');if(h2._orig)h2.innerHTML=h2._orig;matched++;return;}
+    const h2=sec.querySelector('.sec-h h2');
+    const body=sec.querySelector('.sec-body');
+    const hit=(h2._orig||h2.textContent).toLowerCase().includes(q)||(body?body.textContent.toLowerCase():'').includes(q);
+    sec.classList.toggle('s-hidden',!hit);
+    if(hit){matched++;if(!h2._orig)h2._orig=h2.innerHTML;const re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');h2.innerHTML=h2._orig.replace(re,'<mark>$1</mark>');sec.classList.add('open');}
+  });
+  document.getElementById('sb-no-match').classList.toggle('show',!!q&&matched===0);
+}
+</script>
+</body>
+</html>

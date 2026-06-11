@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Islam &amp; Christians: A Steelmanned Inquiry &#8212; The Orthodox Lamp</title>
+<style>
+:root{
+  --gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;
+  --bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--bg5:#3a2e10;
+  --tx:#e8e0d0;--mu:#a09880;--br:#2a2a2a;--sidebar-w:270px;
+  --isl:#c74b2a;--islc:#e06040;
+  --qur:#4b8ec7;--qurc:#6aaee8;
+  --had:#7a4bc7;--hadc:#a07ae8;
+  --pop:#2a8a4a;--popc:#4aaa6a;
+  --war:#c7a42a;--warc:#e8c84a;
+  --stl:#2a6a8a;--stlc:#4a9aba;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.7;display:flex;min-height:100vh}
+#prog{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--gd),var(--gl),var(--gold));z-index:9999;transition:width .1s}
+#sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:100;display:flex;flex-direction:column}
+#sidebar-logo{padding:22px 18px 14px;border-bottom:1px solid var(--br)}
+#sidebar-logo .lamp{font-size:1.35rem;font-weight:700;color:var(--gold);letter-spacing:.04em}
+#sidebar-logo .sub{font-size:.72rem;color:var(--mu);margin-top:2px;text-transform:uppercase;letter-spacing:.08em}
+#search-wrap{padding:10px 12px;border-bottom:1px solid var(--br)}
+#search-wrap input{width:100%;background:var(--bg3);border:1px solid var(--br);color:var(--tx);padding:6px 10px;border-radius:4px;font-size:.8rem;outline:none}
+#search-wrap input:focus{border-color:var(--gold)}
+#nav{padding:10px 0 20px;flex:1}
+#nav a{display:block;padding:7px 18px;font-size:.82rem;color:var(--mu);text-decoration:none;border-left:3px solid transparent;transition:all .15s;line-height:1.4}
+#nav a:hover{color:var(--tx);background:var(--bg3);border-left-color:var(--gold)}
+#nav a.active{color:var(--gold);border-left-color:var(--gold);background:var(--bg3)}
+#nav .nav-head{padding:8px 18px 3px;font-size:.68rem;color:var(--gd);text-transform:uppercase;letter-spacing:.1em;margin-top:4px}
+#main{margin-left:var(--sidebar-w);flex:1;max-width:900px;padding:54px 48px 80px}
+.page-head{border-bottom:2px solid var(--br);padding-bottom:28px;margin-bottom:44px}
+.page-head .tag{font-size:.72rem;color:var(--isl);text-transform:uppercase;letter-spacing:.14em;margin-bottom:10px}
+.page-head h1{font-size:2.3rem;color:var(--gold);line-height:1.2;margin-bottom:14px}
+.page-head .sub{font-size:1.05rem;color:var(--mu);line-height:1.6;max-width:700px}
+.sec{margin-bottom:10px;border:1px solid var(--br);border-radius:6px;overflow:hidden}
+.sec-h{display:flex;justify-content:space-between;align-items:center;padding:16px 22px;cursor:pointer;background:var(--bg2);transition:background .15s}
+.sec-h:hover{background:var(--bg3)}
+.sec-h h2{font-size:1.12rem;color:var(--gold);font-weight:600}
+.arr{color:var(--mu);font-size:.85rem;transition:transform .2s}
+.sec-body{padding:26px 28px;background:var(--bg3);display:none}
+.sec-body p{margin-bottom:14px;color:var(--tx);font-size:.95rem}
+.sec-body h3{color:var(--gl);font-size:1rem;margin:22px 0 10px;border-bottom:1px solid var(--br);padding-bottom:5px}
+.sec-body h4{color:var(--mu);font-size:.9rem;margin:16px 0 6px;text-transform:uppercase;letter-spacing:.06em}
+.vbox{border-left:4px solid var(--qur);background:var(--bg4);padding:14px 18px;border-radius:0 6px 6px 0;margin:14px 0}
+.vbox .vref{font-size:.75rem;color:var(--qurc);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+.vbox .vtext{font-style:italic;color:var(--tx);font-size:.93rem;line-height:1.65}
+.vbox.had{border-left-color:var(--had)}
+.vbox.had .vref{color:var(--hadc)}
+.vbox.pop{border-left-color:var(--pop)}
+.vbox.pop .vref{color:var(--popc)}
+.vbox.warn{border-left-color:var(--war)}
+.vbox.warn .vref{color:var(--warc)}
+.vbox.stl{border-left-color:var(--stl)}
+.vbox.stl .vref{color:var(--stlc)}
+.callout{background:var(--bg5);border:1px solid var(--gold);border-radius:6px;padding:16px 20px;margin:18px 0}
+.callout .cl-title{font-size:.78rem;color:var(--gold);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;font-weight:700}
+.callout p{font-size:.9rem;color:var(--tx);margin:0}
+.steel-box{background:#0a1a22;border:1px solid var(--stl);border-radius:6px;padding:18px 22px;margin:16px 0}
+.steel-box .sb-label{font-size:.72rem;color:var(--stlc);text-transform:uppercase;letter-spacing:.12em;margin-bottom:8px;font-weight:700}
+.steel-box .sb-claim{font-size:.95rem;color:var(--tx);font-weight:700;margin-bottom:8px}
+.steel-box .sb-best{font-size:.9rem;color:#a8c8d8;line-height:1.65;margin-bottom:10px}
+.steel-box .sb-reply-label{font-size:.72rem;color:var(--warc);text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px;margin-top:10px;border-top:1px solid var(--br);padding-top:10px}
+.steel-box .sb-reply{font-size:.9rem;color:var(--tx);line-height:1.65}
+.phase-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0}
+.phase-card{background:var(--bg4);border:1px solid var(--br);border-radius:6px;padding:18px}
+.phase-card.meccan{border-top:3px solid var(--pop)}
+.phase-card.medinan{border-top:3px solid var(--isl)}
+.phase-card .ph-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
+.phase-card.meccan .ph-label{color:var(--popc)}
+.phase-card.medinan .ph-label{color:var(--islc)}
+.phase-card .ph-title{font-size:1rem;color:var(--tx);font-weight:700;margin-bottom:8px}
+.phase-card ul{padding-left:18px;font-size:.88rem;color:var(--mu);line-height:1.8}
+.tl{margin:16px 0}
+.tl-item{display:flex;gap:14px;margin-bottom:20px;align-items:flex-start}
+.tl-dot{width:12px;height:12px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:5px}
+.tl-content{flex:1}
+.tl-date{font-size:.75rem;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:3px}
+.tl-title{font-size:.95rem;color:var(--tx);font-weight:700;margin-bottom:4px}
+.tl-content p{font-size:.88rem;color:var(--mu);line-height:1.6;margin:0}
+.comp-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.87rem}
+.comp-table th{background:var(--bg4);color:var(--gold);padding:10px 14px;text-align:left;border:1px solid var(--br)}
+.comp-table td{padding:10px 14px;border:1px solid var(--br);vertical-align:top;color:var(--tx);line-height:1.5}
+.comp-table tr:nth-child(even) td{background:var(--bg2)}
+.vlist{margin:14px 0}
+.vlist-item{background:var(--bg4);border:1px solid var(--br);border-radius:6px;padding:14px 18px;margin-bottom:10px}
+.vlist-item .vl-ref{font-size:.75rem;color:var(--qurc);font-weight:700;margin-bottom:5px}
+.vlist-item .vl-text{font-style:italic;font-size:.9rem;color:var(--tx);line-height:1.6;margin-bottom:6px}
+.vlist-item .vl-note{font-size:.82rem;color:var(--mu);line-height:1.5}
+.vlist-item .vl-stl{font-size:.82rem;color:#a8c8d8;line-height:1.5;border-top:1px solid var(--br);padding-top:6px;margin-top:6px}
+.vlist-item .vl-stl-label{font-size:.7rem;color:var(--stlc);text-transform:uppercase;letter-spacing:.1em}
+.vlist-item.had-item .vl-ref{color:var(--hadc)}
+.pope-grid{display:grid;grid-template-columns:1fr;gap:16px;margin:16px 0}
+.pope-card{background:var(--bg4);border:1px solid var(--br);border-left:4px solid var(--pop);border-radius:0 6px 6px 0;padding:16px 20px}
+.pope-card .pc-name{font-size:.95rem;color:var(--popc);font-weight:700;margin-bottom:4px}
+.pope-card .pc-title{font-size:.75rem;color:var(--mu);margin-bottom:10px}
+.pope-card .pc-quote{font-style:italic;font-size:.9rem;color:var(--tx);line-height:1.65;margin-bottom:8px}
+.pope-card .pc-ctx{font-size:.82rem;color:var(--mu);line-height:1.5}
+.dhimmi-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}
+.dhimmi-card{background:var(--bg4);border:1px solid var(--br);border-top:3px solid var(--isl);border-radius:0 0 6px 6px;padding:14px}
+.dhimmi-card .dc-title{font-size:.82rem;color:var(--islc);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;font-weight:700}
+.dhimmi-card p{font-size:.85rem;color:var(--mu);line-height:1.5;margin:0}
+.faq{margin:8px 0}
+.fi{background:var(--bg4);border:1px solid var(--br);border-radius:4px;margin-bottom:6px;overflow:hidden}
+.fi-q{padding:12px 16px;cursor:pointer;font-size:.9rem;color:var(--tx);display:flex;justify-content:space-between;align-items:center}
+.fi-q:hover{background:var(--bg3)}
+.fi-a{display:none;padding:12px 16px;font-size:.87rem;color:var(--mu);border-top:1px solid var(--br);line-height:1.65}
+.glo{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+.glo-item{background:var(--bg4);border:1px solid var(--br);border-radius:4px;padding:12px 14px}
+.glo-item .gt{font-size:.82rem;color:var(--gold);font-weight:700;margin-bottom:4px}
+.glo-item .gd{font-size:.82rem;color:var(--mu);line-height:1.5}
+.per-item{display:flex;gap:16px;margin-bottom:22px;padding-bottom:22px;border-bottom:1px solid var(--br)}
+.per-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.per-year{min-width:80px;font-size:.82rem;color:var(--isl);font-weight:700;text-align:right;padding-top:2px}
+.per-body .per-title{font-size:.95rem;color:var(--tx);font-weight:700;margin-bottom:4px}
+.per-body p{font-size:.87rem;color:var(--mu);line-height:1.6;margin:0}
+.badge{display:inline-block;font-size:.68rem;padding:2px 8px;border-radius:3px;text-transform:uppercase;letter-spacing:.08em;margin-left:8px;vertical-align:middle}
+.badge.quran{background:rgba(75,142,199,.2);color:var(--qurc);border:1px solid rgba(75,142,199,.3)}
+.badge.hadith{background:rgba(122,75,199,.2);color:var(--hadc);border:1px solid rgba(122,75,199,.3)}
+.badge.meccan{background:rgba(42,138,74,.2);color:var(--popc);border:1px solid rgba(42,138,74,.3)}
+.badge.medinan{background:rgba(199,75,42,.2);color:var(--islc);border:1px solid rgba(199,75,42,.3)}
+@media(max-width:900px){
+  #sidebar{transform:translateX(-100%)}
+  #main{margin-left:0;padding:40px 22px 60px}
+  .phase-grid,.dhimmi-grid,.glo{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<nav id="sidebar">
+  <div id="sidebar-logo">
+    <div class="lamp">&#9632; The Orthodox Lamp</div>
+    <div class="sub">Islam &amp; Christians</div>
+  </div>
+  <div id="search-wrap"><input type="text" id="srch" placeholder="Search&#8230;" oninput="sidebarSearch(this.value)"></div>
+  <div id="nav">
+    <div class="nav-head">Foundation</div>
+    <a href="#method">Why We Steel Man</a>
+    <a href="#steelman">The Steel Man Case</a>
+    <a href="#evidence-stands">Why the Evidence Stands</a>
+    <div class="nav-head">The Progression</div>
+    <a href="#meccan">Phase 1 &mdash; Meccan Outreach</a>
+    <a href="#medinan">Phase 2 &mdash; Medinan Reversal</a>
+    <div class="nav-head">Qur&#x2019;an &amp; Hadith</div>
+    <a href="#quran-christians">Qur&#x2019;an on Christians</a>
+    <a href="#worst">&#x201C;Worst of Creatures&#x201D;</a>
+    <a href="#substitution">Christians Pay for Muslim Sins</a>
+    <div class="nav-head">Law &amp; History</div>
+    <a href="#dhimmi">The Dhimmi System</a>
+    <a href="#persecution">Historical Record</a>
+    <div class="nav-head">Responses</div>
+    <a href="#church-responds">Popes &amp; Patriarchs</a>
+    <a href="#modern">Modern Persecution</a>
+    <div class="nav-head">Reference</div>
+    <a href="#faq">FAQ</a>
+    <a href="#glossary">Glossary</a>
+  </div>
+</nav>
+<main id="main">
+  <div class="page-head">
+    <div class="tag">Islamic Apologetics &mdash; Orthodox Lamp</div>
+    <h1>Islam &amp; Christians: A Steelmanned Inquiry</h1>
+    <p class="sub">This site gives Islam its strongest possible case before examining what the primary sources actually say. To argue against a caricature is not a Christian virtue. To argue against the best version of an opposing view, and still find it wanting, is.</p>
+  </div>
+
+  <!-- SECTION 1: METHOD -->
+  <div class="sec" id="method">
+    <div class="sec-h" onclick="ts(this)"><h2>Why We Steel Man &mdash; A Note on Method</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>A straw man argument misrepresents an opposing position in order to defeat it easily. It may win a debate, but it does not find truth &mdash; and truth is what the Christian is obligated to pursue. <em>"You shall know the truth, and the truth shall set you free"</em> (John 8:32) is not a promise to those who only engage comfortable versions of difficult questions.</p>
+      <p>A steel man does the opposite: it presents the opposing argument in its strongest, most charitable form. If the case still holds after that, it holds on honest ground. This matters because millions of Christians in Muslim-majority countries are not served by propaganda &mdash; they need an honest account of what the texts say and what history shows, so they can engage their neighbors with both clarity and integrity.</p>
+      <p>This site therefore begins with the best case for Islamic tolerance of Christians. It presents the genuine scholarly defenses of the contested passages. It acknowledges where historical reality is more complex than polemic allows. Only after doing that does it examine what the primary sources &mdash; Qur&#x2019;an, hadith, and 1,400 years of applied theology &mdash; actually demonstrate.</p>
+
+      <div class="callout">
+        <div class="cl-title">The Standard Applied Here</div>
+        <p>Every steel man argument is presented in its strongest form, sourced where possible to Muslim scholars. Every counter-argument is grounded in the primary texts (Qur&#x2019;an, Sahih Bukhari, Sahih Muslim) or documented historical events. The reader is invited to weigh both. The conclusion of this site is that the evidence survives the steel man test &mdash; but the steel man is given first, in full.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: STEEL MAN -->
+  <div class="sec" id="steelman">
+    <div class="sec-h" onclick="ts(this)"><h2>The Steel Man &mdash; The Strongest Case for Islamic Tolerance</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>These are the strongest arguments made by Muslim scholars, historians, and apologists for a genuinely tolerant reading of Islam&#x2019;s relationship with Christians. They are presented here at their best, not as a concession but as an obligation of honest inquiry.</p>
+
+      <div class="steel-box">
+        <div class="sb-label">&#9646; Steel Man Argument 1</div>
+        <div class="sb-claim">1.8 billion Muslims are not persecuting Christians. If the texts mandated persecution, we would see it universally.</div>
+        <div class="sb-best">The vast majority of the world&#x2019;s Muslims live peacefully alongside Christians. Indonesia &mdash; the world&#x2019;s largest Muslim-majority country &mdash; has a 30-million-strong Christian community that functions with relative freedom. Morocco, Jordan, Malaysia, and Senegal host Christian minorities without systematic violence. The Muslim man in Cairo who helps his Coptic neighbor, the Indonesian Muslim who attends a Christian friend&#x2019;s wedding, and the millions of Muslim families who live alongside Christians in the West without incident are not aberrations &mdash; they are the majority. If the Qur&#x2019;an commanded persecution, why don&#x2019;t 1.8 billion people act on it?</div>
+        <div class="sb-reply-label">&#9650; The Evidence&#x2019;s Reply</div>
+        <div class="sb-reply">Individual Muslim behavior and Islamic doctrine are separate questions. What a person does and what their scripture teaches them to do are not the same thing, in any religion. Most people in any religious tradition do not fully apply all of its teachings. The question being examined here is not "do most Muslims persecute Christians?" &mdash; they do not. The question is "what do Islam&#x2019;s foundational texts teach about Christians, and what happens when those texts are applied by people with political power?" The answer to the first question is "no"; the answer to the second is documented in 14 centuries of primary sources. A theology that designates Christians as the worst of creatures will, when applied by a state or movement, produce the treatment of Christians as the worst of creatures. ISIS applied Q.9:29 verbatim. The Ottoman state applied the dhimmi system for 600 years. That most Muslims never become ISIS does not change what Q.9:29 says.</div>
+      </div>
+
+      <div class="steel-box">
+        <div class="sb-label">&#9646; Steel Man Argument 2</div>
+        <div class="sb-claim">The hostile Qur&#x2019;anic verses are context-specific, revealed during warfare &mdash; they are not permanent mandates against all Christians.</div>
+        <div class="sb-best">Scholars such as Khaled Abou El Fadl, Tariq Ramadan, and Hamza Yusuf argue that Q.9:29 ("fight those &#x2026; until they give jizyah") was revealed specifically in the context of the Tabuk campaign &mdash; a military confrontation with Byzantine forces in 630 AD. It was not a general mandate for all time against all Christians; it was a war-time instruction for a specific campaign. Similarly, Q.5:51 ("do not take Jews and Christians as allies") was revealed in the context of specific treacherous alliances during the Battle of Uhud (625 AD). These verses, in this reading, are the equivalent of wartime operational orders, not permanent theological statements about all Christians everywhere. Many modern Muslim scholars support this contextual reading.</div>
+        <div class="sb-reply-label">&#9650; The Evidence&#x2019;s Reply</div>
+        <div class="sb-reply">The contextual argument is a real and honest position within Islamic scholarship, and it deserves acknowledgment. However, it is not the classical majority position. The four major Sunni schools of jurisprudence &mdash; Hanafi, Maliki, Shafi&#x2019;i, and Hanbali &mdash; do not limit Q.9:29 to the Tabuk context. They apply it as a standing legal principle operative wherever the conditions are met (Islamic governance, non-Muslim presence, refusal to accept Islam). This was the basis for dhimmi law for 1,200 years across the entire breadth of the Islamic world. The contextual scholars are a minority in the tradition, not its mainstream. More importantly, the contextual argument does not address Q.98:6 ("worst of creatures"), which has no military context &mdash; it is purely theological. Nor does it address Sahih Muslim 2767 (Christians assigned to Hell for Muslims), which is also non-contextual. The contextual argument applies to some verses but not all the evidence.</div>
+      </div>
+
+      <div class="steel-box">
+        <div class="sb-label">&#9646; Steel Man Argument 3</div>
+        <div class="sb-claim">The dhimmi system was more tolerant than what Christians did to Jews and heretics at the same time.</div>
+        <div class="sb-best">When the Jews were expelled from Spain in 1492, they fled to the Ottoman Empire, not away from it. Islamic civilization produced the House of Wisdom in Baghdad, where Christian and Jewish scholars translated Greek, Syriac, and Persian texts into Arabic &mdash; preserving knowledge that might otherwise have been lost. The Umayyad caliphate in al-Andalus (Moorish Spain) allowed Jews and Christians to serve in the court, own property, and practice their faith in ways that were often more liberal than contemporary Christian Europe. Bernard Lewis &mdash; no apologist for Islam &mdash; wrote that under Islam, religious minorities "fared better than minorities in most Christian countries." The dhimmi system, whatever its faults, provided legal existence and physical protection to minorities that many comparable medieval systems did not.</div>
+        <div class="sb-reply-label">&#9650; The Evidence&#x2019;s Reply</div>
+        <div class="sb-reply">This is the most historically defensible steel man, and it must be taken seriously. There were genuine periods of Islamic tolerance &mdash; the early Fatimid period in Egypt, Umayyad Spain, and parts of the Abbasid golden age were times of real, if qualified, coexistence. Bernard Lewis&#x2019;s observation is honest. But the comparison has a crucial problem: it measures the dhimmi system against medieval Christian persecution of Jews and heretics, not against the standard of the communities it suppressed. The Oriental Orthodox churches &mdash; Coptic, Armenian, Syriac &mdash; existed before Islam. They were not a minority seeking refuge in a foreign empire; they were the indigenous populations of their own lands. Measuring the system that progressively reduced them from majorities to near-extinction against "better than the Inquisition" sets a very low bar. And the theological basis of the dhimmi system &mdash; Q.9:29&#x2019;s command that Christians be "subdued" &mdash; is unambiguous regardless of how generously or harshly it was applied in any given period.</div>
+      </div>
+
+      <div class="steel-box">
+        <div class="sb-label">&#9646; Steel Man Argument 4</div>
+        <div class="sb-claim">The Armenian Genocide was committed by secular nationalists, not by religious Muslims acting on Islamic doctrine.</div>
+        <div class="sb-best">The Committee of Union and Progress (the "Young Turks") that ordered the Armenian deportations in 1915 was an overtly secular, nationalist, and in some respects anti-religious movement, influenced by Social Darwinism and pan-Turkic nationalism rather than Islamic theology. Several of its key architects &mdash; Talaat Pasha, Enver Pasha &mdash; were not devout Muslims. The target of the genocide was ethnic and political (Armenian nationalism, perceived disloyalty in wartime) as much as religious. Blaming Islam for the Armenian Genocide, in this reading, misattributes a primarily nationalist crime to a religious cause.</div>
+        <div class="sb-reply-label">&#9650; The Evidence&#x2019;s Reply</div>
+        <div class="sb-reply">The secular nationalist character of the Young Turk leadership is real and should be acknowledged. However, the genocide&#x2019;s execution on the ground relied heavily on religious mobilization. The Hamidiye irregular cavalry that carried out the Hamidian massacres of 1894&ndash;1896 (the direct predecessor to 1915) were organized by the devoutly religious Sultan Abdulhamid II explicitly as a jihad against Armenian Christians. Local Kurdish and Turkish irregulars who participated in the 1915 massacres were mobilized with religious framing. The Sheikh-ul-Islam issued a fatwa declaring jihad in November 1914. The victims were consistently identified as Christian <em>gavur</em> (infidels). The religious dimension was not incidental &mdash; it was the mechanism of mass participation. The leader of a movement may be secular; the people he arms and unleashes are not. The Syriac genocide (Seyfo) is if anything harder to attribute purely to secular nationalism, as it was carried out in regions with no comparable nationalist political organization among the Syriac population.</div>
+      </div>
+
+      <div class="steel-box">
+        <div class="sb-label">&#9646; Steel Man Argument 5</div>
+        <div class="sb-claim">Modern Islamic scholarship has evolved. Al-Azhar and mainstream Muslim leaders condemn terrorism and affirm religious freedom.</div>
+        <div class="sb-best">Al-Azhar University in Cairo &mdash; the oldest and most prestigious institution of Islamic learning in the world &mdash; has issued statements condemning ISIS, condemning violence against Christians, and affirming that religious freedom is an Islamic value. In 2016, hundreds of Muslim scholars and leaders signed the Marrakesh Declaration, affirming the rights of religious minorities in Muslim-majority countries; in 2019, Al-Azhar&#x2019;s Grand Imam Ahmed al-Tayeb co-signed the Document on Human Fraternity with Pope Francis in Abu Dhabi. Many Muslim-majority nations &mdash; Morocco, Tunisia, Jordan, the UAE &mdash; have enacted legal protections for religious minorities. Islam, like Christianity and Judaism, is a living tradition capable of reform and development. To judge Islam permanently by its worst historical applications ignores this capacity for growth.</div>
+        <div class="sb-reply-label">&#9650; The Evidence&#x2019;s Reply</div>
+        <div class="sb-reply">These developments are genuinely welcome and should be honestly acknowledged. The Marrakesh Declaration is a positive document. Al-Azhar&#x2019;s condemnations of ISIS are real. However, several things remain true simultaneously. First, these reforms have not been accompanied by any revision of the Qur&#x2019;anic text, which still contains Q.98:6, Q.9:29, and Q.9:30. Second, the reforms are contested within Islamic scholarship &mdash; Al-Azhar&#x2019;s condemnations of ISIS were disputed by other Islamic scholars, and a significant portion of the Muslim world did not sign the Marrakesh Declaration. Third, blasphemy laws, restrictions on church construction, and prohibition of proselytism remain in force across most Muslim-majority states, including ostensibly moderate ones. The Egyptian constitution still restricts church building. Pakistan&#x2019;s blasphemy law still carries the death penalty. The reforms exist; so do the laws derived from the texts. Both are real.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: WHY THE EVIDENCE STANDS -->
+  <div class="sec" id="evidence-stands">
+    <div class="sec-h" onclick="ts(this)"><h2>Why the Evidence Still Stands</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>Having given Islam its best case, the following sections examine what the primary sources actually demonstrate. The steel man has been engaged honestly. The question now is whether, after that engagement, the evidence survives. The argument of this site is that it does &mdash; for three reasons.</p>
+
+      <h3>1. The Texts Are Unambiguous</h3>
+      <p>Whatever the contextual or reformed readings of Q.9:29 or Q.5:51, the following texts admit no contextual escape:</p>
+      <div class="vbox warn">
+        <div class="vref">Qur&#x2019;an 98:6</div>
+        <div class="vtext">"Those who disbelieve among the People of the Scripture and the polytheists will be in the Fire of Hell &#8230; Those are the worst of creatures."</div>
+      </div>
+      <p>This verse has no military context. It is a straightforward theological statement about the eternal and ontological status of Christians who reject Muhammad. There is no legitimate contextual reading that removes the designation. This is confirmed by every major classical tafsir and is not disputed by any serious Muslim scholar. The steel man arguments address some verses; they do not address this one.</p>
+
+      <div class="vbox had">
+        <div class="vref">Sahih Muslim 2767</div>
+        <div class="vtext">"When it will be the Day of Resurrection, Allah will deliver to every Muslim a Jew or a Christian and say: That is your rescue from the Hellfire."</div>
+      </div>
+      <p>This hadith, in three independent narrations in the second most authoritative Sunni collection, is not a war-time instruction or a contextual political statement. It is an eschatological doctrine. No amount of contextual reframing removes the claim that Christians are assigned to Hell as substitutes for Muslims.</p>
+
+      <h3>2. The Historical Record Is a Test of the Theology</h3>
+      <p>The steel man correctly notes that many periods of Islamic governance were relatively tolerant. But the historical record is a test, not a proof of goodwill. When Islamic governance became more ideologically rigorous &mdash; under the Abbasid Caliph al-Mutawakkil, the Mamluk sultans, the Ottoman Hamidiye, and ISIS &mdash; what happened to Christians was not an aberration. It was the application of the texts. The tolerant periods were the aberrations. They occurred when rulers had pragmatic reasons to tolerate Christians (economic productivity, skilled labor, political alliances). The persecutions occurred when rulers had theological and political reasons to apply the Qur&#x2019;an as written. The direction of the theology is clear.</p>
+
+      <h3>3. The Demographic Record Cannot Be Explained Away</h3>
+      <table class="comp-table">
+        <thead><tr><th>Region</th><th>Christian % Before Islam (7th c.)</th><th>Christian % Today</th></tr></thead>
+        <tbody>
+          <tr><td>Egypt</td><td>~90%</td><td>~10%</td></tr>
+          <tr><td>Syria / Levant</td><td>Majority</td><td>~5% and falling</td></tr>
+          <tr><td>North Africa</td><td>Majority</td><td>Near zero indigenous</td></tr>
+          <tr><td>Anatolia (Turkey)</td><td>~20% (early 20th c.)</td><td>&lt;0.2%</td></tr>
+          <tr><td>Iraq</td><td>1.5 million (2003)</td><td>&lt;250,000 (post-ISIS)</td></tr>
+        </tbody>
+      </table>
+      <p>No single cause accounts for these numbers. Emigration, plague, economics, colonial disruption, and nationalist conflicts all played roles in specific cases. The steel man is right to resist monocausal explanation. But the consistent, directional trend across every region where Islam governed for multiple centuries &mdash; from Egypt to Iran to North Africa to Anatolia &mdash; cannot be coincidental. A system theologically designed to make Christian identity costly, to prohibit church construction, to restrict proselytism, and to reward conversion will, over centuries, produce exactly this demographic pattern. The patient logic of the dhimmi system required no massacre; it required only consistency.</p>
+
+      <div class="callout">
+        <div class="cl-title">The Conclusion of the Steel Man Test</div>
+        <p>The steel man case for Islamic tolerance is not dishonest. It reflects real aspects of the tradition: peaceful Muslim majorities, reformist scholars, periods of genuine coexistence, and the distinction between individual practice and textual prescription. But it does not dissolve the primary sources. After giving Islam its best case, the Qur&#x2019;an still designates Christians as the worst of creatures. The substitution hadith still assigns Christians to Hell for Muslims. The dhimmi system still derives from Q.9:29. The churches of North Africa, Syria, Anatolia, and Mesopotamia are still empty. The 21 Copts are still dead on a Libyan beach. These facts remain after the steel man is honestly given. That is the test. They pass it.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: MECCAN PHASE -->
+  <div class="sec" id="meccan">
+    <div class="sec-h" onclick="ts(this)"><h2>Phase 1 &mdash; The Meccan Outreach (AD 610&ndash;622)</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>In the early years of his prophetic career in Mecca, Muhammad actively sought acceptance from Jews and Christians, presenting Islam as the original, uncorrupted form of their own faith. The Meccan Qur&#x2019;an reflects this posture: affirming, respectful, and genuinely engaged with the older Abrahamic traditions. This period is not to be dismissed &mdash; it is historically real and represents Islam at its most receptive toward Christianity.</p>
+
+      <div class="vbox">
+        <div class="vref">Qur&#x2019;an 3:3 &mdash; Confirmation of Earlier Scriptures</div>
+        <div class="vtext">"He has sent down upon you the Book in truth, confirming what was before it. And He revealed the Torah and the Gospel before, as guidance for the people."</div>
+      </div>
+      <div class="vbox">
+        <div class="vref">Qur&#x2019;an 5:82 &mdash; Christians &#x201C;Nearest in Affection&#x201D;</div>
+        <div class="vtext">"You will find the nearest of them in affection to the believers those who say, &#x2018;We are Christians.&#x2019; That is because among them are priests and monks and because they are not arrogant."</div>
+      </div>
+      <div class="vbox">
+        <div class="vref">Qur&#x2019;an 4:171 &mdash; Jesus as Word and Spirit of God</div>
+        <div class="vtext">"The Messiah, Jesus, the son of Mary, was but a messenger of Allah and His word which He directed to Mary and a soul [created at a command] from Him."</div>
+      </div>
+
+      <p>These affirmations were genuine overtures. The Hijra to Abyssinia (615 AD), where the Christian Negus sheltered Muslim refugees, represents a real moment of Muslim-Christian solidarity. Muhammad reportedly wept at the Negus&#x2019;s death and led prayers for him. These are not fabrications. They represent the Meccan-period texture of early Islam and deserve honest recognition.</p>
+
+      <div class="tl">
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--popc)"></div>
+          <div class="tl-content">
+            <div class="tl-date">AD 610&ndash;622</div>
+            <div class="tl-title">Meccan Period &mdash; Outreach and Affirmation</div>
+            <p>Qur&#x2019;an affirms Torah and Gospel. Jesus honored as Word of God born of virgin. Prayer directed toward Jerusalem, the city of the People of the Book.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--popc)"></div>
+          <div class="tl-content">
+            <div class="tl-date">AD 615</div>
+            <div class="tl-title">Hijra to Abyssinia &mdash; Christian King Shelters Muslims</div>
+            <p>Muslim refugees protected by the Negus of Abyssinia. A genuine historical example of Christian-Muslim solidarity. Muhammad later mourned the Negus&#x2019;s death.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--gold)"></div>
+          <div class="tl-content">
+            <div class="tl-date">AD 622</div>
+            <div class="tl-title">The Hijra &mdash; Migration to Medina</div>
+            <p>Muhammad&#x2019;s migration to Medina changes his audience from Meccan polytheists to established Jewish tribes and Christian communities. The character of revelation begins to shift.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: MEDINAN -->
+  <div class="sec" id="medinan">
+    <div class="sec-h" onclick="ts(this)"><h2>Phase 2 &mdash; The Medinan Reversal (AD 622&ndash;632)</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>After the Hijra, Muhammad encountered established Jewish tribes in Medina &mdash; the Banu Qaynuqa, Banu Nadir, and Banu Qurayza &mdash; who declined to recognize him as a prophet foretold in their scriptures. The theological and political fallout of this rejection is recorded in the Medinan Qur&#x2019;an with a directness that would define the legal treatment of Christians for the following 1,400 years.</p>
+
+      <h3>The Doctrine of Abrogation (Naskh)</h3>
+      <p>Classical Islamic jurisprudence holds that later Qur&#x2019;anic revelations can supersede earlier ones where they conflict. This is the majority position of the four classical law schools. However, as the steel man correctly notes, this doctrine is genuinely contested. Modern reformist scholars argue that abrogation is limited in scope and that early affirming verses remain operative. This is an honest internal debate within Islam, and it should be acknowledged as such.</p>
+      <p>What is not contested is that the hostile verses exist, that they are in the Qur&#x2019;an, and that they were the basis of Islamic law for over a millennium. Even if a Muslim scholar today argues that Q.9:29 is context-specific, the verse was applied as universal law by all four Sunni schools, and remains so in formal classical jurisprudence. The debate is real; so is the history that flowed from the majority reading.</p>
+
+      <div class="vbox warn">
+        <div class="vref">Qur&#x2019;an 9:29 <span class="badge medinan">Late Medinan &mdash; Among the Final Revelations</span></div>
+        <div class="vtext">"Fight those who do not believe in Allah or in the Last Day &#x2026; from those who were given the Scripture &mdash; [fight] until they give the jizyah willingly while they are subdued."</div>
+      </div>
+      <p>The phrase rendered "while they are subdued" (Arabic: <em>&#x1e63;&#x101;ghir&#x16b;n</em>) means "in a state of humiliation." Classical jurists &mdash; without exception across the four schools &mdash; ruled that the jizyah collection must publicly express this humiliation. This is not a fringe interpretation. It is what the text produced when applied by the legal tradition that inherited it.</p>
+
+      <div class="vbox">
+        <div class="vref">Qur&#x2019;an 9:30 &mdash; Divine Curse on Christians</div>
+        <div class="vtext">"The Christians say, &#x2018;The Messiah is the son of Allah.&#x2019; &#x2026; May Allah destroy them; how are they deluded?"</div>
+      </div>
+      <p>This verse was revealed near the end of Muhammad&#x2019;s life, after a decade of failed efforts to win Jewish and Christian recognition of his prophethood. The divine curse on Christians for their Christological confession is among the final Qur&#x2019;anic statements on the subject &mdash; which, under the classical principle of abrogation, carries governing weight over earlier affirming verses.</p>
+
+      <div class="vbox">
+        <div class="vref">Qur&#x2019;an 5:51 &mdash; Prohibition on Christian Friendship</div>
+        <div class="vtext">"O you who have believed, do not take the Jews and the Christians as allies (awliy&#x101;&#x2019;). They are [in fact] allies of one another. And whoever is an ally to them among you &mdash; then indeed, he is [one] of them."</div>
+      </div>
+
+      <div class="vbox had">
+        <div class="vref">Sahih Bukhari 3053 / Sahih Muslim 1767 <span class="badge hadith">Hadith</span></div>
+        <div class="vtext">"I will expel the Jews and Christians from the Arabian Peninsula and will not leave any but Muslims." &mdash; Attributed to Muhammad; carried out by Caliph Umar ibn al-Khattab (r. 634&ndash;644).</div>
+      </div>
+
+      <div class="tl">
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--islc)"></div>
+          <div class="tl-content">
+            <div class="tl-date">AD 624&ndash;627</div>
+            <div class="tl-title">Expulsion and Execution of Medinan Jewish Tribes</div>
+            <p>Banu Qaynuqa expelled (624), Banu Nadir expelled (625), Banu Qurayza besieged (627) &mdash; with the adult men killed and the women and children enslaved (SB 4.52.68). The qibla shifts from Jerusalem to Mecca: a visible theological severance from the Jewish-Christian inheritance.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--islc)"></div>
+          <div class="tl-content">
+            <div class="tl-date">AD 630</div>
+            <div class="tl-title">Surah al-Tawbah (Surah 9) Revealed</div>
+            <p>Contains Q.9:29 (fight People of the Book until jizyah) and Q.9:30 (curse on Christians). The only surah in the Qur&#x2019;an without the opening Bismillah &mdash; a feature classical scholars note reflects its unrelenting character. Revealed after the conquest of Mecca, when Muhammad&#x2019;s position was militarily secure.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--islc)"></div>
+          <div class="tl-content">
+            <div class="tl-date">AD 634&ndash;644</div>
+            <div class="tl-title">Expulsion of Christians and Jews from Arabia</div>
+            <p>Caliph Umar executes Muhammad&#x2019;s deathbed command. Christians of Najran and Jews of Khaybar expelled. Saudi Arabia to this day prohibits non-Muslim worship and church construction.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6: QURAN ON CHRISTIANS -->
+  <div class="sec" id="quran-christians">
+    <div class="sec-h" onclick="ts(this)"><h2>The Qur&#x2019;an on Christians &mdash; The Full Picture</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>The Qur&#x2019;an speaks about Christians in multiple registers. The honest approach is to present both, note the scholarly debates about how to reconcile them, and let the reader see what the texts say and what the legal tradition did with them.</p>
+
+      <h3>The Affirming Verses</h3>
+      <div class="vlist">
+        <div class="vlist-item">
+          <div class="vl-ref">Qur&#x2019;an 2:62</div>
+          <div class="vl-text">"Indeed, those who believed and those who were Jews or Christians or Sabeans &#x2026; who believed in Allah and the Last Day and did righteousness &mdash; will have their reward with their Lord."</div>
+          <div class="vl-note">Often cited in interfaith dialogue.</div>
+          <div class="vl-stl"><div class="vl-stl-label">Muslim scholarly interpretation:</div>Ibn Kathir, the most widely used classical commentator, holds this refers to members of those faiths who believed before Muhammad&#x2019;s coming. After Muhammad, the only valid faith is Islam. This reading is the classical majority position &mdash; but reformist scholars such as Fazlur Rahman disputed it. The verse&#x2019;s scope is a genuine internal debate.</div>
+        </div>
+        <div class="vlist-item">
+          <div class="vl-ref">Qur&#x2019;an 5:82</div>
+          <div class="vl-text">"You will find the nearest of them in affection to the believers those who say, &#x2018;We are Christians.&#x2019;"</div>
+          <div class="vl-note">Genuine early warmth toward Christians &mdash; historically real.</div>
+          <div class="vl-stl"><div class="vl-stl-label">Context note:</div>This verse appears in the same surah as Q.5:51 (forbidding Christian friendship) and Q.5:17 (declaring those who say God is Christ are disbelievers). The two positions coexist in Surah 5. How a given Muslim scholar reconciles them depends on their hermeneutic. The honest reader must hold both texts.</div>
+        </div>
+      </div>
+
+      <h3>The Condemning Verses</h3>
+      <div class="vlist">
+        <div class="vlist-item">
+          <div class="vl-ref">Qur&#x2019;an 5:17</div>
+          <div class="vl-text">"They have certainly disbelieved (kafara) who say that Allah is Christ, the son of Mary."</div>
+          <div class="vl-note">The Arabic kafara carries, in Islamic law, the full weight of unbelief &mdash; with legal and eternal consequences. This verse makes the core Christian confession an act of kufr.</div>
+        </div>
+        <div class="vlist-item">
+          <div class="vl-ref">Qur&#x2019;an 5:72&ndash;73</div>
+          <div class="vl-text">"They have certainly disbelieved who say, &#x2018;Allah is the Messiah.&#x2019; &#x2026; They have certainly disbelieved who say, &#x2018;Allah is the third of three.&#x2019; &#x2026; There will surely afflict the disbelievers among them a painful punishment."</div>
+          <div class="vl-note">The Trinity is declared kufr. No contextual reading removes this &mdash; it is a straightforward theological claim, not a war-time instruction.</div>
+        </div>
+        <div class="vlist-item">
+          <div class="vl-ref">Qur&#x2019;an 4:48</div>
+          <div class="vl-text">"Indeed, Allah does not forgive association with Him (shirk) &#x2026;"</div>
+          <div class="vl-note">The classical position is that the Christian doctrine of the Trinity constitutes shirk &mdash; the one unforgivable sin in Islam. The Christian stands under the gravest possible theological condemnation on the basis of their confession of faith alone.</div>
+        </div>
+        <div class="vlist-item">
+          <div class="vl-ref">Qur&#x2019;an 9:30</div>
+          <div class="vl-text">"The Christians say the Messiah is the son of Allah &#x2026; May Allah destroy them; how are they deluded?"</div>
+          <div class="vl-note">A divine curse against Christians for their confession of Christ. Among the last revelations &mdash; which, in the classical abrogation framework, carry the greatest authority.</div>
+        </div>
+      </div>
+
+      <h3>The Greeting Prohibition</h3>
+      <div class="vbox had">
+        <div class="vref">Sahih Muslim 2167 <span class="badge hadith">Hadith</span></div>
+        <div class="vtext">"Do not greet the Jews and Christians with the greeting of peace (al-sal&#x101;m &#x2018;alaykum), and when you meet one of them on the road, force him to the narrower part of it."</div>
+      </div>
+      <p>This hadith is authenticated by al-Nawawi and was applied as law across the medieval Islamic world. Contemporary Muslim scholars debate its ongoing applicability. What cannot be debated is what it says: the physical enactment of Christian subordination in public space, derived from the Qur&#x2019;anic principle that Christians must be "subdued."</p>
+    </div>
+  </div>
+
+  <!-- SECTION 7: WORST OF CREATURES -->
+  <div class="sec" id="worst">
+    <div class="sec-h" onclick="ts(this)"><h2>&#x201C;The Worst of Creatures&#x201D; &mdash; Q.98:6 and Its Interpreters</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>Qur&#x2019;an 98:6 is the most unambiguous Qur&#x2019;anic statement about Christians and requires no contextual unpacking. It has no military setting. It is a straightforward eschatological and ontological judgment.</p>
+
+      <div class="vbox warn">
+        <div class="vref">Qur&#x2019;an 98:6 &mdash; Surah al-Bayyina</div>
+        <div class="vtext">"Indeed, those who disbelieve among the People of the Scripture and the polytheists will be in the Fire of Hell, abiding eternally therein. Those are <strong>the worst of creatures</strong> (shar al-bar&#x012Byya)."</div>
+      </div>
+      <div class="vbox">
+        <div class="vref">Qur&#x2019;an 98:7 &mdash; The Deliberate Contrast</div>
+        <div class="vtext">"Indeed, those who have believed and done righteous deeds &mdash; those are the best of creatures (khayr al-bar&#x012Byya)."</div>
+      </div>
+
+      <p>These two verses form a binary: Muslims are the best of all created beings; Christians (and Jews) who reject Muhammad are the worst. Not merely wrong, not merely misguided &mdash; the worst of all creation. This is the primary source. It stands on its own.</p>
+
+      <h3>Classical Scholarship is Unanimous Here</h3>
+      <div class="vlist">
+        <div class="vlist-item">
+          <div class="vl-ref">Ibn Kathir (d. 1373) &mdash; Tafsir al-Qur&#x2019;an al-Azim</div>
+          <div class="vl-text">"Those among the People of the Book who disbelieved in Muhammad and the pagans &#x2026; they are the worst of creatures, and the worst of all that Allah created and spread on the face of the earth."</div>
+          <div class="vl-note">The most widely used classical Qur&#x2019;anic commentary, standard in Islamic seminaries globally. No ambiguity.</div>
+        </div>
+        <div class="vlist-item">
+          <div class="vl-ref">Al-Tabari (d. 923) &mdash; Jami&#x2019; al-Bayan</div>
+          <div class="vl-text">"Those who disbelieve in Allah among the People of the Book &#x2026; are the most evil of all created beings. They are in the lowest and worst position of all creation."</div>
+          <div class="vl-note">Father of Qur&#x2019;anic commentary. His reading is identical to Ibn Kathir&#x2019;s &mdash; confirming this has been the classical mainstream for over a thousand years.</div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <div class="cl-title">Note on Contemporary Muslim Responses</div>
+        <p>Some contemporary Muslim scholars argue that Q.98:6&#x2019;s designation refers specifically to those who <em>knowingly</em> reject Islam after evidence has been made clear to them &mdash; a narrower category than all Christians. This is a genuine interpretive position. It does not change what the verse says; it adjusts who it applies to. Under this reading, a Christian who has sincerely never encountered a compelling case for Islam would be in a different category. However, the classical majority position, confirmed by both al-Tabari and Ibn Kathir, applies it to all People of the Scripture who reject Muhammad. The reformist reading is a minority position in the tradition.</p>
+      </div>
+
+      <h3>The First Christian Theologian to Engage Islam</h3>
+      <div class="vbox pop">
+        <div class="vref">St. John of Damascus (c. 675&ndash;749) &mdash; <em>De Haeresibus</em></div>
+        <div class="vtext">"There is also the people-deceiving cult of the Ishmaelites &#x2026; [Muhammad] devised his own heresy &#x2026; [claiming] he received a writing sent down from heaven. He says that there exists one God &#x2026; who has neither been begotten nor has begotten &#x2026; And he perverts many of our texts in a strange fashion."</div>
+      </div>
+      <p>John of Damascus wrote from inside the Umayyad caliphate &mdash; he served as a Christian official at the court of Caliph Abd al-Malik. He was not a polemicist operating at a safe distance; he was a Christian living under Islamic governance with direct knowledge of Islamic doctrine and practice. His assessment was not hostility born of ignorance but analysis born of proximity. He classified Islam as a heresy because, from his theological vantage point, it was a distortion of Christian claims about Jesus &mdash; affirming his prophethood, denying his divinity, and re-narrating his story in a way that removed the Incarnation and the Cross.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 8: SUBSTITUTION -->
+  <div class="sec" id="substitution">
+    <div class="sec-h" onclick="ts(this)"><h2>Christians Pay for Muslim Sins &mdash; The Hadith of Substitution</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>The following hadith, authenticated in three independent narrations in Sahih Muslim, describes an eschatological arrangement in which Christians are assigned to Hell in place of Muslims. It is not a contextual war-time instruction. It is a doctrine about the afterlife.</p>
+
+      <div class="vbox had">
+        <div class="vref">Sahih Muslim 2767a &mdash; Narrated by Abu Musa al-Ash&#x2018;ari</div>
+        <div class="vtext">"When it will be the Day of Resurrection, Allah will deliver to every Muslim a Jew or a Christian and say: &#x2018;That is your rescue from the Hellfire.&#x2019;"</div>
+      </div>
+      <div class="vbox had">
+        <div class="vref">Sahih Muslim 2767b</div>
+        <div class="vtext">"No Muslim would die but Allah would admit instead of him a Jew or a Christian in Hell-Fire." &mdash; Confirmed by &#x2018;Umar b. Abd al-&#x2018;Aziz in three oaths.</div>
+      </div>
+      <div class="vbox had">
+        <div class="vref">Sahih Muslim 2767c</div>
+        <div class="vtext">"On the Day of Resurrection, some of the Muslims will come with sins like mountains, but Allah will forgive them and put [those sins] on the Jews and Christians."</div>
+      </div>
+
+      <div class="callout">
+        <div class="cl-title">Note on Scholarly Debate</div>
+        <p>Al-Nawawi, in his commentary on Sahih Muslim, offers a clarifying interpretation: the Christians and Jews assigned to Hell were already destined for it by their unbelief; the hadith simply reveals that their spots in Hell correspond to spots vacated by Muslims who ultimately enter Paradise. In this reading, the Christian is not "punished instead of" the Muslim in a direct substitutionary sense &mdash; rather, the Muslim&#x2019;s Hell-place is filled by a Christian whose own unbelief destined them there. This is a more careful reading than the plain text may suggest. It does not remove the doctrine; it specifies its mechanism. Under any reading, the Christian is in Hell and the Muslim is in Paradise, and the Muslim&#x2019;s Paradise comes at the price of the Christian&#x2019;s Hell.</p>
+      </div>
+
+      <h3>The Theological Inversion</h3>
+      <div class="vbox pop">
+        <div class="vref">St. Athanasius of Alexandria (c. 296&ndash;373) &mdash; <em>On the Incarnation</em></div>
+        <div class="vtext">"The Son of God became man so that we might become God &#x2026; He took what was ours and gave us what was His."</div>
+      </div>
+      <p>The contrast is precise. The Christian doctrine of the Incarnation holds that God himself bore the consequence of human sin in the person of Christ. The Islamic substitution hadith holds that Christians bear the punishment for Muslim sins. In Christianity, divinity descends to absorb human guilt. In this hadith, human guilt descends onto the non-Muslim. Christianity says God substitutes himself for the sinner; this hadith says the Christian substitutes for the Muslim. The inversion is theologically exact &mdash; and the Qur&#x2019;an explicitly denies that Jesus was crucified (Q.4:157), the very act by which Christianity holds the substitution was accomplished.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 9: DHIMMI -->
+  <div class="sec" id="dhimmi">
+    <div class="sec-h" onclick="ts(this)"><h2>The Dhimmi System &mdash; Q.9:29 Applied as Law</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>The steel man correctly observes that the dhimmi system provided legal existence and physical protection, and that in some periods it was administered more leniently than its theory required. These observations are accurate. They do not change what the system was designed to do, what its legal basis was, or what its multigenerational effects produced.</p>
+
+      <div class="callout">
+        <div class="cl-title">What the Steel Man Concedes and What It Doesn&#x2019;t</div>
+        <p>Conceded: the dhimmi system was not a program of genocide; it offered legal existence. In specific periods and places, Christian communities maintained significant cultural and economic life within it. Jews expelled from Christian Spain did seek refuge in the Ottoman Empire. These facts are real. Not conceded: that the system was benign, that its theological basis was anything other than Q.9:29&#x2019;s command to subdue Christians, or that its multigenerational effects were anything other than the demographic extinction of ancient Christian communities across the entire Islamic world.</p>
+      </div>
+
+      <div class="dhimmi-grid">
+        <div class="dhimmi-card">
+          <div class="dc-title">&#128462; No New Churches</div>
+          <p>Christians may not build new churches or repair existing ones without permission. Applied consistently across centuries, this provision alone reduced Christian institutional presence through attrition, with no violence required.</p>
+        </div>
+        <div class="dhimmi-card">
+          <div class="dc-title">&#128081; Distinctive Dress &amp; Yellow Badges</div>
+          <p>Caliph al-Mutawakkil (847 AD) mandated yellow garments and wooden devil-images on Christian doors. This predated European yellow stars by six centuries and was derived directly from the principle of visible subjugation in Q.9:29.</p>
+        </div>
+        <div class="dhimmi-card">
+          <div class="dc-title">&#128178; The Jizyah &mdash; Humiliation by Design</div>
+          <p>Classical jurists (al-Mawardi, Ibn Qayyim) specified the jizyah must be collected while the dhimmi is struck and verbally humiliated. The humiliation was not incidental; it was the legal expression of Q.9:29&#x2019;s &#x1e63;&#x101;ghir&#x16b;n ("in a state of subjugation").</p>
+        </div>
+        <div class="dhimmi-card">
+          <div class="dc-title">&#128682; No Public Worship</div>
+          <p>No church bells, no public crosses, no visible religious processions. Invisible religion becomes a dying religion across multiple generations.</p>
+        </div>
+        <div class="dhimmi-card">
+          <div class="dc-title">&#9878; No Legal Equality</div>
+          <p>Christian testimony inadmissible against Muslims. Blood-money (diya) for a Christian set at half or one-third that of a Muslim. Christian lives were legally worth less.</p>
+        </div>
+        <div class="dhimmi-card">
+          <div class="dc-title">&#9878; Death for Proselytism</div>
+          <p>A Christian who attempted to convert a Muslim could be executed. A Muslim who converted to Christianity was an apostate &mdash; also subject to death. The dhimma was a one-way door: you could enter Islam; you could not leave it, and no one could be invited in.</p>
+        </div>
+      </div>
+
+      <h3>The Jurists&#x2019; Own Words</h3>
+      <div class="vbox had">
+        <div class="vref">Al-Mawardi (d. 1058) &mdash; <em>al-Ahkam al-Sultaniyya</em> (Chief Judge of Baghdad)</div>
+        <div class="vtext">"When [the dhimmi] comes to pay [the jizyah], he is to be seized by the collar, shaken, and told: Pay the jizyah, O dhimmi! He is to be led to the payment while being humiliated, not honoured."</div>
+      </div>
+      <div class="vbox had">
+        <div class="vref">Ibn Qayyim al-Jawziyya (d. 1350) &mdash; <em>Ahkam Ahl al-Dhimma</em></div>
+        <div class="vtext">"The dhimmi is to come on foot, not riding. He is to stand while the collector sits. The collector takes it from him while he is standing and the collector strikes him on the cheek."</div>
+      </div>
+      <p>Al-Mawardi was the leading political theorist of the Abbasid Caliphate. Ibn Qayyim al-Jawziyya is foundational to modern Salafi thought. These are not extremists; they are mainstream classical jurists. Their prescriptions are what Q.9:29&#x2019;s &#x1e63;&#x101;ghir&#x16b;n looked like in legal practice.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 10: HISTORICAL RECORD -->
+  <div class="sec" id="persecution">
+    <div class="sec-h" onclick="ts(this)"><h2>The Historical Record &mdash; Theology Applied Over Fourteen Centuries</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>The following is not a catalogue of every anti-Christian act in Islamic history, nor does it ignore the periods of relative tolerance. It is a representative survey of what happened when the Qur&#x2019;anic and hadith theology documented above was applied by states and movements with the power to do so. These events are documented in Islamic chronicles, Byzantine records, Coptic synaxaria, Syriac histories, and Armenian historiography &mdash; not only in Western or Christian sources.</p>
+
+      <div class="per-item">
+        <div class="per-year">637&ndash;641</div>
+        <div class="per-body">
+          <div class="per-title">Arab Conquest of the Christian Heartlands</div>
+          <p>Within a decade of Muhammad&#x2019;s death, the Rashidun Caliphate conquered Egypt, Syria, and Mesopotamia &mdash; the founding territories of the Oriental Orthodox churches. Christian populations became dhimmis. The dhimmi framework was applied immediately: no new church construction, jizyah imposed. The conquest itself was often not especially violent compared to ancient warfare norms. The subsequent demographic transformation required no further armies &mdash; only the patient application of dhimmi law over generations.</p>
+        </div>
+      </div>
+
+      <div class="per-item">
+        <div class="per-year">847&ndash;861</div>
+        <div class="per-body">
+          <div class="per-title">Caliph al-Mutawakkil &mdash; Yellow Badges, Church Demolitions</div>
+          <p>The Abbasid Caliph al-Mutawakkil issued sweeping anti-Christian decrees: yellow garments, wooden devil-images on Christian houses, demolition of new churches, dismissal of all Christian civil servants. This was official state policy, not a popular pogrom. It was derived directly from the classical dhimmi framework and represents what the legal tradition produced when applied by a theologically motivated ruler. It was not an aberration; it was orthodoxy.</p>
+        </div>
+      </div>
+
+      <div class="per-item">
+        <div class="per-year">1009</div>
+        <div class="per-body">
+          <div class="per-title">Caliph al-Hakim &mdash; Destruction of the Holy Sepulchre</div>
+          <p>The Fatimid Caliph al-Hakim ordered the destruction of thousands of churches across Egypt and the Levant, including the Church of the Holy Sepulchre in Jerusalem. Copts were forced to wear heavy wooden crosses. This persecution, by a ruler of the same Fatimid dynasty known for periods of tolerance, illustrates the volatility inherent in a system where Christian existence depended entirely on the personal disposition of the ruler rather than on enforceable rights.</p>
+        </div>
+      </div>
+
+      <div class="per-item">
+        <div class="per-year">1301&ndash;1517</div>
+        <div class="per-body">
+          <div class="per-title">Mamluk Egypt &mdash; Systematic Destruction of the Coptic Church</div>
+          <p>Repeated waves of Mamluk anti-Coptic legislation across two centuries: dismissal of Christian officials, destruction of churches, forced conversions during popular violence. The Coptic population, once the overwhelming majority of Egypt, collapsed from an estimated 40% to under 10% during this period. No single massacre accomplished this &mdash; the dhimmi system did it by consistently making Christian identity socially, economically, and physically costly.</p>
+        </div>
+      </div>
+
+      <div class="per-item">
+        <div class="per-year">1529&ndash;1543</div>
+        <div class="per-body">
+          <div class="per-title">Ahmad Gran&#x2019;s Jihad Against Ethiopia</div>
+          <p>The Muslim ruler Ahmad ibn Ibrahim al-Ghazi (Ahmad Gran) launched a declared jihad against Christian Ethiopia, destroying an estimated 90% of the country&#x2019;s churches and manuscripts over 14 years. The Ethiopian church was brought to near-extinction. The Portuguese military alliance that ultimately saved it (1543) is one of history&#x2019;s more remarkable Christian-Christian solidarity events.</p>
+        </div>
+      </div>
+
+      <div class="per-item">
+        <div class="per-year">1894&ndash;1923</div>
+        <div class="per-body">
+          <div class="per-title">The Genocides of Armenian, Syriac, and Assyrian Christians</div>
+          <p>Between 1894 and 1923, the Christian minorities of the Ottoman Empire &mdash; Armenians, Syriacs (Seyfo), Assyrians, and Greeks &mdash; were subjected to massacres, deportations, and organized killing. Historians estimate the death toll at between 1 and 1.5 million Armenians alone (Kévorkian, <em>The Armenian Genocide</em>, 2011; International Association of Genocide Scholars), with additional hundreds of thousands of Syriac and Assyrian victims (Hannibal Travis, David Gaunt); the combined toll across all communities is estimated by scholars at 1.5&ndash;2.5 million. As the steel man correctly notes, the Young Turk leadership was secular-nationalist rather than primarily religious. However, the mechanism of mass participation was religious mobilization &mdash; the Sheikh-ul-Islam&#x2019;s 1914 jihad fatwa, Kurdish Hamidiye religious irregulars, and the consistent identification of victims as Christian <em>gavur</em> (infidels). The Hamidian massacres of 1894&ndash;1896 that preceded 1915 were authorized by the devoutly religious Sultan Abdulhamid II explicitly as a religious operation. The full picture is neither purely nationalist nor purely religious &mdash; it was both, with religion providing the mass participation that nationalism alone could not.</p>
+        </div>
+      </div>
+
+      <div class="per-item">
+        <div class="per-year">2014&ndash;2019</div>
+        <div class="per-body">
+          <div class="per-title">ISIS and the Nineveh Plain &mdash; Q.9:29 Cited by Name</div>
+          <p>The Islamic State declared Christians in their territory dhimmis, issued formal jizyah demands citing Q.9:29 by reference, and when communities refused or could not pay, killed the men, enslaved the women, and expelled the rest. The ancient Syriac Christian presence in the Nineveh Plain &mdash; communities tracing their roots to the Apostle Thomas &mdash; was ended in a single night in August 2014. ISIS did not invent the theology; they applied the classical legal framework with an explicitness that made the derivation undeniable. Their ISIS magazine <em>Dabiq</em> cited Ibn Qayyim al-Jawziyya and al-Mawardi by name.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 11: CHURCH RESPONDS -->
+  <div class="sec" id="church-responds">
+    <div class="sec-h" onclick="ts(this)"><h2>Popes, Patriarchs &amp; Scholars Respond</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>These responses span 1,400 years, from the first Christian theologian who engaged Islam from within the Islamic world to modern popes addressing living persecution. They share a common thread: theological clarity that does not require hatred of Muslim people.</p>
+
+      <div class="pope-grid">
+        <div class="pope-card">
+          <div class="pc-name">St. John of Damascus (c. 675&ndash;749)</div>
+          <div class="pc-title">First Systematic Theologian of Islam &mdash; Served under the Umayyad Caliphate</div>
+          <div class="pc-quote">"This Muhammad &#x2026; having chanced upon the Old and New Testaments &#x2026; devised his own heresy &#x2026; He says the Christ is the Word of God and His Spirit, but a creature and a servant &#x2026; And he perverts many of our texts in a strange fashion."</div>
+          <div class="pc-ctx">Written from inside the Islamic world with direct, firsthand knowledge. John was not an anti-Muslim polemicist at a distance &mdash; he served the caliph and knew Islamic doctrine intimately. He classified Islam as a Christian heresy because, theologically, it was a systematic revision of Christian claims about Jesus. His engagement was confrontational in content but not in spirit; he continued to serve the Islamic court while writing his theological analysis.</div>
+        </div>
+
+        <div class="pope-card">
+          <div class="pc-name">Emperor Manuel II Palaiologos (1350&ndash;1425)</div>
+          <div class="pc-title">Byzantine Emperor &mdash; Wrote During the Siege of Constantinople</div>
+          <div class="pc-quote">"Show me just what Muhammad brought that was new, and there you will find things only evil and inhuman, such as his command to spread by the sword the faith he preached."</div>
+          <div class="pc-ctx">Written in <em>Dialogues with a Persian Muslim</em> (c. 1391) during the Ottoman siege of Constantinople, when virtually all of Christian Anatolia had already been lost. Manuel II was not speaking as a polemicist but as a ruler watching his civilization be destroyed. This quote, cited by Pope Benedict XVI in 2006, provoked worldwide Muslim protests including the murder of an Italian nun in Somalia &mdash; which, as Benedict noted without saying so, rather illustrated the point about the relationship between Islam and coercion.</div>
+        </div>
+
+        <div class="pope-card">
+          <div class="pc-name">Patriarch Timothy I of the Church of the East (d. 823)</div>
+          <div class="pc-title">Catholicos &mdash; Debated Caliph al-Mahdi in the Abbasid Court</div>
+          <div class="pc-quote">"The Prophet Muhammad walked in the path of the prophets &#x2026; [yet] the Gospel says the Comforter is the Holy Spirit, not a man. The Scripture does not support what is claimed."</div>
+          <div class="pc-ctx">Timothy I engaged Caliph al-Mahdi in a famous two-day theological dialogue recorded in his Apology. His method is a model for engagement from within Islamic power: respectful, intellectually rigorous, diplomatically aware, and theologically uncompromising. He navigated the Abbasid court without surrendering the Trinity or the divinity of Christ. He lived under Islamic governance without becoming an apologist for it.</div>
+        </div>
+
+        <div class="pope-card">
+          <div class="pc-name">Pope Benedict XVI (r. 2005&ndash;2013)</div>
+          <div class="pc-title">Regensburg Address, September 12, 2006</div>
+          <div class="pc-quote">"The emperor, after having expressed himself so forcefully, goes on to explain in detail the reasons why spreading the faith through violence is something unreasonable. Violence is incompatible with the nature of God and the nature of the soul &#x2026; God is not pleased by blood, and not acting reasonably is contrary to God&#x2019;s nature."</div>
+          <div class="pc-ctx">Benedict&#x2019;s argument was philosophical, not polemical: a God defined by pure will (as in Islamic theology) could theoretically command anything, including violence; the Christian God is identified with Logos &mdash; Reason itself &mdash; and therefore cannot act against reason. The subsequent violent protests against a speech about violence and rationality were, as many observers noted, more illustrative of the thesis than any argument could have been.</div>
+        </div>
+
+        <div class="pope-card">
+          <div class="pc-name">Pope Tawadros II of Alexandria (b. 1952)</div>
+          <div class="pc-title">118th Coptic Pope &mdash; On the 21 Libyan Martyrs, February 2015</div>
+          <div class="pc-quote">"Their blood is a seed. The Church of Egypt has been baptized in blood since the time of Diocletian. We have buried our martyrs in the same hope in which they died &mdash; that Christ is Lord and that this is worth dying for."</div>
+          <div class="pc-ctx">Twenty-one Coptic migrant workers were beheaded on a Libyan beach by ISIS. The ISIS video was titled "A Message Signed with Blood to the Nation of the Cross." As the men were killed, witnesses reported they called on the name of Jesus. All twenty-one are now canonized martyrs of the Coptic Orthodox Church. Pope Tawadros&#x2019;s response exemplifies what 1,700 years of Oriental Orthodox martyrology has produced: not hatred of the killers but clarity about why the dying was not in vain.</div>
+        </div>
+
+        <div class="pope-card">
+          <div class="pc-name">Patriarch Ignatius Aphrem II (Syriac Orthodox, b. 1965)</div>
+          <div class="pc-title">UN General Assembly Address, 2014</div>
+          <div class="pc-quote">"Our people are being killed, our churches destroyed, our priests beheaded &mdash; and the world watches. The cross is being erased from the Middle East. And when the cross goes, civilization goes with it."</div>
+          <div class="pc-ctx">Patriarch Aphrem leads the Syriac Orthodox Church, whose faithful speak a dialect of Aramaic. His community has lived under Islamic governance since 637 AD and carries in its bones the memory of the Seyfo genocide. Speaking to the United Nations, he named what was happening without diplomatic euphemism. He did not call for war or retaliation. He called for the world to see what the texts and the history show plainly.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 12: MODERN -->
+  <div class="sec" id="modern">
+    <div class="sec-h" onclick="ts(this)"><h2>Modern Persecution &mdash; The Living Reality</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>The data below is from Open Doors World Watch List, Aid to the Church in Need, and United Nations documentation. Open Doors is a Christian advocacy organization whose methodology should be acknowledged; the UN and governmental sources corroborate its broad findings.</p>
+
+      <div class="callout">
+        <div class="cl-title">Open Doors World Watch List 2024</div>
+        <p>Of the 50 countries where Christians face the highest levels of persecution, 38 are majority-Muslim. The top 10 includes North Korea (non-Muslim) and nine Muslim-majority states. Over 365 million Christians face high or extreme levels of persecution globally; the majority of anti-Christian violence is committed by Islamist groups or state actors in Muslim-majority countries.</p>
+      </div>
+
+      <div class="tl">
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--islc)"></div>
+          <div class="tl-content">
+            <div class="tl-date">February 15, 2015</div>
+            <div class="tl-title">The 21 Coptic Martyrs &mdash; Libya</div>
+            <p>Twenty-one Coptic migrant workers beheaded by ISIS. Witnesses reported their last word was "Yassou" (Jesus). ISIS cited Q.9:29 and Q.9:30 in the accompanying video. All twenty-one canonized by the Coptic Orthodox Church. Their names read at every Coptic Divine Liturgy.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--islc)"></div>
+          <div class="tl-content">
+            <div class="tl-date">August 2014</div>
+            <div class="tl-title">Nineveh Plain &mdash; Iraq</div>
+            <p>125,000 Assyrian and Chaldean Christians expelled overnight. Churches built in the 4th century destroyed or converted to mosques. ISIS cited classical dhimmi law, referencing Ibn Qayyim al-Jawziyya by name. The oldest continuous Christian community in the world effectively ended in one night.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--islc)"></div>
+          <div class="tl-content">
+            <div class="tl-date">April 9, 2017</div>
+            <div class="tl-title">Palm Sunday Bombings &mdash; Egypt</div>
+            <p>ISIS attacked St. George&#x2019;s Church in Tanta and St. Mark&#x2019;s Cathedral in Alexandria on Palm Sunday, killing 44 Copts. Targeting Holy Week was deliberate: the cross and what it represents.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--islc)"></div>
+          <div class="tl-content">
+            <div class="tl-date">Ongoing</div>
+            <div class="tl-title">Pakistan &mdash; Blasphemy Laws and Asia Bibi</div>
+            <p>Pakistan&#x2019;s Penal Code 295-C (death penalty for insulting Muhammad) is routinely applied against Christians. Asia Bibi spent eight years on death row for allegedly insulting Muhammad in a dispute over drinking water. The law has direct Qur&#x2019;anic and hadith basis and is defended by mainstream Pakistani Islamic scholars, not only by extremists.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 13: FAQ -->
+  <div class="sec" id="faq">
+    <div class="sec-h" onclick="ts(this)"><h2>Frequently Asked Questions</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <div class="faq">
+        <div class="fi">
+          <div class="fi-q" onclick="tf(this)">Does Islam respect Jesus?<span>+</span></div>
+          <div class="fi-a">Islam honors a figure named Jesus (Isa) as a prophet, born of a virgin, who performed miracles. This is genuine. However, it simultaneously denies everything Christianity holds to be essential about him: his divinity, the atoning significance of his crucifixion (Q.4:157 denies he was crucified), his resurrection as the basis of salvation, and his identity as the second Person of the Trinity. The Qur&#x2019;anic Jesus and the biblical Christ share a name and some biographical data. They are theologically different persons. To honor the Qur&#x2019;anic Isa while denying the Incarnation is not, from an Orthodox perspective, to respect Jesus &mdash; it is to replace him with a corrected version.</div>
+        </div>
+        <div class="fi">
+          <div class="fi-q" onclick="tf(this)">Are the hostile verses really what classical Islam teaches, or is that extremism?<span>+</span></div>
+          <div class="fi-a">This is the most important question to answer honestly. The hostile verses &mdash; Q.9:29, Q.9:30, Q.5:51, Q.98:6 &mdash; and the dhimmi system derived from them are not extremist innovations. They are the classical mainstream of Sunni jurisprudence, confirmed by all four law schools (Hanafi, Maliki, Shafi&#x2019;i, Hanbali) and by the most authoritative commentators (al-Tabari, Ibn Kathir). ISIS applied them more visibly and violently than most Islamic states do, but the legal framework they applied is classical and mainstream. What many contemporary Muslim scholars and institutions are attempting &mdash; the contextual and reformist readings discussed in the steel man section &mdash; is a genuine reform effort within Islam. It has not yet produced a settled alternative jurisprudence accepted by a majority of Islamic scholars worldwide. The distinction between "ISIS-style extremism" and "mainstream classical Islam" on this specific question is less clear than interfaith diplomacy suggests.</div>
+        </div>
+        <div class="fi">
+          <div class="fi-q" onclick="tf(this)">Doesn&#x2019;t the Christian record of violence disqualify this critique?<span>+</span></div>
+          <div class="fi-a">Christian history contains genuine atrocities: the Crusader sack of Constantinople (1204) &mdash; an attack on fellow Christians; the Inquisition; religious wars; anti-Semitism. These are not defended here. The Oriental Orthodox churches were themselves victims of Byzantine Christian persecution for their Christology before Islam ever arrived. However, three things distinguish the cases. First, the Christian atrocities were committed in violation of Christ&#x2019;s explicit teaching ("love your enemies," "blessed are the peacemakers," "do not repay evil with evil"). The Islamic persecutions were committed in direct application of Islamic law derived from the Qur&#x2019;an. Second, the demographic evidence shows that wherever Christianity governed, Jewish and other minority populations survived (however badly treated); wherever Islam governed for multiple centuries, Christian populations effectively disappeared. Third, a Christian who persecuted a Jew was not following his scripture. A Muslim who humiliated a dhimmi was following his. The moral failures of Christians do not erase what Islamic texts teach; they are simply a separate discussion.</div>
+        </div>
+        <div class="fi">
+          <div class="fi-q" onclick="tf(this)">What is the Oriental Orthodox approach to Muslim neighbors?<span>+</span></div>
+          <div class="fi-a">The Oriental Orthodox tradition has practiced coexistence with Muslim neighbors for 1,400 years &mdash; by necessity and, often, genuinely. The Coptic church maintained channels with Islamic authorities through every dynasty from the Rashidun to the present. The Armenian Apostolic church navigated the Ottoman empire for five centuries. The Syriac church engaged Abbasid caliphs in theological dialogue. This is not capitulation; it is the long practice of a minority church living inside a majority-Muslim world. The approach is: be clear about what you believe, do not compromise the faith, engage neighbors with charity, and do not mistake coexistence for theological equivalence. The church that buries its twenty-one martyrs while praying for those who killed them is practicing something harder and more honest than either hatred or naïve interfaith optimism.</div>
+        </div>
+        <div class="fi">
+          <div class="fi-q" onclick="tf(this)">Is this site anti-Muslim?<span>+</span></div>
+          <div class="fi-a">No &mdash; and the distinction matters. Anti-Muslim sentiment is directed at Muslim people as people. This site is directed at specific texts and at the history of their application. The Muslim family living peacefully beside a Coptic family in Cairo, the Indonesian Muslim who attends his Christian friend&#x2019;s wedding, the Pakistani lawyer who defended Asia Bibi at personal risk &mdash; these are not enemies. The Qur&#x2019;an&#x2019;s designation of their Christian neighbors as the worst of creatures is a statement about a text. Examining that text honestly is not hostility toward the people who read it; it is a service to truth. The Christian obligation is to love Muslim neighbors and to tell the truth about Muslim texts. Both are required. Neither cancels the other.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 14: GLOSSARY -->
+  <div class="sec" id="glossary">
+    <div class="sec-h" onclick="ts(this)"><h2>Glossary</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <div class="glo">
+        <div class="glo-item"><div class="gt">Steel Man</div><div class="gd">Presenting an opposing argument in its strongest, most charitable form before engaging it. The opposite of a straw man. The method used throughout this site.</div></div>
+        <div class="glo-item"><div class="gt">Ahl al-Kitab</div><div class="gd">"People of the Book." Qur&#x2019;anic term for Christians and Jews. A status granting both qualified protection (dhimmi) and explicit condemnation (Q.98:6).</div></div>
+        <div class="glo-item"><div class="gt">Dhimmi</div><div class="gd">Non-Muslim subjects under Islamic governance. Protected legal existence in exchange for jizyah payment and codified subordination. Basis: Q.9:29.</div></div>
+        <div class="glo-item"><div class="gt">Jizyah</div><div class="gd">Poll tax on dhimmis. Classical jurists prescribed its collection as a ritual of humiliation. The &#x1e63;&#x101;ghir&#x16b;n ("subjugated") state of Q.9:29 made concrete.</div></div>
+        <div class="glo-item"><div class="gt">Naskh (Abrogation)</div><div class="gd">Later Qur&#x2019;anic verses supersede earlier conflicting ones. Q.2:106. The majority classical position; contested by modern reformists. Governs how hostile Medinan verses relate to affirming Meccan ones.</div></div>
+        <div class="glo-item"><div class="gt">Kafir / Kufr</div><div class="gd">"Unbeliever / unbelief." Q.5:17 applies this to those who say God is Christ. In Islamic law, kufr carries serious legal and social consequences.</div></div>
+        <div class="glo-item"><div class="gt">Shirk</div><div class="gd">"Associating partners with God." The one unforgivable sin in Islam (Q.4:48). Classical theology classifies the Trinity as shirk, making orthodox Christian confession the gravest possible theological error.</div></div>
+        <div class="glo-item"><div class="gt">Shar al-Bar&#x012Byya</div><div class="gd">"The worst of creatures." Q.98:6&#x2019;s designation for those who disbelieve among the People of the Scripture. Confirmed as applicable to all Christians who reject Muhammad by Ibn Kathir and al-Tabari.</div></div>
+        <div class="glo-item"><div class="gt">Tafsir</div><div class="gd">Qur&#x2019;anic commentary. Al-Tabari (9th c.), Ibn Kathir (14th c.), and al-Qurtubi (13th c.) represent the classical mainstream. Their readings are the basis for the interpretations cited in this site.</div></div>
+        <div class="glo-item"><div class="gt">Seyfo / Aghet</div><div class="gd">"Sword" (Syriac) / "Catastrophe" (Armenian). Refer to the genocides of Syriac and Armenian Christians in the Ottoman Empire, 1914&ndash;1923.</div></div>
+        <div class="glo-item"><div class="gt">Najas</div><div class="gd">"Ritually impure." Q.9:28. Extended by the Shafi&#x2019;i and Maliki schools to non-Muslims generally, with legal implications for physical contact and shared use.</div></div>
+        <div class="glo-item"><div class="gt">Awliy&#x101;&#x2019;</div><div class="gd">Allies / friends / protectors. Q.5:51 forbids Muslims from taking Christians as awliy&#x101;&#x2019;. Classical jurists interpreted this broadly to prohibit close personal and political bonds with Christians.</div></div>
+      </div>
+    </div>
+  </div>
+
+</main>
+<script>
+function ts(h){
+  const b=h.nextElementSibling;
+  const a=h.querySelector('.arr');
+  const open=b.style.display==='block';
+  b.style.display=open?'none':'block';
+  a.style.transform=open?'':'rotate(90deg)';
+}
+function tf(h){
+  const a=h.nextElementSibling;
+  const s=h.querySelector('span');
+  const open=a.style.display==='block';
+  a.style.display=open?'none':'block';
+  s.textContent=open?'+':'&#x2212;';
+}
+function sidebarSearch(v){
+  const q=v.toLowerCase();
+  document.querySelectorAll('#nav a').forEach(a=>{
+    a.style.display=(!q||a.textContent.toLowerCase().includes(q))?'':'none';
+  });
+}
+window.addEventListener('scroll',()=>{
+  const st=window.scrollY;
+  const dh=document.documentElement.scrollHeight-window.innerHeight;
+  document.getElementById('prog').style.width=(dh>0?st/dh*100:0)+'%';
+  const secs=document.querySelectorAll('.sec[id]');
+  let cur='';
+  secs.forEach(s=>{if(s.offsetTop-120<=st)cur=s.id;});
+  document.querySelectorAll('#nav a').forEach(a=>{
+    a.classList.toggle('active',a.getAttribute('href')==='#'+cur);
+  });
+});
+(function(){
+  const first=document.querySelector('.sec .sec-h');
+  if(first)ts(first);
+})();
+</script>
+</body>
+</html>

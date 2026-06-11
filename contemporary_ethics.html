@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Church &amp; Contemporary Ethics — The Orthodox Lamp</title>
+<style>
+:root{--gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;--bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--tx:#e8e0d0;--mu:#a09880;--red:#8b2020;--br:#2a2a2a;--bg5:#3a2e10;--sidebar-w:270px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.7;display:flex;flex-direction:column;min-height:100vh}
+a{color:var(--gold);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ── Progress bar ── */
+#prog{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--gd),var(--gold),var(--gl));z-index:9999;transition:width .1s}
+
+/* ── Sidebar ── */
+#sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:200;transform:translateX(0);transition:transform .3s}
+#sidebar header{padding:1.4rem 1.2rem 1rem;border-bottom:1px solid var(--br)}
+#sidebar header .logo{font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem}
+#sidebar header h2{font-size:.85rem;color:var(--gl);line-height:1.3}
+#sb-nav{padding:.8rem 0 2rem}
+#sb-nav a{display:block;padding:.42rem 1.2rem;font-size:.78rem;color:var(--mu);border-left:2px solid transparent;transition:all .2s;line-height:1.4}
+#sb-nav a:hover{color:var(--tx);background:var(--bg3);text-decoration:none}
+#sb-nav a.active{color:var(--gold);border-left-color:var(--gold);background:var(--bg5)}
+#sb-nav .sb-group{font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gd);padding:.9rem 1.2rem .3rem;display:block}
+
+/* ── Mobile toggle ── */
+#menu-btn{display:none;position:fixed;top:.8rem;left:.8rem;z-index:300;background:var(--bg3);border:1px solid var(--br);color:var(--gold);font-size:1.1rem;width:2.2rem;height:2.2rem;border-radius:6px;cursor:pointer;align-items:center;justify-content:center}
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:150}
+#overlay.show{display:block}
+
+/* ── Main ── */
+#main{margin-left:var(--sidebar-w);flex:1;min-width:0}
+
+/* ── Hero ── */
+.hero{text-align:center;padding:5rem 2rem 3.5rem;background:linear-gradient(180deg,var(--bg2) 0%,var(--bg) 100%);border-bottom:1px solid var(--br);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(201,168,76,.08) 0%,transparent 70%);pointer-events:none}
+.back{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gd);border:1px solid var(--gd);padding:.2rem .7rem;border-radius:3px;margin-bottom:1.5rem;transition:color .2s,border-color .2s}
+.back:hover{color:var(--gold);border-color:var(--gold);text-decoration:none}
+.si{font-size:2.4rem;color:var(--gold);display:block;margin-bottom:.6rem}
+.st{font-size:clamp(1.6rem,4vw,2.6rem);font-weight:700;letter-spacing:.08em;text-transform:uppercase;line-height:1.15}
+.st span{color:var(--gold)}
+.ss{font-size:1rem;color:var(--gl);margin:.7rem 0 .3rem;font-style:italic}
+.tg{font-size:.85rem;color:var(--mu);font-style:italic}
+.orn{color:var(--gold);font-size:.9rem;letter-spacing:.5em;margin-top:1.2rem;opacity:.7}
+
+/* ── Content ── */
+.content{max-width:860px;margin:0 auto;padding:3rem 2rem 5rem}
+
+/* ── Sections ── */
+.sec{background:var(--bg2);border:1px solid var(--br);border-radius:10px;margin-bottom:1.2rem;overflow:hidden}
+.sec-hd{padding:1.1rem 1.4rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;user-select:none;transition:background .2s}
+.sec-hd:hover{background:var(--bg3)}
+.sec-hd h2{font-size:1rem;font-weight:700;color:var(--gl);line-height:1.3}
+.sec-hd .num{font-size:.65rem;font-weight:700;letter-spacing:.1em;color:var(--gold);min-width:2rem;text-align:right;flex-shrink:0}
+.arr{color:var(--gd);font-size:.8rem;flex-shrink:0;transition:transform .3s}
+.sec.open .arr{transform:rotate(90deg)}
+.sec-body{display:none;padding:1.2rem 1.4rem 1.4rem;border-top:1px solid var(--br)}
+.sec.open .sec-body{display:block}
+.sec-body p{margin-bottom:1rem;font-size:.92rem}
+.sec-body h3{font-size:.85rem;font-weight:700;color:var(--gold);letter-spacing:.06em;text-transform:uppercase;margin:1.4rem 0 .6rem}
+.sec-body ul{margin:.4rem 0 1rem 1.2rem;font-size:.88rem}
+.sec-body ul li{margin-bottom:.4rem}
+.sec-body blockquote{border-left:3px solid var(--gd);padding:.6rem 1rem;background:var(--bg3);border-radius:0 6px 6px 0;font-style:italic;font-size:.88rem;color:var(--tx);margin:1rem 0}
+.sec-body blockquote cite{display:block;margin-top:.4rem;font-size:.78rem;color:var(--mu);font-style:normal}
+
+/* ── Position banner ── */
+.pos{border-radius:8px;padding:1rem 1.2rem;margin:1rem 0;font-size:.88rem;display:flex;gap:.8rem;align-items:flex-start}
+.pos.forbid{background:#2a0d0d;border:1px solid #5a1a1a}
+.pos.permit{background:#0d1f0d;border:1px solid #1a4a1a}
+.pos.nuanced{background:#1a1a0d;border:1px solid #4a4a1a}
+.pos-icon{font-size:1.3rem;flex-shrink:0;margin-top:.1rem}
+.pos-body strong{display:block;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem}
+.pos.forbid .pos-body strong{color:#d08080}
+.pos.permit .pos-body strong{color:#80d080}
+.pos.nuanced .pos-body strong{color:#d0d080}
+
+/* ── Scripture cards ── */
+.sv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin:1rem 0}
+.sv{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:1rem 1.1rem}
+.sv-ref{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+.sv-txt{font-size:.88rem;font-style:italic;color:var(--tx);margin-bottom:.6rem;line-height:1.55}
+.labels{display:flex;flex-wrap:wrap;gap:.3rem}
+.label{font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.15rem .45rem;border-radius:3px}
+.oo{background:#3a2e10;color:var(--gold);border:1px solid var(--gd)}
+.ctx{background:#1a2a1a;color:#7abf7a;border:1px solid #2a502a}
+.pl{background:#2a1a2a;color:#c07ac0;border:1px solid #502a50}
+.warn{background:#2a1a1a;color:#d08080;border:1px solid #5a2a2a}
+
+/* ── Father cards ── */
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin:1rem 0}
+.fc{background:var(--bg3);border:1px solid var(--br);border-left:3px solid var(--gd);border-radius:0 8px 8px 0;padding:1rem 1.1rem}
+.fc-name{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem}
+.fc-era{font-size:.65rem;color:var(--mu);margin-bottom:.5rem}
+.fc-txt{font-size:.85rem;font-style:italic;color:var(--tx);line-height:1.55}
+
+/* ── Canon law cards ── */
+.canon{background:var(--bg3);border:1px solid #3a3010;border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:.9rem 1.1rem;margin:.6rem 0}
+.canon-ref{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem}
+.canon-txt{font-size:.85rem;color:var(--tx);line-height:1.55}
+
+/* ── Objection accordions ── */
+.obj{background:var(--bg3);border:1px solid #3a1a1a;border-radius:8px;margin-bottom:.8rem;overflow:hidden}
+.obj-hd{padding:.9rem 1.1rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:.8rem;user-select:none}
+.obj-hd:hover{background:#1f1010}
+.obj-hd strong{font-size:.87rem;color:#d08080;line-height:1.3}
+.obj-arr{color:#804040;font-size:.75rem;flex-shrink:0;transition:transform .3s}
+.obj.open .obj-arr{transform:rotate(90deg)}
+.obj-body{display:none;padding:.9rem 1.1rem 1.1rem;border-top:1px solid #3a1a1a;font-size:.87rem}
+.obj.open .obj-body{display:block}
+.obj-body p{margin-bottom:.7rem}
+.obj-resp{background:#1a2510;border-left:3px solid #4a7030;border-radius:0 6px 6px 0;padding:.7rem 1rem;font-size:.85rem;margin-top:.6rem}
+.obj-resp strong{color:#6abf6a;display:block;margin-bottom:.3rem;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase}
+
+/* ── FAQ ── */
+.fi{background:var(--bg3);border:1px solid var(--br);border-radius:8px;margin-bottom:.7rem;overflow:hidden}
+.fi-hd{padding:.85rem 1.1rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:.8rem;user-select:none}
+.fi-hd:hover{background:var(--bg4)}
+.fi-hd strong{font-size:.87rem;color:var(--gl);line-height:1.3}
+.fi-arr{color:var(--gd);font-size:.75rem;flex-shrink:0;transition:transform .3s}
+.fi.open .fi-arr{transform:rotate(90deg)}
+.fi-body{display:none;padding:.85rem 1.1rem 1.1rem;border-top:1px solid var(--br);font-size:.87rem}
+.fi.open .fi-body{display:block}
+.fi-body p{margin-bottom:.6rem}
+
+/* ── Topic header ── */
+.topic-hd{display:flex;align-items:center;gap:.7rem;margin:0 0 1rem}
+.topic-icon{font-size:1.6rem}
+.topic-title{font-size:1rem;font-weight:700;color:var(--gl)}
+.topic-sub{font-size:.78rem;color:var(--mu);font-style:italic}
+
+/* ── Footer ── */
+footer{text-align:center;padding:2rem 1rem;border-top:1px solid var(--br);font-size:.8rem;color:var(--mu)}
+footer span{color:var(--gold)}
+
+/* ── Responsive ── */
+@media(max-width:800px){
+  #sidebar{transform:translateX(calc(-1 * var(--sidebar-w)))}
+  #sidebar.open{transform:translateX(0)}
+  #main{margin-left:0}
+  #menu-btn{display:flex}
+  .hero{padding:4rem 1.2rem 2.5rem}
+  .content{padding:2rem 1.2rem 4rem}
+}
+</style>
+</head>
+<body>
+
+<div id="prog"></div>
+<button id="menu-btn" onclick="toggleSidebar()" aria-label="Menu">☰</button>
+<div id="overlay" onclick="closeMobile()"></div>
+
+<nav id="sidebar">
+  <header>
+    <div class="logo">The Orthodox Lamp</div>
+    <h2>The Church &amp; Contemporary Ethics</h2>
+  </header>
+  <div id="sb-nav">
+    <span class="sb-group">Framework</span>
+    <a href="#s1">I. Introduction</a>
+    <a href="#s2">II. The Church's Moral Authority</a>
+    <span class="sb-group">Life Issues</span>
+    <a href="#s3">III. Abortion</a>
+    <a href="#s4">IV. Euthanasia &amp; Assisted Dying</a>
+    <a href="#s5">V. Capital Punishment</a>
+    <span class="sb-group">Sexuality &amp; Marriage</span>
+    <a href="#s6">VI. Marriage — The Orthodox Vision</a>
+    <a href="#s7">VII. Homosexuality &amp; Same-Sex Relations</a>
+    <a href="#s8">VIII. Contraception &amp; Family Planning</a>
+    <a href="#s9">IX. Divorce &amp; Remarriage</a>
+    <span class="sb-group">Social Ethics</span>
+    <a href="#s10">X. Wealth, Poverty &amp; Economic Justice</a>
+    <a href="#s11">XI. War, Peace &amp; Just War</a>
+    <a href="#s12">XII. The Environment &amp; Creation Care</a>
+    <a href="#s13">XIII. Religious Freedom &amp; the State</a>
+    <span class="sb-group">Apologetics</span>
+    <a href="#s14">XIV. Common Objections</a>
+    <a href="#s15">XV. The Church and Political Engagement</a>
+    <a href="#s16">XVI. FAQ</a>
+    <a href="#s17">XVII. Sources</a>
+  </div>
+</nav>
+
+<div id="main">
+
+<div class="hero">
+  <a class="back" href="index.html">← Library</a>
+  <span class="si">☩</span>
+  <h1 class="st">THE <span>ORTHODOX</span> LAMP</h1>
+  <p class="ss">The Church &amp; Contemporary Ethics</p>
+  <p class="tg">"Do not be conformed to this world, but be transformed by the renewal of your mind." — Romans 12:2</p>
+  <div class="orn">✦ ✦ ✦</div>
+</div>
+
+<div class="content">
+
+<!-- I -->
+<div class="sec open" id="s1">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>I. Introduction — The Church Speaks to the World</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">01</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>Every generation faces moral questions that demand an answer from the Church. In the twenty-first century, those questions include abortion, euthanasia, homosexuality, divorce, contraception, economic justice, war, and the relationship between faith and the state. The Oriental Orthodox Churches — Coptic, Ethiopian, Eritrean, Syriac, Armenian, and Malankara — have not retreated from these debates. Their answers are rooted not in political ideology but in Scripture, the Holy Tradition, and the canon law forged over two millennia.</p>
+    <p>This site presents the <em>theological</em> positions of the Oriental Orthodox tradition on these contemporary moral questions. These are not partisan political positions — they are the moral teaching of an ancient Church that predates every modern political party, nation-state, and ideological framework by more than a thousand years. The Church does not take its bearings from the left or the right. It takes its bearings from the Gospel of Jesus Christ and the witness of the Holy Spirit.</p>
+    <p>A note on tone: the Oriental Orthodox approach to moral teaching has always combined <em>clarity</em> with <em>pastoral compassion</em>. The Church distinguishes between condemning a sin and condemning a person. Every human being is made in the image of God (imago Dei) and is the object of divine love — including those who struggle with, or live in, conditions the Church considers contrary to the moral order. To present the Church's teaching is not to pronounce damnation on individuals; it is to offer the ancient wisdom of the Faith as a lamp on the path of life.</p>
+  </div>
+</div>
+
+<!-- II -->
+<div class="sec" id="s2">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>II. The Church's Moral Authority — Scripture, Tradition, and Reason</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">02</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>The Oriental Orthodox moral framework rests on three inseparable sources of authority: Holy Scripture, Holy Tradition (including the decrees of the Ecumenical Councils and the consensus of the Fathers), and right reason illumined by faith. These are not competing sources but a single living deposit of truth, handed down from the apostles through an unbroken chain of bishops and teachers.</p>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">2 Timothy 3:16–17</div>
+        <div class="sv-txt">"All Scripture is breathed out by God and profitable for teaching, for reproof, for correction, and for training in righteousness, that the man of God may be complete, equipped for every good work."</div>
+        <div class="labels"><span class="label oo">OO: Scripture is the primary moral authority</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Romans 12:2</div>
+        <div class="sv-txt">"Do not be conformed to this world, but be transformed by the renewal of your mind, that by testing you may discern what is the will of God, what is good and acceptable and perfect."</div>
+        <div class="labels"><span class="label oo">OO: The Church does not derive its ethics from culture</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Jude 1:3</div>
+        <div class="sv-txt">"Contend for the faith that was once for all delivered to the saints."</div>
+        <div class="labels"><span class="label oo">OO: The Faith — including moral teaching — is fixed and must be defended</span></div>
+      </div>
+    </div>
+    <p>The OO tradition also appeals to <em>natural law</em> — the moral order written by God into the fabric of creation and knowable through human reason. This does not make the Church's ethics merely philosophical; rather, Scripture and natural law are understood as two witnesses to the same truth, one given through revelation, the other through creation.</p>
+    <p>The moral teachings of the Church are not the private opinions of individual bishops or theologians — they are the <em>consensus of the Fathers</em>, expressed through councils, canons, and the continuous lived practice of the Church. Where modern culture demands that the Church revise its teaching, the OO tradition responds that truth does not change with the passing of centuries.</p>
+  </div>
+</div>
+
+<!-- III -->
+<div class="sec" id="s3">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>III. Abortion — The Sanctity of Life from Conception</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">03</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <div class="topic-hd">
+      <span class="topic-icon">🤱</span>
+      <div><div class="topic-title">Abortion</div><div class="topic-sub">The Sanctity of Unborn Human Life</div></div>
+    </div>
+    <div class="pos forbid">
+      <span class="pos-icon">✕</span>
+      <div class="pos-body"><strong>Church Position: Prohibited</strong>Abortion — the deliberate termination of a human life in the womb — is condemned in the Oriental Orthodox tradition as the destruction of a human being made in the image of God. This has been the unanimous position of the Church from the apostolic era.</div>
+    </div>
+    <h3>The Biblical Foundation</h3>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">Psalm 139:13–16</div>
+        <div class="sv-txt">"For you formed my inward parts; you knitted me together in my mother's womb... My frame was not hidden from you when I was being made in secret, intricately woven in the depths of the earth. Your eyes saw my unformed substance; in your book were written, every one of them, the days that were formed for me."</div>
+        <div class="labels"><span class="label oo">OO: God's knowledge of the person begins in the womb</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Jeremiah 1:5</div>
+        <div class="sv-txt">"Before I formed you in the womb I knew you, and before you were born I consecrated you."</div>
+        <div class="labels"><span class="label oo">OO: Personal identity exists before birth — even before conception</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Luke 1:41–44</div>
+        <div class="sv-txt">"When Elizabeth heard the greeting of Mary, the baby leaped in her womb... 'For behold, when the sound of your greeting came to my ears, the baby in my womb leaped for joy.'"</div>
+        <div class="labels"><span class="label oo">OO: John the Baptist, in the womb, recognizes Christ — he is a person</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Exodus 21:22–25</div>
+        <div class="sv-txt">"When men strive together and hit a pregnant woman... if there is harm, then you shall pay life for life, eye for eye..."</div>
+        <div class="labels"><span class="label oo">OO: The Mosaic Law protects the unborn with full legal personhood</span><span class="label ctx">Context: LXX reads "if the child is formed" — key for Patristic exegesis</span></div>
+      </div>
+    </div>
+    <h3>The Patristic and Canonical Consensus</h3>
+    <p>The prohibition of abortion appears in the earliest non-canonical Christian texts and is repeated without dissent throughout the Patristic era:</p>
+    <div class="canon">
+      <div class="canon-ref">The Didache (c. AD 80–100)</div>
+      <div class="canon-txt">"You shall not murder a child by abortion nor kill that which is begotten." — One of the oldest post-apostolic documents, placing abortion alongside murder.</div>
+    </div>
+    <div class="canon">
+      <div class="canon-ref">Basil the Great — Canon 2 (c. AD 374)</div>
+      <div class="canon-txt">"A woman who deliberately destroys a fetus is answerable for murder. And any fine distinction between its being completely formed or unformed is not admissible amongst us." — Basil explicitly rejects the distinction between early and late abortion.</div>
+    </div>
+    <div class="canon">
+      <div class="canon-ref">Council of Ancyra — Canon 21 (AD 314)</div>
+      <div class="canon-txt">Women who fornicate and destroy that which they have conceived, or who are employed in making drugs for abortion, are by former rule excommunicated until the hour of death; and to this we now agree, mitigating their punishment to the limit of ten years.</div>
+    </div>
+    <div class="fc-grid">
+      <div class="fc">
+        <div class="fc-name">Tertullian</div>
+        <div class="fc-era">c. AD 197</div>
+        <div class="fc-txt">"We may not destroy even the fetus in the womb, while as yet the human being derives blood from the other parts of the body for its sustenance. To hinder a birth is merely a speedier man-killing; nor does it matter whether you take away a life that is born, or destroy one that is coming to birth."</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Clement of Alexandria</div>
+        <div class="fc-era">c. AD 195</div>
+        <div class="fc-txt">"Our whole life can go on in observation of the laws of nature, if we gain dominion over our desires from the beginning and if we do not kill, by various means of a perverse art, the human offspring, born according to the designs of divine providence."</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">John Chrysostom</div>
+        <div class="fc-era">c. AD 391</div>
+        <div class="fc-txt">"Why do you sow where the field is eager to destroy the fruit? Where there are medicines of sterility? Where there is murder before the birth? You do not even let a harlot remain only a harlot, but you make her a murderess as well."</div>
+      </div>
+    </div>
+    <h3>Contemporary OO Positions</h3>
+    <p>All Oriental Orthodox churches — Coptic, Ethiopian, Eritrean, Syriac, Armenian, and Malankara — officially prohibit abortion as gravely sinful. The Coptic Orthodox Church under Pope Shenouda III and his successors has explicitly stated that life begins at conception and that abortion at any stage is the taking of human life. The Ethiopian Orthodox Tewahedo Church similarly condemns abortion in the strongest terms, reflecting the tradition of the Fetha Nagast (Law of the Kings), its ancient legal code.</p>
+    <p>The OO tradition recognizes the tragic cases of rape, incest, or severe fetal abnormality as circumstances requiring pastoral sensitivity and prayer — but does not generally recognize these as justifications for abortion. The innocent child's life is not forfeit for the crime of another. Pastoral care and practical support for women in crisis pregnancies is the Church's alternative.</p>
+  </div>
+</div>
+
+<!-- IV -->
+<div class="sec" id="s4">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>IV. Euthanasia &amp; Assisted Dying</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">04</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <div class="topic-hd">
+      <span class="topic-icon">🕯️</span>
+      <div><div class="topic-title">Euthanasia &amp; Assisted Dying</div><div class="topic-sub">Death, Suffering, and the Dignity of the Person</div></div>
+    </div>
+    <div class="pos forbid">
+      <span class="pos-icon">✕</span>
+      <div class="pos-body"><strong>Church Position: Prohibited</strong>Euthanasia — the deliberate termination of a human life, whether by direct action or assisted suicide — is rejected by the Oriental Orthodox tradition as an assault on the God-given sanctity of human life and an act of presumption against divine providence.</div>
+    </div>
+    <p>The Oriental Orthodox understanding of suffering is deeply shaped by the theology of the Cross. Suffering is not meaningless — it can be redemptive, purifying, and transformative when united to the sufferings of Christ (Col 1:24; Rom 8:17). This does not mean the Church glorifies unnecessary suffering — palliative care, pain management, and compassionate accompaniment of the dying are all affirmed. What is rejected is the deliberate causation of death as a solution to suffering.</p>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">Job 1:21</div>
+        <div class="sv-txt">"The Lord gave, and the Lord has taken away; blessed be the name of the Lord."</div>
+        <div class="labels"><span class="label oo">OO: Life and death belong to God alone</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Deuteronomy 32:39</div>
+        <div class="sv-txt">"See now that I, even I, am he, and there is no god beside me; I kill and I make alive; I wound and I heal."</div>
+        <div class="labels"><span class="label oo">OO: The prerogative of life and death belongs to God</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Romans 14:8</div>
+        <div class="sv-txt">"For if we live, we live to the Lord, and if we die, we die to the Lord. So then, whether we live or whether we die, we are the Lord's."</div>
+        <div class="labels"><span class="label oo">OO: Our life and death belong to God, not to our own disposal</span></div>
+      </div>
+    </div>
+    <p>The OO tradition distinguishes between <em>euthanasia</em> (direct killing) and <em>the withdrawal of disproportionate treatment</em> — allowing a person to die naturally when extraordinary measures merely prolong dying. The latter may be morally permissible after careful discernment; the former is not. The Coptic and Ethiopian churches have both issued pastoral statements opposing physician-assisted suicide and euthanasia in all forms.</p>
+    <blockquote>The Christian approach to death is not to hasten it but to sanctify it — to make it a holy passage, accompanied by prayer, the sacraments, and the community of the Church.<cite>— summary of Oriental Orthodox pastoral teaching on end-of-life care</cite></blockquote>
+  </div>
+</div>
+
+<!-- V -->
+<div class="sec" id="s5">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>V. Capital Punishment</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">05</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <div class="topic-hd">
+      <span class="topic-icon">⚖️</span>
+      <div><div class="topic-title">Capital Punishment</div><div class="topic-sub">Justice, Mercy, and the Taking of Life by the State</div></div>
+    </div>
+    <div class="pos nuanced">
+      <span class="pos-icon">△</span>
+      <div class="pos-body"><strong>Church Position: Historically Permitted — Increasingly Questioned</strong>The Oriental Orthodox tradition has historically permitted capital punishment in principle as a legitimate function of the state, while consistently urging mercy and calling for its restriction. The modern trend in OO thought leans toward abolition in practice.</div>
+    </div>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">Genesis 9:6</div>
+        <div class="sv-txt">"Whoever sheds the blood of man, by man shall his blood be shed, for God made man in his own image."</div>
+        <div class="labels"><span class="label oo">OO: The Noahic covenant grounds capital punishment in the dignity of the image of God</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Romans 13:4</div>
+        <div class="sv-txt">"For he is God's servant for your good. But if you do wrong, be afraid, for he does not bear the sword in vain. For he is the servant of God, an avenger who carries out God's wrath on the wrongdoer."</div>
+        <div class="labels"><span class="label oo">OO: The state has divine authorization to punish evil — including with force</span></div>
+      </div>
+    </div>
+    <p>The Fathers recognized the legitimacy of the state's power over life and death in extreme cases while simultaneously urging the Church to exercise her moral influence in favor of mercy and restraint. The Ethiopian Orthodox Church has historically opposed the death penalty and has used its significant moral authority to advocate for clemency in capital cases. The Coptic community under Egyptian law has engaged similar questions.</p>
+    <p>The deeper principle: capital punishment may be permissible in theory, but the Church consistently calls rulers to mercy — recognizing that even the worst sinner retains the image of God and the possibility of repentance.</p>
+  </div>
+</div>
+
+<!-- VI -->
+<div class="sec" id="s6">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>VI. Marriage — The Orthodox Vision of the Conjugal Union</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">06</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <div class="topic-hd">
+      <span class="topic-icon">💍</span>
+      <div><div class="topic-title">Holy Matrimony</div><div class="topic-sub">The Image of Christ and the Church</div></div>
+    </div>
+    <p>The Oriental Orthodox understanding of marriage is not merely sociological or contractual — it is theological and sacramental. Marriage is a Holy Mystery in which a man and a woman are joined by God in a bond that images the union of Christ and the Church. This foundation shapes the OO response to every related contemporary debate.</p>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">Genesis 1:27–28; 2:24</div>
+        <div class="sv-txt">"So God created man in his own image... male and female he created them." / "Therefore a man shall leave his father and his mother and hold fast to his wife, and they shall become one flesh."</div>
+        <div class="labels"><span class="label oo">OO: Marriage is male-female by divine design from creation</span><span class="label ctx">Context: Quoted by Christ in Matthew 19 and Paul in Ephesians 5</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Ephesians 5:25–32</div>
+        <div class="sv-txt">"Husbands, love your wives, as Christ loved the church and gave himself up for her... This mystery is profound, and I am saying that it refers to Christ and the church."</div>
+        <div class="labels"><span class="label oo">OO: The male-female union icons a theological reality — it cannot be redefined</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Matthew 19:4–6</div>
+        <div class="sv-txt">"He who created them from the beginning made them male and female, and said, 'Therefore a man shall leave his father and his mother and hold fast to his wife, and the two shall become one flesh.' So they are no longer two but one flesh. What therefore God has joined together, let not man separate."</div>
+        <div class="labels"><span class="label oo">OO: Christ affirms the Genesis definition of marriage</span></div>
+      </div>
+    </div>
+    <p>The Oriental Orthodox teach that marriage is: (1) <strong>between a man and a woman</strong> — the male-female complementarity is essential, not accidental; (2) <strong>ordered to procreation and the nurture of children</strong>; (3) <strong>ordered to the mutual sanctification of the spouses</strong>; and (4) <strong>an icon of Christ and the Church</strong>, which is why its sexual complementarity is theologically non-negotiable.</p>
+  </div>
+</div>
+
+<!-- VII -->
+<div class="sec" id="s7">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>VII. Homosexuality &amp; Same-Sex Relations</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">07</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <div class="topic-hd">
+      <span class="topic-icon">🏳️</span>
+      <div><div class="topic-title">Homosexuality &amp; Same-Sex Relations</div><div class="topic-sub">Biblical Teaching and Pastoral Compassion</div></div>
+    </div>
+    <div class="pos forbid">
+      <span class="pos-icon">✕</span>
+      <div class="pos-body"><strong>Church Position: Same-sex sexual activity is sinful; the person is not condemned</strong>The Oriental Orthodox tradition maintains the unanimous biblical and Patristic teaching that sexual relations are licit only within Holy Matrimony between a man and a woman. Same-sex sexual activity is considered sinful. This position is held with pastoral compassion for persons who experience same-sex attraction.</div>
+    </div>
+    <h3>The Biblical Witness</h3>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">Leviticus 18:22</div>
+        <div class="sv-txt">"You shall not lie with a male as with a woman; it is an abomination."</div>
+        <div class="labels"><span class="label oo">OO: Direct Mosaic prohibition</span><span class="label ctx">Context: Part of the Holiness Code — sexual ethics retained in NT (unlike dietary/purity laws)</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Romans 1:26–27</div>
+        <div class="sv-txt">"For their women exchanged natural relations for those that are contrary to nature; and the men likewise gave up natural relations with women and were consumed with passion for one another, men committing shameless acts with men and receiving in themselves the due penalty for their error."</div>
+        <div class="labels"><span class="label oo">OO: Paul describes same-sex relations as para physin — contrary to nature</span><span class="label warn">Key NT text — explicitly describes both male and female</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">1 Corinthians 6:9–11</div>
+        <div class="sv-txt">"Or do you not know that the unrighteous will not inherit the kingdom of God? Do not be deceived: neither the sexually immoral... nor men who practice homosexuality... will inherit the kingdom of God. And such were some of you. But you were washed, you were sanctified, you were justified..."</div>
+        <div class="labels"><span class="label oo">OO: Two Greek terms (malakoi / arsenokoitai) — passive and active same-sex partners</span><span class="label ctx">Context: "And such were some of you" — transformation is possible</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">1 Timothy 1:10</div>
+        <div class="sv-txt">"...the sexually immoral, men who practice homosexuality (arsenokoitai), enslavers, liars, perjurers, and whatever else is contrary to sound doctrine..."</div>
+        <div class="labels"><span class="label oo">OO: Paul uses the same term as 1 Cor 6 in a vice list</span></div>
+      </div>
+    </div>
+    <h3>The Patristic Consensus</h3>
+    <div class="fc-grid">
+      <div class="fc">
+        <div class="fc-name">John Chrysostom</div>
+        <div class="fc-era">c. AD 391 — Homilies on Romans</div>
+        <div class="fc-txt">"All these affections then were vile, but chiefly the mad lust after males; for the soul is more the sufferer in sins, and more dishonored than the body in diseases."</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Clement of Alexandria</div>
+        <div class="fc-era">c. AD 195</div>
+        <div class="fc-txt">"The human ideal of continence, I mean that which is set forth by Greek philosophers, teaches that one should fight desire and not be subservient to it so as to bring it to practical effect. But our ideal is not to experience desire at all... especially that desire which seeks to pervert nature."</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Basil the Great</div>
+        <div class="fc-era">c. AD 374 — Canon 62</div>
+        <div class="fc-txt">Basil's canons impose significant penances on those engaged in same-sex acts, equivalent to those imposed for adultery and fornication.</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Council of Ancyra — Canon 16</div>
+        <div class="fc-era">AD 314</div>
+        <div class="fc-txt">Those who have committed sodomy before age twenty, and who have repented, shall be admitted to prayer after fifteen years; and those who are older, after twenty-five years.</div>
+      </div>
+    </div>
+    <h3>The Pastoral Dimension</h3>
+    <p>The Oriental Orthodox tradition is clear that the <em>person</em> who experiences same-sex attraction is not thereby condemned or expelled from the life of the Church. Every human person bears the image of God and is called to holiness. The Church offers the same call to all — to chastity appropriate to one's state in life: celibacy for the unmarried, fidelity for the married. The person who experiences same-sex attraction and lives chastely is living the Christian life. The Church's condemnation is of <em>same-sex sexual activity</em>, not of the person.</p>
+    <p>The OO tradition unanimously rejects <em>same-sex marriage</em> as a theological impossibility — not merely as a cultural preference. Because marriage is an icon of Christ and the Church (Eph 5:32) and its sexual complementarity is intrinsic to that icon, a union between two persons of the same sex cannot be the same thing regardless of legal designation.</p>
+    <h3>Gender Ideology and Transgenderism</h3>
+    <p>The Oriental Orthodox tradition affirms that biological sex is God-given and binary — male and female as created realities (Gen 1:27). The contemporary notion that gender is self-determined and independent of biological reality is understood as a rejection of the created order. The Church offers pastoral care to those who experience gender dysphoria — a real and painful condition — while affirming that the healing of the person is sought through prayer, sacramental life, and psychological care, not through the surgical or chemical alteration of the body in ways that contradict biological sex.</p>
+  </div>
+</div>
+
+<!-- VIII -->
+<div class="sec" id="s8">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>VIII. Contraception &amp; Family Planning</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">08</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <div class="topic-hd">
+      <span class="topic-icon">👶</span>
+      <div><div class="topic-title">Contraception &amp; Family Planning</div><div class="topic-sub">The Purposes of Marriage and Responsible Parenthood</div></div>
+    </div>
+    <div class="pos nuanced">
+      <span class="pos-icon">△</span>
+      <div class="pos-body"><strong>Church Position: Nuanced — Varies by Method and Intent</strong>The Oriental Orthodox tradition is more permissive than Rome on contraception within marriage but more restrictive than modern secular norms. Abortifacient methods are rejected outright. Contraceptive use within marriage for responsible family planning is generally tolerated, though the tradition emphasizes the openness of marriage to children.</div>
+    </div>
+    <p>The Roman Catholic Church prohibits all artificial contraception (Humanae Vitae, 1968). The Oriental Orthodox churches have not issued an equivalent blanket prohibition. The Coptic, Ethiopian, and Syriac traditions generally permit contraceptive methods that prevent fertilization (non-abortifacient methods) within marriage, within the context of responsible parenthood and mutual consent. Sterilization purely for contraceptive purposes is generally discouraged.</p>
+    <p>What is absolutely rejected is any method that acts after fertilization — hormonal contraceptives that may prevent implantation, morning-after pills, and all forms of chemical or surgical abortion. These are treated under the prohibition of abortion.</p>
+    <p>The deeper principle: marriage is ordered to children, and a persistent refusal to welcome any children at all is seen as contrary to the nature of the marital covenant. Responsible spacing of children, however, for genuine reasons of health and family welfare, is recognized as a legitimate exercise of parental prudence.</p>
+  </div>
+</div>
+
+<!-- IX -->
+<div class="sec" id="s9">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>IX. Divorce &amp; Remarriage</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">09</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <div class="topic-hd">
+      <span class="topic-icon">💔</span>
+      <div><div class="topic-title">Divorce &amp; Remarriage</div><div class="topic-sub">Pastoral Economy and the Permanence of Marriage</div></div>
+    </div>
+    <div class="pos nuanced">
+      <span class="pos-icon">△</span>
+      <div class="pos-body"><strong>Church Position: Marriage is permanent; divorce is tolerated in limited circumstances through pastoral economy (oikonomia)</strong>The Oriental Orthodox tradition holds marriage to be a permanent, lifelong bond. Divorce is not approved but is tolerated in cases of serious marital breakdown — particularly adultery, apostasy, or willful desertion — through the pastoral principle of economia.</div>
+    </div>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">Matthew 19:6, 9</div>
+        <div class="sv-txt">"What therefore God has joined together, let not man separate... And I say to you: whoever divorces his wife, except for sexual immorality (porneia), and marries another, commits adultery."</div>
+        <div class="labels"><span class="label oo">OO: Christ permits divorce only for porneia (adultery/sexual immorality)</span><span class="label ctx">Context: The "exception clause" is foundational for OO and EO pastoral practice</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">1 Corinthians 7:15</div>
+        <div class="sv-txt">"But if the unbelieving partner separates, let it be so. In such cases the brother or sister is not enslaved."</div>
+        <div class="labels"><span class="label oo">OO: The "Pauline privilege" — apostasy or abandonment may dissolve a marriage</span></div>
+      </div>
+    </div>
+    <p>The Oriental Orthodox practice differs from both Rome (which does not permit remarriage after divorce but grants annulments) and from Protestant denominations (which generally permit divorce and remarriage freely). The OO permits a second and, in exceptional cases, a third marriage — but with increasing levels of penance and more penitential liturgical rites, acknowledging the gravity of the situation. A fourth marriage is generally not permitted.</p>
+    <p>The grounds recognized for a church divorce and potential remarriage include: adultery, apostasy from the faith, willful desertion, severe and proven domestic abuse, and long-term imprisonment or disappearance. These are not automatic — they require a formal ecclesiastical process and episcopal decision.</p>
+  </div>
+</div>
+
+<!-- X -->
+<div class="sec" id="s10">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>X. Wealth, Poverty &amp; Economic Justice</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">10</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <div class="topic-hd">
+      <span class="topic-icon">⚖️</span>
+      <div><div class="topic-title">Economic Ethics</div><div class="topic-sub">The Prophetic Tradition and the Preferential Option for the Poor</div></div>
+    </div>
+    <p>The Oriental Orthodox tradition has a profound prophetic tradition on wealth, poverty, and economic justice — rooted in the Hebrew prophets, the teaching of Christ, and the Fathers. This is not a left-wing political platform; it is an ancient moral witness that challenges both unchecked capitalism and coercive state redistribution.</p>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">Luke 16:19–25</div>
+        <div class="sv-txt">"There was a rich man who was clothed in purple and fine linen and who feasted sumptuously every day. And at his gate was laid a poor man named Lazarus... The poor man died and was carried by the angels to Abraham's side. The rich man also died and was buried, and in Hades, being in torment..."</div>
+        <div class="labels"><span class="label oo">OO: Indifference to the poor imperils the soul</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Matthew 25:41–45</div>
+        <div class="sv-txt">"I was hungry and you gave me no food, I was thirsty and you gave me no drink... Truly, I say to you, as you did not do it to one of the least of these, you did not do it to me."</div>
+        <div class="labels"><span class="label oo">OO: The poor are identified with Christ — to neglect them is to neglect Christ</span></div>
+      </div>
+    </div>
+    <div class="fc-grid">
+      <div class="fc">
+        <div class="fc-name">Basil the Great</div>
+        <div class="fc-era">c. AD 369 — Homily on Avarice</div>
+        <div class="fc-txt">"The bread which you hold back belongs to the hungry; the coat, which you guard in your locked storage-chests, belongs to the naked; the footwear mouldering in your closet belongs to those without shoes."</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">John Chrysostom</div>
+        <div class="fc-era">c. AD 390</div>
+        <div class="fc-txt">"Not to share our own wealth with the poor is theft from the poor and deprivation of their means of life; we do not possess our own wealth but theirs."</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Amphilochius of Iconium</div>
+        <div class="fc-era">c. AD 380</div>
+        <div class="fc-txt">"A man who hoards the goods of the earth is like one who dams a river — he does not become richer; he only makes those downstream drier."</div>
+      </div>
+    </div>
+    <p>The Ethiopian Orthodox Church has been a historic defender of the poor and dispossessed — its monastic institutions have functioned for centuries as hospitals, schools, and relief centers for the destitute. The Coptic Church under every patriarch has run vast networks of social services. These are not political programs — they are the Church's lived expression of the Gospel.</p>
+  </div>
+</div>
+
+<!-- XI -->
+<div class="sec" id="s11">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>XI. War, Peace &amp; Just War</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">11</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <div class="topic-hd">
+      <span class="topic-icon">⚔️</span>
+      <div><div class="topic-title">War and Peace</div><div class="topic-sub">Defending the Innocent and the Limits of Violence</div></div>
+    </div>
+    <div class="pos nuanced">
+      <span class="pos-icon">△</span>
+      <div class="pos-body"><strong>Church Position: War may be justified to defend the innocent; it is always a tragedy</strong>The Oriental Orthodox tradition neither romanticizes war nor embraces absolute pacifism. A just war to defend innocent life against aggression is recognized as morally permissible — but always with grief, penance, and the pursuit of peace.</div>
+    </div>
+    <p>The Oriental Orthodox churches have been tested by centuries of persecution, massacre, and genocide — the Armenian Genocide (1915–1923), the persecution of Copts, the near-annihilation of Syriac Christians. These historical realities have shaped a realistic, non-utopian view of conflict that honors both the call to peace and the duty to defend the innocent.</p>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">Romans 13:4</div>
+        <div class="sv-txt">"He is God's servant for your good... he does not bear the sword in vain."</div>
+        <div class="labels"><span class="label oo">OO: The state's use of force in defense of justice is divinely authorized</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Proverbs 24:11</div>
+        <div class="sv-txt">"Rescue those who are being taken away to death; hold back those who are stumbling to the slaughter."</div>
+        <div class="labels"><span class="label oo">OO: A positive duty to defend innocent life</span></div>
+      </div>
+    </div>
+    <p>Basil the Great recommended that soldiers who had killed in war undergo three years of abstention from Communion as a penitential act — not because war is always murder, but because the taking of life, even when justified, leaves a mark on the soul that needs healing. This is the pastoral realism of the ancient Church — neither hawkish glorification of violence nor naive pacifism that abandons the innocent to their attackers.</p>
+  </div>
+</div>
+
+<!-- XII -->
+<div class="sec" id="s12">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>XII. The Environment &amp; Creation Care</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">12</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <div class="topic-hd">
+      <span class="topic-icon">🌿</span>
+      <div><div class="topic-title">Creation Care</div><div class="topic-sub">Stewardship of God's World</div></div>
+    </div>
+    <div class="pos permit">
+      <span class="pos-icon">✓</span>
+      <div class="pos-body"><strong>Church Position: Strong Affirmation of Environmental Stewardship</strong>The care of creation is a theological mandate, rooted in the original calling to "tend and keep" the garden (Gen 2:15). The destruction of God's creation through pollution, exploitation, and environmental degradation is a moral and spiritual failure, not merely a political issue.</div>
+    </div>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">Genesis 2:15</div>
+        <div class="sv-txt">"The Lord God took the man and put him in the garden of Eden to work it and keep it."</div>
+        <div class="labels"><span class="label oo">OO: The original human vocation is stewardship (shamar = keep/guard) of creation</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Psalm 24:1</div>
+        <div class="sv-txt">"The earth is the Lord's and the fullness thereof, the world and those who dwell therein."</div>
+        <div class="labels"><span class="label oo">OO: The earth belongs to God — we are tenants, not owners</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Romans 8:21</div>
+        <div class="sv-txt">"The creation itself will be set free from its bondage to corruption and obtain the freedom of the glory of the children of God."</div>
+        <div class="labels"><span class="label oo">OO: Creation shares in the eschatological hope — it is not disposable</span></div>
+      </div>
+    </div>
+    <p>The Ethiopian Orthodox Church is especially notable for its environmental witness — Ethiopian Orthodox monasteries have for centuries served as biodiversity sanctuaries, preserving indigenous forests and ecosystems. The Church's liturgical trees (each church surrounded by a sacred grove) are a tangible expression of creation theology. The Coptic Church has also spoken against environmental degradation along the Nile and in urban areas.</p>
+    <p>The OO framework rejects both reckless exploitation of nature (treating creation as a mere resource) and the pantheistic identification of nature with God (as in some environmentalist philosophies). Creation is good, made by a good God, and entrusted to humanity's stewardship — to be cared for and offered back to its Maker.</p>
+  </div>
+</div>
+
+<!-- XIII -->
+<div class="sec" id="s13">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>XIII. Religious Freedom &amp; the State</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">13</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <div class="topic-hd">
+      <span class="topic-icon">🕊️</span>
+      <div><div class="topic-title">Religious Freedom</div><div class="topic-sub">The Church, the State, and the Rights of Conscience</div></div>
+    </div>
+    <div class="pos permit">
+      <span class="pos-icon">✓</span>
+      <div class="pos-body"><strong>Church Position: Strong Affirmation of Religious Freedom</strong>The Oriental Orthodox churches — having lived as minority communities under empires, caliphates, and hostile states for most of their history — are among the strongest advocates for genuine religious freedom for all people, not only Christians.</div>
+    </div>
+    <p>The Coptic, Syriac, and Armenian churches have endured centuries of dhimmi status under Islamic rule, state-sponsored persecution, forced conversions, and genocide. The Ethiopian Church survived repeated invasions and religious oppression. This experience has given the OO tradition a deeply felt commitment to the right of every person to worship God according to their conscience without coercion.</p>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">Acts 5:29</div>
+        <div class="sv-txt">"We must obey God rather than men."</div>
+        <div class="labels"><span class="label oo">OO: The state's authority is real but limited — religious conscience has a higher claim</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Romans 13:1–4</div>
+        <div class="sv-txt">"Let every person be subject to the governing authorities... the authorities are God's servants... But if you do wrong, be afraid."</div>
+        <div class="labels"><span class="label oo">OO: The state has legitimate authority — but it is delegated, not absolute</span></div>
+      </div>
+    </div>
+    <p>The OO tradition draws a clear line between the legitimate authority of the state in civil matters and its overreach into the realm of conscience and religious practice. Contemporary challenges — the legal pressure to perform same-sex marriages, to affirm gender ideology in schools, to compel participation in activities contrary to faith — are seen by the OO as precisely the kind of state overreach that Christians in every age have resisted. The tradition of martyrdom, from the apostles through the Coptic martyrs of Libya (2015), is the ultimate expression of this principle: fidelity to God supersedes fidelity to any human institution.</p>
+  </div>
+</div>
+
+<!-- XIV -->
+<div class="sec" id="s14">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>XIV. Common Objections to the Orthodox Moral Vision</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">14</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+
+    <div class="obj">
+      <div class="obj-hd" onclick="tobj(this)">
+        <strong>Objection 1: "These are Old Testament laws — Jesus abolished the law. Christians should not impose Leviticus."</strong>
+        <span class="obj-arr">▶</span>
+      </div>
+      <div class="obj-body">
+        <p>The most common secular objection to biblical sexual ethics is that it relies on the Mosaic Law, which was superseded by Christ. If we eat shrimp and wear mixed fabrics, why follow Leviticus 18?</p>
+        <div class="obj-resp">
+          <strong>Orthodox Response</strong>
+          <p>The distinction between the moral law (universally binding), ceremonial law (fulfilled in Christ), and civil law (specific to ancient Israel) has been recognized since the Patristic era. Jesus explicitly reaffirmed the moral law (including sexual ethics) while fulfilling the ceremonial law. The prohibitions against homosexual acts are not dietary or purity laws — they are part of the moral law, repeated and strengthened in the New Testament (Romans 1, 1 Corinthians 6, 1 Timothy 1). Paul writes his prohibitions to Gentile communities who were never under the Mosaic Law — demonstrating that the moral teaching stands independently of the Mosaic covenant.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="obj">
+      <div class="obj-hd" onclick="tobj(this)">
+        <strong>Objection 2: "The Church should stay out of politics. Religion is private."</strong>
+        <span class="obj-arr">▶</span>
+      </div>
+      <div class="obj-body">
+        <p>Many argue that religious moral teaching has no place in public life — that it belongs in the private sphere and should not influence legislation or public debate.</p>
+        <div class="obj-resp">
+          <strong>Orthodox Response</strong>
+          <p>The Oriental Orthodox churches have never accepted the privatization of faith. The prophets of Israel spoke truth to kings. John the Baptist condemned Herod's adulterous marriage. The Apostles were executed for refusing to privatize their allegiance to Christ. The Church's moral teaching is not a preference to be kept quiet — it is a witness to the truth about human nature and human flourishing that the Church is commissioned to proclaim. Moreover, the demand that religion be private is itself a philosophical position, not a neutral stance — it is a particular secular ideology that claims to adjudicate what may be said in public discourse. The Church does not accept that adjudication.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="obj">
+      <div class="obj-hd" onclick="tobj(this)">
+        <strong>Objection 3: "Homosexuality is natural — people are born gay. How can you condemn something natural?"</strong>
+        <span class="obj-arr">▶</span>
+      </div>
+      <div class="obj-body">
+        <p>The argument from nature: if same-sex attraction is innate and unchosen, it cannot be condemned. The Church's position is therefore cruel and based on ignorance of human biology and psychology.</p>
+        <div class="obj-resp">
+          <strong>Orthodox Response</strong>
+          <p>The OO tradition distinguishes between <em>experiencing an attraction</em> and <em>acting on that attraction</em>. The Church does not condemn persons for what they feel — it teaches about what we do. The question of whether same-sex attraction has genetic, developmental, or environmental components is a scientific question on which the Church does not pronounce definitively. But the naturalistic fallacy — that "natural" means morally permissible — is philosophically invalid. Many destructive impulses (including aggression, addiction, and self-destructive tendencies) may have natural or genetic components; this does not make acting on them morally acceptable. The Christian tradition has always taught that fallen human nature tends toward disorder, and that grace heals and orders the disordered — including all forms of disordered desire, not only sexual.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="obj">
+      <div class="obj-hd" onclick="tobj(this)">
+        <strong>Objection 4: "The Church's position on abortion ignores the woman's rights and health."</strong>
+        <span class="obj-arr">▶</span>
+      </div>
+      <div class="obj-body">
+        <p>The pro-choice argument: women have bodily autonomy; no one, including the Church, should compel a woman to continue a pregnancy against her will. The fetus is not a full person with equal rights.</p>
+        <div class="obj-resp">
+          <strong>Orthodox Response</strong>
+          <p>The OO tradition takes the suffering of women in crisis pregnancies with profound seriousness — and the Church's call is to surround such women with practical support, not condemnation. But the resolution of the question depends entirely on the nature of the fetus. If the being in the womb is a human person made in the image of God — and the OO holds, based on Scripture, Patristic consensus, and modern embryology, that this is the case from conception — then the bodily autonomy argument cannot override the life of another person. Rights always have limits where they conflict with the rights of others. The Church calls for a society that supports women and children together — not a society that resolves the difficulty by eliminating the child.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="obj">
+      <div class="obj-hd" onclick="tobj(this)">
+        <strong>Objection 5: "The Church's teachings are hateful and cause harm to LGBTQ people."</strong>
+        <span class="obj-arr">▶</span>
+      </div>
+      <div class="obj-body">
+        <p>Many argue that the Church's moral teaching on sexuality causes psychological harm to LGBTQ individuals, contributing to mental health crises, and therefore the teaching itself is harmful and should be revised.</p>
+        <div class="obj-resp">
+          <strong>Orthodox Response</strong>
+          <p>The OO tradition distinguishes sharply between the truth of a moral teaching and the manner in which it is communicated and lived. A Church that communicates condemnation without compassion, that shames rather than shepherds, fails the Gospel. The appropriate response is not to revise the truth but to communicate it with genuine pastoral love. Moreover, the argument that a teaching causes harm does not in itself establish that the teaching is false — many true teachings cause difficulty or distress. The Church's position is that the path of chastity, while difficult, is ultimately a path of freedom and healing — not harm. She calls all people, including those who experience same-sex attraction, to the fullness of life in Christ.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- XV -->
+<div class="sec" id="s15">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>XV. The Church and Political Engagement</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">15</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>The Oriental Orthodox tradition does not align itself with any political party, movement, or ideology. The Church is older than every modern political system and will outlast them all. Her moral teaching transcends left and right — she affirms the sanctity of unborn life (which resonates with the political right) and the prophetic care for the poor (which resonates with the political left). She holds together a comprehensive vision of the human person that no political party fully embraces.</p>
+    <p>The role of the Church in political life is <em>prophetic witness</em> — speaking truth to power, advocating for the vulnerable, and calling societies to moral accountability. It is not the Church's role to endorse candidates, manage governments, or impose the Gospel by force. The great Coptic martyr-tradition, the Armenian witness through genocide, the Syrian churches under ISIS — all demonstrate that the Church's power is not political but spiritual.</p>
+    <p>Individual Orthodox Christians are called to participate in political life as citizens — voting, advocating, serving in government — guided by the moral teaching of the Church. They will disagree on prudential questions (tax policy, immigration systems, foreign policy) where the Church does not pronounce. But on questions of moral principle — the life of the unborn, the definition of marriage, the dignity of the poor — the Church's teaching provides clear orientation.</p>
+    <blockquote>"The Church is not a political party. But neither is she mute. She has a word from God, and she will speak it — in season and out of season — until the Kingdom comes."<cite>— Paraphrase of 2 Timothy 4:2</cite></blockquote>
+  </div>
+</div>
+
+<!-- XVI -->
+<div class="sec" id="s16">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>XVI. Frequently Asked Questions</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">16</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+
+    <div class="fi">
+      <div class="fi-hd" onclick="tf(this)">
+        <strong>Does the Oriental Orthodox Church condemn LGBTQ people?</strong>
+        <span class="fi-arr">▶</span>
+      </div>
+      <div class="fi-body">
+        <p>No. The Church condemns no person — God alone judges the heart. The Church teaches that same-sex sexual activity is sinful, as do the vast majority of Christian traditions throughout history. But every person who experiences same-sex attraction is a child of God, made in his image, and is welcomed into the Church's life and pastoral care. The standard the Church holds is the same for everyone: chastity — sexual continence for the unmarried, fidelity for the married. This is a demanding standard that the Church calls all people to live, in the power of the Holy Spirit.</p>
+      </div>
+    </div>
+
+    <div class="fi">
+      <div class="fi-hd" onclick="tf(this)">
+        <strong>Has the Oriental Orthodox position on these issues changed, or might it change?</strong>
+        <span class="fi-arr">▶</span>
+      </div>
+      <div class="fi-body">
+        <p>The fundamental moral positions — on the sanctity of life from conception, on marriage as the union of a man and woman, on sexual ethics — have not changed and are not expected to change. These are not policies or preferences but dogmatic moral teachings rooted in Scripture, the Patristic consensus, and the canonical tradition of the Church. The Church does not derive her teaching from cultural consensus; she teaches what she has received. However, the <em>pastoral application</em> of these teachings — how to accompany people pastorally, how to communicate with compassion, how to prioritize the most urgent issues — does develop over time.</p>
+      </div>
+    </div>
+
+    <div class="fi">
+      <div class="fi-hd" onclick="tf(this)">
+        <strong>Can a practicing homosexual receive Communion in an OO church?</strong>
+        <span class="fi-arr">▶</span>
+      </div>
+      <div class="fi-body">
+        <p>This is a pastoral question that ultimately belongs to the confessor and the bishop. The general principle is that Holy Communion requires a state of repentance and a sincere intention to amend one's life. This applies equally to all sins — not only sexual ones. A person who is actively and unrepentantly engaging in any grave sin — including same-sex acts, adultery, theft, or persistent hatred — is called by the Church to repentance before receiving Communion. This is not a special rule for homosexuality; it is the Church's general discipline for all.</p>
+      </div>
+    </div>
+
+    <div class="fi">
+      <div class="fi-hd" onclick="tf(this)">
+        <strong>What is the OO position on capital punishment for apostasy or homosexuality as enforced in some Islamic states?</strong>
+        <span class="fi-arr">▶</span>
+      </div>
+      <div class="fi-body">
+        <p>The Oriental Orthodox Churches reject the imposition of capital punishment for religious apostasy or for sexual sin. While the Church teaches that homosexual acts are sinful and that apostasy from the faith is gravely serious, the state does not have the authority to execute people for these offenses under Christian moral theology. The OO tradition — which has itself suffered under laws allowing the execution or severe punishment of Christians for their faith — is among the strongest advocates for the right of persons not to be executed for matters of religious belief or sexual conduct. The Church's discipline is ecclesial (penance, exclusion from Communion, spiritual guidance) — not penal in the state's sense.</p>
+      </div>
+    </div>
+
+    <div class="fi">
+      <div class="fi-hd" onclick="tf(this)">
+        <strong>Is the OO Church against science regarding gender or human sexuality?</strong>
+        <span class="fi-arr">▶</span>
+      </div>
+      <div class="fi-body">
+        <p>The Oriental Orthodox tradition is not anti-science. It accepts the findings of biology, medicine, and psychology as valuable sources of knowledge about God's creation. The tension is not between faith and science but between different philosophical frameworks for interpreting scientific data. The OO tradition holds that the biological reality of male and female is not merely a social construct — a position that is, in fact, supported by mainstream biology. On questions of sexual orientation, the science is genuinely complex and contested; the OO tradition does not claim to have resolved the scientific debates but maintains that whatever the etiology of same-sex attraction, the moral teaching on sexual activity remains what it has always been.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- XVII -->
+<div class="sec" id="s17">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>XVII. Primary Sources &amp; Further Reading</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">17</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <h3>Scripture &amp; Canon Law</h3>
+    <ul>
+      <li>The Didache (c. AD 80–100)</li>
+      <li>Canons of the Council of Ancyra (AD 314)</li>
+      <li>Basil the Great — Canonical Letters (Canons 2, 8, 62, 70, 87)</li>
+      <li>The Fetha Nagast — Ethiopian Orthodox Canon Law (14th century)</li>
+      <li>Synodal Epistles of the Coptic Orthodox Patriarchs</li>
+    </ul>
+    <h3>Patristic Sources</h3>
+    <ul>
+      <li>Tertullian — <em>On Abortion</em>, <em>Against Marcion</em> (c. AD 197–207)</li>
+      <li>Clement of Alexandria — <em>Paedagogus</em> (c. AD 195)</li>
+      <li>Origen — <em>Commentary on Romans</em> (c. AD 240)</li>
+      <li>Basil the Great — <em>Homily on Avarice</em>, <em>Canonical Epistles</em> (c. AD 369–374)</li>
+      <li>John Chrysostom — <em>Homilies on Romans</em>, <em>On Wealth and Poverty</em> (c. AD 390)</li>
+      <li>Augustine — <em>City of God</em>, <em>On the Good of Marriage</em> (c. AD 413–426)</li>
+    </ul>
+    <h3>Modern OO Statements</h3>
+    <ul>
+      <li>Pope Shenouda III — Various pastoral encyclicals on family and life issues</li>
+      <li>Ethiopian Orthodox Tewahedo Church — Synodal declarations on social ethics</li>
+      <li>Armenian Apostolic Church — Statements on marriage and family</li>
+      <li>Malankara Orthodox Syrian Church — Pastoral letters on contemporary ethics</li>
+    </ul>
+    <h3>Scholarly Works</h3>
+    <ul>
+      <li>John Breck — <em>The Sacred Gift of Life: Orthodox Christianity and Bioethics</em> (1998)</li>
+      <li>Stanley Harakas — <em>Toward Transfigured Life: The Theoria of Eastern Orthodox Ethics</em> (1983)</li>
+      <li>Vigen Guroian — <em>Incarnate Love: Essays in Orthodox Ethics</em> (1987)</li>
+      <li>Alexander Webster &amp; Demetrios Constantelos — <em>The Tradition of Life: Orthodox Christianity and Bioethics</em></li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- /content -->
+</div><!-- /main -->
+
+<footer>
+  <p>THE <span>ORTHODOX LAMP</span> &nbsp;·&nbsp; Biblical, Historical &amp; Patristic Apologetics</p>
+  <p style="margin-top:.5rem;font-size:.72rem;opacity:.6;">☩ &nbsp; In the name of the Father, and of the Son, and of the Holy Spirit &nbsp; ☩</p>
+</footer>
+
+<script>
+function ts(h){h.closest('.sec').classList.toggle('open')}
+function tobj(h){h.closest('.obj').classList.toggle('open')}
+function tf(h){h.closest('.fi').classList.toggle('open')}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').classList.toggle('show')}
+function closeMobile(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
+
+window.addEventListener('scroll',()=>{
+  const s=document.documentElement,b=document.body;
+  const h=s.scrollHeight-s.clientHeight;
+  const p=h>0?(s.scrollTop||b.scrollTop)/h*100:0;
+  document.getElementById('prog').style.width=p+'%';
+});
+
+const links=[...document.querySelectorAll('#sb-nav a')];
+const secs=[...document.querySelectorAll('.sec')];
+window.addEventListener('scroll',()=>{
+  let cur='';
+  secs.forEach(s=>{if(window.scrollY>=s.offsetTop-120)cur='#'+s.id});
+  links.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')===cur)});
+},{passive:true});
+</script>
+</body>
+</html>

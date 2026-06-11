@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Orthodox Lamp — Twenty Questions on God and Christ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#16100a;
+    --bg-soft:#1e1610;
+    --panel:#241b12;
+    --panel-2:#2b2015;
+    --ink:#e8dcc8;
+    --ink-dim:#b9a888;
+    --gold:#d4a44c;
+    --gold-bright:#f0c46c;
+    --flame:#ff9d3f;
+    --rule:#3d2f1e;
+    --scripture:#9fc4a8;
+    --father:#d8b8e0;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'EB Garamond',Georgia,serif;
+    font-size:19px;
+    line-height:1.75;
+  }
+  body::before{
+    content:"";
+    position:fixed;inset:0;
+    background:
+      radial-gradient(ellipse 70% 45% at 50% -5%, rgba(212,164,76,.13), transparent 60%),
+      radial-gradient(ellipse 40% 30% at 85% 100%, rgba(212,164,76,.05), transparent 60%);
+    pointer-events:none;z-index:0;
+  }
+  ::selection{background:rgba(212,164,76,.35)}
+
+  /* ---------- header ---------- */
+  header{
+    position:relative;z-index:1;
+    text-align:center;
+    padding:90px 24px 60px;
+    border-bottom:1px solid var(--rule);
+    background:
+      radial-gradient(ellipse 55% 60% at 50% 0%, rgba(255,157,63,.08), transparent 70%);
+  }
+  .lamp{width:120px;height:auto;margin:0 auto 28px;display:block}
+  .flame-flicker{animation:flick 3.2s ease-in-out infinite;transform-origin:50% 100%}
+  @keyframes flick{
+    0%,100%{transform:scaleY(1) scaleX(1);opacity:.95}
+    25%{transform:scaleY(1.06) scaleX(.97);opacity:1}
+    50%{transform:scaleY(.96) scaleX(1.03);opacity:.9}
+    75%{transform:scaleY(1.04) scaleX(.98);opacity:1}
+  }
+  .series{
+    font-size:13px;letter-spacing:.42em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:18px;font-weight:500;
+  }
+  h1{
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(42px,7vw,76px);
+    font-weight:600;letter-spacing:.02em;
+    color:var(--gold-bright);
+    line-height:1.1;
+  }
+  .subtitle{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;font-size:clamp(20px,2.6vw,26px);
+    color:var(--ink-dim);margin-top:16px;
+  }
+  .header-verse{
+    max-width:560px;margin:34px auto 0;
+    font-style:italic;color:var(--ink-dim);font-size:18px;
+  }
+  .header-verse cite{display:block;font-style:normal;font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-top:8px}
+
+  /* ---------- nav ---------- */
+  nav.top{
+    position:sticky;top:0;z-index:50;
+    background:rgba(22,16,10,.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--rule);
+    display:flex;justify-content:center;gap:8px;flex-wrap:wrap;
+    padding:12px 16px;
+  }
+  nav.top a{
+    color:var(--ink-dim);text-decoration:none;
+    font-size:14px;letter-spacing:.14em;text-transform:uppercase;
+    padding:6px 14px;border:1px solid transparent;border-radius:3px;
+    transition:all .25s;
+  }
+  nav.top a:hover{color:var(--gold-bright);border-color:var(--rule)}
+
+  /* ---------- layout ---------- */
+  main{position:relative;z-index:1;max-width:860px;margin:0 auto;padding:0 24px 120px}
+  .intro{padding:70px 0 30px;font-size:20px}
+  .intro p{margin-bottom:1.3em}
+  .intro .dropcap::first-letter{
+    font-family:'Cormorant Garamond',serif;
+    font-size:4.1em;font-weight:600;color:var(--gold);
+    float:left;line-height:.82;padding:6px 12px 0 0;
+  }
+
+  /* ---------- part headers ---------- */
+  .part-head{
+    text-align:center;
+    padding:90px 0 30px;
+  }
+  .part-head .ornament{color:var(--gold);font-size:22px;letter-spacing:.5em;margin-bottom:18px}
+  .part-head .part-label{font-size:13px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;font-weight:500}
+  .part-head h2{
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(32px,5vw,48px);font-weight:600;color:var(--gold-bright);line-height:1.15;
+  }
+  .part-head .part-sub{font-style:italic;color:var(--ink-dim);margin-top:12px;font-size:19px}
+
+  /* ---------- table of contents ---------- */
+  .toc{
+    display:grid;grid-template-columns:1fr 1fr;gap:10px;
+    margin:30px 0 10px;
+  }
+  @media(max-width:640px){.toc{grid-template-columns:1fr}}
+  .toc a{
+    display:flex;align-items:baseline;gap:12px;
+    background:var(--panel);
+    border:1px solid var(--rule);
+    border-radius:4px;
+    padding:14px 18px;
+    color:var(--ink);text-decoration:none;
+    font-size:16.5px;line-height:1.45;
+    transition:all .25s;
+  }
+  .toc a:hover{border-color:var(--gold);background:var(--panel-2);transform:translateY(-1px)}
+  .toc .n{
+    font-family:'Cormorant Garamond',serif;font-weight:700;
+    color:var(--gold);font-size:20px;min-width:24px;
+  }
+
+  /* ---------- articles ---------- */
+  article{
+    padding:78px 0 10px;
+    border-bottom:1px solid var(--rule);
+    scroll-margin-top:70px;
+  }
+  article:last-of-type{border-bottom:none}
+  .q-label{
+    font-size:12.5px;letter-spacing:.38em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:12px;font-weight:500;
+  }
+  article h3{
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(28px,4vw,40px);font-weight:600;
+    color:var(--gold-bright);line-height:1.2;margin-bottom:8px;
+  }
+  .short-answer{
+    font-family:'Cormorant Garamond',serif;font-style:italic;
+    font-size:22px;color:var(--ink-dim);
+    margin:14px 0 30px;padding-left:18px;
+    border-left:2px solid var(--gold);line-height:1.5;
+  }
+  article p{margin-bottom:1.35em}
+  article h4{
+    font-family:'Cormorant Garamond',serif;
+    font-size:24px;font-weight:600;color:var(--gold);
+    margin:1.9em 0 .7em;
+  }
+  article em{color:var(--ink)}
+  .greek{color:var(--gold-bright);font-style:italic}
+
+  /* ---------- quotes ---------- */
+  blockquote{
+    margin:1.8em 0;padding:22px 26px;border-radius:4px;
+    font-size:18px;line-height:1.7;
+    position:relative;
+  }
+  blockquote p{margin-bottom:.8em}
+  blockquote p:last-of-type{margin-bottom:0}
+  blockquote cite{
+    display:block;margin-top:12px;font-style:normal;
+    font-size:13.5px;letter-spacing:.18em;text-transform:uppercase;
+  }
+  blockquote.scripture{
+    background:rgba(120,170,130,.07);
+    border-left:3px solid var(--scripture);
+    font-style:italic;color:#cfe2d4;
+  }
+  blockquote.scripture cite{color:var(--scripture)}
+  blockquote.father{
+    background:rgba(190,150,205,.06);
+    border-left:3px solid var(--father);
+    color:#e6d6ea;
+  }
+  blockquote.father cite{color:var(--father)}
+  blockquote.creed{
+    background:rgba(212,164,76,.07);
+    border-left:3px solid var(--gold);
+    color:var(--ink);font-style:italic;
+  }
+  blockquote.creed cite{color:var(--gold)}
+
+  /* ---------- misc ---------- */
+  .verse-ref{color:var(--scripture);font-size:.92em;white-space:nowrap}
+  .sep{ text-align:center;color:var(--gold);letter-spacing:.6em;padding:26px 0 0;font-size:15px }
+  .top-link{display:inline-block;margin-top:26px;color:var(--ink-dim);font-size:14px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none}
+  .top-link:hover{color:var(--gold-bright)}
+  footer{
+    position:relative;z-index:1;
+    border-top:1px solid var(--rule);
+    text-align:center;padding:60px 24px 80px;
+    color:var(--ink-dim);
+  }
+  footer .doxology{
+    font-family:'Cormorant Garamond',serif;font-style:italic;
+    font-size:24px;color:var(--gold-bright);max-width:640px;margin:0 auto 20px;line-height:1.5;
+  }
+  footer .fine{font-size:15px;max-width:620px;margin:0 auto}
+</style>
+</head>
+<body>
+
+<header>
+  <svg class="lamp" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#ffb95e" stop-opacity=".55"/>
+        <stop offset="100%" stop-color="#ffb95e" stop-opacity="0"/>
+      </radialGradient>
+      <linearGradient id="flameG" x1="0" y1="1" x2="0" y2="0">
+        <stop offset="0%" stop-color="#ff7a1f"/>
+        <stop offset="55%" stop-color="#ffb347"/>
+        <stop offset="100%" stop-color="#ffe9b0"/>
+      </linearGradient>
+      <linearGradient id="brassG" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#e3b860"/>
+        <stop offset="50%" stop-color="#a87b35"/>
+        <stop offset="100%" stop-color="#7a5523"/>
+      </linearGradient>
+    </defs>
+    <circle cx="60" cy="38" r="34" fill="url(#glow)"/>
+    <g class="flame-flicker">
+      <path d="M60 16 C66 26 70 32 70 40 C70 48 65.5 53 60 53 C54.5 53 50 48 50 40 C50 32 54 26 60 16 Z" fill="url(#flameG)"/>
+      <path d="M60 30 C63 35 64.5 38 64.5 42 C64.5 46.5 62.5 49 60 49 C57.5 49 55.5 46.5 55.5 42 C55.5 38 57 35 60 30 Z" fill="#fff3cf" opacity=".85"/>
+    </g>
+    <rect x="56" y="52" width="8" height="7" rx="2" fill="#8a6228"/>
+    <path d="M28 62 L92 62 C92 80 78 92 60 92 C42 92 28 80 28 62 Z" fill="url(#brassG)"/>
+    <rect x="24" y="58" width="72" height="6" rx="3" fill="#caa14e"/>
+    <rect x="56" y="92" width="8" height="16" fill="url(#brassG)"/>
+    <path d="M38 118 C38 110 47 108 60 108 C73 108 82 110 82 118 L82 122 L38 122 Z" fill="url(#brassG)"/>
+    <rect x="32" y="122" width="56" height="6" rx="3" fill="#caa14e"/>
+  </svg>
+  <div class="series">The Orthodox Lamp</div>
+  <h1>Twenty Questions<br>on God and Christ</h1>
+  <p class="subtitle">In-depth answers from the Holy Scriptures and the Fathers of the Church</p>
+  <blockquote class="header-verse">
+    “Your word is a lamp to my feet and a light to my path.”
+    <cite>Psalm 119:105</cite>
+  </blockquote>
+</header>
+
+<nav class="top">
+  <a href="#part1">Part I · God &amp; the Trinity</a>
+  <a href="#part2">Part II · Christ &amp; His Work</a>
+  <a href="#contents">Contents</a>
+</nav>
+
+<main>
+
+<section class="intro" id="contents">
+  <p class="dropcap">In the Orthodox Church a lamp is never merely decoration. It burns before the icons, in the sanctuary, and in the homes of the faithful as a confession: that Christ is “the true Light which gives light to every man coming into the world” <span class="verse-ref">(John 1:9)</span>, and that His Church is set on a lampstand to give light to all <span class="verse-ref">(Matthew 5:15)</span>. This series takes up twenty questions — some sounding simple, all of them deep — and answers them from the Holy Scriptures and the writings of the Church Fathers, in the faith of the Apostles handed down through the One, Holy, Catholic, and Apostolic Church, and treasured in the Oriental Orthodox communion of Alexandria, Antioch, Armenia, Ethiopia, Eritrea, and India.</p>
+  <p>The Fathers warn us to approach these mysteries with reverence. St. Gregory the Theologian said that to speak of God is permitted “not to all... and not before all audiences,” for the subject is holy ground. We do not answer these questions to satisfy curiosity, but so that, knowing God more truly, we may love and worship Him more fully. Read slowly. Where the answer reaches a mystery, the right response is not frustration but doxology.</p>
+
+  <div class="part-head" style="padding-top:30px">
+    <div class="ornament">☩</div>
+    <div class="part-label">Part I</div>
+    <h2>On God and the Holy Trinity</h2>
+  </div>
+  <div class="toc">
+    <a href="#p1q1"><span class="n">1</span>How can God be one and three at the same time?</a>
+    <a href="#p1q2"><span class="n">2</span>What is the Trinity?</a>
+    <a href="#p1q3"><span class="n">3</span>Why doesn’t the Bible use the word “Trinity”?</a>
+    <a href="#p1q4"><span class="n">4</span>Is Jesus God, or the Son of God?</a>
+    <a href="#p1q5"><span class="n">5</span>Is the Holy Spirit a person or merely a force?</a>
+    <a href="#p1q6"><span class="n">6</span>How can Jesus be both fully God and fully man?</a>
+    <a href="#p1q7"><span class="n">7</span>Why did God create humanity?</a>
+    <a href="#p1q8"><span class="n">8</span>Why does God allow evil and suffering?</a>
+    <a href="#p1q9"><span class="n">9</span>Does God know the future?</a>
+    <a href="#p1q10"><span class="n">10</span>Does God change His mind?</a>
+  </div>
+
+  <div class="part-head" style="padding-top:50px">
+    <div class="ornament">☩</div>
+    <div class="part-label">Part II</div>
+    <h2>On Christ and His Saving Work</h2>
+  </div>
+  <div class="toc">
+    <a href="#p2q1"><span class="n">1</span>Why did Jesus have to die on the Cross?</a>
+    <a href="#p2q2"><span class="n">2</span>What exactly did Jesus accomplish through His death?</a>
+    <a href="#p2q3"><span class="n">3</span>Did Jesus descend into Hades after His death?</a>
+    <a href="#p2q4"><span class="n">4</span>Why did Jesus rise from the dead?</a>
+    <a href="#p2q5"><span class="n">5</span>Is Jesus the only way to salvation?</a>
+    <a href="#p2q6"><span class="n">6</span>Could Jesus have sinned?</a>
+    <a href="#p2q7"><span class="n">7</span>What happened during Christ’s earthly ministry?</a>
+    <a href="#p2q8"><span class="n">8</span>What does it mean that Jesus is seated at the Father’s right hand?</a>
+    <a href="#p2q9"><span class="n">9</span>Why is Christ called the “Second Adam”?</a>
+    <a href="#p2q10"><span class="n">10</span>When will Jesus return?</a>
+  </div>
+</section>
+
+<!-- PART I -->
+<section id="part1">
+  <div class="part-head">
+    <div class="ornament">✦ ☩ ✦</div>
+    <div class="part-label">Part I</div>
+    <h2>On God and the Holy Trinity</h2>
+    <p class="part-sub">“Holy, Holy, Holy is the Lord of hosts; the whole earth is full of His glory.” — Isaiah 6:3</p>
+  </div>
+<article id="p1q1">
+  <div class="q-label">Part I · Question 1</div>
+  <h3>How can God be one and three at the same time?</h3>
+  <p class="short-answer">God is one in essence and three in persons. He is not one and three in the same respect — that would be a contradiction. He is one in what He is, and three in who He is.</p>
+
+  <p>The objection usually runs: “One cannot equal three; the Trinity is a logical contradiction.” But a contradiction only exists when something is affirmed and denied <em>in the same respect</em>. The Church has never said God is one person and three persons, or one essence and three essences. She confesses that God is one in <span class="greek">ousia</span> (essence, being, nature) and three in <span class="greek">hypostasis</span> (person, concrete subsistence). The Father, the Son, and the Holy Spirit are not three gods, nor three parts of God, nor three masks worn by one person, but three persons who each fully possess the one undivided divine essence. There is exactly one “What” and exactly three “Whos.”</p>
+
+  <p>St. Basil the Great, writing in the fourth century against those who confused these terms, explained the distinction with a precision the Church has used ever since:</p>
+
+  <blockquote class="father">
+    <p>“The distinction between <em>ousia</em> and <em>hypostasis</em> is the same as that between the general and the particular... Therefore we confess one essence in the Godhead, so as not to give a divergent definition of being; but we confess a particular hypostasis, in order that our conception of Father, Son, and Holy Spirit may be unconfused and clear.”</p>
+    <cite>St. Basil the Great, Letter 236.6</cite>
+  </blockquote>
+
+  <p>Both truths — the oneness and the threeness — are pressed upon us by Scripture itself, and the Church refuses to surrender either one. The oneness of God is the bedrock confession of Israel:</p>
+
+  <blockquote class="scripture">
+    <p>“Hear, O Israel: The LORD our God, the LORD is one!”</p>
+    <cite>Deuteronomy 6:4</cite>
+  </blockquote>
+
+  <blockquote class="scripture">
+    <p>“I am the LORD, and there is no other; there is no God besides Me.”</p>
+    <cite>Isaiah 45:5</cite>
+  </blockquote>
+
+  <p>Yet the same Scriptures present three who are each fully God, each personally distinct, acting and speaking to one another. At the Lord’s baptism in the Jordan — the feast the Coptic and Syriac churches call Theophany, “the appearing of God” — the three are manifest at once: the Son standing in the water, the Spirit descending as a dove, the Father’s voice from heaven <span class="verse-ref">(Matthew 3:16–17)</span>. And the risen Christ commands baptism “in the <em>name</em> [singular] of the Father and of the Son and of the Holy Spirit” <span class="verse-ref">(Matthew 28:19)</span> — one name, one divine being; three named, three persons.</p>
+
+  <p>Why is this not a contradiction, even if it remains a mystery? Because “one” and “three” answer different questions. Consider how impoverished the alternative is: a god who is a solitary monad has no one to love until he creates. Love would then be an acquired property, not his eternal nature. But St. John dares to say “God <em>is</em> love” <span class="verse-ref">(1 John 4:8)</span> — love is what God eternally is, which is only possible if within the one God there is eternally Lover, Beloved, and the Spirit of love; the Father loving the Son “before the foundation of the world” <span class="verse-ref">(John 17:24)</span>.</p>
+
+  <p>The Fathers also insist that the three persons are not three separated centers each owning a third of divinity. They mutually indwell one another — what later theology calls <span class="greek">perichoresis</span> — as the Lord said, “I am in the Father, and the Father in Me” <span class="verse-ref">(John 14:10)</span>. Hence every divine act is the single act of all three: the Father creates through the Son in the Spirit; the Father saves through the Son in the Spirit. There is one will, one power, one glory, one worship.</p>
+
+  <p>St. Gregory the Theologian (Gregory of Nazianzus), whom the Church gave the rare title “the Theologian” precisely for his teaching on the Trinity, described the experience of contemplating this mystery — not as a puzzle to be solved, but as light too bright to divide:</p>
+
+  <blockquote class="father">
+    <p>“No sooner do I conceive of the One than I am illumined by the splendour of the Three; no sooner do I distinguish Them than I am carried back to the One. When I think of any One of the Three I think of Him as the Whole... When I contemplate the Three together, I see but one torch, and cannot divide or measure out the undivided light.”</p>
+    <cite>St. Gregory the Theologian, Oration 40.41, On Holy Baptism</cite>
+  </blockquote>
+
+  <p>Notice his image: <em>one torch</em>. The lamp of this series is a fitting emblem — flame, light, and heat are distinguishable yet inseparable, a single burning. Every analogy limps (the persons are not “parts” or “aspects”), and the Fathers used analogies only as ladders to be kicked away. The final word is worship: the seraphim do not explain God; they cry “Holy, Holy, Holy” — thrice holy, one Lord <span class="verse-ref">(Isaiah 6:3)</span>.</p>
+  <a class="top-link" href="#contents">↑ Back to contents</a>
+</article>
+
+<article id="p1q2">
+  <div class="q-label">Part I · Question 2</div>
+  <h3>What is the Trinity?</h3>
+  <p class="short-answer">The Trinity is the one true God as He has revealed Himself: one God in three co-equal, co-eternal persons — the Father unbegotten, the Son eternally begotten of the Father, and the Holy Spirit eternally proceeding from the Father.</p>
+
+  <p>The doctrine of the Trinity is not a theory bolted onto the Gospel; it <em>is</em> the Gospel’s grammar. To say “God so loved the world that He gave His only-begotten Son” <span class="verse-ref">(John 3:16)</span> already requires a Father who gives and a Son who is given. To say the Father and the Son send “another Helper... the Spirit of truth” <span class="verse-ref">(John 14:16–17)</span> requires a third. The Trinity is simply the Church saying back to God, carefully, what God has shown of Himself in the history of salvation.</p>
+
+  <p>The classic summary is the Creed of Nicaea–Constantinople (AD 325/381), which every Oriental Orthodox liturgy confesses to this day:</p>
+
+  <blockquote class="creed">
+    <p>“We believe in one God, the Father Almighty, Maker of heaven and earth, and of all things visible and invisible. And in one Lord Jesus Christ, the only-begotten Son of God, begotten of the Father before all ages: Light of Light, true God of true God, begotten not made, of one essence with the Father, by whom all things were made... And we believe in the Holy Spirit, the Lord, the Giver of Life, who proceeds from the Father, who with the Father and the Son is worshipped and glorified, who spoke by the prophets.”</p>
+    <cite>The Nicene–Constantinopolitan Creed</cite>
+  </blockquote>
+
+  <p>Three things in that confession deserve unpacking.</p>
+
+  <h4>The persons are distinguished only by how they relate</h4>
+  <p>The Father is <em>unbegotten</em> — the fountainhead (the Fathers call Him the <span class="greek">arche</span>, the source) of the Godhead. The Son is <em>begotten</em> of the Father eternally — not created, not adopted, but begotten as light is begotten of fire, “Light of Light.” The Spirit <em>proceeds</em> from the Father <span class="verse-ref">(John 15:26)</span>. (The Oriental Orthodox, with the original creed, confess the procession from the Father alone, without the later Latin addition “and the Son.”) These relations — unbegottenness, begottenness, procession — are the <em>only</em> distinctions among the persons. In everything else — power, glory, eternity, will, divinity — they are absolutely equal and identical.</p>
+
+  <h4>“Begotten” does not mean “made” or “younger”</h4>
+  <p>Human begetting happens in time, so a human son is younger than his father. But God is beyond time. The Father was never without His Son, for the Son is His eternal Word and Wisdom — and God was never wordless or without wisdom. As the Scripture says of the Son: “In the beginning was the Word, and the Word was with God, and the Word was God” <span class="verse-ref">(John 1:1)</span>. St. Athanasius of Alexandria, the great champion of Nicaea, hammered this point against the Arians, who claimed “there was once when the Son was not”:</p>
+
+  <blockquote class="father">
+    <p>“The Son is the Father’s Word and Wisdom and Radiance... If the Son was not before His generation, Truth was not always in God — which it is impious to say. Since the Father is eternal, His Word and His Wisdom must be eternal.”</p>
+    <cite>St. Athanasius, Against the Arians I (summarizing 1.20, 1.25)</cite>
+  </blockquote>
+
+  <h4>The Trinity is the object of worship, not merely of study</h4>
+  <p>St. Athanasius also gave what may be the most compact patristic definition we possess, in his letters to Serapion on the Holy Spirit:</p>
+
+  <blockquote class="father">
+    <p>“There is, then, a Trinity, holy and perfect, confessed as God in Father, Son, and Holy Spirit, having nothing foreign or external mixed with it... It is consistent in itself, indivisible in nature, and its activity is one. The Father does all things through the Word in the Holy Spirit. Thus the unity of the holy Trinity is preserved, and thus one God is preached in the Church — one God who is over all, and through all, and in all.”</p>
+    <cite>St. Athanasius, Letters to Serapion 1.28</cite>
+  </blockquote>
+
+  <p>Notice the shape of that sentence: <em>from</em> the Father, <em>through</em> the Son, <em>in</em> the Spirit. That is the shape of every blessing that descends to us, and of all prayer that ascends from us — we pray to the Father, through the Son, in the Holy Spirit. The Trinity is not an abstract diagram; it is the living God into whose own life we are baptized <span class="verse-ref">(Matthew 28:19)</span>, and the apostolic benediction places us inside it: “The grace of the Lord Jesus Christ, and the love of God, and the communion of the Holy Spirit be with you all” <span class="verse-ref">(2 Corinthians 13:14)</span>.</p>
+  <a class="top-link" href="#contents">↑ Back to contents</a>
+</article>
+
+<article id="p1q3">
+  <div class="q-label">Part I · Question 3</div>
+  <h3>Why doesn’t the Bible explicitly use the word “Trinity”?</h3>
+  <p class="short-answer">Because “Trinity” is the Church’s technical name for a reality the Bible everywhere reveals. The word is absent; the thing itself is on nearly every page of the New Testament.</p>
+
+  <p>This question has more force in the asking than in the answering. The Bible also never uses the words “Bible,” “incarnation,” “monotheism,” or “omniscience” — yet no one doubts these are biblical realities. Doctrine is not a word-search; it is the faithful summary of what Scripture teaches. The word “Trinity” (<span class="greek">Trias</span> in Greek, <span class="greek">trinitas</span> in Latin) was coined precisely because the Church needed a single name for the threefold pattern stamped on the whole apostolic faith.</p>
+
+  <p>And the word is ancient — far older than many assume. The first surviving use is by St. Theophilus, bishop of Antioch, around AD 180, barely three generations after the apostles:</p>
+
+  <blockquote class="father">
+    <p>“The three days which were before the luminaries are types of the Trinity (<em>Triados</em>): of God, and His Word, and His Wisdom.”</p>
+    <cite>St. Theophilus of Antioch, To Autolycus 2.15 (c. AD 180)</cite>
+  </blockquote>
+
+  <p>A generation later Tertullian of Carthage used the Latin <span class="greek">trinitas</span> and gave the West its working vocabulary of “one substance, three persons.” These men were not innovating; they were labeling. The label stuck because the data demanded it.</p>
+
+  <h4>The data the word summarizes</h4>
+  <p>Three lines of biblical evidence converge. <em>First</em>, Scripture insists there is exactly one God <span class="verse-ref">(Deuteronomy 6:4; Isaiah 44:6; 1 Corinthians 8:4)</span>. <em>Second</em>, Scripture presents three distinct persons who speak to and of one another — the Father who sends, the Son who is sent and prays to the Father, the Spirit who is “another Helper” <span class="verse-ref">(John 14:16)</span>, not the Son returned. <em>Third</em>, Scripture ascribes full deity to each: to the Father everywhere; to the Son — “the Word was God” <span class="verse-ref">(John 1:1)</span>, “my Lord and my God!” <span class="verse-ref">(John 20:28)</span>; to the Spirit — lying to the Holy Spirit is lying “not to men but to God” <span class="verse-ref">(Acts 5:3–4)</span>. Hold all three lines without cutting any, and the Trinity is the only possible conclusion. Every heresy in history is the result of cutting one of the three threads.</p>
+
+  <p>The threefold pattern is woven even into the most practical texts, where the apostles were not “doing theology” at all but blessing, baptizing, and praying:</p>
+
+  <blockquote class="scripture">
+    <p>“Go therefore and make disciples of all the nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit.”</p>
+    <cite>Matthew 28:19</cite>
+  </blockquote>
+
+  <blockquote class="scripture">
+    <p>“There are diversities of gifts, but the same Spirit. There are differences of ministries, but the same Lord. And there are diversities of activities, but it is the same God who works all in all.”</p>
+    <cite>1 Corinthians 12:4–6</cite>
+  </blockquote>
+
+  <p>Notice: “in the <em>name</em>” — singular — “of the Father and of the Son and of the Holy Spirit.” Not “in the names,” as of three gods; not “in the name of God, Jesus, and a force,” mixing Creator and creature. The grammar of baptism is already trinitarian grammar. The earliest Church manual, the <em>Didache</em> (first century), already commands baptism with this same threefold name, and every catechumen in Alexandria, Antioch, and Armenia was baptized into it centuries before the councils.</p>
+
+  <h4>Scripture and Holy Tradition are not rivals</h4>
+  <p>The deeper issue beneath this question is the relationship of Scripture to the Church. The Orthodox answer: the Bible is the supreme written treasure <em>of</em> the Church’s living Tradition, not a rival to it. The same apostolic community that wrote and canonized these books also baptized, worshipped, and confessed in the threefold name — and when wolves arose teaching that the Son was a creature, that same community defined its faith at Nicaea. As St. Paul commands: “Stand fast and hold the traditions which you were taught, whether by word or our epistle” <span class="verse-ref">(2 Thessalonians 2:15)</span>. The word “Trinity” is one such tradition of words — a fence built by the shepherds around a treasure the Scriptures had already delivered.</p>
+
+  <p>St. Athanasius put it with characteristic bluntness when accused of using the unbiblical word <span class="greek">homoousios</span> (“of one essence”) at Nicaea: the words are new, he said, but the <em>sense</em> is everywhere in Scripture; the bishops “were compelled to collect the sense of the Scriptures” into a word the heretics could not twist. So with “Trinity”: a new word for the oldest of realities — the Name into which we were baptized.</p>
+  <a class="top-link" href="#contents">↑ Back to contents</a>
+</article>
+
+<article id="p1q4">
+  <div class="q-label">Part I · Question 4</div>
+  <h3>Is Jesus God, or the Son of God?</h3>
+  <p class="short-answer">Both — and the “or” is the mistake. He is the Son of God precisely because He is God the Son: begotten of the Father’s own essence, and therefore everything the Father is.</p>
+
+  <p>The question assumes that “Son of God” is a lesser title — that a son must be junior, derivative, or created. In human experience that is true; in God it is not. Among men, a son is younger than his father because human nature is bound to time. But the divine Son is begotten <em>eternally</em>, outside time altogether, as radiance is begotten of light. The very point of the title “Son” is not inferiority but <em>identity of nature</em>: a human son is human; the divine Son is divine. The Jews of Jesus’ day understood this instantly — when He called God His own Father, they took up stones, “because You, being a Man, make Yourself God” <span class="verse-ref">(John 10:33; cf. John 5:18)</span>. They grasped what modern doubters miss: “Son of God,” claimed in the unique sense Jesus claimed it, is a claim to deity.</p>
+
+  <h4>The Scriptural witness that the Son is God</h4>
+  <blockquote class="scripture">
+    <p>“In the beginning was the Word, and the Word was with God, and the Word was God... And the Word became flesh and dwelt among us, and we beheld His glory, the glory as of the only begotten of the Father, full of grace and truth.”</p>
+    <cite>John 1:1, 14</cite>
+  </blockquote>
+
+  <blockquote class="scripture">
+    <p>“Jesus said to them, ‘Most assuredly, I say to you, before Abraham was, I AM.’”</p>
+    <cite>John 8:58 — claiming the divine Name of Exodus 3:14</cite>
+  </blockquote>
+
+  <blockquote class="scripture">
+    <p>“And Thomas answered and said to Him, ‘My Lord and my God!’”</p>
+    <cite>John 20:28 — and Jesus accepts the worship rather than correcting it</cite>
+  </blockquote>
+
+  <p>To these add: “in Him dwells all the fullness of the Godhead bodily” <span class="verse-ref">(Colossians 2:9)</span>; the Son is “the brightness of His glory and the express image of His person,” who “upholds all things by the word of His power” <span class="verse-ref">(Hebrews 1:3)</span>; of the Son the Father Himself says, “Your throne, O God, is forever and ever” <span class="verse-ref">(Hebrews 1:8)</span>; He is “our great God and Savior Jesus Christ” <span class="verse-ref">(Titus 2:13)</span>; “the Alpha and the Omega, the Beginning and the End... the Almighty” <span class="verse-ref">(Revelation 1:8; 22:13)</span>. He forgives sins, which “only God” can do <span class="verse-ref">(Mark 2:5–7)</span>; He receives worship, which angels and apostles refuse <span class="verse-ref">(Matthew 28:17; Revelation 22:8–9)</span>; He created all things <span class="verse-ref">(John 1:3; Colossians 1:16)</span>.</p>
+
+  <h4>Why the Church fought for one word</h4>
+  <p>In the fourth century the priest Arius taught that the Son was the first and greatest creature — godlike, but made. The Church’s answer at the Council of Nicaea (AD 325), led above all by the deacon (later Pope) Athanasius of Alexandria, was the word <span class="greek">homoousios</span>: the Son is “of one essence with the Father.” Not similar to God — <em>what the Father is, the Son is</em>. Athanasius saw with total clarity that the Gospel itself was at stake: a creature, however exalted, cannot save creatures. Only God can join us to God.</p>
+
+  <blockquote class="father">
+    <p>“The Word of God came in His own person, because it was He alone, the Image of the Father, who could recreate man made after the Image... For He was made man that we might be made god; and He manifested Himself by a body that we might receive the idea of the unseen Father.”</p>
+    <cite>St. Athanasius, On the Incarnation 13, 54</cite>
+  </blockquote>
+
+  <p>That famous sentence — “He was made man that we might be made god” — does not mean we become deities by nature; it means that because the Son is truly God, His incarnation can lift us into real participation in the divine life, “partakers of the divine nature” <span class="verse-ref">(2 Peter 1:4)</span>. If Jesus were only “a son of God” in some honorary sense, Christianity would collapse into the veneration of a hero. Because He is God the Son, the Cross is God’s own love poured out <span class="verse-ref">(Romans 5:8)</span>, and union with Christ is union with God.</p>
+
+  <h4>“The Father is greater than I”?</h4>
+  <p>Texts where the Son obeys, prays, or says “My Father is greater than I” <span class="verse-ref">(John 14:28)</span> describe either His voluntary self-emptying in the flesh — He “took the form of a bondservant” <span class="verse-ref">(Philippians 2:6–7)</span>, and a servant’s words befit the servant’s form — or the Father’s place as fountainhead within the Trinity, a priority of <em>origin</em>, never of essence, glory, or power. The Fathers read all such verses by a simple rule: Scripture speaks of the one Christ sometimes according to His divinity, sometimes according to His humanity, and confusing the two registers creates every christological error. He is at once David’s Son and David’s Lord <span class="verse-ref">(Matthew 22:42–45)</span> — and the question “God, or Son of God?” is answered by the centurion at the Cross and the Church in every liturgy: truly, this is the Son of God; truly, this is our Lord and our God.</p>
+  <a class="top-link" href="#contents">↑ Back to contents</a>
+</article>
+
+<article id="p1q5">
+  <div class="q-label">Part I · Question 5</div>
+  <h3>Is the Holy Spirit a person or merely a force?</h3>
+  <p class="short-answer">A person — the third person of the Holy Trinity, “the Lord, the Giver of Life,” worshipped and glorified together with the Father and the Son. A force cannot be grieved, cannot speak, cannot will, and cannot be lied to.</p>
+
+  <p>The teaching that the Spirit is an impersonal power — God’s “energy,” like electricity — is an ancient error (the fourth-century <em>Pneumatomachi</em>, “Spirit-fighters,” taught a version of it) revived by modern sects. Scripture refutes it on every page where the Spirit appears, because Scripture consistently ascribes to the Spirit the three marks of personhood: mind, will, and affections — and, beyond personhood, the marks of deity itself.</p>
+
+  <h4>The Spirit acts as only a person can</h4>
+  <p>He <em>speaks in the first person and issues commands</em>: “the Holy Spirit said, ‘Now separate to Me Barnabas and Saul for the work to which <em>I</em> have called them’” <span class="verse-ref">(Acts 13:2)</span>. He <em>teaches and reminds</em> <span class="verse-ref">(John 14:26)</span>, <em>testifies</em> <span class="verse-ref">(John 15:26)</span>, <em>intercedes</em> for us with groanings <span class="verse-ref">(Romans 8:26)</span>, <em>searches</em> the depths of God and <em>knows</em> His thoughts <span class="verse-ref">(1 Corinthians 2:10–11)</span>. He <em>wills</em>: He distributes gifts “to each one individually <em>as He wills</em>” <span class="verse-ref">(1 Corinthians 12:11)</span> — a force is wielded; it does not choose. He <em>forbids</em>: the Spirit “did not permit” Paul to enter Bithynia <span class="verse-ref">(Acts 16:6–7)</span>. And he can be personally wronged: “do not <em>grieve</em> the Holy Spirit of God” <span class="verse-ref">(Ephesians 4:30)</span>; Ananias <em>lied</em> to Him <span class="verse-ref">(Acts 5:3)</span>; blasphemy against Him is the one unforgivable sin <span class="verse-ref">(Matthew 12:31–32)</span>. One cannot grieve gravity or lie to lightning.</p>
+
+  <h4>The Spirit is not only personal but divine</h4>
+  <blockquote class="scripture">
+    <p>“But Peter said, ‘Ananias, why has Satan filled your heart to lie to the Holy Spirit...? You have not lied to men but to God.’”</p>
+    <cite>Acts 5:3–4 — to lie to the Spirit is to lie to God</cite>
+  </blockquote>
+
+  <p>He is eternal <span class="verse-ref">(Hebrews 9:14)</span>, omnipresent — “Where can I go from Your Spirit?” <span class="verse-ref">(Psalm 139:7)</span> — omniscient <span class="verse-ref">(1 Corinthians 2:10–11)</span>, the agent of creation who “hovered over the face of the waters” <span class="verse-ref">(Genesis 1:2)</span>, the inspirer of all prophecy <span class="verse-ref">(2 Peter 1:21)</span>, and the one who raises the dead <span class="verse-ref">(Romans 8:11)</span>. He is named in one breath and one name with the Father and the Son in baptism <span class="verse-ref">(Matthew 28:19)</span> and benediction <span class="verse-ref">(2 Corinthians 13:14)</span> — unthinkable if He were a creature or an energy. Our bodies are His temple <span class="verse-ref">(1 Corinthians 6:19)</span>, and a temple belongs to God alone.</p>
+
+  <h4>The witness of the Fathers</h4>
+  <p>The classic patristic treatise on this question is St. Basil the Great’s <em>On the Holy Spirit</em> (AD 375), written when some hesitated to glorify the Spirit with the Father and the Son. Basil’s argument is devastating in its simplicity: examine what the Spirit <em>does</em> — sanctifies, gives life, deifies, makes sons of God — and ask whether a creature or a force could do it.</p>
+
+  <blockquote class="father">
+    <p>“Through the Holy Spirit comes our restoration to paradise, our ascension into the kingdom of heaven, our return to the adoption of sons, our liberty to call God our Father, our being made partakers of the grace of Christ, our being called children of light, our sharing in eternal glory... If such is the earnest, what must the perfection be?”</p>
+    <cite>St. Basil the Great, On the Holy Spirit 15.36</cite>
+  </blockquote>
+
+  <blockquote class="father">
+    <p>“Shining upon those that are cleansed from every spot, He makes them spiritual by fellowship with Himself. Just as when a sunbeam falls on bright and transparent bodies they themselves become brilliant and shed forth a fresh brightness from themselves, so souls wherein the Spirit dwells, illuminated by the Spirit, themselves become spiritual and send forth their grace to others.”</p>
+    <cite>St. Basil the Great, On the Holy Spirit 9.23</cite>
+  </blockquote>
+
+  <p>The Council of Constantinople (AD 381) — the second of the three great councils the Oriental Orthodox Churches receive — enshrined this faith in the creed: the Spirit is “the Lord, the Giver of Life, who proceeds from the Father, who with the Father and the Son together is worshipped and glorified.” Worshipped — not used; glorified — not harnessed.</p>
+
+  <p>The practical stakes are enormous. If the Spirit is a force, the Christian life is a technique for tapping power. Because He is a person, the Christian life is a <em>communion</em>: He indwells us <span class="verse-ref">(John 14:17)</span>, prays in us <span class="verse-ref">(Romans 8:26)</span>, transforms us “from glory to glory” <span class="verse-ref">(2 Corinthians 3:18)</span>, and pours the love of God into our hearts <span class="verse-ref">(Romans 5:5)</span>. Every sacrament of the Church — baptism, chrismation (the seal of the Spirit), the Eucharist over which the priest invokes the Spirit’s descent in the <span class="greek">epiclesis</span> — is fellowship with Him. We do not use the Spirit; we worship Him, and He sanctifies us.</p>
+  <a class="top-link" href="#contents">↑ Back to contents</a>
+</article>
+
+<article id="p1q6">
+  <div class="q-label">Part I · Question 6</div>
+  <h3>How can Jesus be both fully God and fully man?</h3>
+  <p class="short-answer">Because the eternal Son, without ceasing to be God, truly made our complete humanity His own in the womb of the Virgin. From the union there is one Christ, one person, one incarnate nature of God the Word — His divinity never parted from His humanity for a single moment, nor a twinkling of an eye.</p>
+
+  <p>This is the mystery the Apostle calls “great” — “God was manifested in the flesh” <span class="verse-ref">(1 Timothy 3:16)</span> — and it is the heart of the Oriental Orthodox faith, defended at the Council of Ephesus (AD 431) under St. Cyril the Great, Pope of Alexandria. The question “how can one person be both?” is best answered by first ruling out the wrong answers, for each was tried and condemned.</p>
+
+  <h4>What the Church rejects</h4>
+  <p><em>Not a mixture.</em> Christ is not a hybrid, a demigod, half-God and half-man. Divinity and humanity are not diluted into some third thing, as the heretic Eutyches implied when he suggested the humanity was swallowed up “like a drop of honey in the sea.” The Oriental Orthodox Churches explicitly condemn Eutyches: Christ’s humanity is real, complete, and consubstantial with ours — body, rational soul, mind, and will. He hungered <span class="verse-ref">(Matthew 4:2)</span>, thirsted <span class="verse-ref">(John 19:28)</span>, wept <span class="verse-ref">(John 11:35)</span>, grew <span class="verse-ref">(Luke 2:52)</span>, and died.</p>
+  <p><em>Not a partnership.</em> Nor is Christ two persons glued together — the divine Word merely indwelling the man Jesus, as Nestorius taught, so that Mary bore “the man” but not God. Against this St. Cyril insisted that the one who lay in the manger and the one who upholds the universe are <em>the same one</em>. Therefore the Virgin is rightly called <span class="greek">Theotokos</span> — “Birth-giver of God” — for the one she bore according to the flesh is God the Word. There are not two Sons, one divine and one human; there is one Lord Jesus Christ.</p>
+
+  <h4>What the Church confesses</h4>
+  <blockquote class="scripture">
+    <p>“And the Word became flesh and dwelt among us.”</p>
+    <cite>John 1:14 — He did not enter a man; He became man</cite>
+  </blockquote>
+
+  <blockquote class="scripture">
+    <p>“Christ Jesus, who, being in the form of God, did not consider it robbery to be equal with God, but emptied Himself, taking the form of a bondservant, and coming in the likeness of men.”</p>
+    <cite>Philippians 2:5–7 — one subject, two “forms”: He who is God took what is ours</cite>
+  </blockquote>
+
+  <p>St. Cyril gave the Oriental Orthodox Churches their treasured formula: <span class="greek">mia physis tou Theou Logou sesarkōmenē</span> — “one incarnate nature of God the Word.” The word “one” here does not deny that Christ is fully divine and fully human; it denies that He is divisible. As soul and body unite into one living man without the soul becoming flesh or the flesh becoming soul, so — incomparably more perfectly — divinity and humanity are united in the one Christ without confusion and without separation. After the union, we do not count two; we worship one Emmanuel who is at once entirely God and entirely man.</p>
+
+  <blockquote class="father">
+    <p>“We do not say that the nature of the Word was changed and became flesh, nor that He was transformed into a complete man of soul and body; but rather this: that the Word, having united to Himself in His own hypostasis flesh animated by a rational soul, in an ineffable and inconceivable manner became man... While the natures that were brought together into this true unity were different, yet from them both is the one Christ and Son — not as though the difference of the natures was taken away by the union, but rather the divinity and the humanity formed for us the one Lord Jesus Christ.”</p>
+    <cite>St. Cyril of Alexandria, Second Letter to Nestorius</cite>
+  </blockquote>
+
+  <p>St. Severus of Antioch, the great Syriac Orthodox teacher (d. 538), guarded the same faith after Chalcedon: Emmanuel is one, he wrote, “one nature incarnate of God the Word,” the difference of the elements from which He is composed never dissolved, yet never permitting a count of “two” that would split the single Christ into two acting subjects. Every act of Christ — touching the leper, sleeping in the boat, raising Lazarus, dying on the Cross — is the act of <em>one</em> divine person acting through His own complete humanity. This is why we may say the astonishing things Scripture says: that they “crucified the Lord of glory” <span class="verse-ref">(1 Corinthians 2:8)</span>, and that God purchased the Church “with His own blood” <span class="verse-ref">(Acts 20:28)</span>. The Word truly suffered — <em>in the flesh</em>, His own flesh — while His divine nature remained impassible. The Coptic Liturgy of St. Basil places this confession on the lips of every communicant before the chalice:</p>
+
+  <blockquote class="creed">
+    <p>“I believe that this is the life-giving Body that Your only-begotten Son, our Lord, God, and Savior Jesus Christ, took from our Lady, the Lady of us all, the holy Theotokos, Saint Mary. He made it one with His divinity without mingling, without confusion, and without alteration... His divinity parted not from His humanity for a single moment, nor a twinkling of an eye.”</p>
+    <cite>The Coptic Orthodox Liturgy of St. Basil, the Confession before Communion</cite>
+  </blockquote>
+
+  <p>Long before the controversies, St. Ignatius of Antioch — a disciple of the apostles, martyred c. AD 107 — had already confessed the paradox in a single breath:</p>
+
+  <blockquote class="father">
+    <p>“There is one Physician, who is both flesh and spirit, born and unborn, God existing in flesh, true life in death, both of Mary and of God, first able to suffer and then unable to suffer — Jesus Christ our Lord.”</p>
+    <cite>St. Ignatius of Antioch, Letter to the Ephesians 7:2</cite>
+  </blockquote>
+
+  <p><em>Why</em> it must be so is the Gospel itself: only God can save, and only what is assumed is healed. As St. Gregory the Theologian said, “that which He has not assumed He has not healed.” Had Christ lacked a human mind, our minds would be unredeemed; had He been less than God, His sacrifice could not carry infinite weight. He is the bridge with both ends anchored: fully God, so that in Him we touch God; fully man, so that God touches us. The “how” exceeds our comprehension — the Fathers call it ineffable — but the “that” is our salvation, and before it the Church does not calculate; she kneels.</p>
+  <a class="top-link" href="#contents">↑ Back to contents</a>
+</article>
+
+<article id="p1q7">
+  <div class="q-label">Part I · Question 7</div>
+  <h3>Why did God create humanity?</h3>
+  <p class="short-answer">Not out of need — God lacks nothing — but out of the overflow of His goodness and love: to create persons in His own image who could freely know Him, love Him, share His life, and grow into His likeness forever.</p>
+
+  <p>Begin with what the answer is <em>not</em>. God did not create us because He was lonely, bored, or incomplete. The Holy Trinity is eternally complete in itself: the Father, the Son, and the Holy Spirit dwell in perfect mutual love and glory “before the foundation of the world” <span class="verse-ref">(John 17:5, 24)</span>. As Paul preached in Athens, God is not “worshiped with men’s hands, as though He needed anything, since He gives to all life, breath, and all things” <span class="verse-ref">(Acts 17:25)</span>. This is, paradoxically, the most liberating truth about our existence: we are not God’s servants hired to meet a deficiency. We exist because love, by its nature, is generous — goodness diffuses itself. Creation is grace from its first syllable.</p>
+
+  <blockquote class="father">
+    <p>“God is good — or rather, of all goodness He is the fountainhead. Now the good is without envy of anything; and so, grudging existence to none, He made all things out of nothing through His own Word, our Lord Jesus Christ. And among all things upon earth He had mercy especially upon the race of men.”</p>
+    <cite>St. Athanasius, On the Incarnation 3</cite>
+  </blockquote>
+
+  <h4>In the image, toward the likeness</h4>
+  <blockquote class="scripture">
+    <p>“Then God said, ‘Let Us make man in Our image, according to Our likeness’... So God created man in His own image; in the image of God He created him; male and female He created them.”</p>
+    <cite>Genesis 1:26–27</cite>
+  </blockquote>
+
+  <p>Two details here shaped all patristic thought. First, the plural — “Let <em>Us</em> make” — which the Fathers heard as the eternal counsel of the Trinity: humanity is created by a communion of persons, <em>for</em> communion. Second, the pairing of “image” and “likeness.” Many Fathers distinguished them: the <em>image</em> is what every human being indelibly possesses — reason, freedom, personhood, the capacity for God; the <em>likeness</em> is the destination — actually becoming like God in holiness and love, by free cooperation with grace. We were created not as finished products but as royal seeds, made to grow. Man was placed in the world as priest and king of creation: to “tend and keep” the garden <span class="verse-ref">(Genesis 2:15)</span>, to name the creatures, and to gather the praise of mute creation into articulate thanksgiving — which is why the Church’s central act is called the <em>Eucharist</em>, “thanksgiving.”</p>
+
+  <p>The Psalmist marvels at this vocation:</p>
+
+  <blockquote class="scripture">
+    <p>“What is man that You are mindful of him...? For You have made him a little lower than the angels, and You have crowned him with glory and honor. You have made him to have dominion over the works of Your hands.”</p>
+    <cite>Psalm 8:4–6</cite>
+  </blockquote>
+
+  <h4>Created for communion — and for glory</h4>
+  <p>St. Irenaeus of Lyons (2nd century), the disciple of Polycarp who was the disciple of John, gave the most celebrated one-line answer to this question ever written:</p>
+
+  <blockquote class="father">
+    <p>“The glory of God is a living man; and the life of man consists in beholding God. For if the manifestation of God through creation already gives life to all who live upon the earth, how much more does the revelation of the Father through the Word give life to those who see God.”</p>
+    <cite>St. Irenaeus, Against Heresies 4.20.7</cite>
+  </blockquote>
+
+  <p>God’s glory is not enhanced by us as a king is enriched by taxes; His glory is <em>displayed</em> in us as a fire is displayed in what it kindles. We glorify God the way a healthy tree glorifies the gardener — by flourishing, by becoming fully alive in Him. And the destiny is staggering: not mere moral improvement but <span class="greek">theosis</span>, deification by grace — real participation in God’s own life. “Beloved, now we are children of God; and it has not yet been revealed what we shall be, but we know that when He is revealed, we shall be like Him, for we shall see Him as He is” <span class="verse-ref">(1 John 3:2)</span>; we are called to be “partakers of the divine nature” <span class="verse-ref">(2 Peter 1:4)</span>.</p>
+
+  <p>Here the doctrine of creation joins hands with the Incarnation. The Fathers taught that Adam was made <em>according to</em> the Image of God — and the Image of God is the Son <span class="verse-ref">(Colossians 1:15)</span>. Humanity was, from the first, shaped toward Christ; the Incarnation is not merely an emergency repair but the crown of God’s eternal purpose: “He chose us in Him before the foundation of the world... having predestined us to adoption as sons by Jesus Christ to Himself, according to the good pleasure of His will” <span class="verse-ref">(Ephesians 1:4–5)</span>. Why did God create you? So that, in Christ and by the Spirit, you might become by grace what the Son is by nature — a child of God, alive forever in the light of His face. Anything less is too small an answer for the Scriptures we have been given.</p>
+  <a class="top-link" href="#contents">↑ Back to contents</a>
+</article>
+
+<article id="p1q8">
+  <div class="q-label">Part I · Question 8</div>
+  <h3>Why does God allow evil and suffering?</h3>
+  <p class="short-answer">God did not create evil and is never its author. He created free persons capable of love, and love’s freedom can be refused; evil is that refusal and its wreckage. God permits it for a time rather than abolish freedom — and He has answered it, not from a distance, but from inside it, on the Cross.</p>
+
+  <p>This is the oldest wound in the human heart, and the Church refuses both cheap answers. She will not say evil is an illusion, and she will not say God wills it. The Orthodox answer has four movements: what evil <em>is</em>, where it <em>came from</em>, why God <em>permits</em> it, and what God has <em>done</em> about it.</p>
+
+  <h4>Evil is not a thing God made</h4>
+  <p>Everything God made is good: “God saw everything that He had made, and indeed it was very good” <span class="verse-ref">(Genesis 1:31)</span>. Evil is therefore not a substance, not a creature, not a rival power — it is a <em>corruption</em>, a parasite on the good, as rust is on iron and blindness is in an eye. St. Basil the Great preached an entire homily on precisely this question, with a title that is itself a creed: <em>That God Is Not the Author of Evils</em>.</p>
+
+  <blockquote class="father">
+    <p>“Do not consider God the cause of the existence of evil, nor imagine evil as having its own subsistence. For evil is not a living and animated essence; it is a condition of the soul opposed to virtue, which arises in the careless on account of their falling away from the good... Each of us should acknowledge himself as the author of the wickedness in him.”</p>
+    <cite>St. Basil the Great, Homily: That God Is Not the Author of Evils (abridged)</cite>
+  </blockquote>
+
+  <h4>It entered through freedom</h4>
+  <p>God created angels and men free, because He wanted sons, not machines. Love that cannot be withheld is not love; obedience that cannot be refused is not obedience. The devil fell first, by pride; then man, tempted, freely turned from the source of life — and turning from Life, found death: “through one man sin entered the world, and death through sin” <span class="verse-ref">(Romans 5:12)</span>. Much of the world’s anguish flows from this double fountain: moral evil from misused freedom (wars, cruelty, betrayal), and the groaning of a creation “subjected to futility” <span class="verse-ref">(Romans 8:20–22)</span> — disease, decay, death — the shockwave of the Fall through a world whose appointed king had defected. God <em>permits</em> what He does not <em>will</em>, because to annihilate the possibility of evil tonight He would have to annihilate freedom — and with it, love, virtue, repentance, and every soul still on its way home. The patience of God is not indifference; “the Lord is... longsuffering toward us, not willing that any should perish but that all should come to repentance” <span class="verse-ref">(2 Peter 3:9)</span>.</p>
+
+  <h4>God bends evil to good without approving it</h4>
+  <p>Scripture shows a God so sovereign that He weaves even wickedness into His providence — without ever becoming its author. Joseph, sold by his brothers, tells them: “you meant evil against me; but God meant it for good... to save many people alive” <span class="verse-ref">(Genesis 50:20)</span>. The supreme case is the Cross itself: the worst crime in history — the murder of the incarnate God “by lawless hands” — was at the same time “the determined purpose and foreknowledge of God” <span class="verse-ref">(Acts 2:23)</span>, becoming the salvation of the world. Hence the apostle’s promise, not that all things are good, but that “all things work together for good to those who love God” <span class="verse-ref">(Romans 8:28)</span>.</p>
+
+  <h4>God’s answer is not an argument but Himself</h4>
+  <p>Job demanded an explanation and received instead a theophany — God Himself, speaking from the whirlwind — and it sufficed: “I have heard of You by the hearing of the ear, but now my eye sees You” <span class="verse-ref">(Job 42:5)</span>. The Gospel goes further: God did not send an answer; He came. The Word took flesh that can be scourged, a brow that can be pierced, a mother who can weep at His feet. Whatever you suffer, you cannot say God does not understand: He was betrayed by a friend, abandoned by His companions, tortured by the state, and died young, in agony, unjustly — “a Man of sorrows and acquainted with grief” <span class="verse-ref">(Isaiah 53:3)</span>. And by dying He detonated death from within. The Cross is God absorbing the worst evil can do and returning resurrection.</p>
+
+  <blockquote class="scripture">
+    <p>“And God will wipe away every tear from their eyes; there shall be no more death, nor sorrow, nor crying. There shall be no more pain, for the former things have passed away.”</p>
+    <cite>Revelation 21:4</cite>
+  </blockquote>
+
+  <p>This is the final movement: evil has an expiration date. The permission is temporary; the victory is accomplished and awaits only its unveiling. St. Paul, who was flogged, stoned, and shipwrecked, did the arithmetic from inside the suffering: “I consider that the sufferings of this present time are not worthy to be compared with the glory which shall be revealed in us” <span class="verse-ref">(Romans 8:18)</span>. The martyrs of the Oriental Orthodox Churches — from the era of Diocletian, by which the Copts date their calendar of the martyrs, to those of our own century — did not go to their deaths holding a tidy syllogism. They went holding Christ. In the end, the problem of evil is answered the way the Church answers everything: by pointing to the Lamb standing as though slain <span class="verse-ref">(Revelation 5:6)</span> — wounds glorified, death undone — and by the cry that closes the Bible: “Even so, come, Lord Jesus.”</p>
+  <a class="top-link" href="#contents">↑ Back to contents</a>
+</article>
+
+<article id="p1q9">
+  <div class="q-label">Part I · Question 9</div>
+  <h3>Does God know the future?</h3>
+  <p class="short-answer">Yes — perfectly, eternally, and in every detail. But God’s foreknowledge does not cause our choices; He knows them because we will freely make them, not the other way round.</p>
+
+  <p>Scripture stakes God’s very identity on this. When the Lord, through Isaiah, puts the idols of the nations on trial, the test He sets is precisely knowledge of the future — only the true God possesses it:</p>
+
+  <blockquote class="scripture">
+    <p>“Remember the former things of old, for I am God, and there is no other; I am God, and there is none like Me, declaring the end from the beginning, and from ancient times things that are not yet done, saying, ‘My counsel shall stand, and I will do all My pleasure.’”</p>
+    <cite>Isaiah 46:9–10</cite>
+  </blockquote>
+
+  <p>The Bible’s entire prophetic architecture rests on this. Centuries in advance, God names Cyrus the deliverer <span class="verse-ref">(Isaiah 44:28–45:1)</span>, foretells the Messiah’s birthplace <span class="verse-ref">(Micah 5:2)</span>, His pierced hands and divided garments <span class="verse-ref">(Psalm 22:16–18)</span>, His silent suffering and grave with the rich <span class="verse-ref">(Isaiah 53)</span>. Jesus tells His disciples the future precisely so that fulfilled prophecy will anchor their faith: “Now I tell you before it comes, that when it does come to pass, you may believe that I am He” <span class="verse-ref">(John 13:19)</span>. He foreknows Peter’s three denials down to the rooster’s crow <span class="verse-ref">(Matthew 26:34)</span> and Judas’s betrayal from the beginning <span class="verse-ref">(John 6:64)</span>. The Psalmist extends this knowledge to every unlived day of every life: “Your eyes saw my substance, being yet unformed. And in Your book they all were written, the days fashioned for me, when as yet there were none of them” <span class="verse-ref">(Psalm 139:16)</span>. “Known to God from eternity are all His works” <span class="verse-ref">(Acts 15:18)</span>.</p>
+
+  <h4>How God knows: eternity, not prediction</h4>
+  <p>God does not “foresee” the future the way a forecaster extrapolates from the present, and He does not wait for time to deliver information. God is not <em>in</em> time at all; He is the Creator of time. “One day is with the Lord as a thousand years, and a thousand years as one day” <span class="verse-ref">(2 Peter 3:8)</span>; He is the one “who is and who was and who is to come” <span class="verse-ref">(Revelation 1:8)</span>, inhabiting eternity <span class="verse-ref">(Isaiah 57:15)</span>. All of history — what to us is past, present, and future — is present to God in a single, undivided act of knowing, as a man on a mountain sees in one glance the whole road that travelers below walk step by step. The Fathers therefore speak less of God’s “foreknowledge” than of His <em>eternal knowledge</em>, which only looks like “fore-” from our position inside time.</p>
+
+  <h4>Does this destroy our freedom?</h4>
+  <p>No — and here the Fathers are unanimous and emphatic. Knowledge is not compulsion. I may know my friend so well that I am certain how he will choose; my knowledge does not cause his choice. God’s knowledge is infinitely more perfect, but the logic holds: He knows our free acts <em>as free acts</em>. The order of dependence runs from our choosing to His knowing, not from His knowing to our choosing. St. John Chrysostom, preaching on Judas, insisted that Christ’s foreknowledge of the betrayal in no way forced Judas’s hand — the Lord even washed his feet and warned him, leaving his freedom intact to the last hour. As the Fathers put it in a formula the whole Church inherited: <em>God foreknows all things, but He does not predetermine all things.</em> He foreknows our sins without willing them; He foreknows our repentance and crowns it as truly ours.</p>
+
+  <blockquote class="father">
+    <p>“His foreknowledge is not the cause of our sinning... For He does not compel virtue, nor is the wickedness of the wicked from Him; but foreknowing all things, He awaits the free movement of each, and what we choose, He knows from eternity.”</p>
+    <cite>A summary of St. John Chrysostom’s consistent teaching on foreknowledge and freedom (cf. Homilies on Romans 16; Homilies on Matthew)</cite>
+  </blockquote>
+
+  <p>This is why Scripture can hold, without strain, both “the determined purpose and foreknowledge of God” and “you have taken by lawless hands” in a single verse about the Cross <span class="verse-ref">(Acts 2:23)</span>: God’s plan and man’s freedom interlock without canceling each other. And the pastoral fruit is immense. Because God knows the future, no tomorrow can ambush Him; “your Father knows the things you have need of before you ask Him” <span class="verse-ref">(Matthew 6:8)</span>. Because His knowledge does not coerce, your repentance today is real, your prayers matter, and your future — known to God — is still, in time, genuinely yours to live. The believer walks forward into a future that is dark to him but lit, end to end, before the eyes of his Father.</p>
+  <a class="top-link" href="#contents">↑ Back to contents</a>
+</article>
+
+<article id="p1q10">
+  <div class="q-label">Part I · Question 10</div>
+  <h3>Does God change His mind?</h3>
+  <p class="short-answer">No — God’s nature, character, and eternal purpose are utterly unchangeable. When Scripture says God “relented,” it describes, in human language, the unchanging God responding differently to people who have changed. The repentance is ours; the consistency is His.</p>
+
+  <p>The question arises from an apparent contradiction in Scripture. On one side stand the great immutability texts:</p>
+
+  <blockquote class="scripture">
+    <p>“God is not a man, that He should lie, nor a son of man, that He should repent. Has He said, and will He not do? Or has He spoken, and will He not make it good?”</p>
+    <cite>Numbers 23:19</cite>
+  </blockquote>
+
+  <blockquote class="scripture">
+    <p>“For I am the LORD, I do not change; therefore you are not consumed, O sons of Jacob.” ... “Every good gift and every perfect gift is from above, and comes down from the Father of lights, with whom there is no variation or shadow of turning.”</p>
+    <cite>Malachi 3:6; James 1:17</cite>
+  </blockquote>
+
+  <p>On the other side, the narratives: God “was sorry that He had made man” before the flood <span class="verse-ref">(Genesis 6:6)</span>; He “relented” from destroying Israel when Moses interceded <span class="verse-ref">(Exodus 32:14)</span>; He spared Nineveh after Jonah’s preaching <span class="verse-ref">(Jonah 3:10)</span>; He added fifteen years to Hezekiah’s life after announcing his death <span class="verse-ref">(2 Kings 20:1–6)</span>. Does the Bible contradict itself? The Fathers answer: no — these are two registers of language about the one unchanging God.</p>
+
+  <h4>Divine condescension: God speaks baby-talk to us</h4>
+  <p>St. John Chrysostom built much of his exegesis on the principle of <span class="greek">synkatabasis</span> — God’s loving “condescension,” His stooping down to speak our language, as a father lisps to his infant. Scripture gives God hands, eyes, nostrils, wings; no one imagines the infinite Spirit has feathers. “Repentance” language belongs to the same family: it describes how God’s unchanging action <em>appears from within the human story</em>. When a city repents, the same unchanging holiness that threatened judgment now embraces it — not because God moved, but because the city did. The sun does not change when a man steps from a cellar into daylight; yet to him, everything has changed.</p>
+
+  <blockquote class="father">
+    <p>“When you hear the words ‘fury’ and ‘anger’ in relation to God, do not understand anything human by them: these are words of condescension. The Godhead is far removed from all such things; He speaks this way in order to bring home the matter to the cruder understanding of his hearers.”</p>
+    <cite>St. John Chrysostom, Homilies on Genesis (on divine condescension; lightly adapted)</cite>
+  </blockquote>
+
+  <h4>God’s warnings are doors, not verdicts</h4>
+  <p>Here is the deeper resolution: many of God’s announcements are not unconditional decrees but <em>conditional summonses</em> — and God Himself published the condition as a standing rule of His governance:</p>
+
+  <blockquote class="scripture">
+    <p>“The instant I speak concerning a nation... to pluck up, to pull down, and to destroy it, if that nation against whom I have spoken turns from its evil, I will relent of the disaster that I thought to bring upon it.”</p>
+    <cite>Jeremiah 18:7–8</cite>
+  </blockquote>
+
+  <p>Read in this light, Nineveh is not God changing His mind but God keeping His word. The threat “forty days and Nineveh shall be overthrown” carried, as all such threats do, the implicit clause of Jeremiah 18 — which Jonah knew perfectly well, and resented: “I know that You are a gracious and merciful God... One who relents from doing harm” <span class="verse-ref">(Jonah 4:2)</span>. The “change” was the whole point of the warning. A doctor who says “without surgery you will die,” and then cancels the funeral when the patient accepts surgery, has not been inconsistent; he has been faithful to one unchanging purpose — the patient’s life.</p>
+
+  <h4>Why immutability is good news</h4>
+  <p>Far from making God cold or distant, His changelessness is the anchor of every promise. A god who changes his mind might one day change it about you: about mercy, about the Cross, about the value of your repentance. But “Jesus Christ is the same yesterday, today, and forever” <span class="verse-ref">(Hebrews 13:8)</span>; “the gifts and the calling of God are irrevocable” <span class="verse-ref">(Romans 11:29)</span>; His covenant love “endures forever” — the refrain of Psalm 136, twenty-six times. Precisely because God cannot change, prayer and repentance are not attempts to alter Him but the appointed means by which we step into the path of His unchanging mercy. The prodigal’s father did not become loving when the son returned; the love was waiting the whole time, scanning the road <span class="verse-ref">(Luke 15:20)</span>. God’s “relenting” is what His eternal, immovable love looks like when, at last, we come home.</p>
+  <a class="top-link" href="#contents">↑ Back to contents</a>
+</article>
+</section>
+
+<!-- PART II -->
+<section id="part2">
+  <div class="part-head">
+    <div class="ornament">✦ ☩ ✦</div>
+    <div class="part-label">Part II</div>
+    <h2>On Christ and His Saving Work</h2>
+    <p class="part-sub">“He was wounded for our transgressions... and by His stripes we are healed.” — Isaiah 53:5</p>
+  </div>
+<article id="p2q1">
+  <div class="q-label">Part II · Question 1</div>
+  <h3>Why did Jesus have to die on the Cross?</h3>
+  <p class="short-answer">Because sin had bound humanity to death, and only the death of the incarnate God could untie the knot — satisfying God’s truthfulness, conquering death from within, and revealing a love that argument alone could never reveal.</p>
+
+  <p>The “had to” must be understood rightly. Nothing outside God compelled Him; the Cross was freely chosen: “No one takes My life from Me, but I lay it down of Myself” <span class="verse-ref">(John 10:18)</span>. The necessity lies in what God had said and in what man had become. St. Athanasius, in <em>On the Incarnation</em> — the single most important patristic book on this question — frames it as what he calls the <em>divine dilemma</em>.</p>
+
+  <h4>The divine dilemma</h4>
+  <p>God had warned Adam truthfully: “in the day that you eat of it you shall surely die” <span class="verse-ref">(Genesis 2:17)</span>. Man ate; death entered and began unmaking the creature made for incorruption. Now, says Athanasius, consider God’s position. It would be <em>unworthy of God’s truthfulness</em> to simply cancel the sentence — God would be a liar, and His word would mean nothing. Yet it would be <em>unworthy of God’s goodness</em> to watch the creatures He made in His own image disintegrate into nothingness. Mere repentance could not solve it, for repentance might cover the guilt of sin but could not heal the <em>corruption</em> — the death already metastasizing in human nature. Something more radical was required:</p>
+
+  <blockquote class="father">
+    <p>“What then was God to do?... It was impossible that God should go back upon His word that man, having transgressed, must die... Yet it was equally monstrous that beings which once had shared the nature of the Word should perish... The Word perceived that corruption could not be got rid of otherwise than through death; yet He Himself, as the Word, being immortal and the Father’s Son, was such as could not die. For this reason, therefore, He assumed a body capable of death, in order that it, through belonging to the Word who is above all, might become in dying a sufficient exchange for all... and, itself remaining incorruptible through His indwelling, might thereafter put an end to corruption for all others as well.”</p>
+    <cite>St. Athanasius, On the Incarnation 6–9 (abridged)</cite>
+  </blockquote>
+
+  <p>This is why the Word became flesh at all: the immortal One acquired, in the Virgin’s womb, a mortality He could offer. He took a body precisely so that He would have something to die with — and someone to die <em>as</em>: one of us, our kinsman, our representative, the Second Adam standing where the first fell.</p>
+
+  <h4>What love required</h4>
+  <p>But the Cross is not bare bookkeeping. Scripture insists the deepest “why” is love: “God so loved the world that He gave His only-begotten Son” <span class="verse-ref">(John 3:16)</span>; “God demonstrates His own love toward us, in that while we were still sinners, Christ died for us” <span class="verse-ref">(Romans 5:8)</span>; “He loved me and gave Himself for me” <span class="verse-ref">(Galatians 2:20)</span>. The prophet had seen it seven centuries before, in the most precise prophecy in the Old Testament:</p>
+
+  <blockquote class="scripture">
+    <p>“He was wounded for our transgressions, He was bruised for our iniquities; the chastisement for our peace was upon Him, and by His stripes we are healed. All we like sheep have gone astray... and the LORD has laid on Him the iniquity of us all.”</p>
+    <cite>Isaiah 53:5–6</cite>
+  </blockquote>
+
+  <p>And the death had to be <em>this</em> death — public, on a cross, not private illness or old age. Athanasius answers even that detail: the Lord came to bear the curse, and “cursed is everyone who hangs on a tree” <span class="verse-ref">(Galatians 3:13; Deuteronomy 21:23)</span>; He died lifted up between heaven and earth, arms stretched out, “that He might draw all peoples to Myself” <span class="verse-ref">(John 12:32)</span> — one hand, the Fathers loved to say, reaching to the Jews and the other to the Gentiles. He died before witnesses so that the resurrection would have witnesses; a death no one saw could be doubted, but Rome itself certified this one.</p>
+
+  <h4>Death destroyed by death</h4>
+  <p>Finally — and this is the note the Oriental Orthodox liturgies sound loudest — He died in order to invade death. Human death is the soul’s separation from the body; but this dead body was still the body <em>of God the Word</em>, and this human soul, descending to the realm of the dead, was still the soul <em>of God the Word</em>. Death swallowed Him as bait and was caught on the hook of His divinity; it took in Life Himself, and burst. “Inasmuch then as the children have partaken of flesh and blood, He Himself likewise shared in the same, <em>that through death He might destroy him who had the power of death, that is, the devil</em>, and release those who through fear of death were all their lifetime subject to bondage” <span class="verse-ref">(Hebrews 2:14–15)</span>. The Cross, which Rome designed as the advertisement of terror, became the instrument by which the fear of death itself was abolished. That is why the Church does not mourn before the Cross but venerates it, and why every Coptic, Syriac, Armenian, and Ethiopian believer signs himself with it: it is not the trophy of death over Jesus, but of Jesus over death.</p>
+  <a class="top-link" href="#contents">↑ Back to contents</a>
+</article>
+
+<article id="p2q2">
+  <div class="q-label">Part II · Question 2</div>
+  <h3>What exactly did Jesus accomplish through His death?</h3>
+  <p class="short-answer">A single, many-sided victory: He offered the perfect sacrifice for sin, paid our debt, conquered death and the devil, reconciled us to the Father, healed human nature itself, and opened paradise. Scripture uses many images because no one image can hold it all.</p>
+
+  <p>Ask the New Testament what the Cross accomplished and it answers in a chorus of metaphors drawn from the temple, the law-court, the slave-market, the battlefield, and the sickbed. The Orthodox instinct is to keep <em>all</em> of them, refusing to reduce the mystery to any single theory. Consider the principal strands.</p>
+
+  <h4>Sacrifice: the Lamb of God</h4>
+  <p>Every lamb slain from Abel to the last Passover before A.D. 33 was a shadow pointing to one morning outside Jerusalem. “Behold! The Lamb of God who takes away the sin of the world!” <span class="verse-ref">(John 1:29)</span>. The Epistle to the Hebrews works this out in detail: the blood of bulls and goats could never actually remove sin <span class="verse-ref">(Hebrews 10:4)</span>; they were annual reminders, IOUs awaiting payment. Christ is at once the true High Priest and the true offering, entering “the Most Holy Place once for all... with His own blood, having obtained eternal redemption” <span class="verse-ref">(Hebrews 9:12)</span>. “So Christ was offered once to bear the sins of many” <span class="verse-ref">(Hebrews 9:28)</span>. This is why the Eucharist stands at the center of Orthodox worship: it is the Church’s participation, until He comes, in that one unrepeatable sacrifice.</p>
+
+  <h4>Ransom and redemption: the price of freedom</h4>
+  <p>“The Son of Man did not come to be served, but to serve, and to give His life <em>a ransom</em> for many” <span class="verse-ref">(Mark 10:45)</span>. We were slaves — to sin, to corruption, to the fear of death — and a price was paid that we could never raise: “you were not redeemed with corruptible things, like silver or gold... but with the precious blood of Christ, as of a lamb without blemish and without spot” <span class="verse-ref">(1 Peter 1:18–19)</span>. He also bore, in our place, the curse pronounced by the law: “Christ has redeemed us from the curse of the law, having become a curse for us” <span class="verse-ref">(Galatians 3:13)</span>; God “made Him who knew no sin to be sin for us, that we might become the righteousness of God in Him” <span class="verse-ref">(2 Corinthians 5:21)</span>. The innocent stood in for the guilty — “the just for the unjust, that He might bring us to God” <span class="verse-ref">(1 Peter 3:18)</span>.</p>
+
+  <h4>Victory: death trampled, the devil disarmed</h4>
+  <p>The note the early Church sang most loudly is conquest. On the Cross, what looked like defeat was ambush: “Having disarmed principalities and powers, He made a public spectacle of them, triumphing over them in it” <span class="verse-ref">(Colossians 2:15)</span>. Death, the “last enemy” <span class="verse-ref">(1 Corinthians 15:26)</span>, took into itself the Author of life and was ruptured from the inside. The ancient taunt became the Church’s Paschal shout: “O Death, where is your sting? O Hades, where is your victory?” <span class="verse-ref">(1 Corinthians 15:55; Hosea 13:14)</span>.</p>
+
+  <blockquote class="father">
+    <p>“Death has been broken; corruption destroyed... For now that the common Saviour of all has died on our behalf, we who believe in Christ no longer die the death as before, according to the threat of the law; that condemnation has come to an end. Death is no longer terrible, but all who believe in Christ tread it underfoot as nothing, preferring to die rather than deny their faith in Christ — for they truly know that when they die they are not destroyed, but live, and become incorruptible through the resurrection.”</p>
+    <cite>St. Athanasius, On the Incarnation 27 (abridged)</cite>
+  </blockquote>
+
+  <h4>Reconciliation and healing: the nature restored</h4>
+  <p>Sin was not only a debt; it was an estrangement and a disease. The Cross addresses both. Estrangement: “God was in Christ reconciling the world to Himself, not imputing their trespasses to them” <span class="verse-ref">(2 Corinthians 5:19)</span>; “having made peace through the blood of His cross” <span class="verse-ref">(Colossians 1:20)</span> — the veil of the temple tearing top to bottom at the moment of His death <span class="verse-ref">(Matthew 27:51)</span>, God’s own declaration that the way into His presence stood open. Disease: “by His stripes we are healed” <span class="verse-ref">(Isaiah 53:5)</span>. The Fathers loved the medical register: Christ assumed our wounded nature and carried it through death into incorruption, so that human nature itself — not merely our legal record — is renewed in Him. St. Ephrem the Syrian, the harp of the Spirit, sang of the wondrous exchange: the Lord took from us our weakness and gave us His glory; He took our manhood and gave us His divinity’s riches — “He gave us divinity; we gave Him humanity.” And St. Irenaeus compressed the whole economy into one line: <em>“He became what we are, that He might bring us to be even what He is in Himself”</em> (Against Heresies 5, preface).</p>
+
+  <p>One Cross, then, and a cascade of effects: sins forgiven, the debt cancelled — “having wiped out the handwriting of requirements that was against us... having nailed it to the cross” <span class="verse-ref">(Colossians 2:14)</span> — death gutted, Satan disarmed, the Father’s house reopened, human nature healed, paradise unlocked. The first soul to walk through that reopened gate was a crucified thief, promised it by the dying Lord Himself: “Assuredly, I say to you, today you will be with Me in Paradise” <span class="verse-ref">(Luke 23:43)</span>. What did Jesus accomplish through His death? Nothing less than the unmaking of the Fall.</p>
+  <a class="top-link" href="#contents">↑ Back to contents</a>
+</article>
+
+<article id="p2q3">
+  <div class="q-label">Part II · Question 3</div>
+  <h3>Did Jesus descend into Hades after His death?</h3>
+  <p class="short-answer">Yes. While His body lay in the tomb — never separated from His divinity — His human soul, united to His divinity, descended into Hades, proclaimed His victory, shattered its gates, and led out the righteous who had died in hope from Adam onward.</p>
+
+  <p>The descent into Hades (the “Harrowing of Hell”) is not a pious legend; it is apostolic doctrine, woven into the New Testament, the ancient creeds, and above all the Paschal worship of the Orthodox Churches. Hades (Hebrew <em>Sheol</em>) in Scripture is not the lake of fire; it is the realm of the dead — the shadowed prison where all the departed, even the righteous, were held under death’s dominion before Christ <span class="verse-ref">(cf. Psalm 6:5; Isaiah 38:18)</span>.</p>
+
+  <h4>The Scriptural witness</h4>
+  <blockquote class="scripture">
+    <p>“For Christ also suffered once for sins, the just for the unjust, that He might bring us to God, being put to death in the flesh but made alive by the Spirit, by whom also He went and preached to the spirits in prison.”</p>
+    <cite>1 Peter 3:18–19</cite>
+  </blockquote>
+
+  <blockquote class="scripture">
+    <p>“Now this, ‘He ascended’ — what does it mean but that He also first descended into the lower parts of the earth? He who descended is also the One who ascended far above all the heavens, that He might fill all things.”</p>
+    <cite>Ephesians 4:9–10</cite>
+  </blockquote>
+
+  <p>Add to these: “For this reason the gospel was preached also to those who are dead” <span class="verse-ref">(1 Peter 4:6)</span>; Peter’s Pentecost sermon applying Psalm 16 to Christ — “You will not leave My soul in Hades, nor will You allow Your Holy One to see corruption” <span class="verse-ref">(Acts 2:27, 31)</span>; the Lord’s own sign of Jonah, “three days and three nights in the heart of the earth” <span class="verse-ref">(Matthew 12:40)</span>; and the risen Christ’s declaration: “I am He who lives, and was dead... And I have the keys of Hades and of Death” <span class="verse-ref">(Revelation 1:18)</span>. One does not hold the keys of a prison one has not entered and conquered. Matthew even records the firstfruits of the harrowing: at the Lord’s death and resurrection “the graves were opened; and many bodies of the saints who had fallen asleep were raised” <span class="verse-ref">(Matthew 27:52–53)</span>.</p>
+
+  <h4>What happened there</h4>
+  <p>The Fathers are careful: Christ descended not as a captive but as a conqueror. His soul was not dragged to Hades as ours were; He entered as Lord, and Hades’ ancient machinery — built to hold sinners — seized the one sinless Man and, in seizing Him, seized God. St. John Chrysostom’s Paschal homily, read aloud in churches at every Pascha, exults in the catastrophe this caused:</p>
+
+  <blockquote class="father">
+    <p>“Hell took a body, and discovered God. It took earth, and encountered Heaven. It took what it saw, and was overcome by what it could not see. O death, where is your sting? O Hades, where is your victory? Christ is risen, and you are cast down! Christ is risen, and the demons are fallen! Christ is risen, and the angels rejoice! Christ is risen, and not one dead remains in the grave!”</p>
+    <cite>St. John Chrysostom, Paschal Homily</cite>
+  </blockquote>
+
+  <p>St. Ephrem the Syrian devoted whole hymn-cycles (the Nisibene Hymns) to this drama, personifying Death and Satan as they lament their ruin — Death wailing that, having swallowed the One, it is forced to vomit out the many. The icon of the Resurrection in the Orthodox tradition depicts not Christ stepping from the tomb (no one witnessed that moment) but precisely this: Christ standing on the shattered, cross-shaped gates of Hades, grasping Adam and Eve by the wrists — not their hands, for salvation is His grip, not their grasp — hauling our first parents, and in them all humanity, out of the grave. The Coptic Church confesses it tersely in the liturgy’s commemorations, and the universal Paschal hymn of the East compresses it to a single line: <em>Christ is risen from the dead, trampling down death by death, and upon those in the tombs bestowing life.</em></p>
+
+  <h4>Why it matters</h4>
+  <p>First, it answers the question of the righteous dead: what of Abel, Noah, Abraham, Moses, David, the prophets — those who died in faith before the Cross? “These all died in faith, not having received the promises” <span class="verse-ref">(Hebrews 11:13, 39–40)</span>. The descent is the Gospel reaching backward: Christ’s salvation is not limited by chronology; He is “the Lamb slain from the foundation of the world” <span class="verse-ref">(Revelation 13:8)</span>, and the first beneficiaries of His Cross were the dead of forty centuries. Second, it transforms the meaning of every Christian’s death. Hades has been gutted; for those in Christ, death is no longer a prison but a passage — “absent from the body... present with the Lord” <span class="verse-ref">(2 Corinthians 5:8)</span>. There is no depth where He has not gone before us: “If I make my bed in hell, behold, You are there” <span class="verse-ref">(Psalm 139:8)</span>. The lamp of this series burns even there: the Light descended into the deepest darkness ever known, and the darkness could not overcome it <span class="verse-ref">(John 1:5)</span>.</p>
+  <a class="top-link" href="#contents">↑ Back to contents</a>
+</article>
+
+<article id="p2q4">
+  <div class="q-label">Part II · Question 4</div>
+  <h3>Why did Jesus rise from the dead?</h3>
+  <p class="short-answer">Because death had no rightful hold on the Sinless One — “it was not possible that He should be held by it.” He rose to vindicate His sacrifice, to destroy death as a power, to become the firstfruits of our own resurrection, and to begin the new creation in His own glorified body.</p>
+
+  <p>The first thing to say is that the resurrection was not optional — not a happy epilogue appended to the real work of the Cross. Cross and Resurrection are one indivisible act, two faces of one victory. St. Paul stakes the entire faith on it: “if Christ is not risen, your faith is futile; you are still in your sins!” <span class="verse-ref">(1 Corinthians 15:17)</span>. A dead savior saves no one. Peter, preaching at Pentecost, gives the deepest reason it happened:</p>
+
+  <blockquote class="scripture">
+    <p>“...whom God raised up, having loosed the pains of death, because it was not possible that He should be held by it.”</p>
+    <cite>Acts 2:24</cite>
+  </blockquote>
+
+  <p><em>Not possible.</em> Death’s legal claim runs only over sinners — “the wages of sin is death” <span class="verse-ref">(Romans 6:23)</span> — and over creatures. Christ was neither: sinless, and the Author of life. Death seized Him by the only foothold it had, His freely-assumed mortal flesh; but having taken in the Life Himself, it could no more retain Him than night can retain the sunrise. The resurrection is simply who He is, asserting itself: “I am the resurrection and the life” <span class="verse-ref">(John 11:25)</span>.</p>
+
+  <h4>Vindication: the Father’s “Amen” to the Son</h4>
+  <p>The resurrection is God’s public verdict on Jesus of Nazareth. The Sanhedrin judged Him a blasphemer; Rome judged Him a criminal; the resurrection reversed both courts: He was “declared to be the Son of God with power... by the resurrection from the dead” <span class="verse-ref">(Romans 1:4)</span>. And it is the verdict on His work as much as His person: He “was delivered up because of our offenses, and was raised <em>because of our justification</em>” <span class="verse-ref">(Romans 4:25)</span>. The risen Christ is the Father’s receipt that the offering of Good Friday was accepted in full. This is why the apostles, in Acts, preach the resurrection more than anything else — sermon after sermon hammering one note: “you killed Him; God raised Him; we are witnesses” <span class="verse-ref">(Acts 2:32; 3:15; 5:30–32; 10:39–41)</span>. The Church was not founded on an idea but on an empty tomb and five hundred eyewitnesses <span class="verse-ref">(1 Corinthians 15:6)</span>, most of whom went to their deaths rather than retract.</p>
+
+  <h4>Firstfruits: our resurrection has already begun</h4>
+  <blockquote class="scripture">
+    <p>“But now Christ is risen from the dead, and has become the firstfruits of those who have fallen asleep. For since by man came death, by Man also came the resurrection of the dead. For as in Adam all die, even so in Christ all shall be made alive.”</p>
+    <cite>1 Corinthians 15:20–22</cite>
+  </blockquote>
+
+  <p>“Firstfruits” is harvest language: the first sheaf is not a different crop from the rest; it is the same harvest, arriving first and guaranteeing the remainder. Christ did not rise as a private miracle but as the head of a body — what happened to Him on the third day is what will happen to all who are His. And note what rose: not a ghost (“Handle Me and see, for a spirit does not have flesh and bones as you see I have” <span class="verse-ref">Luke 24:39</span>), not a resuscitated corpse like Lazarus, who died again — but the same body, glorified and deathless, still bearing the wounds <span class="verse-ref">(John 20:27)</span> yet no longer subject to corruption. Our hope, accordingly, is not the soul’s escape from the body but the body’s redemption <span class="verse-ref">(Romans 8:23)</span>: “He will transform our lowly body that it may be conformed to His glorious body” <span class="verse-ref">(Philippians 3:21)</span>.</p>
+
+  <blockquote class="father">
+    <p>“The Saviour is working mightily among men: every day He is invisibly persuading numbers of people all over the world... to accept His faith and be obedient to His teaching. Can anyone, in the face of this, still doubt that He has risen and lives — or rather, that He is Himself the Life? Does a dead man prick the consciences of men...?”</p>
+    <cite>St. Athanasius, On the Incarnation 30–31</cite>
+  </blockquote>
+
+  <p>Athanasius adds his famous image: now that death has been conquered, Christians mock it — believers “tread death underfoot as nothing,” and even children and women who once trembled at it hasten toward martyrdom as toward life. A defeated tyrant, he says, is laughed at by the very citizens who once paid him tribute. The resurrection turned the human race’s oldest terror into a defeated and derided enemy.</p>
+
+  <p>Finally, the resurrection inaugurates the new creation. It happened “on the first day of the week” <span class="verse-ref">(John 20:1)</span> — the eighth day, as the Fathers call it, the first morning of the world to come — and in a garden, where the new Adam was mistaken for “the gardener” <span class="verse-ref">(John 20:15)</span> by no accident of narrative: the world’s true Gardener had returned to His ruined garden to replant it. Every Sunday liturgy, every baptism (“buried with Him... raised with Him,” <span class="verse-ref">Colossians 2:12</span>), every lamp lit at Pascha announces the same fact: the future resurrection has already broken into the middle of history, and its name is Jesus.</p>
+  <a class="top-link" href="#contents">↑ Back to contents</a>
+</article>
+
+<article id="p2q5">
+  <div class="q-label">Part II · Question 5</div>
+  <h3>Is Jesus the only way to salvation?</h3>
+  <p class="short-answer">Yes. Salvation is union with God, and only God incarnate can unite humanity to God. There is no other mediator, no other sacrifice, no other name. What God in His mercy does with those who never heard of Him is His judgment to make — but He has shown us the Way, and commanded us to walk it and proclaim it.</p>
+
+  <p>The claim is not the Church’s invention; it is the Lord’s own, spoken on the night before His death, and the apostles’ unanimous preaching at the risk — and cost — of their lives:</p>
+
+  <blockquote class="scripture">
+    <p>“Jesus said to him, ‘I am the way, the truth, and the life. No one comes to the Father except through Me.’”</p>
+    <cite>John 14:6</cite>
+  </blockquote>
+
+  <blockquote class="scripture">
+    <p>“Nor is there salvation in any other, for there is no other name under heaven given among men by which we must be saved.”</p>
+    <cite>Acts 4:12 — Peter, on trial before the Sanhedrin</cite>
+  </blockquote>
+
+  <p>To these add: “there is one God and one Mediator between God and men, the Man Christ Jesus, who gave Himself a ransom for all” <span class="verse-ref">(1 Timothy 2:5–6)</span>; “he who does not believe the Son shall not see life” <span class="verse-ref">(John 3:36)</span>; “I am the door. If anyone enters by Me, he will be saved” <span class="verse-ref">(John 10:9)</span>. Note the definite articles: <em>the</em> way, <em>the</em> door, <em>one</em> mediator. The New Testament does not present Jesus as a way among ways but as the single bridge over an otherwise unbridgeable chasm.</p>
+
+  <h4>Why it could not be otherwise</h4>
+  <p>This exclusivity is not arbitrary narrowness; it follows from what salvation <em>is</em>. If salvation were merely information, many teachers could deliver it. If it were merely moral effort, many paths could host it. But salvation, as the previous questions have shown, is nothing less than the healing of a death-infected nature and the union of man with God — and that required God Himself to become man, die our death, and rise. No prophet, sage, or founder of a religion did this, claimed to do it, or could do it. Buddha pointed to a path; Muhammad claimed to relay a message; philosophers refined ethics. Christ alone said “I am the resurrection” and walked out of His grave. As St. Athanasius argued, only the One through whom we were created could recreate us; a creature cannot save creatures, “for the maker must be greater than what he makes.” The uniqueness of the Way is simply the uniqueness of the Incarnation. There is one God-man; therefore there is one bridge; therefore there is one way — not because God is stingy, but because only one such bridge ever existed or needed to exist, and God paid for it with His own blood <span class="verse-ref">(Acts 20:28)</span>.</p>
+
+  <h4>The way is walked in His Body, the Church</h4>
+  <p>The Orthodox faith adds what modern individualism forgets: Christ is not received as a private opinion but as a life entered. He instituted baptism as the gateway — “unless one is born of water and the Spirit, he cannot enter the kingdom of God” <span class="verse-ref">(John 3:5)</span>; “he who believes and is baptized will be saved” <span class="verse-ref">(Mark 16:16)</span> — and the Eucharist as the sustenance: “unless you eat the flesh of the Son of Man and drink His blood, you have no life in you” <span class="verse-ref">(John 6:53)</span>. The Way, therefore, is concrete: faith, baptism, the sacramental life, repentance, and love within the Body He founded. St. Cyprian of Carthage stated the ancient consensus without embarrassment: “He cannot have God for his Father who does not have the Church for his mother” (On the Unity of the Church 6). The ark is one; the flood is real; the door stands open.</p>
+
+  <h4>What about those who never heard?</h4>
+  <p>Here the Church speaks with care. Scripture affirms both that God “desires all men to be saved and to come to the knowledge of the truth” <span class="verse-ref">(1 Timothy 2:4)</span> and that “the Judge of all the earth” will “do right” <span class="verse-ref">(Genesis 18:25)</span>; that those without the law will be judged by what they had <span class="verse-ref">(Romans 2:12–16)</span>; and that Christ’s descent into Hades carried His salvation even to those who died before His coming. Whatever mercy God extends beyond the visible boundaries of the Church is extended <em>through Christ</em> — there is no salvation that bypasses the Cross — and it is His to give, not ours to presume or to preach. We are not the judges of the unevangelized; we are the messengers to them. The command we received is not “speculate” but “go”: “Go therefore and make disciples of all the nations” <span class="verse-ref">(Matthew 28:19)</span>. The question to ask is rarely “what about the man on the distant island?” and almost always “what about me, who has heard?” To us who have seen the Light, the word stands: “How shall we escape if we neglect so great a salvation?” <span class="verse-ref">(Hebrews 2:3)</span>.</p>
+  <a class="top-link" href="#contents">↑ Back to contents</a>
+</article>
+
+<article id="p2q6">
+  <div class="q-label">Part II · Question 6</div>
+  <h3>Could Jesus have sinned?</h3>
+  <p class="short-answer">No. His temptations were utterly real — pressed on Him from outside with a force we will never know — but the one tempted was the divine person of God the Word, and God cannot sin. He is not merely the man who happened never to sin; He is the One who could not, and that is our security, not a diminishment of His humanity.</p>
+
+  <p>The question must honor two facts Scripture states with equal force. First, the temptations were genuine:</p>
+
+  <blockquote class="scripture">
+    <p>“For we do not have a High Priest who cannot sympathize with our weaknesses, but was in all points tempted as we are, yet without sin.”</p>
+    <cite>Hebrews 4:15</cite>
+  </blockquote>
+
+  <p>Second, the tempted One is God, and “God cannot be tempted by evil” <span class="verse-ref">(James 1:13)</span> in the sense of being susceptible to it; He is “the Holy One” <span class="verse-ref">(Acts 3:14)</span>, and “in Him there is no sin” <span class="verse-ref">(1 John 3:5)</span>. The resolution lies where all christological questions are resolved: in the <em>unity of His person</em>. Actions and possibilities belong to persons, not to natures floating free. The question “could Jesus have sinned?” means “could the person acting through that human nature have sinned?” — and the person is God the Word. Sin is precisely the creature’s turning away from God; for the incarnate Word to sin, God would have to turn away from God — an absolute impossibility. As the Oriental Orthodox confession insists, His humanity was never for one moment a separate, independent agent that might have gone its own way; from the instant of conception it was the Word’s <em>own</em> humanity, inseparably united to His divinity. A humanity that could sin “on its own” would imply exactly the two-subjects error of Nestorius that the Council of Ephesus condemned.</p>
+
+  <h4>Then were the temptations theater?</h4>
+  <p>No — and this is the crucial pastoral point. The reality of a temptation does not depend on the possibility of failure; it depends on the reality of the assault and of the felt cost of resisting. Christ truly hungered in the wilderness when the tempter came <span class="verse-ref">(Matthew 4:1–11)</span>; truly recoiled in Gethsemane — “My soul is exceedingly sorrowful, even to death... let this cup pass from Me” <span class="verse-ref">(Matthew 26:38–39)</span> — sweating as it were great drops of blood <span class="verse-ref">(Luke 22:44)</span>. His human will genuinely shrank from the Cross as every human will shrinks from death, and genuinely, freely submitted: “nevertheless, not My will, but Yours, be done.” The Fathers observed, moreover, that the sinless One experienced temptation’s full force in a way sinners never do: we capitulate early; He endured the entire weight to the end. The man who resists ten minutes and yields knows less of temptation’s power than the man who withstands the whole siege. C. S. Lewis’s modern image only restates the ancients: only the man who never gives in knows how strong the wind really blows.</p>
+
+  <h4>Why His impeccability matters for us</h4>
+  <p>Some fear that if Christ could not sin, He cannot really sympathize with us. Scripture says the opposite: His sympathy rests on what He <em>experienced</em> (hunger, weariness, grief, dread, the tempter’s whisper), not on a capacity for evil. A physician need not be susceptible to a disease to know its symptoms perfectly and cure it. Indeed, His impeccability is the very ground of our hope, in at least three ways. First, <em>the certainty of salvation</em>: had the outcome in the wilderness or the garden hung in doubt, the entire economy of salvation hung with it — creation’s redemption balanced on a coin-flip. God does not gamble with His promise; “the Scriptures must be fulfilled” <span class="verse-ref">(Mark 14:49)</span>. Second, <em>the spotless sacrifice</em>: only “a lamb without blemish and without spot” <span class="verse-ref">(1 Peter 1:19)</span> could be offered for the sins of the world; a savior who merely happened not to sin would leave us with a salvation that merely happened. Third, <em>the healing of our nature</em>: Christ took our humanity precisely to render it sin-proof in Himself — to drive the serpent’s venom out of the bloodstream of the race. In Him human nature has already arrived where grace is leading us: the inability to fall that the saints will enjoy in glory is not the loss of freedom but its perfection — freedom finally immune to slavery.</p>
+
+  <blockquote class="father">
+    <p>“He hungered, He thirsted, He was wearied, He feared and fled, He was troubled when He prayed... but these things He permitted His flesh to suffer, that we might know He bore a true body and not a phantom — and that, having made our passions His own, He might destroy their tyranny in Himself.”</p>
+    <cite>The teaching of St. Athanasius and St. Cyril on the Lord’s blameless passions (cf. Against the Arians 3.54–57; Cyril, Commentary on John)</cite>
+  </blockquote>
+
+  <p>So the believer under temptation looks to Christ and finds not a fellow gambler who got lucky, but a conqueror who has already broken the enemy’s line — and who now, as the sympathizing High Priest, “is able to aid those who are tempted,” because “He Himself has suffered, being tempted” <span class="verse-ref">(Hebrews 2:18)</span>. We are not following an example merely; we are grafted into a victory.</p>
+  <a class="top-link" href="#contents">↑ Back to contents</a>
+</article>
+
+<article id="p2q7">
+  <div class="q-label">Part II · Question 7</div>
+  <h3>What happened during Christ’s earthly ministry?</h3>
+  <p class="short-answer">For roughly three years the incarnate God walked through our life and rewrote it from within: sanctifying our waters in His baptism, reversing Adam’s defeat in the wilderness, teaching as the Truth in person, healing as the Kingdom breaking in, founding His Church, and instituting the mysteries by which we share His life.</p>
+
+  <p>Peter gave the shortest summary ever preached: “God anointed Jesus of Nazareth with the Holy Spirit and with power, who <em>went about doing good</em> and healing all who were oppressed by the devil, for God was with Him” <span class="verse-ref">(Acts 10:38)</span>. But the Fathers saw beneath the surface of those three years a deliberate architecture: St. Irenaeus called it <span class="greek">recapitulation</span> — Christ passing through every stage and station of human life as the new head of the race, undoing at each point what was done amiss in Adam, sanctifying each stage by inhabiting it. “He became what we are,” and in becoming it, healed it. Trace the major stations.</p>
+
+  <h4>The Baptism: the waters sanctified</h4>
+  <p>The Sinless One had no sins to wash; the Jordan did not cleanse Him — He cleansed the Jordan. By descending into the water, the Lord sanctified water itself as the womb of the new birth, and the heavens opened to reveal the Trinity: the Son in the river, the Spirit descending as a dove, the Father’s voice — “This is My beloved Son” <span class="verse-ref">(Matthew 3:16–17)</span>. The Coptic and all Eastern churches keep this as the great feast of <em>Theophany</em>. Every baptismal font in the world flows from the Jordan of that morning.</p>
+
+  <h4>The Temptation: Adam’s test, retaken and passed</h4>
+  <p>Adam, in a garden of plenty, fed and comfortable, fell at the first whisper. Christ, in a desert, after forty days’ hunger, threw back all three assaults — appetite, spectacle, and power — answering each from Scripture <span class="verse-ref">(Matthew 4:1–11)</span>. The first round of the ancient duel was thus refought and won; the strong man’s house had been entered, and his binding had begun <span class="verse-ref">(Matthew 12:29)</span>.</p>
+
+  <h4>The Teaching: not a scribe, but the Word</h4>
+  <p>“The people were astonished at His teaching, for He taught them as one having authority, and not as the scribes” <span class="verse-ref">(Matthew 7:28–29)</span>. Prophets said, “Thus says the LORD”; Jesus said, “But <em>I</em> say to you” <span class="verse-ref">(Matthew 5:22)</span> — and “heaven and earth will pass away, but My words will by no means pass away” <span class="verse-ref">(Matthew 24:35)</span>. The Sermon on the Mount, the parables, the Last Supper discourses — this is not religious advice but the self-disclosure of the Truth in person, the Lawgiver standing on the mountain interpreting His own Law.</p>
+
+  <h4>The Miracles: the Kingdom arriving in deeds</h4>
+  <p>The miracles are not advertisements; they are the thing itself arriving — creation’s ruin running backward wherever its Maker walked. Blind eyes (light restored), lepers (the unclean made clean by a touch that should have defiled and instead healed), storms silenced by a word the disciples recognized with terror as the prerogative of the Creator — “Who can this be, that even the wind and the sea obey Him!” <span class="verse-ref">(Mark 4:41; cf. Psalm 107:29)</span> — and the dead raised: Jairus’s daughter, the widow’s son, and Lazarus four days in the tomb <span class="verse-ref">(John 11)</span>, dress rehearsals for the third day. “If I cast out demons by the Spirit of God, surely the kingdom of God has come upon you” <span class="verse-ref">(Matthew 12:28)</span>.</p>
+
+  <h4>The Transfiguration: glory unveiled before the Cross</h4>
+  <p>On the mountain He drew back, for a moment, the veil of His flesh: “His face shone like the sun, and His clothes became as white as the light,” with Moses and Elijah — the Law and the Prophets — in attendance, and the Father’s voice again: “This is My beloved Son... Hear Him!” <span class="verse-ref">(Matthew 17:1–5)</span>. The disciples were shown, days before Golgotha, that the coming Passion would be voluntary: no one crucifies that glory against its will.</p>
+
+  <h4>The Foundation: a Church and her mysteries</h4>
+  <p>He left behind no book, but a <em>community with His life in it</em>: twelve apostles deliberately echoing the twelve tribes, given authority to bind and loose <span class="verse-ref">(Matthew 16:18–19; 18:18)</span>, a new commandment of love <span class="verse-ref">(John 13:34)</span>, the promise of the Spirit to guide them into all truth <span class="verse-ref">(John 16:13)</span>, and on the night of His betrayal, the mystery of mysteries: “Take, eat; this is My body... this is My blood of the new covenant, which is shed for many for the remission of sins” <span class="verse-ref">(Matthew 26:26–28)</span>. The whole sacramental life of the Orthodox Church — baptism, Eucharist, priesthood, absolution <span class="verse-ref">(John 20:22–23)</span> — was planted in those three years.</p>
+
+  <blockquote class="father">
+    <p>“He came to save all through His own person — all, I say, who through Him are born again to God: infants, children, boys, youths, and old men. He therefore passed through every age... that He might be the perfect Master for all, sanctifying each age by the likeness it bears to Himself.”</p>
+    <cite>St. Irenaeus, Against Heresies 2.22.4</cite>
+  </blockquote>
+
+  <p>St. John closes his Gospel admitting the impossibility of a full inventory: “there are also many other things that Jesus did, which if they were written one by one, I suppose that even the world itself could not contain the books” <span class="verse-ref">(John 21:25)</span>. But the shape is clear: the ministry was not a prelude to the real work; it was the Physician making His rounds through the whole ward of human existence — birth, childhood, labor, friendship, grief, temptation, prayer — leaving each one sanctified, before ascending the Cross to heal the last enemy of all.</p>
+  <a class="top-link" href="#contents">↑ Back to contents</a>
+</article>
+
+<article id="p2q8">
+  <div class="q-label">Part II · Question 8</div>
+  <h3>What does it mean that Jesus is seated at the Father’s right hand?</h3>
+  <p class="short-answer">Not a location but an enthronement: the crucified and risen Man now reigns with the full authority, honor, and power of God — His finished work accepted, His humanity glorified, His intercession unceasing, His return awaited.</p>
+
+  <p>God is spirit <span class="verse-ref">(John 4:24)</span>; He has no literal right hand, and heaven is not furnished with chairs. “The right hand” is the Bible’s idiom of supreme honor and executive power — the position of the vizier, the crown prince, the one through whom the king acts. The image comes above all from the most-quoted Old Testament verse in the entire New Testament:</p>
+
+  <blockquote class="scripture">
+    <p>“The LORD said to my Lord, ‘Sit at My right hand, till I make Your enemies Your footstool.’”</p>
+    <cite>Psalm 110:1 — cited or echoed over twenty times in the New Testament</cite>
+  </blockquote>
+
+  <p>Jesus Himself used this Psalm to silence His questioners (how is the Messiah merely David’s son, if David calls Him “my Lord”? <span class="verse-ref">Matthew 22:41–46</span>), and at His trial He claimed it as His own destiny: “hereafter you will see the Son of Man sitting at the right hand of the Power, and coming on the clouds of heaven” <span class="verse-ref">(Matthew 26:64)</span> — the claim for which the high priest tore his robes. After the resurrection, the apostles proclaim it as accomplished fact: He “was received up into heaven, and sat down at the right hand of God” <span class="verse-ref">(Mark 16:19)</span>; God “raised Him from the dead and seated Him at His right hand in the heavenly places, far above all principality and power and might and dominion” <span class="verse-ref">(Ephesians 1:20–21)</span>. Unpack what the session means, strand by strand.</p>
+
+  <h4>The work is finished</h4>
+  <p>The priests of the old covenant never sat down on duty — there were no seats in the tabernacle’s holy place — “every priest stands ministering daily and offering repeatedly the same sacrifices, which can never take away sins. But this Man, after He had offered one sacrifice for sins forever, <em>sat down</em> at the right hand of God” <span class="verse-ref">(Hebrews 10:11–12)</span>. The sitting is the visible form of “It is finished” <span class="verse-ref">(John 19:30)</span>: nothing remains to be added to the sacrifice — not by Him, and not by us.</p>
+
+  <h4>Our humanity is enthroned</h4>
+  <p>Mark this carefully: what ascended and sat down is not the bare divine Word — He never left the Father’s side as God — but the Word <em>in our flesh</em>. A human body, born of the Virgin, scarred by Roman nails, now occupies the throne of the universe. The session is humanity’s coronation: in Christ our nature has been carried higher than the cherubim. Daniel saw it in advance: “One like the Son of Man... came to the Ancient of Days... Then to Him was given dominion and glory and a kingdom, that all peoples, nations, and languages should serve Him” <span class="verse-ref">(Daniel 7:13–14)</span>. And astonishingly, His enthronement is the pledge of ours: God “raised us up together, and made us sit together in the heavenly places in Christ Jesus” <span class="verse-ref">(Ephesians 2:6)</span>; “to him who overcomes I will grant to sit with Me on My throne” <span class="verse-ref">(Revelation 3:21)</span>.</p>
+
+  <h4>He reigns now — and intercedes now</h4>
+  <p>The session is not retirement but government: “He must reign till He has put all enemies under His feet” <span class="verse-ref">(1 Corinthians 15:25)</span>; “All authority has been given to Me in heaven and on earth” <span class="verse-ref">(Matthew 28:18)</span>. History since the Ascension is not drifting; it is being subdued. And at the center of that reign is a priestly heart: “He is also able to save to the uttermost those who come to God through Him, since He always lives to make intercession for them” <span class="verse-ref">(Hebrews 7:25)</span>; “if anyone sins, we have an Advocate with the Father, Jesus Christ the righteous” <span class="verse-ref">(1 John 2:1)</span>. Every prayer of the Church ascends “through Christ our Lord” because He is, at this hour, our Forerunner within the veil <span class="verse-ref">(Hebrews 6:20)</span> — the wounds He shows the Father are the permanent liturgy of our forgiveness.</p>
+
+  <p>The first Christian to see it was the first martyr. As the stones fell, Stephen looked up: “Behold, I see the heavens opened and the Son of Man <em>standing</em> at the right hand of God!” <span class="verse-ref">(Acts 7:56)</span> — standing, the Fathers noted, as if risen from the throne to welcome His witness home. That is the session in one image: absolute sovereignty, leaning toward us. The creed of the Church places it between two certainties — “He ascended into heaven, and sits at the right hand of the Father, <em>and He shall come again in His glory</em>.” The throne is occupied; the footstool is filling; the King is coming back.</p>
+  <a class="top-link" href="#contents">↑ Back to contents</a>
+</article>
+
+<article id="p2q9">
+  <div class="q-label">Part II · Question 9</div>
+  <h3>Why is Christ called the “Second Adam”?</h3>
+  <p class="short-answer">Because as Adam stood at the head of the old humanity and dragged it into sin and death, Christ stands at the head of a new humanity and carries it into righteousness and life. Point by point — tree for tree, garden for garden, disobedience for obedience — He retraced Adam’s steps and reversed them.</p>
+
+  <p>The title is St. Paul’s. Twice he sets the two heads of humanity side by side and runs the comparison like a ledger:</p>
+
+  <blockquote class="scripture">
+    <p>“For as in Adam all die, even so in Christ all shall be made alive... And so it is written, ‘The first man Adam became a living being.’ The last Adam became a life-giving spirit... The first man was of the earth, made of dust; the second Man is the Lord from heaven.”</p>
+    <cite>1 Corinthians 15:22, 45, 47</cite>
+  </blockquote>
+
+  <blockquote class="scripture">
+    <p>“For as by one man’s disobedience many were made sinners, so also by one Man’s obedience many will be made righteous... For if by the one man’s offense death reigned through the one, much more those who receive abundance of grace... will reign in life through the One, Jesus Christ.”</p>
+    <cite>Romans 5:19, 17</cite>
+  </blockquote>
+
+  <p>Behind the title lies a profound anthropology: human beings are not isolated units but a single organism with a head. What the head does, the body inherits. From Adam we inherited a nature wounded by corruption and tilted toward death — not by imitating him but by being born of him. The Gospel’s logic is the same in reverse: from Christ we inherit healed nature and immortal life — not by imitating Him only, but by being <em>born of Him</em>, “born again” <span class="verse-ref">(John 3:3)</span> by water and the Spirit, grafted into Him as branches into a vine <span class="verse-ref">(John 15:5)</span>. Salvation is a change of head.</p>
+
+  <h4>The great reversal, point by point</h4>
+  <p>St. Irenaeus, in the second century, traced the symmetry with wonder, calling it recapitulation — and the Fathers after him filled in the details like artists completing a diptych. Adam was tempted in a <em>garden</em> of abundance and fell; Christ was tempted in a <em>desert</em> of hunger and stood — and then, completing the pattern, agonized in another garden, Gethsemane, where “not My will but Yours” untied the knot of “my will, not Yours” tied at Eden. Through a <em>tree</em> death entered; on a <em>tree</em> death was slain — “who Himself bore our sins in His own body on the tree” <span class="verse-ref">(1 Peter 2:24)</span>. Adam stretched out his hand to seize forbidden fruit; Christ stretched out His hands to the nails. Adam’s disobedience was crowned with fig leaves of shame; Christ’s obedience was crowned with thorns — the very sign of the curse on the ground <span class="verse-ref">(Genesis 3:18)</span> pressed onto the brow of the One bearing it away. Eve, a virgin, listened to the serpent and brought forth death; Mary, a virgin, listened to the angel — “let it be to me according to your word” <span class="verse-ref">(Luke 1:38)</span> — and brought forth Life. St. Irenaeus states this last parallel explicitly: “the knot of Eve’s disobedience was loosed by the obedience of Mary” (Against Heresies 3.22.4) — which is why the Orthodox honor the Theotokos as the New Eve, mother of all the truly living.</p>
+
+  <p>Even the geography of redemption preaches it. Adam, having sinned, slept and was opened that Eve might be formed from his side; Christ, having finished His work, slept on the Cross and His side was opened <span class="verse-ref">(John 19:34)</span> — and from the blood and water the Fathers saw the Church, His bride, born: the water of baptism, the blood of the Eucharist. An ancient tradition cherished in the East even places Golgotha — “the place of the skull” — over the grave of Adam, which is why Orthodox icons of the Crucifixion paint a skull beneath the Cross: the blood of the Second Adam running down to baptize the bones of the first.</p>
+
+  <blockquote class="father">
+    <p>“He has therefore, in His work of recapitulation, summed up all things... waging war against our enemy, and crushing him who had at the beginning led us away captives in Adam... For it behooved Him who began the contest to also finish it: as by the disobedience of the one man who was first formed out of virgin soil, the many were made sinners; so it was necessary that, by the obedience of one Man who was first born of a virgin, many should be made righteous.”</p>
+    <cite>St. Irenaeus, Against Heresies 5.21.1; 3.18.7</cite>
+  </blockquote>
+
+  <h4>What the title means for us</h4>
+  <p>“Second Adam” is finally a word about belonging. Every human being lives under one of the two heads; there is no third. In the first Adam we receive what he had to give: a magnificent, mortally wounded nature — “as we have borne the image of the man of dust” <span class="verse-ref">(1 Corinthians 15:49)</span>. In Christ we receive what He has to give: forgiveness, the Spirit, incorruption — “we shall also bear the image of the heavenly Man.” Baptism is the transfer of headship: dying with the old Adam, rising in the New <span class="verse-ref">(Romans 6:3–5)</span>. And the destiny of the new race exceeds even Eden, for the Second Adam cannot fall: He does not return us to the garden gate to try again, but carries us where the first Adam never arrived — to the throne. The Fathers dared to put it this way: God did not merely repair Adam; in Christ, He finished him.</p>
+  <a class="top-link" href="#contents">↑ Back to contents</a>
+</article>
+
+<article id="p2q10">
+  <div class="q-label">Part II · Question 10</div>
+  <h3>When will Jesus return?</h3>
+  <p class="short-answer">No one knows — by the Lord’s own design and declaration. He will return visibly, gloriously, and suddenly, to raise the dead and judge the living and the dead. The Church is not given a date; she is given a command: watch, and keep your lamp burning.</p>
+
+  <p>On this question the Lord Himself drew the line, and drew it absolutely:</p>
+
+  <blockquote class="scripture">
+    <p>“But of that day and hour no one knows, not even the angels of heaven, but My Father only... Therefore you also be ready, for the Son of Man is coming at an hour you do not expect.”</p>
+    <cite>Matthew 24:36, 44</cite>
+  </blockquote>
+
+  <p>And again, in His final recorded conversation before the Ascension, when the disciples asked the question one last time: “It is not for you to know times or seasons which the Father has put in His own authority” <span class="verse-ref">(Acts 1:7)</span>. Every date-setter in twenty centuries — and there have been hundreds, from ancient Montanists to modern sects — has had to climb over those two verses to reach his calculator, and every one has been refuted by the sunrise after his appointed day. The Orthodox Church has never set a date and never will: where the Master says “no one knows,” the servant does not say “but I do.”</p>
+
+  <h4>What we do know: the manner of His coming</h4>
+  <p>Though the <em>when</em> is sealed, the <em>how</em> is revealed, and it demolishes every counterfeit. His coming will be <em>personal and visible</em> — “This same Jesus... will so come in like manner as you saw Him go into heaven” <span class="verse-ref">(Acts 1:11)</span>; “every eye will see Him, even they who pierced Him” <span class="verse-ref">(Revelation 1:7)</span>. It will be <em>unmistakable and universal</em> — “as the lightning comes from the east and flashes to the west, so also will the coming of the Son of Man be” <span class="verse-ref">(Matthew 24:27)</span>; therefore any messiah who must be searched out in a desert or an inner room is by definition false <span class="verse-ref">(Matthew 24:23–26)</span>. It will be <em>sudden</em> — “as a thief in the night... as labor pains upon a pregnant woman” <span class="verse-ref">(1 Thessalonians 5:2–3)</span>. And it will be <em>in glory</em>: the first coming was in humility, a hidden King in a manger; the second is the unveiling — “the Lord Himself will descend from heaven with a shout, with the voice of an archangel, and with the trumpet of God. And the dead in Christ will rise” <span class="verse-ref">(1 Thessalonians 4:16)</span>. Then the general resurrection, the judgment of all nations <span class="verse-ref">(Matthew 25:31–46)</span>, and the new heavens and new earth “in which righteousness dwells” <span class="verse-ref">(2 Peter 3:13)</span>. The creed the Oriental Orthodox confess at every liturgy compresses it into one clause: <em>“He shall come again in His glory to judge the living and the dead, whose kingdom shall have no end.”</em></p>
+
+  <h4>Why the delay?</h4>
+  <p>Already in the first century scoffers asked, “Where is the promise of His coming?” <span class="verse-ref">(2 Peter 3:4)</span>. Peter’s answer stands: “The Lord is not slack concerning His promise... but is longsuffering toward us, not willing that any should perish but that all should come to repentance” <span class="verse-ref">(2 Peter 3:9)</span>. The delay is not absence; it is mercy with a deadline. Every day before the trumpet is a day the door of repentance stands open — for someone. The gospel must first be preached “in all the world as a witness to all the nations, and then the end will come” <span class="verse-ref">(Matthew 24:14)</span>; the slowness we complain of is the patience that saved us.</p>
+
+  <h4>The posture of the Church: lamps lit</h4>
+  <p>It is no accident that the Lord’s great parable of His return is a parable of <em>lamps</em>. Ten virgins await the Bridegroom; the wise carry oil, the foolish do not; the cry comes at midnight — and the door, once shut, is shut <span class="verse-ref">(Matthew 25:1–13)</span>. The Fathers read the oil as the Holy Spirit, as prayer, as mercy to the poor — the inner life that cannot be borrowed at the last minute. The very first Christian writing outside the New Testament, the <em>Didache</em>, ends with the same watchword, and it may stand as the conclusion of this whole series:</p>
+
+  <blockquote class="father">
+    <p>“Watch over your life: let your lamps not be quenched, and let your loins not be ungirded, but be ready; for you know not the hour in which our Lord comes... and then shall the world see the Lord coming upon the clouds of heaven.”</p>
+    <cite>The Didache 16 (first century)</cite>
+  </blockquote>
+
+  <p>The Church, then, lives between two appearings — leaning forward. Her whole liturgy faces east, toward the rising sun, the direction of His coming. Her oldest recorded prayer is one Aramaic word the apostles taught even Greek-speaking congregations: <span class="greek">Maranatha</span> — “Our Lord, come!” <span class="verse-ref">(1 Corinthians 16:22)</span>. And the last prayer of the Bible is the same: “He who testifies to these things says, ‘Surely I am coming quickly.’ Amen. Even so, come, Lord Jesus!” <span class="verse-ref">(Revelation 22:20)</span>. When will He return? At the hour you do not expect. What, then, is the question He leaves with us? Not “when” — but “will your lamp be burning?”</p>
+  <a class="top-link" href="#contents">↑ Back to contents</a>
+</article>
+</section>
+
+</main>
+
+<footer>
+  <p class="doxology">“We praise You, we bless You, we serve You, we worship You — O Holy Trinity, have mercy on us.”</p>
+  <p class="fine">The Orthodox Lamp. Scripture quotations follow the traditional rendering (NKJV phrasing). Patristic citations are given from the standard editions; older translations are lightly modernized for readability. Prepared in the faith of the three Ecumenical Councils — Nicaea (325), Constantinople (381), and Ephesus (431) — confessed by the Oriental Orthodox Churches.</p>
+</footer>
+
+</body>
+</html>

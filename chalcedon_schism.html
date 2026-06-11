@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Chalcedonian Schism — The Orthodox Lamp</title>
+<style>
+:root{--gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;--bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--tx:#e8e0d0;--mu:#a09880;--br:#2a2a2a;--bg5:#3a2e10;--oo:#c9a84c;--eo:#7aabde;--rc:#d47070;--sidebar-w:270px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Georgia',serif;background:var(--bg);color:var(--tx);line-height:1.75}
+a{color:var(--gold);text-decoration:none}
+a:hover{text-decoration:underline}
+
+#prog{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--gd),var(--gl));z-index:9999;transition:width .1s}
+
+#sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:100;transition:transform .3s}
+#sidebar header{padding:22px 18px 14px;border-bottom:1px solid var(--br)}
+#sidebar header .site-label{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mu);margin-bottom:4px}
+#sidebar header h2{font-size:.95rem;color:var(--gold);line-height:1.3}
+#sidebar nav{padding:10px 0 80px}
+#sidebar nav a{display:block;padding:8px 18px;font-size:.8rem;color:var(--mu);border-left:3px solid transparent;transition:all .2s}
+#sidebar nav a:hover,#sidebar nav a.active{color:var(--gold);border-left-color:var(--gold);background:rgba(201,168,76,.07);text-decoration:none}
+#sidebar nav .sec-label{padding:14px 18px 4px;font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;color:#555}
+
+/* Search in sidebar */
+.sb-search{padding:10px 14px 4px}
+.sb-search input{width:100%;background:rgba(255,255,255,.06);border:1px solid var(--br);border-radius:6px;padding:8px 12px;font-size:.8rem;color:var(--tx);font-family:'Georgia',serif;outline:none;transition:border-color .2s}
+.sb-search input::placeholder{color:#666}
+.sb-search input:focus{border-color:var(--gd)}
+.sec.s-hidden{display:none}
+.no-match-msg{display:none;padding:10px 18px;font-size:.78rem;color:var(--mu);font-style:italic;text-align:center}
+.no-match-msg.show{display:block}
+
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:90}
+#overlay.show{display:block}
+#ham{display:none;position:fixed;top:12px;left:12px;z-index:200;background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:8px 10px;cursor:pointer;flex-direction:column;gap:5px}
+#ham span{display:block;width:22px;height:2px;background:var(--gold)}
+
+main{margin-left:var(--sidebar-w);padding:0 0 80px}
+
+.hero{background:linear-gradient(160deg,#0d0d0d 0%,#1a1308 50%,#0d0d0d 100%);border-bottom:1px solid var(--br);padding:64px 48px 48px;position:relative;overflow:hidden}
+.hero::before{content:'☦';position:absolute;right:40px;top:20px;font-size:9rem;opacity:.04;pointer-events:none}
+.hero .tag{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gd);margin-bottom:12px}
+.hero h1{font-size:2.3rem;color:var(--gold);line-height:1.2;max-width:740px;margin-bottom:14px}
+.hero p{font-size:1.03rem;color:var(--mu);max-width:680px;line-height:1.8}
+
+/* Part banners */
+.part-banner{padding:16px 48px;border-bottom:1px solid var(--br);border-top:1px solid var(--br)}
+.part-banner.pb1{background:linear-gradient(90deg,rgba(201,168,76,.07),transparent)}
+.part-banner.pb2{background:linear-gradient(90deg,rgba(100,160,220,.07),transparent)}
+.part-banner h3{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:3px}
+.part-banner.pb1 h3{color:var(--gd)}
+.part-banner.pb2 h3{color:#5a8abe}
+.part-banner p{font-size:.9rem;color:var(--mu)}
+
+.content{padding:0 48px}
+
+/* Sections */
+.sec{border:1px solid var(--br);border-radius:10px;margin:28px 0;background:var(--bg2);overflow:hidden}
+.sec-h{display:flex;justify-content:space-between;align-items:center;padding:18px 22px;cursor:pointer;user-select:none;gap:12px}
+.sec-h:hover{background:var(--bg3)}
+.sec-h h2{font-size:1.07rem;color:var(--gold)}
+.sec-h .arr{color:var(--mu);font-size:1.1rem;transition:transform .25s;flex-shrink:0}
+.sec.open .arr{transform:rotate(180deg)}
+.sec-body{display:none;padding:22px 24px;border-top:1px solid var(--br)}
+.sec.open .sec-body{display:block}
+.sec-body p{color:var(--tx);margin-bottom:14px;font-size:.96rem;line-height:1.78}
+.sec-body p:last-child{margin-bottom:0}
+.sec-body ul{margin:10px 0 14px 20px;color:var(--tx);font-size:.92rem;line-height:1.8}
+.sec-body li{margin-bottom:5px}
+
+/* Scripture */
+.sv{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:18px 20px;margin:14px 0}
+.sv .ref{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gd);margin-bottom:8px}
+.sv .txt{font-style:italic;color:var(--tx);font-size:.97rem;margin-bottom:10px;line-height:1.7}
+.sv .interp{font-size:.85rem;color:var(--mu);line-height:1.6;border-top:1px solid var(--br);padding-top:10px}
+.labels{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.labels span{font-size:.67rem;padding:3px 8px;border-radius:20px;letter-spacing:.06em;font-family:sans-serif}
+.oo-l{background:rgba(201,168,76,.15);color:var(--gold);border:1px solid rgba(201,168,76,.3)}
+.eo-l{background:rgba(122,171,222,.15);color:var(--eo);border:1px solid rgba(122,171,222,.3)}
+.rc-l{background:rgba(212,112,112,.15);color:var(--rc);border:1px solid rgba(212,112,112,.3)}
+.ctx-l{background:rgba(160,152,128,.12);color:var(--mu);border:1px solid rgba(160,152,128,.25)}
+.gk-l{background:rgba(180,120,60,.15);color:#d4956a;border:1px solid rgba(180,120,60,.3)}
+.hist-l{background:rgba(80,160,120,.15);color:#6abf8a;border:1px solid rgba(80,160,120,.3)}
+
+/* Father cards */
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin:16px 0}
+.fc{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:18px}
+.fc .fname{font-size:.95rem;color:var(--gold);font-weight:bold;margin-bottom:4px}
+.fc .fdate{font-size:.72rem;color:var(--mu);margin-bottom:10px;font-family:sans-serif}
+.fc .fq{font-style:italic;font-size:.88rem;color:var(--tx);line-height:1.65;border-left:3px solid var(--gd);padding-left:12px}
+.fc .fsrc{font-size:.72rem;color:var(--mu);margin-top:8px;font-family:sans-serif}
+
+/* Key text */
+.key-text{background:var(--bg5);border-left:4px solid var(--gold);padding:16px 20px;border-radius:0 8px 8px 0;margin:14px 0;font-size:.95rem;color:var(--tx);line-height:1.75;font-style:italic}
+
+/* Note */
+.note{background:rgba(138,106,32,.1);border:1px solid var(--gd);border-radius:8px;padding:16px 18px;margin:14px 0;font-size:.87rem;color:var(--tx);line-height:1.7}
+.note strong{color:var(--gold)}
+.note.eo{background:rgba(100,160,220,.07);border-color:rgba(100,160,220,.3)}
+.note.eo strong{color:var(--eo)}
+
+/* Council comparison grid */
+.council-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin:16px 0}
+.council{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:18px;border-top:3px solid var(--gd);position:relative}
+.council.oo-only{border-top-color:var(--gold)}
+.council.all-three{border-top-color:#6abf8a}
+.council.eo-rc{border-top-color:rgba(122,171,222,.7)}
+.council.rc-only{border-top-color:rgba(212,112,112,.7)}
+.council .cname{font-size:.93rem;color:var(--gold);font-weight:bold;margin-bottom:3px}
+.council .cdate{font-size:.72rem;color:var(--mu);margin-bottom:8px;font-family:sans-serif}
+.council .cdesc{font-size:.84rem;color:var(--tx);line-height:1.65;margin-bottom:10px}
+.council .badges{display:flex;flex-wrap:wrap;gap:5px}
+.badge{font-size:.64rem;padding:3px 8px;border-radius:12px;font-family:sans-serif;letter-spacing:.04em}
+.badge.oo{background:rgba(201,168,76,.15);color:var(--gold);border:1px solid rgba(201,168,76,.35)}
+.badge.eo{background:rgba(122,171,222,.15);color:var(--eo);border:1px solid rgba(122,171,222,.3)}
+.badge.rc{background:rgba(212,112,112,.15);color:var(--rc);border:1px solid rgba(212,112,112,.3)}
+
+/* Three-column tradition comparison */
+.trad-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:16px 0}
+.trad-col{border-radius:8px;padding:16px;border:1px solid var(--br)}
+.trad-col.oo-t{background:rgba(201,168,76,.07);border-color:rgba(201,168,76,.3)}
+.trad-col.eo-t{background:rgba(122,171,222,.07);border-color:rgba(122,171,222,.25)}
+.trad-col.rc-t{background:rgba(212,112,112,.07);border-color:rgba(212,112,112,.25)}
+.trad-col h4{font-size:.82rem;font-weight:bold;margin-bottom:10px;text-transform:uppercase;letter-spacing:.07em}
+.trad-col.oo-t h4{color:var(--gold)}
+.trad-col.eo-t h4{color:var(--eo)}
+.trad-col.rc-t h4{color:var(--rc)}
+.trad-col p{font-size:.82rem;color:var(--tx);line-height:1.6;margin-bottom:8px}
+.trad-col p:last-child{margin-bottom:0}
+
+/* Formula comparison */
+.formula-box{background:var(--bg3);border:1px solid var(--br);border-radius:10px;padding:22px;margin:16px 0}
+.formula-box h4{font-size:.82rem;text-transform:uppercase;letter-spacing:.1em;color:var(--mu);margin-bottom:12px;font-family:sans-serif}
+.formula-box .formula{font-size:1.05rem;color:var(--gold);font-style:italic;line-height:1.7;margin-bottom:8px}
+.formula-box .source{font-size:.75rem;color:var(--mu);font-family:sans-serif}
+
+/* Timeline */
+.tl{margin:16px 0}
+.tl-item{display:flex;gap:16px;margin:0}
+.tl-left{display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:36px}
+.tl-dot{width:13px;height:13px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:4px}
+.tl-dot.red{background:#c05a5a}
+.tl-dot.blue{background:#6a9abe}
+.tl-dot.green{background:#6abf8a}
+.tl-line{width:2px;flex:1;background:var(--br);min-height:20px;margin:4px 0}
+.tl-content{flex:1;padding-bottom:24px}
+.tl-content h4{font-size:.9rem;color:var(--gold);margin-bottom:4px}
+.tl-content h4.red{color:#c05a5a}
+.tl-content h4.blue{color:#6a9abe}
+.tl-content .tl-date{font-size:.72rem;color:var(--mu);font-family:sans-serif;margin-bottom:6px}
+.tl-content p{font-size:.85rem;color:var(--tx);line-height:1.65}
+
+/* Church cards */
+.church-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin:16px 0}
+.church{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:16px;border-left:4px solid var(--gd)}
+.church .cname{font-size:.93rem;color:var(--gold);font-weight:bold;margin-bottom:4px}
+.church .cloc{font-size:.72rem;color:var(--mu);margin-bottom:8px;font-family:sans-serif}
+.church .cdesc{font-size:.83rem;color:var(--tx);line-height:1.6}
+
+/* Objections */
+.obj{border:1px solid var(--br);border-radius:8px;margin:12px 0;background:var(--bg3);overflow:hidden}
+.obj-h{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;cursor:pointer;user-select:none;gap:10px}
+.obj-h:hover{background:var(--bg4)}
+.obj-h h3{font-size:.91rem;color:#ccc}
+.obj-h .arr{color:var(--mu);transition:transform .25s;flex-shrink:0}
+.obj.open .obj-h .arr{transform:rotate(180deg)}
+.obj-body{display:none;padding:16px 18px;border-top:1px solid var(--br)}
+.obj.open .obj-body{display:block}
+.obj-body p{font-size:.88rem;color:var(--tx);line-height:1.72;margin-bottom:10px}
+.obj-body p:last-child{margin-bottom:0}
+
+/* FAQ */
+.fi{border:1px solid var(--br);border-radius:8px;margin:10px 0;background:var(--bg3);overflow:hidden}
+.fi-h{display:flex;justify-content:space-between;align-items:center;padding:13px 18px;cursor:pointer;user-select:none;gap:10px}
+.fi-h:hover{background:var(--bg4)}
+.fi-h h3{font-size:.88rem;color:var(--tx)}
+.fi-h .arr{color:var(--mu);transition:transform .25s;flex-shrink:0}
+.fi.open .fi-h .arr{transform:rotate(180deg)}
+.fi-body{display:none;padding:14px 18px;border-top:1px solid var(--br)}
+.fi.open .fi-body{display:block}
+.fi-body p{font-size:.85rem;color:var(--tx);line-height:1.72;margin-bottom:8px}
+.fi-body p:last-child{margin-bottom:0}
+
+/* Glossary */
+.gt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin:16px 0}
+.gt{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:16px}
+.gt .term{font-size:.92rem;color:var(--gold);font-weight:bold;margin-bottom:2px}
+.gt .gterm{font-size:.78rem;color:#d4956a;font-style:italic;margin-bottom:8px;font-family:sans-serif}
+.gt .def{font-size:.85rem;color:var(--tx);line-height:1.6}
+
+/* Number callout */
+.num-callout{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:16px 0}
+.num-box{border-radius:10px;padding:20px;text-align:center;border:1px solid var(--br)}
+.num-box.oo-n{background:rgba(201,168,76,.08);border-color:rgba(201,168,76,.3)}
+.num-box.eo-n{background:rgba(122,171,222,.08);border-color:rgba(122,171,222,.25)}
+.num-box.rc-n{background:rgba(212,112,112,.08);border-color:rgba(212,112,112,.25)}
+.num-box .num{font-size:3rem;font-weight:bold;line-height:1}
+.num-box.oo-n .num{color:var(--gold)}
+.num-box.eo-n .num{color:var(--eo)}
+.num-box.rc-n .num{color:var(--rc)}
+.num-box .trad{font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;font-family:sans-serif;margin-top:6px}
+.num-box.oo-n .trad{color:var(--gd)}
+.num-box.eo-n .trad{color:#5a8abe}
+.num-box.rc-n .trad{color:#a44040}
+.num-box .note-s{font-size:.78rem;color:var(--mu);margin-top:8px;line-height:1.5}
+
+@media(max-width:768px){
+  #sidebar{transform:translateX(-100%)}
+  #sidebar.open{transform:translateX(0)}
+  #ham{display:flex}
+  main{margin-left:0}
+  .hero{padding:56px 20px 32px}
+  .hero h1{font-size:1.6rem}
+  .content{padding:0 16px}
+  .part-banner{padding:14px 20px}
+  .trad-grid{grid-template-columns:1fr}
+  .num-callout{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<button id="ham" onclick="toggleSidebar()" aria-label="Menu"><span></span><span></span><span></span></button>
+<div id="overlay" onclick="closeMobile()"></div>
+
+<nav id="sidebar">
+  <header>
+    <div class="site-label">The Orthodox Lamp</div>
+    <h2>The Chalcedonian Schism &amp; the Ecumenical Councils</h2>
+  </header>
+  <div class="sb-search">
+    <input type="search" id="sb-search-input" placeholder="Search sections…" autocomplete="off" oninput="sidebarSearch(this.value)">
+  </div>
+  <p class="no-match-msg" id="sb-no-match">No sections match.</p>
+  <nav>
+    <div class="sec-label">Part I — The Chalcedonian Schism</div>
+    <a href="#before_chalcedon">Before Chalcedon — The Road There</a>
+    <a href="#cyril_formula">Cyril's Formula: The OO Foundation</a>
+    <a href="#leos_tome">Leo's Tome — The Western Challenge</a>
+    <a href="#council_451">The Council of Chalcedon, 451 AD</a>
+    <a href="#definition">The Chalcedonian Definition</a>
+    <a href="#why_rejected">Why the OO Rejected Chalcedon</a>
+    <a href="#aftermath">The Aftermath — Two Worlds Apart</a>
+    <a href="#oo_churches">The Oriental Orthodox Churches</a>
+    <a href="#modern_dialogue">Modern Dialogue — Are We Really Different?</a>
+    <div class="sec-label">Part II — The Ecumenical Councils</div>
+    <a href="#what_ecumenical">What Makes a Council Ecumenical?</a>
+    <a href="#three_councils">The Three Councils — OO</a>
+    <a href="#seven_councils">The Seven Councils — Eastern Orthodox</a>
+    <a href="#twenty_one">The Twenty-One Councils — Roman Catholic</a>
+    <a href="#why_three">Why the OO Stop at Three</a>
+    <a href="#councils_post">What the Later Councils Decided</a>
+    <a href="#comparison">Side-by-Side Comparison</a>
+    <div class="sec-label">Dialogue &amp; Reference</div>
+    <a href="#objections">Common Objections</a>
+    <a href="#faq">FAQ</a>
+    <a href="#glossary">Glossary</a>
+  </nav>
+</nav>
+
+<main>
+<div class="hero">
+  <div class="tag">The Orthodox Lamp — Christological Theology</div>
+  <h1>The Chalcedonian Schism &amp; the Ecumenical Councils</h1>
+  <p>In 451 AD a single council split the Christian East in two — a division that has endured for over 1,500 years. Understanding why the Oriental Orthodox rejected Chalcedon, and why different Christian traditions count 3, 7, or 21 ecumenical councils, is essential to understanding ancient Christianity itself.</p>
+</div>
+
+<!-- PART I -->
+<div class="part-banner pb1">
+  <h3>Part I</h3>
+  <p>The Chalcedonian Schism — What Happened, Why It Happened, and Why It Still Matters</p>
+</div>
+
+<div class="content">
+
+<!-- BEFORE CHALCEDON -->
+<div id="before_chalcedon" class="sec open">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>Before Chalcedon — The Road That Led There</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>To understand why Chalcedon caused a permanent rupture, you must first understand the theological conflict that preceded it — a battle fought over how to speak about the person of Jesus Christ, and two rival theological schools that read the same Scriptures in fundamentally different ways.</p>
+    <div class="tl">
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot green"></div><div class="tl-line"></div></div>
+        <div class="tl-content">
+          <h4>325 AD — First Council of Nicaea</h4>
+          <div class="tl-date">Foundation of Orthodox Christology</div>
+          <p>Condemned Arianism. Defined the Son as "of the same substance" (ὁμοούσιος, homoousios) as the Father — fully divine, not a lesser being. All three major Christian traditions today accept Nicaea I. This is the bedrock on which all subsequent Christology is built.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot green"></div><div class="tl-line"></div></div>
+        <div class="tl-content">
+          <h4>381 AD — First Council of Constantinople</h4>
+          <div class="tl-date">Completing the Nicene Creed</div>
+          <p>Condemned Macedonianism (denial of the Holy Spirit's divinity) and Apollinarianism (which claimed Christ had a divine mind but a human body — effectively denying his full humanity). Expanded the Nicene Creed into its final form. All three traditions accept this council.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-content">
+          <h4>The Two Schools — Alexandria vs. Antioch</h4>
+          <div class="tl-date">Background Tension</div>
+          <p><strong>Alexandria</strong> emphasized the unity of Christ's person — the divine Word taking human nature so completely that the result is one unified subject. The technical term is the "Word-flesh" (Logos-sarx) framework. Cyril of Alexandria is its greatest representative.<br><br>
+          <strong>Antioch</strong> emphasized the completeness of Christ's two natures — divine and human — each remaining distinct and fully intact in the one person. The technical term is the "Word-man" (Logos-anthropos) framework. Theodore of Mopsuestia and Nestorius are its representatives.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-content">
+          <h4>428 AD — Nestorius Becomes Archbishop of Constantinople</h4>
+          <div class="tl-date">The Spark</div>
+          <p>Nestorius, an Antiochene theologian, refused to call Mary "Theotokos" (God-bearer) — preferring "Christotokos" (Christ-bearer). His logic: Mary bore the human Jesus, not the divine Word. To Cyril of Alexandria and to popular piety throughout the East, this seemed to split Christ in two — a divine person and a human person loosely united. The controversy exploded immediately.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot green"></div><div class="tl-line"></div></div>
+        <div class="tl-content">
+          <h4>431 AD — Council of Ephesus</h4>
+          <div class="tl-date">The Third Ecumenical Council</div>
+          <p>Condemned Nestorianism. Defined Mary as Theotokos — affirming the unity of Christ's person against any division that would effectively create two sons, two Christs. Cyril's Twelve Anathemas against Nestorius's theology were accepted as the standard of orthodoxy. All three major traditions accept Ephesus.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot red"></div><div class="tl-line"></div></div>
+        <div class="tl-content">
+          <h4 class="red">449 AD — The "Robber Council" of Ephesus</h4>
+          <div class="tl-date">The Crisis Before Chalcedon</div>
+          <p>Dioscorus of Alexandria, Cyril's successor, convened a council at Ephesus that condemned Flavian, Patriarch of Constantinople, and rehabilitated Eutyches — a monk who had gone too far in the Alexandrian direction, teaching that Christ's humanity was absorbed into his divinity (Eutychianism/Monophysitism). Pope Leo I refused to recognize it, calling it the "Latrocinium" (Robber Council). The stage was set for a showdown.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot red"></div></div>
+        <div class="tl-content">
+          <h4 class="red">451 AD — The Council of Chalcedon Is Convened</h4>
+          <div class="tl-date">Emperor Marcian and Empress Pulcheria Call the Council</div>
+          <p>Emperor Marcian, newly crowned after the death of Theodosius II (who had supported Dioscorus), convened a new council at Chalcedon near Constantinople. Over 500 bishops attended — the largest council in the ancient Church's history. The theological and political pressures of an empire hung on its outcome.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CYRIL'S FORMULA -->
+<div id="cyril_formula" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>Cyril's Formula — The Foundation of Oriental Orthodox Christology</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>St. Cyril of Alexandria (376–444 AD) is the towering theological giant of the pre-Chalcedonian era — accepted as a Father and Doctor by Catholics, Eastern Orthodox, and Oriental Orthodox alike. His Christological formula is the cornerstone of what the OO tradition defends.</p>
+    <div class="formula-box">
+      <h4>Cyril's Formula — The Alexandrian Christology</h4>
+      <div class="formula">"μία φύσις τοῦ Θεοῦ Λόγου σεσαρκωμένη"</div>
+      <div class="source">"One nature of God the Word incarnate" — Cyril of Alexandria, borrowing (unknowingly) from Apollinarius but filling it with orthodox content</div>
+    </div>
+    <p>For Cyril, "one nature" (μία φύσις, mia physis) does not mean Christ has no human element — that would be Eutychianism, which Cyril himself condemned. It means there is one <em>subject</em>, one <em>person</em>, one <em>acting agent</em> who is simultaneously and completely divine and human. The unity is so complete, so hypostatic (personal), that you cannot divide "the divine Christ" from "the human Jesus" without destroying Christ.</p>
+    <div class="sv">
+      <div class="ref">Cyril's Second Letter to Nestorius — Accepted at Ephesus 431</div>
+      <div class="txt">"We do not say that the nature of the Word was changed and became flesh, or that it was transformed into a whole man consisting of soul and body; but rather that the Word, having personally united to himself flesh animated by a rational soul, inexplicably and incomprehensibly became man."</div>
+      <div class="interp">Cyril is explicitly guarding against any reading that absorbs or destroys the human nature. His "one nature" preserves complete humanity — but insists it is united hypostatically (personally) with the divine, forming one subject: Jesus Christ.</div>
+      <div class="labels"><span class="oo-l">Oriental Orthodox</span><span class="ctx-l">Accepted at Ephesus 431</span></div>
+    </div>
+    <div class="key-text">The Oriental Orthodox use the term <strong>Miaphysitism</strong> (from Greek "mia" — one, unified) to describe their position. This is deliberately distinct from Monophysitism ("only one nature, the human absorbed"), which Cyril himself condemned. The OO insist that Christ's one nature is a <em>union</em> of divine and human — not a replacement of one by the other.</div>
+    <div class="fc-grid">
+      <div class="fc">
+        <div class="fname">St. Cyril of Alexandria</div>
+        <div class="fdate">c. 430 AD — Against Nestorius</div>
+        <div class="fq">"The holy body of Christ was his very own, not as being inseparable by some conjunction of dignity or authority, nor as if some divine indwelling had taken place, as in the case of the prophets; rather it was his own in a true sense, since he who transcends all things is said to have been born according to the flesh."</div>
+        <div class="fsrc">Adversus Nestorium, II.6</div>
+      </div>
+      <div class="fc">
+        <div class="fname">St. Cyril of Alexandria</div>
+        <div class="fdate">c. 433 AD — Formula of Reunion</div>
+        <div class="fq">"We confess, therefore, our Lord Jesus Christ, the Son of God, the Only-begotten, perfect God and perfect man of rational soul and body…  the same one Christ, one Son, one Lord."</div>
+        <div class="fsrc">Formula of Reunion — showing Cyril's formula acknowledges two full natures in one Christ</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LEO'S TOME -->
+<div id="leos_tome" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>Leo's Tome — The Western Challenge</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>Pope Leo I of Rome (440–461 AD) entered the Christological controversy with his famous <em>Tome</em> — a letter to Flavian, Patriarch of Constantinople, written in 449 before the Council of Chalcedon was called. It would become the defining document of the Chalcedonian settlement.</p>
+    <div class="formula-box">
+      <h4>Leo's Tome — The Western/Antiochene Formula</h4>
+      <div class="formula">"Each form does the acts which belong to it in communion with the other; namely, the Word performing what belongs to the Word, and the flesh carrying out what belongs to the flesh."</div>
+      <div class="source">Leo I, Epistola ad Flavianum (The Tome of Leo), §4</div>
+    </div>
+    <p>Leo's language alarmed Alexandrian theologians. The phrase "each form does the acts which belong to it" seemed to describe two distinct subjects of action within Christ — the divine Word doing divine things, the flesh doing human things — with Christ as the meeting point. To Alexandrian ears, this sounded dangerously close to Nestorianism's two-sons error.</p>
+    <p>When Dioscorus heard the Tome read at the Robber Council of 449, he refused to allow it to be accepted. His opposition was theological: Leo's framework did not use Cyril's language, appeared to divide Christ's actions between two natures as if they were two acting subjects, and seemed to undermine the hypostatic unity that Ephesus had defended.</p>
+    <div class="note">
+      <strong>The crucial difference in vocabulary:</strong> Cyril used "physis" (nature) and "hypostasis" (person) interchangeably in his earlier writing, following the older Alexandrian usage. Leo and the Western tradition used a different framework: <em>una persona, duae naturae</em> — one person, two natures. When the Chalcedonian definition adopted Leo's framework using the word "two natures" (δύο φύσεις, dyo physeis), the Alexandrian tradition heard it as exactly what Cyril had spent his life opposing.
+    </div>
+    <div class="fc-grid">
+      <div class="fc">
+        <div class="fname">Dioscorus of Alexandria</div>
+        <div class="fdate">c. 449 AD — At the Robber Council</div>
+        <div class="fq">"I accept 'of two natures' but not 'in two natures.' The difference is this: 'of two' means they came together in union; 'in two' means they remain separate after the union."</div>
+        <div class="fsrc">Reported in the Acts of Chalcedon — This is the precise theological fault line of the schism</div>
+      </div>
+      <div class="fc">
+        <div class="fname">Pope Leo I</div>
+        <div class="fdate">449 AD — The Tome</div>
+        <div class="fq">"For each form does the acts which belong to it in communion with the other; namely, the Word performing what belongs to the Word, and the flesh carrying out what belongs to the flesh… one of these shines out in miracles, the other succumbs to injuries."</div>
+        <div class="fsrc">Epistola ad Flavianum, §4 — The language that alarmed the Alexandrians</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- THE COUNCIL OF CHALCEDON -->
+<div id="council_451" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>The Council of Chalcedon, 451 AD — What Actually Happened</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>The Council of Chalcedon convened in October 451 at the Church of St. Euphemia, across the Bosporus from Constantinople. Over 500 bishops attended — overwhelmingly Eastern, with only a handful of Western representatives. The atmosphere was highly charged: political pressure from the new emperor, theological passions running deep, and decades of controversy coming to a head.</p>
+    <p>The council proceeded in several sessions spanning three weeks. Key actions:</p>
+    <ul>
+      <li>Dioscorus of Alexandria was <strong>deposed and exiled</strong> — not primarily for doctrine but for procedural abuses at the 449 Robber Council (physical intimidation, irregular proceedings)</li>
+      <li>The theological rehabilitation of Flavian of Constantinople (who had died from injuries suffered at the Robber Council)</li>
+      <li>Condemnation of both Nestorius (too much division) and Eutyches (too much fusion)</li>
+      <li>Leo's Tome was read and acclaimed: "Peter has spoken through Leo"</li>
+      <li>A new Christological definition was composed</li>
+    </ul>
+    <div class="note">
+      <strong>Political dimension:</strong> The Emperor Marcian and his court had strong reasons to want a council that rehabilitated Constantinople's patriarch (Flavian) at Alexandria's expense, restored Roman prestige after Leo's Tome had been snubbed, and ended the theological chaos. The council was not held in a political vacuum — and the OO tradition argues its conclusions bore the marks of imperial management as much as theological discernment.
+    </div>
+    <div class="note eo">
+      <strong>On the deposition of Dioscorus:</strong> Eastern Orthodox and Roman Catholics both accept Chalcedon and the deposition of Dioscorus. The OO do not recognize Dioscorus's deposition as legitimate — they regard him as a confessor for the Cyrillian faith, exiled for theological reasons dressed up as procedural ones. He died in exile in 454 AD and is venerated as a saint in the Coptic and Syriac churches.
+    </div>
+  </div>
+</div>
+
+<!-- THE DEFINITION -->
+<div id="definition" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>The Chalcedonian Definition — The Four Adverbs</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>The Council of Chalcedon produced what became the most famous Christological formula in the history of Christianity — four adverbs describing how Christ's two natures relate:</p>
+    <div class="formula-box">
+      <h4>The Chalcedonian Definition — 451 AD</h4>
+      <div class="formula">"…one and the same Christ, Son, Lord, Only-begotten, recognized in two natures, without confusion, without change, without division, without separation — the distinction of natures being by no means abolished by the union, but rather the character of each nature being preserved and coming together into one person and one hypostasis."</div>
+      <div class="source">Definition of Chalcedon — the four adverbs: ἀσυγχύτως, ἀτρέπτως, ἀδιαιρέτως, ἀχωρίστως</div>
+    </div>
+    <div class="council-grid">
+      <div class="council">
+        <div class="cname">ἀσυγχύτως — Without Confusion</div>
+        <div class="cdate">Against Eutychianism / Monophysitism</div>
+        <div class="cdesc">The two natures are not mixed or blended together into a third thing. Divine nature remains divine; human nature remains human. They do not create a hybrid.</div>
+        <div class="badges"><span class="badge oo">OO accepts principle</span><span class="badge eo">EO accepts</span><span class="badge rc">RC accepts</span></div>
+      </div>
+      <div class="council">
+        <div class="cname">ἀτρέπτως — Without Change</div>
+        <div class="cdate">Against Eutychianism</div>
+        <div class="cdesc">Neither nature is transformed into the other. The Word does not become human by ceasing to be divine; the human does not become divine by losing humanity.</div>
+        <div class="badges"><span class="badge oo">OO accepts principle</span><span class="badge eo">EO accepts</span><span class="badge rc">RC accepts</span></div>
+      </div>
+      <div class="council">
+        <div class="cname">ἀδιαιρέτως — Without Division</div>
+        <div class="cdate">Against Nestorianism</div>
+        <div class="cdesc">The union cannot be divided — there is no "divine Christ" separate from "human Jesus." One person, one subject, one Christ.</div>
+        <div class="badges"><span class="badge oo">OO affirms emphatically</span><span class="badge eo">EO accepts</span><span class="badge rc">RC accepts</span></div>
+      </div>
+      <div class="council">
+        <div class="cname">ἀχωρίστως — Without Separation</div>
+        <div class="cdate">Against Nestorianism</div>
+        <div class="cdesc">The natures are never apart — not before the Incarnation, during it, or after it. The union is permanent and indissoluble.</div>
+        <div class="badges"><span class="badge oo">OO affirms emphatically</span><span class="badge eo">EO accepts</span><span class="badge rc">RC accepts</span></div>
+      </div>
+    </div>
+    <p>On first reading, the Oriental Orthodox agree with all four adverbs — they oppose division and separation as firmly as confusion and change. <strong>The controversy is not about the adverbs themselves, but about the framework that contains them: "in two natures" (ἐν δύο φύσεσιν).</strong></p>
+  </div>
+</div>
+
+<!-- WHY REJECTED -->
+<div id="why_rejected" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>Why the Oriental Orthodox Rejected Chalcedon</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>The OO rejection of Chalcedon is not a refusal of orthodoxy — it is a refusal of a specific theological framework the OO believe departs from Cyril's approved language and opens the door to Nestorian thinking. The rejection operates on several levels.</p>
+    <div class="obj">
+      <div class="obj-h" onclick="tobj(this)">
+        <h3>1. "In two natures" contradicts Cyril's approved formula</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="obj-body">
+        <p>Cyril's formula — "one nature of God the Word incarnate" — was the basis on which Nestorius was condemned at Ephesus. The Council of Ephesus accepted Cyril's letters as the standard of orthodoxy. Chalcedon adopted Leo's formula "in two natures" — language Cyril had explicitly criticized as Nestorian in tendency. To the OO, replacing Cyril's approved language with language he condemned is not a clarification but a reversal.</p>
+        <p>The OO ask: if "one nature" was good enough to condemn Nestorius, why was it suddenly inadequate 20 years later? The answer, they argue, is political — imperial desire to rehabilitate Antiochene theology and create a formula acceptable to the West — not theological necessity.</p>
+      </div>
+    </div>
+    <div class="obj">
+      <div class="obj-h" onclick="tobj(this)">
+        <h3>2. "Two natures after the union" sounds Nestorian</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="obj-body">
+        <p>The specific phrase "in two natures" — as opposed to "of two natures" (which the OO would accept, describing the elements that entered the union) — implies that after the Incarnation, Christ continues to exist in a state of two natures. For the Alexandrian tradition, this means the union is not complete: you can still mentally (and possibly practically) distinguish "the divine acting" from "the human acting," which is exactly the division Cyril warned against.</p>
+        <p>Dioscorus put it precisely: <em>"of two natures"</em> (ἐκ δύο φύσεων) describes what came together; <em>"in two natures"</em> (ἐν δύο φύσεσιν) implies they remain alongside each other after the union. The OO insist the former is orthodox; the latter is Nestorianizing.</p>
+      </div>
+    </div>
+    <div class="obj">
+      <div class="obj-h" onclick="tobj(this)">
+        <h3>3. Leo's Tome uses language Cyril rejected</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="obj-body">
+        <p>The Tome's phrase "each form does the acts which belong to it" (agit enim utraque forma cum alterius communione quod proprium est) divides Christ's activities between his two natures as if they were two independent subjects taking turns. Christ gets hungry as man; Christ raises Lazarus as God. The OO say: this is the logic of Nestorius — a moral union of a divine person and human person, not a true hypostatic (personal) union in one subject.</p>
+        <p>Cyril explicitly wrote against this kind of division of operations. For Cyril, Christ's actions are always the actions of the one Word incarnate — you cannot slice them between "divine actions" and "human actions" as if two agents were cooperating.</p>
+      </div>
+    </div>
+    <div class="obj">
+      <div class="obj-h" onclick="tobj(this)">
+        <h3>4. The council's political circumstances undermine its authority</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="obj-body">
+        <p>The OO note that Chalcedon was heavily shaped by imperial politics. Emperor Marcian had political reasons to favor Constantinople over Alexandria. The majority of attending bishops had previously signed Cyril's condemnation of Nestorius at Ephesus — yet at Chalcedon they accepted language far more sympathetic to Antiochene theology, largely under imperial pressure. Dioscorus was deposed not by theological verdict but on procedural charges, in a council whose acts show bishops being pressured and intimidated by imperial commissioners.</p>
+        <p>A council whose conclusions were shaped more by imperial management than theological consensus — the OO argue — cannot claim the authority of an ecumenical council guided by the Spirit.</p>
+      </div>
+    </div>
+    <div class="key-text">The OO position in one sentence: Chalcedon introduced Nestorian-leaning language ("in two natures," "each nature acting according to its own properties") that Cyril of Alexandria had condemned, under imperial political pressure, in a council whose procedures were irregular — and therefore it cannot be received as an authoritative ecumenical definition of the Apostolic faith.</div>
+  </div>
+</div>
+
+<!-- AFTERMATH -->
+<div id="aftermath" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>The Aftermath — A Church Divided</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>The Chalcedonian definition did not settle the controversy — it deepened it. The Christian East fractured along theological, geographical, and increasingly ethnic lines in the decades after 451 AD.</p>
+    <div class="tl">
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot red"></div><div class="tl-line"></div></div>
+        <div class="tl-content">
+          <h4 class="red">451–460 AD — Immediate Rejection</h4>
+          <div class="tl-date">Egypt, Syria, Armenia</div>
+          <p>Egypt almost entirely rejected Chalcedon. When the Chalcedonian patriarch Proterius was installed in Alexandria, the population revolted — Proterius was murdered by a mob in 457 AD. The Coptic faithful and their bishops rejected the Council as Nestorian. Syria (especially the Syriac-speaking population) and Armenia similarly refused the definition.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot red"></div><div class="tl-line"></div></div>
+        <div class="tl-content">
+          <h4 class="red">482 AD — The Henotikon of Zeno</h4>
+          <div class="tl-date">Imperial Attempt at Compromise</div>
+          <p>Emperor Zeno issued the Henotikon (Union Formula) — a theological compromise that deliberately avoided the language of both Chalcedon and its opponents, affirming Cyril's language but not explicitly condemning Chalcedon. It temporarily satisfied many Miaphysites but was rejected by Rome, causing the Acacian Schism (484–519 AD) between Rome and Constantinople.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot red"></div><div class="tl-line"></div></div>
+        <div class="tl-content">
+          <h4 class="red">519 AD — Chalcedon Reimposed</h4>
+          <div class="tl-date">Justin I Ends the Acacian Schism</div>
+          <p>Emperor Justin I reunited Constantinople with Rome by fully accepting Chalcedon. Anti-Chalcedonian bishops in Syria and Egypt were exiled. The division between Chalcedonian and Non-Chalcedonian Christians hardened into a permanent institutional separation.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-content">
+          <h4>553 AD — Second Council of Constantinople</h4>
+          <div class="tl-date">Attempted Reconciliation</div>
+          <p>Emperor Justinian convened the Fifth Ecumenical Council in a bid to win back the Miaphysites by condemning the "Three Chapters" (writings sympathetic to Nestorianism). This partially succeeded theologically but came too late — the institutional separation was already complete. The OO do not recognize this council.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot red"></div></div>
+        <div class="tl-content">
+          <h4 class="red">7th Century — Arab Conquests Seal the Division</h4>
+          <div class="tl-date">Political Separation Becomes Permanent</div>
+          <p>The Arab Muslim conquests of Egypt (641 AD), Syria (636 AD), and Armenia separated the Oriental Orthodox churches from Byzantine imperial rule. The political-religious pressure from Constantinople ceased. The OO churches continued under Islamic rule, developing independently — the Coptic, Syriac, Armenian, and Ethiopian traditions hardening into distinct churches with their own patriarchs, liturgies, and theological identities.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OO CHURCHES -->
+<div id="oo_churches" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>The Oriental Orthodox Churches — Heirs of the Rejection</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>Six churches today constitute the Oriental Orthodox communion — united by their rejection of Chalcedon, their Miaphysite Christology, and their acceptance of only three ecumenical councils. Together they represent approximately 60–80 million Christians worldwide.</p>
+    <div class="church-grid">
+      <div class="church">
+        <div class="cname">Coptic Orthodox Church</div>
+        <div class="cloc">Egypt — Pope of Alexandria</div>
+        <div class="cdesc">The most ancient African church, traditionally founded by St. Mark the Evangelist. Largest OO church, centered in Egypt with diaspora worldwide. Liturgy in Coptic and Arabic.</div>
+      </div>
+      <div class="church">
+        <div class="cname">Ethiopian Orthodox Tewahedo Church</div>
+        <div class="cloc">Ethiopia — Patriarch of Addis Ababa</div>
+        <div class="cdesc">One of the oldest Christian nations (4th century). "Tewahedo" means "united" — a direct reference to Miaphysite Christology. ~40–50 million members.</div>
+      </div>
+      <div class="church">
+        <div class="cname">Eritrean Orthodox Tewahedo Church</div>
+        <div class="cloc">Eritrea — Patriarch of Asmara</div>
+        <div class="cdesc">Separated from the Ethiopian church after Eritrean independence (1993); granted autocephaly in 1994. Shares the Geez liturgy and Tewahedo theology.</div>
+      </div>
+      <div class="church">
+        <div class="cname">Syriac Orthodox Church</div>
+        <div class="cloc">Middle East / Antioch — Patriarch of Damascus</div>
+        <div class="cdesc">Also known as the Jacobite Church (after Jacob Baradaeus who organized resistance to Chalcedon in the 6th century). Liturgy in Classical Syriac, the language closest to Aramaic.</div>
+      </div>
+      <div class="church">
+        <div class="cname">Armenian Apostolic Church</div>
+        <div class="cloc">Armenia — Catholicos of Etchmiadzin</div>
+        <div class="cdesc">The first nation to adopt Christianity as state religion (301 AD). The Armenian church was not present at Chalcedon and rejected its findings at the Synod of Dvin (506 AD). Catholicos of All Armenians based in Etchmiadzin.</div>
+      </div>
+      <div class="church">
+        <div class="cname">Malankara Orthodox Syrian Church</div>
+        <div class="cloc">India — Catholicos of the East</div>
+        <div class="cdesc">Traced to the Apostle Thomas's mission to India (52 AD). Joined the Oriental Orthodox communion through contact with the Syriac tradition. Based in Kerala, South India.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODERN DIALOGUE -->
+<div id="modern_dialogue" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>Modern Dialogue — Are We Really Saying Different Things?</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>One of the most remarkable developments in 20th century ecumenism is the growing consensus that the Chalcedonian and Oriental Orthodox traditions may be confessing the <em>same faith in different theological vocabularies</em> — that 1,500 years of separation may have been, at least in part, a catastrophic failure of translation.</p>
+    <div class="trad-grid">
+      <div class="trad-col oo-t">
+        <h4>Oriental Orthodox</h4>
+        <p>"One nature (mia physis) of God the Word incarnate — united without confusion, without change, without mixture, without separation."</p>
+        <p>The "one nature" is a fully divine-human reality. Not one nature at the expense of the other. The union is complete and personal.</p>
+      </div>
+      <div class="trad-col eo-t">
+        <h4>Eastern Orthodox / Chalcedonian</h4>
+        <p>"One person (hypostasis) in two natures — without confusion, without change, without division, without separation."</p>
+        <p>The "two natures" are both fully real but united in one person. Not two Christs — one subject who is fully divine and fully human.</p>
+      </div>
+      <div class="trad-col rc-t">
+        <h4>Roman Catholic</h4>
+        <p>"One divine person (the eternal Son) subsisting in two natures — the divine nature of the Trinity and a human nature assumed in the Incarnation."</p>
+        <p>Developed through Aquinas's application of Chalcedonian terminology. Fully human, fully divine, one person.</p>
+      </div>
+    </div>
+    <p>The Joint Commission established between Eastern Orthodox and Oriental Orthodox churches produced the following agreed statement in 1989:</p>
+    <div class="sv">
+      <div class="ref">First Agreed Statement — Anba Bishoy Monastery, Egypt, 1989</div>
+      <div class="txt">"We have inherited from our fathers in Christ the one apostolic faith and tradition, though as Churches we have been separated from each other for centuries. As two families of Orthodox Churches long out of communion with each other we now pray and trust in God to restore that communion on the basis of the common apostolic faith of the undivided church of the first centuries."</div>
+      <div class="interp">Both sides agreed: the OO are not Monophysites (which would deny Christ's full humanity); the Chalcedonians are not Nestorians (which would divide Christ into two persons). The actual theological content confessed by both sides is the same — the differences are terminological and historical, not doctrinal.</div>
+      <div class="labels"><span class="oo-l">OO Agreed</span><span class="eo-l">EO Agreed</span><span class="hist-l">1989</span></div>
+    </div>
+    <p>Full communion between Oriental Orthodox and Eastern Orthodox has not yet been achieved — practical, canonical, and some remaining theological questions persist. But the recognition that the Chalcedonian Schism was largely a terminological tragedy is one of the most hopeful developments in Christianity in centuries.</p>
+  </div>
+</div>
+
+</div><!-- /content -->
+
+<!-- PART II -->
+<div class="part-banner pb2">
+  <h3>Part II</h3>
+  <p>The Ecumenical Councils — Why Oriental Orthodox Count 3, Eastern Orthodox Count 7, and Catholics Count 21</p>
+</div>
+
+<div class="content">
+
+<!-- WHAT MAKES A COUNCIL ECUMENICAL -->
+<div id="what_ecumenical" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>What Makes a Council "Ecumenical"?</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>The word "ecumenical" comes from the Greek οἰκουμένη (oikoumene) — the inhabited world. An ecumenical council is, in principle, a gathering of the whole Church — all her bishops from all her regions — to define doctrine or address major questions. But in practice, the criteria for what counts as genuinely ecumenical have been contested for centuries.</p>
+    <div class="num-callout">
+      <div class="num-box oo-n">
+        <div class="num">3</div>
+        <div class="trad">Oriental Orthodox</div>
+        <div class="note-s">Nicaea I, Constantinople I, Ephesus — the pre-Chalcedonian councils received by all</div>
+      </div>
+      <div class="num-box eo-n">
+        <div class="num">7</div>
+        <div class="trad">Eastern Orthodox</div>
+        <div class="note-s">The 3 above plus Chalcedon, Constantinople II, Constantinople III, Nicaea II</div>
+      </div>
+      <div class="num-box rc-n">
+        <div class="num">21</div>
+        <div class="trad">Roman Catholic</div>
+        <div class="note-s">The 7 above plus 14 more — from Lateran I (1123) through Vatican II (1965)</div>
+      </div>
+    </div>
+    <p>The divergence in the count reflects the divergence in ecclesiology. The criteria most commonly cited for a genuinely ecumenical council are:</p>
+    <ul>
+      <li><strong>Universality</strong> — bishops from across the whole Church, not just one region</li>
+      <li><strong>Apostolicity</strong> — representation from the ancient Apostolic sees</li>
+      <li><strong>Orthodox content</strong> — conformity to the rule of faith and prior conciliar definitions</li>
+      <li><strong>Reception</strong> — accepted over time by the faithful, not merely imposed by imperial force</li>
+      <li><strong>Doctrinal definition</strong> — actually settling a matter of faith or morals, not merely disciplinary</li>
+    </ul>
+    <p>Each tradition applies these criteria differently — and where they disagree about a council's validity is precisely where they disagree about theology and ecclesiology.</p>
+  </div>
+</div>
+
+<!-- THE THREE COUNCILS -->
+<div id="three_councils" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>The Three Councils Accepted by All — Including Oriental Orthodox</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>These three councils are the bedrock of Christian orthodoxy — accepted as authoritative by every major ancient Christian tradition. They define the Trinity and the Person of Christ in language that has endured for 1,700 years.</p>
+    <div class="council-grid">
+      <div class="council all-three">
+        <div class="cname">First Council of Nicaea</div>
+        <div class="cdate">325 AD — Emperor Constantine I</div>
+        <div class="cdesc">Condemned Arianism (the teaching that the Son is a created being, subordinate to the Father). Defined the Son as <em>homoousios</em> — of the same substance as the Father. Established the Nicene Creed (first version). Set the date of Easter. Attended by ~318 bishops.</div>
+        <div class="badges"><span class="badge oo">OO ✓</span><span class="badge eo">EO ✓</span><span class="badge rc">RC ✓</span></div>
+      </div>
+      <div class="council all-three">
+        <div class="cname">First Council of Constantinople</div>
+        <div class="cdate">381 AD — Emperor Theodosius I</div>
+        <div class="cdesc">Condemned Macedonianism (denying the Holy Spirit's divinity) and Apollinarianism (denying Christ's full humanity by giving him a divine mind instead of a human one). Expanded the Nicene Creed to its final, received form — adding the full theology of the Holy Spirit. ~150 bishops, Eastern only.</div>
+        <div class="badges"><span class="badge oo">OO ✓</span><span class="badge eo">EO ✓</span><span class="badge rc">RC ✓</span></div>
+      </div>
+      <div class="council all-three">
+        <div class="cname">Council of Ephesus</div>
+        <div class="cdate">431 AD — Emperor Theodosius II</div>
+        <div class="cdesc">Condemned Nestorianism (dividing Christ into two persons) and defined Mary as <em>Theotokos</em> (God-bearer). Accepted Cyril of Alexandria's letters against Nestorius as the standard of Christological orthodoxy. ~200 bishops. This is the final council the OO recognize.</div>
+        <div class="badges"><span class="badge oo">OO ✓ Final Council</span><span class="badge eo">EO ✓</span><span class="badge rc">RC ✓</span></div>
+      </div>
+    </div>
+    <p>The OO stop here — not because they are indifferent to subsequent theological questions, but because they believe the Apostolic faith was fully and adequately defined by these three councils, and that subsequent councils added framework (Chalcedon) or resolved questions (Monothelitism, Iconoclasm) that arose precisely because of the Chalcedonian controversy the OO reject.</p>
+  </div>
+</div>
+
+<!-- THE SEVEN COUNCILS -->
+<div id="seven_councils" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>The Seven Councils — Eastern Orthodox Addition</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>Eastern Orthodoxy accepts four more councils beyond the OO's three — all held between 451 and 787 AD. These councils addressed the aftermath of Chalcedon, Monothelitism (one will in Christ), and Iconoclasm (the controversy over religious images). From the OO perspective, these councils rest on a foundation (Chalcedon) the OO do not accept.</p>
+    <div class="council-grid">
+      <div class="council eo-rc">
+        <div class="cname">Council of Chalcedon</div>
+        <div class="cdate">451 AD — 4th Ecumenical (EO/RC)</div>
+        <div class="cdesc">Defined Christ as one person in two natures. Condemned Nestorianism and Eutychianism. Deposed Dioscorus of Alexandria. Adopted Leo's Tome. <strong>The council that caused the Oriental Orthodox schism.</strong></div>
+        <div class="badges"><span class="badge oo">OO ✗ Rejected</span><span class="badge eo">EO ✓</span><span class="badge rc">RC ✓</span></div>
+      </div>
+      <div class="council eo-rc">
+        <div class="cname">Second Council of Constantinople</div>
+        <div class="cdate">553 AD — 5th Ecumenical (EO/RC)</div>
+        <div class="cdesc">Condemned the "Three Chapters" — writings of Theodore of Mopsuestia, Theodoret of Cyrrhus, and Ibas of Edessa, which were perceived as sympathetic to Nestorianism. Attempted to win back Miaphysites after Chalcedon — largely failed. Pope Vigilius was pressured by Emperor Justinian to accept it.</div>
+        <div class="badges"><span class="badge oo">OO ✗</span><span class="badge eo">EO ✓</span><span class="badge rc">RC ✓</span></div>
+      </div>
+      <div class="council eo-rc">
+        <div class="cname">Third Council of Constantinople</div>
+        <div class="cdate">680–681 AD — 6th Ecumenical (EO/RC)</div>
+        <div class="cdesc">Condemned Monothelitism — the teaching that Christ has only one will (a compromise formula meant to win back the Miaphysites that instead produced a new heresy). Defined Christ has two wills, divine and human. <strong>Condemned Pope Honorius I as a heretic</strong> — the case cited against papal infallibility.</div>
+        <div class="badges"><span class="badge oo">OO ✗</span><span class="badge eo">EO ✓</span><span class="badge rc">RC ✓</span></div>
+      </div>
+      <div class="council eo-rc">
+        <div class="cname">Second Council of Nicaea</div>
+        <div class="cdate">787 AD — 7th Ecumenical (EO/RC)</div>
+        <div class="cdesc">Condemned Iconoclasm — the movement to destroy religious images — and defined the veneration (not worship) of icons as legitimate and orthodox. The last council Eastern Orthodoxy recognizes as fully ecumenical. The distinction between <em>latreia</em> (worship, for God alone) and <em>proskynesis</em> (veneration, for saints and icons) was defined here.</div>
+        <div class="badges"><span class="badge oo">OO ✗</span><span class="badge eo">EO ✓ Final Council</span><span class="badge rc">RC ✓</span></div>
+      </div>
+    </div>
+    <div class="note eo"><strong>Why does Eastern Orthodoxy stop at seven?</strong> Eastern Orthodoxy considers the seven councils the complete and sufficient definition of the Faith once delivered. Some Eastern Orthodox theologians also recognize the Quinisext/Trullo Council (692 AD) as authoritative for canons (if not doctrine), and a few assign quasi-ecumenical status to later councils. But the number seven is considered normative and theologically significant — a completeness of the Christian witness.</div>
+  </div>
+</div>
+
+<!-- THE TWENTY-ONE -->
+<div id="twenty_one" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>The Twenty-One Councils — Roman Catholic Addition</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>Roman Catholicism recognizes 21 ecumenical councils — 7 shared with Eastern Orthodoxy, plus 14 more held between 1123 and 1965, all in the West, after the Great Schism of 1054. The Eastern Orthodox and Oriental Orthodox regard these as local Western councils, not universal ecumenical councils, since the Eastern churches were not present or represented.</p>
+    <div class="council-grid">
+      <div class="council rc-only">
+        <div class="cname">Lateran I, II, III, IV</div>
+        <div class="cdate">1123, 1139, 1179, 1215</div>
+        <div class="cdesc">Medieval Western councils addressing clerical reform, investiture controversy, Crusades, heresy (Catharism, Waldensianism), and the Fourth Lateran Council's definition of transubstantiation and requirement for annual Confession.</div>
+        <div class="badges"><span class="badge rc">RC ✓ Only</span></div>
+      </div>
+      <div class="council rc-only">
+        <div class="cname">Council of Lyon I &amp; II</div>
+        <div class="cdate">1245, 1274</div>
+        <div class="cdesc">Lyon I addressed Emperor Frederick II; Lyon II attempted (ultimately failed) union between Rome and Constantinople — Eastern delegates signed but the Eastern church rejected it. Also defined the Filioque as dogma for Rome.</div>
+        <div class="badges"><span class="badge rc">RC ✓ Only</span></div>
+      </div>
+      <div class="council rc-only">
+        <div class="cname">Council of Vienne</div>
+        <div class="cdate">1311–1312</div>
+        <div class="cdesc">Suppressed the Knights Templar. Addressed poverty disputes within the Franciscan order. Issued decrees on the soul as the form of the body (against certain philosophical positions).</div>
+        <div class="badges"><span class="badge rc">RC ✓ Only</span></div>
+      </div>
+      <div class="council rc-only">
+        <div class="cname">Council of Constance</div>
+        <div class="cdate">1414–1418</div>
+        <div class="cdesc">Ended the Western Schism (three simultaneous popes) by deposing all three claimants and electing Martin V. Condemned Jan Hus as a heretic and had him burned. Notably affirmed conciliarism — the council's authority over the pope — creating tension with later papal supremacy claims.</div>
+        <div class="badges"><span class="badge rc">RC ✓ Only</span></div>
+      </div>
+      <div class="council rc-only">
+        <div class="cname">Council of Florence</div>
+        <div class="cdate">1431–1449</div>
+        <div class="cdesc">Attempted formal union between Rome and the Eastern churches — Eastern delegates signed the Decree of Union (1439) largely under pressure and the need for Western military aid against the Ottoman threat. The Eastern church overwhelmingly rejected it after the delegates returned home. Constantinople fell to the Ottomans in 1453.</div>
+        <div class="badges"><span class="badge rc">RC ✓ Only</span></div>
+      </div>
+      <div class="council rc-only">
+        <div class="cname">Council of Trent</div>
+        <div class="cdate">1545–1563</div>
+        <div class="cdesc">The Counter-Reformation council. Defined Catholic doctrine against Protestant challenges: Scripture and Tradition as co-equal sources, transubstantiation, justification by faith and works, all seven sacraments, purgatory, indulgences, and the Latin Vulgate's authority. Reshaped Western Catholicism for four centuries.</div>
+        <div class="badges"><span class="badge rc">RC ✓ Only</span></div>
+      </div>
+      <div class="council rc-only">
+        <div class="cname">Vatican I</div>
+        <div class="cdate">1869–1870</div>
+        <div class="cdesc">Defined universal papal jurisdiction and papal infallibility (Pastor Aeternus). The most controversial of the modern councils for both Eastern Christianity and many Catholic theologians. Ended prematurely when Italian forces seized Rome.</div>
+        <div class="badges"><span class="badge rc">RC ✓ Only</span></div>
+      </div>
+      <div class="council rc-only">
+        <div class="cname">Vatican II</div>
+        <div class="cdate">1962–1965</div>
+        <div class="cdesc">Modernizing council under John XXIII and Paul VI. Introduced liturgical reform (vernacular Mass), religious liberty, dialogue with other religions (Nostra Aetate), episcopal collegiality, and a more pastoral tone in Catholic teaching. Deeply transformative for global Catholicism.</div>
+        <div class="badges"><span class="badge rc">RC ✓ Only</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WHY THREE -->
+<div id="why_three" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>Why the Oriental Orthodox Stop at Three — The Theological Case</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>The OO acceptance of only three ecumenical councils is not arbitrary conservatism — it is a principled theological position rooted in the criteria for genuine conciliar authority.</p>
+    <div class="obj">
+      <div class="obj-h" onclick="tobj(this)">
+        <h3>1. Councils 4–7 rest on Chalcedon, which the OO reject</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="obj-body">
+        <p>The Second Council of Constantinople (553) tried to clarify Chalcedon. The Third Council of Constantinople (681) condemned Monothelitism — a heresy that arose directly from the Chalcedonian controversy. The Second Council of Nicaea (787) addressed Iconoclasm, which arose in the Byzantine empire shaped by Chalcedonian theology. All four presuppose the Chalcedonian framework the OO reject. Accepting them would require first accepting Chalcedon — which is precisely what the OO cannot do.</p>
+      </div>
+    </div>
+    <div class="obj">
+      <div class="obj-h" onclick="tobj(this)">
+        <h3>2. The three councils define the complete Apostolic faith on essential doctrines</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="obj-body">
+        <p>Nicaea I defined the full divinity of the Son. Constantinople I defined the full divinity of the Spirit and completed the Trinitarian faith. Ephesus defined the unity of Christ's person and the Incarnation. The essential matters of salvation — who God is (Trinity), who Christ is (the Incarnate Word), how we are saved (through the God-man) — are completely and sufficiently addressed by these three. The OO ask: what essential doctrine of salvation requires Chalcedon that was not already covered by Ephesus?</p>
+      </div>
+    </div>
+    <div class="obj">
+      <div class="obj-h" onclick="tobj(this)">
+        <h3>3. Later councils (Lateran, Trent, Vatican) were purely Western gatherings</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="obj-body">
+        <p>The 14 Roman Catholic councils after 1054 were held after the Great Schism had already separated East and West. The Oriental Orthodox, Eastern Orthodox, and all Eastern churches were entirely absent from Lateran I through Vatican II. An ecumenical council, by definition, represents the whole Church (oikoumene). A gathering of Western bishops and the Pope, with no Eastern representation whatsoever, cannot claim ecumenical authority no matter how significant it is for the Western church.</p>
+      </div>
+    </div>
+    <div class="obj">
+      <div class="obj-h" onclick="tobj(this)">
+        <h3>4. Many later councils defined novel doctrines not rooted in Apostolic tradition</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="obj-body">
+        <p>The Fourth Lateran Council's definition of transubstantiation uses Aristotelian philosophy (substance/accidents) foreign to the Patristic era. The Council of Trent defined purgatory, indulgences, and merit in ways the East regards as departures. Vatican I defined papal infallibility — unknown to the early Church. Vatican II introduced religious liberty in ways that contradict earlier Catholic conciliar and papal teaching. For the OO, these are not recoveries of ancient truth — they are genuine innovations, and no council has the authority to bind the Church to innovations beyond the Apostolic deposit.</p>
+      </div>
+    </div>
+    <div class="key-text">The OO criterion is the Vincentian Canon: "What has been believed everywhere, always, and by all." Applying this standard, the three pre-Chalcedonian councils represent the fullest expression of universal Christian consensus. Everything after Chalcedon represents divergence from that consensus — not development of it.</div>
+  </div>
+</div>
+
+<!-- WHAT LATER COUNCILS DECIDED -->
+<div id="councils_post" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>What the Post-Ephesus Councils Decided — and the OO Assessment</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>For the sake of clarity, here is what each of the major post-Ephesus councils defined and the OO evaluation:</p>
+    <div class="tl">
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot red"></div><div class="tl-line"></div></div>
+        <div class="tl-content">
+          <h4 class="red">Chalcedon (451) — "Two Natures"</h4>
+          <div class="tl-date">OO Verdict: Rejected as Nestorian-leaning innovation</div>
+          <p>Replaced Cyril's approved "one nature" language with "two natures" — framing the OO regard as departing from Ephesus. The OO accept the four adverbs in principle but reject the "in two natures" framework.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot red"></div><div class="tl-line"></div></div>
+        <div class="tl-content">
+          <h4 class="red">Constantinople II (553) — Three Chapters</h4>
+          <div class="tl-date">OO Verdict: Not recognized — presupposes Chalcedon</div>
+          <p>Condemned Nestorian-sympathetic writings to appease the Miaphysites — but without rejecting Chalcedon itself. Too late and insufficient to heal the schism.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot red"></div><div class="tl-line"></div></div>
+        <div class="tl-content">
+          <h4 class="red">Constantinople III (680–681) — Monothelitism</h4>
+          <div class="tl-date">OO Verdict: Not recognized — the issue arose from Chalcedon</div>
+          <p>Defined Christ has two wills. The OO affirm Christ has two wills but note that Monothelitism was a distinctly post-Chalcedonian controversy generated by the Chalcedonian framework itself. Also condemned Honorius I as a heretic — embarrassing for the Roman Catholic doctrine of papal infallibility.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot red"></div><div class="tl-line"></div></div>
+        <div class="tl-content">
+          <h4 class="red">Nicaea II (787) — Iconoclasm</h4>
+          <div class="tl-date">OO Verdict: Not recognized as ecumenical — the OO venerate icons independently</div>
+          <p>Defined the veneration of icons as orthodox. The OO tradition had always venerated icons — the Iconoclastic controversy was a Byzantine imperial crisis the OO were not part of, since they were under Islamic rule by then. The OO affirm the content (icon veneration is legitimate) but do not need this council to justify it.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot blue"></div><div class="tl-line"></div></div>
+        <div class="tl-content">
+          <h4 class="blue">Trent (1545–1563) — Counter-Reformation</h4>
+          <div class="tl-date">OO Verdict: A local Western council, not ecumenical</div>
+          <p>Important for defining Western Catholic theology against Protestantism but entirely absent of Eastern input. Definitions on justification, Scripture/Tradition, and transubstantiation reflect Latin scholastic categories foreign to the patristic East.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot blue"></div><div class="tl-line"></div></div>
+        <div class="tl-content">
+          <h4 class="blue">Vatican I (1870) — Papal Supremacy and Infallibility</h4>
+          <div class="tl-date">OO Verdict: Innovation — unknown to the early Church</div>
+          <p>Defined dogmas the OO regard as departures from the Apostolic conciliar model. The first clear dogmatic departure from what East and West had previously shared.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot blue"></div></div>
+        <div class="tl-content">
+          <h4 class="blue">Vatican II (1962–1965) — Pastoral Renewal</h4>
+          <div class="tl-date">OO Verdict: Some positive developments, but not an ecumenical council</div>
+          <p>The OO welcomed some Vatican II trajectories — especially its opening toward ecumenism and the lifting of mutual excommunications with Constantinople (1965). But the council's authority is not recognized as ecumenical, and some of its definitions (especially on religious liberty vis-à-vis earlier Catholic teaching) raise questions the OO leave to Rome's own theologians to resolve.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COMPARISON -->
+<div id="comparison" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>Side-by-Side Comparison — The Councils at a Glance</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <div class="trad-grid">
+      <div class="trad-col oo-t">
+        <h4>Oriental Orthodox — 3 Councils</h4>
+        <p><strong>1.</strong> Nicaea I (325) — Against Arianism; homoousios</p>
+        <p><strong>2.</strong> Constantinople I (381) — Spirit's divinity; Creed completed</p>
+        <p><strong>3.</strong> Ephesus (431) — Against Nestorianism; Theotokos; Cyril's letters as norm</p>
+        <p style="margin-top:10px;font-size:.78rem;color:var(--mu)">Stops here because Chalcedon introduces Nestorian-leaning language contrary to Ephesus's standard.</p>
+      </div>
+      <div class="trad-col eo-t">
+        <h4>Eastern Orthodox — 7 Councils</h4>
+        <p><strong>1–3.</strong> Same as OO above</p>
+        <p><strong>4.</strong> Chalcedon (451) — Two natures; against Eutychianism</p>
+        <p><strong>5.</strong> Constantinople II (553) — Three Chapters condemned</p>
+        <p><strong>6.</strong> Constantinople III (681) — Two wills; Monothelitism condemned</p>
+        <p><strong>7.</strong> Nicaea II (787) — Icon veneration defined; Iconoclasm condemned</p>
+        <p style="margin-top:10px;font-size:.78rem;color:var(--mu)">Stops here — considers the Faith fully defined; all subsequent councils are local Western synods.</p>
+      </div>
+      <div class="trad-col rc-t">
+        <h4>Roman Catholic — 21 Councils</h4>
+        <p><strong>1–7.</strong> Same 7 as Eastern Orthodox</p>
+        <p><strong>8.</strong> Constantinople IV (869–870)</p>
+        <p><strong>9–12.</strong> Lateran I–IV (1123–1215)</p>
+        <p><strong>13–14.</strong> Lyon I–II (1245, 1274)</p>
+        <p><strong>15.</strong> Vienne (1311)</p>
+        <p><strong>16.</strong> Constance (1414)</p>
+        <p><strong>17.</strong> Florence (1431)</p>
+        <p><strong>18.</strong> Lateran V (1512)</p>
+        <p><strong>19.</strong> Trent (1545)</p>
+        <p><strong>20.</strong> Vatican I (1870)</p>
+        <p><strong>21.</strong> Vatican II (1965)</p>
+        <p style="margin-top:10px;font-size:.78rem;color:var(--mu)">All post-schism councils (8–21) are entirely Western — the East was not present or represented.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OBJECTIONS -->
+<div id="objections" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>Common Objections Answered</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <div class="obj">
+      <div class="obj-h" onclick="tobj(this)">
+        <h3>"Aren't the Oriental Orthodox just Monophysites — believing Christ has only a divine nature?"</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="obj-body">
+        <p>This is the most common and most damaging misunderstanding. Monophysitism — strictly speaking — is the Eutychian teaching that Christ's humanity was absorbed into or swallowed by his divinity after the Incarnation, leaving only one (divine) nature. Cyril of Alexandria himself condemned this. The Oriental Orthodox have always condemned it.</p>
+        <p>The OO position is Miaphysitism: Christ has one united nature (mia physis) that is fully divine AND fully human, without confusion, without change. The humanity is not swallowed — it is perfectly united. The difference from Chalcedon is about which philosophical framework best expresses this unity, not about whether Christ is fully human. The Joint Agreed Statements of 1989–1990 between Eastern Orthodox and Oriental Orthodox explicitly confirmed that the OO are not Monophysites in the condemned sense.</p>
+      </div>
+    </div>
+    <div class="obj">
+      <div class="obj-h" onclick="tobj(this)">
+        <h3>"If the OO and EO confess the same faith, why aren't they in communion yet?"</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="obj-body">
+        <p>The 1989–1990 agreed statements established that both sides confess the same Christological faith in different terminologies. But full communion requires more than a theological agreement paper — it requires canonical decisions at the highest level of each church, reception by the faithful, resolution of practical questions (how to handle mixed marriages, how to integrate the churches' separate canons), and the formal lifting of anathemas that accumulated over 1,500 years of separation.</p>
+        <p>Progress has been genuine but slow. Some local OO-EO communities already practice a degree of eucharistic hospitality informally. Official full communion has not been achieved, partly because the political and institutional weight of 15 centuries of separation cannot be dissolved overnight, however genuine the theological convergence.</p>
+      </div>
+    </div>
+    <div class="obj">
+      <div class="obj-h" onclick="tobj(this)">
+        <h3>"Chalcedon was accepted by the vast majority of bishops — doesn't the OO rejection put them outside the Church?"</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="obj-body">
+        <p>Numerical majority alone does not determine ecumenical validity — if it did, Arianism would have been orthodox, since the majority of Eastern bishops supported it at various points in the 4th century. Athanasius stood "against the world" (contra mundum) for the Nicene faith against majority pressure. The OO regard their situation similarly: a faithful minority holding Cyril's approved Ephesine Christology against a council they believe was shaped as much by imperial politics as by the Spirit.</p>
+        <p>Furthermore, the majority that accepted Chalcedon was not as overwhelming as often presented — Egypt, a major portion of Syria, and Armenia (the first Christian nation) all rejected it immediately. The initial Chalcedonian majority was heavily concentrated in areas closer to Constantinople and Roman imperial influence.</p>
+      </div>
+    </div>
+    <div class="obj">
+      <div class="obj-h" onclick="tobj(this)">
+        <h3>"Why do Catholics count post-schism Western councils as ecumenical?"</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="obj-body">
+        <p>Roman Catholic ecclesiology grounds ecumenical authority in the Pope — a council is ecumenical when convened and confirmed by the Pope. Since the Pope is understood to hold universal jurisdiction, a council he convenes and confirms is universal in authority regardless of Eastern attendance. The Eastern absence is, from this view, a deficiency in the Eastern churches (who are in schism), not in the council itself.</p>
+        <p>The OO (and EO) reject this logic entirely. A council cannot be ecumenical — representing the whole inhabited Church — if the overwhelming majority of Eastern Christianity is absent. The definition of "ecumenical" is not "whatever the Pope calls and confirms" — it is "what the whole Church gathers to define." Post-schism Western councils are, for the OO, regionally authoritative for the Latin church — but they have no claim over those who were never represented at them.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div id="faq" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>Frequently Asked Questions</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <div class="fi">
+      <div class="fi-h" onclick="tf(this)">
+        <h3>Are the Oriental Orthodox and Eastern Orthodox the same thing?</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="fi-body">
+        <p>No — these are two distinct families of churches that are often confused. Eastern Orthodox (Greek Orthodox, Russian Orthodox, Serbian Orthodox, etc.) accepted the Council of Chalcedon (451) and recognize seven ecumenical councils. Oriental Orthodox (Coptic, Ethiopian, Syriac, Armenian, Malankara) rejected Chalcedon and recognize three. Both are episcopal, liturgical, sacramental churches with Apostolic succession, but they have been in separation since 451 AD. Recent dialogue has revealed profound theological convergence, but full communion has not been restored.</p>
+      </div>
+    </div>
+    <div class="fi">
+      <div class="fi-h" onclick="tf(this)">
+        <h3>What do the OO believe about Christ's human nature?</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="fi-body">
+        <p>The OO believe Christ is fully and perfectly human — a complete human being with a rational soul, a human body, human emotions, human experiences, human limitations (fatigue, hunger, sorrow). The Incarnation was not the appearance of humanity but its full assumption. Christ was born, grew, suffered, died, and rose — all as a real human being. The OO reject any suggestion that the humanity was illusory, partial, or absorbed into the divinity. "Without confusion, without change" — the humanity remains fully itself in the union.</p>
+      </div>
+    </div>
+    <div class="fi">
+      <div class="fi-h" onclick="tf(this)">
+        <h3>Do the OO have any councils after Ephesus that they recognize?</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="fi-body">
+        <p>Yes — the OO churches have held their own synods and councils that carry authority within the OO communion. For example, the Armenian church held the Synod of Dvin (506 AD) which formally rejected Chalcedon. The Coptic church has held synods addressing internal matters of discipline, liturgy, and doctrine. These are not claimed to be "ecumenical" in the universal sense — they are authoritative for the OO communion and consistent with the three ecumenical councils the OO recognize.</p>
+      </div>
+    </div>
+    <div class="fi">
+      <div class="fi-h" onclick="tf(this)">
+        <h3>Why is Cyril of Alexandria so important to the OO?</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="fi-body">
+        <p>Cyril of Alexandria (376–444 AD) is the theological father of Oriental Orthodox Christology. His letters against Nestorius were formally accepted as the standard of Christological orthodoxy at the Council of Ephesus (431) — which all three major traditions recognize. His formula "one nature of God the Word incarnate" is the bedrock of OO Christology. When Chalcedon replaced Cyril's approved formula with Leo's Tome and "two natures" language, the OO saw it as a betrayal of the council that had just defined the faith using Cyril's own words. He is venerated as a pillar of the faith, a confessor, and a Doctor of the Church across the OO tradition.</p>
+      </div>
+    </div>
+    <div class="fi">
+      <div class="fi-h" onclick="tf(this)">
+        <h3>Is the Chalcedonian Schism the same as the Great Schism of 1054?</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="fi-body">
+        <p>No — these are two separate schisms involving different parties. The Chalcedonian Schism (451 AD) separated the Oriental Orthodox (Coptic, Syriac, Armenian, Ethiopian) from the Chalcedonian churches (which became Eastern Orthodoxy and Roman Catholicism). The Great Schism of 1054 was the split between Eastern Orthodoxy (Constantinople) and Roman Catholicism (Rome) over papal authority, the Filioque, and other issues. The Oriental Orthodox were already separated from both sides before the 1054 Schism occurred — though they share much more in common with Eastern Orthodoxy than with Rome.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GLOSSARY -->
+<div id="glossary" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>Glossary of Key Terms</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <div class="gt-grid">
+      <div class="gt">
+        <div class="term">Miaphysitism</div>
+        <div class="gterm">from Greek μία (mia) — one/unified</div>
+        <div class="def">The OO Christological position: Christ has one united nature that is fully divine and fully human without confusion or separation. Distinct from Monophysitism (which denies full humanity).</div>
+      </div>
+      <div class="gt">
+        <div class="term">Dyophysitism</div>
+        <div class="gterm">from Greek δύο (dyo) — two</div>
+        <div class="def">The Chalcedonian position: Christ has two distinct natures (divine and human) united in one person (hypostasis). Accepted by Eastern Orthodox and Roman Catholics.</div>
+      </div>
+      <div class="gt">
+        <div class="term">Monophysitism</div>
+        <div class="gterm">from Greek μόνος (monos) — only/alone</div>
+        <div class="def">The Eutychian heresy: Christ has only one nature — his humanity was absorbed into or transformed by his divinity. Condemned by all Christian traditions including the OO. Not the OO position.</div>
+      </div>
+      <div class="gt">
+        <div class="term">Nestorianism</div>
+        <div class="gterm">After Nestorius of Constantinople (c. 386–450)</div>
+        <div class="def">The teaching (attributed to Nestorius) that Christ's divine and human natures are so distinct they constitute two persons or subjects. Condemned at Ephesus (431). The OO regard Chalcedon as tending toward this error.</div>
+      </div>
+      <div class="gt">
+        <div class="term">Hypostasis</div>
+        <div class="gterm">ὑπόστασις — underlying reality, person</div>
+        <div class="def">In Trinitarian theology: one of the three persons of the Trinity. In Christology: the one personal subject of Christ — the eternal Word who assumed human nature. Key term in defining the Incarnation.</div>
+      </div>
+      <div class="gt">
+        <div class="term">Physis</div>
+        <div class="gterm">φύσις — nature</div>
+        <div class="def">The concrete nature or essence of a being. Cyril used physis and hypostasis interchangeably; Chalcedon distinguished them (one hypostasis, two physeis). This terminological difference is the crux of the schism.</div>
+      </div>
+      <div class="gt">
+        <div class="term">Theotokos</div>
+        <div class="gterm">Θεοτόκος — God-bearer</div>
+        <div class="def">Title for Mary defined at Ephesus (431). Means she bore the one who is God — affirming the unity of Christ's person. Nestorius preferred "Christotokos." All OO, EO, and RC accept Theotokos.</div>
+      </div>
+      <div class="gt">
+        <div class="term">Homoousios</div>
+        <div class="gterm">ὁμοούσιος — of the same substance</div>
+        <div class="def">The Nicene term defining the Son as of the same divine substance as the Father. The key word Nicaea I used to defeat Arianism. Accepted universally by all three traditions.</div>
+      </div>
+      <div class="gt">
+        <div class="term">Ecumenical Council</div>
+        <div class="gterm">Οἰκουμενικὴ Σύνοδος</div>
+        <div class="def">A gathering of bishops from the whole Church whose doctrinal definitions are binding on all Christians. The number recognized varies: OO (3), EO (7), RC (21).</div>
+      </div>
+      <div class="gt">
+        <div class="term">Leo's Tome</div>
+        <div class="gterm">Epistola ad Flavianum, 449 AD</div>
+        <div class="def">Pope Leo I's letter to Flavian of Constantinople, defining Christ's two natures in Western theological terms. Accepted at Chalcedon over Dioscorus's objection. The OO regard its "each nature acting according to its own properties" language as Nestorian-leaning.</div>
+      </div>
+      <div class="gt">
+        <div class="term">Tewahedo</div>
+        <div class="gterm">ተዋሕዶ — Ge'ez: "being made one"</div>
+        <div class="def">The name used by Ethiopian and Eritrean Orthodox churches — literally meaning "united" or "unified." A direct reference to their Miaphysite Christology: Christ's divine and human are made perfectly one.</div>
+      </div>
+      <div class="gt">
+        <div class="term">Vincentian Canon</div>
+        <div class="gterm">quod ubique, quod semper, quod ab omnibus</div>
+        <div class="def">"What has been believed everywhere, always, and by all." The standard of authentic tradition articulated by St. Vincent of Lérins (c. 434). The OO apply it to limit ecumenical councils to those with universal pre-schism acceptance.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /content -->
+</main>
+
+<script>
+function ts(h){h.closest('.sec').classList.toggle('open')}
+function tobj(h){h.closest('.obj').classList.toggle('open')}
+function tf(h){h.closest('.fi').classList.toggle('open')}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').classList.toggle('show')}
+function closeMobile(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
+
+window.addEventListener('scroll',()=>{
+  const sc=document.documentElement;
+  document.getElementById('prog').style.width=(sc.scrollTop/(sc.scrollHeight-sc.clientHeight)*100)+'%';
+});
+
+const links=document.querySelectorAll('#sidebar nav a[href^="#"]');
+const secs=[...links].map(l=>document.querySelector(l.getAttribute('href'))).filter(Boolean);
+window.addEventListener('scroll',()=>{
+  let cur='';
+  secs.forEach(s=>{if(s.getBoundingClientRect().top<=120)cur=s.id});
+  links.forEach(l=>{l.classList.toggle('active',l.getAttribute('href')==='#'+cur)});
+},{passive:true});
+
+function sidebarSearch(q){
+  q=q.trim().toLowerCase();
+  const sections=document.querySelectorAll('main .sec');
+  let matched=0;
+  sections.forEach(sec=>{
+    if(!q){
+      sec.classList.remove('s-hidden');
+      const h2=sec.querySelector('.sec-h h2');
+      if(h2._orig)h2.innerHTML=h2._orig;
+      matched++;
+      return;
+    }
+    const h2=sec.querySelector('.sec-h h2');
+    const body=sec.querySelector('.sec-body');
+    const headText=(h2._orig||h2.textContent).toLowerCase();
+    const bodyText=body?body.textContent.toLowerCase():'';
+    const hit=headText.includes(q)||bodyText.includes(q);
+    sec.classList.toggle('s-hidden',!hit);
+    if(hit){
+      matched++;
+      if(!h2._orig)h2._orig=h2.innerHTML;
+      const re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');
+      h2.innerHTML=h2._orig.replace(re,'<mark style="background:rgba(201,168,76,.3);color:var(--gold);border-radius:2px;padding:0 2px">$1</mark>');
+      sec.classList.add('open');
+    }
+  });
+  document.getElementById('sb-no-match').classList.toggle('show',!!q&&matched===0);
+}
+</script>
+</body>
+</html>

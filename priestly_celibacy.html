@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Priestly Celibacy — The Orthodox Lamp</title>
+<style>
+:root{
+  --gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;
+  --bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--bg5:#3a2e10;
+  --tx:#e8e0d0;--mu:#a09880;--br:#2a2a2a;
+  --sidebar-w:270px;
+  --rc:#3a1a1a;--rcc:#d47070;
+  --oo:#1a2e1a;--ooc:#7dc87d;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.7;display:flex;min-height:100vh}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+mark{background:rgba(201,168,76,.28);color:var(--gl);border-radius:2px;padding:0 2px}
+#prog{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--gd),var(--gl));z-index:200;transition:width .1s}
+#sb{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:100;display:flex;flex-direction:column}
+#sb-brand{padding:18px 18px 10px;border-bottom:1px solid var(--br)}
+#sb-brand .lamp{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mu);margin-bottom:4px}
+#sb-brand h1{font-size:1rem;color:var(--gold);line-height:1.3}
+.sb-search{padding:10px 14px 4px}
+.sb-search input{width:100%;background:rgba(255,255,255,.06);border:1px solid var(--br);border-radius:6px;padding:8px 12px;font-size:.8rem;color:var(--tx);font-family:'Georgia',serif;outline:none;transition:border-color .2s}
+.sb-search input::placeholder{color:#666}
+.sb-search input:focus{border-color:var(--gd)}
+.sec.s-hidden{display:none}
+.no-match-msg{display:none;padding:14px 18px;font-size:.8rem;color:var(--mu);font-style:italic;text-align:center}
+.no-match-msg.show{display:block}
+#sb-nav{padding:10px 0 20px;flex:1}
+#sb-nav a{display:block;padding:6px 18px;font-size:.82rem;color:var(--mu);border-left:2px solid transparent;transition:all .15s;line-height:1.4}
+#sb-nav a:hover,#sb-nav a.active{color:var(--gold);border-left-color:var(--gold);background:rgba(201,168,76,.06);text-decoration:none}
+main{margin-left:var(--sidebar-w);flex:1;max-width:820px;padding:48px 48px 80px}
+.pg-title{margin-bottom:10px}
+.pg-title .lamp-label{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--mu);margin-bottom:6px}
+.pg-title h1{font-size:2rem;color:var(--gold);line-height:1.2}
+.pg-title .sub{font-size:1rem;color:var(--mu);margin-top:6px;font-style:italic}
+.pg-intro{max-width:660px;color:var(--mu);font-size:.95rem;margin:16px 0 36px;border-left:3px solid var(--gd);padding-left:14px}
+.sec{border:1px solid var(--br);border-radius:8px;margin-bottom:14px;overflow:hidden;background:var(--bg2)}
+.sec-h{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;cursor:pointer;user-select:none;gap:10px}
+.sec-h:hover{background:rgba(255,255,255,.03)}
+.sec-h h2{font-size:1rem;color:var(--tx);font-weight:600}
+.sec-h .arr{color:var(--mu);font-size:.8rem;transition:transform .2s;flex-shrink:0}
+.sec.open .arr{transform:rotate(90deg)}
+.sec-body{display:none;padding:18px 20px 20px;border-top:1px solid var(--br)}
+.sec.open .sec-body{display:block}
+.sec-body p{color:var(--mu);font-size:.92rem;margin-bottom:10px}
+.sec-body p:last-child{margin-bottom:0}
+.sv{background:var(--bg5);border:1px solid var(--gd);border-radius:6px;padding:12px 16px;margin:12px 0;font-style:italic;color:var(--gl);font-size:.92rem}
+.sv cite{display:block;text-align:right;font-size:.8rem;color:var(--gold);margin-top:6px;font-style:normal}
+.comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.comp-card{border-radius:8px;padding:14px 16px;border:1px solid}
+.comp-card.rc-card{background:var(--rc);border-color:var(--rcc)}
+.comp-card.oo-card{background:var(--oo);border-color:var(--ooc)}
+.comp-card .cc-label{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;font-weight:700}
+.comp-card.rc-card .cc-label{color:var(--rcc)}
+.comp-card.oo-card .cc-label{color:var(--ooc)}
+.comp-card ul{padding-left:16px;font-size:.88rem;line-height:1.75}
+.comp-card.rc-card ul{color:#e8c0c0}
+.comp-card.oo-card ul{color:#c8e8c8}
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin:14px 0}
+.fc{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:14px 16px}
+.fc-name{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.fc-body{font-size:.88rem;color:var(--mu);font-style:italic;line-height:1.6}
+.fc-src{font-size:.76rem;color:var(--gd);margin-top:6px}
+.fi{border:1px solid var(--br);border-radius:6px;margin-bottom:8px;overflow:hidden;background:var(--bg3)}
+.fi-h{display:flex;align-items:flex-start;padding:11px 14px;cursor:pointer;gap:8px;user-select:none}
+.fi-h:hover{background:rgba(255,255,255,.03)}
+.fi-q{font-size:.88rem;color:var(--tx);flex:1}
+.fi-arr{color:var(--mu);font-size:.75rem;transition:transform .2s;flex-shrink:0;margin-top:4px}
+.fi.open .fi-arr{transform:rotate(90deg)}
+.fi-body{display:none;padding:12px 14px 14px;border-top:1px solid var(--br);font-size:.88rem;color:var(--mu);line-height:1.65}
+.fi.open .fi-body{display:block}
+.gt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin:14px 0}
+.gt{background:var(--bg3);border:1px solid var(--br);border-radius:7px;padding:12px 14px}
+.gt-term{font-size:.8rem;font-weight:700;color:var(--gold);margin-bottom:4px}
+.gt-def{font-size:.84rem;color:var(--mu);line-height:1.55}
+.tl{margin:14px 0;border-left:2px solid var(--gd);padding-left:18px}
+.tl-item{position:relative;margin-bottom:14px}
+.tl-item::before{content:'';position:absolute;left:-23px;top:6px;width:8px;height:8px;border-radius:50%;background:var(--gold);border:2px solid var(--bg2)}
+.tl-year{font-size:.75rem;color:var(--gold);margin-bottom:3px;font-weight:600}
+.tl-text{font-size:.88rem;color:var(--mu);line-height:1.55}
+@media(max-width:760px){#sb{transform:translateX(-100%)}main{margin-left:0;padding:24px 18px 60px}}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<nav id="sb">
+  <div id="sb-brand">
+    <div class="lamp">The Orthodox Lamp</div>
+    <h1>Priestly Celibacy</h1>
+  </div>
+  <div class="sb-search">
+    <input type="search" placeholder="Search sections…" oninput="sidebarSearch(this.value)" aria-label="Search sections">
+  </div>
+  <div id="sb-nav">
+    <a href="#overview">Overview</a>
+    <a href="#scripture">Scriptural Basis</a>
+    <a href="#history">Historical Development</a>
+    <a href="#oo-practice">Oriental Orthodox Practice</a>
+    <a href="#bishops">Bishops &amp; Monastics</a>
+    <a href="#faq">FAQ</a>
+    <a href="#glossary">Glossary</a>
+  </div>
+  <div class="no-match-msg" id="sb-no-match">No sections match.</div>
+</nav>
+<main>
+  <div class="pg-title">
+    <div class="lamp-label">The Orthodox Lamp</div>
+    <h1>Priestly Celibacy</h1>
+    <div class="sub">Married priesthood, monastic bishops, and the Latin departure</div>
+  </div>
+  <p class="pg-intro">The Oriental Orthodox tradition has always ordained married men to the priesthood. The Roman Catholic requirement of priestly celibacy is a later Latin discipline — not apostolic practice — and the Oriental Orthodox (along with the Eastern Orthodox and even Eastern Catholic churches) have maintained the ancient norm.</p>
+
+  <div class="sec open" id="overview">
+    <div class="sec-h" onclick="ts(this)"><h2>The Core Difference</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <div class="comp-grid">
+        <div class="comp-card oo-card">
+          <div class="cc-label">Oriental Orthodox</div>
+          <ul>
+            <li>Married men may be ordained deacon and priest</li>
+            <li>Marriage must occur <em>before</em> ordination to the diaconate</li>
+            <li>Ordained men may not marry after ordination</li>
+            <li>Bishops are always celibate — drawn from monks</li>
+            <li>Celibacy is honored as a charism, not imposed as a rule</li>
+          </ul>
+        </div>
+        <div class="comp-card rc-card">
+          <div class="cc-label">Roman Catholic (Latin Rite)</div>
+          <ul>
+            <li>Celibacy mandatory for all Latin Rite priests</li>
+            <li>Married men may not be ordained (with narrow exceptions)</li>
+            <li>Celibacy treated as integral to the priestly vocation</li>
+            <li>Eastern Catholic churches in communion with Rome retain married priesthood</li>
+            <li>Mandatory celibacy codified at Second Lateran Council (1139)</li>
+          </ul>
+        </div>
+      </div>
+      <p>The important distinction in the Oriental Orthodox practice: it is not that priests may marry, but that married men may become priests. The sequence matters — marriage comes first. A widowed priest does not remarry, and a man ordained as a celibate cannot later marry. Celibacy chosen freely is deeply honored; it is compelled celibacy the Tradition does not know.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="scripture">
+    <div class="sec-h" onclick="ts(this)"><h2>The Scriptural Witness</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>The New Testament is explicit: the Apostles and early leaders of the Church included married men. The requirement that a bishop be "the husband of one wife" assumes marriage as the normal state.</p>
+      <div class="sv">"Therefore an overseer must be above reproach, the husband of one wife, sober-minded, self-controlled, respectable, hospitable, able to teach…"<cite>1 Timothy 3:2</cite></div>
+      <div class="sv">"An elder must be blameless, the husband of one wife, and his children must be believers and not open to the charge of debauchery or insubordination."<cite>Titus 1:6</cite></div>
+      <div class="sv">"Do we not have the right to take along a believing wife, as do the other apostles and the brothers of the Lord and Cephas?"<cite>1 Corinthians 9:5 — Paul confirming Peter and the apostles had wives</cite></div>
+      <p>The Gospels confirm Peter's marriage directly: Jesus healed his mother-in-law (Matthew 8:14). Paul himself was celibate and commends celibacy as a gift (1 Cor 7:7) — but explicitly as a charism, not a requirement. "Each has his own gift from God" (1 Cor 7:7) — celibacy and marriage are both callings, neither is obligatory for ministry.</p>
+      <p>The prohibition of marriage <em>after</em> ordination in the East follows from "husband of one wife" — once ordained, a man is wedded to his flock. But this is different from requiring celibacy before ordination.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="history">
+    <div class="sec-h" onclick="ts(this)"><h2>How the Latin Rule Developed</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>The shift to mandatory celibacy in the Western Church was gradual and driven by reform movements, not apostolic tradition.</p>
+      <div class="tl">
+        <div class="tl-item">
+          <div class="tl-year">Early Church</div>
+          <div class="tl-text">Married clergy normal East and West. No universal celibacy rule. Bishops, priests, and deacons commonly married.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">Council of Nicaea (325)</div>
+          <div class="tl-text">Bishop Paphnutius of Egypt reportedly opposed imposing celibacy, arguing it was too heavy a burden and contrary to ancient tradition. The Council declined to mandate it.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">Council of Trullo (692)</div>
+          <div class="tl-text">The Quinisext Council codified Eastern practice: married men may be ordained deacon and priest; bishops must be celibate; clergy may not marry after ordination. Rome refused to ratify this council — a sign of the already diverging practices.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">Gregorian Reform (11th c.)</div>
+          <div class="tl-text">Pope Gregory VII's reform movement targeted simony, nepotism, and married clergy (whose sons often inherited parishes). Celibacy was enforced as part of cleansing the Western church from feudal entanglements, not as a theological principle per se.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">Second Lateran Council (1139)</div>
+          <div class="tl-text">Declared priestly marriages not merely forbidden but invalid. Mandatory celibacy became law for the entire Latin Rite — a discipline unknown to the Apostolic Church as a universal rule.</div>
+        </div>
+      </div>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">St. Paphnutius of Egypt (d. c. 360)</div>
+          <div class="fc-body">"Do not impose this heavy burden on the clergy; marriage and marital intercourse are honorable and undefiled… it is sufficient to follow the ancient tradition."</div>
+          <div class="fc-src">Reported speech at Nicaea (Socrates Scholasticus, Historia Ecclesiastica I.11)</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">Council of Trullo, Canon 13 (692)</div>
+          <div class="fc-body">"Since we know it to be handed down as a rule of the Roman Church that those who are deemed worthy to be advanced to the diaconate or presbyterate should promise to no longer cohabit with their wives… we, preserving the ancient rule and Apostolic perfection… decree that lawful marriage of men who are in holy orders shall from this time forward remain firm."</div>
+          <div class="fc-src">Quinisext Council, Canon 13 — explicitly upholding the Eastern Apostolic norm against Roman practice</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" id="oo-practice">
+    <div class="sec-h" onclick="ts(this)"><h2>Oriental Orthodox Practice Today</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>Across all six Oriental Orthodox churches the practice is essentially the same, rooted in the Apostolic norm confirmed at Trullo:</p>
+      <p><strong style="color:var(--gold)">Coptic Orthodox:</strong> The majority of parish priests are married. A man discerning priesthood must marry before his ordination as a deacon. Celibate priests (monks) also serve parishes and are eligible for episcopacy.</p>
+      <p><strong style="color:var(--gold)">Ethiopian &amp; Eritrean Orthodox:</strong> Married priesthood is the norm for parish clergy. The Tewahedo tradition has a very large monastic community from which bishops are drawn.</p>
+      <p><strong style="color:var(--gold)">Armenian Apostolic:</strong> Two orders of clergy — married parish priests (kahanas) and celibate vardapets (archimandrites). Only vardapets may become bishops.</p>
+      <p><strong style="color:var(--gold)">Syriac Orthodox &amp; Malankara:</strong> Married men ordained to the priesthood. Episcopal candidates drawn from monks or widowed priests who take monastic vows.</p>
+      <p>In none of these traditions is marriage seen as a compromise of priestly holiness. The married priest who serves his parish, raises children in the faith, and shepherds his flock is not a lesser priest — he is a different icon of Christ than the monk-bishop, and both are needed.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="bishops">
+    <div class="sec-h" onclick="ts(this)"><h2>Why Bishops Must Be Celibate</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>The Oriental Orthodox do require celibacy of their bishops — this is ancient and universal in both Eastern and Oriental Orthodoxy. The reasons are theological and practical, not a concession to the Latin argument for celibacy.</p>
+      <p>Theologically, the bishop is the spouse of his diocese (a concept in both East and West). Just as Christ is the one Bridegroom of the one Church, the bishop is wholly given to his flock — undivided. A bishop with a wife and children would face the impossible tension between his family and his diocese scattered across a region. The monastic vow resolves this by a prior, total self-offering.</p>
+      <p>Practically, bishops in the apostolic East are normally drawn from the monastic order — men who have already embraced a life of prayer, ascetic discipline, and communal obedience. This ensures that the episcopate is drawn from proven men of prayer, not merely from the most administratively capable. The monk-bishop is a shepherd who has first learned to shepherd his own soul.</p>
+      <div class="sv">"If anyone aspires to the office of overseer, he desires a noble task. Therefore an overseer must be above reproach…"<cite>1 Timothy 3:1-2 — the standard of total self-giving</cite></div>
+      <p>The key distinction from Rome: the Oriental Orthodox impose celibacy on bishops as a function of the episcopal charism and its demands, not on all clergy as a discipline of purity. The married priest is not thereby less pure or less holy — he is living a different calling.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="faq">
+    <div class="sec-h" onclick="ts(this)"><h2>FAQ</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Doesn't Paul say celibacy is better (1 Cor 7)?</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">Yes — and the Oriental Orthodox fully honor celibacy as a higher charism when it is freely given. Paul says "each has his own gift from God, one of one kind and one of another" (1 Cor 7:7). He recommends celibacy for those who can receive it. He never says married men are unfit for ministry — in the same letter he confirms the apostles have wives (1 Cor 9:5). The OO position is not that celibacy is inferior; it is that it cannot be imposed as a requirement for valid ministry.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Can a widowed priest in the OO remarry?</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">No. Once ordained, a priest may not remarry even if widowed. This follows from the canon that a bishop, priest, or deacon be "husband of one wife" — not sequentially, but faithfully. A widowed priest who wishes to remain in ministry continues as a celibate priest; if he wishes to remarry, he must leave the active priesthood. Many widowed priests take monastic vows and can then be elevated to the episcopate.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">What about Eastern Catholic churches — do they also have married priests?</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">Yes. Eastern Catholic churches in full communion with Rome (Coptic Catholic, Melkite, Maronite, etc.) retain the Eastern discipline of married priesthood, because Rome has historically recognized this as an authentic apostolic tradition. This itself undercuts the claim that celibacy is theologically necessary for priesthood — Rome's own Eastern rites demonstrate it is not. The mandatory celibacy rule is a Latin Rite discipline, not a universal doctrine of the Church.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Is the RC church considering changing the celibacy requirement?</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">The question has been raised in synods, particularly with the 2019 Synod for the Amazon where the shortage of priests led to proposals for ordaining married men (viri probati — proven married men). Pope Francis received the synod's recommendations but did not change the discipline in his follow-up document. The debate continues within the RC church itself. The Oriental Orthodox simply note that the ancient Apostolic practice they have maintained all along is exactly what is being discussed as a possible reform.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" id="glossary">
+    <div class="sec-h" onclick="ts(this)"><h2>Glossary</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <div class="gt-grid">
+        <div class="gt"><div class="gt-term">Celibacy</div><div class="gt-def">The state of remaining unmarried and abstaining from sexual relations, offered as a complete self-giving to God. Valued as charism in OO; mandatory in the Latin Rite.</div></div>
+        <div class="gt"><div class="gt-term">Council of Trullo (692)</div><div class="gt-def">The Quinisext Council, which codified Eastern canonical practice including married priesthood. Rome refused to ratify it, foreshadowing the divergence.</div></div>
+        <div class="gt"><div class="gt-term">Husband of One Wife</div><div class="gt-def">The scriptural criterion (1 Tim 3:2, Tit 1:6) for clergy — read by the Eastern tradition as requiring fidelity in one marriage, not celibacy.</div></div>
+        <div class="gt"><div class="gt-term">Monk-Bishop</div><div class="gt-def">The Eastern/OO pattern: bishops are drawn from the monastic order, who have already made a vow of celibacy. The episcopal charism thus builds on the monastic.</div></div>
+        <div class="gt"><div class="gt-term">Charism</div><div class="gt-def">A gift of grace given by the Holy Spirit for the building up of the Body. Celibacy is a charism — given to some, not imposed on all.</div></div>
+        <div class="gt"><div class="gt-term">Viri Probati</div><div class="gt-def">Latin: "proven men." The proposed RC category of mature, married men of faith who might be ordained in areas of extreme priest shortage.</div></div>
+      </div>
+    </div>
+  </div>
+</main>
+<script>
+window.addEventListener('scroll',()=>{const h=document.documentElement;document.getElementById('prog').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100+'%';});
+const navLinks=document.querySelectorAll('#sb-nav a[href^="#"]');
+const secs2=document.querySelectorAll('main .sec[id]');
+window.addEventListener('scroll',()=>{let cur='';secs2.forEach(s=>{if(s.getBoundingClientRect().top<=120)cur=s.id;});navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur);});},{passive:true});
+function ts(h){h.closest('.sec').classList.toggle('open');}
+function tf(h){h.closest('.fi').classList.toggle('open');}
+function sidebarSearch(q){
+  q=q.trim().toLowerCase();
+  const secs=document.querySelectorAll('main .sec');
+  let matched=0;
+  secs.forEach(sec=>{
+    if(!q){sec.classList.remove('s-hidden');const h2=sec.querySelector('.sec-h h2');if(h2._orig)h2.innerHTML=h2._orig;matched++;return;}
+    const h2=sec.querySelector('.sec-h h2');
+    const body=sec.querySelector('.sec-body');
+    const hit=(h2._orig||h2.textContent).toLowerCase().includes(q)||(body?body.textContent.toLowerCase():'').includes(q);
+    sec.classList.toggle('s-hidden',!hit);
+    if(hit){matched++;if(!h2._orig)h2._orig=h2.innerHTML;const re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');h2.innerHTML=h2._orig.replace(re,'<mark>$1</mark>');sec.classList.add('open');}
+  });
+  document.getElementById('sb-no-match').classList.toggle('show',!!q&&matched===0);
+}
+</script>
+</body>
+</html>

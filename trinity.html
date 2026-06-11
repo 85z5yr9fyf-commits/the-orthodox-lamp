@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Holy Trinity &#8212; The Orthodox Lamp</title>
+<style>
+:root{
+  --gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;
+  --bg:#0d0b08;--bg2:#141109;--bg3:#1c160e;--bg4:#241d10;--bg5:#3a2e10;
+  --tx:#ede4d0;--mu:#a09070;--br:#2e2510;--sidebar-w:270px;
+  --amber:#e8901a;--amberl:#f0b840;--red:#c04020;
+  --blue:#3a6a9a;--bluel:#5a9aca;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.75;display:flex;min-height:100vh}
+
+/* PROGRESS BAR */
+#prog{position:fixed;top:0;left:0;height:3px;width:0%;
+  background:linear-gradient(90deg,var(--gd),var(--amberl),var(--gold));z-index:9999;transition:width .1s}
+
+/* SIDEBAR */
+#sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;
+  background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:100;display:flex;flex-direction:column}
+#sidebar-logo{padding:22px 18px 14px;border-bottom:1px solid var(--br)}
+#sidebar-logo .lamp{font-size:1.35rem;font-weight:700;color:var(--gold);letter-spacing:.04em}
+#sidebar-logo .sub{font-size:.72rem;color:var(--mu);margin-top:2px;text-transform:uppercase;letter-spacing:.08em}
+#search-wrap{padding:10px 12px;border-bottom:1px solid var(--br)}
+#search-wrap input{width:100%;background:var(--bg3);border:1px solid var(--br);color:var(--tx);
+  padding:6px 10px;border-radius:4px;font-size:.8rem;outline:none}
+#search-wrap input:focus{border-color:var(--gold)}
+#nav{padding:10px 0 20px;flex:1}
+#nav a{display:block;padding:7px 18px;font-size:.82rem;color:var(--mu);text-decoration:none;
+  border-left:3px solid transparent;transition:all .15s;line-height:1.4}
+#nav a:hover{color:var(--tx);background:var(--bg3);border-left-color:var(--gold)}
+#nav a.active{color:var(--gold);border-left-color:var(--gold);background:var(--bg3)}
+#nav .nav-head{padding:8px 18px 3px;font-size:.68rem;color:var(--gd);text-transform:uppercase;letter-spacing:.1em;margin-top:4px}
+
+/* MAIN */
+#main{margin-left:var(--sidebar-w);flex:1;max-width:920px;padding:0 48px 80px}
+
+/* ===== ANIMATED OIL LAMP HEADER ===== */
+.lamp-header{text-align:center;padding:54px 0 40px;border-bottom:2px solid var(--br);margin-bottom:44px;position:relative;overflow:hidden}
+.lamp-header::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:400px;height:300px;background:radial-gradient(ellipse at 50% 40%,rgba(201,168,76,.08) 0%,transparent 70%);pointer-events:none}
+
+.lamp-wrap{display:inline-block;position:relative;margin-bottom:28px}
+
+/* FLAME ELEMENTS */
+.fl-glow{animation:glow-pulse 2.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center 80%}
+.fl-a{animation:flicker-a 2.3s ease-in-out infinite;transform-box:fill-box;transform-origin:center bottom}
+.fl-b{animation:flicker-b 1.9s ease-in-out infinite .3s;transform-box:fill-box;transform-origin:center bottom}
+.fl-c{animation:flicker-c 2.1s ease-in-out infinite .1s;transform-box:fill-box;transform-origin:center bottom}
+.fl-d{animation:flicker-d 1.7s ease-in-out infinite .5s;transform-box:fill-box;transform-origin:center bottom}
+.fl-e{animation:core-pulse 1.5s ease-in-out infinite .2s;transform-box:fill-box;transform-origin:center center}
+
+@keyframes flicker-a{
+  0%,100%{transform:scaleX(1) skewX(0deg) translateY(0)}
+  28%{transform:scaleX(.92) skewX(-2.5deg) translateY(-3px)}
+  55%{transform:scaleX(1.06) skewX(1.5deg) translateY(2px)}
+  78%{transform:scaleX(.96) skewX(2deg) translateY(-1px)}
+}
+@keyframes flicker-b{
+  0%,100%{transform:scaleX(1) skewX(1deg) translateY(0)}
+  22%{transform:scaleX(1.05) skewX(-1.5deg) translateY(-4px)}
+  52%{transform:scaleX(.93) skewX(2.5deg) translateY(2px)}
+  74%{transform:scaleX(1.03) skewX(-2deg) translateY(-2px)}
+}
+@keyframes flicker-c{
+  0%,100%{transform:scaleX(1) translateY(0);opacity:1}
+  38%{transform:scaleX(.95) translateY(-3px);opacity:.88}
+  68%{transform:scaleX(1.04) translateY(1px);opacity:.95}
+}
+@keyframes flicker-d{
+  0%,100%{transform:scaleY(1) translateY(0)}
+  32%{transform:scaleY(1.08) translateY(-5px)}
+  62%{transform:scaleY(.93) translateY(3px)}
+}
+@keyframes core-pulse{
+  0%,100%{opacity:.85;transform:scaleY(1)}
+  50%{opacity:1;transform:scaleY(1.12)}
+}
+@keyframes glow-pulse{
+  0%,100%{opacity:.35;transform:scale(1)}
+  50%{opacity:.65;transform:scale(1.2)}
+}
+
+.lamp-header h1{font-size:2.6rem;color:var(--gold);line-height:1.2;margin-bottom:12px;letter-spacing:.02em}
+.lamp-header .tagline{font-size:1.05rem;color:var(--mu);max-width:640px;margin:0 auto;line-height:1.65}
+.lamp-header .tag{font-size:.72rem;color:var(--amber);text-transform:uppercase;letter-spacing:.16em;margin-bottom:14px}
+
+/* SECTION ACCORDION */
+.sec{margin-bottom:10px;border:1px solid var(--br);border-radius:6px;overflow:hidden}
+.sec-h{display:flex;justify-content:space-between;align-items:center;padding:16px 22px;
+  cursor:pointer;background:var(--bg2);transition:background .15s}
+.sec-h:hover{background:var(--bg3)}
+.sec-h h2{font-size:1.12rem;color:var(--gold);font-weight:600}
+.arr{color:var(--mu);font-size:.85rem;transition:transform .2s}
+.sec-body{padding:28px 30px;background:var(--bg3);display:none}
+.sec-body p{margin-bottom:15px;color:var(--tx);font-size:.96rem;line-height:1.75}
+.sec-body h3{color:var(--gl);font-size:1rem;margin:24px 0 11px;border-bottom:1px solid var(--br);padding-bottom:6px}
+.sec-body h4{color:var(--amberl);font-size:.88rem;margin:18px 0 7px;text-transform:uppercase;letter-spacing:.07em}
+
+/* VERSE / QUOTE BOXES */
+.vbox{border-left:4px solid var(--gold);background:var(--bg4);padding:14px 20px;
+  border-radius:0 6px 6px 0;margin:15px 0}
+.vbox .vref{font-size:.75rem;color:var(--gl);text-transform:uppercase;letter-spacing:.1em;margin-bottom:7px}
+.vbox .vtext{font-style:italic;color:var(--tx);font-size:.94rem;line-height:1.7}
+.vbox.father{border-left-color:var(--amber)}
+.vbox.father .vref{color:var(--amberl)}
+.vbox.key{border-left-color:var(--amberl);background:var(--bg5)}
+.vbox.key .vref{color:var(--gl)}
+
+/* FATHER CARDS */
+.father-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}
+.fc{background:var(--bg4);border:1px solid var(--br);border-top:3px solid var(--amber);
+  border-radius:0 0 6px 6px;padding:16px 18px}
+.fc .fc-name{font-size:.9rem;color:var(--amberl);font-weight:700;margin-bottom:3px}
+.fc .fc-dates{font-size:.72rem;color:var(--mu);margin-bottom:10px}
+.fc .fc-quote{font-style:italic;font-size:.87rem;color:var(--tx);line-height:1.65;margin-bottom:8px}
+.fc .fc-cite{font-size:.78rem;color:var(--mu)}
+
+/* CONCEPT CARDS */
+.concept-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:16px 0}
+.cc{background:var(--bg4);border:1px solid var(--br);border-radius:6px;padding:15px;text-align:center}
+.cc .cc-term{font-size:1.1rem;color:var(--gold);font-weight:700;margin-bottom:6px;font-style:italic}
+.cc .cc-greek{font-size:.75rem;color:var(--mu);margin-bottom:8px}
+.cc .cc-def{font-size:.82rem;color:var(--tx);line-height:1.55}
+
+/* THREE-PERSON DIAGRAM */
+.triad{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin:20px 0;position:relative}
+.triad::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:80%;height:1px;background:var(--br)}
+.person-card{background:var(--bg4);border:1px solid var(--br);border-radius:8px;padding:18px 14px;text-align:center;position:relative}
+.person-card.father{border-top:4px solid var(--gold)}
+.person-card.son{border-top:4px solid var(--amberl)}
+.person-card.spirit{border-top:4px solid var(--amber)}
+.person-card .pc-name{font-size:1rem;font-weight:700;margin-bottom:6px}
+.person-card.father .pc-name{color:var(--gold)}
+.person-card.son .pc-name{color:var(--amberl)}
+.person-card.spirit .pc-name{color:var(--amber)}
+.person-card .pc-greek{font-size:.72rem;color:var(--mu);font-style:italic;margin-bottom:8px}
+.person-card .pc-role{font-size:.82rem;color:var(--tx);line-height:1.5}
+.person-card .pc-relation{font-size:.75rem;color:var(--mu);margin-top:8px;padding-top:6px;border-top:1px solid var(--br)}
+
+/* DISTINCTION BOX */
+.dist-box{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}
+.dist-card{padding:16px 18px;border-radius:6px;border:1px solid var(--br)}
+.dist-card.wrong{background:rgba(180,40,20,.08);border-color:rgba(180,40,20,.2)}
+.dist-card.right{background:rgba(42,100,50,.08);border-color:rgba(42,100,50,.2)}
+.dist-card .dl{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;font-weight:700}
+.dist-card.wrong .dl{color:#c06050}
+.dist-card.right .dl{color:#60a870}
+.dist-card p{font-size:.87rem;color:var(--tx);line-height:1.55;margin:0}
+
+/* HERESY GRID */
+.heresy-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}
+.heresy-card{background:rgba(180,40,20,.06);border:1px solid rgba(180,40,20,.2);
+  border-radius:6px;padding:14px 16px}
+.heresy-card .hc-name{font-size:.88rem;color:#d06050;font-weight:700;margin-bottom:4px}
+.heresy-card .hc-claim{font-size:.82rem;font-style:italic;color:var(--mu);margin-bottom:6px}
+.heresy-card p{font-size:.83rem;color:var(--tx);line-height:1.5;margin:0}
+
+/* CALLOUT */
+.callout{background:var(--bg5);border:1px solid var(--gold);border-radius:6px;padding:18px 22px;margin:20px 0}
+.callout .cl-title{font-size:.75rem;color:var(--gold);text-transform:uppercase;letter-spacing:.12em;margin-bottom:9px;font-weight:700}
+.callout p{font-size:.92rem;color:var(--tx);margin:0;line-height:1.7}
+
+/* TIMELINE */
+.tl{margin:16px 0}
+.tl-item{display:flex;gap:16px;margin-bottom:22px;align-items:flex-start}
+.tl-dot{width:12px;height:12px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:5px}
+.tl-content{flex:1}
+.tl-date{font-size:.75rem;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:3px}
+.tl-title{font-size:.95rem;color:var(--tx);font-weight:700;margin-bottom:4px}
+.tl-content p{font-size:.87rem;color:var(--mu);line-height:1.6;margin:0}
+
+/* FAQ */
+.faq{margin:8px 0}
+.fi{background:var(--bg4);border:1px solid var(--br);border-radius:4px;margin-bottom:6px;overflow:hidden}
+.fi-q{padding:13px 17px;cursor:pointer;font-size:.92rem;color:var(--tx);display:flex;justify-content:space-between;align-items:center}
+.fi-q:hover{background:var(--bg3)}
+.fi-a{display:none;padding:13px 17px;font-size:.88rem;color:var(--mu);border-top:1px solid var(--br);line-height:1.7}
+
+/* GLOSSARY */
+.glo{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+.glo-item{background:var(--bg4);border:1px solid var(--br);border-radius:4px;padding:13px 15px}
+.glo-item .gt{font-size:.85rem;color:var(--gold);font-weight:700;margin-bottom:4px}
+.glo-item .gd{font-size:.82rem;color:var(--mu);line-height:1.55}
+
+/* SCRIPTURE GRID */
+.scripture-grid{display:grid;grid-template-columns:1fr;gap:10px;margin:14px 0}
+.sg-item{background:var(--bg4);border:1px solid var(--br);border-left:4px solid var(--gold);border-radius:0 6px 6px 0;padding:14px 18px}
+.sg-item .sg-ref{font-size:.75rem;color:var(--gl);font-weight:700;margin-bottom:5px;text-transform:uppercase;letter-spacing:.08em}
+.sg-item .sg-text{font-style:italic;font-size:.92rem;color:var(--tx);line-height:1.65;margin-bottom:6px}
+.sg-item .sg-note{font-size:.82rem;color:var(--mu);line-height:1.5}
+
+/* CHAIN BOX (generation/procession arrows) */
+.chain{display:flex;align-items:center;gap:10px;margin:18px 0;flex-wrap:wrap}
+.chain-node{background:var(--bg4);border:1px solid var(--br);border-radius:6px;padding:10px 16px;
+  font-size:.9rem;font-weight:700;color:var(--gold);text-align:center;min-width:90px}
+.chain-arrow{color:var(--amber);font-size:1.4rem;flex-shrink:0}
+.chain-label{font-size:.72rem;color:var(--mu);text-align:center;margin-top:4px}
+
+@media(max-width:900px){
+  #sidebar{transform:translateX(-100%)}
+  #main{margin-left:0;padding:0 22px 60px}
+  .father-grid,.concept-grid,.triad,.dist-box,.heresy-grid,.glo{grid-template-columns:1fr}
+  .lamp-header h1{font-size:1.9rem}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<nav id="sidebar">
+  <div id="sidebar-logo">
+    <div class="lamp">&#9632; The Orthodox Lamp</div>
+    <div class="sub">The Holy Trinity</div>
+  </div>
+  <div id="search-wrap"><input type="text" id="srch" placeholder="Search&#8230;" oninput="sidebarSearch(this.value)"></div>
+  <div id="nav">
+    <div class="nav-head">Foundation</div>
+    <a href="#overview">The Question Before Us</a>
+    <a href="#foundation">One God &mdash; Three Persons</a>
+    <div class="nav-head">The Doctrine</div>
+    <a href="#monarchy">Monarchical Trinitarianism</a>
+    <a href="#generation">Eternal Generation of the Son</a>
+    <a href="#procession">Eternal Procession of the Spirit</a>
+    <a href="#ousia">Ousia and Hypostasis</a>
+    <a href="#perichoresis">Perichoresis &mdash; Divine Coinherence</a>
+    <div class="nav-head">Applied Theology</div>
+    <a href="#economic">The Economic Trinity</a>
+    <a href="#distortions">Against the Distortions</a>
+    <a href="#apophatic">The Apophatic Limit</a>
+    <a href="#theosis">Trinity and Theosis</a>
+    <div class="nav-head">Primary Sources</div>
+    <a href="#fathers">Church Fathers: Deep Dive</a>
+    <a href="#scripture">Biblical Foundations</a>
+    <div class="nav-head">Reference</div>
+    <a href="#faq">FAQ</a>
+    <a href="#glossary">Glossary</a>
+  </div>
+</nav>
+
+<main id="main">
+
+  <!-- ANIMATED LAMP HEADER -->
+  <div class="lamp-header">
+    <div class="lamp-wrap">
+      <svg width="170" height="250" viewBox="0 0 160 240" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="glowRad" cx="50%" cy="55%" r="50%">
+            <stop offset="0%" stop-color="#f0b030" stop-opacity="0.9"/>
+            <stop offset="50%" stop-color="#c8801a" stop-opacity="0.5"/>
+            <stop offset="100%" stop-color="#c9a84c" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="bodyGrad" cx="40%" cy="35%" r="70%">
+            <stop offset="0%" stop-color="#deb84a"/>
+            <stop offset="100%" stop-color="#8a6a18"/>
+          </radialGradient>
+        </defs>
+        <!-- Ambient glow -->
+        <ellipse class="fl-glow" cx="80" cy="108" rx="42" ry="55" fill="url(#glowRad)"/>
+        <!-- Outer flame (deep orange) -->
+        <path class="fl-a"
+          d="M80,158 C63,150 53,132 55,110 C57,90 64,76 80,66 C96,76 103,90 105,110 C107,132 97,150 80,158Z"
+          fill="#b84808"/>
+        <!-- Mid flame (amber) -->
+        <path class="fl-b"
+          d="M80,156 C65,148 57,131 59,112 C61,93 68,79 80,70 C92,79 99,93 101,112 C103,131 95,148 80,156Z"
+          fill="#d8720e"/>
+        <!-- Bright flame -->
+        <path class="fl-c"
+          d="M80,152 C67,144 62,128 63,112 C64,96 70,84 80,76 C90,84 96,96 97,112 C98,128 93,144 80,152Z"
+          fill="#f09820"/>
+        <!-- Inner flame (yellow) -->
+        <path class="fl-d"
+          d="M80,148 C71,139 68,125 69,113 C70,101 74,91 80,84 C86,91 90,101 91,113 C92,125 89,139 80,148Z"
+          fill="#f8c838"/>
+        <!-- Hot core -->
+        <ellipse class="fl-e" cx="80" cy="116" rx="7" ry="20" fill="#fef4c0" opacity="0.85"/>
+        <!-- Wick glow dot -->
+        <ellipse cx="80" cy="158" rx="5" ry="4" fill="#f09820" opacity="0.6"/>
+
+        <!-- LAMP BODY (drawn over base of flame) -->
+        <!-- Spout/nozzle -->
+        <path d="M102,170 Q120,163 128,157 Q132,163 125,171 Q113,178 102,178Z" fill="#9a7014"/>
+        <!-- Handle -->
+        <path d="M57,172 Q44,165 41,157 Q45,153 50,158 Q55,165 62,172Z" fill="#9a7014"/>
+        <!-- Body shadow -->
+        <ellipse cx="80" cy="190" rx="52" ry="16" fill="#000" opacity="0.3"/>
+        <!-- Main body ellipse -->
+        <ellipse cx="80" cy="182" rx="52" ry="22" fill="#8a6a14"/>
+        <!-- Top surface of body -->
+        <ellipse cx="80" cy="174" rx="52" ry="18" fill="url(#bodyGrad)"/>
+        <!-- Oil fill (slightly darker center) -->
+        <ellipse cx="80" cy="175" rx="44" ry="12" fill="#9a7a20" opacity="0.6"/>
+        <!-- Shine highlight -->
+        <ellipse cx="64" cy="169" rx="18" ry="5" fill="#e8c870" opacity="0.4"/>
+        <!-- Small decorative ridge -->
+        <path d="M30,175 Q80,168 130,175" stroke="#b89030" stroke-width="1.5" fill="none" opacity="0.5"/>
+        <!-- Wick holder -->
+        <rect x="76" y="158" width="8" height="20" rx="4" fill="#7a4a12"/>
+        <!-- Wick top -->
+        <ellipse cx="80" cy="160" rx="5" ry="4" fill="#5a3410"/>
+      </svg>
+    </div>
+
+    <div class="tag">Oriental Orthodox Theology &mdash; The Orthodox Lamp</div>
+    <h1>The Holy Trinity</h1>
+    <p class="tagline">How One God can be Three Persons, why this is not contradiction, and what the ancient Church &mdash; from Alexandria to Antioch to Cappadocia &mdash; discovered in fourteen centuries of prayer, scripture, and theological struggle.</p>
+  </div>
+
+  <!-- SECTION 1: OVERVIEW -->
+  <div class="sec" id="overview">
+    <div class="sec-h" onclick="ts(this)"><h2>The Question Before Us</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>The Holy Trinity is not a puzzle to be solved but a mystery to be entered. That distinction matters. A puzzle has a solution that, once found, collapses the difficulty. A mystery deepens the more honestly you engage it, drawing you further in rather than exhausting itself. The Church has never claimed to fully explain the Trinity; it has claimed to have received, preserved, and handed on a revelation about the Trinity from God himself &mdash; and that this revelation is true, even if it exceeds what human reason can contain.</p>
+
+      <p>That said, the Church has also never been content with irrationalism. The great Trinitarian theologians &mdash; Athanasius of Alexandria, the Cappadocian Fathers, Cyril of Alexandria, and later synthesizers such as John of Damascus (Chalcedonian; cited here as a systematic compiler of earlier patristic consensus) &mdash; were not mystics who refused to think. They were rigorous, philosophically trained thinkers who worked with extraordinary precision. Their goal was not to make the Trinity comprehensible to unaided reason, but to show that it is not <em>self-contradictory</em> &mdash; that the apparent paradox of One God in Three Persons can be stated without incoherence, and that every alternative that tries to resolve the tension actually destroys what Christianity is trying to say.</p>
+
+      <div class="callout">
+        <div class="cl-title">The Central Question</div>
+        <p>How can God be one and three simultaneously? The answer requires understanding what "one" means and what "three" means when applied to God. The Church's answer is: God is one in <em>essence</em> (ousia) and three in <em>person</em> (hypostasis). These are not the same kind of unity. You are not being asked to believe that God is simultaneously one person and three persons, or one being and three beings. You are being asked to believe that there is a real distinction between <em>what</em> God is and <em>who</em> God is &mdash; and that the "who" is genuinely, irreducibly threefold while the "what" is absolutely, uncomplicatedly one.</p>
+      </div>
+
+      <h3>Why It Cannot Simply Be Dropped</h3>
+      <p>Some critics of Christian theology suggest the Trinity is a later addition &mdash; a Greek philosophical imposition onto a simpler Jewish monotheism. This underestimates the problem. The early Church did not invent the Trinity to satisfy philosophers; it arrived at the doctrine because of specific, concrete claims it could not stop making: that Jesus of Nazareth was genuinely divine (not metaphorically, not adoptively, but really), that the Holy Spirit was genuinely divine (not a created force or angelic being), and that there is only one God. Hold any two of these and you get the third. They are the data; the Trinity is the only logical structure that accommodates all three simultaneously.</p>
+
+      <div class="dist-box">
+        <div class="dist-card wrong">
+          <div class="dl">&#9888; Drop the Trinity by denying Christ&#x2019;s full divinity</div>
+          <p>You save monotheism but you have lost salvation. A merely human or semi-divine Christ cannot bridge the infinite gap between God and creature. He can be an example, not a Savior.</p>
+        </div>
+        <div class="dist-card wrong">
+          <div class="dl">&#9888; Drop the Trinity by making the Three one person</div>
+          <p>You save the divinity of Christ but destroy the distinction between Father and Son. You make God talk to himself in the Garden of Gethsemane. The one God is playing three roles, which is theatre, not theology.</p>
+        </div>
+        <div class="dist-card right">
+          <div class="dl">&#10003; The Trinitarian Position</div>
+          <p>One divine essence; three irreducibly distinct persons, each fully God. The Father begets the Son; the Spirit proceeds from the Father. The distinction is real, the unity is absolute, and neither collapses into the other.</p>
+        </div>
+        <div class="dist-card wrong">
+          <div class="dl">&#9888; Drop monotheism and accept three Gods</div>
+          <p>You protect the full distinction of Father, Son, and Spirit &mdash; but you have abandoned the fundamental witness of both Old and New Testaments and created a polytheism that Christ himself explicitly contradicts (Mark 12:29).</p>
+        </div>
+      </div>
+
+      <p>The Church arrived at Trinitarian theology not because it <em>wanted</em> a complicated doctrine. It arrived there because every simpler alternative either contradicted Scripture, destroyed salvation, or both.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 2: FOUNDATION -->
+  <div class="sec" id="foundation">
+    <div class="sec-h" onclick="ts(this)"><h2>One God, Three Persons &mdash; The Foundation</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>The Trinitarian faith rests on two inseparable commitments that the Church received from both Scripture and the lived experience of encountering God: that there is only one God, and that Father, Son, and Holy Spirit are each truly, fully, and completely God. Neither can be compromised. The Church's entire theological achievement in the 4th century was to show that both can be held simultaneously without contradiction.</p>
+
+      <div class="vbox">
+        <div class="vref">Deuteronomy 6:4 &mdash; The Shema</div>
+        <div class="vtext">"Hear, O Israel: The LORD our God, the LORD is one."</div>
+      </div>
+      <div class="vbox">
+        <div class="vref">John 1:1</div>
+        <div class="vtext">"In the beginning was the Word, and the Word was with God, and the Word was God."</div>
+      </div>
+      <div class="vbox">
+        <div class="vref">Matthew 28:19</div>
+        <div class="vtext">"Go therefore and make disciples of all nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit."</div>
+      </div>
+      <div class="vbox">
+        <div class="vref">2 Corinthians 13:14</div>
+        <div class="vtext">"The grace of the Lord Jesus Christ and the love of God and the fellowship of the Holy Spirit be with you all."</div>
+      </div>
+
+      <p>Matthew 28:19 is especially revealing: Jesus does not say "in the <em>names</em>" (plural) of the three, nor "in the <em>name</em> of the Father who is also the Son and Spirit" (one person). He says "in the <em>name</em>" (singular) of three distinct persons. One name &mdash; shared by three who are irreducibly distinct. This is not the language of modalism, which would have said "the one name of God who acts as Father, Son, and Spirit." It is the language of three persons in one divine reality.</p>
+
+      <div class="triad">
+        <div class="person-card father">
+          <div class="pc-name">The Father</div>
+          <div class="pc-greek">Ho Pat&#x113;r</div>
+          <div class="pc-role">The Source and Principle (Arche) of the Godhead. Unbegotten. Begets the Son and sends forth the Spirit. The Monarchy resides in him.</div>
+          <div class="pc-relation">Not Son, Not Spirit &#x2014; yet fully God</div>
+        </div>
+        <div class="person-card son">
+          <div class="pc-name">The Son</div>
+          <div class="pc-greek">Ho Huios &#x2014; Logos</div>
+          <div class="pc-role">Eternally begotten of the Father before all ages. The Image and Radiance of the Father. Became incarnate as Jesus of Nazareth for our salvation.</div>
+          <div class="pc-relation">Not Father, Not Spirit &#x2014; yet fully God</div>
+        </div>
+        <div class="person-card spirit">
+          <div class="pc-name">The Holy Spirit</div>
+          <div class="pc-greek">To Hagion Pneuma</div>
+          <div class="pc-role">Eternally proceeding from the Father. Not begotten but proceeding. The Lord and Giver of Life, worshipped and glorified with Father and Son.</div>
+          <div class="pc-relation">Not Father, Not Son &#x2014; yet fully God</div>
+        </div>
+      </div>
+
+      <div class="vbox key">
+        <div class="vref">St. Gregory of Nazianzus (the Theologian), Oration 38</div>
+        <div class="vtext">"I cannot think on the one without quickly being encircled by the splendor of the three; nor can I discern the three without being straightway carried back to the one. When I contemplate the three together, I see but one torch, and cannot divide or measure out the undivided light."</div>
+      </div>
+
+      <h3>The Three Concepts at the Core</h3>
+      <div class="concept-grid">
+        <div class="cc">
+          <div class="cc-term">Ousia</div>
+          <div class="cc-greek">Greek: &#x03BF;&#x1F50;&#x03C3;&#x03AF;&#x03B1; &mdash; Essence / Substance</div>
+          <div class="cc-def">What God is. The divine nature, being, and essence. Shared completely, equally, and without division by all three persons. God is one in ousia.</div>
+        </div>
+        <div class="cc">
+          <div class="cc-term">Hypostasis</div>
+          <div class="cc-greek">Greek: &#x1F51;&#x03C0;&#x03CC;&#x03C3;&#x03C4;&#x03B1;&#x03C3;&#x03B9;&#x03C2; &mdash; Person / Subsistence</div>
+          <div class="cc-def">Who God is. The distinct, irreducible way of being the one divine essence. Father, Son, and Spirit each have their own hypostasis. God is three in hypostasis.</div>
+        </div>
+        <div class="cc">
+          <div class="cc-term">Arche</div>
+          <div class="cc-greek">Greek: &#x1F00;&#x03C1;&#x03C7;&#x03AE; &mdash; Source / Principle</div>
+          <div class="cc-def">The Father is the Arche &mdash; the sole unbegotten source and principle of the Trinity. The Son and Spirit derive from him in distinct modes: generation and procession.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: MONARCHICAL TRINITARIANISM -->
+  <div class="sec" id="monarchy">
+    <div class="sec-h" onclick="ts(this)"><h2>Monarchical Trinitarianism &mdash; The Father as Arche</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>Monarchical Trinitarianism is the name given to the Oriental Orthodox &mdash; and broadly Eastern Christian &mdash; understanding of Trinitarian order. It holds that the Father is the sole <em>arche</em> (source, cause, principle) of the Godhead: not a cause external to God, but the cause internal to the divine being itself. The Son is eternally begotten <em>from</em> the Father; the Spirit eternally proceeds <em>from</em> the Father. The Father is the Monarkhia &mdash; the single principle from whom the other two persons derive their existence as distinct hypostases.</p>
+
+      <p>This is not a subordinationist doctrine. Subordinationism teaches that the Son or Spirit are <em>lesser in nature</em> than the Father &mdash; that they are inferior beings. Monarchical Trinitarianism explicitly rejects this. The Son and Spirit are fully, equally, and completely God &mdash; possessing the entire divine ousia. What the Father alone possesses is a unique causal role: he is the source of the Son's hypostasis and the Spirit's hypostasis. The <em>cause</em> is not greater than the <em>caused</em> in terms of nature; it is simply a different mode of being the one divine essence.</p>
+
+      <div class="callout">
+        <div class="cl-title">The Distinction That Matters</div>
+        <p>The Father is <em>greater as cause</em>; the Son and Spirit are <em>equal in essence</em>. Gregory of Nazianzus put it directly: "The Father is greater than I in terms of being the cause; I am not less than Him in terms of nature." Causation within the Trinity is an ordering of persons, not a hierarchy of beings. To be from the Father is not to be less than the Father.</p>
+      </div>
+
+      <div class="vbox father">
+        <div class="vref">St. Gregory of Nazianzus (the Theologian) &mdash; Oration 29, On the Son</div>
+        <div class="vtext">"The Father is not a name either of an essence or of an action, most clever sirs. But it is the name of the relation in which the Father stands to the Son, and the Son to the Father. The Monarchy which we hold in honour is not limited to one Person... but one which is made of an equality of Nature, a unity of mind, an identity of motion, and a convergence towards unity of those that are from the One."</div>
+      </div>
+
+      <div class="vbox father">
+        <div class="vref">St. Basil of Caesarea &mdash; Against Eunomius II.29</div>
+        <div class="vtext">"The Father is the source of all, and the cause and spring of good things. He is the principle of the whole Trinity; through the only-begotten Son, in the Holy Spirit, all things exist and are sustained."</div>
+      </div>
+
+      <div class="vbox father">
+        <div class="vref">St. Gregory of Nyssa &mdash; Against Eunomius I</div>
+        <div class="vtext">"The Father alone is the cause of the Son and the Spirit. This is the unique and personal prerogative of the Father, that he alone is without cause. But the Son and Spirit, who derive from the Father, have the same dignity of nature, the same power, the same will, the same operation, the same honour."</div>
+      </div>
+
+      <h3>The Monarchy Does Not Divide God</h3>
+      <p>A common misunderstanding is that if the Father is the "cause" of the Son and Spirit, then God is not really one &mdash; you have a lesser God emanating from a greater God. The Cappadocians addressed this with precision. The Son does not receive a <em>portion</em> of the divine essence from the Father; he receives the <em>whole</em> divine essence. The same is true of the Spirit. There is no division of the divine being. It is not like water being split into three streams, each with one-third of the original. It is like the sun: the radiance is wholly the sun's light, not a fraction of it. The source does not diminish by giving; the given is not less than the source.</p>
+
+      <div class="vbox father">
+        <div class="vref">St. Athanasius of Alexandria &mdash; Against the Arians, III.3</div>
+        <div class="vtext">"The Son is the Image of the Father, and belongs genuinely to the Father's essence... the radiance of the Father's light does not divide the light but is the expression of the same light. There are not two lights, but one light with its radiance &mdash; yet the radiance is genuinely other than the sun."</div>
+      </div>
+
+      <h3>How This Preserves Both Unity and Distinction</h3>
+      <p>The monarchical structure resolves the problem of how three can be one without collapsing into each other. The unity comes from the Father: he is the single source from whom both Son and Spirit derive. There is no independent "third party" divine substance that all three share &mdash; the divine substance belongs originally to the Father and is communicated wholly to Son and Spirit in the acts of eternal generation and eternal procession. The distinction is preserved because each person has a different <em>mode of being</em> the divine essence: the Father by having it from no one; the Son by receiving it through eternal generation; the Spirit by receiving it through eternal procession.</p>
+
+      <div class="vbox key">
+        <div class="vref">Gregory of Nazianzus &mdash; Oration 42</div>
+        <div class="vtext">"The Three have one nature &mdash; God. The union is the Father, from whom and towards whom the order of Persons runs. Not so as to be confused, but so as to be held together."</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: ETERNAL GENERATION -->
+  <div class="sec" id="generation">
+    <div class="sec-h" onclick="ts(this)"><h2>The Eternal Generation of the Son</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>The Son is not created. The Son is not made. The Son is begotten &mdash; and the begetting is eternal, without beginning, without end, and without process. "Eternal generation" is the Church's technical term for the Son's unique mode of deriving from the Father. It is called "generation" because the Son shares the same nature as the Father (as a son shares nature with his father), and it is called "eternal" because it occurs outside of time &mdash; it has no beginning because there was never a moment when the Son did not exist.</p>
+
+      <p>The Arian heresy, confronted at the Council of Nicaea (325 AD), attacked precisely this point. Arius taught: "There was a time when the Son was not." The Council responded with the most theologically precise word in Christian history: <em>homoousios</em> &mdash; "of the same essence." The Son is not a lesser divine being who came into existence at some point; the Son shares the full, identical divine essence with the Father and has existed with the Father from all eternity.</p>
+
+      <div class="vbox">
+        <div class="vref">John 1:1&ndash;3, 14</div>
+        <div class="vtext">"In the beginning was the Word, and the Word was with God, and the Word was God. He was in the beginning with God. All things were made through him, and without him was not any thing made that was made &#x2026; And the Word became flesh and dwelt among us."</div>
+      </div>
+      <div class="vbox">
+        <div class="vref">John 5:26</div>
+        <div class="vtext">"For as the Father has life in himself, so he has granted the Son also to have life in himself."</div>
+      </div>
+      <div class="vbox">
+        <div class="vref">Hebrews 1:3</div>
+        <div class="vtext">"He is the radiance of the glory of God and the exact imprint of his nature, and he upholds the universe by the word of his power."</div>
+      </div>
+      <div class="vbox">
+        <div class="vref">Proverbs 8:22&ndash;25 &mdash; Wisdom Speaking</div>
+        <div class="vtext">"The LORD possessed me at the beginning of his work, the first of his acts of old. Ages ago I was set up, at the first, before the beginning of the earth. When there were no depths I was brought forth, when there were no springs abounding with water. Before the mountains had been shaped, before the hills, I was brought forth."</div>
+      </div>
+
+      <h3>What &#x201C;Begotten, Not Made&#x201D; Means</h3>
+      <p>The Nicene Creed's phrase "begotten, not made" draws a sharp line. <em>Making</em> is creation ex nihilo &mdash; bringing into existence something that did not exist, of a different nature than the maker. A carpenter makes a table; the table is not a carpenter. <em>Begetting</em> communicates nature &mdash; a father begets a son who shares the father's nature. The Son is begotten from the Father and is therefore of the same divine nature. The Son is not God's product; the Son is God's Son &mdash; which means the Son is God.</p>
+
+      <div class="chain">
+        <div class="chain-node">The Father<div class="chain-label">Unbegotten</div></div>
+        <div class="chain-arrow">&#8594; begets &#8594;</div>
+        <div class="chain-node">The Son<div class="chain-label">Eternally begotten</div></div>
+        <div class="chain-label" style="width:100%;text-align:center;font-size:.8rem;color:var(--mu);margin-top:6px">Both share the same, complete divine ousia &#x2014; no division, no diminishment</div>
+      </div>
+
+      <div class="vbox father">
+        <div class="vref">St. Athanasius &mdash; De Decretis (On the Nicene Definition) 15</div>
+        <div class="vtext">"The Father's generating must not be compared to man's, but we must search for its meaning in God himself. For it is a property of men that they beget in time because of the imperfection of their nature; but God's offspring is eternal, for His nature is always perfect. With men, in their generation, the son is other in nature from the father, for he is a man from a man; but with God, since God is His own nature, this is not the case. The offspring of God is not other in nature from the Father, for He is God from God."</div>
+      </div>
+
+      <div class="vbox father">
+        <div class="vref">St. John of Damascus <span style="font-size:.8rem;font-style:normal;opacity:.75">(Chalcedonian Orthodox; systematic compiler of patristic consensus)</span> &mdash; Exact Exposition of the Orthodox Faith I.8</div>
+        <div class="vtext">"The Son is begotten of the Father without beginning and timelessly. Only the Father is the begetter in a manner beyond thought and comprehension and understanding. The Son being begotten of the Father has nothing that came after or is less than the Father, for the Father is not perfect in time and then begins to beget; for the Son is the perfect offspring of the perfect Father, co-eternal with the Father."</div>
+      </div>
+
+      <h3>The Homoousios &mdash; Same Essence, Not Similar</h3>
+      <p>The Council of Nicaea debated whether to say the Son was <em>homoousios</em> (same essence) or <em>homoiousios</em> (similar essence). These words differ by one letter (the iota, prompting St. Jerome's remark that the whole world groaned to find itself Arian). The difference is not pedantic. If the Son is merely <em>similar</em> in essence, he is a lesser divine being &mdash; the best of created things, perhaps, but not God. Only if he is of the <em>same</em> essence as the Father is the incarnation a genuine self-giving of God, and only then is the salvation the Son accomplishes truly God's own act of rescue.</p>
+
+      <div class="vbox father">
+        <div class="vref">St. Athanasius &mdash; Letters to Serapion I.17</div>
+        <div class="vtext">"The Trinity is holy and perfect, confessed to be God in Father, Son and Holy Spirit, having nothing foreign or external mixed with it, not composed of one who creates and one who is originated, but all creative; and it is consistent and in nature indivisible, and its activity is one. The Father does all things through the Word in the Holy Spirit."</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: PROCESSION OF THE SPIRIT -->
+  <div class="sec" id="procession">
+    <div class="sec-h" onclick="ts(this)"><h2>The Eternal Procession of the Holy Spirit</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>The Holy Spirit is not the Father. The Holy Spirit is not the Son. The Holy Spirit is the third hypostasis of the one divine Trinity, who derives from the Father in a mode distinct from both the Father's unbegotten existence and the Son's eternal generation. The technical term for the Spirit's mode of derivation is <em>procession</em> (ekporeusis in Greek) &mdash; a term drawn directly from Christ's own words in John 15:26.</p>
+
+      <div class="vbox">
+        <div class="vref">John 15:26 &mdash; Christ&#x2019;s Own Words</div>
+        <div class="vtext">"But when the Helper comes, whom I will send to you from the Father, the Spirit of truth, who proceeds from the Father, he will bear witness about me."</div>
+      </div>
+
+      <p>The Oriental Orthodox tradition insists that the Spirit proceeds <em>from the Father alone</em> &mdash; not "from the Father and the Son" (the Filioque addition to the Nicene Creed inserted by the Western church in the 6th&ndash;7th centuries and formally adopted by Rome in the 11th century). This is not a minor liturgical dispute. It is a question about the inner structure of the Trinity and about the Monarchy of the Father.</p>
+
+      <h3>Why the Filioque Undermines Monarchical Trinitarianism</h3>
+      <p>If the Spirit proceeds from both Father and Son, two consequences follow. First, the Father is no longer the sole source and principle (arche) of the Godhead &mdash; the Son becomes a co-principle with the Father in the sending-forth of the Spirit. This fractures the monarchy and introduces two sources (two archai) within the Godhead. Second, it changes the Spirit's relationship to the Son: the Spirit no longer stands in an equal filial relationship to the Father alongside the Son, but in a dependent relationship to both &mdash; which tends, historically, to a subordinationist view of the Spirit.</p>
+
+      <div class="dist-box">
+        <div class="dist-card right">
+          <div class="dl">&#10003; Oriental Orthodox: Spirit proceeds from the Father</div>
+          <p>One source, one Monarchy. The Father is the sole origin of Son and Spirit. The Spirit and Son stand in a coordinate relationship as two who derive from the one Father. John 15:26 is taken literally.</p>
+        </div>
+        <div class="dist-card wrong">
+          <div class="dl">&#9888; Western Filioque: Spirit proceeds from Father and Son</div>
+          <p>Two sources for the Spirit. The Father's Monarchy is divided. The Spirit becomes doubly dependent. Photios of Constantinople and the Oriental Orthodox churches have consistently maintained this undermines the Trinitarian grammar established by the Cappadocians.</p>
+        </div>
+      </div>
+
+      <div class="vbox father">
+        <div class="vref">St. Basil of Caesarea &mdash; On the Holy Spirit 18.45</div>
+        <div class="vtext">"The way of the knowledge of God lies from the One Spirit through the One Son to the One Father, and conversely the natural Goodness and the inherent Holiness and the royal Dignity extend from the Father through the Only-begotten to the Spirit."</div>
+      </div>
+
+      <div class="vbox father">
+        <div class="vref">St. Gregory of Nazianzus &mdash; Oration 31, On the Holy Spirit</div>
+        <div class="vtext">"What then is the theology concerning the Spirit? He is the Spirit, that He proceeds from the Father, that He is not begotten (as the Son), that He is co-worshipped and co-glorified with the Father and Son, and that He is one with the Father and Son. He is not Son because the Father is not the only Father, but both the Father of the Son and the emitter of the Spirit. The one characteristic mark of the Spirit is his procession from the Father."</div>
+      </div>
+
+      <div class="vbox father">
+        <div class="vref">St. Cyril of Alexandria &mdash; Commentary on John, on 15:26</div>
+        <div class="vtext">"The Spirit is said to proceed from the Father, and he is called the Spirit of the Son, not as though he proceeds from the Son, but because he proceeds through the Son from the Father, as through an image of the Father who is the very image of the image."</div>
+      </div>
+
+      <h3>Procession vs. Generation: The Difference</h3>
+      <p>The Church has always held that the Son is begotten and the Spirit proceeds &mdash; but it has acknowledged with equal firmness that it cannot fully explain <em>how</em> these two modes differ from each other. Gregory of Nazianzus, asked to explain the distinction, gave the honest answer: we know they are different because one is called begetting and the other procession; but the precise nature of the difference exceeds what human language can capture. This is not intellectual evasion; it is the apophatic humility that characterizes genuine theology.</p>
+
+      <div class="vbox father">
+        <div class="vref">St. Gregory of Nazianzus &mdash; Oration 31.8</div>
+        <div class="vtext">"What then is procession? Do you tell me first what is the unbegottenness of the Father, and I will then explain to you the physiology of the generation of the Son and the procession of the Spirit, and we shall both of us be frenzy-stricken for prying into the mystery of God."</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6: OUSIA AND HYPOSTASIS -->
+  <div class="sec" id="ousia">
+    <div class="sec-h" onclick="ts(this)"><h2>Ousia and Hypostasis &mdash; The Cappadocian Breakthrough</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>The Nicene Council of 325 AD established that the Son is <em>homoousios</em> &mdash; of the same essence as the Father. But it did not fully resolve the theological language for how three distinct persons can be one God. That work was accomplished primarily by the three Cappadocian Fathers in the second half of the 4th century: Basil of Caesarea, Gregory of Nyssa, and Gregory of Nazianzus. Their key contribution was the rigorous distinction between <em>ousia</em> (essence) and <em>hypostasis</em> (person).</p>
+
+      <p>Before the Cappadocians, these two Greek words had been used almost interchangeably in some contexts. The Cappadocians established a precise distinction: <em>ousia</em> is what something is in its nature &mdash; the "whatness"; <em>hypostasis</em> is the concrete, individual mode of existing &mdash; the "whoness." God is one ousia and three hypostases. These are not the same kind of unity and distinction.</p>
+
+      <div class="vbox father">
+        <div class="vref">St. Basil of Caesarea &mdash; Letter 38 (To His Brother Gregory)</div>
+        <div class="vtext">"The distinction between ousia and hypostasis is the same as that between the general and the particular &mdash; as, for instance, between the animal and the particular man. Wherefore, in the case of the Godhead, we confess one essence, so as not to give a variant definition of existence, but we confess a particular hypostasis, in order that our conception of Father, Son and Holy Spirit may be without confusion and clear."</div>
+      </div>
+
+      <h3>The Analogy of Universal and Particular</h3>
+      <p>Basil uses the philosophical distinction between universal (what is common) and particular (what is individual) to explain the ousia/hypostasis distinction. "Peter," "James," and "John" are three particular men who share the one human nature. But the Cappadocians were careful to show that this analogy, while helpful, breaks down with God &mdash; and it breaks down in a direction that makes God <em>more</em> unified, not less.</p>
+
+      <p>With three humans, we say "Peter healed the sick man" and we do not mean James or John healed him. Their activities can be individuated because they have separate wills, separate bodies, separate power. With the Holy Trinity, the operations are inseparable. We do not say "the Father created the world" while the Son and Spirit were passive. Every divine act is the act of the whole Trinity: the Father creates <em>through</em> the Son <em>in</em> the Holy Spirit. This is why Gregory of Nyssa concluded that while it is grammatically permissible to say "three Gods" on the analogy of three men, it is theologically inadmissible &mdash; because the divine operations are never divided or separately attributed.</p>
+
+      <div class="vbox father">
+        <div class="vref">St. Gregory of Nyssa &mdash; On Not Three Gods (To Ablabius)</div>
+        <div class="vtext">"There is one Goodness, one Power, one Godhead, which even the Holy Spirit does not divide by number. The divine nature is without quantity and without magnitude; it neither admits of increase nor of diminution, so that the Deity in the three subsistences is believed to be neither greater by the addition of the subsistences, nor less by their subtraction. For this reason also we say that there are not three Gods, because the power is one, the will is one, the operation is one."</div>
+      </div>
+
+      <div class="vbox father">
+        <div class="vref">St. John of Damascus <span style="font-size:.8rem;font-style:normal;opacity:.75">(Chalcedonian Orthodox)</span> &mdash; Exact Exposition I.8</div>
+        <div class="vtext">"The three holy subsistences differ from each other not in essence but in the characteristic mark of their hypostasis. For the Father is unbegotten, the Son is begotten from the Father, and the Holy Spirit proceeds from the Father. And the one is not confused with the other, since each possesses its own characteristic mark, but the one nature is not divided."</div>
+      </div>
+
+      <h3>The Relational Character of Persons</h3>
+      <p>One of the profoundest insights of the Cappadocian analysis is that the three hypostases are constituted by their <em>relations</em> to one another. The Father is Father because he begets the Son and sends forth the Spirit. The Son is Son because he is begotten of the Father. The Spirit is Spirit because he proceeds from the Father. The persons are not three independently existing beings who subsequently enter into relationship; they are constituted in their very personhood by their relations. Remove the relation and you remove the person. This means the Trinity is not three isolated individuals who cooperate &mdash; it is a relational being whose very structure is mutual self-giving.</p>
+
+      <div class="vbox key">
+        <div class="vref">Gregory of Nazianzus &mdash; Oration 29.16</div>
+        <div class="vtext">"Father is not a name of essence, nor of activity; it is a name of relation, of the way in which the Father is related to the Son and the Son to the Father. For the names carry the sense of mutual relationship and disposition, not of essence."</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 7: PERICHORESIS -->
+  <div class="sec" id="perichoresis">
+    <div class="sec-h" onclick="ts(this)"><h2>Perichoresis &mdash; The Divine Coinherence</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p><em>Perichoresis</em> (Greek: &#x03C0;&#x03B5;&#x03C1;&#x03B9;&#x03C7;&#x03CE;&#x03C1;&#x03B7;&#x03C3;&#x03B9;&#x03C2;) is the term for the mutual indwelling of the three divine persons in one another. The Father is in the Son; the Son is in the Father; the Spirit is in both and both are in the Spirit. Not mixed together, not confused, but fully interpenetrating &mdash; each person entirely present within the others without losing the distinction of personhood. The concept is rooted in Cyril of Alexandria&#8217;s language of mutual indwelling; the Greek term <em>perichoresis</em> was later systematized as a technical term by John of Damascus (Chalcedonian Orthodox, 8th century), drawing on earlier patristic sources shared by all Orthodox traditions.</p>
+
+      <p>The word combines <em>peri</em> (around, about) and <em>chorein</em> (to make room for, to give way to, to dance). Some translators have rendered it "mutual indwelling"; others, with more poetic license, "the divine dance" &mdash; though this can mislead. The point is not rhythmic movement but mutual presence: each person makes room for the others in the full sense, dwelling within them completely.</p>
+
+      <div class="vbox">
+        <div class="vref">John 14:10&ndash;11 &mdash; The Ground of Perichoresis</div>
+        <div class="vtext">"Do you not believe that I am in the Father and the Father is in me? &#x2026; Believe me that I am in the Father and the Father is in me."</div>
+      </div>
+      <div class="vbox">
+        <div class="vref">John 17:21</div>
+        <div class="vtext">"That they may all be one, just as you, Father, are in me, and I in you, that they also may be in us, so that the world may believe that you have sent me."</div>
+      </div>
+
+      <div class="vbox father">
+        <div class="vref">St. John of Damascus <span style="font-size:.8rem;font-style:normal;opacity:.75">(Chalcedonian Orthodox)</span> &mdash; Exact Exposition of the Orthodox Faith I.14</div>
+        <div class="vtext">"The subsistences dwell and are established firmly in one another. For they are inseparable and cannot part from one another, but keep to their separate courses within one another, without any coalescence or commingling. They are co-inherent in one another without any confusion. The Son is in the Father and the Spirit, and the Spirit is in the Father and the Son, and the Father is in the Son and the Spirit; but there is no fusion or blending or commixture."</div>
+      </div>
+
+      <h3>What Perichoresis Solves</h3>
+      <p>Without perichoresis, Trinitarian theology faces the danger of tritheism: three distinct persons could become three separate Gods, each with their own isolated divine existence, merely cooperating externally. Perichoresis is what rules this out at the ontological level. The three persons do not merely work together; they <em>dwell in one another</em>. They are not three separate spaces that happen to be adjacent; they are three persons whose being is mutually constituted by indwelling. The Father has no existence apart from his relation to the Son and Spirit; the Son has no existence apart from his relation to the Father and Spirit; the Spirit has no existence apart from his relation to Father and Son. They are not three Gods because they are not three separately existing beings &mdash; they are three persons who are one God precisely in their irreducible mutual indwelling.</p>
+
+      <div class="vbox father">
+        <div class="vref">St. Gregory of Nazianzus &mdash; Oration 31.14</div>
+        <div class="vtext">"The three are one in Godhead, and the one is three in properties; so that the one is not greater or lesser in dignity than the three, nor the three less than the one. For they all share one nature, one Godhead, one power, one will, one energy, one Lord &mdash; not three lordships. For when I look at the three together, I see a single torch, and I cannot divide the undivided light."</div>
+      </div>
+
+      <h3>Perichoresis and Prayer</h3>
+      <p>The doctrine of perichoresis is not merely metaphysical. It shapes how the Church prays. When we address the Father, we address him as one who contains the Son and Spirit in himself. When we pray "through the Son in the Holy Spirit," we are not navigating a bureaucratic hierarchy; we are entering the mutual indwelling of the Trinity itself. The Father's embrace is always already the Son's embrace and the Spirit's embrace. This is why the mystics of the Oriental Orthodox tradition consistently speak of prayer as participation in the Trinity's own life &mdash; theosis &mdash; rather than as communication with a distant deity.</p>
+
+      <div class="vbox father">
+        <div class="vref">St. Athanasius &mdash; Letter to Serapion III.6</div>
+        <div class="vtext">"The Father is in the Son as the sun is in its radiance. But the Son is also in the Father, as the radiance is inseparable from the light. They are not two lights, but one. And the Spirit is the bond of this unity, not by being a third alongside two, but by being the bond in whom the mutual indwelling of Father and Son is expressed to us and in us."</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 8: ECONOMIC TRINITY -->
+  <div class="sec" id="economic">
+    <div class="sec-h" onclick="ts(this)"><h2>The Economic Trinity &mdash; God Revealed in History</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>Theologians distinguish between the <em>immanent Trinity</em> (what God is in himself, in his eternal inner life, apart from creation) and the <em>economic Trinity</em> (how the three divine persons act and reveal themselves in the history of salvation &mdash; the divine <em>oikonomia</em>, Greek for "household management" or "plan"). This distinction is not a separation: the God who acts in history is the same God who exists eternally. But the distinction is important because it clarifies that our knowledge of the Trinity is derived primarily from God's acts in history, and that those acts genuinely reveal the inner divine life.</p>
+
+      <div class="callout">
+        <div class="cl-title">The Axiom of Karl Rahner (Affirmed by the Orthodox Fathers)</div>
+        <p>"The economic Trinity is the immanent Trinity and the immanent Trinity is the economic Trinity." This means: when the Son becomes incarnate, it genuinely is the eternal Son who becomes flesh &mdash; not a representative or delegate. When the Spirit comes at Pentecost, it genuinely is the eternal Spirit. The self-revelation of the Trinity in history is not theatrical; it is the real Trinity, genuinely giving itself.</p>
+      </div>
+
+      <h3>The Trinity in Creation</h3>
+      <div class="vbox">
+        <div class="vref">Genesis 1:1&ndash;2 / John 1:3 / Romans 8:11 &mdash; The Trinitarian Act of Creation</div>
+        <div class="vtext">Genesis: "In the beginning, God created the heavens and the earth &#x2026; and the Spirit of God was hovering over the face of the waters." John: "All things were made through him [the Word], and without him was not any thing made that was made." Paul: "If the Spirit of him who raised Jesus from the dead dwells in you &#x2026;"</div>
+      </div>
+      <p>Creation is a Trinitarian act. The Father creates through the Son (Logos) in the Holy Spirit. This is the pattern of all divine operation ad extra (outward-directed): the Father as the source, the Son as the agent, the Spirit as the perfecting presence. Irenaeus of Lyon called the Son and Spirit "the two hands of God" &mdash; not two assistants but the Father's own self-expression and self-communication in the act of creation.</p>
+
+      <div class="vbox father">
+        <div class="vref">St. Irenaeus of Lyon &mdash; Against Heresies IV.20.1</div>
+        <div class="vtext">"There is one God, who by His Word and Wisdom created and arranged all things. This is the Creator &#x2026; The Word, namely the Son, was always with the Father. And Wisdom also, which is the Spirit, was present with him, anterior to all creation. By these two He made all things, the Word declaring and the Wisdom perfecting."</div>
+      </div>
+
+      <h3>The Trinity in the Incarnation</h3>
+      <div class="vbox">
+        <div class="vref">Luke 1:35 &mdash; The Annunciation</div>
+        <div class="vtext">"The Holy Spirit will come upon you, and the power of the Most High will overshadow you; therefore the child to be born will be called holy &mdash; the Son of God."</div>
+      </div>
+      <p>The Annunciation is a Trinitarian event: the Most High Father sends the Holy Spirit, and the eternal Son takes flesh. The Incarnation is not the Father becoming man; it is the Son, sent by the Father, united with humanity by the Holy Spirit's action in the Virgin Mary. Each person is distinctly active.</p>
+
+      <h3>The Trinity at the Baptism of Christ</h3>
+      <div class="vbox">
+        <div class="vref">Matthew 3:16&ndash;17</div>
+        <div class="vtext">"And when Jesus was baptized, immediately he went up from the water, and behold, the heavens were opened to him, and he saw the Spirit of God descending like a dove and coming to rest on him; and behold, a voice from heaven said, &#x2018;This is my beloved Son, with whom I am well pleased.&#x2019;"</div>
+      </div>
+      <p>The Baptism of Christ is perhaps the most visually clear Trinitarian theophany in the New Testament. The Father speaks from heaven; the Son stands in the Jordan; the Spirit descends. Three persons, simultaneously present, each distinct in action. This is the reason Christian baptism is administered "in the name of the Father and of the Son and of the Holy Spirit" &mdash; the baptism of the Lord inaugurates the baptismal theology of the Church.</p>
+
+      <div class="vbox father">
+        <div class="vref">St. Gregory of Nazianzus &mdash; Oration 31 On the Holy Spirit</div>
+        <div class="vtext">"Since Christ's birth, the Spirit bears witness to it &#x2026; Since Christ's baptism, the Spirit testifies to it &#x2026; Since Christ is in heaven, the Spirit succeeds to the office. He is the one sent to complete the revelation. He acts in all things; he distributes the gifts; he teaches all truth. He does not speak from himself but what he hears &mdash; from the Father and the Son &mdash; and brings the things of Christ to mind."</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 9: AGAINST DISTORTIONS -->
+  <div class="sec" id="distortions">
+    <div class="sec-h" onclick="ts(this)"><h2>Against the Distortions &mdash; Why the Alternatives Fail</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>The history of Trinitarian theology is largely the history of the Church identifying what the Trinity is <em>not</em>, and demonstrating why each oversimplification destroys either salvation, reason, or both. The Church did not arrive at Trinitarian doctrine because it was clever; it arrived there because every alternative broke something essential.</p>
+
+      <div class="heresy-grid">
+        <div class="heresy-card">
+          <div class="hc-name">Modalism (Sabellianism)</div>
+          <div class="hc-claim">"God is one person who appears in three modes or masks."</div>
+          <p>The Father, Son, and Spirit are not distinct persons but successive or simultaneous roles played by one divine person. Sabellius (3rd century) taught this. <br><br><strong>Why it fails:</strong> It makes the Son's prayer to the Father a prayer to himself. It makes "God so loved the world that he sent his Son" mean "God sent himself." It cannot account for the simultaneous appearance of all three persons at Christ's baptism. John 17 ("that they may be one as we are one") becomes meaningless if there is only one person. The Church condemned it at multiple councils.</p>
+        </div>
+        <div class="heresy-card">
+          <div class="hc-name">Arianism</div>
+          <div class="hc-claim">"The Son is the greatest created being, not truly God."</div>
+          <p>Arius of Alexandria (c. 318 AD) taught "there was a time when the Son was not" &mdash; the Son is the first and highest creation, divine in a derivative sense, but not the eternal God. Condemned at Nicaea (325 AD).<br><br><strong>Why it fails:</strong> If the Son is not fully God, the Incarnation is not God truly entering creation. Salvation is not God truly giving himself. The gap between creator and creature is still uncrossed; the creature is still unredeemed. A demigod can inspire but cannot save. Athanasius made this argument devastatingly: "If the Son were a creature, we who worship him would be idolaters."</p>
+        </div>
+        <div class="heresy-card">
+          <div class="hc-name">Tritheism</div>
+          <div class="hc-claim">"Father, Son, and Spirit are three separate Gods."</div>
+          <p>The opposite error from modalism: overcorrecting on distinction leads to three divine beings with separate existences, essentially a polytheism. John Philoponus (6th century) was accused of this by pushing the Cappadocian "three hypostases" language too far.<br><br><strong>Why it fails:</strong> It contradicts the explicit and unambiguous biblical monotheism of both Old and New Testaments. It cannot account for the Johannine language of mutual indwelling. It makes the unity of God a voluntary cooperation rather than an ontological fact. Gregory of Nyssa addressed this directly: the unity of divine operations means we cannot say "three Gods" any more than we can say a single craftsman who acts through all three fingers is "three craftsmen."</p>
+        </div>
+        <div class="heresy-card">
+          <div class="hc-name">Pneumatomachianism</div>
+          <div class="hc-claim">"The Holy Spirit is a creature, not fully God."</div>
+          <p>The Pneumatomachians ("Spirit-fighters") accepted the homoousios for the Son but denied the full divinity of the Holy Spirit. Some, called Semi-Arians, held the Spirit to be a high angelic being.<br><br><strong>Why it fails:</strong> The New Testament attributes acts to the Spirit that only God can do: the Spirit searches the depths of God (1 Cor 2:10), gives life, inspires Scripture, dwells in believers as in a temple, can be "grieved" (Eph 4:30). The Spirit who deifies us must himself be God; a creature cannot communicate what it does not have. Basil's <em>On the Holy Spirit</em> was written precisely to address this error.</p>
+        </div>
+        <div class="heresy-card">
+          <div class="hc-name">Subordinationism</div>
+          <div class="hc-claim">"The Son and Spirit are real persons but eternally lesser in nature."</div>
+          <p>Different from Arianism in degree but similar in principle: the Father is the "real" God, and the Son and Spirit are genuine divine persons but of a lower or derived ontological rank, not fully equal in essence. Origen was accused (controversially) of tendencies in this direction in some writings.<br><br><strong>Why it fails:</strong> It reintroduces the problem of true access to God. If the Son is ontologically lesser, the Father remains ultimately unreachable in the Son's person. Salvation is again compromised: one of lesser rank cannot fully unite creature to the highest God.</p>
+        </div>
+        <div class="heresy-card">
+          <div class="hc-name">The Filioque</div>
+          <div class="hc-claim">"The Spirit proceeds from the Father and the Son."</div>
+          <p>Not condemned as heresy by the Oriental Orthodox (a category it shares with the Chalcedonian definition itself), but held to be a theological error that distorts Trinitarian grammar. The Latin West inserted <em>filioque</em> into the Nicene Creed unilaterally, over the protest of Popes Leo III and John VIII who refused the insertion.<br><br><strong>Why it is problematic:</strong> It creates two sources (archai) within the Trinity, undermining the monarchy of the Father. It was never approved by an Ecumenical Council. The unilateral modification of the common Creed was itself an ecclesiological offense independent of the theological question.</p>
+        </div>
+      </div>
+
+      <div class="vbox father">
+        <div class="vref">St. Athanasius &mdash; Against the Arians I.9</div>
+        <div class="vtext">"If the Son were a creature, we would be worshipping a creature, and our faith would be in a creature &mdash; which is idolatry. But we do not worship a creature. We worship Christ because He is God, the Word who was with God and was God. If He were not truly God but merely the best of created things, the whole structure of salvation collapses."</div>
+      </div>
+
+      <div class="vbox father">
+        <div class="vref">St. Basil of Caesarea &mdash; On the Holy Spirit 10.26</div>
+        <div class="vtext">"Now the Spirit is not to be ranked with God by virtue of an accidental quality, but is essentially holy, as the Father is essentially holy, and the Son is essentially holy. The Spirit is not holy as being sanctified by another but is the very source of sanctification. He who sanctifies others cannot himself need sanctification; therefore he must be God."</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 10: APOPHATIC -->
+  <div class="sec" id="apophatic">
+    <div class="sec-h" onclick="ts(this)"><h2>The Apophatic Limit &mdash; What Cannot Be Said</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>The Oriental Orthodox theological tradition is distinctively apophatic (from the Greek <em>apophasis</em>, negation). Apophatic theology &mdash; also called "negative theology" or the <em>via negativa</em> &mdash; is the approach that recognizes the divine essence as ultimately incomprehensible and beyond all human concepts and language. We know what God is not more precisely than we know what God is. This is not agnosticism; it is intellectual humility before the genuine infinity of God.</p>
+
+      <p>On the Trinity specifically, apophatic theology acknowledges that we use the best available human concepts &mdash; person, substance, essence, relation, generation, procession &mdash; to point toward the Trinitarian reality. But these concepts are always analogical: they point in the right direction without fully capturing what they point at. The Cappadocians were emphatic about this.</p>
+
+      <div class="vbox father">
+        <div class="vref">St. Gregory of Nyssa &mdash; Life of Moses II</div>
+        <div class="vtext">"Moses&#x2019; vision of God began with light; afterwards God spoke to him in a cloud. But when Moses rose higher and became more perfect, he saw God in the darkness. Now the doctrine we are taught here is this: our initial withdrawal from wrong and erroneous ideas of God is a transition from darkness to light. Next comes a closer awareness of hidden things, and by this the soul is guided through sense phenomena to the nature of the intelligible realm. This is the cloud, which overshadows all appearances and slowly guides and accustoms the soul to look towards what is hidden. At last the soul makes progress through all these stages and goes on higher, and as she leaves behind all that human nature can attain, she enters within the secret chamber of the divine knowledge, and here she is cut off on all sides by the divine darkness."</div>
+      </div>
+
+      <h3>Why This Does Not Make the Trinity Meaningless</h3>
+      <p>The apophatic limit does not mean the Trinitarian doctrine is empty or arbitrary. The doctrine is not the claim that we fully comprehend the divine inner life &mdash; it is the claim that the divine inner life has genuinely revealed itself to us, that this revelation is trustworthy, that it does not contradict itself, and that it is the true God rather than a projection. The precision of Trinitarian theology is the precision of negative boundaries: we know what the Trinity is not with more certainty than we know what it is positively. Arianism is not merely inadequate; it is wrong. Modalism is not merely imprecise; it is false. The apophatic tradition gives precision to the denials even while maintaining humility about the affirmations.</p>
+
+      <div class="vbox father">
+        <div class="vref">St. Gregory of Nazianzus &mdash; Oration 28 (The Second Theological Oration)</div>
+        <div class="vtext">"It is difficult to conceive God; but to define him in words is an impossibility &#x2026; no-one has yet breathed in the whole of theology into himself. What he has attained is a small portion, a few scattered hints, and these only from a great distance, so that even the thing that has been grasped is not the full truth but a shadow or outline of it. But God in His very nature cannot be named &#x2026; Yet God's being is real, and exceeds every name we could give."</div>
+      </div>
+
+      <div class="vbox father">
+        <div class="vref">St. Ephrem the Syrian &mdash; Hymns on Faith 44</div>
+        <div class="vtext">"Blessed is He who has challenged the investigator, and made him silent. &#x2026; He is hidden for the pure, revealed for the simple. He is a sea for the wise: they drown in Him. He is a shore for the babes: they take rest in Him."</div>
+      </div>
+
+      <div class="callout">
+        <div class="cl-title">The Rule of Gregory of Nazianzus</div>
+        <p>Gregory stated the apophatic limit with memorable precision: "To speak of God is great, but to think of God is greater, and to be with God is the greatest." Theological language is not the final goal; it is the road. The Trinity is not ultimately a doctrine to be mastered but a life to be entered &mdash; the life of prayer, sacrament, and theosis in which the human person comes to share, by grace, what the divine persons share by nature.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 11: TRINITY AND THEOSIS -->
+  <div class="sec" id="theosis">
+    <div class="sec-h" onclick="ts(this)"><h2>The Trinity and Theosis &mdash; Why the Doctrine Saves</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>The Trinity is not an abstract metaphysical puzzle that the Church solves for intellectual satisfaction. It is the structure of salvation. The entire Oriental Orthodox soteriology &mdash; the doctrine of how human beings are saved &mdash; depends on the Trinitarian structure of the divine being. If any aspect of that structure were false, salvation as the Church understands it would be impossible.</p>
+
+      <h3>The Logic: Only God Can Deify</h3>
+      <p>The Oriental Orthodox understanding of salvation is <em>theosis</em> (divinization): the human person is not merely forgiven and admitted to a favorable afterlife, but genuinely transformed &mdash; united with God, made "partakers of the divine nature" (2 Peter 1:4). This is what the Incarnation is for. The eternal Son takes on human nature in order that human nature might be taken up into the divine life.</p>
+
+      <div class="vbox">
+        <div class="vref">2 Peter 1:4</div>
+        <div class="vtext">"&#x2026; so that through them you may become partakers of the divine nature, having escaped from the corruption that is in the world because of sinful desire."</div>
+      </div>
+
+      <div class="vbox father">
+        <div class="vref">St. Athanasius &mdash; On the Incarnation 54.3</div>
+        <div class="vtext">"He was made man that we might be made God." (Autos en&#x113;nthr&#x14D;p&#x113;sen, hina h&#x113;meis theopo&#x12B;&#x1E57;&#x14D;men.)</div>
+      </div>
+
+      <p>For theosis to be real &mdash; for the human person to genuinely participate in the divine life &mdash; the one who accomplishes it must truly be God. A created intermediary (as in Arianism) can at best offer a created participation in a created life. Only if the Son is truly, fully, co-essentially God does the Incarnation bring the creature into genuine contact with the uncreated divine nature. The Trinity is the metaphysical condition of theosis.</p>
+
+      <h3>The Spirit and Theosis</h3>
+      <div class="vbox">
+        <div class="vref">Romans 8:9&ndash;11</div>
+        <div class="vtext">"You, however, are not in the flesh but in the Spirit, if in fact the Spirit of God dwells in you &#x2026; If the Spirit of him who raised Jesus from the dead dwells in you, he who raised Christ Jesus from the dead will also give life to your mortal bodies through his Spirit who dwells in you."</div>
+      </div>
+      <div class="vbox">
+        <div class="vref">1 Corinthians 6:19</div>
+        <div class="vtext">"Do you not know that your body is a temple of the Holy Spirit within you, whom you have from God?"</div>
+      </div>
+
+      <div class="vbox father">
+        <div class="vref">St. Basil of Caesarea &mdash; On the Holy Spirit 9.23</div>
+        <div class="vtext">"The Spirit is the source and giver of holiness. It is through the Spirit that hearts are lifted up to God &#x2026; And He, not ranking below the Father and the Son in dignity, fills all things with His life-giving power. By the Spirit comes our restoration to paradise, our ascension into the kingdom of heaven, our return to the adoption of sons, our liberty to call God our Father, our being made partakers of the grace of Christ, our being called children of light, our sharing in eternal glory."</div>
+      </div>
+
+      <h3>The Monarchy of the Father and the Goal of Theosis</h3>
+      <p>The monarchical structure of the Trinity maps precisely onto the structure of salvation. The Father is the goal: "that God may be all in all" (1 Cor 15:28). The Son is the way: "I am the way, and the truth, and the life; no one comes to the Father except through me" (John 14:6). The Spirit is the means: the one who draws us, cleanses us, transforms us, and unites us with the Son so that in the Son we may come to the Father. Theosis is not a vague spiritual improvement; it is the human person traveling the same path that the Trinitarian persons constitute: through the Spirit, in the Son, to the Father.</p>
+
+      <div class="vbox father">
+        <div class="vref">St. Gregory of Nazianzus &mdash; Oration 34</div>
+        <div class="vtext">"The Trinity is the supreme object of desire. It draws us upward through the Son in the Holy Spirit. For through the Spirit we know the Son, and through the Son we come to the Father. And this is the life and this is the light, and the brief foretaste of it here below makes the weight of the body supportable."</div>
+      </div>
+
+      <div class="vbox father">
+        <div class="vref">St. Cyril of Alexandria &mdash; Commentary on John 17:20&ndash;21</div>
+        <div class="vtext">"Christ prays that we may be one, not merely in some accidental or external way &mdash; not merely in agreement of will &mdash; but in the true, essential, and natural unity which belongs to the Holy Trinity. The unity of believers is to be the image of the Trinity's own unity &#x2026; This is why He says &#x2018;as we&#x2019;: the standard for the unity of the Church is the mutual coinherence of the divine persons."</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 12: CHURCH FATHERS DEEP DIVE -->
+  <div class="sec" id="fathers">
+    <div class="sec-h" onclick="ts(this)"><h2>Church Fathers: Deep Dive</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>The Trinitarian theology of the Oriental Orthodox church is not the product of a single council or a single theologian. It emerged from centuries of prayer, controversy, scriptural meditation, and theological argument. The following are the essential voices in that development.</p>
+
+      <div class="father-grid">
+        <div class="fc">
+          <div class="fc-name">St. Ignatius of Antioch</div>
+          <div class="fc-dates">c. 35&ndash;108 AD &mdash; Martyr, 3rd Bishop of Antioch</div>
+          <div class="fc-quote">"There is one Physician who is possessed both of flesh and spirit; both made and not made; God existing in flesh; true life in death; both of Mary and of God; first passible and then impassible &mdash; even Jesus Christ our Lord."</div>
+          <div class="fc-cite">Letter to the Ephesians 7 &mdash; Written en route to his martyrdom in Rome, c. 108 AD</div>
+        </div>
+
+        <div class="fc">
+          <div class="fc-name">St. Irenaeus of Lyon</div>
+          <div class="fc-dates">c. 130&ndash;202 AD &mdash; Bishop, Father of Systematic Theology</div>
+          <div class="fc-quote">"The Father is God above all, and the Son through all, and the Spirit in all. The Father reveals, the Son arranges and disposes, the Spirit nourishes and increases. And there is one God the Father, and one Jesus Christ our Lord, who comes through every dispensation and recapitulates all things in himself. And in this all there is also man, God's creature; and thus He joins man to God."</div>
+          <div class="fc-cite">Against Heresies V.18.2 &mdash; The earliest systematic treatment of the Trinity in Christian literature</div>
+        </div>
+
+        <div class="fc">
+          <div class="fc-name">Tertullian of Carthage</div>
+          <div class="fc-dates">c. 155&ndash;220 AD &mdash; Father of Latin Theology</div>
+          <div class="fc-quote">"All are of one, by unity of substance; while the mystery of the economy is still guarded, which distributes the Unity into a Trinity, placing in their order the three Persons &mdash; the Father, the Son, and the Holy Ghost: three, however, not in condition, but in degree; not in substance, but in form; not in power, but in aspect."</div>
+          <div class="fc-cite">Against Praxeas 2 &mdash; The first systematic Latin Trinitarian text; Tertullian coined <em>trinitas</em>, <em>persona</em>, and <em>substantia</em></div>
+        </div>
+
+        <div class="fc">
+          <div class="fc-name">St. Alexander of Alexandria</div>
+          <div class="fc-dates">d. 328 AD &mdash; Patriarch of Alexandria, mentor of Athanasius</div>
+          <div class="fc-quote">"Being perfect God, He became perfect man, taking to Himself not a body without soul &#x2026; but the whole man, including the rational soul. The same is not the Father, but the Son; and He is not inferior to the Father in Godhead, for the Father's Godhead is in the Son."</div>
+          <div class="fc-cite">Letter to Alexander of Thessalonica &mdash; Written before Nicaea, defines the orthodoxy the Council would confirm</div>
+        </div>
+
+        <div class="fc">
+          <div class="fc-name">St. Athanasius of Alexandria</div>
+          <div class="fc-dates">c. 296&ndash;373 AD &mdash; Patriarch, &#x201C;Pillar of the Church&#x201D;</div>
+          <div class="fc-quote">"The Son is the Father's radiance; and as the radiance illumines the whole world, so also the Son's Godhead, being one with the Father's, extends to all things and illumines all things visible and intelligible. He is not a second God, nor a God in the sense of a grade or degree; He is God truly and fully, Light truly and fully, for from true Light He is true Light."</div>
+          <div class="fc-cite">Against the Arians I.27 &mdash; Defending Nicaea through five exiles under four emperors: <em>Athanasius contra mundum</em></div>
+        </div>
+
+        <div class="fc">
+          <div class="fc-name">St. Basil of Caesarea</div>
+          <div class="fc-dates">c. 330&ndash;379 AD &mdash; Archbishop of Caesarea, &#x201C;the Great&#x201D;</div>
+          <div class="fc-quote">"We confess that the nature of the Holy Trinity is simple, without composition, without parts, indivisible. We confess the Father as the source and cause; the Son as begotten from the Father; the Holy Spirit as proceeding from the Father through the Son. But we do not confess three origins, or three Goods, or three Gods; we confess one Goodness, one God, one First Principle."</div>
+          <div class="fc-cite">Letter 189 &mdash; The Cappadocian consolidation of Nicene theology</div>
+        </div>
+
+        <div class="fc">
+          <div class="fc-name">St. Gregory of Nazianzus</div>
+          <div class="fc-dates">329&ndash;390 AD &mdash; Archbishop of Constantinople, &#x201C;the Theologian&#x201D;</div>
+          <div class="fc-quote">"Believe that God is one and alone, unbegotten; and has a Son who is begotten, but not like human sons; and has a Spirit who proceeds &mdash; not like winds. These three are one God. But the principle of unity is the Father, from whom the Son is begotten and the Spirit proceeds, and towards whom they are united. The distinction is of persons; the unity is of essence."</div>
+          <div class="fc-cite">Oration 40, On Baptism &mdash; Gregory presided at Constantinople I (381 AD), which expanded the Nicene Creed to include the divinity of the Spirit</div>
+        </div>
+
+        <div class="fc">
+          <div class="fc-name">St. Gregory of Nyssa</div>
+          <div class="fc-dates">c. 335&ndash;395 AD &mdash; Bishop of Nyssa</div>
+          <div class="fc-quote">"One light, three radiances. One wisdom, three forms of knowing. One goodness, three modes of giving. One life, three modes of living. The Father lives; the Son lives from the Father; the Spirit lives from the Father through the Son. They are not three lives, but one life in three, undivided and inseparable, yet genuinely three."</div>
+          <div class="fc-cite">On Not Three Gods &mdash; The definitive resolution of why Trinitarian theology is not tritheism</div>
+        </div>
+
+        <div class="fc">
+          <div class="fc-name">St. Cyril of Alexandria</div>
+          <div class="fc-dates">c. 376&ndash;444 AD &mdash; Patriarch of Alexandria, Doctor of the Incarnation</div>
+          <div class="fc-quote">"The Godhead is not added to or taken from; it is entirely in the Son and entirely in the Holy Spirit, just as it is entire in the Father. The Father gives the whole of Himself to the Son; the Son receives the whole of the Father in generation; the Spirit proceeds bearing the whole of the Father's Godhead. There are not three portions of the one Godhead, but one Godhead entirely possessed by each of three."</div>
+          <div class="fc-cite">Thesaurus de Sancta et Consubstantiali Trinitate &mdash; The most exhaustive Trinitarian treatise from Alexandria after Athanasius</div>
+        </div>
+
+        <div class="fc">
+          <div class="fc-name">St. Severus of Antioch</div>
+          <div class="fc-dates">465&ndash;538 AD &mdash; Patriarch of Antioch, founder of Oriental Orthodox theology</div>
+          <div class="fc-quote">"There is one God, one divinity, one power, one will, one energy &mdash; yet not one person. The Father, Son and Holy Spirit are three persons truly distinct from one another, yet together they are the one God and Lord. Each person fully possesses the divine nature; not one-third of it, not a portion of it &mdash; the whole of it. This is the holy tradition received from the prophets and apostles and faithful expositors."</div>
+          <div class="fc-cite">Cathedral Homilies &mdash; The theological voice that defines the Oriental Orthodox tradition after Chalcedon (451 AD)</div>
+        </div>
+
+        <div class="fc">
+          <div class="fc-name">St. John of Damascus</div>
+          <div class="fc-dates">c. 675&ndash;749 AD &mdash; &#x201C;The Last Church Father&#x201D; <span style="font-size:.75rem;font-weight:400;opacity:.8">(Chalcedonian Orthodox; systematic compiler of patristic consensus; wrote polemics against miaphysites &#8212; cited here for his synthesis of shared pre-Chalcedonian Trinitarian tradition)</span></div>
+          <div class="fc-quote">"We believe in one God, one principle, without beginning, uncreate, unbegotten, indestructible and immortal, eternal, unlimited, uncircumscribed &#x2026; and in one Son of God, the only-begotten, our Lord Jesus Christ, begotten of the Father before all the ages &#x2026; and in one Holy Spirit, the Lord and Giver of life, who proceeds from the Father and rests in the Son &#x2026; The three are one God in one divinity, one power, one will, one energy, one principle, one authority, one dominion, one sovereignty."</div>
+          <div class="fc-cite">Exact Exposition of the Orthodox Faith I.8 &mdash; The systematic summary of patristic Trinitarian theology; still the standard theological text in the Orthodox East</div>
+        </div>
+
+        <div class="fc">
+          <div class="fc-name">St. Ephrem the Syrian</div>
+          <div class="fc-dates">c. 306&ndash;373 AD &mdash; Deacon, Poet, &#x201C;Harp of the Holy Spirit&#x201D;</div>
+          <div class="fc-quote">"Holy, Holy, Holy: these three are one Lord. The voice that says &#x2018;Holy&#x2019; once is the voice of a single mouth; the voice that says &#x2018;Holy&#x2019; three times is the voice of a single truth about a threefold mystery. Blessed is He who has concealed His simplicity within the richness of His persons, and who has made His persons to shine within the light of His simplicity."</div>
+          <div class="fc-cite">Hymns on Faith 73 &mdash; Ephrem wrote in Syriac; his Trinitarian hymns remain central to Syriac Orthodox worship to this day</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 13: BIBLICAL FOUNDATIONS -->
+  <div class="sec" id="scripture">
+    <div class="sec-h" onclick="ts(this)"><h2>Biblical Foundations &mdash; The Full Scriptural Witness</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>The doctrine of the Trinity is not imposed on Scripture from the outside; it is drawn out of Scripture from the inside. The Church did not read the Trinity into the Bible; it found the Trinity to be the most coherent account of what the Bible actually says about God, Jesus, and the Spirit. The following passages represent the full Trinitarian witness of Scripture.</p>
+
+      <h3>The Divine Unity &mdash; The Indispensable Foundation</h3>
+      <div class="scripture-grid">
+        <div class="sg-item">
+          <div class="sg-ref">Deuteronomy 6:4 &mdash; The Shema</div>
+          <div class="sg-text">"Hear, O Israel: The LORD our God, the LORD is one."</div>
+          <div class="sg-note">The foundational monotheistic confession of Israel, affirmed by Christ himself (Mark 12:29). The Trinity does not abandon this; it asks what "one" means when applied to a God who reveals himself as Father, Son, and Spirit.</div>
+        </div>
+        <div class="sg-item">
+          <div class="sg-ref">Isaiah 44:6</div>
+          <div class="sg-text">"Thus says the LORD, the King of Israel and his Redeemer, the LORD of hosts: I am the first and I am the last; besides me there is no god."</div>
+          <div class="sg-note">The absolute divine uniqueness, which Trinitarian theology does not deny but grounds in the unity of the divine essence shared by the three persons.</div>
+        </div>
+      </div>
+
+      <h3>The Preexistence and Divinity of the Son</h3>
+      <div class="scripture-grid">
+        <div class="sg-item">
+          <div class="sg-ref">John 1:1&ndash;3, 14</div>
+          <div class="sg-text">"In the beginning was the Word, and the Word was with God, and the Word was God. He was in the beginning with God. All things were made through him &#x2026; And the Word became flesh and dwelt among us."</div>
+          <div class="sg-note">Three things are said simultaneously: the Word was with God (distinguishing the Son from the Father as a real other); the Word was God (establishing full divinity); and the Word became flesh (the Incarnation). All three resist a non-Trinitarian reading.</div>
+        </div>
+        <div class="sg-item">
+          <div class="sg-ref">John 8:58</div>
+          <div class="sg-text">"Jesus said to them, &#x2018;Truly, truly, I say to you, before Abraham was, I am.&#x2019;"</div>
+          <div class="sg-note">"I am" (ego eimi) is the divine name of Exodus 3:14. Jesus applies it to himself directly. The Jewish authorities understood this as a claim to divinity, which is why they took up stones (v.59). This is not a pious metaphor.</div>
+        </div>
+        <div class="sg-item">
+          <div class="sg-ref">John 10:30</div>
+          <div class="sg-text">"I and the Father are one."</div>
+          <div class="sg-note">Not "I agree with the Father" or "I represent the Father" &mdash; "I and the Father are one." Again the audience understood this as a divine claim (v.33: "you, being a man, make yourself God"). The unity is ontological, not merely functional.</div>
+        </div>
+        <div class="sg-item">
+          <div class="sg-ref">Philippians 2:6&ndash;8</div>
+          <div class="sg-text">"Who, though he was in the form of God, did not count equality with God a thing to be grasped, but emptied himself, by taking the form of a servant &#x2026;"</div>
+          <div class="sg-note">Christ's pre-existent state is described as being "in the form of God" (<em>morphe theou</em>) and "equal with God." The kenosis (self-emptying) in the Incarnation presupposes a fullness that could be "emptied" &mdash; the fullness of divine being.</div>
+        </div>
+        <div class="sg-item">
+          <div class="sg-ref">Colossians 1:15&ndash;17</div>
+          <div class="sg-text">"He is the image of the invisible God, the firstborn of all creation. For by him all things were created, in heaven and on earth &#x2026; all things were created through him and for him. And he is before all things, and in him all things hold together."</div>
+          <div class="sg-note">"Firstborn of all creation" does not mean first-created; in Hebrew idiom, "firstborn" (prototokos) means preeminent, supreme. If the Son were a creature, he could not be the agent of all creation (including his own) &mdash; an incoherence Athanasius exploited devastatingly against the Arians.</div>
+        </div>
+        <div class="sg-item">
+          <div class="sg-ref">Hebrews 1:3</div>
+          <div class="sg-text">"He is the radiance of the glory of God and the exact imprint of his nature, and he upholds the universe by the word of his power."</div>
+          <div class="sg-note">The Greek <em>kharact&#x113;r t&#x113;s hypostas&#x113;s autou</em>: "the exact stamp of his substance/hypostasis." The Son is not a copy of God; he is the exact impression of the divine substance &mdash; as close as a seal to its impression.</div>
+        </div>
+      </div>
+
+      <h3>The Full Divinity of the Holy Spirit</h3>
+      <div class="scripture-grid">
+        <div class="sg-item">
+          <div class="sg-ref">1 Corinthians 2:10&ndash;11</div>
+          <div class="sg-text">"These things God has revealed to us through the Spirit. For the Spirit searches everything, even the depths of God. For who knows a person's thoughts except the spirit of that person, which is in him? So also no one comprehends the thoughts of God except the Spirit of God."</div>
+          <div class="sg-note">The Spirit "searches the depths of God." Only one who is divine can search the divine depths. A creature cannot comprehend its creator; the Spirit's comprehension of God implies the Spirit shares the divine nature.</div>
+        </div>
+        <div class="sg-item">
+          <div class="sg-ref">Acts 5:3&ndash;4</div>
+          <div class="sg-text">"Peter said, &#x2018;Ananias, why has Satan filled your heart to lie to the Holy Spirit &#x2026;? You have not lied to man but to God.&#x2019;"</div>
+          <div class="sg-note">To lie to the Holy Spirit is to lie to God. The identification is direct and unambiguous.</div>
+        </div>
+        <div class="sg-item">
+          <div class="sg-ref">John 16:13&ndash;15</div>
+          <div class="sg-text">"When the Spirit of truth comes, he will guide you into all the truth, for he will not speak on his own authority, but whatever he hears he will speak &#x2026; He will glorify me, for he will take what is mine and declare it to you. All that the Father has is mine; therefore I said that he will take what is mine and declare it to you."</div>
+          <div class="sg-note">The Spirit receives from the Son, who receives from the Father. The Trinitarian chain of relations is explicit: all that the Father has is the Son's; all that the Son has, the Spirit takes and declares. Shared divine possession &mdash; not a hierarchy of lesser beings but a coinherence of persons.</div>
+        </div>
+        <div class="sg-item">
+          <div class="sg-ref">Romans 8:9&ndash;11</div>
+          <div class="sg-text">"Anyone who does not have the Spirit of Christ does not belong to him &#x2026; If the Spirit of him who raised Jesus from the dead dwells in you, he who raised Christ Jesus from the dead will also give life to your mortal bodies through his Spirit who dwells in you."</div>
+          <div class="sg-note">The Spirit is simultaneously "the Spirit of God" and "the Spirit of Christ." He proceeds from the Father and rests in the Son. Life-giving power belongs to him as it belongs to Father and Son: the same divine life-giving power, not a delegated portion of it.</div>
+        </div>
+      </div>
+
+      <h3>The Trinitarian Shape of the New Testament</h3>
+      <div class="scripture-grid">
+        <div class="sg-item">
+          <div class="sg-ref">Matthew 28:19 &mdash; The Baptismal Formula</div>
+          <div class="sg-text">"Baptizing them in the name [singular] of the Father and of the Son and of the Holy Spirit."</div>
+          <div class="sg-note">One name, three persons. Not "names" (tritheism) and not "one name for one person in three modes" (modalism). The grammar itself is Trinitarian.</div>
+        </div>
+        <div class="sg-item">
+          <div class="sg-ref">2 Corinthians 13:14 &mdash; The Apostolic Blessing</div>
+          <div class="sg-text">"The grace of the Lord Jesus Christ and the love of God and the fellowship of the Holy Spirit be with you all."</div>
+          <div class="sg-note">The earliest liturgical Trinitarian formula in the New Testament. Paul invokes all three persons with equal authority and equal gift-giving. This blessing structures the Divine Liturgy of the Oriental Orthodox church to this day.</div>
+        </div>
+        <div class="sg-item">
+          <div class="sg-ref">Isaiah 6:3 &mdash; The Trisagion</div>
+          <div class="sg-text">"And one called to another and said: &#x2018;Holy, holy, holy is the LORD of hosts; the whole earth is full of his glory!&#x2019;"</div>
+          <div class="sg-note">The triple holiness of Isaiah 6:3 was interpreted by the Fathers as a Trinitarian prefiguration. John sees the same vision (Rev 4:8). The Trisagion has been sung in every Oriental Orthodox liturgy since at least the 5th century as an address to the Trinity.</div>
+        </div>
+        <div class="sg-item">
+          <div class="sg-ref">Matthew 3:16&ndash;17 &mdash; The Baptism of Christ</div>
+          <div class="sg-text">"The Spirit of God descending like a dove &#x2026; a voice from heaven said, &#x2018;This is my beloved Son.&#x2019;"</div>
+          <div class="sg-note">The three persons are simultaneously present and distinguishable. The Son is in the water; the Spirit descends; the Father speaks. This is not sequential (modalism) and not three Gods cooperating (tritheism). It is the Trinity acting as Trinity.</div>
+        </div>
+        <div class="sg-item">
+          <div class="sg-ref">John 14:16&ndash;17</div>
+          <div class="sg-text">"And I will ask the Father, and he will give you another Helper, to be with you forever, even the Spirit of truth, whom the world cannot receive, because it neither sees him nor knows him. You know him, for he dwells with you and will be in you."</div>
+          <div class="sg-note">"Another Helper" (allon parakletos) &mdash; "another" of the same kind as Christ himself. The Spirit is not a different quality of presence but the same divine presence in a different mode. The indwelling of the Spirit is the indwelling of God.</div>
+        </div>
+        <div class="sg-item">
+          <div class="sg-ref">Proverbs 8:22&ndash;25 &mdash; Wisdom as Eternal Son</div>
+          <div class="sg-text">"The LORD possessed me at the beginning of his work &#x2026; Ages ago I was set up, at the first, before the beginning of the earth. When there were no depths I was brought forth &#x2026;"</div>
+          <div class="sg-note">The Fathers (Athanasius, Origen, Basil) consistently read the Wisdom of Proverbs 8 as the eternal Son &mdash; one who was "with God" before creation, through whom creation was made, and whose mode of being is "brought forth" from God rather than created from nothing. This is a pre-Nicene prefiguration of the doctrine of eternal generation.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 14: FAQ -->
+  <div class="sec" id="faq">
+    <div class="sec-h" onclick="ts(this)"><h2>Frequently Asked Questions</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <div class="faq">
+        <div class="fi">
+          <div class="fi-q" onclick="tf(this)">Is the Trinity found explicitly in the Bible?<span>+</span></div>
+          <div class="fi-a">The word "Trinity" does not appear in the Bible. What appears in the Bible are the data from which the Trinity is derived: (1) there is only one God; (2) the Father is God; (3) the Son is God; (4) the Spirit is God; (5) Father, Son, and Spirit are distinct from one another. The Trinity is not a word in Scripture; it is the only logical structure that can hold all five of these Scriptural affirmations simultaneously without contradiction. The word "Trinity" names that structure. Similarly, the word "Incarnation" doesn't appear in the Bible, but John 1:14 ("the Word became flesh") names the reality the word describes.</div>
+        </div>
+        <div class="fi">
+          <div class="fi-q" onclick="tf(this)">How is it not three Gods?<span>+</span></div>
+          <div class="fi-a">Three things make it not three Gods. First, there is one divine essence (ousia), not three. The Father, Son, and Spirit do not each have one-third of the divine nature; each has the complete divine nature. There are not three divine beings sharing a common species; there is one divine being who exists in three hypostases. Second, the divine operations are always undivided: the Father never acts without the Son and Spirit, the Son never acts without the Father and Spirit. This is not the behavior of three separate agents; it is the behavior of one God. Third, perichoresis: the three persons mutually indwell one another completely. They are not three separate existences that cooperate; they are three persons whose very being is constituted by mutual indwelling. Three Gods would be three separate existences. The Trinity is three persons in one indivisible being.</div>
+        </div>
+        <div class="fi">
+          <div class="fi-q" onclick="tf(this)">What does &#x201C;begotten&#x201D; mean if it doesn&#x2019;t imply the Son is younger?<span>+</span></div>
+          <div class="fi-a">"Begotten" describes the mode of the Son's relationship to the Father, not a temporal sequence. The begetting is eternal: the Father has never existed without begetting the Son, and the Son has never existed without being begotten of the Father. They are co-eternal. Human begetting happens in time because human nature is temporal and imperfect &mdash; a father exists before his son is born. But God is not temporal; God is eternal. In the eternal life of God, there is no "before" or "after" &mdash; there is simply the eternal Father eternally begetting the eternal Son. The language of "begetting" preserves two truths simultaneously: that the Son is genuinely from the Father (not from himself, which would be self-generation) and that the Son is of the same divine nature as the Father (as a son shares nature with his father).</div>
+        </div>
+        <div class="fi">
+          <div class="fi-q" onclick="tf(this)">If the Father is greater as cause, isn&#x2019;t the Son subordinate?<span>+</span></div>
+          <div class="fi-a">No &mdash; and this is the precise distinction the Cappadocians drew. Causal priority in the Trinity means the Father is the <em>origin</em> of the Son's hypostasis; it does not mean the Father is superior in <em>essence</em>. In human terms: a mother is causally prior to her child (the child derives existence from her), but a fully grown adult child is not ontologically lesser than the mother. The analogy breaks down, of course, because human mother and child are separate beings; but the point stands. In the Trinity, the Son possesses the entire divine nature fully and equally. He is not a fraction of the Father, not a derivative lesser God, but the complete God. The Father's greater dignity is a dignity of <em>being the source</em>, not a dignity of <em>being greater in nature</em>. Gregory of Nazianzus: "The Father is greater as the cause; but the Son is equal in nature."</div>
+        </div>
+        <div class="fi">
+          <div class="fi-q" onclick="tf(this)">Does the Trinity mean God is lonely without creation?<span>+</span></div>
+          <div class="fi-a">No &mdash; and this is one of the most important practical implications of the Trinity. A strictly unitarian God (one person) would have no internal relational life and would require creation as an object for his love and knowledge. This would make creation necessary to God, which means God would be dependent on the world &mdash; not truly free in his act of creating. The Trinitarian God has an eternal, perfect, complete life of love within the Godhead: the Father loves the Son from eternity; the Son loves the Father; the Spirit is the bond of that mutual love. Creation is not necessary to God; it is a free act of overflowing love from a God who is already perfectly self-sufficient in Trinitarian love. This is why love is not just something God <em>does</em> but something God <em>is</em> (1 John 4:8): the divine nature is inherently relational, inherently self-giving, inherently loving &mdash; because it is Trinitarian.</div>
+        </div>
+        <div class="fi">
+          <div class="fi-q" onclick="tf(this)">How does the Trinity relate to theosis?<span>+</span></div>
+          <div class="fi-a">Theosis &mdash; the participation of the human person in the divine life &mdash; is only coherent within a Trinitarian framework. The path of theosis follows the Trinitarian structure: through the Spirit (who applies the Son's redemptive work to the soul), in the Son (who has united human nature to the divine nature in the Incarnation), to the Father (who is the goal and source of all). We are drawn by the Spirit to be formed into the image of the Son so that, in the Son, we may participate in the Son's relationship with the Father. If the Son were not truly divine (Arianism), the Incarnation would not genuinely unite humanity with God &mdash; it would unite humanity with a superior creature. If the Spirit were not truly divine (Pneumatomachianism), the Spirit's indwelling would not be the indwelling of God. The whole structure of theosis depends on the co-equal divinity of Son and Spirit.</div>
+        </div>
+        <div class="fi">
+          <div class="fi-q" onclick="tf(this)">Why does the Oriental Orthodox Church reject the Filioque?<span>+</span></div>
+          <div class="fi-a">The Oriental Orthodox church rejects the Filioque (the addition to the Nicene Creed that the Spirit proceeds "from the Father and the Son") on two grounds: theological and conciliar. Theologically, John 15:26 explicitly says the Spirit "proceeds from the Father" &mdash; not the Father and Son. More importantly, introducing the Son as a co-source (co-arche) of the Spirit's procession undermines the monarchy of the Father and introduces two principles within the Godhead. Conciliarly, the Filioque was inserted into the Nicene Creed unilaterally by the Western church without an Ecumenical Council. The Nicene Creed was defined by the First and Second Ecumenical Councils (325 and 381 AD); only an Ecumenical Council has the authority to modify it. The Filioque was never approved by such a council. It is doubly problematic: wrong in content and illegitimate in procedure.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 15: GLOSSARY -->
+  <div class="sec" id="glossary">
+    <div class="sec-h" onclick="ts(this)"><h2>Glossary of Key Terms</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <div class="glo">
+        <div class="glo-item"><div class="gt">Trinity (Trinitas)</div><div class="gd">The doctrine that the one God exists as three co-equal, co-eternal persons: Father, Son, and Holy Spirit. One in essence, three in hypostasis.</div></div>
+        <div class="glo-item"><div class="gt">Ousia (&#x03BF;&#x1F50;&#x03C3;&#x03AF;&#x03B1;)</div><div class="gd">Essence or substance. What God is in his nature. The divine ousia is one, shared completely and equally by Father, Son, and Spirit. No division, no degrees.</div></div>
+        <div class="glo-item"><div class="gt">Hypostasis (&#x1F51;&#x03C0;&#x03CC;&#x03C3;&#x03C4;&#x03B1;&#x03C3;&#x03B9;&#x03C2;)</div><div class="gd">Person or subsistence. The concrete, individual mode of existing the one divine ousia. Father, Son, and Spirit each possess a distinct hypostasis. Three hypostases, one ousia.</div></div>
+        <div class="glo-item"><div class="gt">Homoousios</div><div class="gd">"Of the same essence." The key word of the Nicene Creed (325 AD), establishing that the Son shares the identical divine essence with the Father &mdash; not similar but same.</div></div>
+        <div class="glo-item"><div class="gt">Arche (&#x1F00;&#x03C1;&#x03C7;&#x03AE;)</div><div class="gd">Source, principle, beginning. The Father is the sole arche of the Godhead &mdash; the one unbegotten source from whom the Son is begotten and the Spirit proceeds.</div></div>
+        <div class="glo-item"><div class="gt">Monarchia</div><div class="gd">"Single principle/source." The Father's unique position as the sole origin and cause within the Trinity. Does not imply superiority of essence; implies priority of source.</div></div>
+        <div class="glo-item"><div class="gt">Eternal Generation</div><div class="gd">The Son's eternal derivation from the Father by way of begetting. Eternal: without beginning or end, outside time. Generation: communicating nature, not creation from nothing.</div></div>
+        <div class="glo-item"><div class="gt">Eternal Procession</div><div class="gd">The Holy Spirit's eternal derivation from the Father. Distinct from generation (what distinguishes it cannot be fully articulated, per Gregory of Nazianzus) but equally eternal and equally God-producing.</div></div>
+        <div class="glo-item"><div class="gt">Perichoresis (&#x03C0;&#x03B5;&#x03C1;&#x03B9;&#x03C7;&#x03CE;&#x03C1;&#x03B7;&#x03C3;&#x03B9;&#x03C2;)</div><div class="gd">Mutual indwelling of the three divine persons in one another. The Father in the Son and Spirit; the Son in the Father and Spirit; the Spirit in both. No fusion, no separation.</div></div>
+        <div class="glo-item"><div class="gt">Theosis (&#x03B8;&#x03AD;&#x03C9;&#x03C3;&#x03B9;&#x03C2;)</div><div class="gd">Divinization. The participation of the human person in the divine nature (2 Pet 1:4). The goal of the Christian life; made possible by the Trinity &mdash; specifically by the full divinity of Son and Spirit.</div></div>
+        <div class="glo-item"><div class="gt">Economic Trinity</div><div class="gd">How the three persons act in the history of salvation (the divine oikonomia). Distinguished from the immanent Trinity (what God is in himself) but not separated from it.</div></div>
+        <div class="glo-item"><div class="gt">Immanent Trinity</div><div class="gd">God's inner Trinitarian life considered in itself, apart from creation or revelation. The eternal relations of Father, Son, and Spirit that exist regardless of whether the world exists.</div></div>
+        <div class="glo-item"><div class="gt">Apophatic Theology</div><div class="gd">The via negativa &mdash; the approach to God by negation, recognizing that the divine essence exceeds all human concepts. What God is not can be stated with more precision than what God is.</div></div>
+        <div class="glo-item"><div class="gt">Filioque</div><div class="gd">"And from the Son." The Western addition to the Nicene Creed stating the Spirit proceeds from Father and Son. Rejected by the Oriental Orthodox on both theological (one arche) and conciliar (no Ecumenical Council approved it) grounds.</div></div>
+        <div class="glo-item"><div class="gt">Modalism (Sabellianism)</div><div class="gd">The heresy that Father, Son, and Spirit are not distinct persons but one person appearing in three modes. Condemned in the early 3rd century.</div></div>
+        <div class="glo-item"><div class="gt">Arianism</div><div class="gd">The heresy that the Son is the first and greatest creature, not fully divine. "There was a time when the Son was not." Condemned at Nicaea (325 AD) by the homoousios.</div></div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+function ts(h){
+  const b=h.nextElementSibling;
+  const a=h.querySelector('.arr');
+  const open=b.style.display==='block';
+  b.style.display=open?'none':'block';
+  a.style.transform=open?'':'rotate(90deg)';
+}
+function tf(h){
+  const a=h.nextElementSibling;
+  const s=h.querySelector('span');
+  const open=a.style.display==='block';
+  a.style.display=open?'none':'block';
+  s.textContent=open?'+':'&#x2212;';
+}
+function sidebarSearch(v){
+  const q=v.toLowerCase();
+  document.querySelectorAll('#nav a').forEach(a=>{
+    a.style.display=(!q||a.textContent.toLowerCase().includes(q))?'':'none';
+  });
+}
+window.addEventListener('scroll',()=>{
+  const st=window.scrollY;
+  const dh=document.documentElement.scrollHeight-window.innerHeight;
+  document.getElementById('prog').style.width=(dh>0?st/dh*100:0)+'%';
+  const secs=document.querySelectorAll('.sec[id]');
+  let cur='';
+  secs.forEach(s=>{if(s.offsetTop-120<=st)cur=s.id;});
+  document.querySelectorAll('#nav a').forEach(a=>{
+    a.classList.toggle('active',a.getAttribute('href')==='#'+cur);
+  });
+});
+(function(){
+  const first=document.querySelector('.sec .sec-h');
+  if(first)ts(first);
+})();
+</script>
+</body>
+</html>

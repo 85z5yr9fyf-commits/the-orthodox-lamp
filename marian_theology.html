@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mary: Theotokos &amp; Perpetual Virginity — The Orthodox Lamp</title>
+<style>
+:root{--gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;--bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--tx:#e8e0d0;--mu:#a09880;--red:#8b2020;--br:#2a2a2a;--bg5:#3a2e10;--sidebar-w:270px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.7;display:flex;flex-direction:column;min-height:100vh}
+a{color:var(--gold);text-decoration:none}
+a:hover{text-decoration:underline}
+
+#prog{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--gd),var(--gold),var(--gl));z-index:9999;transition:width .1s}
+
+#sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:200;transform:translateX(0);transition:transform .3s}
+#sidebar header{padding:1.4rem 1.2rem 1rem;border-bottom:1px solid var(--br)}
+#sidebar header .logo{font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem}
+#sidebar header h2{font-size:.85rem;color:var(--gl);line-height:1.3}
+#sb-nav{padding:.8rem 0 2rem}
+#sb-nav a{display:block;padding:.42rem 1.2rem;font-size:.78rem;color:var(--mu);border-left:2px solid transparent;transition:all .2s;line-height:1.4}
+#sb-nav a:hover{color:var(--tx);background:var(--bg3);text-decoration:none}
+#sb-nav a.active{color:var(--gold);border-left-color:var(--gold);background:var(--bg5)}
+#sb-nav .sb-group{font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gd);padding:.9rem 1.2rem .3rem;display:block}
+
+#menu-btn{display:none;position:fixed;top:.8rem;left:.8rem;z-index:300;background:var(--bg3);border:1px solid var(--br);color:var(--gold);font-size:1.1rem;width:2.2rem;height:2.2rem;border-radius:6px;cursor:pointer;align-items:center;justify-content:center}
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:150}
+#overlay.show{display:block}
+
+#main{margin-left:var(--sidebar-w);flex:1;min-width:0}
+
+.hero{text-align:center;padding:5rem 2rem 3.5rem;background:linear-gradient(180deg,var(--bg2) 0%,var(--bg) 100%);border-bottom:1px solid var(--br);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(201,168,76,.08) 0%,transparent 70%);pointer-events:none}
+.si{font-size:2.4rem;color:var(--gold);display:block;margin-bottom:.6rem}
+.st{font-size:clamp(1.6rem,4vw,2.6rem);font-weight:700;letter-spacing:.08em;text-transform:uppercase;line-height:1.15}
+.st span{color:var(--gold)}
+.ss{font-size:1rem;color:var(--gl);margin:.7rem 0 .3rem;font-style:italic}
+.tg{font-size:.85rem;color:var(--mu);font-style:italic}
+.orn{color:var(--gold);font-size:.9rem;letter-spacing:.5em;margin-top:1.2rem;opacity:.7}
+
+.content{max-width:860px;margin:0 auto;padding:3rem 2rem 5rem}
+
+.sec{background:var(--bg2);border:1px solid var(--br);border-radius:10px;margin-bottom:1.2rem;overflow:hidden}
+.sec-hd{padding:1.1rem 1.4rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;user-select:none;transition:background .2s}
+.sec-hd:hover{background:var(--bg3)}
+.sec-hd h2{font-size:1rem;font-weight:700;color:var(--gl);line-height:1.3}
+.sec-hd .num{font-size:.65rem;font-weight:700;letter-spacing:.1em;color:var(--gold);min-width:2rem;text-align:right;flex-shrink:0}
+.arr{color:var(--gd);font-size:.8rem;flex-shrink:0;transition:transform .3s}
+.sec.open .arr{transform:rotate(90deg)}
+.sec-body{display:none;padding:1.2rem 1.4rem 1.4rem;border-top:1px solid var(--br)}
+.sec.open .sec-body{display:block}
+.sec-body p{margin-bottom:1rem;font-size:.92rem}
+.sec-body h3{font-size:.85rem;font-weight:700;color:var(--gold);letter-spacing:.06em;text-transform:uppercase;margin:1.4rem 0 .6rem}
+.sec-body ul{margin:.4rem 0 1rem 1.2rem;font-size:.88rem}
+.sec-body ul li{margin-bottom:.4rem}
+.sec-body blockquote{border-left:3px solid var(--gd);padding:.6rem 1rem;background:var(--bg3);border-radius:0 6px 6px 0;font-style:italic;font-size:.88rem;color:var(--tx);margin:1rem 0}
+.sec-body blockquote cite{display:block;margin-top:.4rem;font-size:.78rem;color:var(--mu);font-style:normal}
+
+/* Scripture cards */
+.sv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin:1rem 0}
+.sv{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:1rem 1.1rem}
+.sv-ref{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+.sv-txt{font-size:.88rem;font-style:italic;color:var(--tx);margin-bottom:.6rem;line-height:1.55}
+.labels{display:flex;flex-wrap:wrap;gap:.3rem}
+.label{font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.15rem .45rem;border-radius:3px}
+.oo{background:#3a2e10;color:var(--gold);border:1px solid var(--gd)}
+.prot{background:#1a2535;color:#7aa8d0;border:1px solid #2a4060}
+.ctx{background:#1a2a1a;color:#7abf7a;border:1px solid #2a502a}
+.gk{background:#251a35;color:#b07ae0;border:1px solid #4a2a70}
+
+/* Father cards */
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin:1rem 0}
+.fc{background:var(--bg3);border:1px solid var(--br);border-left:3px solid var(--gd);border-radius:0 8px 8px 0;padding:1rem 1.1rem}
+.fc-name{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem}
+.fc-era{font-size:.65rem;color:var(--mu);margin-bottom:.5rem}
+.fc-txt{font-size:.85rem;font-style:italic;color:var(--tx);line-height:1.55}
+
+/* Glossary */
+.gt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:.9rem;margin:1rem 0}
+.gt{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:.9rem 1rem}
+.gt-term{font-size:.9rem;font-weight:700;color:var(--gl);margin-bottom:.2rem}
+.gt-gk{font-size:.75rem;color:var(--gold);font-style:italic;margin-bottom:.4rem}
+.gt-def{font-size:.8rem;color:var(--tx);opacity:.9}
+
+/* Theory comparison cards */
+.theory-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1rem;margin:1rem 0}
+.theory{border-radius:8px;padding:1rem 1.1rem;border:1px solid var(--br)}
+.theory.oo-card{background:#3a2e10;border-color:var(--gd)}
+.theory.proto{background:#1a1a2a;border-color:#3a3060}
+.theory.hiero{background:#1a2a1a;border-color:#2a502a}
+.theory h4{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem}
+.theory.oo-card h4{color:var(--gold)}
+.theory.proto h4{color:#a090d0}
+.theory.hiero h4{color:#7abf7a}
+.theory p{font-size:.82rem;color:var(--tx)}
+.theory .verdict{display:inline-block;font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.15rem .5rem;border-radius:3px;margin-top:.5rem}
+.theory.oo-card .verdict{background:var(--bg5);color:var(--gold)}
+.theory.proto .verdict{background:#252535;color:#a090d0}
+.theory.hiero .verdict{background:#1a2a1a;color:#7abf7a}
+
+/* Objection accordions */
+.obj{background:var(--bg3);border:1px solid #3a1a1a;border-radius:8px;margin-bottom:.8rem;overflow:hidden}
+.obj-hd{padding:.9rem 1.1rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:.8rem;user-select:none}
+.obj-hd:hover{background:#1f1010}
+.obj-hd strong{font-size:.87rem;color:#d08080;line-height:1.3}
+.obj-arr{color:#804040;font-size:.75rem;flex-shrink:0;transition:transform .3s}
+.obj.open .obj-arr{transform:rotate(90deg)}
+.obj-body{display:none;padding:.9rem 1.1rem 1.1rem;border-top:1px solid #3a1a1a;font-size:.87rem}
+.obj.open .obj-body{display:block}
+.obj-body p{margin-bottom:.7rem}
+.obj-resp{background:#1a2510;border-left:3px solid #4a7030;border-radius:0 6px 6px 0;padding:.7rem 1rem;font-size:.85rem;margin-top:.6rem}
+.obj-resp strong{color:#6abf6a;display:block;margin-bottom:.3rem;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase}
+
+/* FAQ */
+.fi{background:var(--bg3);border:1px solid var(--br);border-radius:8px;margin-bottom:.7rem;overflow:hidden}
+.fi-hd{padding:.85rem 1.1rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:.8rem;user-select:none}
+.fi-hd:hover{background:var(--bg4)}
+.fi-hd strong{font-size:.87rem;color:var(--gl);line-height:1.3}
+.fi-arr{color:var(--gd);font-size:.75rem;flex-shrink:0;transition:transform .3s}
+.fi.open .fi-arr{transform:rotate(90deg)}
+.fi-body{display:none;padding:.85rem 1.1rem 1.1rem;border-top:1px solid var(--br);font-size:.87rem}
+.fi.open .fi-body{display:block}
+.fi-body p{margin-bottom:.6rem}
+
+/* Council banner */
+.council{background:var(--bg3);border:1px solid #3a3010;border-left:4px solid var(--gold);border-radius:0 8px 8px 0;padding:1rem 1.2rem;margin:1rem 0}
+.council-title{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+.council-txt{font-size:.87rem;color:var(--tx);line-height:1.6}
+
+/* Greek term inline highlight */
+.gk-word{font-style:italic;color:var(--gl);font-size:.95em}
+
+footer{text-align:center;padding:2rem 1rem;border-top:1px solid var(--br);font-size:.8rem;color:var(--mu)}
+footer span{color:var(--gold)}
+
+@media(max-width:800px){
+  #sidebar{transform:translateX(calc(-1 * var(--sidebar-w)))}
+  #sidebar.open{transform:translateX(0)}
+  #main{margin-left:0}
+  #menu-btn{display:flex}
+  .hero{padding:4rem 1.2rem 2.5rem}
+  .content{padding:2rem 1.2rem 4rem}
+}
+</style>
+</head>
+<body>
+
+<div id="prog"></div>
+<button id="menu-btn" onclick="toggleSidebar()" aria-label="Menu">☰</button>
+<div id="overlay" onclick="closeMobile()"></div>
+
+<nav id="sidebar">
+  <header>
+    <div class="logo">The Orthodox Lamp</div>
+    <h2>Mary: Theotokos &amp; Perpetual Virginity</h2>
+  </header>
+  <div id="sb-nav">
+    <span class="sb-group">Foundations</span>
+    <a href="#s1">I. Introduction</a>
+    <a href="#s2">II. Glossary</a>
+    <span class="sb-group">Theotokos</span>
+    <a href="#s3">III. Theotokos — Meaning &amp; Importance</a>
+    <a href="#s4">IV. The Biblical Case</a>
+    <a href="#s5">V. The Council of Ephesus (431)</a>
+    <a href="#s6">VI. Patristic Witness to Theotokos</a>
+    <span class="sb-group">Perpetual Virginity</span>
+    <a href="#s7">VII. Before the Birth (ante partum)</a>
+    <a href="#s8">VIII. During the Birth (in partu)</a>
+    <a href="#s9">IX. After the Birth (post partum)</a>
+    <a href="#s10">X. Matthew 1:25 — "Until"</a>
+    <a href="#s11">XI. "Firstborn" — A Legal Title</a>
+    <span class="sb-group">The Brothers of Jesus</span>
+    <a href="#s12">XII. The Three Theories</a>
+    <a href="#s13">XIII. Adelphos in Greek &amp; Hebrew</a>
+    <a href="#s14">XIV. James — Who Was He?</a>
+    <a href="#s15">XV. The Mary at the Cross Evidence</a>
+    <span class="sb-group">Apologetics</span>
+    <a href="#s16">XVI. Protestant Objections</a>
+    <a href="#s17">XVII. FAQ</a>
+    <a href="#s18">XVIII. Sources</a>
+  </div>
+</nav>
+
+<div id="main">
+
+<div class="hero">
+  <span class="si">☩</span>
+  <h1 class="st">THE <span>ORTHODOX</span> LAMP</h1>
+  <p class="ss">Mary: Theotokos &amp; Perpetual Virginity</p>
+  <p class="tg">"Behold, from now on all generations will call me blessed." — Luke 1:48</p>
+  <div class="orn">✦ ✦ ✦</div>
+</div>
+
+<div class="content">
+
+<!-- I -->
+<div class="sec open" id="s1">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>I. Introduction</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">01</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>Few topics reveal the distance between Oriental Orthodox Christianity and Protestantism more clearly than the theology of the Virgin Mary. For the Oriental Orthodox — Coptic, Ethiopian, Eritrean, Syriac, Armenian, and Malankara — Mary is <span class="gk-word">Theotokos</span>: the God-bearer, the Mother of God. She is the Ever-Virgin, who remained a virgin before, during, and after the birth of Christ. And the men called "the brothers of the Lord" in the Gospels — including James — were not her biological sons but either Joseph's children from a prior marriage or, in some traditions, cousins.</p>
+    <p>These are not medieval Catholic innovations — they are the unanimous consensus of the Christian Church from the earliest centuries, East and West, and remain the living faith of the Oriental Orthodox churches today. This site examines each claim in depth: its biblical foundation, its Patristic witness, and the historical evidence concerning the identity of the Lord's brothers.</p>
+    <p>The Protestant Reformers — Luther, Calvin, Zwingli — all held to the perpetual virginity of Mary and to the Theotokos title. The departure from these doctrines is a distinctively post-Reformation development, not the teaching of the ancient Church.</p>
+  </div>
+</div>
+
+<!-- II -->
+<div class="sec" id="s2">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>II. Key Terms — Glossary</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">02</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <div class="gt-grid">
+      <div class="gt">
+        <div class="gt-term">Theotokos</div>
+        <div class="gt-gk">Greek: Θεοτόκος — "God-bearer" / "Mother of God"</div>
+        <div class="gt-def">The title given to the Virgin Mary at the Council of Ephesus (431). It affirms that the one she carried and bore is God the Son — the Second Person of the Trinity — and therefore she is rightly called the Mother of God. It is a Christological title, not merely a Mariological one.</div>
+      </div>
+      <div class="gt">
+        <div class="gt-term">Christotokos</div>
+        <div class="gt-gk">Greek: Χριστοτόκος — "Christ-bearer"</div>
+        <div class="gt-def">The alternative title proposed by Nestorius (c. 428), who argued Mary bore the human Christ, not the divine Son. Rejected at Ephesus as inadequate — it implies two persons in Christ, one of whom Mary bore and one she did not.</div>
+      </div>
+      <div class="gt">
+        <div class="gt-term">Aeiparthenos</div>
+        <div class="gt-gk">Greek: Ἀειπάρθενος — "Ever-Virgin"</div>
+        <div class="gt-def">The title affirming Mary's perpetual virginity — before, during, and after the birth of Christ. Used by the Second Council of Constantinople (553) and universally in the OO tradition. The Arabic equivalent (Al-Batool) is also used in the Coptic Church.</div>
+      </div>
+      <div class="gt">
+        <div class="gt-term">Adelphos</div>
+        <div class="gt-gk">Greek: ἀδελφός — "brother"</div>
+        <div class="gt-def">The Greek word used for the "brothers of the Lord." In biblical usage, it can mean full brother, half-brother, or — when translating the Hebrew/Aramaic — kinsman or cousin, since neither Hebrew (ach) nor Aramaic has a distinct word for cousin.</div>
+      </div>
+      <div class="gt">
+        <div class="gt-term">Protoevangelium of James</div>
+        <div class="gt-gk">Greek: Πρωτευαγγέλιον Ἰακώβου (c. AD 145–150)</div>
+        <div class="gt-def">One of the earliest extra-canonical documents, presenting Joseph as an elderly widower with children from a prior marriage. It is the earliest literary source for Mary's perpetual virginity and for identifying the Lord's brothers as Joseph's sons.</div>
+      </div>
+      <div class="gt">
+        <div class="gt-term">Epiphanian Theory</div>
+        <div class="gt-gk">Named after Epiphanius of Salamis (c. AD 377)</div>
+        <div class="gt-def">The view that the "brothers of the Lord" were Joseph's children from a marriage prior to Mary — making them Jesus' legal half-brothers through Joseph, but not Mary's biological children. This is the standard Oriental Orthodox position.</div>
+      </div>
+      <div class="gt">
+        <div class="gt-term">Hieronymian Theory</div>
+        <div class="gt-gk">Named after Jerome (c. AD 383)</div>
+        <div class="gt-def">The view that the "brothers of the Lord" were cousins of Jesus — sons of Mary's sister (Mary of Clopas). Preferred by Rome since Jerome. Not the standard OO position, which holds the Epiphanian view.</div>
+      </div>
+      <div class="gt">
+        <div class="gt-term">Helvidian Theory</div>
+        <div class="gt-gk">Named after Helvidius (c. AD 380)</div>
+        <div class="gt-def">The Protestant view: the "brothers of the Lord" were the biological children of Joseph and Mary, born after Jesus. Held by no significant Church Father before the Reformation. Unanimously rejected by the ancient Church.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- III -->
+<div class="sec" id="s3">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>III. Theotokos — The Title and Its Christological Meaning</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">03</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>The title <span class="gk-word">Theotokos</span> — God-bearer, or Mother of God — is first and last a <em>Christological</em> title. It does not primarily exalt Mary; it declares who Christ is. When the Church calls Mary the Mother of God, she is asserting that the person born of Mary is not a merely human person who was later divinized or adopted by God — he is God the Son, the eternal Word of the Father, who took flesh from Mary in the Incarnation.</p>
+    <p>The controversy that produced the definition of Theotokos at Ephesus (431) was triggered by Nestorius, Patriarch of Constantinople, who objected to the title. His objection was not about Mary — it was about Christ. Nestorius taught that in Christ there were two persons: a divine Son and a human son, loosely joined. Mary could be the mother of the human person but not of the divine. He proposed <span class="gk-word">Christotokos</span> — Christ-bearer — as a safer title.</p>
+    <p>Cyril of Alexandria, the great Coptic theologian who championed Theotokos, recognized that Nestorius' position destroyed the unity of Christ's person. If there are two persons in Christ, then the divine Son did not suffer, did not die, and did not rise — only the human person did. The Incarnation becomes a partnership between two persons rather than the genuine self-emptying of God the Son. The logic of Theotokos is: because Mary bore a single, undivided person who is both God and man, she is rightly called the Mother of God.</p>
+    <blockquote>"If anyone does not confess that Emmanuel is God in truth, and therefore that the holy Virgin is the Mother of God (for she bore in a fleshly way the Word of God become flesh), let him be anathema."<cite>— St. Cyril of Alexandria, <em>Third Letter to Nestorius</em>, Anathema I (AD 430)</cite></blockquote>
+    <p>The OO churches — themselves pre-Chalcedonian — all affirm the title Theotokos as defined at Ephesus, a council they recognize as authoritative. In Coptic the title is <span class="gk-word">Θεοτόκος</span> (transliterated); in Ge'ez (Ethiopian) she is called <em>Wälättä Egzi'abehēr</em> — "Daughter of God" — alongside equivalent expressions of her divine maternity; in Syriac, <em>Yāldaṯ Allāhā</em> — "Bearer of God."</p>
+  </div>
+</div>
+
+<!-- IV -->
+<div class="sec" id="s4">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>IV. The Biblical Case for Theotokos</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">04</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">Luke 1:43</div>
+        <div class="sv-txt">"And why is this granted to me that the mother of my Lord should come to me?"</div>
+        <div class="labels"><span class="label oo">OO: Elizabeth, inspired by the Holy Spirit, calls Mary the "mother of my Lord" — Kyrios in LXX = YHWH</span><span class="label gk">Key: "Lord" (Kyrios) is the LXX rendering of YHWH throughout</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Isaiah 7:14 (LXX)</div>
+        <div class="sv-txt">"Behold, the virgin (parthenos) shall conceive and bear a son, and you shall call his name Immanuel — God with us."</div>
+        <div class="labels"><span class="label oo">OO: The LXX uses parthenos (virgin). Matthew 1:23 quotes it directly. Immanuel = God with us — the child is divine</span><span class="label prot">Prot: Hebrew 'almah = young woman, not necessarily virgin</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Luke 1:35</div>
+        <div class="sv-txt">"The Holy Spirit will come upon you, and the power of the Most High will overshadow you; therefore the child to be born will be called holy — the Son of God."</div>
+        <div class="labels"><span class="label oo">OO: The divine origin of the child establishes Mary's relation to God the Son</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">John 1:14</div>
+        <div class="sv-txt">"And the Word became flesh and dwelt among us."</div>
+        <div class="labels"><span class="label oo">OO: The eternal Word — God (John 1:1) — became flesh. He who became flesh was born of Mary. Therefore Mary bore God the Word.</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Galatians 4:4</div>
+        <div class="sv-txt">"But when the fullness of time had come, God sent forth his Son, born of woman..."</div>
+        <div class="labels"><span class="label oo">OO: God's own Son was "born of woman" — Paul implies Mary bore the Son of God</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Luke 1:28</div>
+        <div class="sv-txt">"And he came to her and said, 'Greetings, O favored one (kecharitomene), the Lord is with you!'"</div>
+        <div class="labels"><span class="label gk">Greek: kecharitomene — perfect passive participle: "she who has been and remains endued with grace"</span><span class="label oo">OO: The perfect tense indicates a completed, abiding state of grace — unique in Scripture</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Luke 1:48</div>
+        <div class="sv-txt">"For behold, from now on all generations will call me blessed (makarian)."</div>
+        <div class="labels"><span class="label oo">OO: Mary's own prophecy — the Church's veneration of Mary fulfills Scripture</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Revelation 12:1</div>
+        <div class="sv-txt">"And a great sign appeared in heaven: a woman clothed with the sun, with the moon under her feet, and on her head a crown of twelve stars."</div>
+        <div class="labels"><span class="label oo">OO: The OO tradition identifies this woman with Mary — the heavenly image of the Theotokos</span><span class="label prot">Prot: The woman = Israel / the Church</span><span class="label ctx">Context: She gives birth to "a male child, one who is to rule all the nations" (v.5)</span></div>
+      </div>
+    </div>
+    <h3>The Kyrios Argument (Luke 1:43)</h3>
+    <p>The most direct biblical support for Theotokos is Elizabeth's Spirit-inspired greeting: "why is this granted to me that the <em>mother of my Lord</em> should come to me?" The Greek word <span class="gk-word">Kyrios</span> (Lord) is the Septuagint's consistent rendering of the divine name YHWH throughout the Hebrew Bible. When Elizabeth calls Mary "mother of my Lord," she is not merely saying "mother of my master" — she is echoing the language of divine lordship that runs through the entire LXX. The Holy Spirit, who inspires Elizabeth's words (Luke 1:41), is identifying the child in Mary's womb as none other than the Lord — YHWH — God himself.</p>
+  </div>
+</div>
+
+<!-- V -->
+<div class="sec" id="s5">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>V. The Council of Ephesus (AD 431)</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">05</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>The Third Ecumenical Council, held at Ephesus in AD 431, was convened primarily to settle the Nestorian controversy. It was chaired and dominated by Cyril of Alexandria — the greatest theologian of the Coptic tradition. The council condemned Nestorius and defined that Mary is rightly called Theotokos.</p>
+    <div class="council">
+      <div class="council-title">Council of Ephesus — Definition (AD 431)</div>
+      <div class="council-txt">"If anyone does not confess that God is truly Emmanuel, and that on this account the Holy Virgin is the Mother of God (for according to the flesh she gave birth to the Word of God become flesh by birth), let him be anathema."</div>
+    </div>
+    <p>The council was welcomed by the people of Ephesus with torchlit celebrations in the streets — an indication of how deeply the faithful had already received the Theotokos title before any formal conciliar definition. The definition did not create a new teaching; it protected an existing and beloved conviction of the whole Church against Nestorian revision.</p>
+    <p>The Oriental Orthodox churches — who parted ways with the Chalcedonian definition in 451 — fully and enthusiastically retain the Ephesian definition of Theotokos. For Coptic Christians, Cyril of Alexandria is one of the greatest pillars of their tradition. The Ethiopian, Armenian, Syriac, and Malankara churches are equally unanimous.</p>
+    <h3>What Ephesus Did NOT Teach</h3>
+    <p>Ephesus did not define Mary as the source of divinity, as co-redemptrix, or as co-mediatrix. Those later Western Catholic developments are distinct from the Ephesian definition and are not part of the OO doctrinal position. The OO title Theotokos is a precise, Christological affirmation: the one she bore is the eternal Son of God. Nothing more, nothing less — but nothing less.</p>
+  </div>
+</div>
+
+<!-- VI -->
+<div class="sec" id="s6">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>VI. Patristic Witness to Theotokos</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">06</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>The title Theotokos was not invented at Ephesus — it had been in liturgical use for over a century before the council. The following witnesses demonstrate its pre-conciliar antiquity:</p>
+    <div class="fc-grid">
+      <div class="fc">
+        <div class="fc-name">Origen of Alexandria</div>
+        <div class="fc-era">c. AD 230 — Earliest known written use of Theotokos</div>
+        <div class="fc-txt">"And if we are not to call Mary the Mother of God (Theotokos), what sense is there in calling her blessed?" — The earliest documented use of the word Theotokos, demonstrating it was already established in the Alexandrian tradition by the early 3rd century.</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Alexander of Alexandria</div>
+        <div class="fc-era">c. AD 320</div>
+        <div class="fc-txt">"Mary Theotokos... from whom the holy body... was taken." — Used casually, suggesting it was already common currency in Alexandria before Nicaea.</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Athanasius of Alexandria</div>
+        <div class="fc-era">c. AD 330</div>
+        <div class="fc-txt">"The Word... took to himself a body from the Virgin Mary... He is God, born of Mary the Theotokos."</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Gregory of Nazianzus</div>
+        <div class="fc-era">c. AD 382</div>
+        <div class="fc-txt">"If anyone does not acknowledge Mary as Theotokos, he is without the Godhead."</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Ephrem the Syrian</div>
+        <div class="fc-era">c. AD 360 — Syriac tradition</div>
+        <div class="fc-txt">"Who is able to speak of the Mighty One? Who can describe the Mother of God (Yāldaṯ Allāhā)?" — The Syriac churches used the equivalent title independently of the Greek tradition.</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Cyril of Alexandria</div>
+        <div class="fc-era">c. AD 428–431</div>
+        <div class="fc-txt">"We confess that the holy, ever-virgin Mary is the Mother of God, inasmuch as the divine Word was made flesh and became man and from the very conception united to himself the temple taken from her."</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Sub Tuum Praesidium</div>
+        <div class="fc-era">Egyptian papyrus — c. AD 250 (oldest known Marian prayer)</div>
+        <div class="fc-txt">"Beneath your compassion, we take refuge, O Theotokos. Our petitions, do not despise in time of trouble, but from dangers deliver us, O only pure, only blessed one." — The word Theotokos appears explicitly in this prayer, the oldest surviving Marian supplication, from Egypt.</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">John of Damascus</div>
+        <div class="fc-era">c. AD 743</div>
+        <div class="fc-txt">"The name Theotokos contains the whole mystery of the Incarnation. For if she that bare him is the Mother of God, then he that was born of her must be God, and must also be man. For how could God, who is before all ages, have been born of a woman, unless he had been made man?"</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- VII -->
+<div class="sec" id="s7">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>VII. Perpetual Virginity — Before the Birth (ante partum)</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">07</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>Mary's virginity <em>before</em> the birth of Christ — the virgin conception — is affirmed by all major Christian traditions, including virtually all Protestants. It is the direct teaching of Scripture and disputed by no one within the Christian tradition.</p>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">Isaiah 7:14 (LXX / Matthew 1:23)</div>
+        <div class="sv-txt">"Behold, the virgin (parthenos) shall conceive and bear a son, and they shall call his name Immanuel."</div>
+        <div class="labels"><span class="label oo">OO: The LXX uses parthenos — virgin. Matthew applies it explicitly to Mary.</span><span class="label gk">Greek: parthenos = technical term for a woman who has not had sexual relations</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Luke 1:34</div>
+        <div class="sv-txt">"And Mary said to the angel, 'How will this be, since I know not a man?'"</div>
+        <div class="labels"><span class="label oo">OO: Mary's surprise implies she had no expectation of relations with Joseph — suggesting a vow of virginity</span><span class="label gk">Greek: ouk ginōskō — "I do not know" (present tense, not future)</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Matthew 1:18</div>
+        <div class="sv-txt">"Before they came together she was found to be with child from the Holy Spirit."</div>
+        <div class="labels"><span class="label oo">OO: The conception is explicitly virgin — by the Holy Spirit, not by Joseph</span></div>
+      </div>
+    </div>
+    <h3>Mary's Question and the Vow of Virginity</h3>
+    <p>A textual detail of enormous significance: in Luke 1:34, when the angel announces that Mary will conceive, she asks "How will this be, since I know not a man?" The verb is present tense, not future. If Mary were simply a recently betrothed woman who expected to consummate her marriage to Joseph in the ordinary course of things, her question would make no sense. She would know perfectly well how a pregnancy occurs. The question only makes sense if she did <em>not</em> intend to have marital relations — that is, if she had already dedicated her virginity to God. This is the unanimous Patristic reading of the passage, and it underlies the later tradition of her permanent virginity.</p>
+  </div>
+</div>
+
+<!-- VIII -->
+<div class="sec" id="s8">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>VIII. During the Birth (in partu) — The Virginal Delivery</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">08</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>The Oriental Orthodox tradition, along with much of the ancient Church, teaches that Mary remained a virgin not only before but <em>during</em> the birth of Christ — that the birth itself was miraculous, not causing the rupture of her physical virginity. This is the doctrine of <span class="gk-word">in partu</span> (virginity in the act of birth).</p>
+    <p>This teaching draws on the typological reading of Ezekiel 44:2 — a text the Fathers applied to Mary:</p>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">Ezekiel 44:2</div>
+        <div class="sv-txt">"This gate shall remain shut; it shall not be opened, and no one shall enter by it, for the Lord, the God of Israel, has entered by it. Therefore it shall remain shut."</div>
+        <div class="labels"><span class="label oo">OO: Patristic typology — the sealed gate = Mary's perpetual virginity; God alone passed through it</span><span class="label ctx">Context: The Eastern gate of the Temple, sealed after God's glory entered</span></div>
+      </div>
+    </div>
+    <div class="fc-grid">
+      <div class="fc">
+        <div class="fc-name">Ambrose of Milan</div>
+        <div class="fc-era">c. AD 391</div>
+        <div class="fc-txt">"Mary is the gate of which Ezekiel spoke when he said: 'The Lord will enter through it and it will be closed after him forever.' And rightly is the gate closed that had not been opened; for Mary is holy and inviolate."</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Jerome</div>
+        <div class="fc-era">c. AD 383</div>
+        <div class="fc-txt">"Virgin she was before the delivery, and she continued a virgin after the delivery."</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Proclus of Constantinople</div>
+        <div class="fc-era">c. AD 430</div>
+        <div class="fc-txt">"He who was begotten of the Father without a mother was born of a mother without a father — and the seal of her virginity was not broken."</div>
+      </div>
+    </div>
+    <p>The Protoevangelium of James (c. AD 145–150) narrates the inspection of Mary's physical virginity after the birth by the midwife Salome — a passage affirming the <em>in partu</em> virginity in the very earliest extra-canonical tradition. The Ethiopian Orthodox tradition has elaborated this most extensively, incorporating the miraculous birth narrative into liturgical texts and the <em>Weddase Maryam</em> (Praise of Mary).</p>
+  </div>
+</div>
+
+<!-- IX -->
+<div class="sec" id="s9">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>IX. After the Birth (post partum) — The Perpetual Virginity</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">09</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>The most debated aspect of Mary's virginity is the <em>post partum</em> claim: that she remained a virgin after giving birth to Jesus — that she and Joseph never had marital relations, and that she bore no other biological children. This is the Oriental Orthodox consensus, the position of the ancient Church, and the tradition maintained without interruption in the Coptic, Ethiopian, Syriac, Armenian, and Malankara traditions.</p>
+    <div class="fc-grid">
+      <div class="fc">
+        <div class="fc-name">Athanasius of Alexandria</div>
+        <div class="fc-era">c. AD 360</div>
+        <div class="fc-txt">"Let those who deny that the Son is by nature from the Father and proper to his essence, deny also that he took true human flesh from the ever-virgin Mary."</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Epiphanius of Salamis</div>
+        <div class="fc-era">c. AD 377</div>
+        <div class="fc-txt">"Holy Mary... was never parted from the holy estate of virginity."</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Jerome</div>
+        <div class="fc-era">c. AD 383 — Against Helvidius</div>
+        <div class="fc-txt">"You say that Mary did not remain a virgin: I claim still more — that Joseph himself on account of Mary was a virgin, so that from a virgin wedlock a virgin son was born."</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Augustine of Hippo</div>
+        <div class="fc-era">c. AD 401</div>
+        <div class="fc-txt">"In being born of a Virgin who chose to remain a Virgin even before she knew who was to be born of her, Christ wanted to approve virginity rather than to impose it... showing that voluntary virginity is praiseworthy."</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Cyril of Alexandria</div>
+        <div class="fc-era">c. AD 424</div>
+        <div class="fc-txt">"We acknowledge the holy Virgin to be at once the Mother of God and the ever-virgin (Aeiparthenos); for the One who was incarnate of her is the eternal Word."</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">John of Damascus</div>
+        <div class="fc-era">c. AD 743</div>
+        <div class="fc-txt">"He was born of the Holy Spirit and of the ever-virgin Mary... She who before she gave birth was a virgin is still a virgin after the birth."</div>
+      </div>
+    </div>
+    <h3>The Protestant Reformers on Perpetual Virginity</h3>
+    <p>It is often not appreciated that the Protestant Reformers — despite their profound disagreements with Rome — unanimously maintained Mary's perpetual virginity:</p>
+    <blockquote>"Christ, our Savior, was the real and natural fruit of Mary's virginal womb... This was without the cooperation of a man, and she remained a virgin after that."<cite>— Martin Luther, <em>Sermons on John 1–4</em> (1537)</cite></blockquote>
+    <blockquote>"There have been certain folk who have wished to suggest from this passage [Matthew 1:25] that the Virgin Mary had other children than the Son of God, and that Joseph had then dwelt with her later... It is a matter of no small moment that the honour of the mother of our Lord should remain whole and undivided."<cite>— John Calvin, <em>Commentary on Matthew 1:25</em> (1555)</cite></blockquote>
+    <blockquote>"I firmly believe that Mary, according to the words of the gospel, as a pure Virgin brought forth for us the Son of God and in childbirth and after childbirth forever remained a pure, intact Virgin."<cite>— Ulrich Zwingli, <em>Zwingli Opera</em> (1528)</cite></blockquote>
+    <p>The abandonment of perpetual virginity is a development of later Protestant thought — not a recovery of an original apostolic teaching. It was introduced by the polemicist Helvidius around AD 380 and condemned by Jerome. It lay dormant until the 17th century.</p>
+  </div>
+</div>
+
+<!-- X -->
+<div class="sec" id="s10">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>X. Matthew 1:25 — What Does "Until" Mean?</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">10</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>The most frequently cited Protestant proof text against perpetual virginity is Matthew 1:25: "he knew her not <em>until</em> (heos) she had given birth to a son." The argument is: "until" implies that Joseph did know her after the birth. The OO tradition — and the unanimous witness of the Fathers — rejects this reading.</p>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">Matthew 1:25</div>
+        <div class="sv-txt">"And he [Joseph] knew her not until (heos hou) she had given birth to a son."</div>
+        <div class="labels"><span class="label prot">Prot: "Until" implies relations afterwards</span><span class="label oo">OO: "Until" in biblical Greek does not imply anything about what happened after</span><span class="label gk">Greek: heos — a temporal particle about the situation up to a point, not about what follows</span></div>
+      </div>
+    </div>
+    <h3>The Meaning of "Heos" (Until) in Biblical Greek</h3>
+    <p>The Greek <span class="gk-word">heos</span> (until) and <span class="gk-word">heos hou</span> (until which time) do not assert that the situation reversed after the stated boundary. In biblical usage, the word frequently marks a period without implying change afterward. Consider these parallels:</p>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">Matthew 28:20</div>
+        <div class="sv-txt">"And behold, I am with you always, to the end (heos) of the age."</div>
+        <div class="labels"><span class="label ctx">Context: Does "until the end of the age" imply Christ will not be with us after?</span><span class="label oo">OO: Clearly not — heos does not imply cessation after the boundary</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">2 Samuel 6:23 (LXX)</div>
+        <div class="sv-txt">"Michal the daughter of Saul had no children until (heos) the day of her death."</div>
+        <div class="labels"><span class="label ctx">Context: Does "until her death" imply she had children after death?</span><span class="label oo">OO: Clearly not. "Until" simply specifies the relevant period.</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">1 Corinthians 15:25</div>
+        <div class="sv-txt">"For he must reign until (heos) he has put all his enemies under his feet."</div>
+        <div class="labels"><span class="label ctx">Context: Does this mean Christ stops reigning after defeating his enemies?</span><span class="label oo">OO: No — his reign continues. "Until" marks a condition, not a terminus.</span></div>
+      </div>
+    </div>
+    <p>The point is straightforward: in biblical Greek, <span class="gk-word">heos</span> is used to emphasize what was the case up to a given point. It says nothing about what came after. Matthew 1:25 tells the reader that Joseph did not consummate the marriage before the birth — guaranteeing the virgin conception. It makes no claim about afterward. The perpetual virginity tradition draws from other evidence.</p>
+  </div>
+</div>
+
+<!-- XI -->
+<div class="sec" id="s11">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>XI. "Firstborn" — A Legal and Ritual Title, Not a Numerical Claim</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">11</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>Protestants sometimes argue from Luke 2:7 — "she gave birth to her <em>firstborn</em> son" — that "firstborn" implies there were subsequent children. If Jesus is the firstborn, surely there must be a second-born. The OO tradition, and the unanimous Patristic reading, rejects this inference.</p>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">Luke 2:7</div>
+        <div class="sv-txt">"And she gave birth to her firstborn son and wrapped him in swaddling cloths and laid him in a manger."</div>
+        <div class="labels"><span class="label prot">Prot: "Firstborn" implies later-born siblings</span><span class="label oo">OO: "Firstborn" is a legal and ritual title, not a sequential count</span><span class="label gk">Greek: prōtotokos — a title with legal/cultic significance independent of birth order</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Exodus 13:2</div>
+        <div class="sv-txt">"Consecrate to me all the firstborn. Whatever is the first to open the womb among the people of Israel, both of man and of beast, is mine."</div>
+        <div class="labels"><span class="label ctx">Context: The firstborn must be consecrated to God on the eighth day — a legal requirement that applies regardless of subsequent children</span><span class="label oo">OO: "Firstborn" is a ritual status, not a count</span></div>
+      </div>
+    </div>
+    <p>Archaeological evidence clinches the case. A Jewish funerary inscription discovered in Egypt in 1922 reads: <em>"Here lies Arsinoe, wife of Philo, who died in the pangs of giving birth to her firstborn child."</em> Arsinoe died giving birth to her <em>firstborn</em> — and there was no second child. "Firstborn" was a legal and religious status that applied to the first child to open the womb, regardless of whether subsequent children were ever born. Luke uses the term in its proper legal sense — to mark Jesus as the one who must be consecrated in the Temple (Luke 2:22–24) — not to imply siblings.</p>
+  </div>
+</div>
+
+<!-- XII -->
+<div class="sec" id="s12">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>XII. The Brothers of Jesus — The Three Theories</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">12</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>The Gospels refer to "brothers" (and sisters) of Jesus — James, Joseph, Simon, and Judas (Mark 6:3; Matthew 13:55). Who were these men? Three major theories have been proposed in the history of the Church. Only one of them — the Helvidian — is the position of modern Protestantism. The other two are ancient and patristic.</p>
+    <div class="theory-grid">
+      <div class="theory oo-card">
+        <h4>Epiphanian Theory</h4>
+        <p>The brothers were Joseph's sons by a first wife, who died before his betrothal to Mary. Joseph was an elderly widower; Mary was a young temple virgin. The brothers are Jesus' legal half-brothers through Joseph — but not Mary's children at all.</p>
+        <p><strong>Held by:</strong> Epiphanius of Salamis, Origen, the Protoevangelium of James, and the entire Oriental Orthodox tradition.</p>
+        <span class="verdict">OO Standard Position</span>
+      </div>
+      <div class="theory hiero">
+        <h4>Hieronymian Theory</h4>
+        <p>The brothers were cousins of Jesus — sons of Mary of Clopas, sister (or sister-in-law) of the Virgin Mary. Jerome argued that Semitic languages used "brother" (ach / adelphos) for kinsmen, including cousins.</p>
+        <p><strong>Held by:</strong> Jerome, and subsequently the Roman Catholic tradition. Not the OO standard position, though known within OO scholarship.</p>
+        <span class="verdict">Roman Catholic Position</span>
+      </div>
+      <div class="theory proto">
+        <h4>Helvidian Theory</h4>
+        <p>The brothers were the biological children of Joseph and Mary, born after Jesus. Mary had a normal marital life with Joseph after the birth of Christ. This was proposed by Helvidius c. AD 380 and condemned by Jerome.</p>
+        <p><strong>Held by:</strong> No significant Church Father before Helvidius. Standard in modern Protestantism.</p>
+        <span class="verdict">Modern Protestant View</span>
+      </div>
+    </div>
+    <h3>The Protoevangelium of James — The Earliest Source</h3>
+    <p>The <em>Protoevangelium of James</em> (c. AD 145–150) is the earliest narrative source on the question. It presents Joseph as an elderly widower chosen by lot to be the guardian of the temple virgin Mary. His children from his first marriage are the "brothers of the Lord." This document is explicitly cited by Origen (c. AD 230) and reflects what was evidently a widespread early tradition about Joseph's family circumstances. While not canonical Scripture, it preserves apostolic-era tradition and is the basis of the Epiphanian view held by all Oriental Orthodox churches.</p>
+    <blockquote>"Joseph was an old man... and he had sons. And he took Mary to be in his house as his own ward."<cite>— Protoevangelium of James §9 (c. AD 145–150)</cite></blockquote>
+  </div>
+</div>
+
+<!-- XIII -->
+<div class="sec" id="s13">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>XIII. Adelphos in Greek — And Its Semitic Background</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">13</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>The key linguistic argument for the OO and Catholic positions is the semantic range of <span class="gk-word">adelphos</span> in biblical usage. Protestants assume "brother" must mean full biological brother. The linguistic and textual evidence shows otherwise.</p>
+    <h3>Hebrew and Aramaic Have No Word for Cousin</h3>
+    <p>The Hebrew word <span class="gk-word">ach</span> (brother) and the Aramaic <span class="gk-word">ach</span> cover a wide range of relationships: full brother, half-brother, nephew, uncle, cousin, and fellow tribesman. There is no distinct Hebrew or Aramaic word for "cousin." When the Septuagint translated the Hebrew Bible into Greek, it regularly rendered <span class="gk-word">ach</span> as <span class="gk-word">adelphos</span> — even when the relationship was clearly not a full brother.</p>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">Genesis 13:8 (LXX)</div>
+        <div class="sv-txt">"Then Abram said to Lot, 'Let there be no strife between you and me... for we are brothers (adelphoi).'"</div>
+        <div class="labels"><span class="label ctx">Context: Lot was Abraham's nephew (Gen 11:31) — not his brother</span><span class="label gk">Greek: adelphos used for nephew — proves the semantic range</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Genesis 29:12 (LXX)</div>
+        <div class="sv-txt">"And Jacob told Rachel that he was her father's brother (adelphos), and that he was Rebekah's son."</div>
+        <div class="labels"><span class="label ctx">Context: Jacob was Laban's nephew — yet adelphos is used</span><span class="label gk">LXX renders cousin-relation as adelphos consistently</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">1 Chronicles 23:21–22 (LXX)</div>
+        <div class="sv-txt">"The sons of Eleazar died having no sons, but only daughters; the sons of Kish, their brothers (adelphoi), married them."</div>
+        <div class="labels"><span class="label ctx">Context: The "brothers" here are cousins — sons of Kish married daughters of Eleazar who was Kish's brother</span><span class="label gk">adelphos = cousin in this context</span></div>
+      </div>
+    </div>
+    <p>The New Testament was written by Jewish authors thinking in Semitic categories — even when writing in Greek. When Matthew and Mark report the "brothers of the Lord," they are using <span class="gk-word">adelphos</span> in the standard Septuagintal manner that could encompass half-brothers, step-brothers, or cousins. The word alone cannot settle the question of which relationship is meant.</p>
+    <p>Crucially, Greek does have a word for cousin: <span class="gk-word">anepsios</span> (Colossians 4:10 — "Mark the cousin [anepsios] of Barnabas"). The fact that the Evangelists use <span class="gk-word">adelphos</span> rather than <span class="gk-word">anepsios</span> does not prove full brotherhood — it shows they were following the LXX usage, in which <span class="gk-word">adelphos</span> was the natural word for any close male relative.</p>
+  </div>
+</div>
+
+<!-- XIV -->
+<div class="sec" id="s14">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>XIV. James — Who Was the Lord's Brother?</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">14</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>The claim that James was Jesus' biological brother stands or falls primarily on one passage — Galatians 1:19: "I saw none of the other apostles except James the Lord's brother." The Protestant reading is that "brother of the Lord" means biological brother, therefore a son of Mary. The OO reading is that it means a close kinsman — specifically, Joseph's son from a prior marriage. Here is the full evidence:</p>
+    <h3>The Identities in the Gospels</h3>
+    <p>The Gospel lists of Jesus' "brothers" name four: James, Joseph, Simon, and Judas (Mark 6:3; Matt 13:55). The Pauline letter to the Galatians identifies James specifically as "the Lord's brother" (Gal 1:19). Several lines of evidence bear on who this James is:</p>
+    <h3>Line of Evidence 1 — James the Son of Alphaeus</h3>
+    <p>The Twelve Apostles include "James the son of Alphaeus" (Matthew 10:3; Mark 3:18; Luke 6:15; Acts 1:13). Early Christian tradition — including Papias (c. AD 125), Hegesippus (c. AD 180), Eusebius of Caesarea, and Jerome — identifies this James with James the Lord's brother, the leader of the Jerusalem church. If James the brother of the Lord was one of the Twelve, he was already distinguished from James the son of Zebedee. He is called "the Lord's brother" as his distinguishing title — not necessarily indicating biological brotherhood.</p>
+    <h3>Line of Evidence 2 — Hegesippus (c. AD 180)</h3>
+    <blockquote>"James, the brother of the Lord, received the Church together with the Apostles. He was holy from his mother's womb. He drank no wine or intoxicating liquor and ate no flesh; no razor came upon his head."<cite>— Hegesippus, <em>Memoirs</em>, quoted by Eusebius, <em>Ecclesiastical History</em> II.23 (c. AD 180)</cite></blockquote>
+    <p>This portrait of James is consistent with a Nazirite-like ascetic vow. The Oriental Orthodox interpretation: James was Joseph's son by a prior marriage, raised in a devout Jewish household. His title "brother of the Lord" was the recognized way of identifying his relationship to Jesus — a legal kinship through Joseph — without implying biological brotherhood through Mary.</p>
+    <h3>Line of Evidence 3 — The Cross Scene</h3>
+    <p>This is perhaps the most powerful single piece of evidence for the perpetual virginity. At the cross, as Jesus dies, he entrusts his mother to "the beloved disciple" (John 19:26–27). If Mary had other biological children — James among them — this act would be incomprehensible. In Jewish culture, a mother would be entrusted to her own sons. The only explanation for Jesus giving his mother to a non-family member is that she had no other sons. The "brothers of the Lord" were, on this reading, not Mary's biological children — which is precisely what the Epiphanian theory holds.</p>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">John 19:26–27</div>
+        <div class="sv-txt">"When Jesus therefore saw his mother, and the disciple whom he loved standing nearby, he said to his mother, 'Woman, behold your son!' Then he said to the disciple, 'Behold, your mother!' And from that hour the disciple took her to his own home."</div>
+        <div class="labels"><span class="label oo">OO: If Mary had biological sons, entrusting her to John is inexplicable. She had no children of her own.</span><span class="label prot">Prot: James and brothers were not present at the cross — John was more spiritually faithful</span><span class="label ctx">Context: Jewish custom demanded children care for their widowed mother</span></div>
+      </div>
+    </div>
+    <h3>Line of Evidence 4 — John 7:5</h3>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">John 7:5</div>
+        <div class="sv-txt">"For not even his brothers believed in him."</div>
+        <div class="labels"><span class="label ctx">Context: During the Galilean ministry — the brothers did not believe in Jesus</span><span class="label oo">OO: This fits the Epiphanian view — Joseph's older sons were resistant to Jesus' ministry. Their later conversion is a separate event.</span></div>
+      </div>
+    </div>
+    <p>The progression — brothers who did not believe during the ministry, James becoming a leader of the Jerusalem church after the Resurrection (Acts 15; Gal 1:19; 2:9) — is consistent with the Epiphanian tradition. Joseph's son James was converted by the post-Resurrection appearance of the Lord (1 Cor 15:7: "Then he appeared to James") and became one of the pillars of the early Church.</p>
+  </div>
+</div>
+
+<!-- XV -->
+<div class="sec" id="s15">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>XV. The Mary at the Cross Evidence</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">15</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>The crucifixion narratives offer crucial evidence about the identity of the Lord's brothers. All four Gospels describe women present at or near the cross. A comparison of the accounts reveals a remarkable detail:</p>
+    <div class="sv-grid">
+      <div class="sv">
+        <div class="sv-ref">Matthew 27:55–56</div>
+        <div class="sv-txt">"There were also many women there, looking on from a distance, who had followed Jesus from Galilee, ministering to him, among whom were Mary Magdalene and Mary the mother of James and Joseph and the mother of the sons of Zebedee."</div>
+        <div class="labels"><span class="label ctx">Key: "Mary the mother of James and Joseph" — a different Mary from the Virgin</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">Mark 15:40</div>
+        <div class="sv-txt">"There were also women looking on from a distance, among whom were Mary Magdalene, and Mary the mother of James the younger and of Joseph, and Salome."</div>
+        <div class="labels"><span class="label ctx">Key: "Mary the mother of James the younger and of Joseph" — again, a distinct person</span></div>
+      </div>
+      <div class="sv">
+        <div class="sv-ref">John 19:25</div>
+        <div class="sv-txt">"Standing by the cross of Jesus were his mother, and his mother's sister, Mary the wife of Clopas, and Mary Magdalene."</div>
+        <div class="labels"><span class="label ctx">Key: "Mary the wife of Clopas" = the Mary identified as mother of James and Joseph in the Synoptics</span></div>
+      </div>
+    </div>
+    <h3>The Argument</h3>
+    <p>Putting the accounts together: a woman named "Mary the mother of James and Joseph" (the same two names as two of the Lord's brothers — James and Joseph/Joses) is present at the cross. John identifies this woman as "Mary the wife of Clopas" — a different person from the Virgin Mary. If the James and Joseph who are "brothers of the Lord" are the <em>sons of Mary of Clopas</em> — not sons of the Virgin Mary — then two explanations immediately become available:</p>
+    <ul>
+      <li><strong>Hieronymian (cousin) position:</strong> Mary of Clopas is the Virgin's sister, making James and Joseph cousins of Jesus — hence "brothers" in the Semitic sense.</li>
+      <li><strong>Epiphanian (step-brother) position:</strong> The "brothers" listed in the Gospels are Joseph's sons by a prior marriage. A separate Mary happened to be the mother of men with the same names — a common occurrence in 1st-century Jewish society.</li>
+    </ul>
+    <p>Either way: the "Mary, mother of James and Joseph" at the cross is not the Virgin Mary. This means the James who is "brother of the Lord" either had a different mother entirely (Epiphanian view) or his mother was the Virgin's sister (Hieronymian view). Neither permits the Helvidian Protestant conclusion that James was the Virgin Mary's own biological son.</p>
+  </div>
+</div>
+
+<!-- XVI -->
+<div class="sec" id="s16">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>XVI. Protestant Objections &amp; Orthodox Responses</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">16</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+
+    <div class="obj">
+      <div class="obj-hd" onclick="tobj(this)">
+        <strong>Objection 1: Calling Mary the "Mother of God" makes her divine or makes her God's mother in a way that implies God had a beginning.</strong>
+        <span class="obj-arr">▶</span>
+      </div>
+      <div class="obj-body">
+        <p>If Mary is the "Mother of God," does that mean God was born? Does God have a mother? This seems to imply God had a beginning, which is heretical.</p>
+        <div class="obj-resp">
+          <strong>Orthodox Response</strong>
+          <p>This objection confuses the nature of the person born with the mode of his existence. Mary did not give birth to the divine nature — she gave birth to a person, the divine Son, who in his divine nature is eternal and without beginning. God the Son has existed eternally from the Father. But when the eternal Son took on a human nature in the Incarnation, he was born in time as a man — and Mary is the mother of that person. We speak similarly when we say a human mother gave birth to a philosopher: she did not give birth to philosophy, but she gave birth to the person who is a philosopher. Mary gave birth to the person who is God — therefore she is the Mother of God. This is precisely the Christological insight that Ephesus preserved against Nestorius.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="obj">
+      <div class="obj-hd" onclick="tobj(this)">
+        <strong>Objection 2: The Bible says Jesus had brothers — James, Joseph, Simon, and Judas (Mark 6:3). The plain meaning of "brother" is biological brother.</strong>
+        <span class="obj-arr">▶</span>
+      </div>
+      <div class="obj-body">
+        <p>Scripture plainly calls James and the others "brothers" of Jesus. The simple, natural reading of "brother" in English (and Greek) is a biological male sibling. Any other reading is special pleading motivated by a predetermined Mariological conclusion.</p>
+        <div class="obj-resp">
+          <strong>Orthodox Response</strong>
+          <p>The "plain meaning" argument assumes that 1st-century Jewish Greek functions like 21st-century English. As demonstrated in Section XIII, <span class="gk-word">adelphos</span> in the Septuagint regularly translates the Hebrew <span class="gk-word">ach</span> — which covers nephew, cousin, and kinsman, not only full brother. Abraham and Lot are called "brothers" (Gen 13:8 LXX) though Lot was Abraham's nephew. Jacob and Laban are called "brothers" (Gen 29:12 LXX) though Jacob was Laban's nephew. The New Testament authors, all deeply formed by the LXX, use <span class="gk-word">adelphos</span> with the same Semitic flexibility. Moreover, Greek does have a distinct word for cousin — <span class="gk-word">anepsios</span> (Col 4:10). If these were biological brothers, using <span class="gk-word">adelphos</span> would be unambiguous — but the evidence of the cross scene (Section XV) shows they were not Mary's sons.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="obj">
+      <div class="obj-hd" onclick="tobj(this)">
+        <strong>Objection 3: Matthew 1:25 says Joseph "knew her not until she gave birth" — this implies he knew her after.</strong>
+        <span class="obj-arr">▶</span>
+      </div>
+      <div class="obj-body">
+        <p>The word "until" (heos) in Matthew 1:25 logically implies a change of state after the event — just as "I didn't eat until dinner" implies I ate at dinner. Why would Matthew use this word if nothing changed?</p>
+        <div class="obj-resp">
+          <strong>Orthodox Response</strong>
+          <p>Matthew's purpose in verse 25 is not to say anything about what happened after the birth. He is defending the virgin conception by making clear that Joseph had no part in it. Having established that, his narrative moves on. The word <span class="gk-word">heos</span> in Greek — as repeatedly demonstrated in the biblical text itself (Matt 28:20; 2 Sam 6:23 LXX; 1 Cor 15:25) — does not imply a reversal after the stated point. It marks the duration of a condition without comment on what follows. Jerome, Augustine, Calvin, and Luther all read it this way. If "until" here implied subsequent marital relations, then Matthew 28:20 — "I am with you always, until the end of the age" — would imply Christ abandons us after the end of the age, which is absurd.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="obj">
+      <div class="obj-hd" onclick="tobj(this)">
+        <strong>Objection 4: The perpetual virginity dishonors marriage and implies sexual relations are somehow defiling.</strong>
+        <span class="obj-arr">▶</span>
+      </div>
+      <div class="obj-body">
+        <p>Teaching that Mary remained a virgin implies that consummating a marriage would have been improper or defiling — which is a negative view of marital sexuality contrary to Scripture (Heb 13:4).</p>
+        <div class="obj-resp">
+          <strong>Orthodox Response</strong>
+          <p>The perpetual virginity of Mary does not imply that marriage or marital relations are shameful. The Church celebrates marriage as a Holy Mystery and affirms marital sexuality as good and blessed. Mary's virginity is not about the defectiveness of marriage — it is about the uniqueness of her vocation. She was chosen to be the living Ark of the New Covenant, carrying God incarnate. The OT Ark of the Covenant was treated with the utmost sacred reverence (2 Sam 6:6–7). It is fitting that the womb which bore God incarnate be consecrated entirely to that purpose. This is not a statement about sexuality in general — it is a statement about this particular calling. Jerome addresses this directly: "I do not detract from marriage when I extol virginity."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="obj">
+      <div class="obj-hd" onclick="tobj(this)">
+        <strong>Objection 5: The whole idea of perpetual virginity is not in the Bible — it is a tradition added to Scripture and therefore invalid.</strong>
+        <span class="obj-arr">▶</span>
+      </div>
+      <div class="obj-body">
+        <p>Perpetual virginity is nowhere explicitly stated in the New Testament. It is an extrabiblical tradition — and Sola Scriptura requires that we reject traditions not found in Scripture.</p>
+        <div class="obj-resp">
+          <strong>Orthodox Response</strong>
+          <p>First, the OO tradition does not accept Sola Scriptura as a valid hermeneutical principle — a topic addressed in the site on Scripture and Tradition. Second, the perpetual virginity is not simply an "extrabiblical tradition" — it has significant biblical support: Luke 1:34 (Mary's question implies a vow of virginity), Matthew 1:25 (does not deny perpetual virginity), John 19:26–27 (Mary entrusted to John — not her sons), Ezekiel 44:2 (the sealed gate typology), and the "firstborn" argument (Section XI). Third, the Sola Scriptura argument proves too much: the doctrine of the Trinity, the full canon of Scripture, the two-nature doctrine of Christ — none of these are explicitly formulated in Scripture either. They are theological conclusions drawn from Scripture by the Church's teaching authority. If explicit biblical statement is the criterion, most Protestant theology fails it.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- XVII -->
+<div class="sec" id="s17">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>XVII. Frequently Asked Questions</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">17</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+
+    <div class="fi">
+      <div class="fi-hd" onclick="tf(this)">
+        <strong>Did Luther really believe in the perpetual virginity?</strong>
+        <span class="fi-arr">▶</span>
+      </div>
+      <div class="fi-body">
+        <p>Yes. Luther wrote in 1537: "Christ, our Savior, was the real and natural fruit of Mary's virginal womb... This was without the cooperation of a man, and she remained a virgin after that." He held this view throughout his life. Calvin and Zwingli likewise defended the perpetual virginity. The abandonment of this doctrine in mainstream Protestantism is a development that postdates the Reformers by at least a century and was never embraced by the magisterial Reformers themselves.</p>
+      </div>
+    </div>
+
+    <div class="fi">
+      <div class="fi-hd" onclick="tf(this)">
+        <strong>Is Theotokos a Marian devotional title or a Christological one?</strong>
+        <span class="fi-arr">▶</span>
+      </div>
+      <div class="fi-body">
+        <p>Primarily Christological. The controversy at Ephesus was not about Mary's honor but about Christ's identity. Nestorius' objection to Theotokos was that it implied too high a unity between the human and divine in Christ. Cyril's defense was that it protected the one-person unity of the Incarnate Word. If Jesus is a single person — fully God and fully man — then whoever gave birth to him gave birth to God incarnate. The title Theotokos is the necessary consequence of orthodox Christology. It secondarily honors Mary because of what it says about her Son — but that honor flows from the Christological truth, not the other way around.</p>
+      </div>
+    </div>
+
+    <div class="fi">
+      <div class="fi-hd" onclick="tf(this)">
+        <strong>Do the Oriental Orthodox believe Mary is co-redemptrix or co-mediatrix?</strong>
+        <span class="fi-arr">▶</span>
+      </div>
+      <div class="fi-body">
+        <p>No. These are Western Catholic theological opinions — not Oriental Orthodox teaching. The OO tradition venerates Mary as Theotokos and Aeiparthenos, honors her as the greatest of the saints, and asks for her intercession — as we might ask any saint to pray for us. But the OO tradition does not teach that Mary cooperates in the redemption itself or that she is a co-mediator alongside Christ. There is one Mediator between God and man, the man Christ Jesus (1 Tim 2:5). Mary is the intercessor, the one who prays — she is not the Co-Redeemer. This is an important distinction between Oriental Orthodox Mariology and certain Roman Catholic theological currents.</p>
+      </div>
+    </div>
+
+    <div class="fi">
+      <div class="fi-hd" onclick="tf(this)">
+        <strong>Was James the same person as "James the son of Alphaeus" among the Twelve?</strong>
+        <span class="fi-arr">▶</span>
+      </div>
+      <div class="fi-body">
+        <p>This is debated among scholars. The early tradition — represented by Papias, Hegesippus, and Eusebius — identifies James the Lord's brother with the leader of the Jerusalem church (Acts 15; Gal 1:19; 2:9) and regards him as one of the Twelve ("James son of Alphaeus"). If so, his title "Lord's brother" was not a statement of biological brotherhood but his distinguishing identification — just as "Simon the Zealot" or "Thomas called Didymus" are identifying epithets. Jerome also equated the two James figures. Other scholars see James the Lord's brother as a distinct person from James son of Alphaeus. The OO tradition does not require a resolution of this scholarly question — it requires only that James was not Mary's biological son.</p>
+      </div>
+    </div>
+
+    <div class="fi">
+      <div class="fi-hd" onclick="tf(this)">
+        <strong>If Joseph had children from a prior marriage, why is he described as simply "the carpenter" with no mention of prior family?</strong>
+        <span class="fi-arr">▶</span>
+      </div>
+      <div class="fi-body">
+        <p>The Gospels are highly compressed narratives — they omit vast amounts of biographical detail. Joseph's prior marriage (if it occurred) would have predated the Gospel narrative entirely. The Protoevangelium of James, which records this tradition, is early (c. AD 145–150) and reflects genuine apostolic-era memory. The silence of the canonical Gospels proves nothing — they also do not mention Joseph's death, the names of his parents, or many other biographical facts. The Epiphanian tradition has the best claim to historical accuracy: it is attested earliest, it explains the most evidence, and it is the unanimous position of the Oriental Orthodox churches, which preserve direct continuity with the apostolic communities of Egypt, Syria, and Armenia.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- XVIII -->
+<div class="sec" id="s18">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>XVIII. Primary Sources &amp; Further Reading</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">18</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <h3>Ancient Texts</h3>
+    <ul>
+      <li><em>Protoevangelium of James</em> (c. AD 145–150)</li>
+      <li>Origen of Alexandria — <em>Commentary on John</em>, <em>Commentary on Romans</em> (c. AD 230–248)</li>
+      <li>Epiphanius of Salamis — <em>Panarion</em> (Haereses), Book III (c. AD 375–377)</li>
+      <li>Jerome — <em>Against Helvidius</em> (c. AD 383)</li>
+      <li>Cyril of Alexandria — <em>Third Letter to Nestorius</em>, <em>Twelve Anathemas</em> (c. AD 430)</li>
+      <li>Council of Ephesus — <em>Definition and Anathemas</em> (AD 431)</li>
+      <li>Second Council of Constantinople — <em>Definition</em> (AD 553) — affirms <em>Aeiparthenos</em></li>
+      <li>Eusebius of Caesarea — <em>Ecclesiastical History</em> II.23 (c. AD 315)</li>
+      <li>John of Damascus — <em>Exact Exposition of the Orthodox Faith</em>, Book IV (c. AD 743)</li>
+    </ul>
+    <h3>Oriental Orthodox Sources</h3>
+    <ul>
+      <li><em>Weddase Maryam</em> — Ethiopian Orthodox Praise of Mary (liturgical texts)</li>
+      <li>Coptic <em>Theotokia</em> — Saturday Theotokion and related liturgical prayers</li>
+      <li>Syriac <em>Soghitha</em> (dialogue hymns) on the Theotokos — attributed to Ephrem the Syrian</li>
+      <li>Armenian <em>Sharakan</em> (hymn book) — Marian canticles</li>
+    </ul>
+    <h3>Protestant Reformers</h3>
+    <ul>
+      <li>Martin Luther — <em>Sermons on John 1–4</em> (1537); <em>Commentary on the Magnificat</em> (1521)</li>
+      <li>John Calvin — <em>Commentary on Matthew 1:25</em> (1555)</li>
+      <li>Ulrich Zwingli — <em>Zwingli Opera</em>, Vol. I (1528)</li>
+    </ul>
+    <h3>Modern Scholarship</h3>
+    <ul>
+      <li>John McHugh — <em>The Mother of Jesus in the New Testament</em> (1975)</li>
+      <li>Richard Bauckham — <em>Jude and the Relatives of Jesus</em> (1990)</li>
+      <li>Luigi Gambero — <em>Mary and the Fathers of the Church</em> (1999)</li>
+      <li>Jaroslav Pelikan — <em>Mary Through the Centuries</em> (1996)</li>
+      <li>Thomas Weinandy — <em>Does God Suffer?</em> (2000) — Theotokos and Christology</li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- /content -->
+</div><!-- /main -->
+
+<footer>
+  <p>THE <span>ORTHODOX LAMP</span> &nbsp;·&nbsp; Biblical, Historical &amp; Patristic Apologetics</p>
+  <p style="margin-top:.5rem;font-size:.72rem;opacity:.6;">☩ &nbsp; In the name of the Father, and of the Son, and of the Holy Spirit &nbsp; ☩</p>
+</footer>
+
+<script>
+function ts(h){h.closest('.sec').classList.toggle('open')}
+function tobj(h){h.closest('.obj').classList.toggle('open')}
+function tf(h){h.closest('.fi').classList.toggle('open')}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').classList.toggle('show')}
+function closeMobile(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
+
+window.addEventListener('scroll',()=>{
+  const s=document.documentElement,b=document.body;
+  const h=s.scrollHeight-s.clientHeight;
+  const p=h>0?(s.scrollTop||b.scrollTop)/h*100:0;
+  document.getElementById('prog').style.width=p+'%';
+});
+
+const links=[...document.querySelectorAll('#sb-nav a')];
+const secs=[...document.querySelectorAll('.sec')];
+window.addEventListener('scroll',()=>{
+  let cur='';
+  secs.forEach(s=>{if(window.scrollY>=s.offsetTop-120)cur='#'+s.id});
+  links.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')===cur)});
+},{passive:true});
+</script>
+</body>
+</html>

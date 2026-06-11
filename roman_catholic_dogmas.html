@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Roman Catholic Dogmas — The Orthodox Lamp</title>
+<style>
+:root{
+  --gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;
+  --bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--bg5:#3a2e10;
+  --tx:#e8e0d0;--mu:#a09880;--br:#2a2a2a;
+  --sidebar-w:270px;
+  --rc:#3a1a1a;--rcc:#d47070;
+  --oo:#1a2e1a;--ooc:#7dc87d;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.7;display:flex;min-height:100vh}
+a{color:var(--gold);text-decoration:none}
+a:hover{text-decoration:underline}
+mark{background:rgba(201,168,76,.28);color:var(--gl);border-radius:2px;padding:0 2px}
+
+/* progress bar */
+#prog{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--gd),var(--gl));z-index:200;transition:width .1s}
+
+/* sidebar */
+#sb{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:100;display:flex;flex-direction:column}
+#sb-brand{padding:18px 18px 10px;border-bottom:1px solid var(--br)}
+#sb-brand .lamp{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mu);margin-bottom:4px}
+#sb-brand h1{font-size:1rem;color:var(--gold);line-height:1.3}
+.sb-search{padding:10px 14px 4px}
+.sb-search input{width:100%;background:rgba(255,255,255,.06);border:1px solid var(--br);border-radius:6px;padding:8px 12px;font-size:.8rem;color:var(--tx);font-family:'Georgia',serif;outline:none;transition:border-color .2s}
+.sb-search input::placeholder{color:#666}
+.sb-search input:focus{border-color:var(--gd)}
+.sec.s-hidden{display:none}
+.no-match-msg{display:none;padding:14px 18px;font-size:.8rem;color:var(--mu);font-style:italic;text-align:center}
+.no-match-msg.show{display:block}
+#sb-nav{padding:10px 0 20px;flex:1}
+.sb-part{padding:8px 18px 2px;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mu)}
+#sb-nav a{display:block;padding:6px 18px;font-size:.82rem;color:var(--mu);border-left:2px solid transparent;transition:all .15s;line-height:1.4}
+#sb-nav a:hover,#sb-nav a.active{color:var(--gold);border-left-color:var(--gold);background:rgba(201,168,76,.06);text-decoration:none}
+
+/* main */
+main{margin-left:var(--sidebar-w);flex:1;max-width:860px;padding:48px 48px 80px}
+.pg-title{margin-bottom:10px}
+.pg-title .lamp-label{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--mu);margin-bottom:6px}
+.pg-title h1{font-size:2rem;color:var(--gold);line-height:1.2}
+.pg-title .sub{font-size:1rem;color:var(--mu);margin-top:6px;font-style:italic}
+.pg-intro{max-width:680px;color:var(--mu);font-size:.95rem;margin:16px 0 36px;border-left:3px solid var(--gd);padding-left:14px}
+
+/* sections */
+.sec{border:1px solid var(--br);border-radius:8px;margin-bottom:14px;overflow:hidden;background:var(--bg2)}
+.sec-h{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;cursor:pointer;user-select:none;gap:10px}
+.sec-h:hover{background:rgba(255,255,255,.03)}
+.sec-h h2{font-size:1rem;color:var(--tx);font-weight:600}
+.sec-h .arr{color:var(--mu);font-size:.8rem;transition:transform .2s;flex-shrink:0}
+.sec.open .arr{transform:rotate(90deg)}
+.sec-body{display:none;padding:18px 20px 20px;border-top:1px solid var(--br)}
+.sec.open .sec-body{display:block}
+.sec-body p{color:var(--mu);font-size:.92rem;margin-bottom:10px}
+.sec-body p:last-child{margin-bottom:0}
+
+/* scripture verse */
+.sv{background:var(--bg5);border:1px solid var(--gd);border-radius:6px;padding:12px 16px;margin:12px 0;font-style:italic;color:var(--gl);font-size:.92rem}
+.sv cite{display:block;text-align:right;font-size:.8rem;color:var(--gold);margin-top:6px;font-style:normal}
+
+/* dogma definition box */
+.dogma-box{background:var(--rc);border:1px solid var(--rcc);border-radius:8px;padding:16px 18px;margin:14px 0}
+.dogma-box .db-label{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--rcc);margin-bottom:6px}
+.dogma-box .db-text{font-style:italic;color:#e8c0c0;font-size:.93rem;line-height:1.65}
+.dogma-box .db-src{font-size:.78rem;color:var(--rcc);margin-top:8px}
+
+/* OO response box */
+.oo-box{background:var(--oo);border:1px solid var(--ooc);border-radius:8px;padding:16px 18px;margin:14px 0}
+.oo-box .ob-label{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ooc);margin-bottom:6px}
+.oo-box .ob-text{color:#c8e8c8;font-size:.92rem;line-height:1.65}
+
+/* church father cards */
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin:14px 0}
+.fc{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:14px 16px}
+.fc-name{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.fc-body{font-size:.88rem;color:var(--mu);font-style:italic;line-height:1.6}
+.fc-src{font-size:.76rem;color:var(--gd);margin-top:6px}
+
+/* objection accordions */
+.obj{border:1px solid var(--br);border-radius:6px;margin-bottom:8px;overflow:hidden;background:var(--bg3)}
+.obj-h{display:flex;align-items:flex-start;padding:11px 14px;cursor:pointer;gap:10px;user-select:none}
+.obj-h:hover{background:rgba(255,255,255,.03)}
+.obj-tag{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;padding:2px 7px;border-radius:10px;flex-shrink:0;margin-top:3px}
+.obj-tag.rc{background:var(--rc);color:var(--rcc);border:1px solid var(--rcc)}
+.obj-tag.oo{background:var(--oo);color:var(--ooc);border:1px solid var(--ooc)}
+.obj-h span{font-size:.88rem;color:var(--tx)}
+.obj-h .arr2{color:var(--mu);font-size:.75rem;transition:transform .2s;flex-shrink:0;margin-left:auto;margin-top:4px}
+.obj.open .arr2{transform:rotate(90deg)}
+.obj-body{display:none;padding:12px 14px 14px;border-top:1px solid var(--br);font-size:.88rem;color:var(--mu);line-height:1.65}
+.obj.open .obj-body{display:block}
+
+/* FAQ */
+.fi{border:1px solid var(--br);border-radius:6px;margin-bottom:8px;overflow:hidden;background:var(--bg3)}
+.fi-h{display:flex;align-items:flex-start;padding:11px 14px;cursor:pointer;gap:8px;user-select:none}
+.fi-h:hover{background:rgba(255,255,255,.03)}
+.fi-q{font-size:.88rem;color:var(--tx);flex:1}
+.fi-arr{color:var(--mu);font-size:.75rem;transition:transform .2s;flex-shrink:0;margin-top:4px}
+.fi.open .fi-arr{transform:rotate(90deg)}
+.fi-body{display:none;padding:12px 14px 14px;border-top:1px solid var(--br);font-size:.88rem;color:var(--mu);line-height:1.65}
+.fi.open .fi-body{display:block}
+
+/* comparison grid */
+.comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.comp-card{border-radius:8px;padding:14px 16px;border:1px solid}
+.comp-card.rc-card{background:var(--rc);border-color:var(--rcc)}
+.comp-card.oo-card{background:var(--oo);border-color:var(--ooc)}
+.comp-card .cc-label{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;font-weight:700}
+.comp-card.rc-card .cc-label{color:var(--rcc)}
+.comp-card.oo-card .cc-label{color:var(--ooc)}
+.comp-card ul{padding-left:16px;font-size:.88rem;line-height:1.7}
+.comp-card.rc-card ul{color:#e8c0c0}
+.comp-card.oo-card ul{color:#c8e8c8}
+
+/* glossary */
+.gt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin:14px 0}
+.gt{background:var(--bg3);border:1px solid var(--br);border-radius:7px;padding:12px 14px}
+.gt-term{font-size:.8rem;font-weight:700;color:var(--gold);margin-bottom:4px}
+.gt-def{font-size:.84rem;color:var(--mu);line-height:1.55}
+
+/* dogma list */
+.dogma-list{list-style:none;margin:12px 0}
+.dogma-list li{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--br);font-size:.9rem;color:var(--mu)}
+.dogma-list li:last-child{border-bottom:none}
+.dogma-list .dl-year{flex-shrink:0;font-size:.75rem;color:var(--gold);background:var(--bg5);padding:2px 7px;border-radius:4px;margin-top:3px}
+.dogma-list .dl-name{color:var(--tx);font-weight:600;display:block;margin-bottom:2px}
+
+/* method box */
+.method-box{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:16px 18px;margin:14px 0}
+.mb-title{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.mb-body{font-size:.9rem;color:var(--mu);line-height:1.65}
+
+@media(max-width:760px){
+  #sb{transform:translateX(-100%)}
+  main{margin-left:0;padding:24px 18px 60px}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<nav id="sb">
+  <div id="sb-brand">
+    <div class="lamp">The Orthodox Lamp</div>
+    <h1>Roman Catholic Dogmas</h1>
+  </div>
+  <div class="sb-search">
+    <input type="search" placeholder="Search sections…" oninput="sidebarSearch(this.value)" aria-label="Search sections">
+  </div>
+  <div id="sb-nav">
+    <div class="sb-part">Introduction</div>
+    <a href="#intro">Overview</a>
+    <a href="#post-schism">Post-Schism Dogmas</a>
+    <div class="sb-part">The Dogmas</div>
+    <a href="#purgatory">Purgatory</a>
+    <a href="#immaculate">Immaculate Conception</a>
+    <a href="#papal">Papal Infallibility</a>
+    <a href="#filioque">The Filioque</a>
+    <a href="#indulgences">Indulgences</a>
+    <a href="#created-grace">Created Grace</a>
+    <a href="#satisfaction">Satisfaction Atonement</a>
+    <a href="#method">The Method Problem</a>
+    <div class="sb-part">Dialogue</div>
+    <a href="#objections">Catholic Objections</a>
+    <a href="#faq">FAQ</a>
+    <a href="#glossary">Glossary</a>
+  </div>
+  <div class="no-match-msg" id="sb-no-match">No sections match.</div>
+</nav>
+
+<main>
+  <div class="pg-title">
+    <div class="lamp-label">The Orthodox Lamp</div>
+    <h1>Roman Catholic Dogmas</h1>
+    <div class="sub">An Oriental Orthodox assessment of post-schism doctrinal developments</div>
+  </div>
+  <p class="pg-intro">
+    The Oriental Orthodox and Roman Catholic churches share the same apostolic roots, the same early councils, and the same creeds of Nicaea and Constantinople. The parting of ways came not over the Gospel itself but over doctrines added after — or in direct conflict with — the common Tradition. This site examines those additions honestly and pastorally.
+  </p>
+
+  <!-- INTRO -->
+  <div class="sec open" id="intro">
+    <div class="sec-h" onclick="ts(this)">
+      <h2>One Root, Two Paths</h2><span class="arr">▶</span>
+    </div>
+    <div class="sec-body">
+      <p>For the first five centuries the Church of Alexandria, Antioch, Rome, Constantinople, and Jerusalem shared a single faith. The Great Schism of 1054 between Rome and Constantinople deepened the divide, and in the centuries that followed, the Western Church developed a series of theological positions that the Eastern and Oriental Orthodox traditions could not receive as belonging to the original deposit of faith.</p>
+      <p>Oriental Orthodox churches — Coptic, Ethiopian, Eritrean, Armenian, Syriac, and Malankara — accept the first three Ecumenical Councils (Nicaea 325, Constantinople 381, Ephesus 431) as binding expressions of the universal faith. Doctrines defined after the schism, or that contradict the earlier Tradition, are received not as binding dogma but as later Latin theological developments.</p>
+      <div class="comp-grid">
+        <div class="comp-card oo-card">
+          <div class="cc-label">Accepted by Oriental Orthodox</div>
+          <ul>
+            <li>Nicene Creed (without Filioque)</li>
+            <li>Theotokos (God-bearer) of Mary</li>
+            <li>Miaphysite Christology</li>
+            <li>Apostolic succession &amp; valid sacraments</li>
+            <li>Real Presence in the Eucharist</li>
+            <li>Prayer for the dead</li>
+            <li>Veneration of saints &amp; icons</li>
+          </ul>
+        </div>
+        <div class="comp-card rc-card">
+          <div class="cc-label">Not Received by Oriental Orthodox</div>
+          <ul>
+            <li>Filioque addition to the Creed</li>
+            <li>Purgatory as defined doctrine</li>
+            <li>Immaculate Conception of Mary</li>
+            <li>Papal Infallibility &amp; universal jurisdiction</li>
+            <li>Treasury of Merit &amp; indulgences</li>
+            <li>Created grace (vs. uncreated energies)</li>
+            <li>Satisfaction theory of atonement</li>
+          </ul>
+        </div>
+      </div>
+      <p>The Oriental Orthodox position is not rejection of Rome for its own sake. It is fidelity to the Vincentian Canon: <em>quod ubique, quod semper, quod ab omnibus</em> — what has been believed everywhere, always, and by all.</p>
+    </div>
+  </div>
+
+  <!-- POST-SCHISM DOGMAS -->
+  <div class="sec" id="post-schism">
+    <div class="sec-h" onclick="ts(this)">
+      <h2>Post-Schism Dogmatic Definitions</h2><span class="arr">▶</span>
+    </div>
+    <div class="sec-body">
+      <p>The Roman Catholic Church has defined a number of dogmas since the Great Schism of 1054 — doctrines binding on all Catholics under pain of heresy. Many of these are defined by papal decree alone, a method the Oriental Orthodox cannot accept. Below is a summary of the major post-schism doctrinal definitions.</p>
+      <ul class="dogma-list">
+        <li><span class="dl-year">1431</span><div><span class="dl-name">Council of Florence — Purgatory, Papal Primacy</span>Defined purgatorial fire and cleansing after death; affirmed papal supremacy over all bishops.</div></li>
+        <li><span class="dl-year">1545–63</span><div><span class="dl-name">Council of Trent — Justification, Indulgences, Purgatory</span>Formalized the doctrine of merit, indulgences, and the purgatorial system against Protestant objections.</div></li>
+        <li><span class="dl-year">1854</span><div><span class="dl-name">Ineffabilis Deus — Immaculate Conception</span>Pius IX defined ex cathedra that Mary was conceived without original sin. First formal use of papal infallibility.</div></li>
+        <li><span class="dl-year">1870</span><div><span class="dl-name">Vatican I — Papal Infallibility &amp; Universal Jurisdiction</span>Defined that the pope, speaking ex cathedra on faith and morals, is infallible; that he holds immediate jurisdiction over every diocese.</div></li>
+        <li><span class="dl-year">1950</span><div><span class="dl-name">Munificentissimus Deus — Bodily Assumption</span>Pius XII defined Mary's bodily assumption into heaven as dogma. (Note: The Dormition is celebrated by OO; the definition method is the issue.)</div></li>
+      </ul>
+      <p>Each of these definitions was either issued by papal decree without an Ecumenical Council, or at councils the Oriental Orthodox do not recognize as ecumenical. The objection is therefore as much about <em>how</em> dogma is defined as about the content itself.</p>
+    </div>
+  </div>
+
+  <!-- PURGATORY -->
+  <div class="sec" id="purgatory">
+    <div class="sec-h" onclick="ts(this)">
+      <h2>Purgatory</h2><span class="arr">▶</span>
+    </div>
+    <div class="sec-body">
+      <p>The doctrine of purgatory holds that souls who die in grace but with unforgiven venial sins or unpaid temporal punishment undergo a process of purification before entering heaven. This purification involves suffering — often described as fire.</p>
+      <div class="dogma-box">
+        <div class="db-label">Roman Catholic Definition — Council of Florence (1439)</div>
+        <div class="db-text">"The souls of those who depart this life in a state of true penitence but without having satisfied by worthy fruits of penitence for things done and omitted, are purified after death by purgatorial punishments."</div>
+        <div class="db-src">Council of Florence, Laetentur Caeli (1439); confirmed at Council of Trent (1563)</div>
+      </div>
+      <div class="oo-box">
+        <div class="ob-label">Oriental Orthodox Position</div>
+        <div class="ob-text">The Oriental Orthodox affirm prayer for the dead — it is ancient practice, present in our liturgies from the beginning. What we do not accept is the specific Latin framework: a third place between heaven and hell, temporal punishment satisfying divine justice, and (especially) indulgences reducing that punishment. The state of the departed is known to God alone. We pray for them in hope, not according to a doctrine of juridical debt.</div>
+      </div>
+      <p>The scriptural basis most often cited — 1 Corinthians 3:15 ("saved, yet as through fire") and 2 Maccabees 12:46 ("he made atonement for the dead") — is accepted by Oriental Orthodox as supporting prayer for the dead. But neither passage specifies a place of punitive purification. The concept of purgatory as a formal doctrine is a medieval Western development, crystallized by scholastic theology (Aquinas, Bonaventure) before being dogmatically defined at Florence and Trent.</p>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">St. John Chrysostom (d. 407)</div>
+          <div class="fc-body">"Let us help and commemorate them. If Job's sons were purified by their father's sacrifice, why would we doubt that our offerings for the dead bring them some consolation?"</div>
+          <div class="fc-src">Homilies on 1 Corinthians 41 — prayer for dead affirmed, purgatorial system absent</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Ephrem the Syrian (d. 373)</div>
+          <div class="fc-body">"Remember me in your prayers, that the mercy of God may be shown to me, a sinner, in the day of judgment."</div>
+          <div class="fc-src">Testament of Ephrem — intercession sought, not indulgences or satisfaction payments</div>
+        </div>
+      </div>
+      <p>The Oriental Orthodox Liturgy of St. Basil and the Anaphora of St. Mark both include commemorations of the departed. But the theology is one of commending souls to God's mercy — not of administering punishments owed to divine justice.</p>
+    </div>
+  </div>
+
+  <!-- IMMACULATE CONCEPTION -->
+  <div class="sec" id="immaculate">
+    <div class="sec-h" onclick="ts(this)">
+      <h2>The Immaculate Conception of Mary</h2><span class="arr">▶</span>
+    </div>
+    <div class="sec-body">
+      <p>On December 8, 1854, Pope Pius IX issued <em>Ineffabilis Deus</em>, defining as dogma that "the most Blessed Virgin Mary, in the first instance of her conception, by a singular grace and privilege granted by Almighty God, in view of the merits of Jesus Christ, the Saviour of the human race, was preserved free from all stain of original sin."</p>
+      <div class="dogma-box">
+        <div class="db-label">Roman Catholic Dogma — Ineffabilis Deus (1854)</div>
+        <div class="db-text">"We declare, pronounce, and define that the doctrine which holds that the most Blessed Virgin Mary, in the first instant of her conception… was preserved immune from all stain of original sin… has been revealed by God and therefore to be firmly and constantly believed by all the faithful."</div>
+        <div class="db-src">Pius IX, Ineffabilis Deus, 8 December 1854</div>
+      </div>
+      <div class="oo-box">
+        <div class="ob-label">Oriental Orthodox Position</div>
+        <div class="ob-text">The Oriental Orthodox hold Mary in the highest veneration as Theotokos (God-bearer) and Panagia (All-Holy). But the Immaculate Conception rests on a distinctly Western (Augustinian) understanding of original sin as inherited guilt transmitted at conception. The Eastern and Oriental traditions understand ancestral sin differently: all humans inherit the consequences of Adam's fall — mortality, passions, the tendency toward sin — but not the guilt of Adam's act. On this anthropology, the Immaculate Conception is not needed: Mary did not need to be exempted from guilt she would not have borne anyway. She was wholly sanctified and prepared as the vessel of the Incarnation — above all, at the Annunciation when the Holy Spirit came upon her (Luke 1:35).</div>
+      </div>
+      <p>This is not a rejection of Mary's holiness — it is a different theological grammar about sin and grace. St. Athanasius, St. Cyril of Alexandria, and St. Ephrem all celebrate Mary as utterly holy. None of them employ the Latin framework of original guilt as the starting point.</p>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">St. Cyril of Alexandria (d. 444)</div>
+          <div class="fc-body">"Hail, Mary Theotokos, the spotless jewel of the whole world, the lamp that is never quenched, the crown of virginity, the scepter of orthodoxy."</div>
+          <div class="fc-src">Homily at Ephesus 431 — highest praise, but no exemption from ancestral nature</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Gregory of Nazianzus (d. 390)</div>
+          <div class="fc-body">"As the firstborn Word hastened to the pure Virgin, and cleansed her, so also the Holy Spirit purified her and prepared her for the divine conception."</div>
+          <div class="fc-src">Oration 38 — purification at Annunciation, not at conception</div>
+        </div>
+      </div>
+      <p>Furthermore, the definition itself was problematic by ecclesiological standards: it was issued by a single pope without an Ecumenical Council. Thomas Aquinas himself had argued against the Immaculate Conception. It was disputed within Western scholasticism for centuries before being imposed as dogma by papal fiat.</p>
+    </div>
+  </div>
+
+  <!-- PAPAL INFALLIBILITY -->
+  <div class="sec" id="papal">
+    <div class="sec-h" onclick="ts(this)">
+      <h2>Papal Infallibility &amp; Universal Jurisdiction</h2><span class="arr">▶</span>
+    </div>
+    <div class="sec-body">
+      <p>The First Vatican Council (1870) defined two interlinked dogmas that the Oriental Orthodox regard as the most significant departure from ancient ecclesiology.</p>
+      <div class="dogma-box">
+        <div class="db-label">Vatican I — Pastor Aeternus (1870)</div>
+        <div class="db-text">"We teach and define as a divinely revealed dogma that when the Roman Pontiff speaks ex cathedra… he possesses, by the divine assistance promised to him in blessed Peter, that infallibility which the divine Redeemer willed his Church to enjoy in defining doctrine concerning faith or morals."</div>
+        <div class="db-src">Vatican I, Pastor Aeternus, Ch. 4 (1870)</div>
+      </div>
+      <div class="oo-box">
+        <div class="ob-label">Oriental Orthodox Position</div>
+        <div class="ob-text">Infallibility belongs to the Church as a whole, expressed through Ecumenical Councils received by the whole Body. No single bishop — not even the Bishop of Rome — holds infallibility in his own person. The ancient Church knew a primacy of honor for Rome (Canon 3 of Constantinople 381 was given to New Rome for the same reason — imperial prestige, not Petrine succession). Immediate universal jurisdiction over every diocese contradicts the canonical independence of each patriarchate and was unknown in the pre-schism Church.</div>
+      </div>
+      <p>For a thorough examination of the Petrine texts, the historical rise of Roman claims, the problem cases (Honorius I, Vigilius, Liberius), and the OO patristic counter-reading, see the dedicated site: <a href="papal_authority.html">Papal Authority &amp; Infallibility →</a></p>
+    </div>
+  </div>
+
+  <!-- FILIOQUE -->
+  <div class="sec" id="filioque">
+    <div class="sec-h" onclick="ts(this)">
+      <h2>The Filioque</h2><span class="arr">▶</span>
+    </div>
+    <div class="sec-body">
+      <p>The Filioque (<em>and the Son</em>) is the addition to the Nicene-Constantinopolitan Creed that the Western Church inserted unilaterally, so that the clause reads: "…the Holy Spirit, who proceeds from the Father <strong>and the Son</strong>." The original Creed, ratified by the Ecumenical Councils and never altered by conciliar authority, reads: "…who proceeds from the Father."</p>
+      <div class="dogma-box">
+        <div class="db-label">The Filioque in the Latin Creed</div>
+        <div class="db-text">"I believe in the Holy Spirit, the Lord, the giver of life, who proceeds from the Father <u>and the Son</u>…"</div>
+        <div class="db-src">Latin Rite Creed — insertion first used in Spain (6th c.), imposed universally by Rome c. 1014</div>
+      </div>
+      <div class="oo-box">
+        <div class="ob-label">Oriental Orthodox Position</div>
+        <div class="ob-text">The OO objects on two grounds. Theologically: the Filioque compromises the monarchy of the Father as the sole source and principle within the Trinity. The Spirit proceeds from the Father alone (John 15:26). Canonically: no single church has authority to alter a creed ratified by an Ecumenical Council. The Third Ecumenical Council (Ephesus 431) explicitly forbade composing any other creed. Adding to it is therefore an act of unilateral authority the ancient Church did not grant to any see.</div>
+      </div>
+      <p>For a full treatment including the patristic evidence, Augustine's theology of the Spirit, and the modern ecumenical dialogue, see the dedicated site: <a href="filioque.html">The Filioque →</a></p>
+    </div>
+  </div>
+
+  <!-- INDULGENCES -->
+  <div class="sec" id="indulgences">
+    <div class="sec-h" onclick="ts(this)">
+      <h2>Indulgences &amp; the Treasury of Merit</h2><span class="arr">▶</span>
+    </div>
+    <div class="sec-body">
+      <p>The Roman Catholic doctrine of indulgences rests on several interconnected premises: (1) sin incurs both guilt and temporal punishment; (2) guilt is forgiven in confession but temporal punishment remains; (3) the Church holds a "treasury of merit" accumulated by Christ and the saints; (4) the Pope has authority to apply this treasury to reduce punishment in purgatory.</p>
+      <div class="dogma-box">
+        <div class="db-label">Council of Trent — Decree on Indulgences (1563)</div>
+        <div class="db-text">"The power of conferring indulgences was granted by Christ to the Church, and she has, even in the most ancient times, used that power delivered unto her of God… the use of indulgences is very salutary for Christian people."</div>
+        <div class="db-src">Council of Trent, Session 25, Decree on Indulgences (1563)</div>
+      </div>
+      <div class="oo-box">
+        <div class="ob-label">Oriental Orthodox Position</div>
+        <div class="ob-text">This entire system presupposes the Latin juridical framework of atonement: sin as debt, punishment as satisfying divine justice, a treasury that can be administered. The Oriental Orthodox understand salvation not as the satisfaction of a legal debt but as theosis — participation in the divine life. There is no treasury of merit in the ancient Tradition. God forgives because he is Love, not because a sufficient quantity of merit has been deposited and transferred. The system of indulgences was unknown to the early Church and was, historically, the immediate cause of the Protestant Reformation — a judgment that speaks to its departure from the Tradition.</div>
+      </div>
+      <div class="sv">
+        "If you, O Lord, should mark iniquities, O Lord, who could stand? But with you there is forgiveness, that you may be feared."
+        <cite>Psalm 130:3-4</cite>
+      </div>
+      <p>The Church's authority to "loose" (Matthew 18:18) refers to the forgiveness of sins and the restoration of the sinner to communion — not the administration of a celestial accounting ledger. The Fathers who wrote on forgiveness (Chrysostom, Cyril, Ephrem) uniformly speak of God's mercy and the sinner's repentance, not of merit transferred between accounts.</p>
+    </div>
+  </div>
+
+  <!-- CREATED GRACE -->
+  <div class="sec" id="created-grace">
+    <div class="sec-h" onclick="ts(this)">
+      <h2>Created Grace vs. Uncreated Energies</h2><span class="arr">▶</span>
+    </div>
+    <div class="sec-body">
+      <p>This is perhaps the most philosophically profound divide between Eastern/Oriental Orthodox theology and Latin scholasticism. The question: when God saves and sanctifies us, what is it that we receive?</p>
+      <div class="comp-grid">
+        <div class="comp-card rc-card">
+          <div class="cc-label">Latin Scholastic (Aquinas)</div>
+          <ul>
+            <li>Grace is a created quality infused into the soul</li>
+            <li>It is a habit (habitus) — a disposition God creates within us</li>
+            <li>We participate in divine life through a created intermediary</li>
+            <li>God himself remains inaccessible in his essence; we receive created gifts</li>
+          </ul>
+        </div>
+        <div class="comp-card oo-card">
+          <div class="cc-label">Eastern/Oriental Orthodox (Palamas)</div>
+          <ul>
+            <li>Grace is the uncreated divine energies — God himself, acting ad extra</li>
+            <li>God is truly and fully present in his energies, though his essence remains transcendent</li>
+            <li>Theosis is real participation in God, not in a created substitute</li>
+            <li>Peter's "partakers of the divine nature" (2 Pet 1:4) is taken literally</li>
+          </ul>
+        </div>
+      </div>
+      <p>The Palamite distinction between God's unknowable essence and his knowable-yet-truly-divine energies was affirmed by a series of councils in Constantinople (1341, 1347, 1351) and is considered a permanent doctrinal achievement of Orthodox theology. The Latin view, by contrast, would mean we are never truly united to God himself — only to a created reality God produces.</p>
+      <div class="sv">
+        "He has granted to us his precious and very great promises, so that through them you may become partakers of the divine nature."
+        <cite>2 Peter 1:4</cite>
+      </div>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">St. Athanasius of Alexandria (d. 373)</div>
+          <div class="fc-body">"He became man that we might become God." (θεοποιηθῶμεν)</div>
+          <div class="fc-src">On the Incarnation, §54 — theosis as real union, not mediated through created quality</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Gregory Palamas (d. 1359)</div>
+          <div class="fc-body">"God in his entirety penetrates the whole of the deified being… The saints are truly united to God, not to some created intermediary."</div>
+          <div class="fc-src">Triads III.1.27 — uncreated energies as truly God, not creatures</div>
+        </div>
+      </div>
+      <p>The Oriental Orthodox share the Eastern framework of theosis. While the Palamite councils are Eastern Orthodox patrimony specifically, the underlying conviction — that we are genuinely united to God himself, not to a created substitute — is native to the entire patristic East and is expressed in every OO anaphora.</p>
+    </div>
+  </div>
+
+  <!-- SATISFACTION ATONEMENT -->
+  <div class="sec" id="satisfaction">
+    <div class="sec-h" onclick="ts(this)">
+      <h2>Satisfaction Theory of Atonement</h2><span class="arr">▶</span>
+    </div>
+    <div class="sec-body">
+      <p>Anselm of Canterbury (d. 1109) developed the satisfaction theory in <em>Cur Deus Homo</em> (Why God Became Man). The logic: sin offends the infinite honor of God; only an infinite satisfaction can repair it; only God can offer infinite satisfaction; therefore God became man to offer it. The Incarnation and Cross are understood primarily as the payment of a debt owed to divine justice.</p>
+      <div class="dogma-box">
+        <div class="db-label">Anselm's Framework (Cur Deus Homo, 1098)</div>
+        <div class="db-text">"Every sin must be followed either by satisfaction or by punishment… The satisfaction ought to be in proportion to the guilt. But sinful man cannot make this satisfaction… Therefore God became man in order that he, being both God and man, might make the satisfaction which man alone could not make."</div>
+        <div class="db-src">Anselm, Cur Deus Homo, Book I (1098)</div>
+      </div>
+      <div class="oo-box">
+        <div class="ob-label">Oriental Orthodox Position</div>
+        <div class="ob-text">The Oriental Orthodox understand the Incarnation, Cross, and Resurrection as the healing and deification of human nature — not the payment of a legal fine. God became flesh to unite humanity to divinity, to sanctify human nature from within, to destroy death by death (the Paschal mystery), and to restore the image of God in us. The Cross is not primarily a transaction with divine justice but the total self-offering of God in love, which defeats the power of sin, death, and the devil. This "Christus Victor" and "healing" framework is native to Athanasius, Cyril, Ephrem, and the entire patristic East.</div>
+      </div>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">St. Athanasius of Alexandria (d. 373)</div>
+          <div class="fc-body">"He took a body like ours… surrendered it to death in the place of all, and offered it to the Father — doing this in sheer love for us, so that in his death all might die, and the law of death thereby be abolished."</div>
+          <div class="fc-src">On the Incarnation §8 — death undone, not a debt paid to an offended judge</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Irenaeus of Lyon (d. c. 202)</div>
+          <div class="fc-body">"He became what we are so that he might bring us to be what he himself is… recapitulating in himself all creation, all ages, all humanity."</div>
+          <div class="fc-src">Against Heresies V, Preface — recapitulation, not satisfaction</div>
+        </div>
+      </div>
+      <p>The satisfaction theory is not explicitly condemned by the Oriental Orthodox — it captures something real about sin as offense and Christ's atoning work. But when elevated to the <em>primary</em> or <em>only</em> framework for understanding the Cross, it distorts the full scope of salvation, generates the purgatorial-indulgence system as its logical corollary, and ultimately portrays the Father as an offended feudal lord requiring payment rather than the loving God who "so loved the world" that he entered it.</p>
+    </div>
+  </div>
+
+  <!-- METHOD PROBLEM -->
+  <div class="sec" id="method">
+    <div class="sec-h" onclick="ts(this)">
+      <h2>The Method Problem: How Are Dogmas Defined?</h2><span class="arr">▶</span>
+    </div>
+    <div class="sec-body">
+      <p>Beyond disagreeing with the content of several post-schism dogmas, the Oriental Orthodox have a fundamental objection to the <em>method</em> by which they were defined. This is not a secondary issue — it goes to the heart of what the Church is.</p>
+      <div class="method-box">
+        <div class="mb-title">The Ancient Method</div>
+        <div class="mb-body">Doctrine was defined by Ecumenical Councils — gatherings of bishops from the entire Church, whose definitions were subsequently received by the whole Body. The council's authority was validated not by the presiding bishop's office alone but by the reception of the universal Church over time. This is conciliarism: truth is discerned collegially and confirmed by reception.</div>
+      </div>
+      <div class="method-box">
+        <div class="mb-title">The Post-Vatican I Method</div>
+        <div class="mb-body">The Immaculate Conception (1854) and Bodily Assumption (1950) were defined by single popes, without Ecumenical Councils, as dogmas binding under pain of heresy. The authority invoked was the infallibility of the papal office itself — an office defined as infallible by Vatican I (1870), which was itself convened and controlled by the papacy. The Oriental Orthodox see here a circular validation of unprecedented authority.</div>
+      </div>
+      <p>The question is not merely political. If any single bishop can bind the universal Church to new dogmas by his personal declaration, then the Church's authority is concentrated in one office in a way the ancient canons never envisioned and the Fathers never described. The Council of Nicaea was not convened because Constantine or Sylvester of Rome declared the answer — it was convened to seek the answer through collegial discernment.</p>
+      <div class="sv">
+        "It seemed good to the Holy Spirit and to us…"
+        <cite>Acts 15:28 — the apostolic model: conciliar discernment, not singular declaration</cite>
+      </div>
+      <p>The 1973 Common Declaration between Pope Paul VI and Coptic Pope Shenouda III, and the 1984 Common Declaration between Pope John Paul II and Syriac Patriarch Ignatius Zakka I, demonstrate that genuine dialogue is possible. But full communion remains impossible while Rome holds that the post-schism papal dogmas are irreformable and binding on all Christians everywhere.</p>
+    </div>
+  </div>
+
+  <!-- OBJECTIONS -->
+  <div class="sec" id="objections">
+    <div class="sec-h" onclick="ts(this)">
+      <h2>Catholic Objections</h2><span class="arr">▶</span>
+    </div>
+    <div class="sec-body">
+
+      <div class="obj" id="obj1">
+        <div class="obj-h" onclick="tobj(this)">
+          <span class="obj-tag rc">RC</span>
+          <span>"Doesn't development of doctrine mean the Church can define new dogmas over time?"</span>
+          <span class="arr2">▶</span>
+        </div>
+        <div class="obj-body">
+          Yes — the Oriental Orthodox affirm that doctrine develops. The Council of Nicaea (325) produced the word <em>homoousios</em>, not found in Scripture. The Council of Ephesus (431) defined Theotokos. Development is real. But there is a crucial distinction between organic development — explicating what was always implicitly believed, through conciliar reception — and innovation that introduces new content previously unknown to the Tradition. The Immaculate Conception was disputed for centuries even within Western theology (Aquinas denied it). Purgatory as a punitive holding-place has no clear patristic consensus. Defining disputed novelties as binding dogma by papal decree is a different kind of act than the Councils explicating the Apostolic faith.
+        </div>
+      </div>
+
+      <div class="obj" id="obj2">
+        <div class="obj-h" onclick="tobj(this)">
+          <span class="obj-tag rc">RC</span>
+          <span>"The Oriental Orthodox also accept things not explicitly in Scripture — icons, Theotokos, canon lists. Why draw the line here?"</span>
+          <span class="arr2">▶</span>
+        </div>
+        <div class="obj-body">
+          Every example cited by OO — the veneration of icons, the Theotokos, the canon of Scripture — was either affirmed by an Ecumenical Council received by the universal Church, or expresses the universal and unbroken liturgical practice of the whole Tradition from the earliest centuries. The criterion is not "is this in the Bible alone?" — it is "does this belong to the Apostolic Tradition as received everywhere, always, and by all?" The post-schism RC dogmas fail that test: they were either unknown to the pre-schism Church, or were disputed questions within it, or were defined by a method (sole papal decree) the pre-schism Church did not recognize.
+        </div>
+      </div>
+
+      <div class="obj" id="obj3">
+        <div class="obj-h" onclick="tobj(this)">
+          <span class="obj-tag rc">RC</span>
+          <span>"Mary's holiness surely required that she be preserved from all sin, including original sin."</span>
+          <span class="arr2">▶</span>
+        </div>
+        <div class="obj-body">
+          This argument presupposes the Western Augustinian understanding of original sin as inherited guilt. The Oriental Orthodox — along with the Eastern Orthodox — understand ancestral sin differently. We inherit the consequences (mortality, the tendency to sin, the passions) but not the guilt of Adam's act. On this anthropology, no one is born guilty; they become guilty through their own personal sins. There is therefore no inherited guilt for Mary to be exempt from. Her utter holiness is affirmed — she is Panagia, All-Holy — but it is achieved through God's grace working in and with her nature, not by a retroactive exemption from something she never bore in the Eastern framework.
+        </div>
+      </div>
+
+      <div class="obj" id="obj4">
+        <div class="obj-h" onclick="tobj(this)">
+          <span class="obj-tag rc">RC</span>
+          <span>"Purgatory just means souls are purified before heaven — surely you believe that too?"</span>
+          <span class="arr2">▶</span>
+        </div>
+        <div class="obj-body">
+          The Oriental Orthodox absolutely believe in God's mercy toward the dead and in the value of prayer for the departed. What OO does not accept is the specific Latin juridical apparatus: (a) a third distinct place/state called purgatory, (b) the theory that temporal punishment must be satisfied even after forgiveness, (c) the Treasury of Merit by which the Church administers stored merit to reduce that punishment, and (d) indulgences as official church instruments for doing so. Prayer for the dead — yes, ancient and necessary. A divinely-managed punishment-satisfaction system with an ecclesiastical treasury — no, this is a medieval Latin development with no equivalent in the patristic East.
+        </div>
+      </div>
+
+      <div class="obj" id="obj5">
+        <div class="obj-h" onclick="tobj(this)">
+          <span class="obj-tag rc">RC</span>
+          <span>"The Oriental Orthodox have their own councils and theological developments — aren't you doing the same thing?"</span>
+          <span class="arr2">▶</span>
+        </div>
+        <div class="obj-body">
+          The Oriental Orthodox have no post-schism dogmatic definitions equivalent to those cited above. The doctrines they hold — Miaphysite Christology, the veneration of Theotokos, the seven sacraments, the Apostolic succession — all have roots in the pre-schism universal Tradition and were either defined by the first three Ecumenical Councils or represent continuous and universal practice. No OO patriarch has issued a bull defining new binding dogma by his own authority. The objection is therefore not that development is wrong, but that the Roman Catholic post-schism method of papal-decree dogma-definition exceeds any authority the pre-schism Church recognized.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="sec" id="faq">
+    <div class="sec-h" onclick="ts(this)">
+      <h2>Frequently Asked Questions</h2><span class="arr">▶</span>
+    </div>
+    <div class="sec-body">
+
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)">
+          <span class="fi-q">Does the Oriental Orthodox Church consider the Catholic Church heretical?</span>
+          <span class="fi-arr">▶</span>
+        </div>
+        <div class="fi-body">
+          Not in the same way that, say, a denial of the Trinity would be called heretical. The RC Church preserves Apostolic succession, valid sacraments, and the ancient Christological faith. The OO objections are to specific post-schism doctrinal developments and to the ecclesiological claims of Vatican I. Many OO theologians speak of the RC as a sister church that has departed in certain areas, rather than as a heretical sect. The 1973 Common Declaration between Pope Paul VI and Pope Shenouda III explicitly affirmed shared faith in Christ.
+        </div>
+      </div>
+
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)">
+          <span class="fi-q">Would OO and RC union require Catholics to abandon these dogmas?</span>
+          <span class="fi-arr">▶</span>
+        </div>
+        <div class="fi-body">
+          Practically, yes — this is the central obstacle. Vatican I defines the Immaculate Conception, Papal Infallibility, and Purgatory as dogmas binding on all Christians. The OO cannot accept these as binding. Full communion would require either Rome to revise how these dogmas are held (as binding on all vs. as Western theological expressions), or a recognition that different theological schools within one Church can differ on these points — similar to how the RC currently tolerates diverse schools on grace and free will. This is a genuine impasse, though dialogue continues.
+        </div>
+      </div>
+
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)">
+          <span class="fi-q">Do the Oriental Orthodox pray for the dead?</span>
+          <span class="fi-arr">▶</span>
+        </div>
+        <div class="fi-body">
+          Yes, extensively. The Liturgy of St. Basil, the Anaphora of St. Mark, and all OO liturgical traditions include commemoration of the departed. The Saturday of the Dead (Sbt el-Amwat in the Coptic tradition) is a regular liturgical observance. The OO affirm that prayer for the dead is ancient, apostolic, and salutary. What they reject is the specific purgatorial framework — a third place, temporal punishment debt, and the treasury/indulgence system — not the practice of praying for those who have died.
+        </div>
+      </div>
+
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)">
+          <span class="fi-q">What about the Bodily Assumption of Mary — do OO believe in that?</span>
+          <span class="fi-arr">▶</span>
+        </div>
+        <div class="fi-body">
+          Yes. The Feast of the Dormition (Falling Asleep) of the Theotokos is celebrated by all Oriental Orthodox churches. The OO believe Mary was taken body and soul into heaven. The objection is not to the content of the 1950 definition but to the method: Pius XII defined it ex cathedra as dogma binding on all Christians without an Ecumenical Council. The OO cannot accept a pope's personal decree as sufficient authority to bind the universal Church. The Dormition is held as a pious and certain belief; its elevation to infallibly-defined dogma by papal decree is the problem.
+        </div>
+      </div>
+
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)">
+          <span class="fi-q">Is there any hope for Catholic-Oriental Orthodox union?</span>
+          <span class="fi-arr">▶</span>
+        </div>
+        <div class="fi-body">
+          There is genuine hope rooted in genuine agreement. The 1973 Common Declaration, the Pro Oriente consultations, and recent papal meetings with Oriental Orthodox patriarchs all demonstrate goodwill. The shared Christological agreements of 1973 and 1984 (OO and RC agree on one Christ, fully human and fully divine, despite different technical vocabulary) removed a major doctrinal barrier. What remains are the issues addressed in this site. Progress is slow because the issues are real — but the Spirit is not bound, and the prayer "that they may all be one" (John 17:21) drives the dialogue forward.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- GLOSSARY -->
+  <div class="sec" id="glossary">
+    <div class="sec-h" onclick="ts(this)">
+      <h2>Glossary</h2><span class="arr">▶</span>
+    </div>
+    <div class="sec-body">
+      <div class="gt-grid">
+        <div class="gt">
+          <div class="gt-term">Purgatory</div>
+          <div class="gt-def">RC doctrine: a state of purifying suffering after death for those who die in grace but with remaining temporal punishment for sin. Defined at Florence (1439) and Trent (1563).</div>
+        </div>
+        <div class="gt">
+          <div class="gt-term">Immaculate Conception</div>
+          <div class="gt-def">RC dogma (1854): that Mary was preserved from original sin from the moment of her conception, by anticipatory application of Christ's merits.</div>
+        </div>
+        <div class="gt">
+          <div class="gt-term">Ex Cathedra</div>
+          <div class="gt-def">Latin: "from the chair." A formal papal definition of doctrine, claimed to be infallible under Vatican I's definition. Invoked only twice: Immaculate Conception (1854) and Bodily Assumption (1950).</div>
+        </div>
+        <div class="gt">
+          <div class="gt-term">Treasury of Merit</div>
+          <div class="gt-def">RC doctrine: the inexhaustible store of merit accumulated by Christ and the saints, administered by the Church through indulgences to reduce temporal punishment.</div>
+        </div>
+        <div class="gt">
+          <div class="gt-term">Indulgence</div>
+          <div class="gt-def">The remission of temporal punishment due to sin, granted by Church authority from the Treasury of Merit, applicable to the living or (by suffrage) to souls in purgatory.</div>
+        </div>
+        <div class="gt">
+          <div class="gt-term">Created Grace</div>
+          <div class="gt-def">Scholastic theology: grace as a created habit (quality) infused into the soul by God, as distinct from God's own being. Contrasted with the Orthodox doctrine of uncreated energies.</div>
+        </div>
+        <div class="gt">
+          <div class="gt-term">Uncreated Energies</div>
+          <div class="gt-def">Orthodox theology: grace is the uncreated divine energies — God himself acting and communicating himself — truly God, yet distinct from the unknowable divine essence. Defined at the Palamite Councils (1341–1351).</div>
+        </div>
+        <div class="gt">
+          <div class="gt-term">Theosis</div>
+          <div class="gt-def">Deification; the process by which the human person participates in the divine nature (2 Pet 1:4). The goal of Christian life in Eastern/Oriental theology: union with God, not merely forgiveness of legal debt.</div>
+        </div>
+        <div class="gt">
+          <div class="gt-term">Satisfaction Theory</div>
+          <div class="gt-def">Anselm's atonement model: Christ's death satisfies the infinite honor of God offended by human sin. Basis for the RC purgatorial and indulgence system. Contrasted with the patristic models of theosis and Christus Victor.</div>
+        </div>
+        <div class="gt">
+          <div class="gt-term">Vincentian Canon</div>
+          <div class="gt-def">The criterion of St. Vincent of Lérins (d. 445): true Christian doctrine is "what has been believed everywhere, always, and by all" (quod ubique, quod semper, quod ab omnibus). The standard by which OO evaluates doctrinal claims.</div>
+        </div>
+        <div class="gt">
+          <div class="gt-term">Conciliarism</div>
+          <div class="gt-def">The ecclesiological principle that doctrinal authority resides in Ecumenical Councils of the whole Church, not in any single bishop or see. The ancient and OO position, contrasted with Vatican I's papal supremacy.</div>
+        </div>
+        <div class="gt">
+          <div class="gt-term">Filioque</div>
+          <div class="gt-def">Latin: "and the Son." The phrase added by the Western Church to the Nicene-Constantinopolitan Creed, asserting that the Holy Spirit proceeds from both the Father and the Son. Rejected by Eastern and Oriental Orthodox as theological error and canonical violation.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+// progress bar
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const pct=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;
+  document.getElementById('prog').style.width=pct+'%';
+});
+
+// scroll-spy
+const navLinks=document.querySelectorAll('#sb-nav a[href^="#"]');
+const secs2=document.querySelectorAll('main .sec[id]');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  secs2.forEach(s=>{if(s.getBoundingClientRect().top<=120)cur=s.id;});
+  navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur);});
+},{ passive:true });
+
+// section toggle
+function ts(h){const s=h.closest('.sec');s.classList.toggle('open');}
+
+// objection toggle
+function tobj(h){const o=h.closest('.obj');o.classList.toggle('open');}
+
+// faq toggle
+function tf(h){const f=h.closest('.fi');f.classList.toggle('open');}
+
+// sidebar search
+function sidebarSearch(q){
+  q=q.trim().toLowerCase();
+  const secs=document.querySelectorAll('main .sec');
+  let matched=0;
+  secs.forEach(sec=>{
+    if(!q){sec.classList.remove('s-hidden');const h2=sec.querySelector('.sec-h h2');if(h2._orig)h2.innerHTML=h2._orig;matched++;return;}
+    const h2=sec.querySelector('.sec-h h2');
+    const body=sec.querySelector('.sec-body');
+    const headText=(h2._orig||h2.textContent).toLowerCase();
+    const bodyText=body?body.textContent.toLowerCase():'';
+    const hit=headText.includes(q)||bodyText.includes(q);
+    sec.classList.toggle('s-hidden',!hit);
+    if(hit){
+      matched++;
+      if(!h2._orig)h2._orig=h2.innerHTML;
+      const re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');
+      h2.innerHTML=h2._orig.replace(re,'<mark>$1</mark>');
+      sec.classList.add('open');
+    }
+  });
+  document.getElementById('sb-no-match').classList.toggle('show',!!q&&matched===0);
+}
+</script>
+</body>
+</html>

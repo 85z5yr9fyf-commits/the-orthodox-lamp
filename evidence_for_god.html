@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Evidence for God — The Orthodox Lamp</title>
+<style>
+:root{
+  --gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;
+  --bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--bg5:#3a2e10;
+  --tx:#e8e0d0;--mu:#a09880;--br:#2a2a2a;
+  --sidebar-w:270px;
+  --rc:#3a1a1a;--rcc:#d47070;
+  --oo:#1a2e1a;--ooc:#7dc87d;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.7;display:flex;min-height:100vh}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+mark{background:rgba(201,168,76,.28);color:var(--gl);border-radius:2px;padding:0 2px}
+#prog{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--gd),var(--gl));z-index:200;transition:width .1s}
+#sb{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:100;display:flex;flex-direction:column}
+#sb-brand{padding:18px 18px 10px;border-bottom:1px solid var(--br)}
+#sb-brand .lamp{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mu);margin-bottom:4px}
+#sb-brand h1{font-size:1rem;color:var(--gold);line-height:1.3}
+.sb-search{padding:10px 14px 4px}
+.sb-search input{width:100%;background:rgba(255,255,255,.06);border:1px solid var(--br);border-radius:6px;padding:8px 12px;font-size:.8rem;color:var(--tx);font-family:'Georgia',serif;outline:none;transition:border-color .2s}
+.sb-search input::placeholder{color:#666}
+.sb-search input:focus{border-color:var(--gd)}
+.sec.s-hidden{display:none}
+.no-match-msg{display:none;padding:14px 18px;font-size:.8rem;color:var(--mu);font-style:italic;text-align:center}
+.no-match-msg.show{display:block}
+#sb-nav{padding:10px 0 20px;flex:1}
+#sb-nav a{display:block;padding:6px 18px;font-size:.82rem;color:var(--mu);border-left:2px solid transparent;transition:all .15s;line-height:1.4}
+#sb-nav a:hover,#sb-nav a.active{color:var(--gold);border-left-color:var(--gold);background:rgba(201,168,76,.06);text-decoration:none}
+main{margin-left:var(--sidebar-w);flex:1;max-width:820px;padding:48px 48px 80px}
+.pg-title{margin-bottom:10px}
+.pg-title .lamp-label{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--mu);margin-bottom:6px}
+.pg-title h1{font-size:2rem;color:var(--gold);line-height:1.2}
+.pg-title .sub{font-size:1rem;color:var(--mu);margin-top:6px;font-style:italic}
+.pg-intro{max-width:660px;color:var(--mu);font-size:.95rem;margin:16px 0 36px;border-left:3px solid var(--gd);padding-left:14px}
+.sec{border:1px solid var(--br);border-radius:8px;margin-bottom:14px;overflow:hidden;background:var(--bg2)}
+.sec-h{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;cursor:pointer;user-select:none;gap:10px}
+.sec-h:hover{background:rgba(255,255,255,.03)}
+.sec-h h2{font-size:1rem;color:var(--tx);font-weight:600}
+.sec-h .arr{color:var(--mu);font-size:.8rem;transition:transform .2s;flex-shrink:0}
+.sec.open .arr{transform:rotate(90deg)}
+.sec-body{display:none;padding:18px 20px 20px;border-top:1px solid var(--br)}
+.sec.open .sec-body{display:block}
+.sec-body p{color:var(--mu);font-size:.92rem;margin-bottom:10px}
+.sec-body p:last-child{margin-bottom:0}
+.sv{background:var(--bg5);border:1px solid var(--gd);border-radius:6px;padding:12px 16px;margin:12px 0;font-style:italic;color:var(--gl);font-size:.92rem}
+.sv cite{display:block;text-align:right;font-size:.8rem;color:var(--gold);margin-top:6px;font-style:normal}
+.comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.comp-card{border-radius:8px;padding:14px 16px;border:1px solid}
+.comp-card.rc-card{background:var(--rc);border-color:var(--rcc)}
+.comp-card.oo-card{background:var(--oo);border-color:var(--ooc)}
+.comp-card .cc-label{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;font-weight:700}
+.comp-card.rc-card .cc-label{color:var(--rcc)}
+.comp-card.oo-card .cc-label{color:var(--ooc)}
+.comp-card ul{padding-left:16px;font-size:.88rem;line-height:1.75}
+.comp-card.rc-card ul{color:#e8c0c0}
+.comp-card.oo-card ul{color:#c8e8c8}
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin:14px 0}
+.fc{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:14px 16px}
+.fc-name{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.fc-body{font-size:.88rem;color:var(--mu);font-style:italic;line-height:1.6}
+.fc-src{font-size:.76rem;color:var(--gd);margin-top:6px}
+.fi{border:1px solid var(--br);border-radius:6px;margin-bottom:8px;overflow:hidden;background:var(--bg3)}
+.fi-h{display:flex;align-items:flex-start;padding:11px 14px;cursor:pointer;gap:8px;user-select:none}
+.fi-h:hover{background:rgba(255,255,255,.03)}
+.fi-q{font-size:.88rem;color:var(--tx);flex:1}
+.fi-arr{color:var(--mu);font-size:.75rem;transition:transform .2s;flex-shrink:0;margin-top:4px}
+.fi.open .fi-arr{transform:rotate(90deg)}
+.fi-body{display:none;padding:12px 14px 14px;border-top:1px solid var(--br);font-size:.88rem;color:var(--mu);line-height:1.65}
+.fi.open .fi-body{display:block}
+.gt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin:14px 0}
+.gt{background:var(--bg3);border:1px solid var(--br);border-radius:7px;padding:12px 14px}
+.gt-term{font-size:.8rem;font-weight:700;color:var(--gold);margin-bottom:4px}
+.gt-def{font-size:.84rem;color:var(--mu);line-height:1.55}
+/* Greek/Latin text box */
+.lang-box{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:14px 18px;margin:12px 0}
+.lb-label{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mu);margin-bottom:8px}
+.lb-row{display:flex;gap:16px;margin-bottom:8px;align-items:baseline;flex-wrap:wrap}
+.lb-lang{font-size:.72rem;color:var(--gold);min-width:60px;flex-shrink:0}
+.lb-text{font-size:.9rem;color:var(--tx);font-style:italic}
+.lb-note{font-size:.8rem;color:var(--mu);margin-top:4px}
+/* consequence vs guilt boxes */
+.distinction-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.dist-box{border-radius:8px;padding:14px 16px;border:1px solid}
+.dist-box.inherited{background:#1a1a2e;border-color:#7070d4}
+.dist-box.not-inherited{background:#2e1a1a;border-color:#d47070}
+.dist-box .db-label{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;font-weight:700}
+.dist-box.inherited .db-label{color:#a0a0e8}
+.dist-box.not-inherited .db-label{color:var(--rcc)}
+.dist-box ul{padding-left:16px;font-size:.88rem;line-height:1.75}
+.dist-box.inherited ul{color:#c8c8f0}
+.dist-box.not-inherited ul{color:#f0c8c8}
+@media(max-width:760px){#sb{transform:translateX(-100%)}main{margin-left:0;padding:24px 18px 60px}}
+
+.ev-map{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;margin:14px 0}
+.ev-card{display:block;background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:12px 14px;transition:border-color .15s}
+.ev-card:hover{border-color:var(--gold);text-decoration:none}
+.ev-num{font-size:.68rem;letter-spacing:.12em;color:var(--mu);text-transform:uppercase}
+.ev-name{color:var(--gold);font-weight:700;margin:2px 0 4px;font-size:.95rem}
+.ev-line{color:var(--tx);font-size:.8rem;line-height:1.5}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<nav id="sb">
+  <div id="sb-brand">
+    <div class="lamp">The Orthodox Lamp</div>
+    <h1>The Evidence for God</h1>
+  </div>
+  <div class="sb-search">
+    <input type="search" placeholder="Search sections…" oninput="sidebarSearch(this.value)" aria-label="Search sections">
+  </div>
+  <div id="sb-nav">
+    <a href="#objection">The Objection Stated</a>
+    <a href="#map">The Evidence Map</a>
+    <a href="#evidence">What Counts as Evidence?</a>
+    <a href="#cosmology">1 · The Universe Began</a>
+    <a href="#contingency">2 · Why Anything Exists</a>
+    <a href="#finetuning">3 · Fine-Tuning</a>
+    <a href="#originlife">4 · Life &amp; the Code in the Cell</a>
+    <a href="#intelligibility">5 · A Comprehensible Universe</a>
+    <a href="#consciousness">6 · Consciousness &amp; Reason</a>
+    <a href="#morality">7 · The Moral Law</a>
+    <a href="#desire">8 · Desire, Beauty &amp; Worship</a>
+    <a href="#jesus">9 · Jesus &amp; the Resurrection</a>
+    <a href="#witness">10 · The Continuing Witness</a>
+    <a href="#cumulative">The Cumulative Case</a>
+    <a href="#scientism">Scientism Refutes Itself</a>
+    <a href="#concessions">What Honest Atheists Concede</a>
+    <a href="#fathers">The Fathers on Knowing God</a>
+    <a href="#faq">FAQ</a>
+    <a href="#glossary">Glossary</a>
+    <a href="#sources">Sources</a>
+  </div>
+  <div class="no-match-msg" id="sb-no-match">No sections match.</div>
+</nav>
+<main>
+  <div class="pg-title">
+    <div class="lamp-label">The Orthodox Lamp</div>
+    <h1>The Evidence for God</h1>
+    <div class="sub">"There is no evidence for God" — Ten lines of evidence, from the cosmos to the empty tomb</div>
+  </div>
+  <p class="pg-intro">"I believe in Christianity as I believe that the sun has risen: not only because I see it, but because by it I see everything else" (C. S. Lewis). The claim that there is "no evidence" for God is the most repeated and least examined sentence in modern unbelief. This page assembles the evidence in ten organized lines — scientific, philosophical, moral, historical — each stated in a single sentence first, so that anyone can pick it up quickly, with the Fathers and the Scriptures alongside the physicists.</p>
+
+  <div class="sec open" id="objection">
+    <div class="sec-h" onclick="ts(this)"><h2>The Objection Stated — At Its Strongest</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>Asked what he would say if he died and found himself before God, the philosopher Bertrand Russell famously replied: <em>"Not enough evidence, God! Not enough evidence!"</em> (as reported by Leo Rosten, 1974). Behind the quip stand three serious claims:</p>
+      <div class="comp-grid">
+        <div class="comp-card rc-card">
+          <div class="cc-label">The Atheist Case</div>
+          <ul>
+            <li><strong>Evidentialism:</strong> "It is wrong, always, everywhere, and for anyone, to believe anything upon insufficient evidence" (W. K. Clifford, "The Ethics of Belief," 1877).</li>
+            <li><strong>The burden of proof:</strong> the theist asserts; the atheist merely withholds assent. "What can be asserted without evidence can be dismissed without evidence" (Hitchens's razor).</li>
+            <li><strong>The empirical standard:</strong> God is invisible, untestable, and unfalsifiable; every gap once filled by God (lightning, disease, design) science has closed.</li>
+          </ul>
+        </div>
+        <div class="comp-card oo-card">
+          <div class="cc-label">The Shape of the Response</div>
+          <ul>
+            <li>There is evidence — abundant, public, and of many independent kinds. The dispute is never really about the existence of evidence but about the standard being demanded.</li>
+            <li>The demand itself is rigged: it asks for the kind of evidence appropriate to an object <em>inside</em> the universe, for the One who is the reason there is a universe at all.</li>
+            <li>Evidentialism fails its own test (see <a href="#scientism">Scientism Refutes Itself</a>), and the "gaps" story is historically backwards — modern science was born from belief in a rational Lawgiver.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="sv">"The fool says in his heart, 'There is no God.'"<cite>Psalm 14:1 — Scripture's verdict is not that the atheist lacks data but that he misreads it from the heart</cite></div>
+    </div>
+  </div>
+
+  <div class="sec open" id="map">
+    <div class="sec-h" onclick="ts(this)"><h2>The Evidence Map — Quick Reference</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>Each line of evidence in one sentence. Click any card for the full treatment below.</p>
+      <div class="ev-map">
+        <a class="ev-card" href="#cosmology"><div class="ev-num">Evidence 1 · Science</div><div class="ev-name">The Universe Began</div><div class="ev-line">Whatever begins to exist has a cause; the universe began to exist; its cause must be beyond space, time, and matter.</div></a>
+        <a class="ev-card" href="#contingency"><div class="ev-num">Evidence 2 · Philosophy</div><div class="ev-name">Why Anything Exists</div><div class="ev-line">Nothing in the universe explains its own existence; a chain of borrowed existence requires a Source that exists of itself.</div></a>
+        <a class="ev-card" href="#finetuning"><div class="ev-num">Evidence 3 · Science</div><div class="ev-name">Fine-Tuning</div><div class="ev-line">The constants of physics are balanced on a knife-edge of staggering precision — chance, necessity, or mind.</div></a>
+        <a class="ev-card" href="#originlife"><div class="ev-num">Evidence 4 · Science</div><div class="ev-name">The Code in the Cell</div><div class="ev-line">DNA is a digital code; in all experience, codes come from minds, and the origin of life remains unexplained without one.</div></a>
+        <a class="ev-card" href="#intelligibility"><div class="ev-num">Evidence 5 · Science</div><div class="ev-name">A Comprehensible Universe</div><div class="ev-line">The universe obeys elegant mathematics our minds can discover — expected if a rational Word made both, a brute miracle if not.</div></a>
+        <a class="ev-card" href="#consciousness"><div class="ev-num">Evidence 6 · Mind</div><div class="ev-name">Consciousness &amp; Reason</div><div class="ev-line">Matter rearranged is still matter; first-person experience and trustworthy reason point beyond physics.</div></a>
+        <a class="ev-card" href="#morality"><div class="ev-num">Evidence 7 · Morals</div><div class="ev-name">The Moral Law</div><div class="ev-line">If some things are really wrong — not just disliked — there is a moral law above humanity, and a Lawgiver.</div></a>
+        <a class="ev-card" href="#desire"><div class="ev-num">Evidence 8 · The Heart</div><div class="ev-name">Desire, Beauty &amp; Worship</div><div class="ev-line">Every natural desire has a real object; humanity's universal hunger for God is evidence of the Food.</div></a>
+        <a class="ev-card" href="#jesus"><div class="ev-num">Evidence 9 · History</div><div class="ev-name">Jesus &amp; the Resurrection</div><div class="ev-line">The minimal historical facts about Jesus of Nazareth — granted even by skeptical scholars — are best explained by the Resurrection.</div></a>
+        <a class="ev-card" href="#witness"><div class="ev-num">Evidence 10 · Experience</div><div class="ev-name">The Continuing Witness</div><div class="ev-line">Martyrs, saints, answered prayer, and mass-witnessed events like Zeitoun: the evidence did not stop in the first century.</div></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" id="evidence">
+    <div class="sec-h" onclick="ts(this)"><h2>What Counts as Evidence? — Correcting the Category Error</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>The demand "show me God in a telescope or a test tube" misunderstands what Christians claim. God is not one more object <em>inside</em> the universe — a very large galaxy or a very subtle particle — but the reason there is a universe, the way an author is not a character hiding somewhere in chapter seven. You do not find Tolkien by searching Middle-earth with a magnifying glass; you find him by recognizing that Middle-earth is <em>written</em>.</p>
+      <p>Accordingly, the evidence for God is like the evidence for an author: the existence of the book, its order, its language, its beauty, its moral arc — and, in the Christian claim, the Author's own entry into the story. Scripture itself names creation as evidence, publicly available to all:</p>
+      <div class="sv">"For his invisible attributes, namely, his eternal power and divine nature, have been clearly perceived, ever since the creation of the world, in the things that have been made. So they are without excuse."<cite>Romans 1:20</cite></div>
+      <div class="sv">"The heavens declare the glory of God, and the sky above proclaims his handiwork. Day to day pours out speech… There is no speech, nor are there words… yet their voice goes out through all the earth."<cite>Psalm 19:1–4</cite></div>
+      <div class="sv">"For from the greatness and beauty of created things comes a corresponding perception of their Creator."<cite>Wisdom of Solomon 13:5 — in the Oriental Orthodox canon; verses 1–9 are Scripture's own natural theology</cite></div>
+      <div class="sv">"He did not leave himself without witness, for he did good by giving you rains from heaven and fruitful seasons, satisfying your hearts with food and gladness."<cite>Acts 14:17 — Paul to pagans, appealing to public evidence</cite></div>
+      <p>Two ground rules for what follows. <strong>First:</strong> the case is cumulative. No single argument is the whole case, just as no single strand is the rope; the question is what best explains <em>all</em> the data together. <strong>Second:</strong> "proof" in the mathematical sense is not the standard for any question of existence — you cannot mathematically prove your own mother loves you, or that the external world is real. The standard is the same as in history, law, and daily life: inference to the best explanation.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="cosmology">
+    <div class="sec-h" onclick="ts(this)"><h2>Evidence 1 — The Universe Began to Exist</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p><strong>In one sentence:</strong> whatever begins to exist has a cause; the universe — all space, time, matter, and energy — began to exist; therefore the universe has a cause beyond space, time, matter, and energy.</p>
+      <p>For most of history, atheism's refuge was an eternal universe that simply <em>is</em>. The twentieth century demolished it. The expansion of the universe (discovered by Edwin Hubble, predicted from Einstein's equations by the Belgian priest-physicist Georges Lemaître), the cosmic microwave background (1965), and the singularity theorems converged on a beginning — the "Big Bang," a name coined as mockery by Fred Hoyle, who hated its theological smell.</p>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">Stephen Hawking &amp; Roger Penrose</div>
+          <div class="fc-body">"Almost everyone now believes that the universe, and time itself, had a beginning at the Big Bang."</div>
+          <div class="fc-src">The Nature of Space and Time (1996) — neither author a theist</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">Alexander Vilenkin (cosmologist, co-author of the Borde–Guth–Vilenkin theorem, 2003)</div>
+          <div class="fc-body">"Cosmologists can no longer hide behind the possibility of a past-eternal universe. There is no escape: they have to face the problem of a cosmic beginning."</div>
+          <div class="fc-src">Many Worlds in One (2006). The BGV theorem shows that any universe which has, on average, been expanding cannot be past-eternal — and it applies to multiverse and inflationary models too.</div>
+        </div>
+      </div>
+      <p>But nothing comes from nothing. A beginning of all physical reality cannot have a physical cause — the cause must be beyond time (eternal), beyond space (immaterial), and capable of producing a universe (unimaginably powerful). That is not yet the full Christian God — but it is precisely the opening sentence of His book:</p>
+      <div class="sv">"In the beginning, God created the heavens and the earth."<cite>Genesis 1:1 — uniquely among ancient cosmologies, an absolute beginning from nothing; cf. 2 Maccabees 7:28, "God did not make them out of things that existed"</cite></div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Objection: "Then who made God?"</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">The premise is "whatever <em>begins to exist</em> has a cause" — not "whatever exists has a cause." God, by definition, never began; He is the eternal, necessary being the argument concludes to. Asking "who made the unmade Maker?" is asking "who made the thing whose whole point is that it is not made?" — a question malformed in the same way as "what is north of the North Pole?" The child's question dissolves once the terms are understood; the universe's beginning does not.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Objection: "Quantum physics shows things pop into existence uncaused."</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">Virtual particles arise from the quantum vacuum — which is not <em>nothing</em> but a seething physical field governed by laws, itself part of the universe whose origin is in question. Relabeling a physical something as "nothing" (the move of Lawrence Krauss's <em>A Universe from Nothing</em>) was criticized sharply even by atheist philosophers; David Albert's review in the <em>New York Times</em> (2012) called the book's central claim a failure for exactly this reason. From genuine nothing — no fields, no laws, no potential — nothing comes.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" id="contingency">
+    <div class="sec-h" onclick="ts(this)"><h2>Evidence 2 — Why Anything Exists at All</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p><strong>In one sentence:</strong> everything in the universe exists contingently — it could have failed to exist and depends on something else — and no chain of dependent things, however long, explains itself; there must be something that exists necessarily, of itself.</p>
+      <p>This argument (classically Leibniz: "why is there something rather than nothing?") works even if the universe were eternal. An infinite series of borrowed existence is no better than a short one: a chain of interlocked rings hanging in mid-air does not become self-supporting by adding rings. Each thing in the cosmos — electrons, fields, galaxies, the laws themselves — answers "why do you exist?" by pointing elsewhere. Either the pointing never terminates (and nothing is finally explained), or it terminates in a being whose nature is existence itself.</p>
+      <div class="sv">"God said to Moses, 'I AM WHO I AM.'"<cite>Exodus 3:14 — Scripture's name for God is the metaphysics of necessary being in two Hebrew words: the One who simply IS</cite></div>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">St. Gregory of Nazianzus (329–390)</div>
+          <div class="fc-body">"For how could this universe have come into being or been put together, unless God had called it into existence, and held it together? For every one who sees a beautifully made lute, and considers the skill with which it has been fitted together and arranged, or who hears its melody, would think of none but the lutemaker, or the luteplayer, and would recur to him in mind, though he might not know him by sight."</div>
+          <div class="fc-src">Oration 28 (Second Theological Oration), 6</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. John of Damascus (c. 675–749)</div>
+          <div class="fc-body">"The very continuity of creation, and its preservation and government, teach us that there does exist a Deity, who supports and maintains and preserves and ever provides for this universe."</div>
+          <div class="fc-src">Exact Exposition of the Orthodox Faith 1.3 — the classic patristic summary of the argument (Chalcedonian author; cited here for his summary of the common tradition)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" id="finetuning">
+    <div class="sec-h" onclick="ts(this)"><h2>Evidence 3 — The Fine-Tuning of the Universe</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p><strong>In one sentence:</strong> the fundamental constants and initial conditions of the universe are balanced with a precision so absurd that "happy accident" is not a serious answer — and the alternatives are necessity (no one has shown it), an unobservable infinity of other universes, or mind.</p>
+      <p>Examples from the standard literature:</p>
+      <div class="lang-box">
+        <div class="lb-label">The Knife-Edge — Standard Examples</div>
+        <div class="lb-row"><span class="lb-lang">Cosmological constant</span><span class="lb-text">Fine-tuned to roughly 1 part in 10<sup>120</sup> — too high and the universe rips apart before galaxies form; too low and it collapses.</span></div>
+        <div class="lb-row"><span class="lb-lang">Initial entropy</span><span class="lb-text">Roger Penrose calculated the odds of our universe's low-entropy starting state at 1 in 10<sup>10^123</sup> — a number with more zeros than there are particles in the observable universe (The Emperor's New Mind, 1989).</span></div>
+        <div class="lb-row"><span class="lb-lang">Nuclear forces</span><span class="lb-text">Shift the strong force a few percent and no stable carbon or long-lived stars; the carbon-12 resonance that makes stellar nucleosynthesis work was predicted by Fred Hoyle precisely because life exists.</span></div>
+      </div>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">Sir Fred Hoyle — atheist astrophysicist</div>
+          <div class="fc-body">"A common sense interpretation of the facts suggests that a superintellect has monkeyed with physics, as well as with chemistry and biology, and that there are no blind forces worth speaking about in nature. The numbers one calculates from the facts seem to me so overwhelming as to put this conclusion almost beyond question."</div>
+          <div class="fc-src">"The Universe: Past and Present Reflections," Engineering and Science (November 1981) — written after his own carbon-resonance prediction was confirmed</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Athanasius of Alexandria (c. 296–373)</div>
+          <div class="fc-body">"For creation, as though in written characters, declares in a loud voice, by its order and harmony, its own Lord and Creator."</div>
+          <div class="fc-src">Against the Heathen 34 — the fine-tuning intuition, sixteen centuries before the measurements</div>
+        </div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Objection: "The multiverse explains it — with infinite universes, some win the lottery."</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">Three problems. (1) Other universes are in principle unobservable — invoking an infinity of them to avoid one God is not obviously the economical move, and it is not empirical science by the objector's own standard. (2) The multiverse-generating mechanism itself requires fine-tuning, relocating the problem rather than solving it; and by the BGV theorem the inflationary multiverse still needs a beginning. (3) The "firing squad" point (philosopher John Leslie): if fifty marksmen all miss you, "of course they missed — otherwise I wouldn't be here to wonder" is not an explanation. Your survival still cries out for one.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Objection: "We can only observe a life-permitting universe — so there's nothing to explain." (Anthropic principle)</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">This confuses two things: <em>that</em> we should expect to observe a life-permitting universe (true, trivially), and <em>that a life-permitting universe should exist at all</em> (the actual surprise). The anthropic principle explains why we don't see the losing tickets; it does not explain why there was a winning one.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" id="originlife">
+    <div class="sec-h" onclick="ts(this)"><h2>Evidence 4 — Life and the Code in the Cell</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p><strong>In one sentence:</strong> the simplest self-reproducing cell runs on a digital code (DNA), stored, transcribed, translated, and error-corrected by molecular machinery — and in the whole of human experience, codes and languages have exactly one known source: mind.</p>
+      <p>This is not an argument from what science hasn't explained, but from what it <em>has</em> discovered: that life is, at bottom, information processing. The genetic code is a true code — arbitrary symbol assignments (codons to amino acids), a reader, a writer, and semantics. Origin-of-life research has produced genuine insights into chemistry, but the gap between chemistry and <em>code</em> remains what it was:</p>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">Francis Crick — co-discoverer of DNA's structure, atheist</div>
+          <div class="fc-body">"An honest man, armed with all the knowledge available to us now, could only state that in some sense, the origin of life appears at the moment to be almost a miracle, so many are the conditions which would have had to have been satisfied to get it going."</div>
+          <div class="fc-src">Life Itself (1981) — Crick's own tentative solution was to move the problem off-planet (directed panspermia), which measures the difficulty</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">Antony Flew — the twentieth century's leading philosophical atheist</div>
+          <div class="fc-body">"What I think the DNA material has done is that it has shown, by the almost unbelievable complexity of the arrangements which are needed to produce life, that intelligence must have been involved."</div>
+          <div class="fc-src">Interview with Gary Habermas (2004); developed in There Is a God (2007) — Flew abandoned atheism at 81, citing this evidence, while never becoming a Christian: he followed, he said, where the evidence led</div>
+        </div>
+      </div>
+      <div class="sv">"I praise you, for I am fearfully and wonderfully made. Wonderful are your works; my soul knows it very well."<cite>Psalm 139:14</cite></div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Objection: "Evolution explains the appearance of design."</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">Keep the issues distinct. Natural selection presupposes a self-replicating, code-bearing organism already in existence — it explains the diversification of life, not the origin of the code, the cell, or the fine-tuned universe the process runs in. Moreover, an elegant law-governed process that turns stardust into cellists is the kind of thing that itself calls for explanation. The Fathers had no quarrel with God working through natural processes: "Let the earth bring forth" (Genesis 1:24) is God's own delegation to nature. Evolution, whatever its final scientific verdict, answers a different question than the ones asked on this page.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" id="intelligibility">
+    <div class="sec-h" onclick="ts(this)"><h2>Evidence 5 — A Comprehensible, Mathematical Universe</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p><strong>In one sentence:</strong> the universe runs on deep, elegant mathematics, and human minds — allegedly accidental byproducts of survival — can discover it; this is exactly what you would expect if a rational Word (<em>Logos</em>) made both the world and the mind, and a standing miracle if not.</p>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">Albert Einstein</div>
+          <div class="fc-body">"The eternal mystery of the world is its comprehensibility… The fact that it is comprehensible is a miracle."</div>
+          <div class="fc-src">"Physics and Reality" (1936). Einstein was no orthodox believer — which is what makes his astonishment evidence rather than apologetics</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">Eugene Wigner — Nobel laureate in physics</div>
+          <div class="fc-body">"The miracle of the appropriateness of the language of mathematics for the formulation of the laws of physics is a wonderful gift which we neither understand nor deserve."</div>
+          <div class="fc-src">"The Unreasonable Effectiveness of Mathematics in the Natural Sciences" (1960)</div>
+        </div>
+      </div>
+      <p>History adds its testimony: modern experimental science arose once, in a civilization soaked in the doctrine that the world is the contingent, rational creation of a faithful Lawgiver — worth investigating (rational) and needing investigation (contingent: God was free to make it otherwise, so you must look). Kepler called science "thinking God's thoughts after him." The pioneers — Copernicus, Kepler, Galileo, Boyle, Newton, Faraday, Maxwell, Mendel, Lemaître — worked from theism, not in spite of it.</p>
+      <div class="sv">"In the beginning was the Word (Logos), and the Word was with God, and the Word was God. All things were made through him."<cite>John 1:1–3 — the Christian explanation of why the universe is logical: it was spoken by Logos</cite></div>
+      <div class="sv">"You have arranged all things by measure and number and weight."<cite>Wisdom of Solomon 11:20 — the verse the medieval founders of science quoted constantly</cite></div>
+    </div>
+  </div>
+
+  <div class="sec" id="consciousness">
+    <div class="sec-h" onclick="ts(this)"><h2>Evidence 6 — Consciousness and the Trustworthiness of Reason</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p><strong>In one sentence:</strong> no rearrangement of unconscious matter explains the existence of first-person experience, and if our minds are nothing but survival machines, we have no reason to trust the very reasoning that tells us so.</p>
+      <p><strong>(a) Consciousness.</strong> Physics describes mass, charge, spin — third-person quantities. Nothing in that vocabulary, however elaborated, adds up to the <em>taste</em> of honey, the <em>redness</em> of red, the felt fact of being someone. The atheist philosopher David Chalmers named this "the hard problem," and it is hard precisely because subjective experience is a different <em>kind</em> of fact, not a more complicated arrangement of the same kind. On theism this is no surprise: mind is not a latecomer in reality but its foundation — "In the beginning was the Word."</p>
+      <p><strong>(b) Reason.</strong> If naturalism is true, every belief you hold is the output of neural processes selected for survival value, not truth. But then the belief <em>in naturalism</em> is also just such an output — and the argument saws off the branch it sits on (C. S. Lewis's argument from reason; Alvin Plantinga's evolutionary argument against naturalism). Darwin himself glimpsed it:</p>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">Charles Darwin</div>
+          <div class="fc-body">"With me the horrid doubt always arises whether the convictions of man's mind, which has been developed from the mind of the lower animals, are of any value or at all trustworthy. Would any one trust in the convictions of a monkey's mind, if there are any convictions in such a mind?"</div>
+          <div class="fc-src">Letter to William Graham, 3 July 1881</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Athanasius of Alexandria</div>
+          <div class="fc-body">"For God has made mankind through His own Word… He gave them a share in His own image, that is, in our Lord Jesus Christ, and made them after His own image and after His likeness: so that by such grace perceiving the Image, that is, the Word of the Father, they may be able through Him to get an idea of the Father."</div>
+          <div class="fc-src">On the Incarnation 3, 11–12 (condensed) — rationality as participation in the Logos: the Christian account of why reason reaches truth</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" id="morality">
+    <div class="sec-h" onclick="ts(this)"><h2>Evidence 7 — The Moral Law</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p><strong>In one sentence:</strong> if anything is really wrong — the torture of children, genocide, betrayal — and not merely disliked by certain primates, then there is a moral law that stands above all human opinion, and a moral law above humanity requires a ground above humanity.</p>
+      <p>The argument's force comes from the fact that nobody actually lives as a moral nihilist. The atheist who says morality is an evolutionary illusion still <em>condemns</em> — slavery, crusades, the God of the Old Testament — with the full voice of objective indignation. But condemnation borrows the very standard atheism dissolves. Honest naturalists have said so plainly:</p>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">Richard Dawkins</div>
+          <div class="fc-body">"The universe that we observe has precisely the properties we should expect if there is, at bottom, no design, no purpose, no evil, no good, nothing but blind, pitiless indifference."</div>
+          <div class="fc-src">River Out of Eden (1995) — consistent naturalism, stated honestly: no evil, no good. Yet no one, including its author, believes the second half in practice</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Paul</div>
+          <div class="fc-body">"They show that the work of the law is written on their hearts, while their conscience also bears witness, and their conflicting thoughts accuse or even excuse them."</div>
+          <div class="fc-src">Romans 2:15 — conscience as a universal, public datum: the law written on Gentile hearts</div>
+        </div>
+      </div>
+      <p>Note carefully what this argument does <em>not</em> say. It does not say atheists are immoral — many are conspicuously moral, exactly as Romans 2 predicts, since the law is written on every heart. It says atheism cannot account for the <em>authority</em> of the morality atheists themselves live by. Evolution can explain moral <em>feelings</em> (kin altruism, reciprocity); it cannot turn a feeling into an obligation. "I dislike it" plus "it hindered survival on the savannah" never adds up to "therefore it is wrong and you are bound."</p>
+      <p>For the full treatment of evil and suffering — the moral objection in reverse — see <a href="problem_of_evil.html">The Problem of Evil</a>, where the same blade cuts the other way: moral outrage at evil presupposes the objective Good the atheist denies.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="desire">
+    <div class="sec-h" onclick="ts(this)"><h2>Evidence 8 — Desire, Beauty, and the Universality of Worship</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p><strong>In one sentence:</strong> every natural human desire corresponds to a real object — hunger to food, thirst to water, eros to love — and the most persistent desire of all, attested in every civilization that has ever existed, is for God.</p>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">C. S. Lewis</div>
+          <div class="fc-body">"Creatures are not born with desires unless satisfaction for those desires exists… If I find in myself a desire which no experience in this world can satisfy, the most probable explanation is that I was made for another world."</div>
+          <div class="fc-src">Mere Christianity, Book III, ch. 10</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Augustine of Hippo (354–430)</div>
+          <div class="fc-body">"You have made us for yourself, O Lord, and our heart is restless until it rests in you."</div>
+          <div class="fc-src">Confessions 1.1 — the most famous sentence in Christian literature outside Scripture</div>
+        </div>
+      </div>
+      <p>Anthropology confirms what the Fathers assumed: no atheist civilization has ever been discovered. Worship is as universal as language. The naturalist must explain why evolution saddled the entire species with an expensive, persistent hunger for something that does not exist — while every other basic appetite has an object. Beauty makes the same point from another side: the overwhelming experience before a mountain range, a Bach chaconne, or the night sky is not "this will help me survive" but something closer to gratitude — gratitude with no one to thank is the atheist's strange burden.</p>
+      <div class="sv">"As a deer pants for flowing streams, so pants my soul for you, O God. My soul thirsts for God, for the living God."<cite>Psalm 42:1–2</cite></div>
+      <div class="sv">"He has put eternity into man's heart."<cite>Ecclesiastes 3:11</cite></div>
+    </div>
+  </div>
+
+  <div class="sec" id="jesus">
+    <div class="sec-h" onclick="ts(this)"><h2>Evidence 9 — Jesus of Nazareth and the Resurrection</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p><strong>In one sentence:</strong> the historical facts about Jesus that even skeptical scholarship grants — his crucifixion, his followers' sincere belief that they saw him alive, the conversion of the skeptic James and the persecutor Paul, and the explosion of the Church in the city where he was buried — are best explained by the event the Church has proclaimed from the first Sunday: He is risen.</p>
+      <p>This is evidence of a different and stronger kind than the philosophical arguments: a public event in datable history. The earliest testimony is not the Gospels but a creed Paul quotes as already traditional — received, scholars across the spectrum agree, within a few years of the crucifixion itself:</p>
+      <div class="sv">"For I delivered to you as of first importance what I also received: that Christ died for our sins in accordance with the Scriptures, that he was buried, that he was raised on the third day in accordance with the Scriptures, and that he appeared to Cephas, then to the twelve. Then he appeared to more than five hundred brothers at one time, most of whom are still alive…"<cite>1 Corinthians 15:3–6 — written c. AD 54, transmitting a creed from the early 30s; "most are still alive" is an invitation to interrogate witnesses</cite></div>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">Gerd Lüdemann — atheist New Testament scholar</div>
+          <div class="fc-body">"It may be taken as historically certain that Peter and the disciples had experiences after Jesus' death in which Jesus appeared to them as the risen Christ."</div>
+          <div class="fc-src">What Really Happened to Jesus (1995). The dispute among scholars is not whether the appearances were sincerely experienced, but what caused them</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">The shape of the data</div>
+          <div class="fc-body">Hallucinations are private, not shared by groups and hundreds; they do not produce empty tombs; they do not convert enemies (Paul) or unbelieving brothers (James); legends do not crystallize within three years among living eyewitnesses; and men do not endure flogging, exile, and execution for what they know they invented. Every naturalistic alternative must explain all the data at once — and each one fails a different test.</div>
+          <div class="fc-src">Cf. Habermas &amp; Licona, The Case for the Resurrection of Jesus (2004); N. T. Wright, The Resurrection of the Son of God (2003)</div>
+        </div>
+      </div>
+      <p>And behind the event stands the unanswerable figure himself. The character of Jesus — the moral authority that has judged every civilization since, issuing from an executed carpenter in an occupied backwater — is not the kind of thing committees invent. As the centurion said at the cross, before any theology existed: "Truly this man was the Son of God" (Mark 15:39).</p>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Objection: "Extraordinary claims require extraordinary evidence."</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">The slogan smuggles in its conclusion. What counts as "extraordinary" depends on your prior worldview: if God exists, a resurrection is not improbable at all — it is exactly the sort of signature event one might expect at the hinge of history. The slogan, used as the atheist uses it, means "no testimony could ever convince me" — which Hume admitted and which is not skepticism but a closed door. The actual standard is the ordinary one: which explanation accounts for all the evidence with the fewest contortions? Set the five facts above against "the disciples hallucinated, separately and in groups, and the tomb was coincidentally empty, and Paul and James hallucinated too, and no one ever produced the body" — and judge which story is doing the special pleading.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" id="witness">
+    <div class="sec-h" onclick="ts(this)"><h2>Evidence 10 — The Continuing Witness</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p><strong>In one sentence:</strong> the evidence did not stop in the first century — the martyrs, the saints, the survival of the Church against every empire that tried to bury her, and mass-witnessed modern events form a living, public exhibit.</p>
+      <p><strong>The martyrs.</strong> From the Era of Martyrs under Diocletian (the Coptic calendar's year zero, AD 284) to the 21 Martyrs of Libya (2015), beheaded with the name of Jesus on their lips, the Oriental Orthodox Churches have paid in blood for seventeen centuries — and grown. Men die for many false things they believe true; they do not die, generation after generation, for something that produces no encounter with the living God.</p>
+      <p><strong>Zeitoun.</strong> Between 1968 and 1971, luminous apparitions of the Virgin Mary over St. Mary's Coptic Church in Zeitoun, Cairo, were witnessed by hundreds of thousands — Christians, Muslims, and atheists; photographed; reported in the international press; and investigated and authenticated by Pope Kyrillos VI. Mass, repeated, public, cross-confessional witness is precisely what "no evidence" claims cannot digest. See the full treatment on <a href="theotokos_mary.html">the Theotokos page</a>.</p>
+      <p><strong>The saints.</strong> The transformation of persons — Anthony the Great turning the desert into a city, Kyrillos VI, Bishoy Kamel, and the unrecorded thousands — is data. So is answered prayer, attested across every century of the Church's life. A single white crow refutes "all crows are black"; the atheist must explain away not one saint but a communion of them.</p>
+      <div class="sv">"You will receive power when the Holy Spirit has come upon you, and you will be my witnesses… to the end of the earth."<cite>Acts 1:8 — the word for witness is martys: martyr</cite></div>
+      <div class="sv">"Therefore, since we are surrounded by so great a cloud of witnesses… let us run with endurance the race that is set before us."<cite>Hebrews 12:1</cite></div>
+    </div>
+  </div>
+
+  <div class="sec" id="cumulative">
+    <div class="sec-h" onclick="ts(this)"><h2>The Cumulative Case — How the Strands Make a Rope</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>No single line above is the whole case, and each has its specialist literature of attack and defense. But notice their <em>independence</em>: the beginning of the universe is astrophysics; fine-tuning is physics; the code in the cell is biochemistry; comprehensibility is mathematics; consciousness and reason are philosophy of mind; the moral law is ethics; desire is anthropology; the Resurrection is history; the martyrs are living memory. For atheism to be true, every one of these must have an independent naturalistic resolution — and atheism loses if even one holds.</p>
+      <p>Theism, by contrast, explains them all with a single hypothesis: an eternal, rational, good Creator who made the world intelligible, made minds to know it, wrote His law on hearts, and entered His own creation. That is not a "gap" argument; it is what scientists themselves call inference to the best explanation — the rope of many strands, each weak point braced by the others.</p>
+      <div class="sv">"Every house is built by someone, but the builder of all things is God."<cite>Hebrews 3:4</cite></div>
+    </div>
+  </div>
+
+  <div class="sec" id="scientism">
+    <div class="sec-h" onclick="ts(this)"><h2>Scientism Refutes Itself — Examining the Standard of Evidence</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>Underneath "no evidence" usually sits an unstated rule: <em>only scientific (empirical, testable) evidence counts.</em> Test that rule against itself: the sentence "only scientifically testable claims are rationally believable" is not itself scientifically testable. It is philosophy — and self-refuting philosophy. By its own standard, it should be dismissed.</p>
+      <p>The same fate befalls Clifford's evidentialism ("wrong always and everywhere to believe on insufficient evidence") — a principle for which Clifford offered, and could offer, no sufficient evidence. William James dismantled it in "The Will to Believe" (1896). Meanwhile, every person — atheists included — rationally believes a host of things science cannot establish: that the external world is real, that other minds exist, that the past was not created five minutes ago with built-in memories, that induction will keep working, that their spouse loves them, and that science itself is worth doing. Rationality is wider than the laboratory; it always was.</p>
+      <p>As for "God of the gaps" — the page above never argues "science can't explain X, therefore God." It argues from what science <em>has</em> explained: a universe with an absolute beginning, knife-edge constants, coded life, and mathematical depths. The gaps have been closing for four centuries, and the picture emerging from underneath is more theistic, not less. It was the eternal, purposeless, self-sufficient cosmos of nineteenth-century materialism that the twentieth century falsified.</p>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Objection: "You can't prove a negative — the burden of proof is entirely on the theist."</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">Modern atheism is not the absence of a position; "there is no God" and "no one designed the universe" are claims about reality, and claims bear burdens. The honest default position is agnosticism — and an agnostic, unlike the dogmatic atheist, is obliged to actually weigh the ten lines of evidence above rather than rule them out by definition. Moreover, atheism carries explanatory debts of its own: it must explain the beginning, the tuning, the code, the comprehensibility, consciousness, the moral law, the desire, the empty tomb, and the martyrs — every one, separately, without remainder.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" id="concessions">
+    <div class="sec-h" onclick="ts(this)"><h2>What Honest Atheists Concede</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>The witnesses below are hostile witnesses — which is what makes their testimony weigh.</p>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">Thomas Nagel — atheist philosopher, NYU</div>
+          <div class="fc-body">"I want atheism to be true and am made uneasy by the fact that some of the most intelligent and well-informed people I know are religious believers. It isn't just that I don't believe in God and, naturally, hope that I'm right in my belief. It's that I hope there is no God! I don't want there to be a God; I don't want the universe to be like that."</div>
+          <div class="fc-src">The Last Word (1997) — a rare public admission that unbelief, too, can be willed before it is argued</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">Antony Flew — author of "The Presumption of Atheism"</div>
+          <div class="fc-body">After fifty years as the English-speaking world's most influential atheist philosopher, Flew announced in 2004 that the integrated complexity of life and the laws of nature had convinced him of a divine Intelligence: "I have followed the argument where it has led me."</div>
+          <div class="fc-src">There Is a God: How the World's Most Notorious Atheist Changed His Mind (2007)</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">Fred Hoyle — atheist astrophysicist</div>
+          <div class="fc-body">"A superintellect has monkeyed with physics, as well as with chemistry and biology."</div>
+          <div class="fc-src">Engineering and Science (1981) — see Evidence 3</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">Albert Einstein — no orthodox believer</div>
+          <div class="fc-body">"The fact that it is comprehensible is a miracle." And: "Science without religion is lame, religion without science is blind."</div>
+          <div class="fc-src">"Physics and Reality" (1936); "Science and Religion" (1941). Einstein rejected a personal God — but equally rejected the "fanatical atheists" who, he wrote, "cannot hear the music of the spheres"</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" id="fathers">
+    <div class="sec-h" onclick="ts(this)"><h2>The Fathers on the Natural Knowledge of God</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>None of this is a modern improvisation. The Fathers of the Oriental Orthodox tradition taught from the beginning that God is known two ways — through His works, by all; and through His Word, in the Church.</p>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">St. Theophilus of Antioch (2nd century)</div>
+          <div class="fc-body">"As the soul in man is not seen, being invisible to men, but is perceived through the motion of the body, so God cannot indeed be seen by human eyes, but is beheld and perceived through His providence and works."</div>
+          <div class="fc-src">To Autolycus 1.5 — answering a pagan who demanded "show me your God"; Theophilus replies: show me your eyes, and I will show you my God</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Basil the Great (c. 330–379)</div>
+          <div class="fc-body">"The world is a work of art, set before all for contemplation, so that through it the wisdom of Him who created it should be known… a training place for rational souls and a school for attaining the knowledge of God."</div>
+          <div class="fc-src">Hexaemeron 1 — nine homilies reading creation as evidence, preached to ordinary working congregations</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Anthony the Great (251–356), father of monasticism</div>
+          <div class="fc-body">Asked by a visiting philosopher how so great a mind endured the desert without books, Anthony replied: "My book, O philosopher, is the nature of created things, and it is present whenever I wish to read the words of God."</div>
+          <div class="fc-src">Recorded by Evagrius of Pontus, Praktikos 92 — the desert father's natural theology</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Athanasius of Alexandria</div>
+          <div class="fc-body">"For creation, as though in written characters, declares in a loud voice, by its order and harmony, its own Lord and Creator."</div>
+          <div class="fc-src">Against the Heathen 34 — and yet Athanasius insists the surer path is the Incarnate Word Himself: evidence culminates in encounter</div>
+        </div>
+      </div>
+      <p>The Fathers add a warning the modern debate forgets: knowing <em>that</em> God exists is not yet knowing <em>God</em>. "Even the demons believe — and shudder" (James 2:19). The evidence summons; it does not substitute for repentance, prayer, and the sacramental life in which the God of the philosophers turns out to be the God of Abraham, Isaac, and Jacob — and of the Cross. "Draw near to God, and he will draw near to you" (James 4:8) is itself a testable claim, but only from inside.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="faq">
+    <div class="sec-h" onclick="ts(this)"><h2>FAQ — Quick Answers</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">If the evidence is so good, why doesn't God make Himself undeniable?</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">Because He is seeking love, not capitulation. Undeniable overwhelming presence would compel the knee without converting the heart — the devil's knowledge of God is undeniable, and saves him nothing. Blaise Pascal saw the actual balance: "There is enough light for those who only desire to see, and enough obscurity for those who have a contrary disposition" (Pensées). The evidence is sufficient for the seeker and resistible by the unwilling — which is exactly what you would expect from a God whose goal is freely returned love. "You will seek me and find me, when you seek me with all your heart" (Jeremiah 29:13).</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Why are so many intelligent scientists atheists, then?</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">Many are; many are not — the founders of the scientific enterprise nearly all believed, and surveys consistently find a substantial believing minority among working scientists today (and a majority in some fields and countries). Intelligence does not settle the question, because the question is not an IQ test: Nagel's confession above shows that the will is engaged, not only the intellect. Expertise in one domain confers no authority in another — a Nobel in physics is not a credential in metaphysics. The argument stands or falls on its merits, not on a show of hands in either direction.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Isn't faith believing without evidence?</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">Not in the Bible's vocabulary. Biblical faith (pistis) is trust in a person on the basis of demonstrated faithfulness — the trust you give a proven friend, not a blindfold. Luke writes his Gospel "that you may have certainty" (Luke 1:4); John selects his material "so that you may believe" (John 20:31); Christ offers his wounds to Thomas's fingers rather than rebuking the request (John 20:27); Paul argues from "many proofs" (Acts 1:3) and public eyewitnesses (1 Corinthians 15:6). "Blind faith" is a modern caricature the apostles would not have recognized.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Doesn't religion's diversity cancel the evidence — every religion claims the same?</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">The universality of worship is evidence <em>for</em> the reality of its object (Evidence 8) — disagreement about the destination does not prove there is no city, and partial, distorted maps are what you would expect if the law is written on every heart (Romans 2:15) but sin clouds every eye (Romans 1:21). The arguments on this page narrow the field: the Cause is one, beyond the world, personal, moral, rational — already this excludes most alternatives. The Resurrection (Evidence 9) then does what comparative religion cannot: it is a verifiable historical claim, and Christianity alone stakes everything on one (1 Corinthians 15:14 — "if Christ has not been raised, then our preaching is in vain").</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">What about the problem of evil — doesn't suffering outweigh all this?</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">It deserves its own page, and has one: <a href="problem_of_evil.html">The Problem of Evil</a>. In brief: evil is a fact inside a creation that theism explains and atheism cannot even name as evil; the objection borrows the moral law (Evidence 7) to fire at its Author. And the Christian answer to suffering is not a syllogism but the Cross — God answering from inside.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">I'm convinced there's a Creator. Why specifically Christianity — and why Oriental Orthodoxy?</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">From Creator to Christ: Evidence 9 — the Resurrection is God's public authentication of Jesus (Romans 1:4), and Jesus's own claims leave no neutral ground. From Christ to His Church: the Oriental Orthodox Churches are the unbroken continuation of the apostolic communities of Alexandria (St. Mark), Antioch (Sts. Peter and Paul), Armenia (Sts. Thaddaeus and Bartholomew), and Ethiopia (Acts 8) — confessing the faith of the first three Ecumenical Councils without addition or subtraction. Begin with <a href="what_is_a_christian.html">What Is a Christian?</a>, <a href="oo_history.html">Our History</a>, and <a href="apostolic_succession.html">Apostolic Succession</a>.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" id="glossary">
+    <div class="sec-h" onclick="ts(this)"><h2>Glossary</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <div class="gt-grid">
+        <div class="gt"><div class="gt-term">Evidentialism</div><div class="gt-def">The thesis (Clifford, 1877) that belief is only rational when proportioned to evidence. Self-refuting in its strong form, since the thesis itself cannot meet its own standard.</div></div>
+        <div class="gt"><div class="gt-term">Scientism</div><div class="gt-def">The claim that only scientific knowledge is real knowledge — a philosophical claim, not a scientific one, and therefore self-undermining.</div></div>
+        <div class="gt"><div class="gt-term">Kalam Cosmological Argument</div><div class="gt-def">Whatever begins to exist has a cause; the universe began to exist; therefore the universe has a cause. Named from its medieval Arabic development; its premises are defended today with Big Bang cosmology and the BGV theorem.</div></div>
+        <div class="gt"><div class="gt-term">Contingency Argument</div><div class="gt-def">From the existence of dependent (contingent) things to a necessary being whose essence is existence — Exodus 3:14 in philosophical dress.</div></div>
+        <div class="gt"><div class="gt-term">Fine-Tuning</div><div class="gt-def">The observation that the constants and initial conditions of physics fall within life-permitting ranges so narrow that chance is not a credible explanation.</div></div>
+        <div class="gt"><div class="gt-term">Borde–Guth–Vilenkin (BGV) Theorem</div><div class="gt-def">2003 result: any universe expanding on average throughout its history cannot be extended infinitely into the past — including inflationary multiverses.</div></div>
+        <div class="gt"><div class="gt-term">The Hard Problem of Consciousness</div><div class="gt-def">David Chalmers's name for the question physics cannot phrase: why is there subjective, first-person experience at all?</div></div>
+        <div class="gt"><div class="gt-term">Inference to the Best Explanation</div><div class="gt-def">The reasoning used in science, history, and law: adopt the hypothesis that best explains all the data. The form of the cumulative case for God.</div></div>
+        <div class="gt"><div class="gt-term">Logos</div><div class="gt-def">"Word, Reason" — John 1:1. The eternal Word through whom all things were made: the Christian explanation of why the universe is rational and minds can know it.</div></div>
+        <div class="gt"><div class="gt-term">Natural Theology</div><div class="gt-def">Knowledge of God available from creation and reason (Romans 1:20; Wisdom 13) — distinguished by the Fathers from the saving knowledge given in Christ and His Church.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" id="sources">
+    <div class="sec-h" onclick="ts(this)"><h2>Sources</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p><strong>Scripture:</strong> Genesis 1:1 · Exodus 3:14 · Psalm 14:1; 19:1–4; 42:1–2; 139:14 · Ecclesiastes 3:11 · Jeremiah 29:13 · Wisdom of Solomon 11:20; 13:1–9 · 2 Maccabees 7:28 · Mark 15:39 · Luke 1:1–4 · John 1:1–3; 20:24–31 · Acts 1:3,8; 14:17; 17:24–31 · Romans 1:19–21; 2:15 · 1 Corinthians 15:3–8,14 · Hebrews 3:4; 11:6; 12:1 · James 2:19; 4:8. (Wisdom and 2 Maccabees are canonical in the Oriental Orthodox Churches.)</p>
+      <p><strong>Patristic:</strong> Theophilus of Antioch, <em>To Autolycus</em> 1.2–6 · Athanasius, <em>Against the Heathen</em> 34–47; <em>On the Incarnation</em> · Basil, <em>Hexaemeron</em> 1 · Gregory of Nazianzus, <em>Oration</em> 28 · Gregory of Nyssa, <em>The Great Catechism</em>, Prologue · Evagrius, <em>Praktikos</em> 92 (St. Anthony) · Augustine, <em>Confessions</em> 1.1 · John of Damascus, <em>Exact Exposition</em> 1.1–3.</p>
+      <p><strong>Science &amp; philosophy:</strong> Hawking &amp; Penrose, <em>The Nature of Space and Time</em> (1996) · Vilenkin, <em>Many Worlds in One</em> (2006); Borde, Guth &amp; Vilenkin, Phys. Rev. Lett. (2003) · Penrose, <em>The Emperor's New Mind</em> (1989) · Hoyle, <em>Engineering and Science</em> (Nov. 1981) · Crick, <em>Life Itself</em> (1981) · Wigner, "The Unreasonable Effectiveness of Mathematics" (1960) · Einstein, "Physics and Reality" (1936); "Science and Religion" (1941) · Darwin, Letter to W. Graham (1881) · Chalmers, <em>The Conscious Mind</em> (1996) · Plantinga, <em>Where the Conflict Really Lies</em> (2011) · Nagel, <em>The Last Word</em> (1997); <em>Mind and Cosmos</em> (2012) · Flew, <em>There Is a God</em> (2007) · Lewis, <em>Mere Christianity</em>; <em>Miracles</em>; "Is Theology Poetry?" (1945) · Pascal, <em>Pensées</em> · James, "The Will to Believe" (1896) · Clifford, "The Ethics of Belief" (1877) · Dawkins, <em>River Out of Eden</em> (1995) · Lüdemann, <em>What Really Happened to Jesus</em> (1995) · Habermas &amp; Licona, <em>The Case for the Resurrection of Jesus</em> (2004) · N. T. Wright, <em>The Resurrection of the Son of God</em> (2003) · Leslie, <em>Universes</em> (1989).</p>
+      <p>Related pages on this site: <a href="problem_of_evil.html">The Problem of Evil</a> · <a href="trinity.html">The Holy Trinity</a> · <a href="what_is_a_christian.html">What Is a Christian?</a> · <a href="theotokos_mary.html">The Theotokos &amp; Zeitoun</a> · <a href="oo_history.html">History of the Oriental Orthodox Churches</a> · <a href="apostolic_succession.html">Apostolic Succession</a>.</p>
+      <p style="margin-top:18px;color:var(--mu);font-size:.85rem">THE ORTHODOX LAMP · Biblical, Historical &amp; Patristic Apologetics ☩ In the name of the Father, and of the Son, and of the Holy Spirit, One God. Amen.</p>
+    </div>
+  </div>
+</main>
+<script>
+window.addEventListener('scroll',()=>{const h=document.documentElement;document.getElementById('prog').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100+'%';});
+const navLinks=document.querySelectorAll('#sb-nav a[href^="#"]');
+const secs2=document.querySelectorAll('main .sec[id]');
+window.addEventListener('scroll',()=>{let cur='';secs2.forEach(s=>{if(s.getBoundingClientRect().top<=120)cur=s.id;});navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur);});},{passive:true});
+function ts(h){h.closest('.sec').classList.toggle('open');}
+function tf(h){h.closest('.fi').classList.toggle('open');}
+function sidebarSearch(q){
+  q=q.trim().toLowerCase();
+  const secs=document.querySelectorAll('main .sec');
+  let matched=0;
+  secs.forEach(sec=>{
+    if(!q){sec.classList.remove('s-hidden');const h2=sec.querySelector('.sec-h h2');if(h2._orig)h2.innerHTML=h2._orig;matched++;return;}
+    const h2=sec.querySelector('.sec-h h2');
+    const body=sec.querySelector('.sec-body');
+    const hit=(h2._orig||h2.textContent).toLowerCase().includes(q)||(body?body.textContent.toLowerCase():'').includes(q);
+    sec.classList.toggle('s-hidden',!hit);
+    if(hit){matched++;if(!h2._orig)h2._orig=h2.innerHTML;const re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');h2.innerHTML=h2._orig.replace(re,'<mark>$1</mark>');sec.classList.add('open');}
+  });
+  document.getElementById('sb-no-match').classList.toggle('show',!!q&&matched===0);
+}
+</script>
+</body>
+</html>

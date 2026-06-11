@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Papacy — Church Head, Papal Authority &amp; Infallibility — The Orthodox Lamp</title>
+<style>
+:root{--gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;--bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--tx:#e8e0d0;--mu:#a09880;--red:#8b2020;--br:#2a2a2a;--bg5:#3a2e10;--rc:#3a1a1a;--rcc:#d47070;--sidebar-w:270px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Georgia',serif;background:var(--bg);color:var(--tx);line-height:1.75}
+a{color:var(--gold);text-decoration:none}
+a:hover{text-decoration:underline}
+
+#prog{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--gd),var(--gl));z-index:9999;transition:width .1s}
+
+#sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:100;transition:transform .3s}
+#sidebar header{padding:22px 18px 14px;border-bottom:1px solid var(--br)}
+#sidebar header .site-label{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mu);margin-bottom:4px}
+#sidebar header h2{font-size:.95rem;color:var(--gold);line-height:1.3}
+#sidebar nav{padding:10px 0 80px}
+#sidebar nav a{display:block;padding:8px 18px;font-size:.8rem;color:var(--mu);border-left:3px solid transparent;transition:all .2s}
+#sidebar nav a:hover,#sidebar nav a.active{color:var(--gold);border-left-color:var(--gold);background:rgba(201,168,76,.07);text-decoration:none}
+#sidebar nav .sec-label{padding:14px 18px 4px;font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;color:#555}
+.back-link{display:block;margin:16px 14px 0;padding:7px 12px;background:var(--bg5);border:1px solid var(--gd);border-radius:6px;font-size:.78rem;color:var(--gold);text-align:center}
+.back-link:hover{background:#4a3e18;text-decoration:none}
+
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:90}
+#overlay.show{display:block}
+
+#ham{display:none;position:fixed;top:12px;left:12px;z-index:200;background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:8px 10px;cursor:pointer;flex-direction:column;gap:5px}
+#ham span{display:block;width:22px;height:2px;background:var(--gold)}
+
+main{margin-left:var(--sidebar-w);padding:0 0 80px}
+
+.hero{background:linear-gradient(160deg,#0d0d0d 0%,#1a1308 50%,#0d0d0d 100%);border-bottom:1px solid var(--br);padding:64px 48px 48px;position:relative;overflow:hidden}
+.hero::before{content:'⛪';position:absolute;right:40px;top:30px;font-size:7rem;opacity:.04;pointer-events:none}
+.hero .tag{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gd);margin-bottom:12px}
+.hero h1{font-size:2.3rem;color:var(--gold);line-height:1.2;max-width:720px;margin-bottom:14px}
+.hero p{font-size:1.03rem;color:var(--mu);max-width:680px;line-height:1.8}
+.hero .parts{display:flex;gap:14px;margin-top:22px;flex-wrap:wrap}
+.hero .part-tag{padding:6px 14px;border-radius:20px;font-size:.78rem;font-family:sans-serif;border:1px solid}
+.hero .part-tag.p1{background:rgba(201,168,76,.1);border-color:rgba(201,168,76,.4);color:var(--gold)}
+.hero .part-tag.p2{background:rgba(100,140,200,.1);border-color:rgba(100,140,200,.4);color:#8aabde}
+.hero .part-tag.p3{background:rgba(212,112,112,.1);border-color:rgba(212,112,112,.4);color:var(--rcc)}
+
+/* Part banners */
+.part-banner{padding:18px 48px;border-bottom:1px solid var(--br);border-top:1px solid var(--br);margin:0}
+.part-banner.pb1{background:linear-gradient(90deg,rgba(201,168,76,.07),transparent)}
+.part-banner.pb2{background:linear-gradient(90deg,rgba(100,140,200,.07),transparent)}
+.part-banner.pb3{background:linear-gradient(90deg,rgba(212,112,112,.07),transparent)}
+.part-banner h3{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:4px}
+.part-banner.pb1 h3{color:var(--gd)}
+.part-banner.pb2 h3{color:#6a8abe}
+.part-banner.pb3 h3{color:#a44040}
+.part-banner p{font-size:.92rem;color:var(--mu)}
+
+.content{padding:0 48px}
+
+/* Sections */
+.sec{border:1px solid var(--br);border-radius:10px;margin:28px 0;background:var(--bg2);overflow:hidden}
+.sec-h{display:flex;justify-content:space-between;align-items:center;padding:18px 22px;cursor:pointer;user-select:none;gap:12px}
+.sec-h:hover{background:var(--bg3)}
+.sec-h h2{font-size:1.07rem;color:var(--gold)}
+.sec-h .arr{color:var(--mu);font-size:1.1rem;transition:transform .25s;flex-shrink:0}
+.sec.open .arr{transform:rotate(180deg)}
+.sec-body{display:none;padding:22px 24px;border-top:1px solid var(--br)}
+.sec.open .sec-body{display:block}
+.sec-body p{color:var(--tx);margin-bottom:14px;font-size:.96rem;line-height:1.78}
+.sec-body p:last-child{margin-bottom:0}
+.sec-body ul{margin:10px 0 14px 20px;color:var(--tx);font-size:.92rem;line-height:1.8}
+.sec-body li{margin-bottom:4px}
+
+/* Scripture */
+.sv{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:18px 20px;margin:14px 0}
+.sv .ref{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gd);margin-bottom:8px}
+.sv .txt{font-style:italic;color:var(--tx);font-size:.97rem;margin-bottom:10px;line-height:1.7}
+.sv .interp{font-size:.85rem;color:var(--mu);line-height:1.6;border-top:1px solid var(--br);padding-top:10px}
+.labels{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.labels span{font-size:.67rem;padding:3px 8px;border-radius:20px;letter-spacing:.06em;font-family:sans-serif}
+.oo{background:rgba(201,168,76,.15);color:var(--gold);border:1px solid rgba(201,168,76,.3)}
+.rc{background:rgba(212,112,112,.15);color:var(--rcc);border:1px solid rgba(212,112,112,.3)}
+.prot{background:rgba(100,140,200,.15);color:#8aabde;border:1px solid rgba(100,140,200,.3)}
+.ctx{background:rgba(160,152,128,.12);color:var(--mu);border:1px solid rgba(160,152,128,.25)}
+.gk{background:rgba(180,120,60,.15);color:#d4956a;border:1px solid rgba(180,120,60,.3)}
+.lat{background:rgba(120,80,160,.15);color:#b08ed4;border:1px solid rgba(120,80,160,.3)}
+.hist{background:rgba(80,160,120,.15);color:#6abf8a;border:1px solid rgba(80,160,120,.3)}
+
+/* Father cards */
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin:16px 0}
+.fc{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:18px}
+.fc .fname{font-size:.95rem;color:var(--gold);font-weight:bold;margin-bottom:4px}
+.fc .fdate{font-size:.72rem;color:var(--mu);margin-bottom:10px;font-family:sans-serif}
+.fc .fq{font-style:italic;font-size:.88rem;color:var(--tx);line-height:1.65;border-left:3px solid var(--gd);padding-left:12px}
+.fc .fsrc{font-size:.72rem;color:var(--mu);margin-top:8px;font-family:sans-serif}
+
+/* Comparison grid */
+.comp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin:16px 0}
+.comp-card{border-radius:8px;padding:18px;border:1px solid var(--br)}
+.comp-card.oo-c{background:rgba(201,168,76,.08);border-color:rgba(201,168,76,.3)}
+.comp-card.rc-c{background:rgba(212,112,112,.08);border-color:rgba(212,112,112,.25)}
+.comp-card.prot-c{background:rgba(100,140,200,.08);border-color:rgba(100,140,200,.25)}
+.comp-card h4{font-size:.85rem;margin-bottom:10px;text-transform:uppercase;letter-spacing:.07em}
+.comp-card.oo-c h4{color:var(--gold)}
+.comp-card.rc-c h4{color:var(--rcc)}
+.comp-card.prot-c h4{color:#8aabde}
+.comp-card ul{list-style:none;padding:0}
+.comp-card ul li{font-size:.83rem;color:var(--tx);padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05);line-height:1.5}
+.comp-card ul li:last-child{border-bottom:none}
+.comp-card ul li::before{content:'→ ';color:var(--gd)}
+.comp-card.rc-c ul li::before{color:#a44040}
+
+/* Timeline */
+.tl{margin:16px 0}
+.tl-item{display:flex;gap:16px;margin:0}
+.tl-left{display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:36px}
+.tl-dot{width:13px;height:13px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:4px}
+.tl-dot.warn{background:#c05a5a}
+.tl-dot.neutral{background:var(--mu)}
+.tl-line{width:2px;flex:1;background:var(--br);min-height:20px;margin:4px 0}
+.tl-content{flex:1;padding-bottom:24px}
+.tl-content h4{font-size:.9rem;color:var(--gold);margin-bottom:4px}
+.tl-content h4.warn{color:var(--rcc)}
+.tl-content h4.neutral{color:var(--mu)}
+.tl-content .tl-date{font-size:.72rem;color:var(--mu);font-family:sans-serif;margin-bottom:6px}
+.tl-content p{font-size:.85rem;color:var(--tx);line-height:1.65}
+
+/* Glossary */
+.gt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin:16px 0}
+.gt{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:16px}
+.gt .term{font-size:.92rem;color:var(--gold);font-weight:bold;margin-bottom:2px}
+.gt .gterm{font-size:.78rem;color:#d4956a;font-style:italic;margin-bottom:8px;font-family:sans-serif}
+.gt .def{font-size:.85rem;color:var(--tx);line-height:1.6}
+
+/* Key text */
+.key-text{background:var(--bg5);border-left:4px solid var(--gold);padding:16px 20px;border-radius:0 8px 8px 0;margin:14px 0;font-size:.95rem;color:var(--tx);line-height:1.75;font-style:italic}
+.key-text.danger{background:rgba(138,32,32,.15);border-left-color:#c05a5a}
+
+/* Note */
+.note{background:rgba(138,106,32,.1);border:1px solid var(--gd);border-radius:8px;padding:16px 18px;margin:14px 0;font-size:.87rem;color:var(--tx);line-height:1.7}
+.note strong{color:var(--gold)}
+.note.warn{background:rgba(138,32,32,.1);border-color:#c05a5a}
+.note.warn strong{color:var(--rcc)}
+
+/* Patriarchate cards */
+.pat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin:16px 0}
+.pat{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:16px;border-top:3px solid var(--gd)}
+.pat .pname{font-size:.93rem;color:var(--gold);font-weight:bold;margin-bottom:4px}
+.pat .pfound{font-size:.72rem;color:var(--mu);margin-bottom:8px;font-family:sans-serif}
+.pat .pdesc{font-size:.83rem;color:var(--tx);line-height:1.6}
+.pat .prank{font-size:.72rem;color:var(--mu);margin-top:8px;border-top:1px solid var(--br);padding-top:8px;font-style:italic}
+
+/* Document cards */
+.doc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin:16px 0}
+.doc{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:18px;border-left:4px solid}
+.doc.oo-d{border-left-color:var(--gd)}
+.doc.rc-d{border-left-color:#a44040}
+.doc .dname{font-size:.93rem;color:var(--gold);font-weight:bold;margin-bottom:3px}
+.doc.rc-d .dname{color:var(--rcc)}
+.doc .ddate{font-size:.72rem;color:var(--mu);margin-bottom:8px;font-family:sans-serif}
+.doc .dq{font-style:italic;font-size:.87rem;color:var(--tx);line-height:1.65;margin-bottom:8px}
+.doc .ddesc{font-size:.82rem;color:var(--mu);line-height:1.55}
+
+/* Objections */
+.obj{border:1px solid var(--br);border-radius:8px;margin:12px 0;background:var(--bg3);overflow:hidden}
+.obj-h{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;cursor:pointer;user-select:none;gap:10px}
+.obj-h:hover{background:var(--bg4)}
+.obj-h h3{font-size:.91rem;color:#ccc}
+.obj-h .arr{color:var(--mu);transition:transform .25s;flex-shrink:0}
+.obj.open .obj-h .arr{transform:rotate(180deg)}
+.obj-body{display:none;padding:16px 18px;border-top:1px solid var(--br)}
+.obj.open .obj-body{display:block}
+.obj-body p{font-size:.88rem;color:var(--tx);line-height:1.72;margin-bottom:10px}
+.obj-body p:last-child{margin-bottom:0}
+
+/* FAQ */
+.fi{border:1px solid var(--br);border-radius:8px;margin:10px 0;background:var(--bg3);overflow:hidden}
+.fi-h{display:flex;justify-content:space-between;align-items:center;padding:13px 18px;cursor:pointer;user-select:none;gap:10px}
+.fi-h:hover{background:var(--bg4)}
+.fi-h h3{font-size:.88rem;color:var(--tx)}
+.fi-h .arr{color:var(--mu);transition:transform .25s;flex-shrink:0}
+.fi.open .fi-h .arr{transform:rotate(180deg)}
+.fi-body{display:none;padding:14px 18px;border-top:1px solid var(--br)}
+.fi.open .fi-body{display:block}
+.fi-body p{font-size:.85rem;color:var(--tx);line-height:1.72;margin-bottom:8px}
+.fi-body p:last-child{margin-bottom:0}
+
+/* Infallibility box */
+.infal-box{background:rgba(138,32,32,.08);border:2px solid rgba(212,112,112,.4);border-radius:10px;padding:24px;margin:18px 0}
+.infal-box h4{font-size:1rem;color:var(--rcc);margin-bottom:14px}
+.infal-box .def-text{font-style:italic;font-size:.92rem;color:var(--tx);line-height:1.75;border-left:4px solid #a44040;padding-left:16px;margin-bottom:14px}
+.infal-box .conds{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-top:10px}
+.infal-box .cond{background:rgba(212,112,112,.1);border:1px solid rgba(212,112,112,.25);border-radius:6px;padding:12px}
+.infal-box .cond h5{font-size:.8rem;color:var(--rcc);margin-bottom:6px;text-transform:uppercase;letter-spacing:.07em}
+.infal-box .cond p{font-size:.82rem;color:var(--tx);line-height:1.55}
+
+/* Pope case cards */
+.case-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px;margin:16px 0}
+.case{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:18px;border-top:3px solid}
+.case.prob{border-top-color:#c05a5a}
+.case.complex{border-top-color:#c9a84c}
+.case .cname{font-size:.93rem;font-weight:bold;margin-bottom:3px}
+.case.prob .cname{color:var(--rcc)}
+.case.complex .cname{color:var(--gold)}
+.case .cdate{font-size:.72rem;color:var(--mu);margin-bottom:8px;font-family:sans-serif}
+.case .cdesc{font-size:.85rem;color:var(--tx);line-height:1.65;margin-bottom:8px}
+.case .cverdict{font-size:.78rem;padding:5px 10px;border-radius:4px;display:inline-block;font-family:sans-serif}
+.case.prob .cverdict{background:rgba(192,90,90,.15);color:var(--rcc);border:1px solid rgba(192,90,90,.3)}
+.case.complex .cverdict{background:rgba(201,168,76,.1);color:var(--gold);border:1px solid rgba(201,168,76,.25)}
+
+/* Search */
+.sb-search{padding:10px 14px 4px}
+.sb-search input{width:100%;background:rgba(255,255,255,.06);border:1px solid var(--br);border-radius:6px;padding:8px 12px;font-size:.8rem;color:var(--tx);font-family:'Georgia',serif;outline:none;transition:border-color .2s}
+.sb-search input::placeholder{color:#666}
+.sb-search input:focus{border-color:var(--gd)}
+.sec.s-hidden{display:none}
+.sec.s-match .sec-h h2 mark{background:rgba(201,168,76,.3);color:var(--gold);border-radius:2px;padding:0 2px}
+.no-match-msg{display:none;padding:14px 18px;font-size:.8rem;color:var(--mu);font-style:italic;text-align:center}
+.no-match-msg.show{display:block}
+
+@media(max-width:768px){
+  #sidebar{transform:translateX(-100%)}
+  #sidebar.open{transform:translateX(0)}
+  #ham{display:flex}
+  main{margin-left:0}
+  .hero{padding:56px 20px 32px}
+  .hero h1{font-size:1.6rem}
+  .content{padding:0 16px}
+  .part-banner{padding:14px 20px}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<button id="ham" onclick="toggleSidebar()" aria-label="Menu"><span></span><span></span><span></span></button>
+<div id="overlay" onclick="closeMobile()"></div>
+
+<nav id="sidebar">
+  <header>
+    <div class="site-label">The Orthodox Lamp</div>
+    <h2>The Papacy — Authority, Primacy &amp; Infallibility</h2>
+  </header>
+  <a class="back-link" href="index.html">&#8592; Back to Library</a>
+  <div class="sb-search">
+    <input type="search" id="sb-search-input" placeholder="Search sections…" autocomplete="off" oninput="sidebarSearch(this.value)">
+  </div>
+  <p class="no-match-msg" id="sb-no-match">No sections match.</p>
+  <nav>
+    <div class="sec-label">Part I — Who Heads the Church?</div>
+    <a href="#head_christ">Christ: The One Head</a>
+    <a href="#college">The Apostolic College</a>
+    <a href="#peter_role">Peter: First Among Equals</a>
+    <a href="#pentarchy">The Five Patriarchates</a>
+    <a href="#early_governance">Early Church Governance</a>
+    <div class="sec-label">Part II — Papal Authority</div>
+    <a href="#petrine_texts">The Petrine Texts</a>
+    <a href="#oo_petrine">OO Reading of Matthew 16</a>
+    <a href="#historical_rise">Historical Rise of Roman Claims</a>
+    <a href="#schism">The Great Schism — 1054</a>
+    <a href="#honor_vs_jur">Honor vs. Jurisdiction</a>
+    <a href="#comparison_auth">Three Models of Authority</a>
+    <div class="sec-label">Part III — Papal Infallibility</div>
+    <a href="#vatican1">Vatican I &amp; Pastor Aeternus</a>
+    <a href="#what_infal">What Infallibility Claims</a>
+    <a href="#problem_cases">The Problem Cases</a>
+    <a href="#honorius">Pope Honorius — Condemned as Heretic</a>
+    <a href="#oo_infal">The OO Response</a>
+    <a href="#indefect">Indefectibility vs. Infallibility</a>
+    <div class="sec-label">Dialogue &amp; Conclusion</div>
+    <a href="#ecumenism">Catholic-OO Dialogue Today</a>
+    <a href="#objections">Catholic Objections Answered</a>
+    <a href="#faq">FAQ</a>
+    <a href="#glossary">Glossary</a>
+  </nav>
+</nav>
+
+<main>
+<div class="hero">
+  <div class="tag">The Orthodox Lamp</div>
+  <h1>The Papacy: Church Head, Papal Authority &amp; Papal Infallibility</h1>
+  <p>Rome claims that the Bishop of Rome is the supreme head of the universal Church, possessing full and supreme jurisdictional authority, and that his solemn definitions on faith and morals are infallible. The Oriental Orthodox respectfully but firmly dissent — and the reasons reach back to the first century of Christianity.</p>
+  <div class="parts">
+    <div class="part-tag p1">Part I: Who Heads the Church?</div>
+    <div class="part-tag p2">Part II: Papal Authority</div>
+    <div class="part-tag p3">Part III: Papal Infallibility</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- PART I -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="part-banner pb1">
+  <h3>Part I</h3>
+  <p>Who Heads the Church? — Christ, the Apostolic College, and the Conciliar Model</p>
+</div>
+
+<div class="content">
+
+<div id="head_christ" class="sec open">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>Christ Alone Is the Head of the Church</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>The Oriental Orthodox begin here — not with any human bishop, however venerable — but with the New Testament's clear and unambiguous declaration that Jesus Christ is the one Head of His Church. This is not a polemical starting point; it is a dogmatic one, grounded in the Apostolic witness.</p>
+    <div class="sv">
+      <div class="ref">Ephesians 1:22–23</div>
+      <div class="txt">"And he put all things under his feet and gave him as head over all things to the church, which is his body, the fullness of him who fills all in all."</div>
+      <div class="interp">Paul identifies Christ — not Peter, not any bishop — as the head given to the Church. The Church is His body; He is its singular head. This is a Christological statement, not an ecclesiological vacancy to be filled by a human office.</div>
+      <div class="labels"><span class="oo">Oriental Orthodox</span><span class="ctx">Christological Foundation</span></div>
+    </div>
+    <div class="sv">
+      <div class="ref">Ephesians 5:23</div>
+      <div class="txt">"For the husband is the head of the wife even as Christ is the head of the church, his body, and is himself its Savior."</div>
+      <div class="interp">Christ's headship over the Church is the very model Paul uses for the marriage relationship. It is permanent, total, and belongs to Christ alone. No vicar supplants this headship — he represents it.</div>
+      <div class="labels"><span class="oo">Oriental Orthodox</span><span class="ctx">Ecclesiology</span></div>
+    </div>
+    <div class="sv">
+      <div class="ref">Colossians 1:18</div>
+      <div class="txt">"And he is the head of the body, the church. He is the beginning, the firstborn from the dead, that in everything he might be preeminent."</div>
+      <div class="interp">"In everything he might be preeminent" — including in governance, authority, and headship over the Church. This preeminence cannot be shared, delegated to a vicar, or concentrated in a single human office.</div>
+      <div class="labels"><span class="oo">Oriental Orthodox</span><span class="ctx">Christ's Primacy</span></div>
+    </div>
+    <p>The Oriental Orthodox do not deny that the Church needs human leaders — bishops, patriarchs, councils. What we deny is that any human leader holds the <em>headship</em> of the Church in the sense that Christ does. A patriarch governs his see; he does not replace the Head. A council defines doctrine; it does not legislate as sovereign. Christ governs His Church through the Spirit working in her bishops and councils — but He remains the Head, always and forever.</p>
+    <div class="note"><strong>Key distinction:</strong> Roman Catholic theology distinguishes between Christ as the "invisible head" and the Pope as the "visible head" of the Church. The OO reject this distinction as theologically unnecessary and historically novel. The Church's visible unity is expressed through the bishops in conciliar communion — no single bishop need be "visible head" for the Church to be visibly one.</div>
+  </div>
+</div>
+
+<div id="college" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>The Apostolic College — Shared Authority from the Beginning</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>Jesus did not appoint one Apostle and subordinate the rest to him. He appointed twelve. Authority in the early Church was collegiate — shared among the Apostles under Christ — with Peter playing a role of first spokesman and representative, but not of sole governor.</p>
+    <div class="sv">
+      <div class="ref">Matthew 18:18 — Binding and Loosing to All Apostles</div>
+      <div class="txt">"Truly, I say to you, whatever you bind on earth shall be bound in heaven, and whatever you loose on earth shall be loosed in heaven."</div>
+      <div class="interp">Binding and loosing — given to Peter alone in Matthew 16:19 — is here given to the full body of disciples. The authority is collegial, not monarchical. What Peter received, the Apostles as a body share.</div>
+      <div class="labels"><span class="oo">Oriental Orthodox</span><span class="ctx">Collegial Authority</span></div>
+    </div>
+    <div class="sv">
+      <div class="ref">John 20:21–23 — Pentecost Commission to All</div>
+      <div class="txt">"Jesus said to them again, 'Peace be with you. As the Father has sent me, even so I am sending you.' And when he had said this, he breathed on them and said to them, 'Receive the Holy Spirit. If you forgive the sins of any, they are forgiven them…'"</div>
+      <div class="interp">The Risen Christ breathes the Spirit upon all the Apostles, not upon Peter alone, and grants all of them the authority to forgive sins. The commission is universal among the Twelve.</div>
+      <div class="labels"><span class="oo">Oriental Orthodox</span><span class="ctx">Commission to the Twelve</span></div>
+    </div>
+    <div class="sv">
+      <div class="ref">Revelation 21:14 — Twelve Foundations</div>
+      <div class="txt">"And the wall of the city had twelve foundations, and on them were the twelve names of the twelve apostles of the Lamb."</div>
+      <div class="interp">The New Jerusalem's foundations are twelve — all the Apostles together — not one apostle elevated above the rest. The eschatological image is of shared Apostolic authority, not a single Petrine primacy.</div>
+      <div class="labels"><span class="oo">Oriental Orthodox</span><span class="ctx">Eschatological Vision</span></div>
+    </div>
+    <div class="fc-grid">
+      <div class="fc">
+        <div class="fname">St. Cyprian of Carthage</div>
+        <div class="fdate">c. 251 AD — On the Unity of the Church</div>
+        <div class="fq">"The episcopate is one, each part of which is held by each one for the whole… the apostleship is one and undivided; and he [Christ] gave to all the apostles equal power and dignity."</div>
+        <div class="fsrc">De Catholicae Ecclesiae Unitate, §5</div>
+      </div>
+      <div class="fc">
+        <div class="fname">St. John Chrysostom</div>
+        <div class="fdate">c. 390 AD — Homilies on Matthew</div>
+        <div class="fq">"Peter was the mouth of the disciples, not the lord… He spoke first, not because he was greater than the others, but because he was more fervent."</div>
+        <div class="fsrc">Homily 54 on Matthew</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="peter_role" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>Peter: First Among Equals — What the Early Church Actually Claimed</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>The Oriental Orthodox fully acknowledge Peter's special role among the Apostles. He is their spokesman, their representative voice, the one who confesses Christ's identity before the others, and the one who receives the charge to "feed my sheep." This is a real primacy — but it is a primacy of <em>honor</em> (τιμή, timē), not of <em>jurisdiction</em> (δικαιοδοσία, dikaiodosía).</p>
+    <div class="key-text">Peter is "protos" — first. But first in a senate is not the same as a monarch. The Roman Senate had a princeps — first citizen — but the Senate governed collectively. The early Church's "primacy of honor" for Rome and for Peter was precisely this senatorial, not monarchical, primacy.</div>
+    <div class="sv">
+      <div class="ref">John 21:15–17 — Feed My Sheep</div>
+      <div class="txt">"Jesus said to Simon Peter… 'Feed my lambs… Tend my sheep… Feed my sheep.'"</div>
+      <div class="interp">The charge is a pastoral commission, not a jurisdictional grant. And note: the sheep belong to Jesus ("my sheep"), not to Peter. Peter tends what belongs to Christ. This is a stewardship, not an ownership — a ministry, not a monarchy.</div>
+      <div class="labels"><span class="oo">Oriental Orthodox</span><span class="gk">Greek: ποίμαινε — tend/shepherd, not rule</span></div>
+    </div>
+    <div class="sv">
+      <div class="ref">Galatians 2:11 — Paul Opposes Peter to His Face</div>
+      <div class="txt">"But when Cephas came to Antioch, I opposed him to his face, because he stood condemned."</div>
+      <div class="interp">Paul publicly corrects Peter's behavior in Antioch. If Peter held supreme, infallible authority over all other Apostles and bishops, Paul's public opposition would be insubordination. Instead, it demonstrates that Peter — however honored — was not above correction. The Apostles corrected one another as brothers, not subjects.</div>
+      <div class="labels"><span class="oo">Oriental Orthodox</span><span class="ctx">Petrine Fallibility</span></div>
+    </div>
+    <div class="sv">
+      <div class="ref">Acts 8:14 — Peter Sent by Jerusalem</div>
+      <div class="txt">"Now when the apostles at Jerusalem heard that Samaria had received the word of God, they sent to them Peter and John."</div>
+      <div class="interp">The Jerusalem apostles sent Peter — they did not receive orders from him. If Peter were the supreme governor, he would send, not be sent. This passage shows Peter functioning as a representative delegate, not an apex authority.</div>
+      <div class="labels"><span class="oo">Oriental Orthodox</span><span class="ctx">Collegiate Governance</span></div>
+    </div>
+    <p>Furthermore, after Peter's martyrdom, his "primacy" did not transfer automatically to a successor in Rome. It was the <em>see of Rome</em> that carried honor — and that honor was grounded in Rome's political importance and the martyrdom of both Peter and Paul there, not in a juridical succession to Peter's alleged universal jurisdiction.</p>
+  </div>
+</div>
+
+<div id="pentarchy" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>The Five Patriarchates — The Ancient Order of the Church</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>The early Church was governed through a structure of five great sees — the Pentarchy — each with its own patriarch, each with a sphere of honor and jurisdiction. This was the East's understanding of church order, and it explicitly precluded a monarchical papacy.</p>
+    <div class="pat-grid">
+      <div class="pat">
+        <div class="pname">Rome</div>
+        <div class="pfound">Founded: Apostolic / Petrine and Pauline</div>
+        <div class="pdesc">Held the first place of honor among equals. Capital of the Empire, site of the martyrdom of Peter and Paul. Primacy of honor — "the first among equals" — recognized by all.</div>
+        <div class="prank">Rank: First in Honor</div>
+      </div>
+      <div class="pat">
+        <div class="pname">Constantinople</div>
+        <div class="pfound">Established: Canon 3, Council of Constantinople I (381)</div>
+        <div class="pdesc">Given second place because it was the "New Rome" — the imperial capital. Not Apostolic in origin, but elevated for political reasons. Rome objected, but the East accepted it.</div>
+        <div class="prank">Rank: Second in Honor</div>
+      </div>
+      <div class="pat">
+        <div class="pname">Alexandria</div>
+        <div class="pfound">Founded: St. Mark the Evangelist</div>
+        <div class="pdesc">Third among the five, but for the OO tradition the most theologically significant — home of Athanasius, Cyril, the Coptic and Ethiopian churches. Held the chair of St. Mark.</div>
+        <div class="prank">Rank: Third in Honor</div>
+      </div>
+      <div class="pat">
+        <div class="pname">Antioch</div>
+        <div class="pfound">Founded: Apostles Peter and Paul</div>
+        <div class="pdesc">Where disciples were first called "Christians" (Acts 11:26). One of the great Apostolic sees. Home to Ignatius, Chrysostom. Syriac Orthodox maintain this heritage today.</div>
+        <div class="prank">Rank: Fourth in Honor</div>
+      </div>
+      <div class="pat">
+        <div class="pname">Jerusalem</div>
+        <div class="pfound">Founded: The Lord Himself / St. James</div>
+        <div class="pdesc">Mother of all churches — where the Church was born at Pentecost. Presided over by James, "the brother of the Lord." Holds the fifth place in the canonical order.</div>
+        <div class="prank">Rank: Fifth in Honor</div>
+      </div>
+    </div>
+    <p>Notice what the Pentarchy model does and does not include. It <em>includes</em> Rome as first in honor. It <em>excludes</em> Rome from supremacy over the others in jurisdiction. Canon 28 of Chalcedon (451 AD) — which Rome famously refused to accept — granted Constantinople equal rank with Rome, explicitly on the grounds that both cities were imperial capitals, not on any Petrine ground. This reveals that Eastern canonical thinking grounded Roman honor in political circumstances, not in a divine constitutional mandate.</p>
+    <div class="note"><strong>OO note:</strong> The Oriental Orthodox, having rejected Chalcedon, do not accept Canon 28. But they maintain the ancient Pentarchic logic of equal patriarchates with primacy of honor — not jurisdiction — accorded to the first see. For OO, the Coptic Pope of Alexandria holds a primacy of honor among the Oriental Orthodox churches.</div>
+  </div>
+</div>
+
+<div id="early_governance" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>Early Church Governance — What the Record Actually Shows</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>The patristic evidence for how the early Church actually governed itself consistently points toward a collegial, conciliar model — not a Roman monarchical model. The following timeline traces the development honestly.</p>
+    <div class="tl">
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-content">
+          <h4>c. 50 AD — Jerusalem Council (Acts 15)</h4>
+          <div class="tl-date">New Testament Era</div>
+          <p>The first doctrinal controversy is resolved by a council of apostles and elders — not by a decree from Peter alone. James presides. The council speaks: "It seemed good to the Holy Spirit and to us." Peter gives one speech among several.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-content">
+          <h4>c. 107 AD — Ignatius of Antioch</h4>
+          <div class="tl-date">Sub-Apostolic Era</div>
+          <p>Ignatius writes to the Roman church that it "presides in love" — an honorific phrase, not a jurisdictional grant. He addresses Roman Christians as peers, not subjects. He never calls Rome's bishop "universal bishop" or assigns it governing authority over his own see.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-content">
+          <h4>c. 190 AD — Easter Controversy</h4>
+          <div class="tl-date">Quartodeciman Controversy</div>
+          <p>Pope Victor I threatens to excommunicate Eastern churches over the date of Easter. Irenaeus of Lyon — writing from Rome's own territory — rebukes Victor for overstepping. The East continues its practice. Victor's "supremacy" fails in practice.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-content">
+          <h4>325 AD — Nicaea I</h4>
+          <div class="tl-date">First Ecumenical Council</div>
+          <p>The Nicene Crisis is resolved by an Ecumenical Council convened by Emperor Constantine, not by Roman decree. Rome sends two legates who participate among equals. The council's authority derives from its ecumenical character, not from papal confirmation.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-content">
+          <h4>c. 250 AD — Cyprian vs. Stephen of Rome</h4>
+          <div class="tl-date">Rebaptism Controversy</div>
+          <p>Bishop Stephen of Rome claims Petrine authority to settle the rebaptism debate. Cyprian of Carthage — the greatest Western bishop of the era — explicitly rejects Stephen's claim to authority over other bishops, defending the equality of the episcopate.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-content">
+          <h4>381 AD — Constantinople I, Canon 3</h4>
+          <div class="tl-date">Second Ecumenical Council</div>
+          <p>The council grants Constantinople second place of honor — after Rome — without any reference to Petrine authority for Rome's primacy. Rome's honor is grounded in its being the old imperial capital. This is entirely inconsistent with a doctrine of divine, Petrine supremacy.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-content">
+          <h4>451 AD — Chalcedon, Canon 28</h4>
+          <div class="tl-date">Fourth Ecumenical Council (not accepted by OO)</div>
+          <p>The council grants Constantinople equal rank with Rome on the explicit grounds that both are imperial cities — not Petrine grounds. Pope Leo I furiously rejects Canon 28. The East accepts it. This rupture reveals the fundamental disagreement: East thinks primacy is political-honorific; Rome thinks it is divine-constitutional.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot neutral"></div><div class="tl-line"></div></div>
+        <div class="tl-content">
+          <h4 class="neutral">600–900 AD — Gradual Expansion of Roman Claims</h4>
+          <div class="tl-date">Medieval Development</div>
+          <p>Roman claims to universal jurisdiction grow incrementally through the medieval period. The Pseudo-Isidorian Decretals (c. 850) — later proven forgeries — were used to support expanded papal claims. The East increasingly resists.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot warn"></div></div>
+        <div class="tl-content">
+          <h4 class="warn">1054 AD — The Great Schism</h4>
+          <div class="tl-date">Definitive Break between East and West</div>
+          <p>Cardinal Humbert lays a bull of excommunication on the altar of Hagia Sophia. The Patriarch of Constantinople excommunicates in return. The primary causes: Filioque, papal authority claims, and Latin liturgical intrusions into the East. The schism becomes permanent.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /content -->
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- PART II -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="part-banner pb2">
+  <h3>Part II</h3>
+  <p>Papal Authority — The Petrine Texts, Historical Development, and the OO Response</p>
+</div>
+
+<div class="content">
+
+<div id="petrine_texts" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>The Petrine Texts — Rome's Scriptural Foundation</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>Roman Catholic theology grounds papal authority primarily in three texts, referred to as the "Petrine texts." We examine each honestly — the Roman reading, its strengths, and the reasons the Oriental Orthodox (along with Eastern Orthodoxy and many Protestant scholars) find it insufficient to support monarchical papalism.</p>
+    <div class="sv">
+      <div class="ref">Matthew 16:18–19 — "You Are Peter"</div>
+      <div class="txt">"And I tell you, you are Peter, and on this rock I will build my church, and the gates of hell shall not prevail against it. I will give you the keys of the kingdom of heaven, and whatever you bind on earth shall be bound in heaven, and whatever you loose on earth shall be loosed in heaven."</div>
+      <div class="interp"><strong>Roman reading:</strong> "Rock" (petra) = Peter personally; the keys pass to his successors in Rome. This establishes perpetual Petrine monarchy.<br><br><strong>OO reading:</strong> The "rock" is debated in patristic tradition — Origen, Chrysostom, and Augustine understood it as Peter's confession of faith, or as Christ Himself. Even if it means Peter personally, the keys given here are shared in Matthew 18:18 with all the Apostles. The Church is indestructible — but this promise belongs to the Church as a body, not to a Roman succession.</div>
+      <div class="labels"><span class="rc">Roman Catholic Reading</span><span class="oo">Oriental Orthodox Reading</span><span class="gk">Greek: Πέτρος / πέτρα — Petros / petra</span></div>
+    </div>
+    <div class="note"><strong>Linguistic note on petra vs. Petros:</strong> In Greek, Jesus calls Simon "Petros" (a masculine proper noun, a stone or rock) and says He will build His church on "this petra" (feminine, a large bedrock). Some scholars read a distinction here — Peter is a stone, Christ or the confession is the bedrock. In Aramaic (which Jesus likely spoke), the same word "kepha" (Cephas) would apply to both, removing the distinction. The debate remains alive among serious scholars, and the text alone cannot settle the Roman claim.</div>
+    <div class="sv">
+      <div class="ref">Luke 22:31–32 — "Strengthen Your Brothers"</div>
+      <div class="txt">"Simon, Simon, behold, Satan demanded to have you all, that he might sift you like wheat, but I have prayed for you that your faith may not fail. And when you have turned again, strengthen your brothers."</div>
+      <div class="interp"><strong>Roman reading:</strong> Christ's special prayer for Peter that his faith not fail = the basis of papal infallibility in faith.<br><br><strong>OO reading:</strong> "You" (singular) in "I have prayed for you" refers to Peter personally in this crisis moment — not to an office with perpetual guarantee. This is a pastoral commission to Peter after his predicted denial, not a constitutional grant of infallibility. Immediately after this, Peter denies Christ three times — demonstrating that the prayer preserves his ultimate restoration, not his personal impeccability.</div>
+      <div class="labels"><span class="rc">Roman Catholic Reading</span><span class="oo">Oriental Orthodox Reading</span></div>
+    </div>
+    <div class="sv">
+      <div class="ref">John 21:15–17 — "Feed My Sheep"</div>
+      <div class="txt">"He said to him the third time, 'Simon, son of John, do you love me?' Peter was grieved because he said to him the third time, 'Do you love me?' and he said to him, 'Lord, you know everything; you know that I love you.' Jesus said to him, 'Feed my sheep.'"</div>
+      <div class="interp"><strong>Roman reading:</strong> The three-fold commission is a rehabilitation of Peter after his three-fold denial, and constitutes him as the universal shepherd of Christ's flock.<br><br><strong>OO reading:</strong> This is a pastoral restoration after the denial — Christ reinstating Peter's Apostolic calling. The sheep remain Christ's ("my sheep") — Peter is a shepherd under the Chief Shepherd. The same verb for "shepherd" (ποίμαινε) is used of all elders in Acts 20:28 and 1 Peter 5:2 — it is not a unique title for one man's monarchical successor.</div>
+      <div class="labels"><span class="rc">Roman Catholic Reading</span><span class="oo">Oriental Orthodox Reading</span><span class="gk">Greek: ποίμαινε — shepherd, tend</span></div>
+    </div>
+  </div>
+</div>
+
+<div id="oo_petrine" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>The OO Reading of Matthew 16 — Patristic Evidence</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>Roman apologists sometimes claim that all the Fathers unanimously interpreted Matthew 16 as establishing Petrine monarchical succession. This is historically false. The Fathers show a rich diversity of interpretation — and many of the most prominent Western Fathers read the rock as something other than Peter's personal succession to Rome.</p>
+    <div class="fc-grid">
+      <div class="fc">
+        <div class="fname">Origen of Alexandria</div>
+        <div class="fdate">c. 230 AD — Commentary on Matthew</div>
+        <div class="fq">"If we too have said like Peter, 'You are the Christ, the Son of the living God,' we become a Peter… For a rock is every disciple of Christ."</div>
+        <div class="fsrc">Commentary on Matthew, Book XII.10</div>
+      </div>
+      <div class="fc">
+        <div class="fname">St. Hilary of Poitiers</div>
+        <div class="fdate">c. 355 AD — On the Trinity</div>
+        <div class="fq">"This faith is the foundation of the Church; through this faith the gates of hell are powerless against her… The faith of the confession is the foundation."</div>
+        <div class="fsrc">De Trinitate, VI.37</div>
+      </div>
+      <div class="fc">
+        <div class="fname">St. Augustine of Hippo</div>
+        <div class="fdate">c. 411 AD — Retractions</div>
+        <div class="fq">"'You are Peter, and upon this rock I will build my church.' I said in a certain place that the Church was built upon Peter himself, as upon a rock. But I know that very frequently…  I have since [reconsidered] that it should be understood of Him whom Peter confessed."</div>
+        <div class="fsrc">Retractationes, I.21 — Augustine revises his earlier reading</div>
+      </div>
+      <div class="fc">
+        <div class="fname">St. Ambrose of Milan</div>
+        <div class="fdate">c. 380 AD — Exposition of the Gospel of Luke</div>
+        <div class="fq">"Peter, who first confessed Him, first received the promise of the Church… but note that He gave the keys to Peter as the symbol of faith, not as the grant of a principate."</div>
+        <div class="fsrc">Expositio Evangelii secundum Lucam, VI.98</div>
+      </div>
+      <div class="fc">
+        <div class="fname">St. John Chrysostom</div>
+        <div class="fdate">c. 390 AD — Homilies on Matthew</div>
+        <div class="fq">"On this rock, that is, on the faith of the confession… I will build my Church. He did not say 'on Peter,' but 'on this rock.' The rock is the faith; on faith, not on the man."</div>
+        <div class="fsrc">Homily 54 on Matthew §3</div>
+      </div>
+      <div class="fc">
+        <div class="fname">St. Cyril of Alexandria</div>
+        <div class="fdate">c. 428 AD — On the Gospel of John</div>
+        <div class="fq">"The unshaken rock is the inviolable faith of Peter… Whoever possesses this faith, he too shall be a rock."</div>
+        <div class="fsrc">Commentary on John, Book II.1</div>
+      </div>
+    </div>
+    <p>The patristic evidence is clear: the interpretation of the "rock" as the confession of faith rather than Peter's personal succession is not a Protestant innovation — it was the reading of Origen, Hilary, Ambrose, Chrysostom, Cyril of Alexandria, and (in his later reflection) Augustine. Roman Catholic scholars who claim unanimous Patristic support for the papal reading must reckon honestly with these witnesses.</p>
+  </div>
+</div>
+
+<div id="historical_rise" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>Historical Rise of Roman Primacy Claims</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>The doctrine of universal papal jurisdiction did not spring fully-formed from the Apostolic age. It developed — gradually, in specific historical contexts, often in response to political power shifts. An honest historical tracing reveals this development as genuine innovation rather than explicit Apostolic teaching.</p>
+    <div class="doc-grid">
+      <div class="doc rc-d">
+        <div class="dname">Pope Damasus I — Decree (c. 382)</div>
+        <div class="ddate">382 AD</div>
+        <div class="dq">"The holy Roman Church has been placed at the forefront not by the conciliar decisions of other churches, but has received the primacy by the evangelic voice of our Lord and Savior."</div>
+        <div class="ddesc">One of the first explicit claims that Rome's primacy is divine and scriptural — not conciliar or political. Marks a shift from Eastern understanding of primacy as honorific to Western claim of jurisdictional divine mandate.</div>
+      </div>
+      <div class="doc rc-d">
+        <div class="dname">Pope Leo I — Sermons on the Anniversary of His Consecration (440s)</div>
+        <div class="ddate">c. 440–461 AD</div>
+        <div class="dq">"The Lord willed that the sacrament of this gift should pertain to all the apostles in such a way that it might be found chiefly in the most blessed Peter, the highest of all the apostles."</div>
+        <div class="ddesc">Leo develops the doctrine that Peter's authority passes in its fullness to his successors in Rome — "plena potestas." The East acknowledges Leo's theological greatness but rejects this constitutional claim.</div>
+      </div>
+      <div class="doc rc-d">
+        <div class="dname">Pseudo-Isidorian Decretals</div>
+        <div class="ddate">c. 847–852 AD — Proven Forgeries</div>
+        <div class="dq">Falsely attributed to early popes, claiming ancient support for Roman jurisdiction over local councils and bishops.</div>
+        <div class="ddesc">These forged documents were widely used in the Carolingian era to bolster papal claims. Exposed as forgeries by later scholars — chiefly David Blondel and others in the 16th–17th centuries. Note: Lorenzo Valla's famous 1440 forgery-exposure work concerned the Donation of Constantine, a separate document; the Decretals were identified as forgeries by subsequent scholarship. Their historical influence on papal development is undeniable.</div>
+      </div>
+      <div class="doc rc-d">
+        <div class="dname">Dictatus Papae — Gregory VII</div>
+        <div class="ddate">1075 AD</div>
+        <div class="dq">"The Roman church has never erred… The pope alone can call universal councils… He alone can depose or reinstate bishops… He himself may be judged by no one."</div>
+        <div class="ddesc">Gregory VII's 27 theses represent the high-water mark of medieval papal supremacy claims — universal legislative authority, freedom from any human judgment, sole authority over councils. The East regards these claims as a radical departure from the Apostolic tradition.</div>
+      </div>
+      <div class="doc rc-d">
+        <div class="dname">Vatican I — Pastor Aeternus</div>
+        <div class="ddate">1870 AD</div>
+        <div class="dq">"The Roman Pontiff… possesses full and supreme power of jurisdiction over the universal Church… This power of the Supreme Pontiff is ordinary, immediate, and truly episcopal."</div>
+        <div class="ddesc">The formal dogmatic definition of universal papal jurisdiction and infallibility. For the OO, this represents the culmination of a millennium-long development entirely foreign to the Apostolic and Patristic Church.</div>
+      </div>
+    </div>
+    <p>The trajectory is unmistakable: from Rome as "first among equals" (honorific primacy, 1st–3rd centuries) → to Rome's claim to divine-constitutional primacy over all other sees (5th century) → to universal jurisdictional supremacy (11th century) → to formal dogma of universal jurisdiction and infallibility (1870). The OO, together with the Eastern Orthodox, argue that this trajectory represents doctrinal development that exceeds the Apostolic deposit.</p>
+  </div>
+</div>
+
+<div id="schism" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>The Great Schism of 1054 — Causes and Lasting Significance</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>The formal break between Rome and Constantinople in 1054 was not a sudden accident — it was the culmination of centuries of growing divergence in ecclesiology, theology, and culture. Understanding the Schism is essential for understanding why the OO cannot accept the papal claims Rome subsequently formalized.</p>
+    <div class="comp-grid">
+      <div class="comp-card rc-c">
+        <h4>Roman Position</h4>
+        <ul>
+          <li>Pope holds supreme universal jurisdiction</li>
+          <li>Filioque is a legitimate clarification of doctrine</li>
+          <li>Latin practices (unleavened bread, clerical celibacy) to be universalized</li>
+          <li>Papal legates have authority to act throughout the Church</li>
+          <li>Constantinople's patriarch must submit to Rome</li>
+        </ul>
+      </div>
+      <div class="comp-card oo-c">
+        <h4>Eastern Position</h4>
+        <ul>
+          <li>The five patriarchates govern collegially</li>
+          <li>Filioque is an unauthorized unilateral addition to the Creed</li>
+          <li>Local liturgical traditions are legitimate and protected</li>
+          <li>Papal legates have no authority beyond their own territory</li>
+          <li>No patriarch can claim jurisdiction over equals</li>
+        </ul>
+      </div>
+    </div>
+    <p>The immediate trigger was Cardinal Humbert's bull of excommunication against Patriarch Michael Cerularius — delivered arrogantly on the altar of Hagia Sophia while the Pope who sent the legates had already died, technically making the legates' mission invalid. The Patriarch's counter-excommunication followed.</p>
+    <p>What the Schism revealed is that East and West had been operating with fundamentally different ecclesiologies for centuries, with the gap growing wider. The East was not breaking from the true church; in its self-understanding, it was preserving the Apostolic order against Roman innovation. This is precisely the OO position: conciliar, Apostolic, collegial — as it always was.</p>
+    <div class="note"><strong>Note for Catholic dialogue:</strong> The mutual excommunications of 1054 were lifted by Paul VI and Patriarch Athenagoras in 1965 — a gesture of reconciliation. But the dogmatic issues that caused the Schism — universal papal jurisdiction, infallibility, Filioque — remain unresolved. Friendship without doctrinal agreement is genuine but not yet full communion.</div>
+  </div>
+</div>
+
+<div id="honor_vs_jur" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>Primacy of Honor vs. Primacy of Jurisdiction — The Central Distinction</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>The deepest divide between the Oriental Orthodox and Rome on church authority comes down to one fundamental distinction: <strong>primacy of honor</strong> versus <strong>primacy of jurisdiction</strong>.</p>
+    <div class="comp-grid">
+      <div class="comp-card oo-c">
+        <h4>Primacy of Honor (OO)</h4>
+        <ul>
+          <li>The first patriarch receives special respect and deference</li>
+          <li>His voice carries great weight in councils</li>
+          <li>He may preside over pan-Orthodox/OO gatherings</li>
+          <li>He cannot unilaterally impose decisions on other sees</li>
+          <li>He cannot override local synodal authority</li>
+          <li>His "primacy" is collegial, not monarchical</li>
+          <li>Ancient, pre-schismatic, patristic model</li>
+        </ul>
+      </div>
+      <div class="comp-card rc-c">
+        <h4>Primacy of Jurisdiction (Rome)</h4>
+        <ul>
+          <li>The Pope holds supreme authority over all bishops</li>
+          <li>His decrees bind the universal Church</li>
+          <li>He can override local synods and patriarchs</li>
+          <li>He can appoint and remove bishops everywhere</li>
+          <li>Councils derive authority from his confirmation</li>
+          <li>He governs the Church as universal ordinary</li>
+          <li>Developed and formalized medieval through 1870</li>
+        </ul>
+      </div>
+    </div>
+    <div class="key-text">The Oriental Orthodox fully acknowledge that Rome held a primacy of honor in the undivided Church. What we deny is that this primacy of honor was ever understood — before the medieval Roman developments — as a primacy of universal jurisdiction. The burden of proof lies with Rome to demonstrate from the first-millennium sources that the early Church understood the Bishop of Rome to govern all other bishops as their superior. That demonstration cannot be made from the evidence available.</div>
+    <div class="fc-grid">
+      <div class="fc">
+        <div class="fname">St. Gregory the Great (Pope)</div>
+        <div class="fdate">c. 595 AD — Letter to John the Faster</div>
+        <div class="fq">"I say it without hesitation: whoever calls himself 'universal bishop' or desires to be so called, is in his pride the precursor of Antichrist."</div>
+        <div class="fsrc">Ep. V.18 — Gregory rebuking the Patriarch of Constantinople for claiming universal jurisdiction. By his own words, Gregory condemns the very claims later Roman popes would make for themselves.</div>
+      </div>
+      <div class="fc">
+        <div class="fname">St. Irenaeus of Lyon</div>
+        <div class="fdate">c. 190 AD — Against Heresies</div>
+        <div class="fq">"Because of its superior origin, all churches must agree with this church [Rome] — that is, the faithful everywhere — in whom the apostolic tradition has always been preserved."</div>
+        <div class="fsrc">Adversus Haereses III.3.2 — Often quoted by Rome as evidence of primacy; OO note that "agree with" (convenire) signifies doctrinal harmony, not jurisdictional submission to Roman decrees.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="comparison_auth" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>Three Models of Authority — A Comparative Grid</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <div class="comp-grid">
+      <div class="comp-card oo-c">
+        <h4>Oriental Orthodox</h4>
+        <ul>
+          <li>Christ is the one Head</li>
+          <li>Bishops govern collegially in council</li>
+          <li>First patriarch holds honorific primacy</li>
+          <li>No universal jurisdiction by any one bishop</li>
+          <li>Councils define dogma; reception confirms them</li>
+          <li>Apostolic succession guarantees continuity</li>
+          <li>The Spirit guides the body — not one office</li>
+        </ul>
+      </div>
+      <div class="comp-card rc-c">
+        <h4>Roman Catholic</h4>
+        <ul>
+          <li>Christ is Head; Pope is visible head</li>
+          <li>Pope holds supreme universal jurisdiction</li>
+          <li>All bishops in submission to Rome</li>
+          <li>Ex cathedra definitions are infallible</li>
+          <li>Councils valid only with papal ratification</li>
+          <li>Apostolic succession through Roman line emphasized</li>
+          <li>One office bears the fullness of authority</li>
+        </ul>
+      </div>
+      <div class="comp-card prot-c">
+        <h4>Protestant</h4>
+        <ul>
+          <li>Christ is Head; Scripture alone governs</li>
+          <li>No binding human authority over conscience</li>
+          <li>No episcopal succession required</li>
+          <li>Councils are advisory at best</li>
+          <li>Each congregation or denomination self-governing</li>
+          <li>No authoritative interpretation beyond Scripture</li>
+          <li>Result: radical fragmentation of the Body</li>
+        </ul>
+      </div>
+    </div>
+    <p>The OO model is the via media — between the Roman claim of one-man universal authority and the Protestant dissolution of all binding authority. The Church is visibly structured, episcopally governed, and conciliarly defined — but no single bishop stands as monarch over his peers.</p>
+  </div>
+</div>
+
+</div><!-- /content -->
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- PART III -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="part-banner pb3">
+  <h3>Part III</h3>
+  <p>Papal Infallibility — Vatican I, the Definition, the Problems, and the OO Response</p>
+</div>
+
+<div class="content">
+
+<div id="vatican1" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>Vatican I (1870) and Pastor Aeternus — The Formal Definition</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>The First Vatican Council (1869–1870), convened by Pope Pius IX, formally defined two dogmas that the OO regard as innovations departing from Apostolic tradition: universal papal jurisdiction and papal infallibility. The defining document is <em>Pastor Aeternus</em> ("The Eternal Pastor"), promulgated July 18, 1870 — one day before the outbreak of the Franco-Prussian War that ended the council prematurely.</p>
+    <div class="infal-box">
+      <h4>The Definition of Papal Infallibility — Pastor Aeternus, Chapter IV</h4>
+      <div class="def-text">"We teach and define as a divinely revealed dogma that when the Roman Pontiff speaks EX CATHEDRA, that is, when, in the exercise of his office as shepherd and teacher of all Christians, in virtue of his supreme apostolic authority, he defines a doctrine concerning faith or morals to be held by the whole Church, he possesses, by the divine assistance promised to him in blessed Peter, that infallibility which the divine Redeemer willed his Church to enjoy in defining doctrine concerning faith or morals. Therefore, such definitions of the Roman Pontiff are of themselves, and not by the consent of the Church, irreformable."</div>
+      <div class="conds">
+        <div class="cond">
+          <h5>Condition 1: Ex Cathedra</h5>
+          <p>Must speak "from the chair" — in his official capacity as universal teacher, not in personal theological opinion or ordinary teaching.</p>
+        </div>
+        <div class="cond">
+          <h5>Condition 2: Faith or Morals</h5>
+          <p>Must be defining a doctrine on faith (what to believe) or morals (how to act) — not on history, science, politics, or prudential matters.</p>
+        </div>
+        <div class="cond">
+          <h5>Condition 3: For Universal Church</h5>
+          <p>Must explicitly bind the entire universal Church — not merely a local church or a particular group.</p>
+        </div>
+        <div class="cond">
+          <h5>Condition 4: Irreformable</h5>
+          <p>"Not by the consent of the Church" — the definition is not subject to correction or revision by any council, synod, or gathering. It stands on its own.</p>
+        </div>
+      </div>
+    </div>
+    <p>It is important to note what papal infallibility does <em>not</em> claim: it does not claim the Pope is personally sinless, personally impeccable, or incapable of error in ordinary teaching, political judgment, or private theological opinion. The conditions are narrow. Roman Catholic theologians estimate that only two definitions clearly qualify as ex cathedra since 1870: the Immaculate Conception (1854, technically pre-Vatican I) and the Assumption of Mary (1950).</p>
+    <div class="note warn"><strong>OO response:</strong> Even granting the narrow conditions, the claim that any single bishop — however ancient his see — can define doctrine "not by the consent of the Church" and have it stand "irreformable" is irreconcilable with the conciliar model the OO find in Scripture (Acts 15), in the Fathers (Irenaeus, Cyprian, Basil), and in the pre-schismatic councils. The problem is not the conditions but the principle itself.</div>
+  </div>
+</div>
+
+<div id="what_infal" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>What Infallibility Claims — and What It Implies</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>The doctrine of papal infallibility is grounded in Luke 22:32 — Christ's prayer that Peter's "faith may not fail" — and in the general promise of the Spirit guiding the Church into all truth (John 16:13). Rome applies these promises to the Petrine office in a specific, formal way. The OO analysis examines whether this application is exegetically or historically warranted.</p>
+    <div class="sv">
+      <div class="ref">Luke 22:32 — Rome's Primary Proof Text</div>
+      <div class="txt">"But I have prayed for you that your faith may not fail. And when you have turned again, strengthen your brothers."</div>
+      <div class="interp"><strong>Roman Catholic reading:</strong> Christ's prayer guarantees that Peter's successors, when defining doctrine for the whole Church, will not err in matters of faith.<br><br><strong>OO reading:</strong> (1) The prayer is to Peter personally in an immediate crisis — his approaching denial. (2) "When you have turned again" implies Peter <em>will</em> fall first, then recover. (3) The prayer preserves Peter's ultimate faith, not his magisterial pronouncements. (4) There is nothing in the text about "successors" — the transfer of this prayer's guarantee to a Roman episcopal succession requires enormous exegetical weight placed on a text that cannot bear it.</div>
+      <div class="labels"><span class="rc">Roman Catholic Reading</span><span class="oo">Oriental Orthodox Reading</span></div>
+    </div>
+    <p>More fundamentally, the OO observe that the promise of John 16:13 — "He will guide you into all truth" — is made to the Apostles collectively, not to Peter alone. The Spirit's guidance is ecclesial and conciliar, not concentrated in one office. If Luke 22:32 grounds infallibility for Peter's successors, then John 16:13 grounds it for the whole college of bishops — which is precisely the conciliar model the OO embrace.</p>
+    <div class="key-text">The Oriental Orthodox accept the Church's indefectibility — she will not permanently and definitively err in defining the Apostolic faith. What we deny is that this indefectibility belongs to any one bishop as a personal charism of his office. The Spirit guards the Church; He does not attach Himself to a chair in Rome as a guarantee for whoever sits in it.</div>
+  </div>
+</div>
+
+<div id="problem_cases" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>Historical Problems for Papal Infallibility</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>The history of the papacy presents several cases that create severe difficulties for the doctrine of infallibility — even granting its narrow conditions. Roman Catholic apologists have responses to each, but those responses involve significant interpretive gymnastics that the OO find unconvincing.</p>
+    <div class="case-grid">
+      <div class="case prob">
+        <div class="cname">Pope Honorius I</div>
+        <div class="cdate">Pontificate: 625–638 AD</div>
+        <div class="cdesc">Honorius corresponded with Sergius, Patriarch of Constantinople, in a way that supported Monothelitism — the heresy that Christ has only one will. He wrote that we should "confess one will of our Lord Jesus Christ" and that those who teach two wills are "inventing a new term." The Third Council of Constantinople (681 AD) — the Sixth Ecumenical Council — formally condemned Honorius as a heretic. Subsequent popes (Leo II, Adrian II) confirmed this condemnation. His name was anathematized in the official council acts.</div>
+        <div class="cverdict">Condemned as heretic by Ecumenical Council</div>
+      </div>
+      <div class="case prob">
+        <div class="cname">Pope Vigilius</div>
+        <div class="cdate">Pontificate: 537–555 AD</div>
+        <div class="cdesc">Vigilius was notoriously inconsistent during the Three Chapters controversy. He issued his Iudicatum in 548, condemning writings condemned by Emperor Justinian. He then withdrew it. He issued a Constitutum in 553 forbidding condemnation of the Three Chapters. He then reversed course entirely, accepting the condemnation at Constantinople II. His zigzag behavior shows a pope contradicting himself in areas touching doctrine and authority under imperial pressure.</div>
+        <div class="cverdict">Severe doctrinal inconsistency under pressure</div>
+      </div>
+      <div class="case prob">
+        <div class="cname">Pope Liberius</div>
+        <div class="cdate">Pontificate: 352–366 AD</div>
+        <div class="cdesc">Under pressure from the Arian Emperor Constantius II, Liberius signed an Arian formula condemning Athanasius, the champion of Nicene orthodoxy. Jerome and other ancient sources acknowledge this. Liberius was the first bishop of Rome not to be venerated as a saint by the Western church, likely due to this capitulation to Arianism.</div>
+        <div class="cverdict">Signed Arian formula under imperial pressure</div>
+      </div>
+      <div class="case prob">
+        <div class="cname">The Three-Pope Schism</div>
+        <div class="cdate">1378–1417 AD — The Western Schism</div>
+        <div class="cdesc">For nearly 40 years, the Catholic West had two — and at times three — simultaneous claimants to the papacy, each excommunicating the other. The Council of Constance (1414–1418) resolved the crisis by deposing all three claimants and electing a new pope. If the Pope is the supreme authority over councils, how did a council depose popes? And which of the three was the "infallible" voice during the schism?</div>
+        <div class="cverdict">Council deposed competing popes — conciliarism over papalism</div>
+      </div>
+      <div class="case complex">
+        <div class="cname">Galileo Affair</div>
+        <div class="cdate">1633 AD</div>
+        <div class="cdesc">The Inquisition under Pope Urban VIII condemned heliocentrism as "formally heretical." Catholic apologists argue this was not an ex cathedra definition. This is probably correct technically, but the condemnation shows the magisterium making confident pronouncements on matters it later reversed — which raises questions about the practical reliability of the teaching office regardless of technical infallibility categories.</div>
+        <div class="cverdict">Not ex cathedra — but illustrates ordinary magisterium error</div>
+      </div>
+      <div class="case complex">
+        <div class="cname">Immaculate Conception (1854)</div>
+        <div class="cdate">Pius IX — Ineffabilis Deus</div>
+        <div class="cdesc">The first papal definition often cited as ex cathedra. Defined that Mary was conceived without original sin. Bernard of Clairvaux, Thomas Aquinas, and Bonaventure — pillars of Western theology — all denied or doubted this doctrine. If it was always the faith of the Church, why did its greatest theologians reject it? The OO regard this as genuine doctrinal innovation, not recovery of ancient truth.</div>
+        <div class="cverdict">Denied by Aquinas and Bernard — is it truly ancient tradition?</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="honorius" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>Pope Honorius — Condemned as a Heretic by an Ecumenical Council</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>The case of Pope Honorius I deserves extended treatment because it is, for the OO (and for Eastern Orthodoxy), the single most devastating historical challenge to papal infallibility. It is not a matter of Protestant polemic — it is the documented verdict of the Sixth Ecumenical Council, confirmed by successive popes.</p>
+    <div class="sv">
+      <div class="ref">The Third Council of Constantinople (680–681 AD) — Condemnation of Honorius</div>
+      <div class="txt">"We decide that Honorius also, who was Pope of Old Rome, be with them cast out of the Holy Church of God, and be anathematized with them, because we have found by his letter to Sergius that he followed his opinion in all things, and confirmed his wicked dogmas."</div>
+      <div class="interp">This is not a local council's opinion — it is the sixth ecumenical council's formal doctrinal verdict, accepted by East and West. Honorius was not condemned merely for imprudence or bad governance. He was anathematized — cast out — for doctrinal error on a matter of Christology (the number of Christ's wills).</div>
+      <div class="labels"><span class="hist">Ecumenical Council, 681 AD</span><span class="ctx">Christology — Monothelitism</span></div>
+    </div>
+    <div class="fc-grid">
+      <div class="fc">
+        <div class="fname">Pope Leo II (Confirming the Condemnation)</div>
+        <div class="fdate">682 AD — Letter to the Spanish Bishops</div>
+        <div class="fq">"We anathematize the inventors of the new error, that is, Theodore of Pharan, Sergius, Paul, Pyrrhus… and also Honorius, who did not illuminate this apostolic church with the teaching of apostolic tradition, but permitted her who was undefiled to be polluted by profane treachery."</div>
+        <div class="fsrc">Leo II — a Pope condemning his predecessor as one who "permitted" doctrinal pollution. Rome herself confirmed Honorius's condemnation.</div>
+      </div>
+      <div class="fc">
+        <div class="fname">The Papal Oath (Until 11th Century)</div>
+        <div class="fdate">Pre-11th Century</div>
+        <div class="fq">New popes, upon consecration, swore an oath that included: "…anathematizing Honorius who added fuel to the heresy of Sergius." The condemnation of Honorius was built into the papal consecration oath for centuries.</div>
+        <div class="fsrc">Liber Diurnus Romanorum Pontificum — the official Roman papal formula book</div>
+      </div>
+    </div>
+    <div class="note warn"><strong>The dilemma for Vatican I:</strong> If a pope can be condemned as a heretic by an ecumenical council (a council confirmed by subsequent popes), then either: (a) Honorius was not speaking ex cathedra when he wrote to Sergius — in which case, the conditions for infallibility are so narrow as to be nearly useless in practice; or (b) the doctrine of infallibility was simply unknown to the Church of the 7th century, whose greatest ecumenical council had no problem condemning a deceased pope for heresy. The OO find both options damaging to the Roman case.</div>
+    <p>Roman Catholic apologists respond that Honorius was condemned for moral negligence rather than formal heresy, and that his letters to Sergius were private correspondence, not ex cathedra definitions. The OO note that the council's language ("he followed his opinion in all things and confirmed his wicked dogmas") reads as doctrinal condemnation, not mere negligence. And if the Church's "infallible" office cannot even communicate clearly enough for the Church to recognize when he is speaking infallibly versus negligently, the practical value of the doctrine is severely diminished.</p>
+  </div>
+</div>
+
+<div id="oo_infal" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>The OO Response to Papal Infallibility — A Systematic Critique</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>The Oriental Orthodox response to papal infallibility is not simply a refusal to submit — it is a principled theological position grounded in Scripture, history, and a different (and earlier) ecclesiology. Here we lay out the OO critique systematically.</p>
+    <div class="obj">
+      <div class="obj-h" onclick="tobj(this)">
+        <h3>1. It concentrates the Spirit's guidance in one office, contrary to the NT model</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="obj-body">
+        <p>John 16:13 promises the Spirit will guide "you" (plural) — the Apostles collectively — into all truth. Acts 15:28 says "it seemed good to the Holy Spirit and to us" — the council, not a single bishop. 1 Timothy 3:15 says the Church (the whole body) is the pillar and bulwark of truth. The New Testament's pattern of Spirit-guided authority is consistently plural, corporate, and conciliar. Concentrating it in one man's solemn pronouncements is a departure from this pattern, not a fulfillment of it.</p>
+      </div>
+    </div>
+    <div class="obj">
+      <div class="obj-h" onclick="tobj(this)">
+        <h3>2. It is historically novel — the early Church did not operate this way</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="obj-body">
+        <p>If papal infallibility were the known doctrine of the early Church, we would expect to see: (a) popes settling controversies by issuing infallible definitions; (b) councils ratifying these definitions or explicitly appealing to them; (c) Fathers referencing this papal charism in their writings. Instead we find: controversies settled by councils (Nicaea, Constantinople, Ephesus); popes whose definitions were debated or rejected by the East; Fathers who located infallibility in the Church as a body, not a single bishop. The doctrine's formal articulation at Vatican I in 1870 is historically its beginning, not its retrieval.</p>
+      </div>
+    </div>
+    <div class="obj">
+      <div class="obj-h" onclick="tobj(this)">
+        <h3>3. It makes genuine ecumenical councils redundant</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="obj-body">
+        <p>If the Pope can define doctrine infallibly alone — "not by the consent of the Church" — why call councils at all? And indeed, since Vatican I the Catholic Church has defined dogma twice (Assumption, 1950) by papal definition alone, without conciliar process. For the OO, this represents the effective replacement of the Apostolic conciliar model with a papal monocracy. The conciliar model of Acts 15 — bishops gathered in the Spirit — is the biblical and historical norm; papal definition alone is not.</p>
+      </div>
+    </div>
+    <div class="obj">
+      <div class="obj-h" onclick="tobj(this)">
+        <h3>4. It creates a standard that cannot be reliably applied</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="obj-body">
+        <p>Roman Catholic theologians themselves disagree about which papal statements qualify as ex cathedra. Mark Powell's scholarly study identified six candidates beyond the two most commonly cited. The Galileo condemnation, various medieval papal decrees, and even some statements about Scripture's inerrancy are debated. If the Church's supreme teaching authority cannot consistently identify when that authority is being exercised, the doctrine is practically unworkable as a criterion of certainty — which is its entire purpose.</p>
+      </div>
+    </div>
+    <div class="obj">
+      <div class="obj-h" onclick="tobj(this)">
+        <h3>5. It introduces new doctrines — Immaculate Conception, Assumption — without Apostolic basis</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="obj-body">
+        <p>The two clearest exercises of papal infallibility since Vatican I — the Immaculate Conception (Pius IX, 1854) and the Assumption of Mary (Pius XII, 1950) — are doctrines without explicit scriptural basis and without clear universal patristic consensus. Thomas Aquinas denied the Immaculate Conception. No ecumenical council defined the Assumption. The OO honor Mary profoundly as Theotokos, as Ever-Virgin, as the preeminent saint — but these specific doctrines, defined by papal fiat as binding dogma, represent exactly the kind of development beyond the Apostolic deposit that the OO regard as impermissible.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="indefect" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>Indefectibility vs. Infallibility — What the OO Do Affirm</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>To be clear: the Oriental Orthodox are not skeptics about the Church's capacity to know and teach truth. We are not saying that all authority is relative, that no one can know anything, or that doctrine is perpetually up for revision. We affirm the <em>indefectibility</em> of the Church — that she will not permanently and irrecoverably err in defining the Apostolic faith. What we deny is that this indefectibility is attached to one human office as a personal charism.</p>
+    <div class="comp-grid">
+      <div class="comp-card oo-c">
+        <h4>OO: Indefectibility of the Church</h4>
+        <ul>
+          <li>The Church as a whole will not permanently err</li>
+          <li>The Spirit guides the conciliar process</li>
+          <li>Individual bishops and even councils can err</li>
+          <li>Errors are corrected by subsequent councils</li>
+          <li>Reception by the faithful confirms true definitions</li>
+          <li>No single office holds the guarantee personally</li>
+          <li>Grounded in Matthew 16:18 — the whole Church</li>
+        </ul>
+      </div>
+      <div class="comp-card rc-c">
+        <h4>RC: Infallibility of the Papal Office</h4>
+        <ul>
+          <li>The Pope personally holds the infallibility charism</li>
+          <li>Ex cathedra definitions are irreformable</li>
+          <li>Not subject to correction by councils or church</li>
+          <li>The Spirit guarantees this one office specifically</li>
+          <li>Reception by faithful is not required for validity</li>
+          <li>Grounded in Luke 22:32 applied to Petrine succession</li>
+          <li>Formally defined 1870 — unknown to early Church</li>
+        </ul>
+      </div>
+    </div>
+    <p>The OO find the RC distinction between the "ordinary magisterium" (fallible) and "extraordinary magisterium" (infallible) theologically artificial. If the ordinary teaching of the Church's appointed teachers can err substantially, what confidence can the faithful have in the body of doctrine presented to them? The OO answer is that the confidence lies in the conciliar process, in the reception of the faithful, and in the witness of the Fathers — not in a technical doctrine of one man's solemn guarantee.</p>
+    <div class="fc-grid">
+      <div class="fc">
+        <div class="fname">St. Basil the Great</div>
+        <div class="fdate">c. 375 AD — On the Holy Spirit</div>
+        <div class="fq">"In the case of questions concerning the Faith, it is our duty to refer to no human authority, but to the words of God alone… when the whole world has gone over to heresy, then the man who does not yield knows himself to be preserved by the truth."</div>
+        <div class="fsrc">De Spiritu Sancto, §76 — Basil stands alone against Arianism without appealing to papal authority as his guarantee</div>
+      </div>
+      <div class="fc">
+        <div class="fname">St. Athanasius of Alexandria</div>
+        <div class="fdate">c. 357 AD — History of the Arians</div>
+        <div class="fq">"The Arian heresy has prevailed over the whole world… but they have the buildings; we have the Faith. Let them have the churches; we have the Apostolic faith."</div>
+        <div class="fsrc">Historia Arianorum, §76 — Athanasius preserves orthodoxy against the world, including compromised Roman bishops, by holding to the conciliar faith of Nicaea</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="ecumenism" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>Catholic–Oriental Orthodox Dialogue Today</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <p>Despite deep historical divisions, the Catholic and Oriental Orthodox churches have been engaged in formal ecumenical dialogue since the Second Vatican Council. The results have been encouraging at the Christological level — far less so at the ecclesiological level.</p>
+    <div class="doc-grid">
+      <div class="doc oo-d">
+        <div class="dname">Common Christological Declaration — Catholic-Coptic</div>
+        <div class="ddate">1973 AD — Pope Paul VI and Pope Shenouda III</div>
+        <div class="dq">"We confess that our Lord and God and Saviour and King of us all, Jesus Christ, is perfect God with respect to His Divinity, perfect Man with respect to His Humanity."</div>
+        <div class="ddesc">A landmark declaration acknowledging that the centuries-long Chalcedonian divide may be largely a terminological rather than substantive theological disagreement. A genuine step toward mutual recognition.</div>
+      </div>
+      <div class="doc oo-d">
+        <div class="dname">Joint Commission — Eastern and OO Dialogue (Pro Oriente)</div>
+        <div class="ddate">1988–1993 AD</div>
+        <div class="dq">"We have agreed that the lifting of anathemas and the restoration of full communion are the next steps to be taken."</div>
+        <div class="ddesc">The formal dialogues established that both sides confess the same faith concerning Christ, despite different theological language. Remaining obstacles: ecclesiological — specifically, papal authority and infallibility.</div>
+      </div>
+    </div>
+    <p>The Christological rapprochement is real and important. But full communion between Rome and the Oriental Orthodox remains impossible so long as Rome requires acceptance of Vatican I's definitions — universal papal jurisdiction and infallibility — as dogmatic conditions of communion. These are precisely the points the OO cannot accept without abandoning their own ecclesiology and their understanding of the Apostolic tradition.</p>
+    <p>The OO hope and pray for unity. We believe that unity, if it comes, must be on the basis of the faith of the first millennium — before the medieval developments that produced the papal monarchy as it is now defined. This is not hostility toward Rome; it is fidelity to what both East and West once shared.</p>
+    <div class="note"><strong>A note of charity:</strong> The Oriental Orthodox deeply honor the Bishop of Rome as heir to the great see of Peter and Paul, as a shepherd of a vast flock who has spoken prophetically on issues of human dignity, peace, and justice. The dispute is not about the Pope as a person or as a pastor, but about a specific constitutional claim — universal jurisdiction and personal infallibility — that we believe exceeds the Apostolic deposit and cannot be required as a condition of Christian communion.</div>
+  </div>
+</div>
+
+<!-- OBJECTIONS -->
+<div id="objections" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>Catholic Objections Answered</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <div class="obj">
+      <div class="obj-h" onclick="tobj(this)">
+        <h3>"Without the Pope, the Church is a headless body — who settles disputes?"</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="obj-body">
+        <p>Disputes are settled the way the New Testament shows them being settled: by councils of bishops (Acts 15), by appeal to the Apostolic rule of faith, by reception of the faithful, and by the testimony of the whole Patristic tradition. The OO and Eastern Orthodox have settled doctrinal questions this way for two millennia — including the three great Christological controversies — without a monarchical papacy. The assumption that unity requires a supreme monarch is a medieval Western assumption, not an Apostolic one.</p>
+        <p>Furthermore, the existence of a "supreme head" has not prevented division in the Catholic Church itself. Schisms, antipopes, conciliarist movements, and the Western Schism demonstrate that a monarchical papacy does not guarantee unity — it relocates the question of unity to who is the legitimate pope, which can be just as contested as any conciliar dispute.</p>
+      </div>
+    </div>
+    <div class="obj">
+      <div class="obj-h" onclick="tobj(this)">
+        <h3>"The Fathers consistently speak of Rome's primacy — this proves the papal claim."</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="obj-body">
+        <p>The Fathers speak of Rome's honor (τιμή) and its role as a doctrinal reference point — which the OO fully acknowledge. They do not consistently speak of Rome's universal jurisdiction or of a personal charism of infallibility attached to the Roman bishop. When Patristic texts are cited for papal primacy, they are almost always citing exactly what the OO already affirm: that Rome holds first place of honor, that Rome's faith has historically been orthodox, and that appeal to Rome was natural given its apostolicity and prestige. None of this requires the full Vatican I doctrine.</p>
+        <p>The clearest test is this: did the Fathers appeal to Rome to settle Nicaea? No — they called a council. Did the Fathers say Rome's judgment is irreformable? No — Nicaea's canons did not include that. Did the Fathers condemn Honorius? Yes — they did. The patristic evidence, read honestly, supports the OO conciliar model far better than the Roman monarchical one.</p>
+      </div>
+    </div>
+    <div class="obj">
+      <div class="obj-h" onclick="tobj(this)">
+        <h3>"Doctrinal development is legitimate — Vatican I is a development of what was implicit in Apostolic faith."</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="obj-body">
+        <p>The OO accept that genuine doctrinal development exists — the formulation of Trinitarian and Christological doctrine is itself a development of what was implicit in Scripture. But not all development is legitimate. Newman's criterion for authentic development requires, among other things, that it preserve type — that the developed doctrine be the same organism, not a different plant. A development that makes one bishop the irreformable definer of faith for the entire Church — when the early Church operated conciliarly — is not a development of the same organism. It is a mutation.</p>
+        <p>Furthermore, the OO criterion of authentic tradition is antiquity, universality, and consent — the Vincentian canon. Papal infallibility fails this test: it was not believed everywhere (the East consistently rejected it), always (it is post-medieval in its full form), or by all (even among Western bishops at Vatican I, a significant minority initially opposed it, with some leaving before the final vote).</p>
+      </div>
+    </div>
+    <div class="obj">
+      <div class="obj-h" onclick="tobj(this)">
+        <h3>"Vatican II softened Vatican I — the Pope now governs in collegiality with the bishops."</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="obj-body">
+        <p>Vatican II (1962–1965) did introduce the language of episcopal collegiality more prominently. Lumen Gentium teaches that the bishops as a college, together with the Pope, exercise supreme authority over the Church. This is a genuine development toward the OO position. However, Vatican II explicitly did not revoke or qualify Vatican I's definitions — universal jurisdiction and infallibility remain dogma. And the collegiality of Vatican II is exercised <em>under</em> and <em>with</em> the Pope, never against him or independently of him. The Pope retains the right to act alone, without collegial process, with full binding authority. This is still a monarchical system — the college advises and collaborates, but the monarchy stands.</p>
+      </div>
+    </div>
+    <div class="obj">
+      <div class="obj-h" onclick="tobj(this)">
+        <h3>"The OO themselves have a Pope (the Coptic Pope) — isn't that the same thing?"</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="obj-body">
+        <p>This is a common confusion worth clearing up. The title "Pope" (from Greek "Pappas" — father) is an ancient title used for bishops in Alexandria and Rome alike. The Coptic Pope of Alexandria does not claim universal jurisdiction over other patriarchs or over Christians beyond the Coptic church. He does not claim personal infallibility. He governs through the Holy Synod — a body of bishops with genuine authority. His "primacy" among the OO churches is a primacy of honor, not jurisdiction. The title is shared; the doctrine is entirely different.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div id="faq" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>Frequently Asked Questions</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <div class="fi">
+      <div class="fi-h" onclick="tf(this)">
+        <h3>Does the OO Church recognize the Pope as a legitimate bishop?</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="fi-body">
+        <p>Yes. The Oriental Orthodox regard the Bishop of Rome as a legitimate bishop with a validly ordained episcopate in Apostolic succession, presiding over an ancient and honorable see. We do not regard Roman Catholics as unchristian or their sacraments as void. What we deny is the specific constitutional claim of universal jurisdiction and personal infallibility. We regard Roman Catholics as separated brethren, not strangers, and we pray for the unity of all Christians.</p>
+      </div>
+    </div>
+    <div class="fi">
+      <div class="fi-h" onclick="tf(this)">
+        <h3>Was Peter ever in Rome?</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="fi-body">
+        <p>The historical evidence is strong that Peter was in Rome and was martyred there. 1 Clement (c. 96 AD) associates Peter with Rome; Ignatius of Antioch implies it; Irenaeus confirms it; early Roman monuments and traditions support it. The OO do not dispute Peter's presence and martyrdom in Rome. What we dispute is that Peter's presence in Rome automatically grants his successors there a universal jurisdictional supremacy — a conclusion that does not follow from the historical fact of his martyrdom.</p>
+      </div>
+    </div>
+    <div class="fi">
+      <div class="fi-h" onclick="tf(this)">
+        <h3>How does the OO Church handle the "Tu es Petrus" — you are Peter?</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="fi-body">
+        <p>The OO acknowledge that Peter received a real commission and real authority in Matthew 16. The question is whether this commission transfers in full to Roman bishops as his "successors" in a way that gives them universal jurisdiction. The OO note: (1) Peter himself founded and taught at Antioch before Rome; (2) Paul, co-founder of the Roman church, has equal apostolic standing; (3) the keys given to Peter are also given to the whole Apostolic college (Matt 18:18); (4) no Ecumenical Council ever cited Matthew 16 as the basis for Roman jurisdiction — they cited Rome's imperial status instead. The commission to Peter is real; the Roman interpretation of its transfer is contested.</p>
+      </div>
+    </div>
+    <div class="fi">
+      <div class="fi-h" onclick="tf(this)">
+        <h3>What would it take for Rome and the OO to achieve full communion?</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="fi-body">
+        <p>From the OO perspective: (1) Resolution of the Christological question — largely accomplished already through the 1973 and subsequent dialogues; (2) Rome's willingness to revisit its understanding of papal authority — not necessarily abandoning Petrine primacy of honor, but moving from universal jurisdiction and personal infallibility toward a genuinely conciliar model; (3) Resolution of the Filioque (shared with Eastern Orthodoxy); (4) Mutual recognition without requiring one side to adopt the other's specific historical formulations. This is a significant agenda. The OO are not optimistic about quick resolution — but we are committed to honest dialogue in the Spirit of Christ's prayer "that they may all be one."</p>
+      </div>
+    </div>
+    <div class="fi">
+      <div class="fi-h" onclick="tf(this)">
+        <h3>Does the OO rejection of papal infallibility mean the Church can teach error?</h3>
+        <span class="arr">&#9660;</span>
+      </div>
+      <div class="fi-body">
+        <p>No. The OO affirm the Church's indefectibility — Christ promised the gates of hell would not prevail, and the Spirit guides the Church into all truth. What the OO deny is that this protection is guaranteed through the mechanism of one man's solemn pronouncements. The guarantee operates through the conciliar process, confirmed by the reception of the faithful and the witness of the whole Patristic tradition. Local councils can err; individual bishops can err; but the Spirit working through the whole body of bishops in genuine ecumenical council, received by the faithful, has preserved and will preserve the Apostolic faith inviolate.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GLOSSARY -->
+<div id="glossary" class="sec">
+  <div class="sec-h" onclick="ts(this)">
+    <h2>Glossary of Key Terms</h2>
+    <span class="arr">&#9660;</span>
+  </div>
+  <div class="sec-body">
+    <div class="gt-grid">
+      <div class="gt">
+        <div class="term">Papal Infallibility</div>
+        <div class="gterm">Ex cathedra — from the chair</div>
+        <div class="def">Vatican I (1870) dogma: when the Pope speaks ex cathedra on faith or morals for the universal Church, his definitions are irreformable by divine assistance. Rejected by OO as historically novel and theologically unfounded.</div>
+      </div>
+      <div class="gt">
+        <div class="term">Universal Jurisdiction</div>
+        <div class="gterm">Plena potestas — full power</div>
+        <div class="def">Vatican I dogma: the Pope holds full, immediate, and supreme power of jurisdiction over the entire Church and every bishop and faithful in it. The OO regard this as exceeding the early Church's conciliar model.</div>
+      </div>
+      <div class="gt">
+        <div class="term">Primacy of Honor</div>
+        <div class="gterm">Πρωτεῖον τιμῆς — proteion times</div>
+        <div class="def">The OO acknowledge Rome's (and Alexandria's, within the OO) first place of honor among the patriarchates. This is an honorific, not a jurisdictional, primacy — "first among equals."</div>
+      </div>
+      <div class="gt">
+        <div class="term">Pentarchy</div>
+        <div class="gterm">Πενταρχία — rule of five</div>
+        <div class="def">The ancient model of five patriarchates (Rome, Constantinople, Alexandria, Antioch, Jerusalem) governing the Church collegially, each in its own sphere, with Rome as first in honor. Rejected by Rome's development toward universal jurisdiction.</div>
+      </div>
+      <div class="gt">
+        <div class="term">Indefectibility</div>
+        <div class="gterm">From Latin: indefectibilis</div>
+        <div class="def">The guarantee that the Church as a whole will not permanently and irrecoverably err in defining the Apostolic faith. The OO affirm indefectibility of the Church; they deny infallibility of one office within it.</div>
+      </div>
+      <div class="gt">
+        <div class="term">Monothelitism</div>
+        <div class="gterm">Μονοθελητισμός — one-will-ism</div>
+        <div class="def">The heresy that Christ has only one will (divine), not two (divine and human). Condemned at Constantinople III (681). Honorius I was condemned for supporting it. The OO hold Christ has two wills, perfectly united.</div>
+      </div>
+      <div class="gt">
+        <div class="term">Protos</div>
+        <div class="gterm">Πρῶτος — first</div>
+        <div class="def">The "first" bishop in a collegial assembly — a role of honor, presidence, and initiative, not monarchical rule. Peter was protos among the Apostles; the Pope protos among the Western patriarchs. "Protos" is not "monarch."</div>
+      </div>
+      <div class="gt">
+        <div class="term">Conciliarism</div>
+        <div class="gterm">From Latin: concilium</div>
+        <div class="def">The theological position that ecumenical councils of bishops, not the Pope alone, hold supreme authority in the Church. The OO hold a form of conciliarism; Rome condemned conciliarism at Vatican I.</div>
+      </div>
+      <div class="gt">
+        <div class="term">Vincentian Canon</div>
+        <div class="gterm">Quod ubique, quod semper, quod ab omnibus</div>
+        <div class="def">"What has been believed everywhere, always, and by all." St. Vincent of Lérins' (c. 434) standard for authentic Catholic tradition. The OO apply it to evaluate papal claims: universal jurisdiction and infallibility fail this test.</div>
+      </div>
+      <div class="gt">
+        <div class="term">Pastor Aeternus</div>
+        <div class="gterm">Latin: The Eternal Pastor</div>
+        <div class="def">The Vatican I dogmatic constitution (July 18, 1870) defining universal papal jurisdiction (Chapter III) and papal infallibility (Chapter IV). The OO regard both definitions as innovations beyond the Apostolic deposit.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /content -->
+</main>
+
+<script>
+function ts(h){h.closest('.sec').classList.toggle('open')}
+
+function sidebarSearch(q){
+  q=q.trim().toLowerCase();
+  const secs=document.querySelectorAll('main .sec');
+  let matched=0;
+  secs.forEach(sec=>{
+    if(!q){
+      sec.classList.remove('s-hidden');
+      // restore original heading text
+      const h2=sec.querySelector('.sec-h h2');
+      if(h2._orig) h2.innerHTML=h2._orig;
+      matched++;
+      return;
+    }
+    const h2=sec.querySelector('.sec-h h2');
+    const body=sec.querySelector('.sec-body');
+    const headText=(h2._orig||h2.textContent).toLowerCase();
+    const bodyText=body?body.textContent.toLowerCase():'';
+    const hit=headText.includes(q)||bodyText.includes(q);
+    sec.classList.toggle('s-hidden',!hit);
+    if(hit){
+      matched++;
+      // highlight heading
+      if(!h2._orig) h2._orig=h2.innerHTML;
+      const re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');
+      h2.innerHTML=h2._orig.replace(re,'<mark>$1</mark>');
+      sec.classList.add('open');
+    }
+  });
+  document.getElementById('sb-no-match').classList.toggle('show',!!q&&matched===0);
+}
+function tobj(h){h.closest('.obj').classList.toggle('open')}
+function tf(h){h.closest('.fi').classList.toggle('open')}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').classList.toggle('show')}
+function closeMobile(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
+
+window.addEventListener('scroll',()=>{
+  const sc=document.documentElement;
+  const pct=(sc.scrollTop/(sc.scrollHeight-sc.clientHeight))*100;
+  document.getElementById('prog').style.width=pct+'%';
+});
+
+const links=document.querySelectorAll('#sidebar nav a[href^="#"]');
+const secs=[...links].map(l=>document.querySelector(l.getAttribute('href'))).filter(Boolean);
+window.addEventListener('scroll',()=>{
+  let cur='';
+  secs.forEach(s=>{if(s.getBoundingClientRect().top<=120)cur=s.id});
+  links.forEach(l=>{l.classList.toggle('active',l.getAttribute('href')==='#'+cur)});
+},{passive:true});
+</script>
+</body>
+</html>
