@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>THE ORTHODOX LAMP — Has the Bible Been Corrupted?</title>
+<style>
+:root{--gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;--bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--tx:#e8e0d0;--mu:#a09880;--red:#8b2020;--br:#2a2a2a;--bg5:#3a2e10;--sidebar-w:270px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.75}
+a{color:var(--gold);text-decoration:none}
+#progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(to right,var(--gd),var(--gold),var(--gl));width:0%;z-index:500}
+#sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:200;transition:transform .3s}
+#sidebar h2{font-size:.7rem;letter-spacing:.15em;color:var(--gold);text-transform:uppercase;padding:1.4rem 1.2rem .5rem;border-bottom:1px solid var(--br)}
+#sidenav a{display:block;padding:.42rem 1.2rem;font-size:.82rem;color:var(--mu);border-left:3px solid transparent;transition:all .2s}
+#sidenav a:hover,#sidenav a.active{color:var(--gl);border-left-color:var(--gold);background:var(--bg5)}
+.search-wrap{padding:.8rem 1rem;border-bottom:1px solid var(--br);display:flex;gap:.4rem}
+.search-wrap input{flex:1;background:var(--bg3);border:1px solid var(--br);color:var(--tx);padding:.35rem .6rem;border-radius:4px;font-size:.8rem}
+.search-wrap button{background:var(--gold);color:#0d0d0d;border:none;padding:.35rem .7rem;border-radius:4px;cursor:pointer;font-weight:700;font-size:.8rem}
+#main-content{margin-left:var(--sidebar-w);padding:0 2rem 4rem}
+.mob-toggle{display:none;position:fixed;bottom:1.2rem;right:1.2rem;background:var(--gold);color:#0d0d0d;border:none;width:48px;height:48px;border-radius:50%;font-size:1.4rem;cursor:pointer;z-index:300;box-shadow:0 2px 12px rgba(0,0,0,.5)}
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:150}
+#overlay.show{display:block}
+.hero{text-align:center;padding:4rem 1rem 2.5rem;border-bottom:1px solid var(--br);background:linear-gradient(to bottom,var(--bg2),var(--bg))}
+.si{font-size:2.2rem;color:var(--gold);display:block;margin-bottom:.5rem}
+.st{font-size:2rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--tx)}
+.st span{color:var(--gold)}
+.ss{font-size:1.05rem;color:var(--gl);margin:.6rem 0 .4rem;font-style:italic}
+.tg{font-size:.85rem;color:var(--mu);margin-bottom:.8rem}
+.orn{color:var(--gold);font-size:1.1rem;letter-spacing:.4em;margin-top:.5rem}
+.sec{border:1px solid var(--br);border-radius:8px;margin:1.5rem 0;background:var(--bg2);overflow:hidden}
+.sec-hd{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.3rem;cursor:pointer;user-select:none;background:var(--bg3);border-bottom:1px solid transparent;transition:background .2s}
+.sec-hd:hover{background:var(--bg4)}
+.sec.open .sec-hd{border-bottom-color:var(--br);background:var(--bg4)}
+.sec-hd h2{font-size:1rem;color:var(--gl);text-transform:uppercase;letter-spacing:.05em}
+.sec-bd{display:none;padding:1.4rem 1.5rem}
+.sec.open .sec-bd{display:block}
+.sec-bd h3{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin:1.4rem 0 .7rem;padding-bottom:.3rem;border-bottom:1px solid var(--bg5)}
+.sec-bd p{color:var(--tx);margin-bottom:.9rem;font-size:.95rem}
+.arr{color:var(--gold);font-size:.9rem;transition:transform .3s}
+.sec.open .arr{transform:rotate(180deg)}
+.sv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin:.8rem 0 1.2rem}
+.sv{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:1rem}
+.sv .ref{font-size:.75rem;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.4rem}
+.sv .labels{margin-bottom:.5rem;display:flex;gap:.4rem;flex-wrap:wrap}
+.sv .labels span{font-size:.65rem;font-weight:700;padding:.15rem .45rem;border-radius:3px;text-transform:uppercase;letter-spacing:.06em}
+.labels .prot{background:#4a1a1a;color:#e87070}
+.labels .oo{background:#1a3a1a;color:#70c870}
+.labels .ctx{background:#1a2a3a;color:#70aacc}
+.sv .txt{font-style:italic;color:var(--gl);font-size:.88rem;margin-bottom:.5rem;border-left:2px solid var(--gold);padding-left:.7rem}
+.sv .interp{font-size:.82rem;color:var(--mu)}
+.fc{background:var(--bg3);border:1px solid var(--br);border-left:3px solid var(--gold);border-radius:6px;padding:1rem 1.1rem;margin:.8rem 0}
+.fn{font-size:.8rem;font-weight:700;color:var(--gl);text-transform:uppercase;letter-spacing:.07em}
+.fw{font-size:.75rem;color:var(--mu);margin:.2rem 0 .5rem;font-style:italic}
+.fq{font-style:italic;color:var(--tx);font-size:.88rem;border-left:2px solid var(--bg5);padding-left:.8rem;margin:.4rem 0 .6rem}
+.fsig{font-size:.8rem;color:var(--mu)}
+.pl{background:#4a1a1a;color:#e87070;font-size:.65rem;font-weight:700;padding:.1rem .35rem;border-radius:3px;text-transform:uppercase;letter-spacing:.06em;vertical-align:middle;margin-left:.3rem;font-style:normal}
+.gl-tag{background:#1a3a1a;color:#70c870;font-size:.65rem;font-weight:700;padding:.1rem .35rem;border-radius:3px;text-transform:uppercase;letter-spacing:.06em;vertical-align:middle;margin-left:.3rem;font-style:normal}
+.obj{background:var(--bg3);border:1px solid #4a1a1a;border-left:3px solid var(--red);border-radius:6px;margin:.8rem 0;overflow:hidden}
+.obj-hd{display:flex;justify-content:space-between;align-items:center;padding:.8rem 1rem;cursor:pointer;user-select:none}
+.obj-hd:hover{background:var(--bg4)}
+.obj-hd h3{font-size:.85rem;color:#e87070;font-weight:700}
+.obj-bd{display:none;padding:.9rem 1.1rem;border-top:1px solid #4a1a1a}
+.obj.open .obj-bd{display:block}
+.obj.open .arr{transform:rotate(180deg)}
+.obj-bd h4{font-size:.75rem;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.4rem;margin-top:.6rem}
+.obj-bd h4:first-child{margin-top:0}
+.obj-bd p{font-size:.85rem;color:var(--tx);margin-bottom:.6rem}
+.fi{background:var(--bg3);border:1px solid var(--br);border-radius:6px;margin:.6rem 0;overflow:hidden}
+.fi-hd{display:flex;justify-content:space-between;align-items:center;padding:.8rem 1rem;cursor:pointer;user-select:none;font-size:.88rem;color:var(--gl)}
+.fi-hd:hover{background:var(--bg4)}
+.fi-bd{display:none;padding:.9rem 1.1rem;border-top:1px solid var(--br);font-size:.85rem;color:var(--tx)}
+.fi.open .fi-bd{display:block}
+.fi.open .arr{transform:rotate(180deg)}
+.fi-bd p{margin-bottom:.7rem}
+.comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:.8rem 0}
+.comp-card{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:1rem}
+.comp-card.prot{border-top:3px solid #e87070}
+.comp-card.oo{border-top:3px solid var(--gold)}
+.comp-card .ct{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.6rem}
+.comp-card.prot .ct{color:#e87070}
+.comp-card.oo .ct{color:var(--gold)}
+.comp-card p{font-size:.82rem;color:var(--mu)}
+.tl{border-left:2px solid var(--bg5);margin:1rem 0 1rem .4rem;padding-left:1.2rem}
+.tl-item{position:relative;margin-bottom:1.1rem}
+.tl-item::before{content:'';position:absolute;left:-1.62rem;top:.45rem;width:11px;height:11px;border-radius:50%;background:var(--gold);border:2px solid var(--bg2)}
+.tl-date{font-size:.78rem;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase}
+.tl-item p{font-size:.85rem;color:var(--mu);margin:.2rem 0 0}
+.src-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;margin:.8rem 0}
+.src-card{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:1rem}
+.src-cat{font-size:.72rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.6rem;padding-bottom:.4rem;border-bottom:1px solid var(--bg5)}
+.src-item{font-size:.8rem;color:var(--mu);margin-bottom:.5rem;padding-left:.7rem;border-left:2px solid var(--br)}
+.btt{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--gold);color:#0d0d0d;border:none;width:44px;height:44px;border-radius:50%;font-size:1.2rem;cursor:pointer;opacity:0;transition:opacity .3s;z-index:300;font-weight:700}
+@media(max-width:768px){#sidebar{transform:translateX(-100%)}#sidebar.open{transform:translateX(0)}#main-content{margin-left:0;padding:0 1rem 4rem}.mob-toggle{display:flex;align-items:center;justify-content:center}.sv-grid{grid-template-columns:1fr}.comp-grid{grid-template-columns:1fr}}
+
+.lampsvg{display:block;margin:0 auto 14px;height:auto}
+.lampsvg .lampflame{animation:lampflick 3.2s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes lampflick{0%,100%{transform:scaleY(1) scaleX(1);opacity:.95}25%{transform:scaleY(1.06) scaleX(.97);opacity:1}50%{transform:scaleY(.96) scaleX(1.03);opacity:.9}75%{transform:scaleY(1.04) scaleX(.98);opacity:1}}
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<nav id="sidebar">
+  <div class="search-wrap"><input type="text" id="search-input" placeholder="Search…"><button id="search-btn">Go</button></div>
+  <svg class="lampsvg" width="64" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><radialGradient id="lmpGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffb95e" stop-opacity=".55"/><stop offset="100%" stop-color="#ffb95e" stop-opacity="0"/></radialGradient><linearGradient id="lmpFlame" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#ff7a1f"/><stop offset="55%" stop-color="#ffb347"/><stop offset="100%" stop-color="#ffe9b0"/></linearGradient><linearGradient id="lmpBrass" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e3b860"/><stop offset="50%" stop-color="#a87b35"/><stop offset="100%" stop-color="#7a5523"/></linearGradient></defs><circle cx="60" cy="38" r="34" fill="url(#lmpGlow)"/><g class="lampflame"><path d="M60 16 C66 26 70 32 70 40 C70 48 65.5 53 60 53 C54.5 53 50 48 50 40 C50 32 54 26 60 16 Z" fill="url(#lmpFlame)"/><path d="M60 30 C63 35 64.5 38 64.5 42 C64.5 46.5 62.5 49 60 49 C57.5 49 55.5 46.5 55.5 42 C55.5 38 57 35 60 30 Z" fill="#fff3cf" opacity=".85"/></g><rect x="56" y="52" width="8" height="7" rx="2" fill="#8a6228"/><path d="M28 62 L92 62 C92 80 78 92 60 92 C42 92 28 80 28 62 Z" fill="url(#lmpBrass)"/><rect x="24" y="58" width="72" height="6" rx="3" fill="#caa14e"/><rect x="56" y="92" width="8" height="16" fill="url(#lmpBrass)"/><path d="M38 118 C38 110 47 108 60 108 C73 108 82 110 82 118 L82 122 L38 122 Z" fill="url(#lmpBrass)"/><rect x="32" y="122" width="56" height="6" rx="3" fill="#caa14e"/></svg>
+  <h2>The Orthodox Lamp</h2>
+  <nav id="sidenav">
+    <a href="#s1">I. Introduction</a>
+    <a href="#s2">II. The Two Forms of the Charge</a>
+    <a href="#s3">III. The Old Testament — Dead Sea Scrolls</a>
+    <a href="#s4">IV. The New Testament — An Embarrassment of Riches</a>
+    <a href="#s5">V. What the Variants Actually Are</a>
+    <a href="#s6">VI. The "Telephone Game" Answered</a>
+    <a href="#s7">VII. The Islamic Version (Tahrif)</a>
+    <a href="#s8">VIII. The Honesty of Modern Bibles</a>
+    <a href="#s9">IX. FAQ</a>
+    <a href="#s10">X. Sources</a>
+  </nav>
+</nav>
+<div id="overlay" onclick="closeMobile()"></div>
+<button class="mob-toggle" onclick="toggleSidebar()">☰</button>
+<main id="main-content">
+  <div class="hero">
+    <span class="si">☩</span>
+    <h1 class="st">THE <span>ORTHODOX</span> LAMP</h1>
+    <p class="ss">Has the Bible Been Corrupted? — The Manuscript Evidence</p>
+    <p class="tg">"The word of the LORD endures forever" — 1 Peter 1:25</p>
+    <div class="orn">✦ ✦ ✦</div>
+  </div>
+
+<section class="sec open" id="s1">
+    <div class="sec-hd" onclick="ts(this)"><h2>I. Introduction</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>"The Bible has been changed." The sentence is spoken by two very different people. The Muslim says it because the Quran's account of Jesus contradicts the Gospels, and one of the two must give way — this is the doctrine called <em>tahrif</em>, corruption. The skeptic says it as the "telephone game": a whisper passed through centuries of copyists until the original is lost. Both versions of the charge are answerable in the same way, because both are claims about manuscripts — and manuscripts are physical objects that can be counted, dated, and read.</p>
+      <p>That is the quiet strength of the Christian position here: it does not rest on trust. The evidence sits in museums and libraries — the British Library, the Vatican, St. Catherine's at Sinai, the Chester Beatty and Bodmer collections, the Israel Museum — much of it photographed and freely readable online by anyone. This page lays out what exists, what the differences between copies actually look like, and why the Church has never feared the question.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s2">
+    <div class="sec-hd" onclick="ts(this)"><h2>II. The Two Forms of the Charge</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <div class="comp-grid">
+        <div class="comp-card prot"><div class="ct">The Skeptical Form</div><p>"Copies of copies of copies — errors compounding for centuries, doctrine invented along the way. We cannot know what the originals said."</p><p>This is an empirical claim about transmission quality. It is tested by comparing early manuscripts against later ones and measuring what actually changed.</p></div>
+        <div class="comp-card oo"><div class="ct">The Islamic Form (Tahrif)</div><p>"The Torah and the Gospel were genuine revelations, but Jews and Christians corrupted the text, removing prophecies of Muhammad and inserting the crucifixion and divine sonship."</p><p>This is a historical claim with a date attached: the corruption must have happened <em>before</em> the seventh century (or the Quran's own affirmations become a problem), yet <em>after</em> the manuscripts we possess were written — which is the difficulty.</p></div>
+      </div>
+      <p>Note what both charges require: not the existence of copying differences (every ancient text has those, and Christians have catalogued them openly for centuries), but differences of the right <em>kind</em> — systematic, doctrinal, and early enough to erase the original. Keep that standard in view through the next four sections.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s3">
+    <div class="sec-hd" onclick="ts(this)"><h2>III. The Old Testament — The Dead Sea Scrolls Test</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>Until 1947, the oldest complete Hebrew manuscripts of the Old Testament were medieval — the Masoretic codices of roughly the tenth and eleventh centuries. A skeptic could reasonably ask what a thousand years of copying had done to the text. Then the Dead Sea Scrolls were found at Qumran: biblical manuscripts copied between roughly the third century BC and the first century AD, including the Great Isaiah Scroll — the entire book of Isaiah, about a thousand years older than the medieval copies.</p>
+      <p>The comparison could have destroyed the Bible's credibility. Instead it became a celebrated vindication of the copyists: across a millennium of hand-copying, the text of Isaiah proved remarkably stable — the differences overwhelmingly matters of spelling and minor wording, with the message of every passage intact. The fifty-third chapter — "He was wounded for our transgressions" — reads in the scroll, centuries before Christ, substantially as it reads in your Bible tonight.</p>
+      <p>Two further witnesses corroborate from independent directions: the Septuagint, the Greek translation made by Jews beginning in the third century BC — a snapshot of the Hebrew text long before Christianity or Islam existed — and the Samaritan Pentateuch, preserved by a community estranged from the Jews since deep antiquity. Communities that distrusted each other transmitted recognizably the same books. A conspiracy to alter the text would have needed the cooperation of bitter enemies across continents and centuries.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s4">
+    <div class="sec-hd" onclick="ts(this)"><h2>IV. The New Testament — An Embarrassment of Riches</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>Ancient works survive, as a rule, in handfuls of late copies. The New Testament is the great exception — by manuscript count and by closeness to the events it is commonly judged the best-attested text of antiquity, and the margin is not narrow:</p>
+      <div class="sv-grid">
+        <div class="sv"><div class="ref">Greek Manuscripts</div><div class="interp">Several thousand Greek New Testament manuscripts survive — commonly numbered above five thousand — from scraps to complete Bibles, alongside thousands more in early translations (Coptic, Syriac, Latin, Armenian, Ethiopic — the languages of the Oriental churches among the earliest).</div></div>
+        <div class="sv"><div class="ref">The Earliest Papyri</div><div class="interp">Fragments and substantial portions copied within roughly a century of composition — the John Rylands fragment of John (P52) is commonly dated to the second century, and the Chester Beatty and Bodmer papyri preserve large runs of the Gospels and Epistles from around the third.</div></div>
+        <div class="sv"><div class="ref">Complete Bibles Before Islam</div><div class="interp">Codex Sinaiticus and Codex Vaticanus — essentially complete Greek Bibles from the fourth century, some three hundred years before the Quran. Both are photographed online; anyone can check that John 14 reads <em>parakletos</em> and that the crucifixion narratives stand.</div></div>
+        <div class="sv"><div class="ref">Patristic Citations</div><div class="interp">The Church Fathers quoted Scripture so extensively that scholars have observed the New Testament could be substantially reconstructed from their citations alone — an independent check on the manuscripts, from writers spread across the whole Mediterranean.</div></div>
+      </div>
+      <p>For comparison: the works of Tacitus, Caesar, or Thucydides — texts no historian doubts we essentially possess — survive in far fewer copies, typically written many centuries after their authors. If the New Testament's text is unknowable, then no text from the ancient world is knowable, and the libraries of classics departments should close. No one proposes this, because the standard is being applied selectively.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s5">
+    <div class="sec-hd" onclick="ts(this)"><h2>V. What the Variants Actually Are</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>Skeptical presentations cite large numbers of "variants" among the manuscripts. The number is real; what it measures is misunderstood. A "variant" is counted every time any manuscript differs from any other in any word — so the count grows with the number of manuscripts. The New Testament has an enormous variant count <em>because</em> it has an enormous number of copies; a text surviving in three manuscripts has few variants and far less certainty.</p>
+      <p>What kind of differences are they? Overwhelmingly: spelling, word order (highly flexible in Greek), the presence or absence of articles, and the substitution of a name for a pronoun ("Jesus said" / "he said"). A small remainder are meaningful and a smaller subset both meaningful and hard to decide — and these are catalogued, published, and printed in the footnotes of any serious Bible. The crucial fact, acknowledged across the scholarly spectrum, is that no article of the Christian faith rests on a disputed reading. The divinity of Christ, the crucifixion, the resurrection, the Trinity — each is taught across so many undisputed passages that no textual decision touches it.</p>
+      <p>Even Bart Ehrman — the most-read skeptical textual critic — has acknowledged, in the question-and-answer material appended to <em>Misquoting Jesus</em>, that essential Christian beliefs are not affected by the textual variants in the manuscripts. <span class="pl">Paraphrase</span> The man whose books popularized the variant count concedes the point that matters.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s6">
+    <div class="sec-hd" onclick="ts(this)"><h2>VI. The "Telephone Game" Answered</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>The telephone game corrupts a message for three reasons: the message passes in a <em>single chain</em>; each whisper <em>destroys</em> the previous one; and the game is played for <em>laughs</em>, with no one checking. Manuscript transmission differs on every point:</p>
+      <p><strong>It is a tree, not a chain.</strong> Copies were made in parallel across Egypt, Syria, Asia Minor, Greece, Italy, North Africa — independent lines that can be compared against each other. An error entering one line is exposed by the others; that comparison is the entire discipline of textual criticism.</p>
+      <p><strong>The originals' early copies were not destroyed by later ones.</strong> We are not limited to the end of the chain — we can read the second-, third-, and fourth-century links directly. The game would be no game at all if you could walk back and ask the third whisperer what he heard.</p>
+      <p><strong>The copyists believed they were handling the words of God.</strong> Jewish scribal culture counted letters; Christian scribes copied under the eye of churches that publicly read these texts every Sunday and would notice alteration. Reverence does not prevent slips of the pen — but it is the opposite of a careless whisper.</p>
+      <p>The conclusion is not that copying was perfect — it was not, and the footnotes in your Bible say so. The conclusion is that the transmission is <em>reconstructable</em>: with thousands of early, independent, comparable witnesses, the original text is recoverable to a degree unmatched by any other ancient book.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s7">
+    <div class="sec-hd" onclick="ts(this)"><h2>VII. The Islamic Version — Tahrif's Dilemma</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>The Islamic charge faces a problem the skeptical one does not: the Quran itself testifies to the Bible's integrity in Muhammad's own day. It calls the Torah and the Gospel guidance and light, instructs the People of the Book to judge by what God revealed in them, and directs doubters to ask those who read the earlier Scripture (see the fuller treatment, with the passages, on <a href="islamic_dilemma.html">The Islamic Dilemma</a>). The Quran nowhere says "the books in their hands are forgeries"; it argues with Jews and Christians for failing to follow books it treats as present and authoritative.</p>
+      <p>Now add the manuscripts. The corruption — to do the work the doctrine needs — must have removed the prophecies of Muhammad and inserted the crucifixion, the resurrection, and the divine sonship. But complete Greek Bibles from the fourth century (Sinaiticus, Vaticanus), papyri from the second and third, the Dead Sea Scrolls from before Christ, and the citations of the Fathers all contain the crucifixion and the sonship and lack any prophecy of Muhammad. So the corruption must predate all of them — predating, in some cases, the apostles' own lifetimes — while the Quran simultaneously affirms the uncorrupted scriptures as present in the seventh century. The two requirements cannot both be met. Either the seventh-century scriptures were sound (and they read as ours do — we have them), or the Quran affirmed corrupted books.</p>
+      <p>It is also worth saying plainly: the Christian scriptures were already translated into Coptic, Syriac, Armenian, Latin, and Ethiopic, and spread from Britain to India, centuries before Islam. A global, simultaneous, undetected revision of all of them — agreed upon by churches that were excommunicating each other over single words — is not a historical hypothesis; it is the abandonment of history.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s8">
+    <div class="sec-hd" onclick="ts(this)"><h2>VIII. The Honesty of Modern Bibles</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>Open a serious modern Bible to Mark 16 or John 8 and you will find a footnote: the longer ending of Mark (16:9–20) and the account of the woman taken in adultery (John 7:53–8:11) are absent from some of the earliest manuscripts, and the editions say so on the page. Skeptics sometimes present these notes as damaging admissions. They are the opposite: they are the proof that nothing is hidden.</p>
+      <p>A tradition that had corrupted its text would not print the evidence in its own margins. The Church's scholars catalogue every variant, publish the apparatus, photograph the codices, and put them online. The two famous passages are the <em>largest</em> textual questions in the New Testament — and neither adds or removes a doctrine: Christ's resurrection is proclaimed throughout the undisputed text, and His mercy to sinners likewise. That these are the worst cases is itself the strongest evidence of how sound the whole is.</p>
+      <p>The Orthodox Church receives the Scriptures within Holy Tradition — the same Church that wrote, copied, canonized, and liturgically proclaimed them (see <a href="biblical_canon.html">The Canon of Scripture</a> and <a href="church_authority.html">The Authority of the Church</a>). The manuscripts are not a problem the Church manages; they are the paper trail of her faithfulness.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s9">
+    <div class="sec-hd" onclick="ts(this)"><h2>IX. FAQ</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <div class="fi">
+        <div class="fi-hd" onclick="tf(this)"><span>Q: Weren't the Gospels written long after Jesus, by people who never met Him?</span><span class="arr">▼</span></div>
+        <div class="fi-bd"><p>That is a different question from corruption — it concerns composition, not copying — but briefly: the Gospels were written within the first century, within living memory, while hostile witnesses could contradict them; and Paul's letters, earlier still, already contain the creed of the death and resurrection (1 Corinthians 15:3–8). See <a href="did_jesus_exist.html">Did Jesus Exist?</a> and <a href="resurrection_skepticism.html">The Resurrection — Answering the Skeptics</a>.</p></div>
+      </div>
+      <div class="fi">
+        <div class="fi-hd" onclick="tf(this)"><span>Q: What about the "lost gospels" — Thomas, Judas, Barnabas?</span><span class="arr">▼</span></div>
+        <div class="fi-bd"><p>The second-century gnostic texts (Thomas, Judas, and the rest) were never hidden by the Church — the Fathers discussed and rejected them publicly, and their late dates and alien theology are why no ancient community of the apostles' heirs received them. The "Gospel of Barnabas" sometimes cited in Muslim apologetics is a different matter entirely: it survives in late-medieval Italian and Spanish, contains anachronisms of that era, and is regarded across scholarship — including by a number of Muslim scholars — as a medieval composition. See <a href="biblical_canon.html">The Canon of Scripture</a>.</p></div>
+      </div>
+      <div class="fi">
+        <div class="fi-hd" onclick="tf(this)"><span>Q: Doesn't the Quran have a cleaner transmission history?</span><span class="arr">▼</span></div>
+        <div class="fi-bd"><p>The Quran's transmission was standardized early — Islamic tradition itself records that the caliph Uthman had an official text compiled and ordered variant codices destroyed. Standardization by authority produces uniformity, but uniformity is not the same as preservation of the original; it removes precisely the independent witnesses by which an original is verified. The Christian tradition kept its thousands of messy, comparable, datable copies — which is why its text can be <em>checked</em>. The two histories are different strategies, and the open one is the auditable one.</p></div>
+      </div>
+      <div class="fi">
+        <div class="fi-hd" onclick="tf(this)"><span>Q: If the text is fine, why do translations differ?</span><span class="arr">▼</span></div>
+        <div class="fi-bd"><p>Translation differences (NKJV vs. ESV vs. an Arabic Bible) are choices about rendering the same underlying text into another language — synonyms, word order, formal versus dynamic style. They are not evidence of different originals, any more than two English translations of the Quran prove the Arabic is corrupt.</p></div>
+      </div>
+      <div class="fi">
+        <div class="fi-hd" onclick="tf(this)"><span>Q: Where can I see the manuscripts myself?</span><span class="arr">▼</span></div>
+        <div class="fi-bd"><p>Codex Sinaiticus has a dedicated website with full photographs and transcription; the Vatican Library has digitized Vaticanus; the Israel Museum presents the Great Isaiah Scroll online; and the Center for the Study of New Testament Manuscripts hosts images of papyri and codices. An afternoon with these sites is worth more than any debate video.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s10">
+    <div class="sec-hd" onclick="ts(this)"><h2>X. Sources</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <div class="src-grid">
+        <div class="src-card"><div class="src-cat">Manuscripts &amp; Collections</div>
+          <p class="src-item">Dead Sea Scrolls (Great Isaiah Scroll, Israel Museum) · Codex Sinaiticus (codexsinaiticus.org) · Codex Vaticanus (Vatican Library) · Chester Beatty &amp; Bodmer papyri · John Rylands P52.</p>
+        </div>
+        <div class="src-card"><div class="src-cat">Scripture</div>
+          <p class="src-item">Holy Bible, New King James Version — 1 Peter 1:23–25; Isaiah 40:8; 1 Corinthians 15:3–8.</p>
+        </div>
+        <div class="src-card"><div class="src-cat">Scholarship Referenced</div>
+          <p class="src-item">Standard introductions to New Testament textual criticism (the Alands; Metzger, <em>The Text of the New Testament</em>) · Bart Ehrman, <em>Misquoting Jesus</em> (paperback Q&amp;A appendix) · Sahih al-Bukhari on the Uthmanic compilation.</p>
+        </div>
+        <div class="src-card"><div class="src-cat">On This Site</div>
+          <p class="src-item"><a href="islamic_dilemma.html">The Islamic Dilemma</a> · <a href="biblical_canon.html">The Canon of Scripture</a> · <a href="muhammad_in_the_bible.html">Is Muhammad Prophesied in the Bible?</a> · <a href="did_jesus_exist.html">Did Jesus Exist?</a> · <a href="resurrection_skepticism.html">The Resurrection</a></p>
+        </div>
+      </div>
+      <p style="font-size:.78rem;color:var(--mu);margin-top:1rem">Scripture quotations are from the New King James Version. Quotations marked <span class="gl-tag">Direct Quote</span> are taken verbatim from the cited editions; material marked <span class="pl">Paraphrase</span> is a faithful summary, not a verbatim citation. Readers are encouraged to verify every citation in the sources listed above.</p>
+    </div>
+  </section>
+
+  </main>
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+function ts(h){h.closest('.sec').classList.toggle('open')}
+function tobj(h){h.closest('.obj').classList.toggle('open')}
+function tf(h){h.closest('.fi').classList.toggle('open')}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').classList.toggle('show')}
+function closeMobile(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
+const secs=document.querySelectorAll('.sec[id]');
+const navLinks=document.querySelectorAll('#sidenav a');
+function updateNav(){let cur='';secs.forEach(s=>{if(s.getBoundingClientRect().top<120)cur=s.id;});navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur);})}
+window.addEventListener('scroll',updateNav,{passive:true});
+window.addEventListener('scroll',()=>{const st=document.documentElement.scrollTop;const sh=document.documentElement.scrollHeight-document.documentElement.clientHeight;document.getElementById('progress-bar').style.width=(st/sh*100)+'%';},{passive:true});
+window.addEventListener('scroll',()=>{document.getElementById('btt').style.opacity=window.scrollY>400?'1':'0';},{passive:true});
+let lastQuery='';
+function doSearch(){const q=document.getElementById('search-input').value.trim().toLowerCase();if(q===lastQuery)return;lastQuery=q;clearHighlights();if(!q)return;const walker=document.createTreeWalker(document.getElementById('main-content'),NodeFilter.SHOW_TEXT,null,false);const matches=[];let node;while((node=walker.nextNode())){if(node.nodeValue.toLowerCase().includes(q))matches.push(node);}matches.forEach(n=>{const idx=n.nodeValue.toLowerCase().indexOf(q);const before=document.createTextNode(n.nodeValue.substring(0,idx));const mark=document.createElement('mark');mark.textContent=n.nodeValue.substring(idx,idx+q.length);mark.style.cssText='background:#c9a84c;color:#0d0d0d;border-radius:2px;padding:0 2px;';const after=document.createTextNode(n.nodeValue.substring(idx+q.length));const frag=document.createDocumentFragment();frag.appendChild(before);frag.appendChild(mark);frag.appendChild(after);n.parentNode.replaceChild(frag,n);});const firstMark=document.querySelector('mark');if(firstMark)firstMark.scrollIntoView({behavior:'smooth',block:'center'});}
+function clearHighlights(){document.querySelectorAll('mark').forEach(m=>{m.parentNode.replaceChild(document.createTextNode(m.textContent),m);});}
+document.getElementById('search-input').addEventListener('keydown',e=>{if(e.key==='Enter')doSearch();if(e.key==='Escape'){document.getElementById('search-input').value='';lastQuery='';clearHighlights();}});
+document.getElementById('search-btn').addEventListener('click',doSearch);
+document.querySelector('.sec').classList.add('open');
+</script>
+</body>
+</html>

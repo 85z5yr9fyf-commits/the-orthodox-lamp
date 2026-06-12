@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>THE ORTHODOX LAMP — Is Muhammad Prophesied in the Bible?</title>
+<style>
+:root{--gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;--bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--tx:#e8e0d0;--mu:#a09880;--red:#8b2020;--br:#2a2a2a;--bg5:#3a2e10;--sidebar-w:270px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.75}
+a{color:var(--gold);text-decoration:none}
+#progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(to right,var(--gd),var(--gold),var(--gl));width:0%;z-index:500}
+#sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:200;transition:transform .3s}
+#sidebar h2{font-size:.7rem;letter-spacing:.15em;color:var(--gold);text-transform:uppercase;padding:1.4rem 1.2rem .5rem;border-bottom:1px solid var(--br)}
+#sidenav a{display:block;padding:.42rem 1.2rem;font-size:.82rem;color:var(--mu);border-left:3px solid transparent;transition:all .2s}
+#sidenav a:hover,#sidenav a.active{color:var(--gl);border-left-color:var(--gold);background:var(--bg5)}
+.search-wrap{padding:.8rem 1rem;border-bottom:1px solid var(--br);display:flex;gap:.4rem}
+.search-wrap input{flex:1;background:var(--bg3);border:1px solid var(--br);color:var(--tx);padding:.35rem .6rem;border-radius:4px;font-size:.8rem}
+.search-wrap button{background:var(--gold);color:#0d0d0d;border:none;padding:.35rem .7rem;border-radius:4px;cursor:pointer;font-weight:700;font-size:.8rem}
+#main-content{margin-left:var(--sidebar-w);padding:0 2rem 4rem}
+.mob-toggle{display:none;position:fixed;bottom:1.2rem;right:1.2rem;background:var(--gold);color:#0d0d0d;border:none;width:48px;height:48px;border-radius:50%;font-size:1.4rem;cursor:pointer;z-index:300;box-shadow:0 2px 12px rgba(0,0,0,.5)}
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:150}
+#overlay.show{display:block}
+.hero{text-align:center;padding:4rem 1rem 2.5rem;border-bottom:1px solid var(--br);background:linear-gradient(to bottom,var(--bg2),var(--bg))}
+.si{font-size:2.2rem;color:var(--gold);display:block;margin-bottom:.5rem}
+.st{font-size:2rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--tx)}
+.st span{color:var(--gold)}
+.ss{font-size:1.05rem;color:var(--gl);margin:.6rem 0 .4rem;font-style:italic}
+.tg{font-size:.85rem;color:var(--mu);margin-bottom:.8rem}
+.orn{color:var(--gold);font-size:1.1rem;letter-spacing:.4em;margin-top:.5rem}
+.sec{border:1px solid var(--br);border-radius:8px;margin:1.5rem 0;background:var(--bg2);overflow:hidden}
+.sec-hd{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.3rem;cursor:pointer;user-select:none;background:var(--bg3);border-bottom:1px solid transparent;transition:background .2s}
+.sec-hd:hover{background:var(--bg4)}
+.sec.open .sec-hd{border-bottom-color:var(--br);background:var(--bg4)}
+.sec-hd h2{font-size:1rem;color:var(--gl);text-transform:uppercase;letter-spacing:.05em}
+.sec-bd{display:none;padding:1.4rem 1.5rem}
+.sec.open .sec-bd{display:block}
+.sec-bd h3{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin:1.4rem 0 .7rem;padding-bottom:.3rem;border-bottom:1px solid var(--bg5)}
+.sec-bd p{color:var(--tx);margin-bottom:.9rem;font-size:.95rem}
+.arr{color:var(--gold);font-size:.9rem;transition:transform .3s}
+.sec.open .arr{transform:rotate(180deg)}
+.sv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin:.8rem 0 1.2rem}
+.sv{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:1rem}
+.sv .ref{font-size:.75rem;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.4rem}
+.sv .labels{margin-bottom:.5rem;display:flex;gap:.4rem;flex-wrap:wrap}
+.sv .labels span{font-size:.65rem;font-weight:700;padding:.15rem .45rem;border-radius:3px;text-transform:uppercase;letter-spacing:.06em}
+.labels .prot{background:#4a1a1a;color:#e87070}
+.labels .oo{background:#1a3a1a;color:#70c870}
+.labels .ctx{background:#1a2a3a;color:#70aacc}
+.sv .txt{font-style:italic;color:var(--gl);font-size:.88rem;margin-bottom:.5rem;border-left:2px solid var(--gold);padding-left:.7rem}
+.sv .interp{font-size:.82rem;color:var(--mu)}
+.fc{background:var(--bg3);border:1px solid var(--br);border-left:3px solid var(--gold);border-radius:6px;padding:1rem 1.1rem;margin:.8rem 0}
+.fn{font-size:.8rem;font-weight:700;color:var(--gl);text-transform:uppercase;letter-spacing:.07em}
+.fw{font-size:.75rem;color:var(--mu);margin:.2rem 0 .5rem;font-style:italic}
+.fq{font-style:italic;color:var(--tx);font-size:.88rem;border-left:2px solid var(--bg5);padding-left:.8rem;margin:.4rem 0 .6rem}
+.fsig{font-size:.8rem;color:var(--mu)}
+.pl{background:#4a1a1a;color:#e87070;font-size:.65rem;font-weight:700;padding:.1rem .35rem;border-radius:3px;text-transform:uppercase;letter-spacing:.06em;vertical-align:middle;margin-left:.3rem;font-style:normal}
+.gl-tag{background:#1a3a1a;color:#70c870;font-size:.65rem;font-weight:700;padding:.1rem .35rem;border-radius:3px;text-transform:uppercase;letter-spacing:.06em;vertical-align:middle;margin-left:.3rem;font-style:normal}
+.obj{background:var(--bg3);border:1px solid #4a1a1a;border-left:3px solid var(--red);border-radius:6px;margin:.8rem 0;overflow:hidden}
+.obj-hd{display:flex;justify-content:space-between;align-items:center;padding:.8rem 1rem;cursor:pointer;user-select:none}
+.obj-hd:hover{background:var(--bg4)}
+.obj-hd h3{font-size:.85rem;color:#e87070;font-weight:700}
+.obj-bd{display:none;padding:.9rem 1.1rem;border-top:1px solid #4a1a1a}
+.obj.open .obj-bd{display:block}
+.obj.open .arr{transform:rotate(180deg)}
+.obj-bd h4{font-size:.75rem;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.4rem;margin-top:.6rem}
+.obj-bd h4:first-child{margin-top:0}
+.obj-bd p{font-size:.85rem;color:var(--tx);margin-bottom:.6rem}
+.fi{background:var(--bg3);border:1px solid var(--br);border-radius:6px;margin:.6rem 0;overflow:hidden}
+.fi-hd{display:flex;justify-content:space-between;align-items:center;padding:.8rem 1rem;cursor:pointer;user-select:none;font-size:.88rem;color:var(--gl)}
+.fi-hd:hover{background:var(--bg4)}
+.fi-bd{display:none;padding:.9rem 1.1rem;border-top:1px solid var(--br);font-size:.85rem;color:var(--tx)}
+.fi.open .fi-bd{display:block}
+.fi.open .arr{transform:rotate(180deg)}
+.fi-bd p{margin-bottom:.7rem}
+.comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:.8rem 0}
+.comp-card{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:1rem}
+.comp-card.prot{border-top:3px solid #e87070}
+.comp-card.oo{border-top:3px solid var(--gold)}
+.comp-card .ct{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.6rem}
+.comp-card.prot .ct{color:#e87070}
+.comp-card.oo .ct{color:var(--gold)}
+.comp-card p{font-size:.82rem;color:var(--mu)}
+.tl{border-left:2px solid var(--bg5);margin:1rem 0 1rem .4rem;padding-left:1.2rem}
+.tl-item{position:relative;margin-bottom:1.1rem}
+.tl-item::before{content:'';position:absolute;left:-1.62rem;top:.45rem;width:11px;height:11px;border-radius:50%;background:var(--gold);border:2px solid var(--bg2)}
+.tl-date{font-size:.78rem;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase}
+.tl-item p{font-size:.85rem;color:var(--mu);margin:.2rem 0 0}
+.src-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;margin:.8rem 0}
+.src-card{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:1rem}
+.src-cat{font-size:.72rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.6rem;padding-bottom:.4rem;border-bottom:1px solid var(--bg5)}
+.src-item{font-size:.8rem;color:var(--mu);margin-bottom:.5rem;padding-left:.7rem;border-left:2px solid var(--br)}
+.btt{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--gold);color:#0d0d0d;border:none;width:44px;height:44px;border-radius:50%;font-size:1.2rem;cursor:pointer;opacity:0;transition:opacity .3s;z-index:300;font-weight:700}
+@media(max-width:768px){#sidebar{transform:translateX(-100%)}#sidebar.open{transform:translateX(0)}#main-content{margin-left:0;padding:0 1rem 4rem}.mob-toggle{display:flex;align-items:center;justify-content:center}.sv-grid{grid-template-columns:1fr}.comp-grid{grid-template-columns:1fr}}
+
+.lampsvg{display:block;margin:0 auto 14px;height:auto}
+.lampsvg .lampflame{animation:lampflick 3.2s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes lampflick{0%,100%{transform:scaleY(1) scaleX(1);opacity:.95}25%{transform:scaleY(1.06) scaleX(.97);opacity:1}50%{transform:scaleY(.96) scaleX(1.03);opacity:.9}75%{transform:scaleY(1.04) scaleX(.98);opacity:1}}
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<nav id="sidebar">
+  <div class="search-wrap"><input type="text" id="search-input" placeholder="Search…"><button id="search-btn">Go</button></div>
+  <svg class="lampsvg" width="64" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><radialGradient id="lmpGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffb95e" stop-opacity=".55"/><stop offset="100%" stop-color="#ffb95e" stop-opacity="0"/></radialGradient><linearGradient id="lmpFlame" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#ff7a1f"/><stop offset="55%" stop-color="#ffb347"/><stop offset="100%" stop-color="#ffe9b0"/></linearGradient><linearGradient id="lmpBrass" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e3b860"/><stop offset="50%" stop-color="#a87b35"/><stop offset="100%" stop-color="#7a5523"/></linearGradient></defs><circle cx="60" cy="38" r="34" fill="url(#lmpGlow)"/><g class="lampflame"><path d="M60 16 C66 26 70 32 70 40 C70 48 65.5 53 60 53 C54.5 53 50 48 50 40 C50 32 54 26 60 16 Z" fill="url(#lmpFlame)"/><path d="M60 30 C63 35 64.5 38 64.5 42 C64.5 46.5 62.5 49 60 49 C57.5 49 55.5 46.5 55.5 42 C55.5 38 57 35 60 30 Z" fill="#fff3cf" opacity=".85"/></g><rect x="56" y="52" width="8" height="7" rx="2" fill="#8a6228"/><path d="M28 62 L92 62 C92 80 78 92 60 92 C42 92 28 80 28 62 Z" fill="url(#lmpBrass)"/><rect x="24" y="58" width="72" height="6" rx="3" fill="#caa14e"/><rect x="56" y="92" width="8" height="16" fill="url(#lmpBrass)"/><path d="M38 118 C38 110 47 108 60 108 C73 108 82 110 82 118 L82 122 L38 122 Z" fill="url(#lmpBrass)"/><rect x="32" y="122" width="56" height="6" rx="3" fill="#caa14e"/></svg>
+  <h2>The Orthodox Lamp</h2>
+  <nav id="sidenav">
+    <a href="#s1">I. Introduction</a>
+    <a href="#s2">II. What the Quran Claims</a>
+    <a href="#s3">III. Deuteronomy 18 — "A Prophet Like Moses"</a>
+    <a href="#s4">IV. The Paraclete — John 14–16</a>
+    <a href="#s5">V. Song of Songs 5:16 — "Machamaddim"</a>
+    <a href="#s6">VI. Other Passages Cited</a>
+    <a href="#s7">VII. The Tests of a True Prophet</a>
+    <a href="#s8">VIII. FAQ</a>
+    <a href="#s9">IX. Sources</a>
+  </nav>
+</nav>
+<div id="overlay" onclick="closeMobile()"></div>
+<button class="mob-toggle" onclick="toggleSidebar()">☰</button>
+<main id="main-content">
+  <div class="hero">
+    <span class="si">☩</span>
+    <h1 class="st">THE <span>ORTHODOX</span> LAMP</h1>
+    <p class="ss">Is Muhammad Prophesied in the Bible? — Examining the Claimed Prophecies</p>
+    <p class="tg">"To Him all the prophets witness" — Acts 10:43</p>
+    <div class="orn">✦ ✦ ✦</div>
+  </div>
+
+<section class="sec open" id="s1">
+    <div class="sec-hd" onclick="ts(this)"><h2>I. Introduction</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>"Muhammad is in your own Bible. Deuteronomy promised a prophet like Moses; Jesus promised the Paraclete; the Song of Songs even names him in Hebrew." This is among the most common arguments a Christian will hear from Muslim friends, and it deserves a careful answer rather than a dismissive one — because the Quran itself stakes a claim on it. If the Bible foretells Muhammad, Christians ought to follow him; if it does not, then the Quran has made a testable claim about books we still possess, and the claim can be checked.</p>
+      <p>This page examines each passage in context — the same test any prophecy claim must pass. The method is simple and fair: read the verse, read the chapter around it, ask who the text itself says it is about, and ask how the apostles — who wrote in the same century the words were spoken — understood it. Nothing on this page requires trusting Christian tradition over Muslim tradition; it requires only reading the texts that both sides agree exist.</p>
+      <p>A companion question — whether the Bible's text was corrupted and the "real" prophecies removed — is treated on its own page: <a href="bible_corruption.html">Has the Bible Been Corrupted?</a>. The short answer matters here: the manuscripts of every passage discussed below predate Islam, in some cases by many centuries, so the text Muslims are invited to examine is the text that existed before Muhammad was born.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s2">
+    <div class="sec-hd" onclick="ts(this)"><h2>II. What the Quran Claims</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>The argument does not begin with the Bible; it begins with the Quran, which asserts that Muhammad is found there. Surah 7:157 describes "the unlettered prophet whom they find written in what they have of the Torah and the Gospel," and in Surah 61:6 Jesus is made to announce "a messenger to come after me, whose name is Ahmad." <span class="pl">Paraphrase</span> These are the texts that send Muslim apologists searching the Old and New Testaments.</p>
+      <p>Notice what this means for the debate. The Quran has made a falsifiable claim: the prophecy is "written in what they <em>have</em>" — present tense, addressed to the Jews and Christians of the seventh century, about scriptures in their hands at that time. We possess those scriptures today in manuscripts older than Islam — the Dead Sea Scrolls for Deuteronomy and the Song of Songs, complete Greek codices of the Gospels from the fourth century. Whatever those manuscripts say, the Quran says Muhammad is in them. So the search below is not a Christian trick; it is the Quran's own test.</p>
+      <p>Three passages carry nearly the whole weight of the case: Deuteronomy 18:18, the Paraclete sayings of John 14–16, and Song of Songs 5:16. Each is examined in turn.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s3">
+    <div class="sec-hd" onclick="ts(this)"><h2>III. Deuteronomy 18 — "A Prophet Like Moses"</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>The text: "I will raise up for them a Prophet like you from among their brethren, and will put My words in His mouth, and He shall speak to them all that I command Him" (Deuteronomy 18:18). The Muslim argument runs: Muhammad was like Moses (lawgiver, leader, married, died naturally) in ways Jesus was not, and "their brethren" means the Israelites' brethren — the Ishmaelites, hence the Arabs.</p>
+      <h4 style="font-size:.8rem;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin:.8rem 0 .4rem">1. "From among their brethren" is defined three verses earlier</h4>
+      <p>Deuteronomy 18:15, in Moses' own voice: "The LORD your God will raise up for you a Prophet like me <em>from your midst, from your brethren</em>." The prophet arises from the midst of Israel. And the same chapter uses "brethren" the same way of the Levites: the Levite comes "from any of the gates, from where he dwells among all Israel" to stand among "his brethren the Levites" (Deuteronomy 18:6–7) — fellow Israelites, not foreign cousins. Throughout Deuteronomy the word functions this way: the king must be "one from among your brethren… you may not set a foreigner over you, who is not your brother" (Deuteronomy 17:15). If "brethren" meant Ishmaelites, that verse would permit an Arab king over Israel — the very thing it forbids.</p>
+      <h4 style="font-size:.8rem;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin:.8rem 0 .4rem">2. The apostles applied the verse — by name — to Jesus</h4>
+      <p>This is not a prophecy left dangling for thirteen centuries. St. Peter, preaching in the temple within weeks of the resurrection: "For Moses truly said to the fathers, 'The LORD your God will raise up for you a Prophet like me from your brethren…' … God, having raised up His Servant Jesus, sent Him to bless you" (Acts 3:22, 26). St. Stephen repeats the identification before the Sanhedrin (Acts 7:37). The first-century reading of Deuteronomy 18 is on record, and it names Jesus.</p>
+      <h4 style="font-size:.8rem;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin:.8rem 0 .4rem">3. "Like Moses" — likeness in what?</h4>
+      <p>The list "married, fought wars, died naturally" is likeness chosen after the fact; by such lists, Joshua or David are far more "like Moses" than Muhammad. The Torah states its own criterion of Moses' uniqueness: "But since then there has not arisen in Israel a prophet like Moses, <em>whom the LORD knew face to face</em>" (Deuteronomy 34:10) — unmediated communion with God, and signs and wonders before the people (34:11). Moses spoke with God directly; the Quran's account of Muhammad's revelation is mediation through the angel Gabriel. Christ, by contrast, speaks not what an angel relays but what He has seen with the Father (John 8:38), mediates a covenant as Moses did (Hebrews 3:1–6), delivers law from a mountain (Matthew 5–7), feeds a multitude in the wilderness, and is the prophet the people themselves recognized: "This is truly the Prophet who is to come into the world" (John 6:14).</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s4">
+    <div class="sec-hd" onclick="ts(this)"><h2>IV. The Paraclete — John 14–16</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>The claim: when Jesus promised "another Helper" (Greek <em>parakletos</em>), He was foretelling Muhammad — and the Greek originally read <em>periklytos</em>, "praised one," matching the meaning of the name Ahmad.</p>
+      <p>The answer is to keep reading the sentences in which the word sits. Jesus defines the Paraclete in the act of promising Him:</p>
+      <div class="sv-grid">
+        <div class="sv"><div class="ref">John 14:16–17</div><div class="txt">"He will give you another Helper, that He may abide with you forever — the Spirit of truth, whom the world cannot receive, because it neither sees Him nor knows Him; but you know Him, for He dwells with you and will be in you."</div><div class="interp">The Helper is "the Spirit of truth," invisible to the world, already <em>with</em> the disciples, and one day <em>in</em> them. No man matches this — a man is visible, and does not dwell inside other people.</div></div>
+        <div class="sv"><div class="ref">John 14:26</div><div class="txt">"But the Helper, the Holy Spirit, whom the Father will send in My name, He will teach you all things, and bring to your remembrance all things that I said to you."</div><div class="interp">The text names the Paraclete explicitly: the Holy Spirit. He is sent in Jesus' name and His ministry is to remind <em>the apostles</em> — the men in the room — of Jesus' words.</div></div>
+        <div class="sv"><div class="ref">John 16:7</div><div class="txt">"It is to your advantage that I go away; for if I do not go away, the Helper will not come to you; but if I depart, I will send Him to you."</div><div class="interp">The Helper comes <em>to the disciples</em> — "to you," the men listening — not to Arabia six centuries after they died.</div></div>
+        <div class="sv"><div class="ref">Acts 1:4–5; 2:1–4</div><div class="txt">"Wait for the Promise of the Father… you shall be baptized with the Holy Spirit not many days from now… And they were all filled with the Holy Spirit."</div><div class="interp">The promise has a recorded fulfillment: Pentecost, about fifty days after the words were spoken. The book of Acts is the receipt.</div></div>
+      </div>
+      <p><strong>The "periklytos" conjecture.</strong> The suggestion that the text originally read <em>periklytos</em> ("renowned") has no manuscript behind it: the surviving Greek manuscripts of John that contain these verses read <em>parakletos</em>, and the earliest substantial copies predate Islam by centuries. A textual claim with zero textual witnesses is not a variant reading; it is an assertion that the evidence must be wrong because the conclusion requires it. And even granting the swap for argument's sake, the sentences above remain: the Helper is a Spirit the world cannot see, dwelling inside the apostles, sent within their lifetime.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s5">
+    <div class="sec-hd" onclick="ts(this)"><h2>V. Song of Songs 5:16 — "Machamaddim"</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>The claim: the Hebrew of Song of Songs 5:16 contains the consonants of Muhammad's name — <em>machamaddim</em> — so the verse names him.</p>
+      <p>Read the verse: "His mouth is most sweet, yes, he is altogether lovely. This is my beloved, and this is my friend, O daughters of Jerusalem!" (Song of Songs 5:16). The word rendered "altogether lovely" is <em>machamaddim</em> — a common Hebrew noun from the root <em>ch-m-d</em>, "to desire," here in a plural form meaning "desirable things, loveliness." It is vocabulary, not a name, and the same root appears elsewhere in the Old Testament for treasures, pleasant things, and objects of desire — contexts where no one proposes a hidden Muhammad.</p>
+      <p>Context settles it beyond argument. The speaker is a bride describing her bridegroom's body — his eyes, lips, hands — in a love poem. Two verses earlier she is describing his abdomen. If finding the consonants of a name in a common word made a prophecy, then by the same method one could "find" almost anyone in almost any Semitic text — the root <em>ch-m-d</em> is as ordinary in Hebrew as "desire" is in English. Jewish and Christian readers across the centuries did not take the verse as naming a future prophet — the argument is a modern invention — because grammatically it cannot work: the word is a description, with a plural ending, of the man the bride is praising.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s6">
+    <div class="sec-hd" onclick="ts(this)"><h2>VI. Other Passages Cited</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>Isaiah 42 — "My Servant… My Elect One"</h3><span class="arr">▼</span></div>
+        <div class="obj-bd">
+          <h4>The Claim</h4><p>Isaiah 42's servant, associated with Kedar (42:11), is Muhammad, descendant of Ishmael.</p>
+          <h4>Response</h4><p>The New Testament quotes this exact passage and names its subject: "Behold! My Servant whom I have chosen, My Beloved in whom My soul is well pleased!… And in His name Gentiles will trust" — applied to Jesus in Matthew 12:17–21, quoting Isaiah 42:1–4. Kedar in verse 11 is not the servant; it is among the remotest places summoned to <em>sing</em> the new song of praise — the point being that even the desert tribes will glorify the LORD. The servant himself is gentle ("a bruised reed He will not break"), brings justice without crying out in the streets, and opens blind eyes — the portrait the Gospels paint, scene by scene.</p>
+        </div>
+      </div>
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>John 1:21 — "Are you the Prophet?"</h3><span class="arr">▼</span></div>
+        <div class="obj-bd">
+          <h4>The Claim</h4><p>The priests asked John the Baptist three questions — "Are you the Christ? Are you Elijah? Are you the Prophet?" — so "the Prophet" of Deuteronomy 18 must be a third figure, distinct from the Christ: Muhammad.</p>
+          <h4>Response</h4><p>The verse records what John's questioners thought, not what is true — the same delegation's categories were confused enough that they needed to ask at all. Whether the Prophet and the Christ are one figure is answered elsewhere in the same Gospel and in Acts: the crowds who saw the loaves multiplied said "This is truly the Prophet who is to come into the world" and immediately tried to make Him king (John 6:14–15), and Peter and Stephen identify the Prophet of Deuteronomy 18 as Jesus by name (Acts 3:22–26; 7:37). A question asked by a confused delegation cannot outweigh the recorded apostolic answer.</p>
+        </div>
+      </div>
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>Deuteronomy 33:2 / Habakkuk 3:3 — Sinai, Seir, Paran</h3><span class="arr">▼</span></div>
+        <div class="obj-bd">
+          <h4>The Claim</h4><p>"The LORD came from Sinai… He shined forth from Mount Paran" — three locations, three revelations: Moses (Sinai), Jesus (Seir), Muhammad (Paran, claimed as Mecca).</p>
+          <h4>Response</h4><p>Both verses describe a single event in poetic parallelism — the LORD's glory at the giving of the Law, radiating across the whole southern wilderness — not three events centuries apart. The geography also fails: Paran in the Torah is the wilderness south of Canaan where Israel wandered and where Ishmael first dwelt (Numbers 10:12; 13:3; Genesis 21:21) — roughly the Sinai/Negev region, hundreds of miles from Mecca. And the subject of both verses is "the LORD" — God Himself coming in glory, not a sequence of human prophets. Seir, for what it is worth, is Edom, which has no connection to Jesus at all; the schema collapses on every term.</p>
+        </div>
+      </div>
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>Genesis — the promises to Ishmael</h3><span class="arr">▼</span></div>
+        <div class="obj-bd">
+          <h4>The Claim</h4><p>God promised to make Ishmael a great nation (Genesis 17:20; 21:18), and Muhammad is the fulfillment of Ishmael's line.</p>
+          <h4>Response</h4><p>The blessing on Ishmael is real and Christians affirm it — twelve princes, a great nation. But the same passage is explicit about which line carries the covenant: "My covenant I will establish with Isaac" (Genesis 17:21), and "in your seed all the nations of the earth shall be blessed" is spoken through Isaac and Jacob (Genesis 26:4; 28:14). St. Paul traces that seed to Christ (Galatians 3:16). A blessing of national greatness is not a promise of prophethood; the covenant text itself routes the redemptive line through Isaac.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s7">
+    <div class="sec-hd" onclick="ts(this)"><h2>VII. The Tests of a True Prophet</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>Deuteronomy 18 does not only promise a prophet; it provides the tests for one, in the verses Muslim apologists rarely quote. "When a prophet speaks in the name of the LORD, if the thing does not happen or come to pass, that is the thing which the LORD has not spoken" (Deuteronomy 18:22) — and Deuteronomy 13 adds a second, sharper test: even a wonder-worker must not lead the people after doctrine contrary to what God has revealed.</p>
+      <p>This is where the discussion becomes serious rather than philological. The message of the prophets of Israel converges on the figure the apostles proclaimed: a suffering, atoning, dying and rising Redeemer — "He was wounded for our transgressions… and the LORD has laid on Him the iniquity of us all" (Isaiah 53:5–6). The Quran's message is that Jesus is not God's Son, was not crucified (see <a href="crucifixion_denial.html">the crucifixion page</a>), and that God forbid He should atone. A claimant whose revelation contradicts the cumulative, written testimony of the prophets before him fails the Torah's own test — not a test Christians invented, but the one written two chapters before the verse the whole argument is built on.</p>
+      <p>The apostolic principle is the same: "But even if we, or an angel from heaven, preach any other gospel to you than what we have preached to you, let him be accursed" (Galatians 1:8). The early Church applied this test to every new revelation claim — Montanus, Mani, and others — long before Islam existed. It is not anti-Muslim; it is the standing rule.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s8">
+    <div class="sec-hd" onclick="ts(this)"><h2>VIII. FAQ</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <div class="fi">
+        <div class="fi-hd" onclick="tf(this)"><span>Q: Couldn't the real prophecies have been removed from the Bible?</span><span class="arr">▼</span></div>
+        <div class="fi-bd"><p>Then the Quran's claim refutes itself: Surah 7:157 says the prophecy is found in what the Jews and Christians <em>have</em> — the scriptures circulating in the seventh century. Manuscripts of those scriptures from <em>before</em> the seventh century survive in quantity (Dead Sea Scrolls, Codex Sinaiticus, Codex Vaticanus), and they read as our Bibles do. If the prophecies were removed, they were removed before the Quran said they were present — which makes the Quran's statement false either way. See <a href="bible_corruption.html">Has the Bible Been Corrupted?</a></p></div>
+      </div>
+      <div class="fi">
+        <div class="fi-hd" onclick="tf(this)"><span>Q: Why does "Ahmad" matter in Surah 61:6?</span><span class="arr">▼</span></div>
+        <div class="fi-bd"><p>The verse has Jesus foretell a messenger "whose name is Ahmad" ("praised one"). No Gospel — canonical or otherwise circulating in antiquity under Jesus' name — records such a saying, which is why the Paraclete passages carry the argument's weight and why the <em>periklytos</em> conjecture was needed. Without a Greek variant (and none exists in the manuscripts), the Quranic verse stands without a biblical anchor.</p></div>
+      </div>
+      <div class="fi">
+        <div class="fi-hd" onclick="tf(this)"><span>Q: Isn't Jesus more than the "prophet like Moses" anyway?</span><span class="arr">▼</span></div>
+        <div class="fi-bd"><p>Yes — and the Church has always said so. Christ fulfills the prophecy and exceeds it: Moses was faithful "as a servant," Christ "as a Son over His own house" (Hebrews 3:5–6). Identifying Jesus as the Deuteronomy 18 prophet does not reduce Him to a prophet; it shows that even the category "prophet" finds its fulfillment in Him. See <a href="divinity_of_christ.html">The Divinity of Christ</a>.</p></div>
+      </div>
+      <div class="fi">
+        <div class="fi-hd" onclick="tf(this)"><span>Q: My Muslim friend is sincere and devout. How should I have this conversation?</span><span class="arr">▼</span></div>
+        <div class="fi-bd"><p>With respect and without scoring points. Muslims honor Jesus, His virgin birth, and His miracles — that is common ground most skeptics do not share. The approach this page models is one a sincere Muslim can accept in principle: read the passages in context, together, and let the texts speak. Pray beforehand, be honest about what you don't know, and remember the goal is the person, not the argument (1 Peter 3:15 — "with meekness and fear").</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s9">
+    <div class="sec-hd" onclick="ts(this)"><h2>IX. Sources</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <div class="src-grid">
+        <div class="src-card"><div class="src-cat">Scripture</div>
+          <p class="src-item">Holy Bible, New King James Version — Deuteronomy 17–18, 33–34; Song of Songs 5; Isaiah 42; 53; John 1; 6; 14–16; Acts 1–3; 7; Galatians 1; 3; Hebrews 3.</p>
+        </div>
+        <div class="src-card"><div class="src-cat">Quranic Texts Discussed</div>
+          <p class="src-item">Quran — Surah 7:157; 61:6 (claims of Muhammad in the Torah and Gospel), cited from standard English renderings.</p>
+        </div>
+        <div class="src-card"><div class="src-cat">Manuscript Evidence</div>
+          <p class="src-item">Dead Sea Scrolls (Deuteronomy, Isaiah); Codex Sinaiticus and Codex Vaticanus (4th c. Greek Bibles) — see <a href="bible_corruption.html">the corruption page</a> for full treatment.</p>
+        </div>
+        <div class="src-card"><div class="src-cat">On This Site</div>
+          <p class="src-item"><a href="islamic_dilemma.html">The Islamic Dilemma</a> · <a href="islam_and_christians.html">Islam &amp; Christians</a> · <a href="divinity_of_christ.html">The Divinity of Christ</a> · <a href="crucifixion_denial.html">Did Jesus Die on the Cross?</a> · <a href="did_jesus_exist.html">Did Jesus Exist?</a></p>
+        </div>
+      </div>
+      <p style="font-size:.78rem;color:var(--mu);margin-top:1rem">Scripture quotations are from the New King James Version. Quotations marked <span class="gl-tag">Direct Quote</span> are taken verbatim from the cited editions; material marked <span class="pl">Paraphrase</span> is a faithful summary, not a verbatim citation. Readers are encouraged to verify every citation in the sources listed above.</p>
+    </div>
+  </section>
+
+  </main>
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+function ts(h){h.closest('.sec').classList.toggle('open')}
+function tobj(h){h.closest('.obj').classList.toggle('open')}
+function tf(h){h.closest('.fi').classList.toggle('open')}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').classList.toggle('show')}
+function closeMobile(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
+const secs=document.querySelectorAll('.sec[id]');
+const navLinks=document.querySelectorAll('#sidenav a');
+function updateNav(){let cur='';secs.forEach(s=>{if(s.getBoundingClientRect().top<120)cur=s.id;});navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur);})}
+window.addEventListener('scroll',updateNav,{passive:true});
+window.addEventListener('scroll',()=>{const st=document.documentElement.scrollTop;const sh=document.documentElement.scrollHeight-document.documentElement.clientHeight;document.getElementById('progress-bar').style.width=(st/sh*100)+'%';},{passive:true});
+window.addEventListener('scroll',()=>{document.getElementById('btt').style.opacity=window.scrollY>400?'1':'0';},{passive:true});
+let lastQuery='';
+function doSearch(){const q=document.getElementById('search-input').value.trim().toLowerCase();if(q===lastQuery)return;lastQuery=q;clearHighlights();if(!q)return;const walker=document.createTreeWalker(document.getElementById('main-content'),NodeFilter.SHOW_TEXT,null,false);const matches=[];let node;while((node=walker.nextNode())){if(node.nodeValue.toLowerCase().includes(q))matches.push(node);}matches.forEach(n=>{const idx=n.nodeValue.toLowerCase().indexOf(q);const before=document.createTextNode(n.nodeValue.substring(0,idx));const mark=document.createElement('mark');mark.textContent=n.nodeValue.substring(idx,idx+q.length);mark.style.cssText='background:#c9a84c;color:#0d0d0d;border-radius:2px;padding:0 2px;';const after=document.createTextNode(n.nodeValue.substring(idx+q.length));const frag=document.createDocumentFragment();frag.appendChild(before);frag.appendChild(mark);frag.appendChild(after);n.parentNode.replaceChild(frag,n);});const firstMark=document.querySelector('mark');if(firstMark)firstMark.scrollIntoView({behavior:'smooth',block:'center'});}
+function clearHighlights(){document.querySelectorAll('mark').forEach(m=>{m.parentNode.replaceChild(document.createTextNode(m.textContent),m);});}
+document.getElementById('search-input').addEventListener('keydown',e=>{if(e.key==='Enter')doSearch();if(e.key==='Escape'){document.getElementById('search-input').value='';lastQuery='';clearHighlights();}});
+document.getElementById('search-btn').addEventListener('click',doSearch);
+document.querySelector('.sec').classList.add('open');
+</script>
+</body>
+</html>

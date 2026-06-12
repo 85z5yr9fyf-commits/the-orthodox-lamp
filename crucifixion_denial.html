@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>THE ORTHODOX LAMP — Did Jesus Die on the Cross?</title>
+<style>
+:root{--gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;--bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--tx:#e8e0d0;--mu:#a09880;--red:#8b2020;--br:#2a2a2a;--bg5:#3a2e10;--sidebar-w:270px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.75}
+a{color:var(--gold);text-decoration:none}
+#progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(to right,var(--gd),var(--gold),var(--gl));width:0%;z-index:500}
+#sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:200;transition:transform .3s}
+#sidebar h2{font-size:.7rem;letter-spacing:.15em;color:var(--gold);text-transform:uppercase;padding:1.4rem 1.2rem .5rem;border-bottom:1px solid var(--br)}
+#sidenav a{display:block;padding:.42rem 1.2rem;font-size:.82rem;color:var(--mu);border-left:3px solid transparent;transition:all .2s}
+#sidenav a:hover,#sidenav a.active{color:var(--gl);border-left-color:var(--gold);background:var(--bg5)}
+.search-wrap{padding:.8rem 1rem;border-bottom:1px solid var(--br);display:flex;gap:.4rem}
+.search-wrap input{flex:1;background:var(--bg3);border:1px solid var(--br);color:var(--tx);padding:.35rem .6rem;border-radius:4px;font-size:.8rem}
+.search-wrap button{background:var(--gold);color:#0d0d0d;border:none;padding:.35rem .7rem;border-radius:4px;cursor:pointer;font-weight:700;font-size:.8rem}
+#main-content{margin-left:var(--sidebar-w);padding:0 2rem 4rem}
+.mob-toggle{display:none;position:fixed;bottom:1.2rem;right:1.2rem;background:var(--gold);color:#0d0d0d;border:none;width:48px;height:48px;border-radius:50%;font-size:1.4rem;cursor:pointer;z-index:300;box-shadow:0 2px 12px rgba(0,0,0,.5)}
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:150}
+#overlay.show{display:block}
+.hero{text-align:center;padding:4rem 1rem 2.5rem;border-bottom:1px solid var(--br);background:linear-gradient(to bottom,var(--bg2),var(--bg))}
+.si{font-size:2.2rem;color:var(--gold);display:block;margin-bottom:.5rem}
+.st{font-size:2rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--tx)}
+.st span{color:var(--gold)}
+.ss{font-size:1.05rem;color:var(--gl);margin:.6rem 0 .4rem;font-style:italic}
+.tg{font-size:.85rem;color:var(--mu);margin-bottom:.8rem}
+.orn{color:var(--gold);font-size:1.1rem;letter-spacing:.4em;margin-top:.5rem}
+.sec{border:1px solid var(--br);border-radius:8px;margin:1.5rem 0;background:var(--bg2);overflow:hidden}
+.sec-hd{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.3rem;cursor:pointer;user-select:none;background:var(--bg3);border-bottom:1px solid transparent;transition:background .2s}
+.sec-hd:hover{background:var(--bg4)}
+.sec.open .sec-hd{border-bottom-color:var(--br);background:var(--bg4)}
+.sec-hd h2{font-size:1rem;color:var(--gl);text-transform:uppercase;letter-spacing:.05em}
+.sec-bd{display:none;padding:1.4rem 1.5rem}
+.sec.open .sec-bd{display:block}
+.sec-bd h3{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin:1.4rem 0 .7rem;padding-bottom:.3rem;border-bottom:1px solid var(--bg5)}
+.sec-bd p{color:var(--tx);margin-bottom:.9rem;font-size:.95rem}
+.arr{color:var(--gold);font-size:.9rem;transition:transform .3s}
+.sec.open .arr{transform:rotate(180deg)}
+.sv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin:.8rem 0 1.2rem}
+.sv{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:1rem}
+.sv .ref{font-size:.75rem;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.4rem}
+.sv .labels{margin-bottom:.5rem;display:flex;gap:.4rem;flex-wrap:wrap}
+.sv .labels span{font-size:.65rem;font-weight:700;padding:.15rem .45rem;border-radius:3px;text-transform:uppercase;letter-spacing:.06em}
+.labels .prot{background:#4a1a1a;color:#e87070}
+.labels .oo{background:#1a3a1a;color:#70c870}
+.labels .ctx{background:#1a2a3a;color:#70aacc}
+.sv .txt{font-style:italic;color:var(--gl);font-size:.88rem;margin-bottom:.5rem;border-left:2px solid var(--gold);padding-left:.7rem}
+.sv .interp{font-size:.82rem;color:var(--mu)}
+.fc{background:var(--bg3);border:1px solid var(--br);border-left:3px solid var(--gold);border-radius:6px;padding:1rem 1.1rem;margin:.8rem 0}
+.fn{font-size:.8rem;font-weight:700;color:var(--gl);text-transform:uppercase;letter-spacing:.07em}
+.fw{font-size:.75rem;color:var(--mu);margin:.2rem 0 .5rem;font-style:italic}
+.fq{font-style:italic;color:var(--tx);font-size:.88rem;border-left:2px solid var(--bg5);padding-left:.8rem;margin:.4rem 0 .6rem}
+.fsig{font-size:.8rem;color:var(--mu)}
+.pl{background:#4a1a1a;color:#e87070;font-size:.65rem;font-weight:700;padding:.1rem .35rem;border-radius:3px;text-transform:uppercase;letter-spacing:.06em;vertical-align:middle;margin-left:.3rem;font-style:normal}
+.gl-tag{background:#1a3a1a;color:#70c870;font-size:.65rem;font-weight:700;padding:.1rem .35rem;border-radius:3px;text-transform:uppercase;letter-spacing:.06em;vertical-align:middle;margin-left:.3rem;font-style:normal}
+.obj{background:var(--bg3);border:1px solid #4a1a1a;border-left:3px solid var(--red);border-radius:6px;margin:.8rem 0;overflow:hidden}
+.obj-hd{display:flex;justify-content:space-between;align-items:center;padding:.8rem 1rem;cursor:pointer;user-select:none}
+.obj-hd:hover{background:var(--bg4)}
+.obj-hd h3{font-size:.85rem;color:#e87070;font-weight:700}
+.obj-bd{display:none;padding:.9rem 1.1rem;border-top:1px solid #4a1a1a}
+.obj.open .obj-bd{display:block}
+.obj.open .arr{transform:rotate(180deg)}
+.obj-bd h4{font-size:.75rem;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.4rem;margin-top:.6rem}
+.obj-bd h4:first-child{margin-top:0}
+.obj-bd p{font-size:.85rem;color:var(--tx);margin-bottom:.6rem}
+.fi{background:var(--bg3);border:1px solid var(--br);border-radius:6px;margin:.6rem 0;overflow:hidden}
+.fi-hd{display:flex;justify-content:space-between;align-items:center;padding:.8rem 1rem;cursor:pointer;user-select:none;font-size:.88rem;color:var(--gl)}
+.fi-hd:hover{background:var(--bg4)}
+.fi-bd{display:none;padding:.9rem 1.1rem;border-top:1px solid var(--br);font-size:.85rem;color:var(--tx)}
+.fi.open .fi-bd{display:block}
+.fi.open .arr{transform:rotate(180deg)}
+.fi-bd p{margin-bottom:.7rem}
+.comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:.8rem 0}
+.comp-card{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:1rem}
+.comp-card.prot{border-top:3px solid #e87070}
+.comp-card.oo{border-top:3px solid var(--gold)}
+.comp-card .ct{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.6rem}
+.comp-card.prot .ct{color:#e87070}
+.comp-card.oo .ct{color:var(--gold)}
+.comp-card p{font-size:.82rem;color:var(--mu)}
+.tl{border-left:2px solid var(--bg5);margin:1rem 0 1rem .4rem;padding-left:1.2rem}
+.tl-item{position:relative;margin-bottom:1.1rem}
+.tl-item::before{content:'';position:absolute;left:-1.62rem;top:.45rem;width:11px;height:11px;border-radius:50%;background:var(--gold);border:2px solid var(--bg2)}
+.tl-date{font-size:.78rem;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase}
+.tl-item p{font-size:.85rem;color:var(--mu);margin:.2rem 0 0}
+.src-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;margin:.8rem 0}
+.src-card{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:1rem}
+.src-cat{font-size:.72rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.6rem;padding-bottom:.4rem;border-bottom:1px solid var(--bg5)}
+.src-item{font-size:.8rem;color:var(--mu);margin-bottom:.5rem;padding-left:.7rem;border-left:2px solid var(--br)}
+.btt{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--gold);color:#0d0d0d;border:none;width:44px;height:44px;border-radius:50%;font-size:1.2rem;cursor:pointer;opacity:0;transition:opacity .3s;z-index:300;font-weight:700}
+@media(max-width:768px){#sidebar{transform:translateX(-100%)}#sidebar.open{transform:translateX(0)}#main-content{margin-left:0;padding:0 1rem 4rem}.mob-toggle{display:flex;align-items:center;justify-content:center}.sv-grid{grid-template-columns:1fr}.comp-grid{grid-template-columns:1fr}}
+
+.lampsvg{display:block;margin:0 auto 14px;height:auto}
+.lampsvg .lampflame{animation:lampflick 3.2s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes lampflick{0%,100%{transform:scaleY(1) scaleX(1);opacity:.95}25%{transform:scaleY(1.06) scaleX(.97);opacity:1}50%{transform:scaleY(.96) scaleX(1.03);opacity:.9}75%{transform:scaleY(1.04) scaleX(.98);opacity:1}}
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<nav id="sidebar">
+  <div class="search-wrap"><input type="text" id="search-input" placeholder="Search…"><button id="search-btn">Go</button></div>
+  <svg class="lampsvg" width="64" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><radialGradient id="lmpGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffb95e" stop-opacity=".55"/><stop offset="100%" stop-color="#ffb95e" stop-opacity="0"/></radialGradient><linearGradient id="lmpFlame" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#ff7a1f"/><stop offset="55%" stop-color="#ffb347"/><stop offset="100%" stop-color="#ffe9b0"/></linearGradient><linearGradient id="lmpBrass" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e3b860"/><stop offset="50%" stop-color="#a87b35"/><stop offset="100%" stop-color="#7a5523"/></linearGradient></defs><circle cx="60" cy="38" r="34" fill="url(#lmpGlow)"/><g class="lampflame"><path d="M60 16 C66 26 70 32 70 40 C70 48 65.5 53 60 53 C54.5 53 50 48 50 40 C50 32 54 26 60 16 Z" fill="url(#lmpFlame)"/><path d="M60 30 C63 35 64.5 38 64.5 42 C64.5 46.5 62.5 49 60 49 C57.5 49 55.5 46.5 55.5 42 C55.5 38 57 35 60 30 Z" fill="#fff3cf" opacity=".85"/></g><rect x="56" y="52" width="8" height="7" rx="2" fill="#8a6228"/><path d="M28 62 L92 62 C92 80 78 92 60 92 C42 92 28 80 28 62 Z" fill="url(#lmpBrass)"/><rect x="24" y="58" width="72" height="6" rx="3" fill="#caa14e"/><rect x="56" y="92" width="8" height="16" fill="url(#lmpBrass)"/><path d="M38 118 C38 110 47 108 60 108 C73 108 82 110 82 118 L82 122 L38 122 Z" fill="url(#lmpBrass)"/><rect x="32" y="122" width="56" height="6" rx="3" fill="#caa14e"/></svg>
+  <h2>The Orthodox Lamp</h2>
+  <nav id="sidenav">
+    <a href="#s1">I. Introduction</a>
+    <a href="#s2">II. What the Quran Says — Surah 4:157</a>
+    <a href="#s3">III. The Historical Record</a>
+    <a href="#s4">IV. The Witness of the Enemies</a>
+    <a href="#s5">V. The Substitution Theory Examined</a>
+    <a href="#s6">VI. The Swoon Theory Examined</a>
+    <a href="#s7">VII. Why a Crucified Messiah Was Never Invented</a>
+    <a href="#s8">VIII. Why the Cross Matters</a>
+    <a href="#s9">IX. FAQ</a>
+    <a href="#s10">X. Sources</a>
+  </nav>
+</nav>
+<div id="overlay" onclick="closeMobile()"></div>
+<button class="mob-toggle" onclick="toggleSidebar()">☰</button>
+<main id="main-content">
+  <div class="hero">
+    <span class="si">☩</span>
+    <h1 class="st">THE <span>ORTHODOX</span> LAMP</h1>
+    <p class="ss">Did Jesus Die on the Cross? — Answering the Denial of the Crucifixion</p>
+    <p class="tg">"We preach Christ crucified" — 1 Corinthians 1:23</p>
+    <div class="orn">✦ ✦ ✦</div>
+  </div>
+
+<section class="sec open" id="s1">
+    <div class="sec-hd" onclick="ts(this)"><h2>I. Introduction</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>The crucifixion of Jesus of Nazareth under Pontius Pilate is, by the common judgment of historians of every persuasion — Christian, Jewish, agnostic, atheist — among the most securely established facts of ancient history. It is reported by the earliest Christian sources, confirmed by Roman and Jewish writers hostile to Christianity, and embedded in a creed that circulated within a few years of the event itself.</p>
+      <p>One major tradition denies it: Islam. A single Quranic verse, written some six centuries after the event and several hundred miles from Jerusalem, states that Jesus was not crucified. This page sets the verse beside the historical record, examines the theories offered to reconcile them — substitution and swoon — and explains why the cross is not a detail Christians could surrender even if the evidence allowed it.</p>
+      <p>The companion pages treat what followed the cross (<a href="resurrection_skepticism.html">The Resurrection — Answering the Skeptics</a>) and the larger question of the sources (<a href="did_jesus_exist.html">Did Jesus Exist?</a>).</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s2">
+    <div class="sec-hd" onclick="ts(this)"><h2>II. What the Quran Says — Surah 4:157</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>The verse, in standard English renderings, says of the Jews: "they did not kill him, nor did they crucify him, but it was made to appear so to them" — and concludes "they certainly did not kill him; rather, God raised him up to Himself." <span class="pl">Paraphrase</span> The mainstream interpretation in classical Islamic commentary is <em>substitution</em>: someone else — variously identified as Judas, Simon of Cyrene, a volunteer disciple, or an unnamed man given Jesus' likeness — was crucified in His place while Jesus was taken alive to heaven.</p>
+      <p>Two preliminary observations. First, the denial is not itself an argument; it is an assertion, made six centuries after the fact, with no new evidence, against the convergent testimony of the earlier sources, Christian and non-Christian alike — its only ancient precedent being a second-century gnostic substitution myth the Church refuted at the time (see Section III and the FAQ). Second, even within Islam the verse's meaning has been debated — some modern Muslim interpreters read it as denying that the <em>Jews</em> accomplished Jesus' death (God being the true disposer of events) rather than denying the death itself, precisely because the substitution reading sits so uneasily with history and with God's truthfulness. The existence of that internal debate is worth knowing: the standard reading has costs that Muslim thinkers themselves have felt.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s3">
+    <div class="sec-hd" onclick="ts(this)"><h2>III. The Historical Record</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>What does the evidence look like for an event in a Roman province in the first century? For the crucifixion, it looks like this:</p>
+      <p><strong>The earliest stratum: the creed.</strong> "For I delivered to you first of all that which I also received: that Christ died for our sins according to the Scriptures, and that He was buried, and that He rose again the third day" (1 Corinthians 15:3–4). Paul says he <em>received</em> this — it is a formula older than his letter, traced by scholars across the spectrum to within a few years of the crucifixion itself, in the city where it happened, while the participants lived.</p>
+      <p><strong>The narratives.</strong> Four Gospel accounts within the first century, differing in vantage point exactly as independent testimony does, agreeing on the core: condemned under Pontius Pilate, crucified outside Jerusalem at Passover, dead, buried.</p>
+      <p><strong>The unbroken aftermath.</strong> The Eucharist — "you proclaim the Lord's death till He comes" (1 Corinthians 11:26) — celebrated continuously from the first generation; the cross as the universal Christian sign; martyrs dying rather than deny it. Movements do not organize their central weekly act around an event their founders knew had not happened.</p>
+      <p>No rival account of Jesus' end appears in any mainstream source, Jewish, Roman, or Christian. The lone ancient exception proves the rule: the second-century gnostic teacher Basilides taught (per St. Irenaeus, Against Heresies 1.24.4) that Simon of Cyrene was crucified in Jesus' place <span class="pl">Paraphrase</span> — a speculation from a sect that rejected the God of Israel, publicly refuted by the Church, leaving no trace in history. The next appearance of a substitution claim is the Quran, five centuries later.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s4">
+    <div class="sec-hd" onclick="ts(this)"><h2>IV. The Witness of the Enemies</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>The decisive feature of the evidence is that it does not depend on Christian writers. Those with every motive to embarrass the Church confirm the execution:</p>
+      <div class="fc">
+        <div class="fn">Tacitus — Roman senator and historian <span class="gl-tag">Direct Quote</span></div>
+        <div class="fw">Annals 15.44 (c. AD 116)</div>
+        <p class="fq">"Christus, from whom the name had its origin, suffered the extreme penalty during the reign of Tiberius at the hands of one of our procurators, Pontius Pilatus."</p>
+        <p class="fsig">Tacitus despised Christians — the same passage calls the faith a "mischievous superstition." He confirms the execution, the executioner, and the reign in which it happened.</p>
+      </div>
+      <div class="fc">
+        <div class="fn">Josephus — Jewish historian <span class="pl">Paraphrase</span></div>
+        <div class="fw">Antiquities 18.3.3 (c. AD 93)</div>
+        <p class="fq">The famous passage on Jesus has suffered later Christian touch-ups, and scholars debate its exact original wording — but the broad scholarly judgment is that its core is authentic, including that Pilate condemned Jesus to the cross at the instigation of the Jewish leaders.</p>
+        <p class="fsig">Stated with the dispute on the table: even the skeptical reconstructions of the passage retain the crucifixion under Pilate.</p>
+      </div>
+      <div class="fc">
+        <div class="fn">The Babylonian Talmud <span class="pl">Paraphrase</span></div>
+        <div class="fw">Sanhedrin 43a</div>
+        <p class="fq">A tradition that Yeshu was hanged on the eve of Passover — "hanged" being standard Jewish idiom for crucifixion (cf. Galatians 3:13) — after a herald went out concerning his charges.</p>
+        <p class="fsig">A hostile source confirming the execution and even the Passover timing. The rabbis who preserved it had no interest in supporting Christian claims.</p>
+      </div>
+      <div class="fc">
+        <div class="fn">Lucian of Samosata — pagan satirist <span class="pl">Paraphrase</span></div>
+        <div class="fw">The Death of Peregrinus (2nd c.)</div>
+        <p class="fq">Mocks Christians as worshippers of "the man who was crucified in Palestine" for introducing their novel rites.</p>
+        <p class="fsig">For Lucian the crucifixion is not in question; it is the punchline. Ridicule presupposes the fact.</p>
+      </div>
+      <p>To overturn this, the substitution theory must hold that Romans, Jews, pagans, the disciples, Jesus' own mother standing at the cross (John 19:25–27), and the man's enemies were all deceived about who was executed in public, at a festival, in daylight — and that God arranged the deception.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s5">
+    <div class="sec-hd" onclick="ts(this)"><h2>V. The Substitution Theory Examined</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>It makes God the author of the deception</h3><span class="arr">▼</span></div>
+        <div class="obj-bd">
+          <h4>The Problem</h4><p>On the standard reading, "it was made to appear so to them" means God Himself caused the world to believe a falsehood — and on that falsehood the largest religion in history was founded, with countless souls (on Islam's own accounting) led into the central error Islam exists to correct. A deception with no announced correction for six hundred years.</p>
+          <p>This is not a Christian gotcha; it is a theological problem about the character of God that Muslim commentators have wrestled with. A God of truth who stages a false execution, lets the witnesses preach it, lets the martyrs die for it, and waits centuries to mention it — that portrait contradicts what both faiths confess about Him.</p>
+        </div>
+      </div>
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>It cannot survive the eyewitnesses at the cross</h3><span class="arr">▼</span></div>
+        <div class="obj-bd">
+          <h4>The Problem</h4><p>The crucified man spoke from the cross — to His mother and the beloved disciple standing close enough to receive His words (John 19:26–27), to the thief beside Him, to the crowd. He was buried by men who knew Him (Joseph of Arimathea, Nicodemus), and the body was handled, wrapped, and laid in the tomb. A look-alike fools a crowd at distance; he does not fool a mother at conversation range, nor companions of three years preparing a body for burial.</p>
+        </div>
+      </div>
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>It explains nothing the evidence requires</h3><span class="arr">▼</span></div>
+        <div class="obj-bd">
+          <h4>The Problem</h4><p>The theory exists for one reason: to reconcile a seventh-century text with a first-century event. It is supported by no document, no witness, no rival ancient tradition. Even the classical commentators could not agree on <em>who</em> was substituted — which is what theories look like when constructed from necessity rather than evidence.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s6">
+    <div class="sec-hd" onclick="ts(this)"><h2>VI. The Swoon Theory Examined</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>A different escape — more popular with rationalist skeptics than Muslims, though Ahmadi Islam teaches a version — is that Jesus was crucified but survived: revived in the cool tomb and appeared "risen."</p>
+      <p>Against it stands, first, Roman competence. Crucifixion squads existed to produce death and verify it; the penalty for botching an execution was severe. John records the executioners breaking the legs of the two thieves to finish them, finding Jesus already dead, and confirming it with a spear thrust to the side, from which came blood and water (John 19:32–34) — an incidental detail consistent with what such a wound would produce, recorded by a writer with no medical motive.</p>
+      <p>Second, the theory's own logic. The classic objection, framed by the skeptical scholar David Friedrich Strauss — no friend of the resurrection — is that a half-dead man, crawling from a tomb, wounded, exhausted, and in need of nursing, could not have convinced anyone he was the conqueror of death; he would have inspired pity, not worship. <span class="pl">Paraphrase</span> The disciples did not preach a survivor; they preached a man "declared to be the Son of God with power… by the resurrection from the dead" (Romans 1:4) — and they died for it.</p>
+      <p>Third, the silence afterward. A surviving Jesus must then live somewhere, age, and die — leaving family, followers, a grave, a trace. There is none. The theory replaces one miracle with a chain of impossibilities and an invisible afterlife in this world.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s7">
+    <div class="sec-hd" onclick="ts(this)"><h2>VII. Why a Crucified Messiah Was Never Invented</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>Step back from the theories and ask the historian's question: could the crucifixion be a Christian invention? It is the last thing Christians would invent. To Jews, a crucified man died under a curse — "he who is hanged is accursed of God" (Deuteronomy 21:23); a crucified Messiah was a contradiction in terms, "to the Jews a stumbling block" (1 Corinthians 1:23). To Greeks and Romans it was "foolishness" — the death of slaves and rebels, too shameful for polite literature. The earliest known visual mockery of Christianity, the Alexamenos graffito, jeers at a worshipper of a crucified figure.</p>
+      <p>Movements invent victories for their founders, not degrading executions. The criterion historians call <em>embarrassment</em> is at its maximum here: the Church proclaimed, as its central glory, the most shameful fact available — because it happened, and because what followed transformed its meaning. That is also why the fact survived hostile scrutiny in the very city and generation able to refute it.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s8">
+    <div class="sec-hd" onclick="ts(this)"><h2>VIII. Why the Cross Matters</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>The crucifixion is not an incidental fact Christians defend out of stubbornness; it is the hinge of redemption foretold by the prophets: "He was wounded for our transgressions, He was bruised for our iniquities; the chastisement for our peace was upon Him, and by His stripes we are healed" (Isaiah 53:5) — written centuries before Rome ruled Judea, preserved in the Great Isaiah Scroll centuries before Christ (see <a href="bible_corruption.html">the manuscript page</a>).</p>
+      <p>Remove the cross and Christianity does not lose a doctrine; it loses the Gospel — the atonement, the Eucharist ("This is My body which is given for you" — Luke 22:19), baptism into His death (Romans 6:3–4), and the resurrection, which is the Father's vindication of the Crucified. This is why the question can never be a friendly disagreement about a historical detail between Christianity and Islam: one faith is founded on the event the other denies. Both cannot be right, and the evidence for the event is public.</p>
+      <p>In the Coptic Orthodox Church the cross is not an embarrassment managed but the treasure carried — tattooed on Coptic wrists for centuries under pressure, signed over every prayer. "God forbid that I should boast except in the cross of our Lord Jesus Christ" (Galatians 6:14).</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s9">
+    <div class="sec-hd" onclick="ts(this)"><h2>IX. FAQ</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <div class="fi">
+        <div class="fi-hd" onclick="tf(this)"><span>Q: Doesn't the Quran's denial deserve equal weight as a religious text?</span><span class="arr">▼</span></div>
+        <div class="fi-bd"><p>Weigh the claims as history: on one side, sources from the first and second centuries — participant, sympathetic, neutral, and hostile — converging on the event; on the other, a single denial from the seventh century, six hundred miles away, with no source between it and the event. Religious reverence for a text does not change what counts as historical evidence, and on this question the Quran itself offers none — it asserts.</p></div>
+      </div>
+      <div class="fi">
+        <div class="fi-hd" onclick="tf(this)"><span>Q: Could "it was made to appear so" refer to the resurrection making the death seem undone?</span><span class="arr">▼</span></div>
+        <div class="fi-bd"><p>Readings of 4:157 vary among Muslim interpreters precisely because the standard one is so costly. But any reading that concedes the crucifixion happened has surrendered the historical dispute — and any reading that denies it inherits all the problems on this page. The verse cannot be saved by ambiguity from a dilemma created by its plain sense.</p></div>
+      </div>
+      <div class="fi">
+        <div class="fi-hd" onclick="tf(this)"><span>Q: Why would God allow His Messiah to be crucified at all?</span><span class="arr">▼</span></div>
+        <div class="fi-bd"><p>This is the real question under the Islamic objection — the instinct that God would surely rescue His prophet. The Gospel's answer is that He could have ("Do you think that I cannot now pray to My Father, and He will provide Me with more than twelve legions of angels?" — Matthew 26:53) and chose not to, because the cross was the rescue — of us. "Greater love has no one than this, than to lay down one's life for his friends" (John 15:13). What Islam sees as a failure of divine protection, the Gospel proclaims as the deepest act of divine love. See <a href="salvation.html">Salvation in the Oriental Church</a>.</p></div>
+      </div>
+      <div class="fi">
+        <div class="fi-hd" onclick="tf(this)"><span>Q: Did the early Christians ever doubt the death of Christ?</span><span class="arr">▼</span></div>
+        <div class="fi-bd"><p>One early heresy — docetism — claimed Christ only <em>seemed</em> to suffer, not because of historical evidence but because its teachers thought God too exalted to suffer. The Church answered it immediately and fiercely: St. Ignatius of Antioch, on his way to martyrdom (c. 107), insisted Christ "truly" suffered under Pontius Pilate, against those who said He suffered in semblance only. <span class="pl">Paraphrase</span> It is a striking fact that the Quranic position revives, in different dress, the very teaching the apostles' own students condemned.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s10">
+    <div class="sec-hd" onclick="ts(this)"><h2>X. Sources</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <div class="src-grid">
+        <div class="src-card"><div class="src-cat">Scripture</div>
+          <p class="src-item">Holy Bible, NKJV — Isaiah 53; Deuteronomy 21:23; Matthew 26–27; John 19; Romans 1:4; 6:3–4; 1 Corinthians 1:23; 11:26; 15:3–8; Galatians 3:13; 6:14.</p>
+        </div>
+        <div class="src-card"><div class="src-cat">Non-Christian Sources</div>
+          <p class="src-item">Tacitus, Annals 15.44 · Josephus, Antiquities 18.3.3 (with scholarly discussion of the interpolations) · Babylonian Talmud, Sanhedrin 43a · Lucian, The Death of Peregrinus.</p>
+        </div>
+        <div class="src-card"><div class="src-cat">Texts Discussed</div>
+          <p class="src-item">Quran, Surah 4:157–158 with classical commentary (substitution traditions) · Ignatius of Antioch, Epistles to the Trallians and Smyrnaeans (ANF vol. 1) · D. F. Strauss on the swoon hypothesis.</p>
+        </div>
+        <div class="src-card"><div class="src-cat">On This Site</div>
+          <p class="src-item"><a href="resurrection_skepticism.html">The Resurrection — Answering the Skeptics</a> · <a href="did_jesus_exist.html">Did Jesus Exist?</a> · <a href="bible_corruption.html">Has the Bible Been Corrupted?</a> · <a href="islamic_dilemma.html">The Islamic Dilemma</a> · <a href="divinity_of_christ.html">The Divinity of Christ</a></p>
+        </div>
+      </div>
+      <p style="font-size:.78rem;color:var(--mu);margin-top:1rem">Scripture quotations are from the New King James Version. Quotations marked <span class="gl-tag">Direct Quote</span> are taken verbatim from the cited editions; material marked <span class="pl">Paraphrase</span> is a faithful summary, not a verbatim citation. Readers are encouraged to verify every citation in the sources listed above.</p>
+    </div>
+  </section>
+
+  </main>
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+function ts(h){h.closest('.sec').classList.toggle('open')}
+function tobj(h){h.closest('.obj').classList.toggle('open')}
+function tf(h){h.closest('.fi').classList.toggle('open')}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').classList.toggle('show')}
+function closeMobile(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
+const secs=document.querySelectorAll('.sec[id]');
+const navLinks=document.querySelectorAll('#sidenav a');
+function updateNav(){let cur='';secs.forEach(s=>{if(s.getBoundingClientRect().top<120)cur=s.id;});navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur);})}
+window.addEventListener('scroll',updateNav,{passive:true});
+window.addEventListener('scroll',()=>{const st=document.documentElement.scrollTop;const sh=document.documentElement.scrollHeight-document.documentElement.clientHeight;document.getElementById('progress-bar').style.width=(st/sh*100)+'%';},{passive:true});
+window.addEventListener('scroll',()=>{document.getElementById('btt').style.opacity=window.scrollY>400?'1':'0';},{passive:true});
+let lastQuery='';
+function doSearch(){const q=document.getElementById('search-input').value.trim().toLowerCase();if(q===lastQuery)return;lastQuery=q;clearHighlights();if(!q)return;const walker=document.createTreeWalker(document.getElementById('main-content'),NodeFilter.SHOW_TEXT,null,false);const matches=[];let node;while((node=walker.nextNode())){if(node.nodeValue.toLowerCase().includes(q))matches.push(node);}matches.forEach(n=>{const idx=n.nodeValue.toLowerCase().indexOf(q);const before=document.createTextNode(n.nodeValue.substring(0,idx));const mark=document.createElement('mark');mark.textContent=n.nodeValue.substring(idx,idx+q.length);mark.style.cssText='background:#c9a84c;color:#0d0d0d;border-radius:2px;padding:0 2px;';const after=document.createTextNode(n.nodeValue.substring(idx+q.length));const frag=document.createDocumentFragment();frag.appendChild(before);frag.appendChild(mark);frag.appendChild(after);n.parentNode.replaceChild(frag,n);});const firstMark=document.querySelector('mark');if(firstMark)firstMark.scrollIntoView({behavior:'smooth',block:'center'});}
+function clearHighlights(){document.querySelectorAll('mark').forEach(m=>{m.parentNode.replaceChild(document.createTextNode(m.textContent),m);});}
+document.getElementById('search-input').addEventListener('keydown',e=>{if(e.key==='Enter')doSearch();if(e.key==='Escape'){document.getElementById('search-input').value='';lastQuery='';clearHighlights();}});
+document.getElementById('search-btn').addEventListener('click',doSearch);
+document.querySelector('.sec').classList.add('open');
+</script>
+</body>
+</html>
