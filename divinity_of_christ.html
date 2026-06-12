@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>THE ORTHODOX LAMP — The Divinity of Christ: Lord, Prophet, or Legend?</title>
+<style>
+:root{--gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;--bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--tx:#e8e0d0;--mu:#a09880;--red:#8b2020;--br:#2a2a2a;--bg5:#3a2e10;--sidebar-w:270px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.75}
+a{color:var(--gold);text-decoration:none}
+#progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(to right,var(--gd),var(--gold),var(--gl));width:0%;z-index:500}
+#sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:200;transition:transform .3s}
+#sidebar h2{font-size:.7rem;letter-spacing:.15em;color:var(--gold);text-transform:uppercase;padding:1.4rem 1.2rem .5rem;border-bottom:1px solid var(--br)}
+#sidenav a{display:block;padding:.42rem 1.2rem;font-size:.82rem;color:var(--mu);border-left:3px solid transparent;transition:all .2s}
+#sidenav a:hover,#sidenav a.active{color:var(--gl);border-left-color:var(--gold);background:var(--bg5)}
+.search-wrap{padding:.8rem 1rem;border-bottom:1px solid var(--br);display:flex;gap:.4rem}
+.search-wrap input{flex:1;background:var(--bg3);border:1px solid var(--br);color:var(--tx);padding:.35rem .6rem;border-radius:4px;font-size:.8rem}
+.search-wrap button{background:var(--gold);color:#0d0d0d;border:none;padding:.35rem .7rem;border-radius:4px;cursor:pointer;font-weight:700;font-size:.8rem}
+#main-content{margin-left:var(--sidebar-w);padding:0 2rem 4rem}
+.mob-toggle{display:none;position:fixed;bottom:1.2rem;right:1.2rem;background:var(--gold);color:#0d0d0d;border:none;width:48px;height:48px;border-radius:50%;font-size:1.4rem;cursor:pointer;z-index:300;box-shadow:0 2px 12px rgba(0,0,0,.5)}
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:150}
+#overlay.show{display:block}
+.hero{text-align:center;padding:4rem 1rem 2.5rem;border-bottom:1px solid var(--br);background:linear-gradient(to bottom,var(--bg2),var(--bg))}
+.si{font-size:2.2rem;color:var(--gold);display:block;margin-bottom:.5rem}
+.st{font-size:2rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--tx)}
+.st span{color:var(--gold)}
+.ss{font-size:1.05rem;color:var(--gl);margin:.6rem 0 .4rem;font-style:italic}
+.tg{font-size:.85rem;color:var(--mu);margin-bottom:.8rem}
+.orn{color:var(--gold);font-size:1.1rem;letter-spacing:.4em;margin-top:.5rem}
+.sec{border:1px solid var(--br);border-radius:8px;margin:1.5rem 0;background:var(--bg2);overflow:hidden}
+.sec-hd{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.3rem;cursor:pointer;user-select:none;background:var(--bg3);border-bottom:1px solid transparent;transition:background .2s}
+.sec-hd:hover{background:var(--bg4)}
+.sec.open .sec-hd{border-bottom-color:var(--br);background:var(--bg4)}
+.sec-hd h2{font-size:1rem;color:var(--gl);text-transform:uppercase;letter-spacing:.05em}
+.sec-bd{display:none;padding:1.4rem 1.5rem}
+.sec.open .sec-bd{display:block}
+.sec-bd h3{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin:1.4rem 0 .7rem;padding-bottom:.3rem;border-bottom:1px solid var(--bg5)}
+.sec-bd p{color:var(--tx);margin-bottom:.9rem;font-size:.95rem}
+.arr{color:var(--gold);font-size:.9rem;transition:transform .3s}
+.sec.open .arr{transform:rotate(180deg)}
+.sv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin:.8rem 0 1.2rem}
+.sv{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:1rem}
+.sv .ref{font-size:.75rem;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.4rem}
+.sv .labels{margin-bottom:.5rem;display:flex;gap:.4rem;flex-wrap:wrap}
+.sv .labels span{font-size:.65rem;font-weight:700;padding:.15rem .45rem;border-radius:3px;text-transform:uppercase;letter-spacing:.06em}
+.labels .prot{background:#4a1a1a;color:#e87070}
+.labels .oo{background:#1a3a1a;color:#70c870}
+.labels .ctx{background:#1a2a3a;color:#70aacc}
+.sv .txt{font-style:italic;color:var(--gl);font-size:.88rem;margin-bottom:.5rem;border-left:2px solid var(--gold);padding-left:.7rem}
+.sv .interp{font-size:.82rem;color:var(--mu)}
+.fc{background:var(--bg3);border:1px solid var(--br);border-left:3px solid var(--gold);border-radius:6px;padding:1rem 1.1rem;margin:.8rem 0}
+.fn{font-size:.8rem;font-weight:700;color:var(--gl);text-transform:uppercase;letter-spacing:.07em}
+.fw{font-size:.75rem;color:var(--mu);margin:.2rem 0 .5rem;font-style:italic}
+.fq{font-style:italic;color:var(--tx);font-size:.88rem;border-left:2px solid var(--bg5);padding-left:.8rem;margin:.4rem 0 .6rem}
+.fsig{font-size:.8rem;color:var(--mu)}
+.pl{background:#4a1a1a;color:#e87070;font-size:.65rem;font-weight:700;padding:.1rem .35rem;border-radius:3px;text-transform:uppercase;letter-spacing:.06em;vertical-align:middle;margin-left:.3rem;font-style:normal}
+.gl-tag{background:#1a3a1a;color:#70c870;font-size:.65rem;font-weight:700;padding:.1rem .35rem;border-radius:3px;text-transform:uppercase;letter-spacing:.06em;vertical-align:middle;margin-left:.3rem;font-style:normal}
+.obj{background:var(--bg3);border:1px solid #4a1a1a;border-left:3px solid var(--red);border-radius:6px;margin:.8rem 0;overflow:hidden}
+.obj-hd{display:flex;justify-content:space-between;align-items:center;padding:.8rem 1rem;cursor:pointer;user-select:none}
+.obj-hd:hover{background:var(--bg4)}
+.obj-hd h3{font-size:.85rem;color:#e87070;font-weight:700}
+.obj-bd{display:none;padding:.9rem 1.1rem;border-top:1px solid #4a1a1a}
+.obj.open .obj-bd{display:block}
+.obj.open .arr{transform:rotate(180deg)}
+.obj-bd h4{font-size:.75rem;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.4rem;margin-top:.6rem}
+.obj-bd h4:first-child{margin-top:0}
+.obj-bd p{font-size:.85rem;color:var(--tx);margin-bottom:.6rem}
+.fi{background:var(--bg3);border:1px solid var(--br);border-radius:6px;margin:.6rem 0;overflow:hidden}
+.fi-hd{display:flex;justify-content:space-between;align-items:center;padding:.8rem 1rem;cursor:pointer;user-select:none;font-size:.88rem;color:var(--gl)}
+.fi-hd:hover{background:var(--bg4)}
+.fi-bd{display:none;padding:.9rem 1.1rem;border-top:1px solid var(--br);font-size:.85rem;color:var(--tx)}
+.fi.open .fi-bd{display:block}
+.fi.open .arr{transform:rotate(180deg)}
+.fi-bd p{margin-bottom:.7rem}
+.comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:.8rem 0}
+.comp-card{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:1rem}
+.comp-card.prot{border-top:3px solid #e87070}
+.comp-card.oo{border-top:3px solid var(--gold)}
+.comp-card .ct{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.6rem}
+.comp-card.prot .ct{color:#e87070}
+.comp-card.oo .ct{color:var(--gold)}
+.comp-card p{font-size:.82rem;color:var(--mu)}
+.tl{border-left:2px solid var(--bg5);margin:1rem 0 1rem .4rem;padding-left:1.2rem}
+.tl-item{position:relative;margin-bottom:1.1rem}
+.tl-item::before{content:'';position:absolute;left:-1.62rem;top:.45rem;width:11px;height:11px;border-radius:50%;background:var(--gold);border:2px solid var(--bg2)}
+.tl-date{font-size:.78rem;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase}
+.tl-item p{font-size:.85rem;color:var(--mu);margin:.2rem 0 0}
+.src-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;margin:.8rem 0}
+.src-card{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:1rem}
+.src-cat{font-size:.72rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.6rem;padding-bottom:.4rem;border-bottom:1px solid var(--bg5)}
+.src-item{font-size:.8rem;color:var(--mu);margin-bottom:.5rem;padding-left:.7rem;border-left:2px solid var(--br)}
+.btt{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--gold);color:#0d0d0d;border:none;width:44px;height:44px;border-radius:50%;font-size:1.2rem;cursor:pointer;opacity:0;transition:opacity .3s;z-index:300;font-weight:700}
+@media(max-width:768px){#sidebar{transform:translateX(-100%)}#sidebar.open{transform:translateX(0)}#main-content{margin-left:0;padding:0 1rem 4rem}.mob-toggle{display:flex;align-items:center;justify-content:center}.sv-grid{grid-template-columns:1fr}.comp-grid{grid-template-columns:1fr}}
+
+.lampsvg{display:block;margin:0 auto 14px;height:auto}
+.lampsvg .lampflame{animation:lampflick 3.2s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes lampflick{0%,100%{transform:scaleY(1) scaleX(1);opacity:.95}25%{transform:scaleY(1.06) scaleX(.97);opacity:1}50%{transform:scaleY(.96) scaleX(1.03);opacity:.9}75%{transform:scaleY(1.04) scaleX(.98);opacity:1}}
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<nav id="sidebar">
+  <div class="search-wrap"><input type="text" id="search-input" placeholder="Search…"><button id="search-btn">Go</button></div>
+  <svg class="lampsvg" width="64" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><radialGradient id="lmpGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffb95e" stop-opacity=".55"/><stop offset="100%" stop-color="#ffb95e" stop-opacity="0"/></radialGradient><linearGradient id="lmpFlame" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#ff7a1f"/><stop offset="55%" stop-color="#ffb347"/><stop offset="100%" stop-color="#ffe9b0"/></linearGradient><linearGradient id="lmpBrass" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e3b860"/><stop offset="50%" stop-color="#a87b35"/><stop offset="100%" stop-color="#7a5523"/></linearGradient></defs><circle cx="60" cy="38" r="34" fill="url(#lmpGlow)"/><g class="lampflame"><path d="M60 16 C66 26 70 32 70 40 C70 48 65.5 53 60 53 C54.5 53 50 48 50 40 C50 32 54 26 60 16 Z" fill="url(#lmpFlame)"/><path d="M60 30 C63 35 64.5 38 64.5 42 C64.5 46.5 62.5 49 60 49 C57.5 49 55.5 46.5 55.5 42 C55.5 38 57 35 60 30 Z" fill="#fff3cf" opacity=".85"/></g><rect x="56" y="52" width="8" height="7" rx="2" fill="#8a6228"/><path d="M28 62 L92 62 C92 80 78 92 60 92 C42 92 28 80 28 62 Z" fill="url(#lmpBrass)"/><rect x="24" y="58" width="72" height="6" rx="3" fill="#caa14e"/><rect x="56" y="92" width="8" height="16" fill="url(#lmpBrass)"/><path d="M38 118 C38 110 47 108 60 108 C73 108 82 110 82 118 L82 122 L38 122 Z" fill="url(#lmpBrass)"/><rect x="32" y="122" width="56" height="6" rx="3" fill="#caa14e"/></svg>
+  <h2>The Orthodox Lamp</h2>
+  <nav id="sidenav">
+    <a href="#s1">I. Introduction</a>
+    <a href="#s2">II. What the Church Confesses</a>
+    <a href="#s3">III. Christ's Own Claims</a>
+    <a href="#s4">IV. The Witness of the Apostles</a>
+    <a href="#s5">V. The Alternatives Answered</a>
+    <a href="#s6">VI. Distinct from the Father, One God</a>
+    <a href="#s7">VII. The Witness of the Fathers</a>
+    <a href="#s8">VIII. Modern Objections</a>
+    <a href="#s9">IX. FAQ</a>
+    <a href="#s10">X. Sources</a>
+  </nav>
+</nav>
+<div id="overlay" onclick="closeMobile()"></div>
+<button class="mob-toggle" onclick="toggleSidebar()">☰</button>
+<main id="main-content">
+  <div class="hero">
+    <span class="si">☩</span>
+    <h1 class="st">THE <span>ORTHODOX</span> LAMP</h1>
+    <p class="ss">The Divinity of Christ — Lord, Prophet, or Legend?</p>
+    <p class="tg">"And Thomas answered and said to Him, 'My Lord and my God!'" — John 20:28</p>
+    <div class="orn">✦ ✦ ✦</div>
+  </div>
+
+  <section class="sec open" id="s1">
+    <div class="sec-hd" onclick="ts(this)"><h2>I. Introduction</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>Nearly everyone honors Jesus of Nazareth. Islam calls Him a great prophet; secular admirers call Him history's finest moral teacher; others say He was a sincere visionary whose followers later deified Him. The one thing all these views share is that they stop short of what He actually claimed and what His Church has confessed from the beginning: that He is God — "true God of true God," as the Creed says.</p>
+      <p>The options are limited, and they have been laid out honestly since antiquity. A man who said the things Jesus said is either telling the truth (Lord), knowingly lying (deceiver), sincerely deluded (madman), or never said them at all (legend). The comfortable modern compromise — "a good teacher, but not God" — is the one option His own words close off. C. S. Lewis put the trilemma famously, but the logic is far older: the Sanhedrin itself understood Him to claim deity, and condemned Him for it (Mark 14:61–64). This page walks through what He claimed, what His apostles preached, and why each alternative fails.</p>
+      <div class="comp-grid">
+        <div class="comp-card prot"><div class="ct">The Alternatives</div><p>Jesus was a prophet (Islam), a great moral teacher (secular admiration), a sincere mystic whose words were inflated by later legend (liberal scholarship), or a lesser, created heavenly being (Arius then, others now). In every version, the worship of Jesus as God is a mistake His followers made about Him.</p></div>
+        <div class="comp-card oo"><div class="ct">Oriental Orthodox Teaching</div><p>Jesus Christ is the eternal Son and Word of God — distinct in Person from the Father, one with Him in essence — who became man without ceasing to be God. The Church did not promote a man to godhood; she recognized God who had come down to man (John 1:14). This is not a late development but the confession of the apostles who knew Him.</p></div>
+      </div>
+      <p>This page concerns <em>whether</em> Christ is God. For <em>how</em> He is God and man in one, see the page on <a href="christology.html">Christology</a>; for how one God is Father, Son, and Holy Spirit, see the page on <a href="trinity.html">the Trinity</a>.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s2">
+    <div class="sec-hd" onclick="ts(this)"><h2>II. What the Church Confesses</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>Precision first, because every alternative trades on a misstatement of the claim.</p>
+      <p><strong>The Son is true God, not a second god.</strong> The Nicene Creed, which the Coptic Church confesses in every Liturgy, calls the Son "Light of Light, true God of true God, begotten not made, of one essence with the Father." There is one God; the Son is not a rival deity or a creature promoted to divine rank, but God's own eternal Word — "and the Word was God" (John 1:1).</p>
+      <p><strong>The Son is not the Father.</strong> The Church has never taught that Jesus is the Father wearing a mask — that error (modalism) was rejected as firmly as Arianism. The Son is eternally distinct in Person from the Father: He prays to the Father, is sent by the Father, returns to the Father. Distinction of Person; unity of essence. So the common challenge "who was Jesus praying to, Himself?" refutes modalism, which the Church also rejects — not the Creed.</p>
+      <p><strong>"Begotten" is not "made."</strong> The Son's begetting is eternal, not an event in time, and has nothing to do with the pagan idea of a god taking a consort — a notion Scripture and the Fathers reject as emphatically as the Quran does. The Creed's very point in saying "begotten, not made" is that the Son is of the Father's own essence, the way light is of fire — not a creature, however exalted.</p>
+      <p><strong>And He became man without ceasing to be God.</strong> "The Word became flesh and dwelt among us" (John 1:14). The eternal Son took true humanity from the Virgin Mary, so that the man Jesus of Nazareth is the Word of God Himself living a human life — hungry, weeping, dying — without His divinity being diminished or His humanity being absorbed.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s3">
+    <div class="sec-hd" onclick="ts(this)"><h2>III. Christ's Own Claims</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>The objection "Jesus never said the exact words 'I am God'" misunderstands how a first-century Jew would make — and hear — the claim. Within Israel's strict monotheism, the claim is made by doing and saying what belongs to God alone. Jesus did so repeatedly, and His hearers understood Him perfectly: they reached for stones.</p>
+      <div class="sv-grid">
+        <div class="sv"><div class="ref">John 8:58–59</div><div class="labels"><span class="oo">The Divine Name</span></div><div class="txt">"Most assuredly, I say to you, before Abraham was, I AM." Then they took up stones to throw at Him…</div><div class="interp">Not "before Abraham was, I was" — "I AM," the name God speaks from the burning bush (Exodus 3:14). The grammar is broken on purpose. His hearers did not mishear: the penalty they reached for was the penalty for blasphemy.</div></div>
+        <div class="sv"><div class="ref">Mark 14:61–64</div><div class="labels"><span class="oo">The Trial</span></div><div class="txt">Again the high priest asked Him… "Are You the Christ, the Son of the Blessed?" Jesus said, "I am. And you will see the Son of Man sitting at the right hand of the Power, and coming with the clouds of heaven." Then the high priest tore his clothes and said, "What further need do we have of witnesses? You have heard the blasphemy!"</div><div class="interp">Jesus answers under oath, at the cost of His life, by combining Psalm 110:1 and Daniel 7:13–14 — the Son of Man who rides the clouds (in the Old Testament, God's own conveyance) and whom "all peoples, nations, and languages should serve." Claiming to be Messiah was not blasphemy; this was. The court that heard Him is the best witness to what He meant.</div></div>
+        <div class="sv"><div class="ref">John 10:30–33</div><div class="labels"><span class="oo">One with the Father</span></div><div class="txt">"I and My Father are one." Then the Jews took up stones again to stone Him… "For a good work we do not stone You, but for blasphemy, and because You, being a Man, make Yourself God."</div><div class="interp">His audience states the claim for us. Jesus' reply (vv. 34–38) does not retract it — He sharpens it: "the Father is in Me, and I in Him."</div></div>
+        <div class="sv"><div class="ref">Mark 2:5–12</div><div class="labels"><span class="oo">Forgiving Sins</span></div><div class="txt">"Son, your sins are forgiven you." …"Why does this Man speak blasphemies like this? Who can forgive sins but God alone?"</div><div class="interp">Anyone can forgive a wrong done to himself. Jesus forgives sins as such — sins against God — on His own authority, and heals the paralytic precisely "that you may know that the Son of Man has power on earth to forgive sins." The scribes' theology was correct: only God can do this. That was the point.</div></div>
+        <div class="sv"><div class="ref">John 20:28–29</div><div class="labels"><span class="oo">Accepting Worship</span></div><div class="txt">And Thomas answered and said to Him, "My Lord and my God!" Jesus said to him, "Thomas, because you have seen Me, you have believed. Blessed are those who have not seen and yet have believed."</div><div class="interp">A devout Jew addresses Jesus as "my God" — and Jesus blesses the confession instead of correcting it. Contrast every godly man and angel in Scripture: Peter lifts Cornelius up — "Stand up; I myself am also a man" (Acts 10:26) — and the angel twice stops John: "Worship God!" (Revelation 19:10; 22:9). Jesus accepts worship repeatedly (Matthew 14:33; 28:9, 17) and never once deflects it.</div></div>
+        <div class="sv"><div class="ref">Matthew 5:21–22; Mark 2:28</div><div class="labels"><span class="oo">Authority over the Law</span></div><div class="txt">"You have heard that it was said to those of old… But I say to you…" / "Therefore the Son of Man is also Lord of the Sabbath."</div><div class="interp">Every prophet says "thus says the LORD." Jesus says "but I say to you" — amending Torah on His own authority — and claims lordship over the Sabbath, which is God's own institution (Exodus 20:10, "the Sabbath of the LORD your God"). No prophet talks like this; that is why "the people were astonished… for He taught them as one having authority, and not as the scribes" (Matthew 7:28–29).</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s4">
+    <div class="sec-hd" onclick="ts(this)"><h2>IV. The Witness of the Apostles</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>If the divinity of Christ were a legend, it should appear late. Instead it saturates the earliest documents Christianity possesses — the letters of Paul, written within roughly two to three decades of the crucifixion, quoting hymns and confessions older still.</p>
+      <div class="sv-grid">
+        <div class="sv"><div class="ref">Philippians 2:5–11</div><div class="labels"><span class="oo">The Earliest Hymn</span></div><div class="txt">"…Christ Jesus, who, being in the form of God, did not consider it robbery to be equal with God, but made Himself of no reputation, taking the form of a bondservant… Therefore God also has highly exalted Him and given Him the name which is above every name, that at the name of Jesus every knee should bow…"</div><div class="interp">Most scholars regard this as a pre-Pauline hymn Paul quotes — worship of Christ as divine within the first Christian generation. Its climax quotes Isaiah 45:23, where every knee bows <em>to the LORD alone</em>, and applies it to Jesus.</div></div>
+        <div class="sv"><div class="ref">John 1:1, 14</div><div class="labels"><span class="oo">The Word</span></div><div class="txt">"In the beginning was the Word, and the Word was with God, and the Word was God… And the Word became flesh and dwelt among us, and we beheld His glory, the glory as of the only begotten of the Father."</div><div class="interp">Both truths in one sentence: "with God" (distinct from the Father) and "was God" (one in essence). The whole Creed is here in seed.</div></div>
+        <div class="sv"><div class="ref">Colossians 1:16–17; 2:9</div><div class="labels"><span class="oo">Creator, Not Creature</span></div><div class="txt">"For by Him all things were created that are in heaven and that are on earth, visible and invisible… All things were created through Him and for Him. And He is before all things, and in Him all things consist." / "For in Him dwells all the fullness of the Godhead bodily."</div><div class="interp">If <em>all</em> created things were created by Him, He is not one of them. "Firstborn over all creation" (1:15) is a title of rank, as in Psalm 89:27 where David, the youngest son, is appointed "firstborn" — the verses that follow define it: Creator of everything.</div></div>
+        <div class="sv"><div class="ref">Hebrews 1:3, 8</div><div class="labels"><span class="oo">God Addresses the Son as God</span></div><div class="txt">"…who being the brightness of His glory and the express image of His person, and upholding all things by the word of His power…" — "But to the Son He says: 'Your throne, O God, is forever and ever.'"</div><div class="interp">The Father Himself, quoting Psalm 45, addresses the Son as "O God." The chapter's whole argument is that the Son is not an angel — not the highest creature, but the Creator whom angels worship (1:6).</div></div>
+        <div class="sv"><div class="ref">Titus 2:13; Romans 9:5; Revelation 22:13</div><div class="labels"><span class="oo">Called God Outright</span></div><div class="txt">"…our great God and Savior Jesus Christ" / "…Christ… who is over all, the eternally blessed God" / "I am the Alpha and the Omega, the Beginning and the End, the First and the Last."</div><div class="interp">"The First and the Last" is the LORD's own self-description in Isaiah 44:6 — "besides Me there is no God" — and in Revelation it is the risen Jesus speaking (cf. 1:17–18; 2:8).</div></div>
+        <div class="sv"><div class="ref">1 Corinthians 8:6</div><div class="labels"><span class="oo">Christ inside the Shema</span></div><div class="txt">"…yet for us there is one God, the Father, of whom are all things, and we for Him; and one Lord Jesus Christ, through whom are all things, and through whom we live."</div><div class="interp">Paul takes Israel's daily creed — "The LORD our God, the LORD is one" (Deuteronomy 6:4) — and places Jesus inside it: "God" answering to <em>Elohim</em>, "Lord" to the divine name itself. The earliest Christians likewise "call on the name of the Lord" Jesus (1 Corinthians 1:2), language Joel 2:32 reserves for the LORD.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s5">
+    <div class="sec-hd" onclick="ts(this)"><h2>V. The Alternatives Answered</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>Alternative 1: A prophet, but not God (the claim of Islam)</h3><span class="arr">▼</span></div>
+        <div class="obj-bd"><h4>The Claim</h4><p>Jesus (Isa) was a great messenger of God — virgin-born, miracle-working, the Messiah — but a man, and to worship him is to compromise God's oneness.</p><h4>Response</h4><p>The Church honors the intention — guarding God's oneness — but the category "prophet only" does not fit the evidence. Prophets say "thus says the LORD"; Jesus says "but I say to you." Prophets refuse worship (as do angels — Revelation 19:10); Jesus accepts it. Prophets pray for forgiveness; Jesus grants it. Prophets point away from themselves; Jesus says "come to Me" (Matthew 11:28), "I am the way, the truth, and the life" (John 14:6), and "before Abraham was, I AM." A "prophet" who says such things while not being God would be precisely what prophets must never be — one who leads the people to worship someone other than God. Notably, the Quran itself gives Jesus titles it gives no other prophet: the Messiah, the Word of God and a Spirit from Him (Quran 4:171; 3:45), virgin-born and pure (19:19–21). The question this page presses is simply whether "prophet" can contain the man who said what the earliest records report Him saying.</p></div>
+      </div>
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>Alternative 2: A madman — sincerely deluded</h3><span class="arr">▼</span></div>
+        <div class="obj-bd"><h4>The Claim</h4><p>A man who believes himself God is, by ordinary clinical standards, suffering a grandiose delusion. Jesus was sincere — and wrong.</p><h4>Response</h4><p>Grandiose delusion has a recognizable shape: instability, grievance when slighted, collapse under pressure, an inner world that warps everything around it. Set that profile against the man in the Gospels: the parables' piercing realism about human nature; the composure under interrogation and torture ("He answered nothing" — Mark 15:3–5); the concern for others at the point of His own death (Luke 23:34, 43; John 19:26–27); the Sermon on the Mount, which even His critics rank among the sanest moral documents ever spoken. The skeptics of His own day never thought Him mad — the charge at His trial was blasphemy, not insanity, and madmen are dismissed, not crucified as threats. A delusion that produces the most lucid teaching in history is a diagnosis that refutes itself.</p></div>
+      </div>
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>Alternative 3: A deceiver — He knew He was not God</h3><span class="arr">▼</span></div>
+        <div class="obj-bd"><h4>The Claim</h4><p>Jesus, or His inner circle, fabricated the divine claims for influence.</p><h4>Response</h4><p>Liars lie for gain. The claim of deity, in first-century Judaea, purchased only poverty, hatred, and a cross — and Jesus walked toward it with eyes open, refusing every exit (John 18:4–8; Matthew 26:53). A deceiver recants on the gallows; He repeated the claim at His trial, when one sentence of retraction would have saved His life. And the deception would then have to be sustained by disciples who got nothing for it but floggings and execution — men do not die for what they know they invented (see <a href="resurrection_skepticism.html">the Resurrection page</a>). The hostile Jewish tradition preserved in the Talmud remembers Jesus as one executed for "sorcery" and leading Israel astray — hostile confirmation that He did the wonders and made the claims, disputing only their source.</p></div>
+      </div>
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>Alternative 4: A legend — the deification came later</h3><span class="arr">▼</span></div>
+        <div class="obj-bd"><h4>The Claim</h4><p>The real Jesus claimed nothing divine; decades of retelling among Gentiles inflated a teacher into a god (so, in different forms, Ehrman's "exaltation Christology" and older liberal scholarship).</p><h4>Response</h4><p>Legends need time, and the documents leave none. Philippians 2 — Christ "in the form of God," receiving the worship Isaiah reserves for the LORD — is a hymn already traditional when Paul quoted it in the 50s. The confession "Jesus is Lord," with the Aramaic prayer <em>Maranatha</em>, "our Lord, come!" (1 Corinthians 16:22), goes back to the original Aramaic-speaking Jewish community — Gentile legend cannot explain an Aramaic prayer addressed to Jesus. By about AD 112 the pagan governor Pliny reports Christians singing "a hymn to Christ, as to a god" as long-settled custom (see Section VII). And the deifiers would have to be the same devout Jews whose entire identity was refusing to worship any creature — the least likely population on earth to invent a divine man. Something forced the conclusion on them; they said it was the Resurrection.</p></div>
+      </div>
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>Alternative 5: A good teacher — and nothing more</h3><span class="arr">▼</span></div>
+        <div class="obj-bd"><h4>The Claim</h4><p>One can admire Jesus' ethics while setting aside the supernatural claims — keep the Sermon on the Mount, drop the divinity.</p><h4>Response</h4><p>This is the one position His own words exclude, because the "teaching" and the claims are not separable strands — the claims <em>are</em> the teaching. "Come to Me, all you who labor"; "he who loses his life <em>for My sake</em> will find it"; "heaven and earth will pass away, but My words will by no means pass away"; "no one comes to the Father except through Me." Remove the self-claims from the Gospels and the famous ethics come away with them — they hang on His authority to make them. As C. S. Lewis argued in <em>Mere Christianity</em> (Paraphrase), a merely human being who said such things would not be a great moral teacher but a lunatic or worse; the one option Jesus did not leave open is patronizing Him as a fine teacher while rejecting His central claim. Good teachers do not accept worship. He did.</p></div>
+      </div>
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>Alternative 6: A lesser, created divine being (Arius then, others now)</h3><span class="arr">▼</span></div>
+        <div class="obj-bd"><h4>The Claim</h4><p>The Son is the first and greatest creature — "a god" (so some render John 1:1), but not the eternal God. "There was when He was not," said Arius; modern groups argue similarly.</p><h4>Response</h4><p>Scripture closes this door from both sides. From above: "all things were created through Him," "without Him nothing was made that was made" (John 1:3) — a creature cannot be the maker of <em>all</em> created things, himself included. From below: Israel's God says "besides Me there is no God" (Isaiah 44:6, 8) and "My glory I will not give to another" (Isaiah 42:8) — there is no category of "lesser true god" for the Son to occupy; a being who is worshipped, creates, forgives, and judges either is the one God or is an idol. The Church saw the dilemma clearly at Nicaea (AD 325): if the Son is a creature, then Christians are idolaters every time they pray to Him — and Christians had been praying to Him from the beginning (Acts 7:59; 1 Corinthians 1:2). On "the Father is greater than I" and "the firstborn," see Sections VI and VIII.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s6">
+    <div class="sec-hd" onclick="ts(this)"><h2>VI. Distinct from the Father, One God</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>The last alternative is the subtlest: granting that Jesus is divine in some sense, but "separate" from the Father — a second, subordinate deity, or simply not the same being at all. Here the Church's confession must be stated with care, because Scripture teaches two things at once and the Creed refuses to drop either.</p>
+      <p><strong>The Son is truly distinct from the Father.</strong> At the Jordan, the Son stands in the water, the Father speaks from heaven, the Spirit descends as a dove (Matthew 3:16–17) — three Persons, plainly not one Person in three costumes. The Son prays to the Father (John 17), is sent by Him, and returns to Him. The Church condemned modalism — the idea that "Father" and "Son" are masks of a single Person — centuries before Nicaea.</p>
+      <p><strong>But distinct is not separate.</strong> "I and My Father are one" (John 10:30); "He who has seen Me has seen the Father" (John 14:9); "all things that the Father has are Mine" (John 16:15); "that all should honor the Son just as they honor the Father" (John 5:23). The Son has everything the Father has — except being the Father. One essence, one will, one worship; two Persons (with the Holy Spirit, three). Not three gods: one God.</p>
+      <p><strong>"My Father is greater than I" (John 14:28).</strong> The Fathers answered this text already in the fourth century, two ways that work together. First, the Son speaks as man: the eternal Word had taken "the form of a bondservant" (Philippians 2:7), and a servant's place is genuinely lower — He who is equal to the Father in His divinity became less than the angels in His humanity (Hebrews 2:9). Second, even within the Godhead the Father is the <em>source</em> — the Son is begotten <em>of</em> the Father — which is an order of origin, not a gradient of deity, just as a son is from his father yet not less human than he. What the verse cannot mean is that the Son is a creature; the same Gospel opens by calling Him God and Creator of all (John 1:1–3).</p>
+      <p><strong>Why it matters.</strong> This is not theological hair-splitting. If the Son is separate from the Father — a lesser god — then the Cross is one being punishing a different, innocent being, and worshipping Jesus is idolatry. Because the Son is one God with the Father, the Cross is God Himself bearing what we could not (2 Corinthians 5:19, "God was in Christ reconciling the world to Himself"), and the worship of Jesus is the worship of the one true God. Salvation itself hangs here, which is why the Church fought the Arian crisis as a battle for the Gospel: only God can save, so if Christ is not God, we are not saved. That is St. Athanasius's whole argument.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s7">
+    <div class="sec-hd" onclick="ts(this)"><h2>VII. The Witness of the Fathers</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>The confession of Christ's deity is not a fourth-century novelty. It is the unbroken voice of the Church from the generation that knew the apostles — and even pagan observers heard it.</p>
+      <div class="fc"><div class="fn">St. Ignatius of Antioch <span class="gl-tag">Direct Quote</span></div><div class="fw">Epistle to the Ephesians 18 (c. AD 107)</div><div class="fq">"For our God, Jesus Christ, was, according to the appointment of God, conceived in the womb by Mary, of the seed of David, but by the Holy Ghost."</div><div class="fsig">A disciple of the apostle John, writing on the road to martyrdom, says "our God, Jesus Christ" as naturally as breathing — and addresses his letter to "the Church… at Ephesus" in the name of "Jesus Christ our God." Two centuries before Nicaea.</div></div>
+      <div class="fc"><div class="fn">Pliny the Younger (pagan governor) <span class="gl-tag">Direct Quote</span></div><div class="fw">Letters 10.96, to the Emperor Trajan (c. AD 112)</div><div class="fq">"…they were in the habit of meeting on a certain fixed day before it was light, when they sang in alternate verses a hymn to Christ, as to a god…"</div><div class="fsig">A hostile Roman official, interrogating ordinary Christians in Asia Minor, reports the worship of Christ as settled custom — some of those he questioned said they had left the faith as much as twenty years earlier. Outside testimony that Christ was worshipped as God within living memory of the apostles.</div></div>
+      <div class="fc"><div class="fn">St. Melito of Sardis <span class="pl">Paraphrase</span></div><div class="fw">On Pascha (c. AD 170)</div><div class="fq">In his great paschal homily Melito presses the paradox of the Cross to its limit: He who hung the earth in place was hung; He who fixed the heavens was fixed to wood; God Himself was slain by the hand of Israel. The shock is deliberate — the Crucified is no mere man.</div><div class="fsig">Second-century liturgical preaching already assumes what the Creed will later define: the one on the Cross is God.</div></div>
+      <div class="fc"><div class="fn">St. Athanasius the Apostolic <span class="gl-tag">Direct Quote</span></div><div class="fw">On the Incarnation 54 (c. AD 318)</div><div class="fq">"For He was made man that we might be made God."</div><div class="fsig">The 20th Pope of Alexandria compresses the whole logic of salvation into one line: the exchange only works if the one who became man is truly God. This is why Athanasius — and the Coptic Church behind him — refused every compromise with Arius, even against the whole world (<em>Athanasius contra mundum</em>).</div></div>
+      <div class="fc"><div class="fn">St. Cyril of Alexandria <span class="pl">Paraphrase</span></div><div class="fw">Letters and treatises against Nestorius (c. AD 430)</div><div class="fq">Cyril's constant theme: the Word of God did not merely dwell in a man named Jesus — the Word Himself <em>became</em> man, so that Mary is rightly called Theotokos, "Birth-giver of God," and the one who suffered on the Cross is the Word in His own flesh. His watchword, "one incarnate nature of God the Word," remains the banner of the Oriental Orthodox confession.</div><div class="fsig">The deity of Christ is not an abstract attribute but the identity of the person: the baby in the manger and the man on the Cross is God the Word.</div></div>
+      <div class="fc"><div class="fn">Pope Shenouda III <span class="pl">Paraphrase</span></div><div class="fw">The Divinity of Christ (1989)</div><div class="fq">The late Coptic patriarch devoted an entire book to this question, arguing from Christ's titles, His acceptance of worship, His miracles done in His own name, His forgiveness of sins, and His "I AM" sayings that the divinity of Christ is the central dogma on which Christianity stands, and answering the objections of Arians old and new verse by verse.</div><div class="fsig">The modern Coptic Church teaching with one voice across eighteen centuries: the confession of Thomas is her own.</div></div>
+    </div>
+  </section>
+
+  <section class="sec" id="s8">
+    <div class="sec-hd" onclick="ts(this)"><h2>VIII. Modern Objections</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>Objection: "Jesus never said the words 'I am God'"</h3><span class="arr">▼</span></div>
+        <div class="obj-bd"><h4>The Claim</h4><p>Nowhere in the Gospels does Jesus utter the sentence "I am God"; the doctrine therefore rests on inference, not His own words.</p><h4>Response</h4><p>By this standard Jesus also never claimed to be a prophet, a teacher, or the Messiah in the required formula. First-century claims are made in first-century idiom: taking the divine name ("before Abraham was, I AM"), accepting worship, forgiving sins, claiming the Son of Man's universal dominion, calling God's angels and God's kingdom "His" (Matthew 13:41). His audiences — friendly and hostile alike — had no doubt what He meant; the stones and the trial verdict are the proof. Demanding the exact modern sentence is like denying a man claimed to be king because he only said "bow before my throne."</p></div>
+      </div>
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>Objection: "The divinity of Jesus was invented at Nicaea"</h3><span class="arr">▼</span></div>
+        <div class="obj-bd"><h4>The Claim</h4><p>Constantine and the Council of Nicaea (AD 325) turned a human teacher into God by vote — a story popularized by <em>The Da Vinci Code</em>.</p><h4>Response</h4><p>Every piece of evidence above predates Nicaea, most of it by more than two centuries: the New Testament documents themselves, Ignatius's "our God, Jesus Christ" (c. 107), Pliny's pagan report of hymns "to Christ, as to a god" (c. 112), Melito's "God was slain" (c. 170). Nicaea did not invent the confession; it defended the existing confession against Arius's novelty, and the question before the council was never <em>whether</em> Christ is divine — both sides granted that Christians worship Him — but how to state His relation to the Father. The bishops who signed, many bearing scars of Diocletian's persecution, were the least likely men alive to redesign the faith for an emperor's convenience.</p></div>
+      </div>
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>Objection: "The texts were corrupted to add His divinity"</h3><span class="arr">▼</span></div>
+        <div class="obj-bd"><h4>The Claim</h4><p>The original Gospels presented a human Jesus; later scribes inserted the divine claims.</p><h4>Response</h4><p>The manuscript evidence runs the wrong way for this theory. The earliest copies and papyri already contain John 1:1, John 20:28, and the rest; there is no manuscript stream anywhere preserving a divinity-free Gospel. Where real textual variants exist, scholars can see them precisely because the evidence is so abundant — and none of the passages this page relies on stands on a disputed reading. Moreover the claim is multiply attested across independent authors: Mark, John, Paul, Hebrews, Revelation do not copy one another, yet all present Christ as divine. See the pages on <a href="biblical_canon.html">the canon of Scripture</a> and <a href="islamic_dilemma.html">alleged corruption</a> for the fuller case.</p></div>
+      </div>
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>Objection: "Only John's late Gospel makes Jesus divine"</h3><span class="arr">▼</span></div>
+        <div class="obj-bd"><h4>The Claim</h4><p>The "high Christology" belongs to John, written last; the earlier Synoptics know only a human Jesus.</p><h4>Response</h4><p>Paul is earlier than every Gospel, and Paul's Christ is "in the form of God" receiving the worship of Isaiah 45 (Philippians 2). And Mark — by this dating the earliest Gospel — opens by applying to Jesus a prophecy about preparing "the way of the LORD" (Mark 1:2–3, quoting Isaiah 40:3), then shows Him forgiving sins as only God can (2:5–7), commanding the sea (4:39–41; cf. Psalm 107:29), walking on the water and saying "It is I (<em>egō eimi</em>, "I AM"); do not be afraid" (6:50; cf. Job 9:8), claiming the Sabbath (2:28), and answering the high priest with Daniel 7 (14:62). The Christology of the Synoptics is high; it is simply shown more than stated. John makes explicit what Mark dramatizes.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s9">
+    <div class="sec-hd" onclick="ts(this)"><h2>IX. Frequently Asked Questions</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <div class="fi"><div class="fi-hd" onclick="tf(this)"><span>Q: If Jesus is God, who was He praying to — Himself?</span><span class="arr">▼</span></div><div class="fi-bd"><p>To the Father. The question assumes the Son <em>is</em> the Father, which the Church has never taught — that is modalism, condemned as a heresy. The Son is a distinct Person who eternally loves, addresses, and is loved by the Father; the Incarnation adds to this that He now prays also as true man on our behalf. Prayer between the Persons is not a problem for the Trinity; it is a window into it (John 17:5, 24).</p></div></div>
+      <div class="fi"><div class="fi-hd" onclick="tf(this)"><span>Q: Doesn't "Son of God" imply God took a wife — which is absurd?</span><span class="arr">▼</span></div><div class="fi-bd"><p>It would be absurd, and the Church rejects it as firmly as the Quran does (cf. Quran 6:101). "Begotten" in the Creed is explicitly "begotten, not made… before all ages" — an eternal relation within God, not a biological event. The analogy the Fathers loved is light from fire or radiance from the sun (Hebrews 1:3): the radiance is <em>from</em> the sun, of the same nature, and there was never a sun without its radiance. Scripture also calls the Virgin Birth the occasion of the title (Luke 1:35) — and that conception was expressly "of the Holy Spirit," without any union, as Matthew 1:20 states.</p></div></div>
+      <div class="fi"><div class="fi-hd" onclick="tf(this)"><span>Q: How can Jesus not know "that day and hour" (Mark 13:32) if He is God?</span><span class="arr">▼</span></div><div class="fi-bd"><p>The same way He could be hungry, tired, and dead — by truly becoming man. The eternal Word, remaining God, took a real human mind and lived within its creaturely limits, "increasing in wisdom" (Luke 2:52). The Fathers read Mark 13:32 of Christ speaking from His humanity in His role as the one sent; what He possesses as God He did not always exercise as man (cf. Philippians 2:7, He "made Himself of no reputation" — laying aside glory, not deity). A Christ with no real human limits would be God in costume, which is a heresy the Church also rejects.</p></div></div>
+      <div class="fi"><div class="fi-hd" onclick="tf(this)"><span>Q: Was Christ's divinity decided by a close vote at Nicaea?</span><span class="arr">▼</span></div><div class="fi-bd"><p>No. The bishops at Nicaea — traditionally numbered 318 — rejected Arianism nearly unanimously; ancient accounts say only two bishops finally refused the Creed. And the council voted on wording, not on whether Christ is divine: His worship was the universal practice both sides started from. The "close vote" is modern fiction.</p></div></div>
+      <div class="fi"><div class="fi-hd" onclick="tf(this)"><span>Q: Why does Paul call Christ "the firstborn of creation" if He isn't a creature?</span><span class="arr">▼</span></div><div class="fi-bd"><p>Read the next two verses: "for by Him all things were created… all things were created through Him and for Him" (Colossians 1:16). "Firstborn" (<em>prototokos</em>) in Scripture is a title of rank and inheritance, not of birth order — Psalm 89:27 appoints David, the youngest son of Jesse, as "firstborn, the highest of the kings of the earth." The firstborn over creation is its heir and Lord; verse 16 explains he cannot be inside it.</p></div></div>
+      <div class="fi"><div class="fi-hd" onclick="tf(this)"><span>Q: How should I talk about this with a Muslim friend?</span><span class="arr">▼</span></div><div class="fi-bd"><p>With respect, and from common ground: you both confess one God, and you both honor Jesus — that is rare and precious. Then ask, gently, what is to be done with His actual words. Suggest reading the Gospel of Mark together (it takes about ninety minutes): watch what Jesus does — forgives sins, commands the sea, claims the Sabbath, accepts the verdict of blasphemy in silence rather than correct the "misunderstanding." The question "prophet or more?" answers itself from the text. And remember the goal is not to win an argument but to introduce a Person (1 Peter 3:15).</p></div></div>
+    </div>
+  </section>
+
+  <section class="sec" id="s10">
+    <div class="sec-hd" onclick="ts(this)"><h2>X. Sources</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <div class="src-grid">
+        <div class="src-card"><div class="src-cat">Scripture</div><div class="src-item"><strong>The Holy Bible</strong> — quotations follow the NKJV wording, checked against the Greek (NA28).</div><div class="src-item"><strong>Key texts</strong> — John 1; 8:58; 10:30–33; 20:28; Mark 2:5–12; 14:61–64; Philippians 2:5–11; Colossians 1:15–20; 2:9; Hebrews 1; Titus 2:13; Revelation 22:13.</div></div>
+        <div class="src-card"><div class="src-cat">Church Fathers</div><div class="src-item"><strong>Ignatius — Ephesians</strong> — ANF vol. 1.</div><div class="src-item"><strong>Melito of Sardis — On Pascha</strong> — trans. S. G. Hall.</div><div class="src-item"><strong>Athanasius — On the Incarnation</strong> — NPNF II.4.</div><div class="src-item"><strong>Cyril of Alexandria — Letters against Nestorius</strong> — NPNF II.14.</div><div class="src-item"><strong>Pope Shenouda III — The Divinity of Christ</strong> — Coptic Orthodox publication, 1989.</div></div>
+        <div class="src-card"><div class="src-cat">Non-Christian Sources</div><div class="src-item"><strong>Pliny the Younger — Letters 10.96</strong> — to Trajan, c. AD 112.</div><div class="src-item"><strong>The Quran</strong> — 3:45; 4:171; 19:19–21; cited for its own titles of Jesus.</div><div class="src-item"><strong>Talmud, b. Sanhedrin 43a</strong> — hostile Jewish memory of Jesus' execution.</div></div>
+        <div class="src-card"><div class="src-cat">Modern Discussion</div><div class="src-item"><strong>Lewis, C. S.</strong> — <em>Mere Christianity</em> (the trilemma).</div><div class="src-item"><strong>Bauckham, Richard</strong> — <em>Jesus and the God of Israel</em> (Christ within the Shema).</div><div class="src-item"><strong>Hurtado, Larry</strong> — <em>Lord Jesus Christ</em> (earliest devotion to Jesus).</div><div class="src-item"><strong>Ehrman, Bart</strong> — <em>How Jesus Became God</em> (the exaltation thesis engaged in Section V).</div></div>
+      </div>
+      <p style="margin-top:1rem;font-size:.82rem;color:var(--mu)">Quotations marked <span class="gl-tag">Direct Quote</span> follow the standard English editions; entries marked <span class="pl">Paraphrase</span> summarize a source's documented argument without claiming exact wording. An educational resource of St James Brother of the Lord Coptic Orthodox Church.</p>
+    </div>
+  </section>
+
+
+</main>
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+function ts(h){h.closest('.sec').classList.toggle('open')}
+function tobj(h){h.closest('.obj').classList.toggle('open')}
+function tf(h){h.closest('.fi').classList.toggle('open')}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').classList.toggle('show')}
+function closeMobile(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
+const secs=document.querySelectorAll('.sec[id]');
+const navLinks=document.querySelectorAll('#sidenav a');
+function updateNav(){let cur='';secs.forEach(s=>{if(s.getBoundingClientRect().top<120)cur=s.id;});navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur);})}
+window.addEventListener('scroll',updateNav,{passive:true});
+window.addEventListener('scroll',()=>{const st=document.documentElement.scrollTop;const sh=document.documentElement.scrollHeight-document.documentElement.clientHeight;document.getElementById('progress-bar').style.width=(st/sh*100)+'%';},{passive:true});
+window.addEventListener('scroll',()=>{document.getElementById('btt').style.opacity=window.scrollY>400?'1':'0';},{passive:true});
+let lastQuery='';
+function doSearch(){const q=document.getElementById('search-input').value.trim().toLowerCase();if(q===lastQuery)return;lastQuery=q;clearHighlights();if(!q)return;const walker=document.createTreeWalker(document.getElementById('main-content'),NodeFilter.SHOW_TEXT,null,false);const matches=[];let node;while((node=walker.nextNode())){if(node.nodeValue.toLowerCase().includes(q))matches.push(node);}matches.forEach(n=>{const idx=n.nodeValue.toLowerCase().indexOf(q);const before=document.createTextNode(n.nodeValue.substring(0,idx));const mark=document.createElement('mark');mark.textContent=n.nodeValue.substring(idx,idx+q.length);mark.style.cssText='background:#c9a84c;color:#0d0d0d;border-radius:2px;padding:0 2px;';const after=document.createTextNode(n.nodeValue.substring(idx+q.length));const frag=document.createDocumentFragment();frag.appendChild(before);frag.appendChild(mark);frag.appendChild(after);n.parentNode.replaceChild(frag,n);});const firstMark=document.querySelector('mark');if(firstMark)firstMark.scrollIntoView({behavior:'smooth',block:'center'});}
+function clearHighlights(){document.querySelectorAll('mark').forEach(m=>{m.parentNode.replaceChild(document.createTextNode(m.textContent),m);});}
+document.getElementById('search-input').addEventListener('keydown',e=>{if(e.key==='Enter')doSearch();if(e.key==='Escape'){document.getElementById('search-input').value='';lastQuery='';clearHighlights();}});
+document.getElementById('search-btn').addEventListener('click',doSearch);
+document.querySelector('.sec').classList.add('open');
+</script>
+</body>
+</html>
