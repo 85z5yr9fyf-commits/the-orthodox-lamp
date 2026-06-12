@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>THE ORTHODOX LAMP — The Quran’s Own Claims Tested</title>
+<style>
+:root{--gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;--bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--tx:#e8e0d0;--mu:#a09880;--red:#8b2020;--br:#2a2a2a;--bg5:#3a2e10;--sidebar-w:270px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.75}
+a{color:var(--gold);text-decoration:none}
+#progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(to right,var(--gd),var(--gold),var(--gl));width:0%;z-index:500}
+#sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:200;transition:transform .3s}
+#sidebar h2{font-size:.7rem;letter-spacing:.15em;color:var(--gold);text-transform:uppercase;padding:1.4rem 1.2rem .5rem;border-bottom:1px solid var(--br)}
+#sidenav a{display:block;padding:.42rem 1.2rem;font-size:.82rem;color:var(--mu);border-left:3px solid transparent;transition:all .2s}
+#sidenav a:hover,#sidenav a.active{color:var(--gl);border-left-color:var(--gold);background:var(--bg5)}
+.search-wrap{padding:.8rem 1rem;border-bottom:1px solid var(--br);display:flex;gap:.4rem}
+.search-wrap input{flex:1;background:var(--bg3);border:1px solid var(--br);color:var(--tx);padding:.35rem .6rem;border-radius:4px;font-size:.8rem}
+.search-wrap button{background:var(--gold);color:#0d0d0d;border:none;padding:.35rem .7rem;border-radius:4px;cursor:pointer;font-weight:700;font-size:.8rem}
+#main-content{margin-left:var(--sidebar-w);padding:0 2rem 4rem}
+.mob-toggle{display:none;position:fixed;bottom:1.2rem;right:1.2rem;background:var(--gold);color:#0d0d0d;border:none;width:48px;height:48px;border-radius:50%;font-size:1.4rem;cursor:pointer;z-index:300;box-shadow:0 2px 12px rgba(0,0,0,.5)}
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:150}
+#overlay.show{display:block}
+.hero{text-align:center;padding:4rem 1rem 2.5rem;border-bottom:1px solid var(--br);background:linear-gradient(to bottom,var(--bg2),var(--bg))}
+.si{font-size:2.2rem;color:var(--gold);display:block;margin-bottom:.5rem}
+.st{font-size:2rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--tx)}
+.st span{color:var(--gold)}
+.ss{font-size:1.05rem;color:var(--gl);margin:.6rem 0 .4rem;font-style:italic}
+.tg{font-size:.85rem;color:var(--mu);margin-bottom:.8rem}
+.orn{color:var(--gold);font-size:1.1rem;letter-spacing:.4em;margin-top:.5rem}
+.sec{border:1px solid var(--br);border-radius:8px;margin:1.5rem 0;background:var(--bg2);overflow:hidden}
+.sec-hd{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.3rem;cursor:pointer;user-select:none;background:var(--bg3);border-bottom:1px solid transparent;transition:background .2s}
+.sec-hd:hover{background:var(--bg4)}
+.sec.open .sec-hd{border-bottom-color:var(--br);background:var(--bg4)}
+.sec-hd h2{font-size:1rem;color:var(--gl);text-transform:uppercase;letter-spacing:.05em}
+.sec-bd{display:none;padding:1.4rem 1.5rem}
+.sec.open .sec-bd{display:block}
+.sec-bd h3{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin:1.4rem 0 .7rem;padding-bottom:.3rem;border-bottom:1px solid var(--bg5)}
+.sec-bd p{color:var(--tx);margin-bottom:.9rem;font-size:.95rem}
+.arr{color:var(--gold);font-size:.9rem;transition:transform .3s}
+.sec.open .arr{transform:rotate(180deg)}
+.sv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin:.8rem 0 1.2rem}
+.sv{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:1rem}
+.sv .ref{font-size:.75rem;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.4rem}
+.sv .labels{margin-bottom:.5rem;display:flex;gap:.4rem;flex-wrap:wrap}
+.sv .labels span{font-size:.65rem;font-weight:700;padding:.15rem .45rem;border-radius:3px;text-transform:uppercase;letter-spacing:.06em}
+.labels .prot{background:#4a1a1a;color:#e87070}
+.labels .oo{background:#1a3a1a;color:#70c870}
+.labels .ctx{background:#1a2a3a;color:#70aacc}
+.sv .txt{font-style:italic;color:var(--gl);font-size:.88rem;margin-bottom:.5rem;border-left:2px solid var(--gold);padding-left:.7rem}
+.sv .interp{font-size:.82rem;color:var(--mu)}
+.fc{background:var(--bg3);border:1px solid var(--br);border-left:3px solid var(--gold);border-radius:6px;padding:1rem 1.1rem;margin:.8rem 0}
+.fn{font-size:.8rem;font-weight:700;color:var(--gl);text-transform:uppercase;letter-spacing:.07em}
+.fw{font-size:.75rem;color:var(--mu);margin:.2rem 0 .5rem;font-style:italic}
+.fq{font-style:italic;color:var(--tx);font-size:.88rem;border-left:2px solid var(--bg5);padding-left:.8rem;margin:.4rem 0 .6rem}
+.fsig{font-size:.8rem;color:var(--mu)}
+.pl{background:#4a1a1a;color:#e87070;font-size:.65rem;font-weight:700;padding:.1rem .35rem;border-radius:3px;text-transform:uppercase;letter-spacing:.06em;vertical-align:middle;margin-left:.3rem;font-style:normal}
+.gl-tag{background:#1a3a1a;color:#70c870;font-size:.65rem;font-weight:700;padding:.1rem .35rem;border-radius:3px;text-transform:uppercase;letter-spacing:.06em;vertical-align:middle;margin-left:.3rem;font-style:normal}
+.obj{background:var(--bg3);border:1px solid #4a1a1a;border-left:3px solid var(--red);border-radius:6px;margin:.8rem 0;overflow:hidden}
+.obj-hd{display:flex;justify-content:space-between;align-items:center;padding:.8rem 1rem;cursor:pointer;user-select:none}
+.obj-hd:hover{background:var(--bg4)}
+.obj-hd h3{font-size:.85rem;color:#e87070;font-weight:700}
+.obj-bd{display:none;padding:.9rem 1.1rem;border-top:1px solid #4a1a1a}
+.obj.open .obj-bd{display:block}
+.obj.open .arr{transform:rotate(180deg)}
+.obj-bd h4{font-size:.75rem;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.4rem;margin-top:.6rem}
+.obj-bd h4:first-child{margin-top:0}
+.obj-bd p{font-size:.85rem;color:var(--tx);margin-bottom:.6rem}
+.fi{background:var(--bg3);border:1px solid var(--br);border-radius:6px;margin:.6rem 0;overflow:hidden}
+.fi-hd{display:flex;justify-content:space-between;align-items:center;padding:.8rem 1rem;cursor:pointer;user-select:none;font-size:.88rem;color:var(--gl)}
+.fi-hd:hover{background:var(--bg4)}
+.fi-bd{display:none;padding:.9rem 1.1rem;border-top:1px solid var(--br);font-size:.85rem;color:var(--tx)}
+.fi.open .fi-bd{display:block}
+.fi.open .arr{transform:rotate(180deg)}
+.fi-bd p{margin-bottom:.7rem}
+.comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:.8rem 0}
+.comp-card{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:1rem}
+.comp-card.prot{border-top:3px solid #e87070}
+.comp-card.oo{border-top:3px solid var(--gold)}
+.comp-card .ct{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.6rem}
+.comp-card.prot .ct{color:#e87070}
+.comp-card.oo .ct{color:var(--gold)}
+.comp-card p{font-size:.82rem;color:var(--mu)}
+.tl{border-left:2px solid var(--bg5);margin:1rem 0 1rem .4rem;padding-left:1.2rem}
+.tl-item{position:relative;margin-bottom:1.1rem}
+.tl-item::before{content:'';position:absolute;left:-1.62rem;top:.45rem;width:11px;height:11px;border-radius:50%;background:var(--gold);border:2px solid var(--bg2)}
+.tl-date{font-size:.78rem;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase}
+.tl-item p{font-size:.85rem;color:var(--mu);margin:.2rem 0 0}
+.src-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;margin:.8rem 0}
+.src-card{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:1rem}
+.src-cat{font-size:.72rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.6rem;padding-bottom:.4rem;border-bottom:1px solid var(--bg5)}
+.src-item{font-size:.8rem;color:var(--mu);margin-bottom:.5rem;padding-left:.7rem;border-left:2px solid var(--br)}
+.btt{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--gold);color:#0d0d0d;border:none;width:44px;height:44px;border-radius:50%;font-size:1.2rem;cursor:pointer;opacity:0;transition:opacity .3s;z-index:300;font-weight:700}
+@media(max-width:768px){#sidebar{transform:translateX(-100%)}#sidebar.open{transform:translateX(0)}#main-content{margin-left:0;padding:0 1rem 4rem}.mob-toggle{display:flex;align-items:center;justify-content:center}.sv-grid{grid-template-columns:1fr}.comp-grid{grid-template-columns:1fr}}
+
+.lampsvg{display:block;margin:0 auto 14px;height:auto}
+.lampsvg .lampflame{animation:lampflick 3.2s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes lampflick{0%,100%{transform:scaleY(1) scaleX(1);opacity:.95}25%{transform:scaleY(1.06) scaleX(.97);opacity:1}50%{transform:scaleY(.96) scaleX(1.03);opacity:.9}75%{transform:scaleY(1.04) scaleX(.98);opacity:1}}
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<nav id="sidebar">
+  <div class="search-wrap"><input type="text" id="search-input" placeholder="Search…"><button id="search-btn">Go</button></div>
+  <svg class="lampsvg" width="64" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><radialGradient id="lmpGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffb95e" stop-opacity=".55"/><stop offset="100%" stop-color="#ffb95e" stop-opacity="0"/></radialGradient><linearGradient id="lmpFlame" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#ff7a1f"/><stop offset="55%" stop-color="#ffb347"/><stop offset="100%" stop-color="#ffe9b0"/></linearGradient><linearGradient id="lmpBrass" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e3b860"/><stop offset="50%" stop-color="#a87b35"/><stop offset="100%" stop-color="#7a5523"/></linearGradient></defs><circle cx="60" cy="38" r="34" fill="url(#lmpGlow)"/><g class="lampflame"><path d="M60 16 C66 26 70 32 70 40 C70 48 65.5 53 60 53 C54.5 53 50 48 50 40 C50 32 54 26 60 16 Z" fill="url(#lmpFlame)"/><path d="M60 30 C63 35 64.5 38 64.5 42 C64.5 46.5 62.5 49 60 49 C57.5 49 55.5 46.5 55.5 42 C55.5 38 57 35 60 30 Z" fill="#fff3cf" opacity=".85"/></g><rect x="56" y="52" width="8" height="7" rx="2" fill="#8a6228"/><path d="M28 62 L92 62 C92 80 78 92 60 92 C42 92 28 80 28 62 Z" fill="url(#lmpBrass)"/><rect x="24" y="58" width="72" height="6" rx="3" fill="#caa14e"/><rect x="56" y="92" width="8" height="16" fill="url(#lmpBrass)"/><path d="M38 118 C38 110 47 108 60 108 C73 108 82 110 82 118 L82 122 L38 122 Z" fill="url(#lmpBrass)"/><rect x="32" y="122" width="56" height="6" rx="3" fill="#caa14e"/></svg>
+  <h2>The Orthodox Lamp</h2>
+  <nav id="sidenav">
+    <a href="#s1">I. Introduction</a>
+    <a href="#s2">II. The Claim of Perfect Preservation</a>
+    <a href="#s3">III. The "Scientific Miracles" Claim</a>
+    <a href="#s4">IV. The Inimitability Challenge</a>
+    <a href="#s5">V. The Quran's Own Falsification Test</a>
+    <a href="#s6">VI. Pre-Quranic Sources in the Quran</a>
+    <a href="#s7">VII. The Double Standard</a>
+    <a href="#s8">VIII. FAQ</a>
+    <a href="#s9">IX. Sources</a>
+  </nav>
+</nav>
+<div id="overlay" onclick="closeMobile()"></div>
+<button class="mob-toggle" onclick="toggleSidebar()">☰</button>
+<main id="main-content">
+  <div class="hero">
+    <span class="si">☩</span>
+    <h1 class="st">THE <span>ORTHODOX</span> LAMP</h1>
+    <p class="ss">The Quran’s Own Claims — Preservation, Science &amp; Inimitability Tested</p>
+    <p class="tg">"Test all things; hold fast what is good" — 1 Thessalonians 5:21</p>
+    <div class="orn">✦ ✦ ✦</div>
+  </div>
+
+<section class="sec open" id="s1">
+    <div class="sec-hd" onclick="ts(this)"><h2>I. Introduction</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>Most pages in this section answer challenges Islam puts to Christianity. Fairness runs the other way too. Islamic apologetics rests its positive case on a set of testable claims: that the Quran has been preserved perfectly, letter for letter; that it contains scientific knowledge impossible for a seventh-century man; that its literary form is inimitable and therefore divine; and — by the Quran's own announcement — that it contains no contradictions. Christians are routinely asked to submit their Scriptures to hard scrutiny (see <a href="bible_corruption.html">Has the Bible Been Corrupted?</a>), and they should be willing to do so. This page asks only that the same scrutiny run in both directions.</p>
+      <p>The tone matters. Nothing here mocks Muslims or the seriousness of their devotion; every argument concerns evidence, and every claim examined is one Muslim apologists themselves advance publicly. "Test all things; hold fast what is good" (1 Thessalonians 5:21) is a command, not a taunt.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s2">
+    <div class="sec-hd" onclick="ts(this)"><h2>II. The Claim of Perfect Preservation</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>The claim: the Quran today is identical, to the letter, with what Muhammad recited — unlike the "corrupted" Bible. The evidence, drawn from Islam's own most trusted sources, is more complicated:</p>
+      <p><strong>The Uthmanic standardization.</strong> Sahih al-Bukhari — the hadith collection Sunni Islam ranks most authentic — records that under the caliph Uthman, differences in Quran recitation alarmed the community; an official text was compiled, and Uthman ordered the variant codices burned <span class="pl">Paraphrase</span>. An edition produced by destroying the competing copies can no longer be checked against them. Uniformity achieved by authority is not evidence of preservation; it is the removal of the means of verification.</p>
+      <p><strong>The companions' codices.</strong> Islamic tradition itself records that codices associated with companions such as Ibn Mas'ud and Ubayy ibn Ka'b differed from the Uthmanic text — in readings, and reportedly in which surahs they contained <span class="pl">Paraphrase</span>. These differences are documented in classical Islamic literature, not in Christian polemic.</p>
+      <p><strong>The Sana'a palimpsest.</strong> A Quran manuscript discovered in Yemen in 1972 carries an erased lower text, recoverable by imaging, that differs from the standard text in wording and arrangement — the most significant physical evidence of early textual variation, discussed extensively in the scholarly literature <span class="pl">Paraphrase</span>.</p>
+      <p><strong>The readings (qira'at).</strong> Today's printed Qurans follow different canonical reading traditions — Hafs in most of the world, Warsh across much of North Africa — which differ not merely in pronunciation but, in places, in words and meaning. The differences are small; the point is the principle: "every letter identical" is not what the manuscripts or the printed editions show.</p>
+      <p>None of this proves the Quran's message was lost — most variation is minor, as with all hand-copied texts. But that is precisely the Christian point: the Quran has a normal manuscript history, of the same kind the Bible has — except that the Bible's thousands of uncensored, comparable witnesses survived, while the Quran's early rivals were deliberately destroyed. The "perfect preservation versus corrupted Bible" contrast does not survive contact with the sources.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s3">
+    <div class="sec-hd" onclick="ts(this)"><h2>III. The "Scientific Miracles" Claim</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>The claim: the Quran contains science centuries ahead of its time — embryology, cosmology, oceanography — provable only by divine origin. Three tests expose the method:</p>
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>The embryology passages</h3><span class="arr">▼</span></div>
+        <div class="obj-bd">
+          <h4>The Claim</h4><p>Surah 23:12–14 describes the embryo's stages (a drop, then a clinging clot, then a chewed-like lump, then bones clothed with flesh) with miraculous accuracy.</p>
+          <h4>Response</h4><p>Read plainly, the sequence reflects the embryology available in late antiquity — stages of seed, clot, and lump, with bones formed first and then covered in flesh <span class="pl">Paraphrase</span>. Modern embryology does not describe a blood-clot stage, and muscle and bone develop together, not in sequence. Galen's second-century writings describe a staged development strikingly similar in outline, and Greek medicine was available in the Near East of the period. A description compatible with the science of its own day is evidence of its own day.</p>
+        </div>
+      </div>
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>The sun setting in a muddy spring</h3><span class="arr">▼</span></div>
+        <div class="obj-bd">
+          <h4>The Claim</h4><p>Surah 18:86 (Dhul-Qarnayn "found" the sun setting in a muddy spring) is mere phenomenal language — how it looked from the shore.</p>
+          <h4>Response</h4><p>The phenomenal-language defense is available — Christians use it for biblical passages, and fairness allows it here. But notice what the defense concedes: the verse is then not a scientific miracle but ordinary observational description. The apologetic method wants both — plain readings counted as miracles where they flatter, and figurative readings deployed where they embarrass. Choose either standard and apply it consistently, and the "scientific miracle" case collapses: by the plain standard the Quran errs; by the figurative standard it reveals nothing beyond its era.</p>
+        </div>
+      </div>
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>Mountains as pegs that stabilize the earth</h3><span class="arr">▼</span></div>
+        <div class="obj-bd">
+          <h4>The Claim</h4><p>Surah 78:6–7 (the earth a bed, the mountains pegs) anticipates the geology of isostasy — mountains have "roots."</p>
+          <h4>Response</h4><p>Related verses state the mountains' purpose: cast onto the earth "lest it shake" with its inhabitants <span class="pl">Paraphrase</span> (e.g., Surah 16:15). In modern geology mountains do not prevent seismic shaking; the most earthquake-prone zones on earth are precisely its young mountain belts, because both are produced by the same plate collisions. The image of mountains as stabilizing weights is ancient cosmology, shared across the literature of the region — not anticipation of plate tectonics. The retrofitting pattern is the tell: no one derived isostasy from the Quran; the science arrived first, and the verse was reread afterward.</p>
+        </div>
+      </div>
+      <p>The general verdict is not that the Quran is uniquely unscientific — it speaks as a seventh-century text speaks, as Christians freely grant their own Scriptures speak phenomenally (see <a href="creation_evolution.html">Creation, Evolution &amp; the Age of the Earth</a>). The verdict is that "scientific foreknowledge" claims fail their own test: a revelation proving itself by science would need to state something clearly beyond its era — and no such statement, clear before the science rather than after it, has been produced.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s4">
+    <div class="sec-hd" onclick="ts(this)"><h2>IV. The Inimitability Challenge</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>The claim (i'jaz al-Quran): the Quran's literary perfection cannot be matched — "produce a surah like it" (cf. Surah 2:23) — and this inimitability proves divine authorship. Three difficulties:</p>
+      <p><strong>It is unfalsifiable in practice.</strong> Who judges whether a challenger has "matched" the Quran? In practice, the judges are those already convinced; no submission could ever be ruled a success, because the criteria are aesthetic and the verdict is rendered by the faithful. A test no entrant can pass in principle is not a test.</p>
+      <p><strong>Beauty does not entail divinity.</strong> Grant, for argument's sake, that the Quran is the supreme masterpiece of Arabic. Literary supremacy proves a supreme author, not a divine one — by this standard, every civilization's untouchable masterpiece would be revelation. The argument form (no human could produce this, therefore God) would prove far too much, in many languages at once.</p>
+      <p><strong>It is circular for most of the human race.</strong> The proof can be felt only by masters of classical Arabic; everyone else must take the miracle on the testimony of those already persuaded. A sign intended for all nations that is perceptible only to one language's connoisseurs is, at minimum, a strange candidate for the universal proof of a universal religion. Compare the sign the apostles offered: a public, datable event — the Resurrection — argued from evidence open to every culture (see <a href="resurrection_skepticism.html">The Resurrection — Answering the Skeptics</a>).</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s5">
+    <div class="sec-hd" onclick="ts(this)"><h2>V. The Quran's Own Falsification Test</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>Surah 4:82 proposes a test: were the Quran from other than God, its hearers "would have found within it much contradiction" <span class="pl">Paraphrase</span>. The standard is the Quran's own. Difficulties commonly raised under it include:</p>
+      <p><strong>Mary confused with Miriam?</strong> The Quran calls Jesus' mother "sister of Aaron" (Surah 19:28) and daughter of Imran (cf. 66:12; 3:35–36) — the family of the biblical Miriam, sister of Aaron and Moses, daughter of Amram, who lived more than a millennium earlier. Muslim commentators answer that "sister of Aaron" means "descendant of" or invokes a different Aaron <span class="pl">Paraphrase</span>; the reader may judge whether the explanation or the conflation is the more natural reading of a text that also names her father Imran.</p>
+      <p><strong>Haman in Egypt.</strong> The Quran places a figure named Haman as Pharaoh's official in Moses' Egypt (Surah 28:38) — while the Bible's Haman belongs to the Persian court of the book of Esther, a thousand years later.</p>
+      <p><strong>"The Samaritan" at Sinai.</strong> Surah 20:85–88 attributes the golden calf to "the Samaritan" (as-Samiri) — though Samaria was founded, and the Samaritans emerged, centuries after the Exodus era.</p>
+      <p>For each item there exists a Muslim harmonization, just as skeptics' lists of Bible difficulties meet Christian harmonizations (see <a href="hard_passages.html">Biblical Contradictions &amp; Hard Passages</a>). The point is not that no answer can be offered; it is that the Quran's apologetic claim — a text so free of difficulty that its consistency proves divine origin — sets a standard the text itself, on its plain sense, does not visibly exceed. An argument that works equally well for both books proves neither; it should be retired from the debate by whoever invokes it.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s6">
+    <div class="sec-hd" onclick="ts(this)"><h2>VI. Pre-Quranic Sources in the Quran</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>A final test of origin: does the Quran contain material traceable to identifiable human literature circulating before it? Several of its narratives parallel post-biblical Jewish and Christian writings — not the Bible, but later legend:</p>
+      <p><strong>The boy Jesus and the clay birds.</strong> Surah 3:49 and 5:110 have Jesus animating birds of clay — a story found in the Infancy Gospel of Thomas, an apocryphal text in circulation centuries before Islam, and never part of the canonical Gospels <span class="pl">Paraphrase</span>.</p>
+      <p><strong>Jesus speaking from the cradle.</strong> Surah 19:29–33 — paralleled in later infancy legend traditions, likewise apocryphal and likewise pre-Islamic in origin <span class="pl">Paraphrase</span>.</p>
+      <p><strong>Cain, the raven, and the lesson.</strong> Surah 5:31 has a raven show Cain how to bury his brother, and 5:32 follows with the principle that killing one soul is as killing all mankind — a sequence closely paralleled in rabbinic literature (the burial in later midrash; the one-soul principle in the Mishnah, Sanhedrin 4:5, where it arises from the Cain narrative) <span class="pl">Paraphrase</span>.</p>
+      <p><strong>The Seven Sleepers.</strong> Surah 18's sleepers in the cave parallels the Christian legend of the Seven Sleepers of Ephesus, attested in Syriac tradition before Islam <span class="pl">Paraphrase</span>.</p>
+      <p>A book drawing on the folklore in circulation around it looks like a seventh-century Near Eastern composition. The alternative — that God's eternal speech happens to coincide with the apocrypha and midrash of late antiquity, including their unhistorical details — multiplies difficulties rather than resolving them. (Christians note the contrast: the canonical Gospels were written within the first century, and it is exactly the later legendary material — the infancy gospels — that the Church examined and excluded; see <a href="biblical_canon.html">The Canon of Scripture</a>.)</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s7">
+    <div class="sec-hd" onclick="ts(this)"><h2>VII. The Double Standard</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>Step back and the pattern is the argument. The apologetic case for the Quran asks the public to apply to Islam's book a generosity it refuses to the Bible: figurative readings for the Quran's hard verses, literal readings for the Bible's; trust in a text standardized by destroying its variants, suspicion of a text preserved in thousands of checkable copies; "later legend" as fatal when alleged of the Gospels, invisible when documented in the Quran; harmonization honored as scholarship in one direction and mocked as desperation in the other.</p>
+      <p>The Christian asks for one standard, applied evenly. Under one standard, the comparison is not close: the faith of the apostles rests on a public event in datable history, attested by witnesses who died for their testimony, transmitted in an open, auditable manuscript tradition (see <a href="did_jesus_exist.html">Did Jesus Exist?</a> and <a href="resurrection_skepticism.html">The Resurrection</a>) — and the Quran's claims, tested as it invites testing, look like the claims of a seventh-century book. The deepest problem remains the one treated on <a href="islamic_dilemma.html">The Islamic Dilemma</a>: the Quran stakes its authority on scriptures whose message it contradicts.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s8">
+    <div class="sec-hd" onclick="ts(this)"><h2>VIII. FAQ</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <div class="fi">
+        <div class="fi-hd" onclick="tf(this)"><span>Q: Isn't this page just polemic? Muslims could write the mirror image about the Bible.</span><span class="arr">▼</span></div>
+        <div class="fi-bd"><p>They do — and this site answers those pages point by point (<a href="bible_corruption.html">corruption</a>, <a href="hard_passages.html">contradictions</a>, <a href="crucifixion_denial.html">the crucifixion</a>). That is how honest disagreement works: claims on the table, evidence weighed, same rules for both. What would be polemic is exempting either book from the scrutiny demanded of the other.</p></div>
+      </div>
+      <div class="fi">
+        <div class="fi-hd" onclick="tf(this)"><span>Q: Doesn't oral memorization (hifz) guarantee the Quran's preservation regardless of manuscripts?</span><span class="arr">▼</span></div>
+        <div class="fi-bd"><p>Mass memorization preserves the standardized text superbly — from the standardization forward. It cannot testify to what preceded Uthman's edition, because what memorizers transmit is the edition. The question "was anything different before the standard text?" can only be answered by pre-Uthmanic evidence — exactly what the burning of variant codices removed and what the Sana'a palimpsest gives a rare glimpse of.</p></div>
+      </div>
+      <div class="fi">
+        <div class="fi-hd" onclick="tf(this)"><span>Q: My Muslim friend says converts and scientists embrace Islam because of these miracles.</span><span class="arr">▼</span></div>
+        <div class="fi-bd"><p>People convert in every direction for many reasons, and testimony of personal conviction deserves respect, not ridicule. But a claim's popularity is not its proof — the "scientific miracles" genre spread widely after a French physician's 1976 book popularized it, and it has been criticized since, including by Muslim scholars uneasy with its method <span class="pl">Paraphrase</span>. The test remains the one in Section III: a clear statement beyond its era, made before the science. Ask for the single best example and apply the test together.</p></div>
+      </div>
+      <div class="fi">
+        <div class="fi-hd" onclick="tf(this)"><span>Q: Is it disrespectful for a Christian to examine the Quran this way?</span><span class="arr">▼</span></div>
+        <div class="fi-bd"><p>It is the opposite of disrespect — it takes the Quran's claims seriously enough to test them, which is what the Quran itself invites (4:82) and what Muslim apologists do to the Bible daily. Contempt would be refusing to engage. Speak with gentleness, concede good points, and keep the goal in view: not winning, but truth, and the friend in front of you (1 Peter 3:15).</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s9">
+    <div class="sec-hd" onclick="ts(this)"><h2>IX. Sources</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <div class="src-grid">
+        <div class="src-card"><div class="src-cat">Islamic Sources</div>
+          <p class="src-item">Quran — Surahs 2:23; 3:49; 4:82; 5:31–32, 110; 16:15; 18:86; 19:28–33; 20:85–88; 23:12–14; 28:38; 66:12; 78:6–7 (standard English renderings) · Sahih al-Bukhari (Uthmanic compilation and burning of variant codices) · classical reports on the codices of Ibn Mas'ud and Ubayy ibn Ka'b.</p>
+        </div>
+        <div class="src-card"><div class="src-cat">Manuscript &amp; Historical</div>
+          <p class="src-item">Sana'a palimpsest scholarship · the Hafs and Warsh reading traditions (printed editions) · Galen, On the Formation of the Fetus (staged embryology in antiquity).</p>
+        </div>
+        <div class="src-card"><div class="src-cat">Pre-Quranic Parallels</div>
+          <p class="src-item">Infancy Gospel of Thomas (clay birds) · Arabic/Syriac infancy traditions · Mishnah, Sanhedrin 4:5 (one-soul principle) · later midrash on Cain's burial · the Seven Sleepers of Ephesus (Syriac tradition).</p>
+        </div>
+        <div class="src-card"><div class="src-cat">On This Site</div>
+          <p class="src-item"><a href="islamic_dilemma.html">The Islamic Dilemma</a> · <a href="bible_corruption.html">Has the Bible Been Corrupted?</a> · <a href="muhammad_in_the_bible.html">Is Muhammad Prophesied in the Bible?</a> · <a href="hard_passages.html">Biblical Contradictions &amp; Hard Passages</a> · <a href="resurrection_skepticism.html">The Resurrection</a></p>
+        </div>
+      </div>
+      <p style="font-size:.78rem;color:var(--mu);margin-top:1rem">Scripture quotations are from the New King James Version. Quotations marked <span class="gl-tag">Direct Quote</span> are taken verbatim from the cited editions; material marked <span class="pl">Paraphrase</span> is a faithful summary, not a verbatim citation. Readers are encouraged to verify every citation in the sources listed above.</p>
+    </div>
+  </section>
+
+  </main>
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+function ts(h){h.closest('.sec').classList.toggle('open')}
+function tobj(h){h.closest('.obj').classList.toggle('open')}
+function tf(h){h.closest('.fi').classList.toggle('open')}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').classList.toggle('show')}
+function closeMobile(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
+const secs=document.querySelectorAll('.sec[id]');
+const navLinks=document.querySelectorAll('#sidenav a');
+function updateNav(){let cur='';secs.forEach(s=>{if(s.getBoundingClientRect().top<120)cur=s.id;});navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur);})}
+window.addEventListener('scroll',updateNav,{passive:true});
+window.addEventListener('scroll',()=>{const st=document.documentElement.scrollTop;const sh=document.documentElement.scrollHeight-document.documentElement.clientHeight;document.getElementById('progress-bar').style.width=(st/sh*100)+'%';},{passive:true});
+window.addEventListener('scroll',()=>{document.getElementById('btt').style.opacity=window.scrollY>400?'1':'0';},{passive:true});
+let lastQuery='';
+function doSearch(){const q=document.getElementById('search-input').value.trim().toLowerCase();if(q===lastQuery)return;lastQuery=q;clearHighlights();if(!q)return;const walker=document.createTreeWalker(document.getElementById('main-content'),NodeFilter.SHOW_TEXT,null,false);const matches=[];let node;while((node=walker.nextNode())){if(node.nodeValue.toLowerCase().includes(q))matches.push(node);}matches.forEach(n=>{const idx=n.nodeValue.toLowerCase().indexOf(q);const before=document.createTextNode(n.nodeValue.substring(0,idx));const mark=document.createElement('mark');mark.textContent=n.nodeValue.substring(idx,idx+q.length);mark.style.cssText='background:#c9a84c;color:#0d0d0d;border-radius:2px;padding:0 2px;';const after=document.createTextNode(n.nodeValue.substring(idx+q.length));const frag=document.createDocumentFragment();frag.appendChild(before);frag.appendChild(mark);frag.appendChild(after);n.parentNode.replaceChild(frag,n);});const firstMark=document.querySelector('mark');if(firstMark)firstMark.scrollIntoView({behavior:'smooth',block:'center'});}
+function clearHighlights(){document.querySelectorAll('mark').forEach(m=>{m.parentNode.replaceChild(document.createTextNode(m.textContent),m);});}
+document.getElementById('search-input').addEventListener('keydown',e=>{if(e.key==='Enter')doSearch();if(e.key==='Escape'){document.getElementById('search-input').value='';lastQuery='';clearHighlights();}});
+document.getElementById('search-btn').addEventListener('click',doSearch);
+document.querySelector('.sec').classList.add('open');
+</script>
+</body>
+</html>

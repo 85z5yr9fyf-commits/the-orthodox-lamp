@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>THE ORTHODOX LAMP — The Trinity in the Quran</title>
+<style>
+:root{--gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;--bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--tx:#e8e0d0;--mu:#a09880;--red:#8b2020;--br:#2a2a2a;--bg5:#3a2e10;--sidebar-w:270px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.75}
+a{color:var(--gold);text-decoration:none}
+#progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(to right,var(--gd),var(--gold),var(--gl));width:0%;z-index:500}
+#sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:200;transition:transform .3s}
+#sidebar h2{font-size:.7rem;letter-spacing:.15em;color:var(--gold);text-transform:uppercase;padding:1.4rem 1.2rem .5rem;border-bottom:1px solid var(--br)}
+#sidenav a{display:block;padding:.42rem 1.2rem;font-size:.82rem;color:var(--mu);border-left:3px solid transparent;transition:all .2s}
+#sidenav a:hover,#sidenav a.active{color:var(--gl);border-left-color:var(--gold);background:var(--bg5)}
+.search-wrap{padding:.8rem 1rem;border-bottom:1px solid var(--br);display:flex;gap:.4rem}
+.search-wrap input{flex:1;background:var(--bg3);border:1px solid var(--br);color:var(--tx);padding:.35rem .6rem;border-radius:4px;font-size:.8rem}
+.search-wrap button{background:var(--gold);color:#0d0d0d;border:none;padding:.35rem .7rem;border-radius:4px;cursor:pointer;font-weight:700;font-size:.8rem}
+#main-content{margin-left:var(--sidebar-w);padding:0 2rem 4rem}
+.mob-toggle{display:none;position:fixed;bottom:1.2rem;right:1.2rem;background:var(--gold);color:#0d0d0d;border:none;width:48px;height:48px;border-radius:50%;font-size:1.4rem;cursor:pointer;z-index:300;box-shadow:0 2px 12px rgba(0,0,0,.5)}
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:150}
+#overlay.show{display:block}
+.hero{text-align:center;padding:4rem 1rem 2.5rem;border-bottom:1px solid var(--br);background:linear-gradient(to bottom,var(--bg2),var(--bg))}
+.si{font-size:2.2rem;color:var(--gold);display:block;margin-bottom:.5rem}
+.st{font-size:2rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--tx)}
+.st span{color:var(--gold)}
+.ss{font-size:1.05rem;color:var(--gl);margin:.6rem 0 .4rem;font-style:italic}
+.tg{font-size:.85rem;color:var(--mu);margin-bottom:.8rem}
+.orn{color:var(--gold);font-size:1.1rem;letter-spacing:.4em;margin-top:.5rem}
+.sec{border:1px solid var(--br);border-radius:8px;margin:1.5rem 0;background:var(--bg2);overflow:hidden}
+.sec-hd{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.3rem;cursor:pointer;user-select:none;background:var(--bg3);border-bottom:1px solid transparent;transition:background .2s}
+.sec-hd:hover{background:var(--bg4)}
+.sec.open .sec-hd{border-bottom-color:var(--br);background:var(--bg4)}
+.sec-hd h2{font-size:1rem;color:var(--gl);text-transform:uppercase;letter-spacing:.05em}
+.sec-bd{display:none;padding:1.4rem 1.5rem}
+.sec.open .sec-bd{display:block}
+.sec-bd h3{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin:1.4rem 0 .7rem;padding-bottom:.3rem;border-bottom:1px solid var(--bg5)}
+.sec-bd p{color:var(--tx);margin-bottom:.9rem;font-size:.95rem}
+.arr{color:var(--gold);font-size:.9rem;transition:transform .3s}
+.sec.open .arr{transform:rotate(180deg)}
+.sv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin:.8rem 0 1.2rem}
+.sv{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:1rem}
+.sv .ref{font-size:.75rem;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.4rem}
+.sv .labels{margin-bottom:.5rem;display:flex;gap:.4rem;flex-wrap:wrap}
+.sv .labels span{font-size:.65rem;font-weight:700;padding:.15rem .45rem;border-radius:3px;text-transform:uppercase;letter-spacing:.06em}
+.labels .prot{background:#4a1a1a;color:#e87070}
+.labels .oo{background:#1a3a1a;color:#70c870}
+.labels .ctx{background:#1a2a3a;color:#70aacc}
+.sv .txt{font-style:italic;color:var(--gl);font-size:.88rem;margin-bottom:.5rem;border-left:2px solid var(--gold);padding-left:.7rem}
+.sv .interp{font-size:.82rem;color:var(--mu)}
+.fc{background:var(--bg3);border:1px solid var(--br);border-left:3px solid var(--gold);border-radius:6px;padding:1rem 1.1rem;margin:.8rem 0}
+.fn{font-size:.8rem;font-weight:700;color:var(--gl);text-transform:uppercase;letter-spacing:.07em}
+.fw{font-size:.75rem;color:var(--mu);margin:.2rem 0 .5rem;font-style:italic}
+.fq{font-style:italic;color:var(--tx);font-size:.88rem;border-left:2px solid var(--bg5);padding-left:.8rem;margin:.4rem 0 .6rem}
+.fsig{font-size:.8rem;color:var(--mu)}
+.pl{background:#4a1a1a;color:#e87070;font-size:.65rem;font-weight:700;padding:.1rem .35rem;border-radius:3px;text-transform:uppercase;letter-spacing:.06em;vertical-align:middle;margin-left:.3rem;font-style:normal}
+.gl-tag{background:#1a3a1a;color:#70c870;font-size:.65rem;font-weight:700;padding:.1rem .35rem;border-radius:3px;text-transform:uppercase;letter-spacing:.06em;vertical-align:middle;margin-left:.3rem;font-style:normal}
+.obj{background:var(--bg3);border:1px solid #4a1a1a;border-left:3px solid var(--red);border-radius:6px;margin:.8rem 0;overflow:hidden}
+.obj-hd{display:flex;justify-content:space-between;align-items:center;padding:.8rem 1rem;cursor:pointer;user-select:none}
+.obj-hd:hover{background:var(--bg4)}
+.obj-hd h3{font-size:.85rem;color:#e87070;font-weight:700}
+.obj-bd{display:none;padding:.9rem 1.1rem;border-top:1px solid #4a1a1a}
+.obj.open .obj-bd{display:block}
+.obj.open .arr{transform:rotate(180deg)}
+.obj-bd h4{font-size:.75rem;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.4rem;margin-top:.6rem}
+.obj-bd h4:first-child{margin-top:0}
+.obj-bd p{font-size:.85rem;color:var(--tx);margin-bottom:.6rem}
+.fi{background:var(--bg3);border:1px solid var(--br);border-radius:6px;margin:.6rem 0;overflow:hidden}
+.fi-hd{display:flex;justify-content:space-between;align-items:center;padding:.8rem 1rem;cursor:pointer;user-select:none;font-size:.88rem;color:var(--gl)}
+.fi-hd:hover{background:var(--bg4)}
+.fi-bd{display:none;padding:.9rem 1.1rem;border-top:1px solid var(--br);font-size:.85rem;color:var(--tx)}
+.fi.open .fi-bd{display:block}
+.fi.open .arr{transform:rotate(180deg)}
+.fi-bd p{margin-bottom:.7rem}
+.comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:.8rem 0}
+.comp-card{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:1rem}
+.comp-card.prot{border-top:3px solid #e87070}
+.comp-card.oo{border-top:3px solid var(--gold)}
+.comp-card .ct{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.6rem}
+.comp-card.prot .ct{color:#e87070}
+.comp-card.oo .ct{color:var(--gold)}
+.comp-card p{font-size:.82rem;color:var(--mu)}
+.tl{border-left:2px solid var(--bg5);margin:1rem 0 1rem .4rem;padding-left:1.2rem}
+.tl-item{position:relative;margin-bottom:1.1rem}
+.tl-item::before{content:'';position:absolute;left:-1.62rem;top:.45rem;width:11px;height:11px;border-radius:50%;background:var(--gold);border:2px solid var(--bg2)}
+.tl-date{font-size:.78rem;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase}
+.tl-item p{font-size:.85rem;color:var(--mu);margin:.2rem 0 0}
+.src-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;margin:.8rem 0}
+.src-card{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:1rem}
+.src-cat{font-size:.72rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.6rem;padding-bottom:.4rem;border-bottom:1px solid var(--bg5)}
+.src-item{font-size:.8rem;color:var(--mu);margin-bottom:.5rem;padding-left:.7rem;border-left:2px solid var(--br)}
+.btt{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--gold);color:#0d0d0d;border:none;width:44px;height:44px;border-radius:50%;font-size:1.2rem;cursor:pointer;opacity:0;transition:opacity .3s;z-index:300;font-weight:700}
+@media(max-width:768px){#sidebar{transform:translateX(-100%)}#sidebar.open{transform:translateX(0)}#main-content{margin-left:0;padding:0 1rem 4rem}.mob-toggle{display:flex;align-items:center;justify-content:center}.sv-grid{grid-template-columns:1fr}.comp-grid{grid-template-columns:1fr}}
+
+.lampsvg{display:block;margin:0 auto 14px;height:auto}
+.lampsvg .lampflame{animation:lampflick 3.2s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes lampflick{0%,100%{transform:scaleY(1) scaleX(1);opacity:.95}25%{transform:scaleY(1.06) scaleX(.97);opacity:1}50%{transform:scaleY(.96) scaleX(1.03);opacity:.9}75%{transform:scaleY(1.04) scaleX(.98);opacity:1}}
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<nav id="sidebar">
+  <div class="search-wrap"><input type="text" id="search-input" placeholder="Search…"><button id="search-btn">Go</button></div>
+  <svg class="lampsvg" width="64" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><radialGradient id="lmpGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffb95e" stop-opacity=".55"/><stop offset="100%" stop-color="#ffb95e" stop-opacity="0"/></radialGradient><linearGradient id="lmpFlame" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#ff7a1f"/><stop offset="55%" stop-color="#ffb347"/><stop offset="100%" stop-color="#ffe9b0"/></linearGradient><linearGradient id="lmpBrass" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e3b860"/><stop offset="50%" stop-color="#a87b35"/><stop offset="100%" stop-color="#7a5523"/></linearGradient></defs><circle cx="60" cy="38" r="34" fill="url(#lmpGlow)"/><g class="lampflame"><path d="M60 16 C66 26 70 32 70 40 C70 48 65.5 53 60 53 C54.5 53 50 48 50 40 C50 32 54 26 60 16 Z" fill="url(#lmpFlame)"/><path d="M60 30 C63 35 64.5 38 64.5 42 C64.5 46.5 62.5 49 60 49 C57.5 49 55.5 46.5 55.5 42 C55.5 38 57 35 60 30 Z" fill="#fff3cf" opacity=".85"/></g><rect x="56" y="52" width="8" height="7" rx="2" fill="#8a6228"/><path d="M28 62 L92 62 C92 80 78 92 60 92 C42 92 28 80 28 62 Z" fill="url(#lmpBrass)"/><rect x="24" y="58" width="72" height="6" rx="3" fill="#caa14e"/><rect x="56" y="92" width="8" height="16" fill="url(#lmpBrass)"/><path d="M38 118 C38 110 47 108 60 108 C73 108 82 110 82 118 L82 122 L38 122 Z" fill="url(#lmpBrass)"/><rect x="32" y="122" width="56" height="6" rx="3" fill="#caa14e"/></svg>
+  <h2>The Orthodox Lamp</h2>
+  <nav id="sidenav">
+    <a href="#s1">I. Introduction</a>
+    <a href="#s2">II. What the Quran Says About the Trinity</a>
+    <a href="#s3">III. What Christians Actually Believe</a>
+    <a href="#s4">IV. The Mismatch — and What It Means</a>
+    <a href="#s5">V. Common Objections Examined</a>
+    <a href="#s6">VI. The Trinity Before Islam — and Before Nicaea</a>
+    <a href="#s7">VII. The Dilemma for the Muslim Position</a>
+    <a href="#s8">VIII. FAQ</a>
+    <a href="#s9">IX. Sources</a>
+  </nav>
+</nav>
+<div id="overlay" onclick="closeMobile()"></div>
+<button class="mob-toggle" onclick="toggleSidebar()">☰</button>
+<main id="main-content">
+  <div class="hero">
+    <span class="si">☩</span>
+    <h1 class="st">THE <span>ORTHODOX</span> LAMP</h1>
+    <p class="ss">The Trinity in the Quran — Does It Address What Christians Believe?</p>
+    <p class="tg">"Hear, O Israel: The LORD our God, the LORD is one!" — Deuteronomy 6:4</p>
+    <div class="orn">✦ ✦ ✦</div>
+  </div>
+
+<section class="sec open" id="s1">
+    <div class="sec-hd" onclick="ts(this)"><h2>I. Introduction</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>The Quran rejects the Trinity — emphatically, repeatedly, and by name: "say not three." For many Muslims this settles the matter, and the standing challenge to Christians is blunt: you worship three gods, and God Himself has corrected you. The Christian answer begins with a question that sounds surprising the first time it is asked: <em>which</em> doctrine does the Quran reject? Read the Quranic passages closely, set them beside what the Church has actually confessed since before Islam existed, and a remarkable fact emerges — the "Trinity" the Quran condemns is one Christians also condemn, and the Trinity Christians confess is one the Quran never describes.</p>
+      <p>That fact matters in both directions. It clears away the misunderstanding that fuels most Muslim-Christian argument on this point. And it raises a hard question of its own — examined in Section VII — about how a book sent to correct Christians could describe their central doctrine in a form no church taught. The full positive case for the Trinity is on its own page (<a href="trinity.html">The Trinity</a>); this page handles the specific Quranic challenge.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s2">
+    <div class="sec-hd" onclick="ts(this)"><h2>II. What the Quran Says About the Trinity</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>Four passages carry the Quran's polemic. In standard English renderings <span class="pl">Paraphrase</span>:</p>
+      <div class="sv-grid">
+        <div class="sv"><div class="ref">Surah 5:116</div><div class="txt">God asks Jesus whether he told people, "Take me and my mother as two gods besides God" — and Jesus denies ever saying it.</div><div class="interp">The "Trinity" implied here is God, Jesus, and <em>Mary</em> — three separate gods, two of them taken "besides God." No Christian creed, council, or church has ever taught this.</div></div>
+        <div class="sv"><div class="ref">Surah 4:171</div><div class="txt">"Do not say 'Three' — desist, it is better for you. God is only one God; He is exalted above having a son."</div><div class="interp">The rejected idea is a plurality of gods and a son acquired in some creaturely way. Christians confess one God, and a Son "begotten, not made" — eternal, not acquired.</div></div>
+        <div class="sv"><div class="ref">Surah 5:73</div><div class="txt">"They have certainly disbelieved who say that God is the third of three" — and there is no god except one God.</div><div class="interp">"Third of three" is arithmetic among gods — tritheism. The Nicene faith says the opposite: not one god among three, but one God, undivided.</div></div>
+        <div class="sv"><div class="ref">Surah 112</div><div class="txt">"He neither begets nor is begotten" — God has no offspring.</div><div class="interp">The begetting denied is physical procreation, as the surrounding polemic against pagan Arabia's "daughters of God" confirms. The Church's "eternally begotten" asserts no such thing — see Section V.</div></div>
+      </div>
+      <p>Summarize the picture the Quran opposes: <strong>three gods</strong>, one of whom is Mary; a God who is merely <strong>one member of a trio</strong>; and a son produced by <strong>procreation</strong>. Each element is, by Christian lights, blasphemy. The Church anathematized tritheism and the worship of Mary long before the seventh century — and confesses both points to this day.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s3">
+    <div class="sec-hd" onclick="ts(this)"><h2>III. What Christians Actually Believe</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>The doctrine of the Trinity begins where Islam begins: there is exactly one God. The Shema — "Hear, O Israel: The LORD our God, the LORD is one!" (Deuteronomy 6:4) — is Christian Scripture, read in Christian churches. The Nicene Creed, written three centuries before the Quran and confessed every Sunday in the Coptic liturgy, opens: "We believe in one God." <span class="gl-tag">Direct Quote</span></p>
+      <p>Within that one God, Scripture compels Christians to distinguish three Persons — Father, Son, and Holy Spirit — each fully God, none a separate god, sharing one undivided divine essence. Not three gods cooperating; not one God wearing three masks; one God, three Persons. The Son is "begotten of the Father before all ages" — language the Creed chose precisely to rule out any beginning, any procreation, any second deity: "Light of Light, true God of true God, begotten, not made, of one essence with the Father." <span class="gl-tag">Direct Quote</span></p>
+      <p>And Mary? She is venerated as Theotokos — the human mother of the incarnate Son — and the Church has never numbered her in the Godhead. The distinction between the worship owed to God alone and the honor given to saints is ancient, explicit, and fiercely guarded, in the Coptic Church as everywhere in apostolic Christianity. A "Trinity" of God, Jesus, and Mary is not a simplification of the Christian doctrine; it is a different claim altogether, and a condemned one.</p>
+      <p>The biblical foundation is treated fully on <a href="trinity.html">the Trinity page</a>; in brief: the Father is God, the Son receives worship and forgives sins and is called God (John 1:1; 20:28), the Spirit is God (Acts 5:3–4), and the three are named together in one divine Name — "baptizing them in the name of the Father and of the Son and of the Holy Spirit" (Matthew 28:19) — one name, three Persons.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s4">
+    <div class="sec-hd" onclick="ts(this)"><h2>IV. The Mismatch — and What It Means</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>Set the two columns side by side:</p>
+      <div class="comp-grid">
+        <div class="comp-card prot">
+          <div class="ct">What the Quran Condemns</div>
+          <p>Three gods · Mary as a deity taken "besides God" · God as "the third of three" · a son begotten by procreation.</p>
+        </div>
+        <div class="comp-card oo">
+          <div class="ct">What the Church Confesses</div>
+          <p>One God · Mary a creature, honored but never worshipped · the one God who is Father, Son, and Spirit · a Son begotten eternally, "not made," without body or beginning.</p>
+        </div>
+      </div>
+      <p>Everything in the left column, Christians reject with the Quran. Nothing in the right column is described — let alone refuted — by the Quranic text. The standard Muslim challenge therefore aims at a position no one holds. Whatever the Quran's verses refute, it is not the faith of Nicaea, of the Coptic Church, or of any Christian communion of the seventh century or today.</p>
+      <p>Could the Quran be addressing real but deviant groups? Some have pointed to St. Epiphanius of Salamis (4th century), who describes a fringe sect of women offering bread-cakes to Mary as to a divinity — a practice he condemns as idolatry <span class="pl">Paraphrase</span> (Panarion 79). Whether any such group survived in 7th-century Arabia is not established by the surviving evidence, and the suggestion remains a conjecture. Either way the result is the same: if the Quran addresses heretics, it corrects people the Church had already corrected — and leaves historic Christianity untouched.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s5">
+    <div class="sec-hd" onclick="ts(this)"><h2>V. Common Objections Examined</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>"'Son of God' means God took a consort — an offense to God's transcendence"</h3><span class="arr">▼</span></div>
+        <div class="obj-bd">
+          <h4>The Claim</h4><p>Calling Jesus God's Son attributes physical offspring to God, which is absurd and blasphemous.</p>
+          <h4>Response</h4><p>Christians agree it would be — and have never taught it. "Begotten" in the Creed is a statement about eternal relation, not biology: the Son is <em>of</em> the Father as light is of light, radiance of a source — no time when He was not, no mother in the Godhead, no division of essence. Scripture itself uses "son" far more broadly than procreation — Israel is God's "firstborn son" (Exodus 4:22), peacemakers "shall be called sons of God" (Matthew 5:9) — and the unique Sonship of Christ is of a different order: "In the beginning was the Word, and the Word was with God, and the Word was God" (John 1:1). The Word does not begin to exist; He <em>is</em>, eternally, with and of the Father.</p>
+        </div>
+      </div>
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>"The Trinity is just disguised polytheism — 1 + 1 + 1 = 3"</h3><span class="arr">▼</span></div>
+        <div class="obj-bd">
+          <h4>The Claim</h4><p>Three Persons each fully God is three gods, whatever Christians call it.</p>
+          <h4>Response</h4><p>The arithmetic objection assumes the Persons are three separate <em>beings</em> — three instances of deity, like three men sharing humanity. That is tritheism, and the Church condemns it. The confession is one undivided being, one will, one power, one glory, subsisting as three Persons. No analogy is adequate (every analogy eventually fails into one heresy or another, which is itself instructive), but the point of logic is simple: "one" and "three" answer <em>different questions</em> — one in essence, three in person. A contradiction requires one and three in the same respect. The doctrine is a mystery exceeding reason; it is not a violation of it.</p>
+        </div>
+      </div>
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>"The word 'Trinity' isn't in the Bible — Constantine invented it at Nicaea"</h3><span class="arr">▼</span></div>
+        <div class="obj-bd">
+          <h4>The Claim</h4><p>The doctrine was fabricated by a council under imperial pressure in 325.</p>
+          <h4>Response</h4><p>The word is absent; the teaching is not — Father, Son, and Spirit named together as the one divine Name at the climax of Matthew's Gospel (28:19), the threefold grace of 2 Corinthians 13:14, the Word who "was God" of John 1. And the doctrine predates Nicaea in the Fathers: the term <em>Trias</em> appears in Theophilus of Antioch (2nd century), and Tertullian was using the Latin <em>Trinitas</em> — one substance, three persons — a full century before Constantine <span class="pl">Paraphrase</span>. Nicaea did not invent the faith; it defended the Church's existing worship of Christ against Arius's innovation. See <a href="divinity_of_christ.html">The Divinity of Christ</a> for the pre-Nicene evidence in detail.</p>
+        </div>
+      </div>
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>"Jesus himself never claimed to be God — he prayed to the Father"</h3><span class="arr">▼</span></div>
+        <div class="obj-bd">
+          <h4>The Claim</h4><p>The Gospels show a man who worships God, not a man who is God.</p>
+          <h4>Response</h4><p>The Incarnation means both are true: the eternal Son took real humanity, and as man He truly prays, hungers, and dies. The same Gospels show Him forgiving sins against God (Mark 2:5–7), receiving Thomas's confession "My Lord and my God!" without correction (John 20:28), and declaring "before Abraham was, I AM" (John 8:58) — at which His hearers took up stones for blasphemy. The prayer of Christ is not evidence against His deity; it is the mystery of His two natures, which the Coptic Church confesses with all apostolic Christianity. The full case: <a href="divinity_of_christ.html">The Divinity of Christ</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s6">
+    <div class="sec-hd" onclick="ts(this)"><h2>VI. The Trinity Before Islam — and Before Nicaea</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>Because the Muslim argument often claims the Trinity was a late corruption, the dates deserve a plain listing. The baptismal formula naming Father, Son, and Spirit stands in Matthew's Gospel, first century. The worship of Christ "as to a god" is reported by the pagan governor Pliny around AD 112 (see <a href="did_jesus_exist.html">Did Jesus Exist?</a>). Theophilus of Antioch uses <em>Trias</em> of God, His Word, and His Wisdom in the second century; Tertullian articulates one substance and three persons around the turn of the third <span class="pl">Paraphrase</span>. The Creed of Nicaea is from 325, expanded at Constantinople in 381 — and the complete Greek Bibles containing all the passages cited on this page (Codex Sinaiticus, Codex Vaticanus) are physical objects of the fourth century, photographed and online (see <a href="bible_corruption.html">Has the Bible Been Corrupted?</a>).</p>
+      <p>By the time the Quran was composed, the Trinitarian confession was not a recent or contested novelty inside the Church; it had been the Church's public, liturgical, creedal faith for centuries, across Egypt, Syria, Ethiopia, Armenia, Greece, and the Latin West — including the churches of Arabia's borderlands. A seventh-century text correcting Christians had a fixed, written, universally recited target to aim at. It describes something else.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s7">
+    <div class="sec-hd" onclick="ts(this)"><h2>VII. The Dilemma for the Muslim Position</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>Here the discussion becomes uncomfortable in the other direction, and Christians should put the point with care, not triumph. The Quran presents itself as the speech of the all-knowing God, sent in part to correct what Christians had gotten wrong about Jesus. On the central question — who Christians say God is — its description does not match the doctrine: it pictures Mary in the Trinity, gods "besides God," a son by procreation. The Christian doctrine, fixed in writing and recited weekly for nearly three centuries before Muhammad, is misdescribed on each of these points.</p>
+      <p>The Muslim has two main replies. The first: the Quran addresses deviant Christians of Arabia, not the doctrine of the councils. Perhaps — but then the Quran's polemic leaves Nicene Christianity unaddressed, and the standing Muslim argument against <em>the Church's</em> faith loses its proof-texts. The second: the Quran knowingly refutes popular distortions. But the same difficulty follows — the actual confession of the historic Church is then never engaged by the book said to supersede it.</p>
+      <p>Either way, a Christian may fairly say: the Trinity we confess has never been answered by the Quran — only a caricature has. The honest conversation, then, starts over, with the real doctrine on the table: one God, the Father, the Son, and the Holy Spirit. "For there is one God and one Mediator between God and men, the Man Christ Jesus" (1 Timothy 2:5) — the one God of Israel, who has made Himself known in His Word and His Spirit. The deeper questions this opens — the dilemma of a Quran that affirms scriptures it contradicts — are treated on <a href="islamic_dilemma.html">The Islamic Dilemma</a>.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s8">
+    <div class="sec-hd" onclick="ts(this)"><h2>VIII. FAQ</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <div class="fi">
+        <div class="fi-hd" onclick="tf(this)"><span>Q: Doesn't Surah 5:116 just use "mother" rhetorically, not claim Mary is in the Trinity?</span><span class="arr">▼</span></div>
+        <div class="fi-bd"><p>Some modern Muslim interpreters argue the verse condemns excessive Marian veneration rather than defining the Trinity. That reading concedes the essential point: the verse does not describe the Christian doctrine. And the other passages ("third of three," "say not three," the denial of begetting) still engage tritheism and procreation — positions the Church likewise rejects. On either reading, the Nicene confession goes unanswered.</p></div>
+      </div>
+      <div class="fi">
+        <div class="fi-hd" onclick="tf(this)"><span>Q: Do Copts worship Mary? Muslims often see icons and assume so.</span><span class="arr">▼</span></div>
+        <div class="fi-bd"><p>No. The Coptic Church venerates the Theotokos as the greatest of the saints and asks her intercession — and reserves worship, sacrifice, and adoration for God alone. The distinction is not a modern apologetic invention; it is built into the liturgy itself, where every prayer of praise terminates in the Holy Trinity. The 4th-century Church condemned as heresy the sect Epiphanius describes offering worship to Mary — the clearest possible evidence that the line was drawn long before Islam.</p></div>
+      </div>
+      <div class="fi">
+        <div class="fi-hd" onclick="tf(this)"><span>Q: Isn't one God in three Persons simply impossible to understand?</span><span class="arr">▼</span></div>
+        <div class="fi-bd"><p>To understand exhaustively, yes — and the Church says so; we confess a mystery revealed, not a theorem derived. But "beyond comprehension" is not "against logic" (see Section V), and an infinite God whose inner life fit comfortably inside human categories would be a suspiciously small God. Islam, too, confesses divine attributes it declines to explain. The question is not which faith eliminates mystery, but which mystery is the one God has actually revealed.</p></div>
+      </div>
+      <div class="fi">
+        <div class="fi-hd" onclick="tf(this)"><span>Q: How should I raise this with a Muslim friend?</span><span class="arr">▼</span></div>
+        <div class="fi-bd"><p>Begin with agreement: one God, no other gods, Mary not divine, no procreation in God. Watch the surprise — most Muslims have never heard a Christian affirm all four. Then open the real question: has your friend ever seen the doctrine itself, rather than the caricature? Walk through the Creed a phrase at a time. Speak "with meekness and fear" (1 Peter 3:15), and remember that for him this is not an abstraction but loyalty to God's honor — which is exactly the instinct the true doctrine satisfies.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s9">
+    <div class="sec-hd" onclick="ts(this)"><h2>IX. Sources</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <div class="src-grid">
+        <div class="src-card"><div class="src-cat">Quranic Texts Discussed</div>
+          <p class="src-item">Quran — Surah 4:171; 5:73; 5:116; 112 — cited from standard English renderings.</p>
+        </div>
+        <div class="src-card"><div class="src-cat">Scripture</div>
+          <p class="src-item">Holy Bible, NKJV — Deuteronomy 6:4; Exodus 4:22; Matthew 5:9; 28:19; Mark 2:5–7; John 1:1; 8:58; 20:28; Acts 5:3–4; 2 Corinthians 13:14; 1 Timothy 2:5; 1 Peter 3:15.</p>
+        </div>
+        <div class="src-card"><div class="src-cat">Patristic &amp; Creedal</div>
+          <p class="src-item">The Nicene-Constantinopolitan Creed (325/381) · Theophilus of Antioch, To Autolycus 2.15 · Tertullian, Against Praxeas · Epiphanius of Salamis, Panarion 79 (the sect offering cakes to Mary).</p>
+        </div>
+        <div class="src-card"><div class="src-cat">On This Site</div>
+          <p class="src-item"><a href="trinity.html">The Trinity</a> · <a href="divinity_of_christ.html">The Divinity of Christ</a> · <a href="islamic_dilemma.html">The Islamic Dilemma</a> · <a href="bible_corruption.html">Has the Bible Been Corrupted?</a> · <a href="christology.html">Christology</a></p>
+        </div>
+      </div>
+      <p style="font-size:.78rem;color:var(--mu);margin-top:1rem">Scripture quotations are from the New King James Version. Quotations marked <span class="gl-tag">Direct Quote</span> are taken verbatim from the cited editions; material marked <span class="pl">Paraphrase</span> is a faithful summary, not a verbatim citation. Readers are encouraged to verify every citation in the sources listed above.</p>
+    </div>
+  </section>
+
+  </main>
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+function ts(h){h.closest('.sec').classList.toggle('open')}
+function tobj(h){h.closest('.obj').classList.toggle('open')}
+function tf(h){h.closest('.fi').classList.toggle('open')}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').classList.toggle('show')}
+function closeMobile(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
+const secs=document.querySelectorAll('.sec[id]');
+const navLinks=document.querySelectorAll('#sidenav a');
+function updateNav(){let cur='';secs.forEach(s=>{if(s.getBoundingClientRect().top<120)cur=s.id;});navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur);})}
+window.addEventListener('scroll',updateNav,{passive:true});
+window.addEventListener('scroll',()=>{const st=document.documentElement.scrollTop;const sh=document.documentElement.scrollHeight-document.documentElement.clientHeight;document.getElementById('progress-bar').style.width=(st/sh*100)+'%';},{passive:true});
+window.addEventListener('scroll',()=>{document.getElementById('btt').style.opacity=window.scrollY>400?'1':'0';},{passive:true});
+let lastQuery='';
+function doSearch(){const q=document.getElementById('search-input').value.trim().toLowerCase();if(q===lastQuery)return;lastQuery=q;clearHighlights();if(!q)return;const walker=document.createTreeWalker(document.getElementById('main-content'),NodeFilter.SHOW_TEXT,null,false);const matches=[];let node;while((node=walker.nextNode())){if(node.nodeValue.toLowerCase().includes(q))matches.push(node);}matches.forEach(n=>{const idx=n.nodeValue.toLowerCase().indexOf(q);const before=document.createTextNode(n.nodeValue.substring(0,idx));const mark=document.createElement('mark');mark.textContent=n.nodeValue.substring(idx,idx+q.length);mark.style.cssText='background:#c9a84c;color:#0d0d0d;border-radius:2px;padding:0 2px;';const after=document.createTextNode(n.nodeValue.substring(idx+q.length));const frag=document.createDocumentFragment();frag.appendChild(before);frag.appendChild(mark);frag.appendChild(after);n.parentNode.replaceChild(frag,n);});const firstMark=document.querySelector('mark');if(firstMark)firstMark.scrollIntoView({behavior:'smooth',block:'center'});}
+function clearHighlights(){document.querySelectorAll('mark').forEach(m=>{m.parentNode.replaceChild(document.createTextNode(m.textContent),m);});}
+document.getElementById('search-input').addEventListener('keydown',e=>{if(e.key==='Enter')doSearch();if(e.key==='Escape'){document.getElementById('search-input').value='';lastQuery='';clearHighlights();}});
+document.getElementById('search-btn').addEventListener('click',doSearch);
+document.querySelector('.sec').classList.add('open');
+</script>
+</body>
+</html>
