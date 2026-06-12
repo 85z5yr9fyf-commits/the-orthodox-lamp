@@ -220,7 +220,19 @@
     font-size:24px;color:var(--gold-bright);max-width:640px;margin:0 auto 20px;line-height:1.5;
   }
   footer .fine{font-size:15px;max-width:620px;margin:0 auto}
+
+html.light{--bg:#f7f2e6;--bg-soft:#f0e8d6;--panel:#ece2cc;--panel-2:#e4d8be;--ink:#2b2210;--ink-dim:#6e5f45;--gold:#8a6a20;--gold-bright:#6f5413;--flame:#c96a10;--rule:#d2c4a4;--scripture:#2e6b40;--father:#7a4a8a}
+#ol-tt{position:fixed;right:16px;bottom:74px;z-index:9999;width:44px;height:44px;border-radius:50%;background:var(--bg3,var(--panel,#1a1a1a));color:var(--gold,#c9a84c);border:1px solid var(--gd,var(--gold-dark,var(--rule,#8a6a20)));font-size:1.1rem;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35);line-height:1}#ol-tt:hover{filter:brightness(1.15)}
+html.light .pl,html.light .labels .prot{background:#eed6d6;color:#8b2020}
+html.light .gl-tag,html.light .labels .oo{background:#d8e8d8;color:#1d5c1d}
+html.light .labels .ctx{background:#d8e3ee;color:#1d4a6b}
+html.light .obj{border-color:#dcc0c0}
+html.light .obj-bd{border-top-color:#dcc0c0}
+html.light .obj-hd h3{color:#8b2020}
+html.light .comp-card.prot{border-top-color:#a83232}
+html.light .comp-card.prot .ct{color:#a83232}
 </style>
+<script>try{if(localStorage.getItem('ol-theme')==='light')document.documentElement.classList.add('light')}catch(e){}</script>
 </head>
 <body>
 
@@ -1045,5 +1057,6 @@
   <p class="fine">The Orthodox Lamp. Scripture quotations follow the traditional rendering (NKJV phrasing). Patristic citations are given from the standard editions; older translations are lightly modernized for readability. Prepared in the faith of the three Ecumenical Councils — Nicaea (325), Constantinople (381), and Ephesus (431) — confessed by the Oriental Orthodox Churches.</p>
 </footer>
 
+<button id="ol-tt" onclick="olTheme()" aria-label="Toggle light or dark mode" title="Light/dark mode">☀</button><script>function olTheme(){var l=document.documentElement.classList.toggle('light');try{localStorage.setItem('ol-theme',l?'light':'dark')}catch(e){}olIcon()}function olIcon(){document.getElementById('ol-tt').textContent=document.documentElement.classList.contains('light')?'☾':'☀'}olIcon();</script>
 </body>
 </html>
