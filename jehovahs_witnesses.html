@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>THE ORTHODOX LAMP — Answering Jehovah&#8217;s Witnesses</title>
+<style>
+:root{--gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;--bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--tx:#e8e0d0;--mu:#a09880;--red:#8b2020;--br:#2a2a2a;--bg5:#3a2e10;--sidebar-w:270px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.75}
+a{color:var(--gold);text-decoration:none}
+#progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(to right,var(--gd),var(--gold),var(--gl));width:0%;z-index:500}
+#sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:200;transition:transform .3s}
+#sidebar h2{font-size:.7rem;letter-spacing:.15em;color:var(--gold);text-transform:uppercase;padding:1.4rem 1.2rem .5rem;border-bottom:1px solid var(--br)}
+#sidenav a{display:block;padding:.42rem 1.2rem;font-size:.82rem;color:var(--mu);border-left:3px solid transparent;transition:all .2s}
+#sidenav a:hover,#sidenav a.active{color:var(--gl);border-left-color:var(--gold);background:var(--bg5)}
+.search-wrap{padding:.8rem 1rem;border-bottom:1px solid var(--br);display:flex;gap:.4rem}
+.search-wrap input{flex:1;background:var(--bg3);border:1px solid var(--br);color:var(--tx);padding:.35rem .6rem;border-radius:4px;font-size:.8rem}
+.search-wrap button{background:var(--gold);color:#0d0d0d;border:none;padding:.35rem .7rem;border-radius:4px;cursor:pointer;font-weight:700;font-size:.8rem}
+#main-content{margin-left:var(--sidebar-w);padding:0 2rem 4rem}
+.mob-toggle{display:none;position:fixed;bottom:1.2rem;right:1.2rem;background:var(--gold);color:#0d0d0d;border:none;width:48px;height:48px;border-radius:50%;font-size:1.4rem;cursor:pointer;z-index:300;box-shadow:0 2px 12px rgba(0,0,0,.5)}
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:150}
+#overlay.show{display:block}
+.hero{text-align:center;padding:4rem 1rem 2.5rem;border-bottom:1px solid var(--br);background:linear-gradient(to bottom,var(--bg2),var(--bg))}
+.si{font-size:2.2rem;color:var(--gold);display:block;margin-bottom:.5rem}
+.st{font-size:2rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--tx)}
+.st span{color:var(--gold)}
+.ss{font-size:1.05rem;color:var(--gl);margin:.6rem 0 .4rem;font-style:italic}
+.tg{font-size:.85rem;color:var(--mu);margin-bottom:.8rem}
+.orn{color:var(--gold);font-size:1.1rem;letter-spacing:.4em;margin-top:.5rem}
+.sec{border:1px solid var(--br);border-radius:8px;margin:1.5rem 0;background:var(--bg2);overflow:hidden}
+.sec-hd{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.3rem;cursor:pointer;user-select:none;background:var(--bg3);border-bottom:1px solid transparent;transition:background .2s}
+.sec-hd:hover{background:var(--bg4)}
+.sec.open .sec-hd{border-bottom-color:var(--br);background:var(--bg4)}
+.sec-hd h2{font-size:1rem;color:var(--gl);text-transform:uppercase;letter-spacing:.05em}
+.sec-bd{display:none;padding:1.4rem 1.5rem}
+.sec.open .sec-bd{display:block}
+.sec-bd h3{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin:1.4rem 0 .7rem;padding-bottom:.3rem;border-bottom:1px solid var(--bg5)}
+.sec-bd p{color:var(--tx);margin-bottom:.9rem;font-size:.95rem}
+.arr{color:var(--gold);font-size:.9rem;transition:transform .3s}
+.sec.open .arr{transform:rotate(180deg)}
+.sv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin:.8rem 0 1.2rem}
+.sv{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:1rem}
+.sv .ref{font-size:.75rem;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.4rem}
+.sv .labels{margin-bottom:.5rem;display:flex;gap:.4rem;flex-wrap:wrap}
+.sv .labels span{font-size:.65rem;font-weight:700;padding:.15rem .45rem;border-radius:3px;text-transform:uppercase;letter-spacing:.06em}
+.labels .prot{background:#4a1a1a;color:#e87070}
+.labels .oo{background:#1a3a1a;color:#70c870}
+.labels .ctx{background:#1a2a3a;color:#70aacc}
+.sv .txt{font-style:italic;color:var(--gl);font-size:.88rem;margin-bottom:.5rem;border-left:2px solid var(--gold);padding-left:.7rem}
+.sv .interp{font-size:.82rem;color:var(--mu)}
+.fc{background:var(--bg3);border:1px solid var(--br);border-left:3px solid var(--gold);border-radius:6px;padding:1rem 1.1rem;margin:.8rem 0}
+.fn{font-size:.8rem;font-weight:700;color:var(--gl);text-transform:uppercase;letter-spacing:.07em}
+.fw{font-size:.75rem;color:var(--mu);margin:.2rem 0 .5rem;font-style:italic}
+.fq{font-style:italic;color:var(--tx);font-size:.88rem;border-left:2px solid var(--bg5);padding-left:.8rem;margin:.4rem 0 .6rem}
+.fsig{font-size:.8rem;color:var(--mu)}
+.pl{background:#4a1a1a;color:#e87070;font-size:.65rem;font-weight:700;padding:.1rem .35rem;border-radius:3px;text-transform:uppercase;letter-spacing:.06em;vertical-align:middle;margin-left:.3rem;font-style:normal}
+.gl-tag{background:#1a3a1a;color:#70c870;font-size:.65rem;font-weight:700;padding:.1rem .35rem;border-radius:3px;text-transform:uppercase;letter-spacing:.06em;vertical-align:middle;margin-left:.3rem;font-style:normal}
+.obj{background:var(--bg3);border:1px solid #4a1a1a;border-left:3px solid var(--red);border-radius:6px;margin:.8rem 0;overflow:hidden}
+.obj-hd{display:flex;justify-content:space-between;align-items:center;padding:.8rem 1rem;cursor:pointer;user-select:none}
+.obj-hd:hover{background:var(--bg4)}
+.obj-hd h3{font-size:.85rem;color:#e87070;font-weight:700}
+.obj-bd{display:none;padding:.9rem 1.1rem;border-top:1px solid #4a1a1a}
+.obj.open .obj-bd{display:block}
+.obj.open .arr{transform:rotate(180deg)}
+.obj-bd h4{font-size:.75rem;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.4rem;margin-top:.6rem}
+.obj-bd h4:first-child{margin-top:0}
+.obj-bd p{font-size:.85rem;color:var(--tx);margin-bottom:.6rem}
+.fi{background:var(--bg3);border:1px solid var(--br);border-radius:6px;margin:.6rem 0;overflow:hidden}
+.fi-hd{display:flex;justify-content:space-between;align-items:center;padding:.8rem 1rem;cursor:pointer;user-select:none;font-size:.88rem;color:var(--gl)}
+.fi-hd:hover{background:var(--bg4)}
+.fi-bd{display:none;padding:.9rem 1.1rem;border-top:1px solid var(--br);font-size:.85rem;color:var(--tx)}
+.fi.open .fi-bd{display:block}
+.fi.open .arr{transform:rotate(180deg)}
+.fi-bd p{margin-bottom:.7rem}
+.comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:.8rem 0}
+.comp-card{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:1rem}
+.comp-card.prot{border-top:3px solid #e87070}
+.comp-card.oo{border-top:3px solid var(--gold)}
+.comp-card .ct{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.6rem}
+.comp-card.prot .ct{color:#e87070}
+.comp-card.oo .ct{color:var(--gold)}
+.comp-card p{font-size:.82rem;color:var(--mu)}
+.tl{border-left:2px solid var(--bg5);margin:1rem 0 1rem .4rem;padding-left:1.2rem}
+.tl-item{position:relative;margin-bottom:1.1rem}
+.tl-item::before{content:'';position:absolute;left:-1.62rem;top:.45rem;width:11px;height:11px;border-radius:50%;background:var(--gold);border:2px solid var(--bg2)}
+.tl-date{font-size:.78rem;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase}
+.tl-item p{font-size:.85rem;color:var(--mu);margin:.2rem 0 0}
+.src-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;margin:.8rem 0}
+.src-card{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:1rem}
+.src-cat{font-size:.72rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.6rem;padding-bottom:.4rem;border-bottom:1px solid var(--bg5)}
+.src-item{font-size:.8rem;color:var(--mu);margin-bottom:.5rem;padding-left:.7rem;border-left:2px solid var(--br)}
+.btt{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--gold);color:#0d0d0d;border:none;width:44px;height:44px;border-radius:50%;font-size:1.2rem;cursor:pointer;opacity:0;transition:opacity .3s;z-index:300;font-weight:700}
+@media(max-width:768px){#sidebar{transform:translateX(-100%)}#sidebar.open{transform:translateX(0)}#main-content{margin-left:0;padding:0 1rem 4rem}.mob-toggle{display:flex;align-items:center;justify-content:center}.sv-grid{grid-template-columns:1fr}.comp-grid{grid-template-columns:1fr}}
+
+.lampsvg{display:block;margin:0 auto 14px;height:auto}
+.lampsvg .lampflame{animation:lampflick 3.2s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes lampflick{0%,100%{transform:scaleY(1) scaleX(1);opacity:.95}25%{transform:scaleY(1.06) scaleX(.97);opacity:1}50%{transform:scaleY(.96) scaleX(1.03);opacity:.9}75%{transform:scaleY(1.04) scaleX(.98);opacity:1}}
+
+html.light{--gold:#8a6a20;--gl:#6f5413;--gd:#b08e3e;--bg:#f7f2e6;--bg2:#efe8d5;--bg3:#e7ddc7;--bg4:#ddd2b9;--tx:#2b2415;--mu:#6e6450;--br:#d2c7aa;--bg5:#efe0b8}
+#ol-tt{position:fixed;right:16px;bottom:74px;z-index:9999;width:44px;height:44px;border-radius:50%;background:var(--bg3,var(--panel,#1a1a1a));color:var(--gold,#c9a84c);border:1px solid var(--gd,var(--gold-dark,var(--rule,#8a6a20)));font-size:1.1rem;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35);line-height:1}#ol-tt:hover{filter:brightness(1.15)}
+html.light .pl,html.light .labels .prot{background:#eed6d6;color:#8b2020}
+html.light .gl-tag,html.light .labels .oo{background:#d8e8d8;color:#1d5c1d}
+html.light .labels .ctx{background:#d8e3ee;color:#1d4a6b}
+html.light .obj{border-color:#dcc0c0}
+html.light .obj-bd{border-top-color:#dcc0c0}
+html.light .obj-hd h3{color:#8b2020}
+html.light .comp-card.prot{border-top-color:#a83232}
+html.light .comp-card.prot .ct{color:#a83232}
+</style>
+<script>try{if(localStorage.getItem('ol-theme')==='light')document.documentElement.classList.add('light')}catch(e){}</script>
+</head>
+<body>
+<div id="progress-bar"></div>
+<nav id="sidebar">
+  <div class="search-wrap"><input type="text" id="search-input" placeholder="Search…"><button id="search-btn">Go</button></div>
+  <svg class="lampsvg" width="64" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><radialGradient id="lmpGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffb95e" stop-opacity=".55"/><stop offset="100%" stop-color="#ffb95e" stop-opacity="0"/></radialGradient><linearGradient id="lmpFlame" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#ff7a1f"/><stop offset="55%" stop-color="#ffb347"/><stop offset="100%" stop-color="#ffe9b0"/></linearGradient><linearGradient id="lmpBrass" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e3b860"/><stop offset="50%" stop-color="#a87b35"/><stop offset="100%" stop-color="#7a5523"/></linearGradient></defs><circle cx="60" cy="38" r="34" fill="url(#lmpGlow)"/><g class="lampflame"><path d="M60 16 C66 26 70 32 70 40 C70 48 65.5 53 60 53 C54.5 53 50 48 50 40 C50 32 54 26 60 16 Z" fill="url(#lmpFlame)"/><path d="M60 30 C63 35 64.5 38 64.5 42 C64.5 46.5 62.5 49 60 49 C57.5 49 55.5 46.5 55.5 42 C55.5 38 57 35 60 30 Z" fill="#fff3cf" opacity=".85"/></g><rect x="56" y="52" width="8" height="7" rx="2" fill="#8a6228"/><path d="M28 62 L92 62 C92 80 78 92 60 92 C42 92 28 80 28 62 Z" fill="url(#lmpBrass)"/><rect x="24" y="58" width="72" height="6" rx="3" fill="#caa14e"/><rect x="56" y="92" width="8" height="16" fill="url(#lmpBrass)"/><path d="M38 118 C38 110 47 108 60 108 C73 108 82 110 82 118 L82 122 L38 122 Z" fill="url(#lmpBrass)"/><rect x="32" y="122" width="56" height="6" rx="3" fill="#caa14e"/></svg>
+  <h2>The Orthodox Lamp</h2>
+  <nav id="sidenav">
+<a href="#s1">I. Introduction</a>
+<a href="#s2">II. Who Are the Jehovah&#8217;s Witnesses?</a>
+<a href="#s3">III. The New World Translation</a>
+<a href="#s4">IV. Is Jesus &#8220;a god&#8221;? — John 1:1</a>
+<a href="#s5">V. The Failed Predictions</a>
+<a href="#s6">VI. Common Watchtower Arguments Examined</a>
+<a href="#s7">VII. The 144,000 and the &#8220;Other Sheep&#8221;</a>
+<a href="#s8">VIII. FAQ</a>
+<a href="#s9">IX. Sources</a>
+</nav>
+</nav>
+<div id="overlay" onclick="closeMobile()"></div>
+<button class="mob-toggle" onclick="toggleSidebar()">☰</button>
+<main id="main-content">
+  <div class="hero">
+    <span class="si">☩</span>
+    <h1 class="st">THE <span>ORTHODOX</span> LAMP</h1>
+    <p class="ss">Answering Jehovah&#8217;s Witnesses — The Watchtower&#8217;s Claims Tested</p>
+    <p class="tg">"Test all things; hold fast what is good" — 1 Thessalonians 5:21</p>
+    <div class="orn">✦ ✦ ✦</div>
+  </div>
+<section class="sec open" id="s1">
+<div class="sec-hd" onclick="ts(this)"><h2>I. Introduction</h2><span class="arr">▼</span></div>
+<div class="sec-bd">
+<p>Jehovah's Witnesses are among the most dedicated door-to-door evangelists in the world, and the Orthodox Christian who answers the knock should do so with respect: these are people who take God, Scripture, and evangelism seriously. But the message they carry — that Jesus is not God but a created angelic being, that the Trinity is a pagan corruption, and that true Christianity vanished from the earth until the 1870s — strikes at the heart of the faith. This page tests the Watchtower's distinctive claims against Scripture, history, and the movement's own record.</p>
+<p>The conversation matters because the question at stake is the oldest one in Christian theology, settled at Nicaea in AD 325 against Arius: is the Son true God, or the first and greatest creature? The Watchtower has revived Arius's answer. The Church's response is the same as it was then. For the full positive case, see <a href="divinity_of_christ.html">The Divinity of Christ</a> and <a href="trinity.html">The Trinity</a>; this page focuses on the Watchtower's specific arguments.</p>
+</div>
+</section>
+
+<section class="sec" id="s2">
+<div class="sec-hd" onclick="ts(this)"><h2>II. Who Are the Jehovah's Witnesses?</h2><span class="arr">▼</span></div>
+<div class="sec-bd">
+<p>The movement began with Charles Taze Russell, a Pennsylvania businessman who founded the Watch Tower Society in the early 1880s after years in Adventist circles. His successor, Joseph Rutherford, reorganized the movement and gave it the name "Jehovah's Witnesses" in 1931. Doctrine is set centrally by the Governing Body in Warwick, New York, and published through the Watchtower and Awake! magazines; members are expected to accept its teaching as the channel of God's communication.</p>
+<h3>What they teach</h3>
+<p>In summary: there is one God, Jehovah; Jesus is God's first creation — identified with Michael the Archangel — through whom all else was made; the Holy Spirit is not a person but God's impersonal "active force"; Christ died on a stake, not a cross; his return occurred invisibly in 1914; only 144,000 go to heaven, while other faithful Witnesses hope to live forever on a restored earth; the soul is not naturally immortal and the wicked are annihilated; and blood transfusions are forbidden. Birthdays, holidays, military service, and voting are refused, and former members are subject to organized shunning.</p>
+<p>Each of these stands or falls with the movement's central claim: that all churches apostatized after the apostles died, and that God restored the truth through the Watch Tower Society. That claim is historical — and testable.</p>
+</div>
+</section>
+
+<section class="sec" id="s3">
+<div class="sec-hd" onclick="ts(this)"><h2>III. The New World Translation</h2><span class="arr">▼</span></div>
+<div class="sec-bd">
+<p>The Witnesses use their own Bible, the New World Translation (NWT, complete edition 1961, revised 2013). Produced by an anonymous committee whose members the Society has never fully disclosed, it differs from the major mainstream translations — Protestant, Catholic, and Orthodox alike — precisely at the verses that bear on Christ's deity.</p>
+<div class="sv-grid">
+<div class="sv"><div class="ref">John 1:1</div><div class="txt">NKJV: "and the Word was God." NWT: "and the Word was a god." <span class="pl">Paraphrase</span></div><div class="interp">The NWT inserts an indefinite article that is defensible in no mainstream translation. See Section IV for the Greek.</div></div>
+<div class="sv"><div class="ref">Colossians 1:16–17</div><div class="txt">NKJV: "by Him all things were created." NWT: "by means of him all other things were created." <span class="pl">Paraphrase</span></div><div class="interp">The word "other" appears four times in the NWT of this passage; it is absent from the Greek every time. It is inserted to make the Creator of all things into a creature who made the rest.</div></div>
+<div class="sv"><div class="ref">Hebrews 1:8</div><div class="txt">NKJV: "But to the Son He says: 'Your throne, O God, is forever and ever.'" NWT: "God is your throne forever." <span class="pl">Paraphrase</span></div><div class="interp">The verse quotes Psalm 45:6, where the Father addresses the Son as God. The NWT's rendering turns God into a piece of furniture.</div></div>
+<div class="sv"><div class="ref">"Jehovah" in the New Testament</div><div class="txt">The NWT prints "Jehovah" 237 times in the New Testament. <span class="pl">Paraphrase</span></div><div class="interp">Not one of the thousands of Greek New Testament manuscripts contains the divine name there — they read "Lord" (Kyrios). The insertions conveniently break the New Testament's habit of applying "Lord" texts about YHWH directly to Jesus (e.g., Romans 10:9–13 quoting Joel 2:32).</div></div>
+</div>
+<p>The pattern is consistent: wherever the Greek text identifies Jesus with God, the NWT adjusts the English. A translation that must rewrite the evidence is itself evidence.</p>
+</div>
+</section>
+
+<section class="sec" id="s4">
+<div class="sec-hd" onclick="ts(this)"><h2>IV. Is Jesus "a god"? — John 1:1</h2><span class="arr">▼</span></div>
+<div class="sec-bd">
+<h3>The grammatical argument</h3>
+<p>The Watchtower argues that because the Greek of John 1:1c lacks the definite article before "God" (theos), it should read "a god." But Greek grammar does not work that way: a definite predicate noun placed before the verb regularly drops the article (the pattern described in Colwell's rule), and the very same anarthrous "theos" appears in John 1:6, 12, 13, and 18 — where the NWT itself translates "God," not "a god." The construction in John 1:1c is qualitative: the Word was God in nature — everything that God is. John's prologue then closes the loop: "No one has seen God at any time. The only begotten Son, who is in the bosom of the Father, He has declared Him" (John 1:18 NKJV).</p>
+<h3>The theological problem is worse than the grammatical one</h3>
+<p>Suppose the NWT rendering were granted: "the Word was <em>a god</em>." Witnesses are then committed to two gods — one almighty, one mighty — which is precisely the polytheism they accuse Trinitarians of. Isaiah leaves no room: <em>"Before Me there was no God formed, nor shall there be after Me"</em> <span class="gl-tag">Direct Quote</span> (Isaiah 43:10). If no god was formed after Jehovah, then the Word is either Jehovah or no god at all; "a god" created in between is exactly what the verse excludes.</p>
+<h3>Thomas's confession</h3>
+<p>The risen Christ accepts the most direct confession in the Gospels without correction: <em>"And Thomas answered and said to Him, 'My Lord and my God!'"</em> <span class="gl-tag">Direct Quote</span> (John 20:28). A faithful creature's first duty would be to refuse the title — as the angel does in Revelation 22:8–9, and as Paul and Barnabas do at Lystra (Acts 14:14–15). Jesus instead blesses those who will believe the same (John 20:29).</p>
+<p>For the full scriptural case — the worship of Christ, the divine names, "I AM" (John 8:58), Philippians 2, and the witness of the earliest fathers — see <a href="divinity_of_christ.html">The Divinity of Christ</a>.</p>
+</div>
+</section>
+
+<section class="sec" id="s5">
+<div class="sec-hd" onclick="ts(this)"><h2>V. The Failed Predictions</h2><span class="arr">▼</span></div>
+<div class="sec-bd">
+<p>The Watch Tower Society has repeatedly attached God's authority to specific dates. The record is documented in the Society's own publications:</p>
+<div class="tl">
+<div class="tl-item"><div class="tl-date">1914</div><p>Russell's movement long taught that 1914 would mark the end of the present order; when the visible end did not come, the date was reinterpreted as Christ's <em>invisible</em> enthronement in heaven. <span class="pl">Paraphrase</span></p></div>
+<div class="tl-item"><div class="tl-date">1925</div><p>Rutherford's booklet "Millions Now Living Will Never Die" pointed to 1925 for the resurrection of the patriarchs; a San Diego mansion ("Beth Sarim") was deeded for their use. The patriarchs did not arrive, and the house was quietly sold. <span class="pl">Paraphrase</span></p></div>
+<div class="tl-item"><div class="tl-date">1975</div><p>Watchtower publications of the late 1960s pointed to 1975 as the likely end of six thousand years of human history, with strong hints of Armageddon; many Witnesses sold homes and postponed careers. The Society later acknowledged that expectations had been encouraged. <span class="pl">Paraphrase</span></p></div>
+<div class="tl-item"><div class="tl-date">"This generation"</div><p>For decades the Society taught that the generation alive in 1914 would not pass away before the end; as that generation died out, the doctrine was redefined repeatedly, most recently as "overlapping generations." <span class="pl">Paraphrase</span></p></div>
+</div>
+<p>Scripture supplies the test: <em>"when a prophet speaks in the name of the LORD, if the thing does not happen or come to pass, that is the thing which the LORD has not spoken; the prophet has spoken it presumptuously"</em> <span class="gl-tag">Direct Quote</span> (Deuteronomy 18:22). An organization claiming to be God's sole channel must answer for dates announced in God's name that did not come to pass.</p>
+</div>
+</section>
+
+<section class="sec" id="s6">
+<div class="sec-hd" onclick="ts(this)"><h2>VI. Common Watchtower Arguments Examined</h2><span class="arr">▼</span></div>
+<div class="sec-bd">
+<div class="obj"><div class="obj-hd" onclick="tobj(this)"><h3>"The Trinity is pagan — borrowed from Babylon and Plato"</h3><span class="arr">▼</span></div><div class="obj-bd"><h4>The Claim</h4><p>Three-in-one gods abound in paganism; the church absorbed the idea centuries after Christ.</p><h4>Response</h4><p>Pagan triads are three separate gods in a committee — the opposite of the Christian confession of one God in three persons. The Trinitarian pattern is in the New Testament itself: "baptizing them in the name of the Father and of the Son and of the Holy Spirit" (Matthew 28:19 NKJV) — one name, three persons. Christians were worshiping Christ "as to a god" while the apostles' students still lived (Pliny's letter to Trajan, c. AD 112). The fathers who articulated the doctrine were the fiercest opponents of paganism in the ancient world. See <a href="trinity.html">The Trinity</a>.</p></div></div>
+<div class="obj"><div class="obj-hd" onclick="tobj(this)"><h3>"Jesus is the 'firstborn of creation,' so he was created"</h3><span class="arr">▼</span></div><div class="obj-bd"><h4>The Claim</h4><p>Colossians 1:15 calls Christ "the firstborn over all creation" — the first thing Jehovah made.</p><h4>Response</h4><p>"Firstborn" (prototokos) is a title of rank, not a birth certificate: David, the youngest of eight, is made "firstborn, the highest of the kings of the earth" (Psalm 89:27), and Israel is God's "firstborn" among nations. Paul's very next sentence destroys the Watchtower reading: "For by Him all things were created... All things were created through Him and for Him" (Colossians 1:16 NKJV). If all created things were created through him, he is not one of the created things — unless one inserts "other," which is exactly what the NWT does, without Greek warrant.</p></div></div>
+<div class="obj"><div class="obj-hd" onclick="tobj(this)"><h3>"The Father is greater than I" (John 14:28)</h3><span class="arr">▼</span></div><div class="obj-bd"><h4>The Claim</h4><p>Jesus himself says the Father is greater — so he cannot be God.</p><h4>Response</h4><p>"Greater" speaks of position, not nature — a king is greater than his son without being more human. The Son, "being in the form of God... made Himself of no reputation, taking the form of a bondservant" (Philippians 2:6–7 NKJV); in his voluntary humiliation the Father is greater, as the sender is greater than the one sent (John 13:16). The same Gospel says "I and My Father are one" (John 10:30) and records the Jews' verdict on his meaning: "You, being a Man, make Yourself God" (John 10:33). The Orthodox fathers read John 14:28 of the incarnate economy — and some, of the Father as the eternal source (the Son is begotten <em>of</em> the Father), which implies no inequality of nature.</p></div></div>
+<div class="obj"><div class="obj-hd" onclick="tobj(this)"><h3>"True worshipers must use the name Jehovah"</h3><span class="arr">▼</span></div><div class="obj-bd"><h4>The Claim</h4><p>God's name is Jehovah; churches that don't use it are not God's people.</p><h4>Response</h4><p>"Jehovah" is a 16th-century hybrid — the consonants YHWH fitted with the vowels of "Adonai"; it is not how Moses, Isaiah, or Jesus pronounced the name. More telling: the New Testament, written by Spirit-guided apostles, never once uses it — it calls God "Father" and "Lord," and applies "Lord" without embarrassment to Jesus. "Whoever calls on the name of the LORD shall be saved" (Joel 2:32) is quoted by Paul of calling on <em>Jesus</em> (Romans 10:9–13). The name above every name given to the risen Christ is the point of Philippians 2:9–11.</p></div></div>
+</div>
+</section>
+
+<section class="sec" id="s7">
+<div class="sec-hd" onclick="ts(this)"><h2>VII. The 144,000 and the "Other Sheep"</h2><span class="arr">▼</span></div>
+<div class="sec-bd">
+<p>Watchtower doctrine divides believers into two classes: an "anointed" 144,000 who go to heaven and partake of communion, and the "great crowd" of other Witnesses who hope for paradise on earth and must abstain from the bread and the cup. The 144,000 figure comes from Revelation 7 and 14 — read with selective literalism. The number is taken literally, but everything around it is not: the 144,000 are described as 12,000 from each of twelve named tribes of Israel, male, virgins, "not defiled with women" (Revelation 14:4). No Witness reads those details literally; only the bare number survives. In Revelation's own visions the sealed of Israel stand alongside "a great multitude which no one could number" standing <em>before the throne</em> in heaven (Revelation 7:9) — the great crowd is in heaven, not outside it.</p>
+<p>The two-class system collides with the words of Christ: <em>"Most assuredly, I say to you, unless you eat the flesh of the Son of Man and drink His blood, you have no life in you"</em> <span class="gl-tag">Direct Quote</span> (John 6:53). A doctrine that requires the vast majority of believers to refuse the chalice has no precedent in Scripture or in any century of Christian history. The Orthodox Church knows one flock and one cup: "there will be one flock and one shepherd" (John 10:16) — the verse the Watchtower cites for the two classes in fact announces their union.</p>
+</div>
+</section>
+
+<section class="sec" id="s8">
+<div class="sec-hd" onclick="ts(this)"><h2>VIII. FAQ</h2><span class="arr">▼</span></div>
+<div class="sec-bd">
+<div class="fi"><div class="fi-hd" onclick="tf(this)"><span>Q: How should I talk with Witnesses at my door?</span><span class="arr">▼</span></div><div class="fi-bd"><p>With kindness and without fear. Don't try to win on twenty fronts; ask one good question and let it work — for example: "If the NWT translators were right about John 1:1, why do the translations made by Greek scholars outside the Society disagree?" or "If the Society announced 1925 and 1975 in God's name, what does Deuteronomy 18:22 ask me to conclude?" Remember that the person at the door is often sincere, lonely, and under real social pressure; harshness confirms what they've been told about "opposers." Hospitality and patience open more doors than debate.</p></div></div>
+<div class="fi"><div class="fi-hd" onclick="tf(this)"><span>Q: Are Jehovah's Witnesses Christians?</span><span class="arr">▼</span></div><div class="fi-bd"><p>They sincerely intend to follow Christ, and Orthodox Christians should say so with respect. But by the historic standard — the faith of Nicaea confessed by all Christians East and West — a body that denies the deity of Christ and the personhood of the Holy Spirit, and whose baptism is not in the name of the Father, the Son, and the Holy Spirit as the Church has always understood it, stands outside historic Christianity. That is a statement about doctrine, not about the sincerity or moral character of individual Witnesses.</p></div></div>
+<div class="fi"><div class="fi-hd" onclick="tf(this)"><span>Q: What about the blood transfusion ban?</span><span class="arr">▼</span></div><div class="fi-bd"><p>The ban rests on reading dietary commands about eating animal blood (Genesis 9:4; Acts 15:29) as if they covered medical transfusion — a use of blood unknown to the biblical writers, which involves no eating and no taking of life. The Old Testament itself subordinates ritual law to life: "I desire mercy and not sacrifice" (Hosea 6:6), a verse Jesus twice quotes against rule-keeping that costs lives (Matthew 12:7). No historic church before the Watchtower is known to have read these texts as forbidding the saving of life with blood, and mainstream Judaism holds that saving a life overrides nearly every command.</p></div></div>
+<div class="fi"><div class="fi-hd" onclick="tf(this)"><span>Q: Don't Witnesses and Orthodox agree on annihilation of the wicked?</span><span class="arr">▼</span></div><div class="fi-bd"><p>No — the Orthodox Church teaches the resurrection of all and the eternal existence of every soul, with judgment to follow (John 5:28–29). The question of how Scripture describes final punishment is treated on the <a href="annihilationism.html">Annihilationism page</a>; the Watchtower's denial of the soul's continued existence and of conscious communion with Christ after death ("today you will be with Me in Paradise," Luke 23:43 — which the NWT repunctuates to "I say to you today,") is rejected by the whole tradition East and West.</p></div></div>
+</div>
+</section>
+
+<section class="sec" id="s9">
+<div class="sec-hd" onclick="ts(this)"><h2>IX. Sources</h2><span class="arr">▼</span></div>
+<div class="sec-bd">
+<div class="src-grid">
+<div class="src-card"><div class="src-cat">Scripture (NKJV)</div><p class="src-item">John 1:1–18; 6:53; 8:58; 10:16, 30–33; 14:28; 20:28–29; Isaiah 43:10; Deuteronomy 18:22; Colossians 1:15–17; Hebrews 1:8; Philippians 2:6–11; Romans 10:9–13; Revelation 7; 14:1–4; Luke 23:43; Matthew 28:19.</p></div>
+<div class="src-card"><div class="src-cat">Watchtower history</div><p class="src-item">Watch Tower Society publications on 1914, 1925 ("Millions Now Living Will Never Die"), Beth Sarim, 1975, and the "generation" teaching; Raymond Franz (former Governing Body member), Crisis of Conscience.</p></div>
+<div class="src-card"><div class="src-cat">Greek &amp; translation</div><p class="src-item">Standard Greek grammars on anarthrous predicate nouns (Colwell's rule and qualitative theos); the absence of the Tetragrammaton from all Greek NT manuscripts; mainstream translations (KJV, NKJV, RSV, ESV, NIV, NABRE) at the disputed verses.</p></div>
+<div class="src-card"><div class="src-cat">Patristic &amp; historical</div><p class="src-item">Pliny the Younger, Letters 10.96 (c. AD 112); Council of Nicaea (AD 325) against Arius; Ignatius of Antioch and the early confession of Christ's deity — see The Divinity of Christ page.</p></div>
+</div>
+<p style="font-size:.78rem;color:var(--mu);margin-top:1rem">Scripture quotations are from the New King James Version. Quotations marked "Paraphrase" faithfully summarize the cited source but are not verbatim; readers are encouraged to consult the originals. Information on websites can have errors — verify personally with an Abouna.</p>
+</div>
+</section>
+</main>
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+function ts(h){h.closest('.sec').classList.toggle('open')}
+function tobj(h){h.closest('.obj').classList.toggle('open')}
+function tf(h){h.closest('.fi').classList.toggle('open')}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').classList.toggle('show')}
+function closeMobile(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
+const secs=document.querySelectorAll('.sec[id]');
+const navLinks=document.querySelectorAll('#sidenav a');
+function updateNav(){let cur='';secs.forEach(s=>{if(s.getBoundingClientRect().top<120)cur=s.id;});navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur);})}
+window.addEventListener('scroll',updateNav,{passive:true});
+window.addEventListener('scroll',()=>{const st=document.documentElement.scrollTop;const sh=document.documentElement.scrollHeight-document.documentElement.clientHeight;document.getElementById('progress-bar').style.width=(st/sh*100)+'%';},{passive:true});
+window.addEventListener('scroll',()=>{document.getElementById('btt').style.opacity=window.scrollY>400?'1':'0';},{passive:true});
+let lastQuery='';
+function doSearch(){const q=document.getElementById('search-input').value.trim().toLowerCase();if(q===lastQuery)return;lastQuery=q;clearHighlights();if(!q)return;const walker=document.createTreeWalker(document.getElementById('main-content'),NodeFilter.SHOW_TEXT,null,false);const matches=[];let node;while((node=walker.nextNode())){if(node.nodeValue.toLowerCase().includes(q))matches.push(node);}matches.forEach(n=>{const idx=n.nodeValue.toLowerCase().indexOf(q);const before=document.createTextNode(n.nodeValue.substring(0,idx));const mark=document.createElement('mark');mark.textContent=n.nodeValue.substring(idx,idx+q.length);mark.style.cssText='background:#c9a84c;color:#0d0d0d;border-radius:2px;padding:0 2px;';const after=document.createTextNode(n.nodeValue.substring(idx+q.length));const frag=document.createDocumentFragment();frag.appendChild(before);frag.appendChild(mark);frag.appendChild(after);n.parentNode.replaceChild(frag,n);});const firstMark=document.querySelector('mark');if(firstMark)firstMark.scrollIntoView({behavior:'smooth',block:'center'});}
+function clearHighlights(){document.querySelectorAll('mark').forEach(m=>{m.parentNode.replaceChild(document.createTextNode(m.textContent),m);});}
+document.getElementById('search-input').addEventListener('keydown',e=>{if(e.key==='Enter')doSearch();if(e.key==='Escape'){document.getElementById('search-input').value='';lastQuery='';clearHighlights();}});
+document.getElementById('search-btn').addEventListener('click',doSearch);
+document.querySelector('.sec').classList.add('open');
+</script>
+<button id="ol-tt" onclick="olTheme()" aria-label="Toggle light or dark mode" title="Light/dark mode">☀</button><script>function olTheme(){var l=document.documentElement.classList.toggle('light');try{localStorage.setItem('ol-theme',l?'light':'dark')}catch(e){}olIcon()}function olIcon(){document.getElementById('ol-tt').textContent=document.documentElement.classList.contains('light')?'☾':'☀'}olIcon();</script>
+</body>
+</html>
