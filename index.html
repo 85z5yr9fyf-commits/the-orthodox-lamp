@@ -78,8 +78,8 @@ section{padding-top:2.8rem}
 .lk-btn{background:none;border:none;border-left:1px solid var(--br);color:var(--gd);padding:0 .9rem;cursor:pointer;font-size:.85rem;line-height:1;transition:background .15s,color .15s,transform .2s;flex:none}
 .lk-btn:hover{background:var(--bg3);color:var(--gl)}
 .lk.open .lk-btn{transform:rotate(180deg);color:var(--gl)}
-.lk-drop{display:none;border-top:1px solid var(--br);padding:.3rem 0}
-.lk.open .lk-drop{display:block}
+.lk-drop{max-height:0;overflow:hidden;border-top:1px solid transparent;padding:0;transition:max-height .35s ease,border-color .25s ease,padding .35s ease}
+.lk.open .lk-drop{max-height:260px;border-top-color:var(--br);padding:.3rem 0}
 .lk-drop a{display:flex;align-items:center;gap:.55rem;padding:.38rem 1.1rem .38rem 1.45rem;font-size:.81rem;color:var(--mu);transition:color .12s,background .12s;position:relative}
 .lk-drop a::before{content:'·';position:absolute;left:.9rem;color:var(--gd);font-size:1rem;line-height:1}
 .lk-drop a:hover{color:var(--gl);background:var(--bg3)}
@@ -645,6 +645,6 @@ function doSearch(q){
 }
 </script>
 <button id="ol-tt" onclick="olTheme()" aria-label="Toggle light or dark mode" title="Light/dark mode">☀</button>
-<script>function olTheme(){var l=document.documentElement.classList.toggle('light');try{localStorage.setItem('ol-theme',l?'light':'dark')}catch(e){}}function olIcon(){document.getElementById('ol-tt').textContent=document.documentElement.classList.contains('light')?'☾':'☀'}olIcon();</script>
+<script>function olTheme(){var l=document.documentElement.classList.toggle('light');try{localStorage.setItem('ol-theme',l?'light':'dark')}catch(e){}olIcon()}function olIcon(){document.getElementById('ol-tt').textContent=document.documentElement.classList.contains('light')?'☾':'☀'}olIcon();</script>
 </body>
 </html>
