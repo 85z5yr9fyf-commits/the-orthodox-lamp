@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>THE ORTHODOX LAMP — Why Trust the Church Fathers?</title>
+<style>
+:root{--gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;--bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--tx:#e8e0d0;--mu:#a09880;--red:#8b2020;--br:#2a2a2a;--bg5:#3a2e10;--sidebar-w:270px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.75}
+a{color:var(--gold);text-decoration:none}
+#progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(to right,var(--gd),var(--gold),var(--gl));width:0%;z-index:500}
+#sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:200;transition:transform .3s}
+#sidebar h2{font-size:.7rem;letter-spacing:.15em;color:var(--gold);text-transform:uppercase;padding:1.4rem 1.2rem .5rem;border-bottom:1px solid var(--br)}
+#sidenav a{display:block;padding:.42rem 1.2rem;font-size:.82rem;color:var(--mu);border-left:3px solid transparent;transition:all .2s}
+#sidenav a:hover,#sidenav a.active{color:var(--gl);border-left-color:var(--gold);background:var(--bg5)}
+.search-wrap{padding:.8rem 1rem;border-bottom:1px solid var(--br);display:flex;gap:.4rem}
+.search-wrap input{flex:1;background:var(--bg3);border:1px solid var(--br);color:var(--tx);padding:.35rem .6rem;border-radius:4px;font-size:.8rem}
+.search-wrap button{background:var(--gold);color:#0d0d0d;border:none;padding:.35rem .7rem;border-radius:4px;cursor:pointer;font-weight:700;font-size:.8rem}
+#main-content{margin-left:var(--sidebar-w);padding:0 2rem 4rem}
+.mob-toggle{display:none;position:fixed;bottom:1.2rem;right:1.2rem;background:var(--gold);color:#0d0d0d;border:none;width:48px;height:48px;border-radius:50%;font-size:1.4rem;cursor:pointer;z-index:300;box-shadow:0 2px 12px rgba(0,0,0,.5)}
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:150}
+#overlay.show{display:block}
+.hero{text-align:center;padding:4rem 1rem 2.5rem;border-bottom:1px solid var(--br);background:linear-gradient(to bottom,var(--bg2),var(--bg))}
+.si{font-size:2.2rem;color:var(--gold);display:block;margin-bottom:.5rem}
+.st{font-size:2rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.st span{color:var(--gold)}
+.ss{font-size:1.05rem;color:var(--gl);margin:.6rem 0 .4rem;font-style:italic}
+.tg{font-size:.85rem;color:var(--mu);margin-bottom:.8rem}
+.orn{color:var(--gold);font-size:1.1rem;letter-spacing:.4em;margin-top:.5rem}
+.sec{border:1px solid var(--br);border-radius:8px;margin:1.5rem 0;background:var(--bg2);overflow:hidden}
+.sec-hd{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.3rem;cursor:pointer;user-select:none;background:var(--bg3);border-bottom:1px solid transparent;transition:background .2s}
+.sec-hd:hover{background:var(--bg4)}
+.sec.open .sec-hd{border-bottom-color:var(--br);background:var(--bg4)}
+.sec-hd h2{font-size:1rem;color:var(--gl);text-transform:uppercase;letter-spacing:.05em}
+.sec-bd{display:none;padding:1.4rem 1.5rem}
+.sec.open .sec-bd{display:block}
+.sec-bd h3{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin:1.4rem 0 .7rem;padding-bottom:.3rem;border-bottom:1px solid var(--bg5)}
+.sec-bd p{color:var(--tx);margin-bottom:.9rem;font-size:.95rem}
+.arr{color:var(--gold);font-size:.9rem;transition:transform .3s}
+.sec.open .arr{transform:rotate(180deg)}
+.sv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin:.8rem 0 1.2rem}
+.sv{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:1rem}
+.sv .ref{font-size:.75rem;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.4rem}
+.sv .labels{margin-bottom:.5rem;display:flex;gap:.4rem}
+.sv .labels span{font-size:.65rem;font-weight:700;padding:.15rem .45rem;border-radius:3px;text-transform:uppercase;letter-spacing:.06em}
+.labels .prot{background:#4a1a1a;color:#e87070}
+.labels .oo{background:#1a3a1a;color:#70c870}
+.labels .ctx{background:#1a2a3a;color:#70aacc}
+.sv .txt{font-style:italic;color:var(--gl);font-size:.88rem;margin-bottom:.5rem;border-left:2px solid var(--gold);padding-left:.7rem}
+.sv .interp{font-size:.82rem;color:var(--mu)}
+.fc{background:var(--bg3);border:1px solid var(--br);border-left:3px solid var(--gold);border-radius:6px;padding:1rem 1.1rem;margin:.8rem 0}
+.fn{font-size:.8rem;font-weight:700;color:var(--gl);text-transform:uppercase;letter-spacing:.07em}
+.fw{font-size:.75rem;color:var(--mu);margin:.2rem 0 .5rem;font-style:italic}
+.fq{font-style:italic;color:var(--tx);font-size:.88rem;border-left:2px solid var(--bg5);padding-left:.8rem;margin:.4rem 0 .6rem}
+.fsig{font-size:.8rem;color:var(--mu)}
+.src{font-size:.6rem;font-weight:700;padding:.12rem .4rem;border-radius:3px;text-transform:uppercase;letter-spacing:.06em;margin-left:.4rem;vertical-align:middle;font-style:normal}
+.src.direct{background:#16331a;color:#6fc879}
+.src.para{background:#2a1a3a;color:#b98ad0}
+.obj{background:var(--bg3);border:1px solid #4a1a1a;border-left:3px solid var(--red);border-radius:6px;margin:.8rem 0;overflow:hidden}
+.obj-hd{display:flex;justify-content:space-between;align-items:center;padding:.8rem 1rem;cursor:pointer;user-select:none}
+.obj-hd:hover{background:var(--bg4)}
+.obj-hd h3{font-size:.85rem;color:#e87070;font-weight:700}
+.obj-bd{display:none;padding:.9rem 1.1rem;border-top:1px solid #4a1a1a}
+.obj.open .obj-bd{display:block}
+.obj.open .arr{transform:rotate(180deg)}
+.obj-bd h4{font-size:.75rem;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.4rem;margin-top:.6rem}
+.obj-bd h4:first-child{margin-top:0}
+.obj-bd p{font-size:.85rem;color:var(--tx);margin-bottom:.6rem}
+.fi{background:var(--bg3);border:1px solid var(--br);border-radius:6px;margin:.6rem 0;overflow:hidden}
+.fi-hd{display:flex;justify-content:space-between;align-items:center;padding:.8rem 1rem;cursor:pointer;user-select:none;font-size:.88rem;color:var(--gl)}
+.fi-hd:hover{background:var(--bg4)}
+.fi-bd{display:none;padding:.9rem 1.1rem;border-top:1px solid var(--br);font-size:.85rem;color:var(--tx)}
+.fi.open .fi-bd{display:block}
+.fi.open .arr{transform:rotate(180deg)}
+.fi-bd p{margin-bottom:.7rem}
+.tl{list-style:none;margin:.5rem 0 1rem;padding-left:1.4rem;border-left:2px solid var(--gold)}
+.tl li{position:relative;margin-bottom:1rem;padding-left:.6rem}
+.tl li::before{content:"";position:absolute;left:-1.92rem;top:.35rem;width:11px;height:11px;border-radius:50%;background:var(--gold);border:2px solid var(--bg)}
+.tl li.turn::before{background:var(--red)}
+.tl .yr{font-size:.72rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.08em}
+.tl .ev{font-size:.88rem;color:var(--tx);margin-top:.15rem}
+.src-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;margin:.8rem 0}
+.src-card{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:1rem}
+.src-cat{font-size:.72rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.6rem;padding-bottom:.4rem;border-bottom:1px solid var(--bg5)}
+.src-item{font-size:.8rem;color:var(--mu);margin-bottom:.5rem;padding-left:.7rem;border-left:2px solid var(--br)}
+.btt{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--gold);color:#0d0d0d;border:none;width:44px;height:44px;border-radius:50%;font-size:1.2rem;cursor:pointer;opacity:0;transition:opacity .3s;z-index:300;font-weight:700}
+@media(max-width:768px){#sidebar{transform:translateX(-100%)}#sidebar.open{transform:translateX(0)}#main-content{margin-left:0;padding:0 1rem 4rem}.mob-toggle{display:flex;align-items:center;justify-content:center}.sv-grid{grid-template-columns:1fr}}
+
+.lampsvg{display:block;margin:0 auto 14px;height:auto}
+.lampsvg .lampflame{animation:lampflick 3.2s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes lampflick{0%,100%{transform:scaleY(1) scaleX(1);opacity:.95}25%{transform:scaleY(1.06) scaleX(.97);opacity:1}50%{transform:scaleY(.96) scaleX(1.03);opacity:.9}75%{transform:scaleY(1.04) scaleX(.98);opacity:1}}
+
+html.light{--gold:#8a6a20;--gl:#6f5413;--gd:#b08e3e;--bg:#f7f2e6;--bg2:#efe8d5;--bg3:#e7ddc7;--bg4:#ddd2b9;--tx:#2b2415;--mu:#6e6450;--br:#d2c7aa;--bg5:#efe0b8}
+#ol-tt{position:fixed;right:16px;bottom:74px;z-index:9999;width:44px;height:44px;border-radius:50%;background:var(--bg3,var(--panel,#1a1a1a));color:var(--gold,#c9a84c);border:1px solid var(--gd,var(--gold-dark,var(--rule,#8a6a20)));font-size:1.1rem;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35);line-height:1}#ol-tt:hover{filter:brightness(1.15)}
+html.light .src.direct{background:#d2ead4;color:#1d5c1d}
+html.light .src.para{background:#e4d8ee;color:#5a2e7a}
+html.light .labels .prot{background:#eed6d6;color:#8b2020}
+html.light .labels .oo{background:#d8e8d8;color:#1d5c1d}
+html.light .labels .ctx{background:#d8e3ee;color:#1d4a6b}
+html.light .obj{border-color:#dcc0c0}
+html.light .obj-bd{border-top-color:#dcc0c0}
+html.light .obj-hd h3{color:#8b2020}
+
+/* ol-aes-v1 */
+html.light #sidebar{background:linear-gradient(180deg,#f5edd5 0%,#ede4cb 100%)}
+html.light .sec{box-shadow:0 2px 8px rgba(100,70,15,.10)}
+html.light .sec.open .sec-hd{border-left:3px solid var(--gold)}
+html.light .hero{background:linear-gradient(155deg,#ede9d6 0%,#e6d896 100%);border-bottom-color:#b08e3e}
+html.light .sv{box-shadow:0 1px 4px rgba(100,70,15,.08)}
+html.light .fc{box-shadow:0 1px 4px rgba(100,70,15,.08)}
+html.light a{color:#6b4a10}
+html.light #sidenav a{color:var(--mu)}
+html.light #sidenav a.active,html.light #sidenav a:hover{color:var(--gold)}
+</style>
+<script>try{if(localStorage.getItem('ol-theme')==='light')document.documentElement.classList.add('light')}catch(e){}</script>
+</head>
+<body>
+<div id="progress-bar"></div>
+<nav id="sidebar">
+  <div class="search-wrap"><input type="text" id="search-input" placeholder="Search…"><button id="search-btn">Go</button></div>
+  <svg class="lampsvg" width="64" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><radialGradient id="lmpGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffb95e" stop-opacity=".55"/><stop offset="100%" stop-color="#ffb95e" stop-opacity="0"/></radialGradient><linearGradient id="lmpFlame" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#ff7a1f"/><stop offset="55%" stop-color="#ffb347"/><stop offset="100%" stop-color="#ffe9b0"/></linearGradient><linearGradient id="lmpBrass" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e3b860"/><stop offset="50%" stop-color="#a87b35"/><stop offset="100%" stop-color="#7a5523"/></linearGradient></defs><circle cx="60" cy="38" r="34" fill="url(#lmpGlow)"/><g class="lampflame"><path d="M60 16 C66 26 70 32 70 40 C70 48 65.5 53 60 53 C54.5 53 50 48 50 40 C50 32 54 26 60 16 Z" fill="url(#lmpFlame)"/><path d="M60 30 C63 35 64.5 38 64.5 42 C64.5 46.5 62.5 49 60 49 C57.5 49 55.5 46.5 55.5 42 C55.5 38 57 35 60 30 Z" fill="#fff3cf" opacity=".85"/></g><rect x="56" y="52" width="8" height="7" rx="2" fill="#8a6228"/><path d="M28 62 L92 62 C92 80 78 92 60 92 C42 92 28 80 28 62 Z" fill="url(#lmpBrass)"/><rect x="24" y="58" width="72" height="6" rx="3" fill="#caa14e"/><rect x="56" y="92" width="8" height="16" fill="url(#lmpBrass)"/><path d="M38 118 C38 110 47 108 60 108 C73 108 82 110 82 118 L82 122 L38 122 Z" fill="url(#lmpBrass)"/><rect x="32" y="122" width="56" height="6" rx="3" fill="#caa14e"/></svg>
+  <h2>The Orthodox Lamp</h2>
+  <nav id="sidenav">
+    <a href="#s1">I. Introduction</a>
+    <a href="#s2">II. Who Are the Fathers?</a>
+    <a href="#s3">III. Closeness to the Apostles</a>
+    <a href="#s4">IV. The Chain of Succession</a>
+    <a href="#s5">V. Consensus, Not One Father</a>
+    <a href="#s6">VI. Scripture vs. Private Reading</a>
+    <a href="#s7">VII. Why Not Modern Scholars?</a>
+    <a href="#s8">VIII. Why Not the Last 1000 Years?</a>
+    <a href="#s9">IX. The Fathers Speak</a>
+    <a href="#s10">X. Objections</a>
+    <a href="#s11">XI. FAQ</a>
+    <a href="#s12">XII. Sources</a>
+  </nav>
+</nav>
+<div id="overlay" onclick="closeMobile()"></div>
+<button class="mob-toggle" onclick="toggleSidebar()">☰</button>
+<main id="main-content">
+  <div class="hero">
+    <span class="si">☩</span>
+    <h1 class="st">THE <span>ORTHODOX</span> LAMP</h1>
+    <p class="ss">Why Trust the Church Fathers Over Private Opinion and Modern Scholars?</p>
+    <p class="tg">"Contend for the faith that was once for all delivered to the saints." — Jude 3</p>
+    <div class="orn">✦ ✦ ✦</div>
+  </div>
+
+  <section class="sec open" id="s1">
+    <div class="sec-hd" onclick="ts(this)"><h2>I. Introduction — Whose Reading of the Bible?</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>Every Christian who opens the Scriptures must interpret them. The question is never <em>whether</em> we interpret, but <em>by what authority</em> our interpretation stands. Three answers are on offer today. The first says: "I read the Bible for myself, and the Holy Spirit shows me its meaning." The second says: "Trust the consensus of modern biblical scholarship." The third — the answer of the historic Church — says: "The faith was handed down through the apostles to the Fathers, and what the whole Church received from them, everywhere and from the beginning, is the safe reading of Scripture."</p>
+      <p>This page makes the case for the third answer. It is not a claim that the Fathers were sinless, never erred on a detail, or replace the Bible. It is the claim that the <em>shared</em> witness of the early Church — the <em>consensus patrum</em>, the agreement of the Fathers — is the most reliable guide we possess to what the Scriptures actually mean, more reliable than any private reader and more reliable than any scholarly consensus reconstructed seventeen centuries later.</p>
+      <p>The reasoning is simple and historical. The Fathers stood closer to the apostles in time, language, and culture; they received the faith as a living inheritance rather than reconstructing it from fragments; they tested their reading corporately, in council, against heresy; and where they all agree, they are not offering private guesses but reporting the common mind of the Church that produced the New Testament in the first place.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s2">
+    <div class="sec-hd" onclick="ts(this)"><h2>II. Who Are the Church Fathers?</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>"Church Fathers" is the traditional name for the teachers, bishops, and theologians of the early Church whose writings the whole Church received as faithful witnesses to the apostolic faith. Classically a Father is recognized by four marks: <strong style="color:var(--gl)">antiquity</strong> (belonging to the early centuries), <strong style="color:var(--gl)">holiness of life</strong>, <strong style="color:var(--gl)">orthodoxy of doctrine</strong>, and <strong style="color:var(--gl)">the approval of the Church</strong>. No one is a Father merely because he was ancient; he is a Father because the Church recognized in him the voice of the faith it already held.</p>
+      <h3>The Broad Eras</h3>
+      <p><strong style="color:var(--gl)">Apostolic Fathers (c. AD 90–150):</strong> the generation taught by the apostles or their immediate disciples — Clement of Rome, Ignatius of Antioch, Polycarp of Smyrna, the author of the Didache. Some of them knew the apostles personally.</p>
+      <p><strong style="color:var(--gl)">Ante-Nicene Fathers (c. 150–325):</strong> Justin Martyr, Irenaeus of Lyons, Tertullian, Clement and Origen of Alexandria — the period of the apologists and the first great battles against Gnosticism.</p>
+      <p><strong style="color:var(--gl)">The Golden Age (c. 325–500):</strong> Athanasius, the Cappadocians (Basil, the two Gregories), Cyril of Alexandria, John Chrysostom, Ephrem the Syrian, Augustine — the age of the great councils and the maturing of Christian doctrine.</p>
+      <h3>The Fathers of the Oriental Orthodox</h3>
+      <p>The Oriental Orthodox communion treasures especially the Alexandrian, Syriac, and Armenian Fathers: <strong>St. Athanasius</strong> and <strong>St. Cyril of Alexandria</strong> (the great defenders of Christ's divinity and unity), <strong>St. Anthony the Great</strong> and the desert monks, <strong>St. Ephrem the Syrian</strong>, <strong>St. Severus of Antioch</strong>, and <strong>St. Dioscorus</strong>. These are not regional curiosities; they are central voices of the undivided Church before the divisions of the fifth century and after.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s3">
+    <div class="sec-hd" onclick="ts(this)"><h2>III. Closeness to the Apostles — Why Proximity Matters</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>If you want to know what a teacher meant, you ask the students who sat under him, not strangers reading his notes two thousand years later. The Fathers had three forms of closeness to the apostles that no later reader can recover.</p>
+      <h3>1. Closeness in Time</h3>
+      <p>Polycarp of Smyrna was a disciple of the Apostle John. Irenaeus of Lyons, in turn, was a disciple of Polycarp — and tells us so himself, recalling how Polycarp "reported all things in agreement with the Scriptures" as he had received them from the apostles. That is only two human links between the Apostle John and a major theological work of the second century. The chain from Christ to a defended, written exposition of the faith is astonishingly short.</p>
+      <h3>2. Closeness in Language</h3>
+      <p>The New Testament was written in Greek. Many of the Fathers — Athanasius, Chrysostom, the Cappadocians, Cyril — were native Greek speakers reading Paul and John in their mother tongue, with the living sense of the words. When they tell us what a Greek term meant in ordinary first- and second-century usage, they are not consulting a lexicon; they are speaking their own language. A modern reader, however learned, reconstructs that sense from outside.</p>
+      <h3>3. Closeness in Culture and Worship</h3>
+      <p>The Fathers prayed the liturgy the apostles' churches prayed, kept the fasts those churches kept, and baptized as those churches baptized. They received the faith as a whole way of life, not as a text to be decoded. They knew what the Eucharist meant because they were doing it, in continuity with the men who learned it from Christ. This is why their reading of Scripture so rarely surprises the Church: they were describing the house they already lived in.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s4">
+    <div class="sec-hd" onclick="ts(this)"><h2>IV. The Chain of Succession — A Public, Traceable Inheritance</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>The Fathers' authority does not rest on private inspiration but on a public, traceable chain. The apostles appointed bishops; those bishops appointed successors; and the teaching handed along that chain could be checked, because the churches founded by the apostles still existed and still taught openly. This is precisely the argument St. Irenaeus used against the Gnostics: the heretics claimed secret knowledge, but the apostolic churches could name their bishops in unbroken order back to the apostles, and they all taught the same thing.</p>
+      <p>This matters because it makes the faith <em>falsifiable</em> in the early centuries in a way private interpretation never can be. If a teaching were a novelty, the apostolic churches — in Rome, Antioch, Alexandria, Ephesus, Jerusalem — would have said so, because they had received something different and could remember it. When all these independent centers, in different languages and cultures, witness to the same faith, the only natural explanation is that they received it from a common source: the apostles.</p>
+      <p>So when the Fathers interpret Scripture, they are not each guessing privately and happening to agree. They are reporting a faith that was deposited once and transmitted publicly through identifiable people in identifiable places. Their agreement is evidence, not coincidence.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s5">
+    <div class="sec-hd" onclick="ts(this)"><h2>V. The Real Criterion: Consensus, Not Any Single Father</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>A crucial clarification: the Church does not claim that any individual Father is infallible. Fathers disagreed with one another; some held private opinions later set aside; even great saints erred on particular points. Origen speculated in ways the Church did not follow. Augustine and the Greek Fathers differed on grace. The authority does not lie in the lone Father but in the <em>consensus</em> — what the Fathers held <em>together</em>, across regions and centuries.</p>
+      <p>This is the famous rule of <strong>St. Vincent of Lérins</strong> (the "Vincentian canon"): we hold securely that which has been believed <em>"everywhere, always, and by all"</em> (<em>quod ubique, quod semper, quod ab omnibus</em>). A teaching attested in Rome and Alexandria and Antioch and Syria, in the second century and the fourth, by Greek and Latin and Syriac Fathers alike, is not one man's opinion — it is the mind of the Church.</p>
+      <p>This rule is also a built-in safeguard against mere traditionalism, the error of repeating something simply because it is old. A late novelty held in one place does not qualify; a single eccentric opinion does not qualify. Only what is broad, ancient, and universal binds. The criterion therefore <em>filters</em> the Fathers as much as it relies on them — which is exactly why it is trustworthy.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s6">
+    <div class="sec-hd" onclick="ts(this)"><h2>VI. What Scripture Itself Says About Private Reading</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>The instinct that "I can simply read it for myself" is itself contradicted by Scripture, which repeatedly locates the right understanding of God's word in the guidance of the Church and warns against the individual going it alone.</p>
+      <div class="sv-grid">
+        <div class="sv"><div class="ref">2 Peter 1:20–21</div><div class="labels"><span class="oo">OO</span></div><div class="txt">"Knowing this first of all, that no prophecy of Scripture comes from someone's own interpretation. For no prophecy was ever produced by the will of man, but men spoke from God as they were carried along by the Holy Spirit."</div><div class="interp">The same Spirit who inspired Scripture must illumine its reading — and that Spirit was given to the Church, not to the isolated reader as a private possession. Peter explicitly denies that Scripture is a matter of "one's own" (idias) interpretation. The verse undercuts the very principle of purely individual exegesis.</div></div>
+        <div class="sv"><div class="ref">Acts 8:30–31</div><div class="labels"><span class="ctx">CTX</span></div><div class="txt">"So Philip ran to him and heard him reading Isaiah the prophet and asked, 'Do you understand what you are reading?' And he said, 'How can I, unless someone guides me?'"</div><div class="interp">The Ethiopian eunuch is literate, sincere, and holding the actual text of Isaiah — and still cannot grasp it without a guide sent by the Church. This is the pattern: Scripture is given <em>with</em> an authoritative interpreter, not as a self-sufficient private oracle. The Fathers are that guide extended across the centuries.</div></div>
+        <div class="sv"><div class="ref">2 Peter 3:16</div><div class="labels"><span class="oo">OO</span></div><div class="txt">"There are some things in them that are hard to understand, which the ignorant and unstable twist to their own destruction, as they do the other Scriptures."</div><div class="interp">Peter concedes that parts of Paul are genuinely hard, and that misreading them is not harmless but destructive. If Scripture could simply be read off the page by anyone, there would be no "twisting." The danger of private misreading is exactly why the Church's received understanding is a mercy, not a constraint.</div></div>
+        <div class="sv"><div class="ref">Acts 15:28</div><div class="labels"><span class="oo">OO</span></div><div class="txt">"For it has seemed good to the Holy Spirit and to us…"</div><div class="interp">The first doctrinal dispute of the Church was settled not by each believer reading for himself but by the apostles and elders gathered in council, speaking with the Spirit's authority. This conciliar pattern — corporate discernment, not private verdict — is the model the Fathers and the Ecumenical Councils followed. Truth is guarded by the Body, together.</div></div>
+      </div>
+      <p>None of this disparages personal reading of Scripture, which the Church warmly commends. It locates that reading within the family of faith rather than in defiance of it. We read the Bible as sons in our Father's house, with the elders who came before us, not as strangers each inventing a private religion from the same pages.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s7">
+    <div class="sec-hd" onclick="ts(this)"><h2>VII. Why Not Simply Trust Modern Scholars?</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>Modern biblical scholarship has produced genuine goods: better critical texts, knowledge of ancient languages, archaeology, historical background. The Church does not despise learning — many Fathers were the finest scholars of their age, and the Oriental Orthodox tradition has always prized study. The question is narrower: should the <em>consensus of contemporary academic scholarship</em> override the <em>consensus of the Fathers</em> on what Scripture means and what the faith is? Several reasons say no.</p>
+      <h3>1. Distance, Not Proximity</h3>
+      <p>The scholar reconstructs the first-century world from the outside, across a gulf of seventeen centuries, a dead-language barrier, and a vanished culture. The Fathers lived on the near side of that gulf. On the meaning of a Greek idiom or the practice of an apostolic church, the native speaker who prayed the liturgy is a better witness than the modern reconstructor, however diligent.</p>
+      <h3>2. A Consensus That Keeps Changing</h3>
+      <p>"Scholarly consensus" is not fixed; it is a moving target. The confident assured results of one generation are routinely overturned by the next — authorship theories, dating schemes, and "the historical Jesus" have all been rebuilt repeatedly. A standard that reverses itself every few decades cannot be the bedrock of faith. The patristic consensus, by contrast, has held for nearly two millennia.</p>
+      <h3>3. Method That Excludes the Answer</h3>
+      <p>Much modern academic study operates by methodological naturalism — bracketing out the supernatural by rule. A method that begins by assuming miracles do not happen will, unsurprisingly, conclude that the Resurrection accounts are late developments. That is not a discovery; it is the starting assumption returning as a result. The Fathers read Scripture as believers within the very community to which it was addressed.</p>
+      <h3>4. No Accountability to the Body</h3>
+      <p>The scholar answers to the guild, to peer review, to the demands of novelty that secure a career. The Father answered to the Church, to the rule of faith, and to the communion of bishops. The institution that protects the deposit of faith is the Church, not the academy. Scholarship is a servant of the Church's reading of Scripture; it was never appointed its judge.</p>
+      <p>In short: good scholarship is welcome wherever it illumines the text. But it informs the Church's reading; it does not replace the consensus of those who received the faith firsthand.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s8">
+    <div class="sec-hd" onclick="ts(this)"><h2>VIII. Why Not Simply the Last 1,000 Years?</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>Why privilege the early Fathers over the great theologians of the last millennium — the medieval scholastics, the Reformers, modern systematicians? Not because later teachers had nothing to offer, but because the patristic age has a unique status: it is the period of the <em>undivided witness</em>, when the apostolic deposit was still a living memory and the whole Church spoke with one mind in the Ecumenical Councils. The further a teaching stands from that source, the more it must be tested against it — never the reverse.</p>
+      <p>The pattern of the last thousand years actually confirms this. Where later theology has fractured — into competing schools, novel dogmas, and ultimately tens of thousands of denominations — it has done so precisely by departing from the patristic consensus, each party appealing to its own reading. Where it has remained sound, it has done so by faithfully transmitting what the Fathers already held. Later teachers are weighed <em>by</em> the early consensus; they do not get to overrule it.</p>
+      <ul class="tl">
+        <li><span class="yr">Apostolic age (1st c.)</span><div class="ev">The faith delivered "once for all" (Jude 3); the apostles appoint successors and hand on the deposit by word and letter.</div></li>
+        <li><span class="yr">Patristic age (2nd–8th c.)</span><div class="ev">The age of the Fathers and the Ecumenical Councils — the undivided witness, when the canon was settled and the great doctrines defined corporately.</div></li>
+        <li class="turn"><span class="yr">Great Schism (1054)</span><div class="ev">East and West divide; thereafter "the last 1,000 years" of Western theology develops increasingly apart from the shared patristic foundation.</div></li>
+        <li class="turn"><span class="yr">Scholasticism (12th–14th c.)</span><div class="ev">A powerful but increasingly philosophical method; valuable where it serves the Fathers, problematic where it innovates beyond them.</div></li>
+        <li class="turn"><span class="yr">Reformation (16th c.)</span><div class="ev">"Scripture alone" cuts the cord to the patristic consensus; private interpretation is enshrined as a principle, and fragmentation follows.</div></li>
+        <li class="turn"><span class="yr">Modern academy (18th c.–today)</span><div class="ev">Historical-critical scholarship, often under naturalist assumptions, sets itself up as a rival authority to the Church's received reading.</div></li>
+        <li><span class="yr">The Orthodox claim</span><div class="ev">Through all of this, the safe path is to test every later development against the consensus of the Fathers — the closest reliable witnesses to the apostolic faith.</div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" id="s9">
+    <div class="sec-hd" onclick="ts(this)"><h2>IX. The Fathers Speak — In Their Own Words</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>The Fathers themselves articulated this very principle: that the safe reading of Scripture is the one received from the apostles and held in common, not the private novelty of the clever individual.</p>
+      <div class="fc">
+        <div class="fn">St. Irenaeus of Lyons (c. 130–202)</div><div class="fw">Against Heresies III.3.1 — c. AD 180 · ANF vol. 1 <span class="src direct">Direct Quote</span></div>
+        <div class="fq">"It is within the power of all, therefore, in every Church, who may wish to see the truth, to contemplate clearly the tradition of the apostles manifested throughout the whole world; and we are in a position to reckon up those who were by the apostles instituted bishops in the Churches, and [to demonstrate] the succession of these men to our own times."</div>
+        <div class="fsig"><strong>Significance:</strong> Irenaeus answers the Gnostics' claim to secret knowledge by pointing to the open, public, traceable succession of bishops in the apostolic churches. The truth is not hidden with an elite or invented by an individual — it is "manifested throughout the whole world" and can be checked. This is the foundation of the appeal to the Fathers.</div>
+      </div>
+      <div class="fc">
+        <div class="fn">St. Irenaeus of Lyons (c. 130–202)</div><div class="fw">Against Heresies III.4.1 — c. AD 180 · ANF vol. 1 <span class="src direct">Direct Quote</span></div>
+        <div class="fq">"What if the apostles had not left us the Scriptures? Would it not be necessary to follow the course of the tradition which they handed down to those to whom they did commit the Churches?"</div>
+        <div class="fsig"><strong>Significance:</strong> The faith is secured by the apostolic tradition carried in the Church — the same tradition the Fathers transmit. Scripture is the written core of that tradition, read rightly within the community that received it, not against it.</div>
+      </div>
+      <div class="fc">
+        <div class="fn">St. Vincent of Lérins (died c. 445)</div><div class="fw">Commonitory, ch. 2 — c. AD 434 · NPNF Series 2, vol. 11 <span class="src direct">Direct Quote</span></div>
+        <div class="fq">"In the Catholic Church itself, all possible care must be taken, that we hold that faith which has been believed everywhere, always, by all. For that is truly and in the strictest sense Catholic… This rule we shall observe if we follow universality, antiquity, consent."</div>
+        <div class="fsig"><strong>Significance:</strong> The classic statement of the criterion. Not "what I conclude from my reading," but what is universal, ancient, and agreed. This is precisely the standard by which the consensus of the Fathers is weighed — and by which mere novelties are excluded.</div>
+      </div>
+      <div class="fc">
+        <div class="fn">St. Vincent of Lérins (died c. 445)</div><div class="fw">Commonitory, ch. 2 — c. AD 434 · NPNF Series 2, vol. 11 <span class="src direct">Direct Quote</span></div>
+        <div class="fq">"Owing to the depth of Holy Scripture, all do not accept it in one and the same sense, but one understands its words in one way, another in another; so that it seems to be capable of as many interpretations as there are interpreters."</div>
+        <div class="fsig"><strong>Significance:</strong> Vincent names the "interpretation problem" eleven centuries before the Reformation. Because Scripture is deep and readers differ, an authoritative common standard — the Church's received reading — is not optional but necessary. The alternative is as many religions as there are readers.</div>
+      </div>
+      <div class="fc">
+        <div class="fn">St. Athanasius the Great (c. 296–373)</div><div class="fw">Letters to Serapion I.28 — c. AD 359 (trans. C. R. B. Shapland) <span class="src para">Paraphrase</span></div>
+        <div class="fq">Let us look at the very tradition, teaching, and faith of the catholic Church from the beginning — which the Lord gave, the apostles preached, and the Fathers kept. Upon this the Church is founded.</div>
+        <div class="fsig"><strong>Significance:</strong> The great Alexandrian and pillar of Oriental Orthodoxy grounds the faith in a single continuous line: given by Christ, preached by the apostles, kept by the Fathers. The Fathers are reliable precisely as keepers — not inventors — of what was handed down. <em>(Rendered as a paraphrase of Shapland's translation; sense faithful to the Greek.)</em></div>
+      </div>
+      <div class="fc">
+        <div class="fn">St. Basil the Great (c. 330–379)</div><div class="fw">On the Holy Spirit, ch. 27 — c. AD 375 · NPNF Series 2, vol. 8 <span class="src direct">Direct Quote</span></div>
+        <div class="fq">"Of the beliefs and practices… preserved in the Church, some we possess derived from written teaching; others we have received delivered to us in a mystery by the tradition of the apostles; and both of these in relation to true religion have the same force."</div>
+        <div class="fsig"><strong>Significance:</strong> Basil establishes that the apostolic tradition kept by the Fathers carries real authority alongside the written word. The Fathers' witness is not a human supplement to Scripture but part of the one apostolic deposit, transmitted in the life of the Church.</div>
+      </div>
+      <div class="fc">
+        <div class="fn">St. Vincent of Lérins (died c. 445)</div><div class="fw">Commonitory, ch. 22 — c. AD 434 · NPNF Series 2, vol. 11 <span class="src direct">Direct Quote</span></div>
+        <div class="fq">"Guard the deposit. What is the deposit? That which has been entrusted to thee, not that which thou hast thyself devised: a matter not of wit, but of learning; not of private adoption, but of public tradition."</div>
+        <div class="fsig"><strong>Significance:</strong> The sharpest possible contrast between the two methods. Faith is "not of wit" (private cleverness) "but of learning" (what is received); "not of private adoption, but of public tradition." This is the whole argument of the page in one sentence.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s10">
+    <div class="sec-hd" onclick="ts(this)"><h2>X. Objections & Responses</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>Objection: The Fathers contradicted each other, so how can they be a reliable guide?</h3><span class="arr">▼</span></div>
+        <div class="obj-bd"><h4>The Claim</h4><p>You can find Fathers disagreeing on all sorts of things — the canon's edges, grace, eschatology, the fate of the unbaptized. If they disagree, appealing to "the Fathers" is just cherry-picking the ones you like.</p><h4>Response</h4><p>This misunderstands the claim. The Church never said any single Father is infallible or that the Fathers agree on everything. The authority lies in the <em>consensus</em> — what they held together, across regions and ages. On the matters that define the faith (the divinity of Christ, the Trinity, the reality of the sacraments, the resurrection, the authority of the apostolic tradition) the agreement is overwhelming and early. Disagreement at the edges does not dissolve consensus at the center; it actually shows that the central agreement was not the result of collusion. The Vincentian canon exists precisely to distinguish private opinion from common faith.</p></div>
+      </div>
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>Objection: This just replaces Scripture's authority with the Fathers' authority.</h3><span class="arr">▼</span></div>
+        <div class="obj-bd"><h4>The Claim</h4><p>By making the Fathers the standard, you put men over the word of God. Only Scripture is inspired; the Fathers are not.</p><h4>Response</h4><p>The Fathers are not placed over Scripture; they are the Church's witnesses to how Scripture was understood by those who received it from the apostles. The real choice is not "Scripture alone vs. Scripture plus Fathers." Everyone interprets Scripture through <em>some</em> lens. The honest question is whose lens: your own private judgment, a modern scholar's reconstruction, or the common mind of the Church that wrote, gathered, and canonized the New Testament. The Fathers do not compete with Scripture; they protect it from being twisted (2 Peter 3:16). Note too that the same early Church whose consensus you would set aside is the one that told you which books are Scripture in the first place.</p></div>
+      </div>
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>Objection: The Holy Spirit guides me personally when I read the Bible — I don't need long-dead men.</h3><span class="arr">▼</span></div>
+        <div class="obj-bd"><h4>The Claim</h4><p>Jesus promised the Spirit would lead believers into all truth (John 16:13). The Spirit teaches me directly; I can read and understand without the Fathers.</p><h4>Response</h4><p>The promise of John 16:13 was given to the apostles and, through them, to the Church — it is fulfilled corporately, not as a private guarantee that each reader's conclusions are infallible. The proof is in the results: sincere, prayerful, Spirit-claiming readers reach flatly contradictory conclusions on baptism, the Eucharist, salvation, and church order. The Spirit does not contradict Himself. If the same Spirit inspired Scripture and indwells the Church, then His guidance will be <em>consistent</em> — which is exactly what the patristic consensus across centuries and continents displays, and exactly what private interpretation, fragmenting into thousands of conflicting bodies, does not. Trusting the Fathers is not distrusting the Spirit; it is recognizing where the Spirit has visibly kept the Church in one faith.</p></div>
+      </div>
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>Objection: The Fathers were men of their time, ignorant of modern science and scholarship.</h3><span class="arr">▼</span></div>
+        <div class="obj-bd"><h4>The Claim</h4><p>We know far more than the Fathers did — about the ancient world, the manuscripts, history. Why defer to their understanding when modern knowledge has advanced so far?</p><h4>Response</h4><p>On the specific question at issue — what the apostolic faith was and what the Scriptures mean — proximity matters more than the accumulation of later data. The Fathers were not ignorant of the thing being transmitted; they were its nearest recipients, native readers of the texts, living the worship the apostles established. Modern advances in textual criticism and history are real and genuinely useful, and the Church gladly receives them where they illumine the text. But they bear on the <em>materials</em>, not on the <em>meaning of the faith</em>, which is not the sort of thing that "advances" — it is delivered "once for all" (Jude 3). On the deposit itself, the witness closest to the source is the most reliable.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s11">
+    <div class="sec-hd" onclick="ts(this)"><h2>XI. Frequently Asked Questions</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <div class="fi"><div class="fi-hd" onclick="tf(this)"><span>Q: Does trusting the Fathers mean I shouldn't read the Bible for myself?</span><span class="arr">▼</span></div><div class="fi-bd"><p>Not at all. The Church urges every Christian to read, pray, and love the Scriptures. The point is the posture: read as a member of the family of faith, with the Fathers as your elders and the Church as your home, rather than as a lone judge inventing a private religion. Personal reading flourishes inside the Tradition; it goes astray when set against it.</p></div></div>
+      <div class="fi"><div class="fi-hd" onclick="tf(this)"><span>Q: How do I know what "the consensus of the Fathers" actually is on a given question?</span><span class="arr">▼</span></div><div class="fi-bd"><p>You look for what is taught broadly, early, and across the different regions and languages of the ancient Church — the Vincentian test of universality, antiquity, and agreement. The Ecumenical Councils and Creeds are the most concentrated expressions of that consensus, since they were the Church gathered to state its common faith. Where the Fathers are unanimous, the matter is settled; where they merely speculate or differ, the Church has freedom.</p></div></div>
+      <div class="fi"><div class="fi-hd" onclick="tf(this)"><span>Q: Are the Fathers infallible?</span><span class="arr">▼</span></div><div class="fi-bd"><p>No. No individual Father is held to be infallible, and several erred on particular points. What is reliable is their <em>common</em> witness — the consensus — guarded by the whole Church and expressed definitively in the councils. The reliability is corporate, not individual, which is why no single quotation, taken alone, decides a question.</p></div></div>
+      <div class="fi"><div class="fi-hd" onclick="tf(this)"><span>Q: Isn't this just "tradition" overriding the Bible, which Jesus condemned (Mark 7)?</span><span class="arr">▼</span></div><div class="fi-bd"><p>Jesus condemned the "traditions of men" that <em>nullified</em> God's word — human inventions set against Scripture. The apostolic Tradition kept by the Fathers does the opposite: it preserves and rightly interprets Scripture, and it comes from the apostles themselves (2 Thessalonians 2:15). The Fathers are reliable exactly because they hand on what was received, not what they devised.</p></div></div>
+      <div class="fi"><div class="fi-hd" onclick="tf(this)"><span>Q: Does this make modern biblical scholarship worthless?</span><span class="arr">▼</span></div><div class="fi-bd"><p>No. Sound scholarship — manuscript study, languages, history, archaeology — is a real gift and the Church welcomes it. The claim is only about authority: scholarship serves and informs the Church's reading of Scripture; it does not sit in judgment over the consensus of those who received the faith firsthand. A servant is honored without being made the master.</p></div></div>
+    </div>
+  </section>
+
+  <section class="sec" id="s12">
+    <div class="sec-hd" onclick="ts(this)"><h2>XII. Sources</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <div class="src-grid">
+        <div class="src-card"><div class="src-cat">Scripture</div><div class="src-item"><strong>The Holy Bible (ESV)</strong> — Crossway, 2001.</div></div>
+        <div class="src-card"><div class="src-cat">Church Fathers</div><div class="src-item"><strong>Irenaeus — Against Heresies</strong> — ANF vol. 1.</div><div class="src-item"><strong>Vincent of Lérins — Commonitory</strong> — NPNF Series 2, vol. 11.</div><div class="src-item"><strong>Basil the Great — On the Holy Spirit</strong> — NPNF Series 2, vol. 8.</div><div class="src-item"><strong>Athanasius — Letters to Serapion</strong> — trans. C. R. B. Shapland, 1951.</div></div>
+        <div class="src-card"><div class="src-cat">Oriental Orthodox</div><div class="src-item"><strong>Pope Shenouda III</strong> — <em>The Holy Bible and Tradition; Comparative Theology</em>. Coptic Patriarchate.</div><div class="src-item"><strong>V. C. Samuel</strong> — <em>The Council of Chalcedon Re-Examined</em>.</div></div>
+        <div class="src-card"><div class="src-cat">Academic & Reference</div><div class="src-item"><strong>Pelikan, Jaroslav</strong> — <em>The Christian Tradition</em>, vol. 1. Univ. of Chicago Press.</div><div class="src-item"><strong>Florovsky, Georges</strong> — <em>Bible, Church, Tradition</em>. Nordland, 1972.</div><div class="src-item"><strong>Hall, Christopher A.</strong> — <em>Reading Scripture with the Church Fathers</em>. IVP, 1998.</div></div>
+      </div>
+    </div>
+  </section>
+</main>
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+function ts(h){h.closest('.sec').classList.toggle('open')}
+function tobj(h){h.closest('.obj').classList.toggle('open')}
+function tf(h){h.closest('.fi').classList.toggle('open')}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').classList.toggle('show')}
+function closeMobile(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
+const secs=document.querySelectorAll('.sec[id]');
+const navLinks=document.querySelectorAll('#sidenav a');
+function updateNav(){let cur='';secs.forEach(s=>{if(s.getBoundingClientRect().top<120)cur=s.id;});navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur);})}
+window.addEventListener('scroll',updateNav,{passive:true});
+window.addEventListener('scroll',()=>{const st=document.documentElement.scrollTop;const sh=document.documentElement.scrollHeight-document.documentElement.clientHeight;document.getElementById('progress-bar').style.width=(st/sh*100)+'%';},{passive:true});
+window.addEventListener('scroll',()=>{document.getElementById('btt').style.opacity=window.scrollY>400?'1':'0';},{passive:true});
+let lastQuery='';
+function doSearch(){const q=document.getElementById('search-input').value.trim().toLowerCase();if(q===lastQuery)return;lastQuery=q;clearHighlights();if(!q)return;const walker=document.createTreeWalker(document.getElementById('main-content'),NodeFilter.SHOW_TEXT,null,false);const matches=[];let node;while((node=walker.nextNode())){if(node.nodeValue.toLowerCase().includes(q))matches.push(node);}matches.forEach(n=>{const idx=n.nodeValue.toLowerCase().indexOf(q);const before=document.createTextNode(n.nodeValue.substring(0,idx));const mark=document.createElement('mark');mark.textContent=n.nodeValue.substring(idx,idx+q.length);mark.style.cssText='background:#c9a84c;color:#0d0d0d;border-radius:2px;padding:0 2px;';const after=document.createTextNode(n.nodeValue.substring(idx+q.length));const frag=document.createDocumentFragment();frag.appendChild(before);frag.appendChild(mark);frag.appendChild(after);n.parentNode.replaceChild(frag,n);});const firstMark=document.querySelector('mark');if(firstMark)firstMark.scrollIntoView({behavior:'smooth',block:'center'});}
+function clearHighlights(){document.querySelectorAll('mark').forEach(m=>{m.parentNode.replaceChild(document.createTextNode(m.textContent),m);});}
+document.getElementById('search-input').addEventListener('keydown',e=>{if(e.key==='Enter')doSearch();if(e.key==='Escape'){document.getElementById('search-input').value='';lastQuery='';clearHighlights();}});
+document.getElementById('search-btn').addEventListener('click',doSearch);
+document.querySelector('.sec').classList.add('open');
+</script>
+<button id="ol-tt" onclick="olTheme()" aria-label="Toggle light or dark mode" title="Light/dark mode">☀</button><script>function olTheme(){var l=document.documentElement.classList.toggle('light');try{localStorage.setItem('ol-theme',l?'light':'dark')}catch(e){}olIcon()}function olIcon(){document.getElementById('ol-tt').textContent=document.documentElement.classList.contains('light')?'☾':'☀'}olIcon();</script>
+</body>
+</html>
