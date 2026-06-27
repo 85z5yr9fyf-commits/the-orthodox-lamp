@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>THE ORTHODOX LAMP — Mormonism: A Christian Response</title>
+<style>
+:root{--gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;--bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--tx:#e8e0d0;--mu:#a09880;--red:#8b2020;--br:#2a2a2a;--bg5:#3a2e10;--sidebar-w:270px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.75}
+a{color:var(--gold);text-decoration:none}
+#progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(to right,var(--gd),var(--gold),var(--gl));width:0%;z-index:500}
+#sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:200;transition:transform .3s}
+#sidebar h2{font-size:.7rem;letter-spacing:.15em;color:var(--gold);text-transform:uppercase;padding:1.4rem 1.2rem .5rem;border-bottom:1px solid var(--br)}
+#sidenav a{display:block;padding:.42rem 1.2rem;font-size:.82rem;color:var(--mu);border-left:3px solid transparent;transition:all .2s}
+#sidenav a:hover,#sidenav a.active{color:var(--gl);border-left-color:var(--gold);background:var(--bg5)}
+.search-wrap{padding:.8rem 1rem;border-bottom:1px solid var(--br);display:flex;gap:.4rem}
+.search-wrap input{flex:1;background:var(--bg3);border:1px solid var(--br);color:var(--tx);padding:.35rem .6rem;border-radius:4px;font-size:.8rem}
+.search-wrap button{background:var(--gold);color:#0d0d0d;border:none;padding:.35rem .7rem;border-radius:4px;cursor:pointer;font-weight:700;font-size:.8rem}
+#main-content{margin-left:var(--sidebar-w);padding:0 2rem 4rem}
+.mob-toggle{display:none;position:fixed;bottom:1.2rem;right:1.2rem;background:var(--gold);color:#0d0d0d;border:none;width:48px;height:48px;border-radius:50%;font-size:1.4rem;cursor:pointer;z-index:300;box-shadow:0 2px 12px rgba(0,0,0,.5)}
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:150}
+#overlay.show{display:block}
+.hero{text-align:center;padding:4rem 1rem 2.5rem;border-bottom:1px solid var(--br);background:linear-gradient(to bottom,var(--bg2),var(--bg))}
+.si{font-size:2.2rem;color:var(--gold);display:block;margin-bottom:.5rem}
+.st{font-size:2rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.st span{color:var(--gold)}
+.ss{font-size:1.05rem;color:var(--gl);margin:.6rem 0 .4rem;font-style:italic}
+.tg{font-size:.85rem;color:var(--mu);margin-bottom:.8rem}
+.orn{color:var(--gold);font-size:1.1rem;letter-spacing:.4em;margin-top:.5rem}
+.sec{border:1px solid var(--br);border-radius:8px;margin:1.5rem 0;background:var(--bg2);overflow:hidden}
+.sec-hd{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.3rem;cursor:pointer;user-select:none;background:var(--bg3);border-bottom:1px solid transparent;transition:background .2s}
+.sec-hd:hover{background:var(--bg4)}
+.sec.open .sec-hd{border-bottom-color:var(--br);background:var(--bg4)}
+.sec-hd h2{font-size:1rem;color:var(--gl);text-transform:uppercase;letter-spacing:.05em}
+.sec-bd{display:none;padding:1.4rem 1.5rem}
+.sec.open .sec-bd{display:block}
+.sec-bd h3{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin:1.4rem 0 .7rem;padding-bottom:.3rem;border-bottom:1px solid var(--bg5)}
+.sec-bd p{color:var(--tx);margin-bottom:.9rem;font-size:.95rem}
+.arr{color:var(--gold);font-size:.9rem;transition:transform .3s}
+.sec.open .arr{transform:rotate(180deg)}
+.sv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin:.8rem 0 1.2rem}
+.sv{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:1rem}
+.sv .ref{font-size:.75rem;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.4rem}
+.sv .labels{margin-bottom:.5rem;display:flex;gap:.4rem}
+.sv .labels span{font-size:.65rem;font-weight:700;padding:.15rem .45rem;border-radius:3px;text-transform:uppercase;letter-spacing:.06em}
+.labels .prot{background:#4a1a1a;color:#e87070}
+.labels .oo{background:#1a3a1a;color:#70c870}
+.labels .ctx{background:#1a2a3a;color:#70aacc}
+.sv .txt{font-style:italic;color:var(--gl);font-size:.88rem;margin-bottom:.5rem;border-left:2px solid var(--gold);padding-left:.7rem}
+.sv .interp{font-size:.82rem;color:var(--mu)}
+.fc{background:var(--bg3);border:1px solid var(--br);border-left:3px solid var(--gold);border-radius:6px;padding:1rem 1.1rem;margin:.8rem 0}
+.fn{font-size:.8rem;font-weight:700;color:var(--gl);text-transform:uppercase;letter-spacing:.07em}
+.fw{font-size:.75rem;color:var(--mu);margin:.2rem 0 .5rem;font-style:italic}
+.fq{font-style:italic;color:var(--tx);font-size:.88rem;border-left:2px solid var(--bg5);padding-left:.8rem;margin:.4rem 0 .6rem}
+.fsig{font-size:.8rem;color:var(--mu)}
+.src{font-size:.6rem;font-weight:700;padding:.12rem .4rem;border-radius:3px;text-transform:uppercase;letter-spacing:.06em;margin-left:.4rem;vertical-align:middle;font-style:normal}
+.src.direct{background:#16331a;color:#6fc879}
+.src.para{background:#2a1a3a;color:#b98ad0}
+.cmp-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:.8rem 0 1.2rem}
+.cmp{border:1px solid var(--br);border-radius:6px;padding:1rem;background:var(--bg3)}
+.cmp.lds{border-top:3px solid var(--red)}
+.cmp.oo{border-top:3px solid var(--gold)}
+.cmp .ct{font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.6rem;padding-bottom:.35rem;border-bottom:1px solid var(--bg5)}
+.cmp.lds .ct{color:#e87070}
+.cmp.oo .ct{color:var(--gl)}
+.cmp p{font-size:.84rem;color:var(--tx);margin-bottom:.5rem}
+.obj{background:var(--bg3);border:1px solid #4a1a1a;border-left:3px solid var(--red);border-radius:6px;margin:.8rem 0;overflow:hidden}
+.obj-hd{display:flex;justify-content:space-between;align-items:center;padding:.8rem 1rem;cursor:pointer;user-select:none}
+.obj-hd:hover{background:var(--bg4)}
+.obj-hd h3{font-size:.85rem;color:#e87070;font-weight:700}
+.obj-bd{display:none;padding:.9rem 1.1rem;border-top:1px solid #4a1a1a}
+.obj.open .obj-bd{display:block}
+.obj.open .arr{transform:rotate(180deg)}
+.obj-bd h4{font-size:.75rem;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.4rem;margin-top:.6rem}
+.obj-bd h4:first-child{margin-top:0}
+.obj-bd p{font-size:.85rem;color:var(--tx);margin-bottom:.6rem}
+.fi{background:var(--bg3);border:1px solid var(--br);border-radius:6px;margin:.6rem 0;overflow:hidden}
+.fi-hd{display:flex;justify-content:space-between;align-items:center;padding:.8rem 1rem;cursor:pointer;user-select:none;font-size:.88rem;color:var(--gl)}
+.fi-hd:hover{background:var(--bg4)}
+.fi-bd{display:none;padding:.9rem 1.1rem;border-top:1px solid var(--br);font-size:.85rem;color:var(--tx)}
+.fi.open .fi-bd{display:block}
+.fi.open .arr{transform:rotate(180deg)}
+.fi-bd p{margin-bottom:.7rem}
+.tl{list-style:none;margin:.5rem 0 1rem;padding-left:1.4rem;border-left:2px solid var(--gold)}
+.tl li{position:relative;margin-bottom:1rem;padding-left:.6rem}
+.tl li::before{content:"";position:absolute;left:-1.92rem;top:.35rem;width:11px;height:11px;border-radius:50%;background:var(--gold);border:2px solid var(--bg)}
+.tl li.turn::before{background:var(--red)}
+.tl .yr{font-size:.72rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.08em}
+.tl .ev{font-size:.88rem;color:var(--tx);margin-top:.15rem}
+.src-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;margin:.8rem 0}
+.src-card{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:1rem}
+.src-cat{font-size:.72rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.6rem;padding-bottom:.4rem;border-bottom:1px solid var(--bg5)}
+.src-item{font-size:.8rem;color:var(--mu);margin-bottom:.5rem;padding-left:.7rem;border-left:2px solid var(--br)}
+.btt{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--gold);color:#0d0d0d;border:none;width:44px;height:44px;border-radius:50%;font-size:1.2rem;cursor:pointer;opacity:0;transition:opacity .3s;z-index:300;font-weight:700}
+@media(max-width:768px){#sidebar{transform:translateX(-100%)}#sidebar.open{transform:translateX(0)}#main-content{margin-left:0;padding:0 1rem 4rem}.mob-toggle{display:flex;align-items:center;justify-content:center}.sv-grid{grid-template-columns:1fr}.cmp-grid{grid-template-columns:1fr}}
+
+.lampsvg{display:block;margin:0 auto 14px;height:auto}
+.lampsvg .lampflame{animation:lampflick 3.2s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes lampflick{0%,100%{transform:scaleY(1) scaleX(1);opacity:.95}25%{transform:scaleY(1.06) scaleX(.97);opacity:1}50%{transform:scaleY(.96) scaleX(1.03);opacity:.9}75%{transform:scaleY(1.04) scaleX(.98);opacity:1}}
+
+html.light{--gold:#8a6a20;--gl:#6f5413;--gd:#b08e3e;--bg:#f7f2e6;--bg2:#efe8d5;--bg3:#e7ddc7;--bg4:#ddd2b9;--tx:#2b2415;--mu:#6e6450;--br:#d2c7aa;--bg5:#efe0b8}
+#ol-tt{position:fixed;right:16px;bottom:74px;z-index:9999;width:44px;height:44px;border-radius:50%;background:var(--bg3,var(--panel,#1a1a1a));color:var(--gold,#c9a84c);border:1px solid var(--gd,var(--gold-dark,var(--rule,#8a6a20)));font-size:1.1rem;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35);line-height:1}#ol-tt:hover{filter:brightness(1.15)}
+html.light .src.direct{background:#d2ead4;color:#1d5c1d}
+html.light .src.para{background:#e4d8ee;color:#5a2e7a}
+html.light .labels .prot{background:#eed6d6;color:#8b2020}
+html.light .labels .oo{background:#d8e8d8;color:#1d5c1d}
+html.light .labels .ctx{background:#d8e3ee;color:#1d4a6b}
+html.light .obj{border-color:#dcc0c0}
+html.light .obj-bd{border-top-color:#dcc0c0}
+html.light .obj-hd h3{color:#8b2020}
+html.light .cmp.lds{border-top-color:#a83232}
+html.light .cmp.lds .ct{color:#a83232}
+
+/* ol-aes-v1 */
+html.light #sidebar{background:linear-gradient(180deg,#f5edd5 0%,#ede4cb 100%)}
+html.light .sec{box-shadow:0 2px 8px rgba(100,70,15,.10)}
+html.light .sec.open .sec-hd{border-left:3px solid var(--gold)}
+html.light .hero{background:linear-gradient(155deg,#ede9d6 0%,#e6d896 100%);border-bottom-color:#b08e3e}
+html.light .sv{box-shadow:0 1px 4px rgba(100,70,15,.08)}
+html.light .fc{box-shadow:0 1px 4px rgba(100,70,15,.08)}
+html.light a{color:#6b4a10}
+html.light #sidenav a{color:var(--mu)}
+html.light #sidenav a.active,html.light #sidenav a:hover{color:var(--gold)}
+</style>
+<script>try{if(localStorage.getItem('ol-theme')==='light')document.documentElement.classList.add('light')}catch(e){}</script>
+</head>
+<body>
+<div id="progress-bar"></div>
+<nav id="sidebar">
+  <div class="search-wrap"><input type="text" id="search-input" placeholder="Search…"><button id="search-btn">Go</button></div>
+  <svg class="lampsvg" width="64" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><radialGradient id="lmpGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffb95e" stop-opacity=".55"/><stop offset="100%" stop-color="#ffb95e" stop-opacity="0"/></radialGradient><linearGradient id="lmpFlame" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#ff7a1f"/><stop offset="55%" stop-color="#ffb347"/><stop offset="100%" stop-color="#ffe9b0"/></linearGradient><linearGradient id="lmpBrass" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e3b860"/><stop offset="50%" stop-color="#a87b35"/><stop offset="100%" stop-color="#7a5523"/></linearGradient></defs><circle cx="60" cy="38" r="34" fill="url(#lmpGlow)"/><g class="lampflame"><path d="M60 16 C66 26 70 32 70 40 C70 48 65.5 53 60 53 C54.5 53 50 48 50 40 C50 32 54 26 60 16 Z" fill="url(#lmpFlame)"/><path d="M60 30 C63 35 64.5 38 64.5 42 C64.5 46.5 62.5 49 60 49 C57.5 49 55.5 46.5 55.5 42 C55.5 38 57 35 60 30 Z" fill="#fff3cf" opacity=".85"/></g><rect x="56" y="52" width="8" height="7" rx="2" fill="#8a6228"/><path d="M28 62 L92 62 C92 80 78 92 60 92 C42 92 28 80 28 62 Z" fill="url(#lmpBrass)"/><rect x="24" y="58" width="72" height="6" rx="3" fill="#caa14e"/><rect x="56" y="92" width="8" height="16" fill="url(#lmpBrass)"/><path d="M38 118 C38 110 47 108 60 108 C73 108 82 110 82 118 L82 122 L38 122 Z" fill="url(#lmpBrass)"/><rect x="32" y="122" width="56" height="6" rx="3" fill="#caa14e"/></svg>
+  <h2>The Orthodox Lamp</h2>
+  <nav id="sidenav">
+    <a href="#s1">I. Introduction</a>
+    <a href="#s2">II. Who Are the Latter-day Saints?</a>
+    <a href="#s3">III. The Nature of God</a>
+    <a href="#s4">IV. Who Is Jesus Christ?</a>
+    <a href="#s5">V. The "Great Apostasy"</a>
+    <a href="#s6">VI. The Book of Mormon</a>
+    <a href="#s7">VII. Exaltation vs. Theosis</a>
+    <a href="#s8">VIII. Salvation & the Afterlife</a>
+    <a href="#s9">IX. The Fathers Speak</a>
+    <a href="#s10">X. Objections</a>
+    <a href="#s11">XI. FAQ</a>
+    <a href="#s12">XII. Sources</a>
+  </nav>
+</nav>
+<div id="overlay" onclick="closeMobile()"></div>
+<button class="mob-toggle" onclick="toggleSidebar()">☰</button>
+<main id="main-content">
+  <div class="hero">
+    <span class="si">☩</span>
+    <h1 class="st">THE <span>ORTHODOX</span> LAMP</h1>
+    <p class="ss">Mormonism (The Latter-day Saints) — A Christian Response</p>
+    <p class="tg">"Even if we or an angel from heaven should preach to you a gospel contrary to the one we preached to you, let him be accursed." — Galatians 1:8</p>
+    <div class="orn">✦ ✦ ✦</div>
+  </div>
+
+  <section class="sec open" id="s1">
+    <div class="sec-hd" onclick="ts(this)"><h2>I. Introduction — Charity and Clarity</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>The Church of Jesus Christ of Latter-day Saints (the "LDS Church," whose members are commonly called Mormons) presents itself as a restored form of original Christianity. Its members are, by and large, devout, family-centered, morally serious people, and they are owed respect and friendship. This page is not an attack on persons; it is an honest examination of <em>doctrine</em>, written so that Oriental Orthodox Christians can understand where the Latter-day Saint faith genuinely differs from the historic Christian faith and why those differences matter.</p>
+      <p>The central question is not whether Mormons are sincere or good — many plainly are — but whether the teachings restored by Joseph Smith in the 1820s and 1830s are the same faith that was "once for all delivered to the saints" (Jude 3) and confessed by the apostles, the martyrs, and the Fathers. On the deepest questions — who God is, who Jesus Christ is, and what salvation means — the answer, examined carefully and charitably, is no.</p>
+      <p>Throughout, we will state Latter-day Saint teaching from its own authoritative sources before responding, so that the comparison is fair. Where the modern LDS Church speaks less openly about a historic teaching, we note that too.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s2">
+    <div class="sec-hd" onclick="ts(this)"><h2>II. Who Are the Latter-day Saints?</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>The movement began in upstate New York with <strong>Joseph Smith Jr.</strong> (1805–1844). Smith reported that, beginning around 1820, he received visions: first of God the Father and Jesus Christ (the "First Vision"), and later of an angel named <strong>Moroni</strong>, who directed him to golden plates buried in a hill. From these plates, Smith said, he translated the <em>Book of Mormon</em>, published in 1830 — the same year he organized the Church.</p>
+      <h3>The LDS Scriptures</h3>
+      <p>Latter-day Saints accept four books as scripture (the "Standard Works"): the <strong>Bible</strong> ("as far as it is translated correctly," per their 8th Article of Faith), the <strong>Book of Mormon</strong>, the <strong>Doctrine and Covenants</strong> (revelations to Smith and later prophets), and the <strong>Pearl of Great Price</strong> (including the Book of Abraham and Book of Moses). They also hold that the President of the Church is a living prophet who can receive binding revelation today.</p>
+      <h3>Two Surface Similarities</h3>
+      <p>Mormons use Christian vocabulary — God, Jesus Christ, the Holy Ghost, gospel, salvation, atonement — and their 1st Article of Faith reads: "We believe in God, the Eternal Father, and in His Son, Jesus Christ, and in the Holy Ghost." Read at face value this sounds orthodox. But the <em>meanings</em> assigned to these words differ profoundly from historic Christianity, as the following sections show. Shared words are not shared faith.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s3">
+    <div class="sec-hd" onclick="ts(this)"><h2>III. The Nature of God — One Eternal God, or an Exalted Man?</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>This is the deepest divide. Historic Christianity confesses <em>one</em> God who is eternal, uncreated, unchanging Spirit — the Creator of all that exists, infinitely distinct from His creation. Classical Latter-day Saint teaching, by contrast, holds that God the Father is an <em>exalted, embodied man</em> who progressed to godhood, and that He is one of many gods.</p>
+      <div class="fc">
+        <div class="fn">Joseph Smith — The King Follett Discourse</div><div class="fw">General Conference sermon, April 7, 1844 (published in History of the Church, vol. 6) <span class="src direct">Direct Quote</span></div>
+        <div class="fq">"God himself was once as we are now, and is an exalted man, and sits enthroned in yonder heavens! … I will tell you how God came to be God. We have imagined and supposed that God was God from all eternity. I will refute that idea."</div>
+        <div class="fsig"><strong>Significance:</strong> In his last major sermon, Smith taught plainly that God the Father was once a mortal man who became God, explicitly denying that God was "God from all eternity." This is the foundation of the LDS doctrine of eternal progression.</div>
+      </div>
+      <div class="fc">
+        <div class="fn">Lorenzo Snow (5th LDS President) — The Couplet</div><div class="fw">Composed c. 1840; long taught as LDS doctrine <span class="src direct">Direct Quote</span></div>
+        <div class="fq">"As man now is, God once was: As God now is, man may be."</div>
+        <div class="fsig"><strong>Significance:</strong> This famous couplet summarizes the LDS doctrine of exaltation: God the Father followed the same path of progression that faithful humans may follow to become gods themselves. (The modern Church speaks of the first line cautiously, but it has never been repudiated as doctrine.)</div>
+      </div>
+      <h3>What the Scriptures Say</h3>
+      <div class="sv-grid">
+        <div class="sv"><div class="ref">Isaiah 43:10</div><div class="labels"><span class="oo">OO</span></div><div class="txt">"Before me no god was formed, nor shall there be any after me."</div><div class="interp">God Himself rules out the very idea of eternal progression and a plurality of gods. No god existed before Him (so the Father was not "made" a god by a prior god), and none will come after (so men do not become gods). This single verse contradicts the core LDS doctrine of God.</div></div>
+        <div class="sv"><div class="ref">Isaiah 44:6, 8</div><div class="labels"><span class="oo">OO</span></div><div class="txt">"I am the first and I am the last; besides me there is no god… Is there a God besides me? There is no Rock; I know not any."</div><div class="interp">God declares not merely that other gods should not be worshiped, but that He knows of no other god at all. Monotheism in Scripture is not "one god for us among many," but the existence of only one God by nature.</div></div>
+        <div class="sv"><div class="ref">Psalm 90:2</div><div class="labels"><span class="oo">OO</span></div><div class="txt">"Before the mountains were brought forth, or ever you had formed the earth and the world, from everlasting to everlasting you are God."</div><div class="interp">God is God "from everlasting" — without beginning. He did not become God; He always was God. This directly refutes Smith's statement that God "came to be God."</div></div>
+        <div class="sv"><div class="ref">Malachi 3:6</div><div class="labels"><span class="oo">OO</span></div><div class="txt">"For I the LORD do not change."</div><div class="interp">God is immutable — He does not develop, progress, or change in His being. A god who was once a man and grew into godhood is a changing god, which the God of the Bible is not. The same truth grounds our confidence that His promises do not shift.</div></div>
+      </div>
+      <p>Historic Christianity, East and West, has always taught that God is the one uncreated source of all being — "of one essence," eternal, simple, and unchangeable. The Oriental Orthodox Church confesses this in every Liturgy. A god who climbed to divinity from manhood, and who is one among many, is simply not the God of Abraham, Isaiah, and the Church.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s4">
+    <div class="sec-hd" onclick="ts(this)"><h2>IV. Who Is Jesus Christ? — The Eternal Son or a Created Spirit-Brother?</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>For historic Christianity, Jesus Christ is the eternal Son of God, "begotten not made," of one essence (<em>homoousios</em>) with the Father — true God of true God, through whom all things were made. He is not a creature; there was never a time when He was not.</p>
+      <p>In Latter-day Saint teaching, Jesus is the literal firstborn spirit child of God the Father and a Heavenly Mother, the elder spirit-brother of all human beings — and, in the same spirit-family, the elder brother of Lucifer as well. He is divine in the LDS sense, but as a being who was begotten in a pre-mortal existence and who progressed, not as the uncreated, co-eternal God of Nicaea.</p>
+      <div class="cmp-grid">
+        <div class="cmp lds"><div class="ct">Latter-day Saint Teaching</div><p>Jesus is the firstborn of the Father's spirit children, begotten in a pre-mortal life. Humans, Jesus, and Lucifer are all spirit children of the same Heavenly Father, differing in degree, not in kind.</p><p>The Father, Son, and Holy Ghost are three <em>separate</em> beings (the "Godhead"), one only in purpose and will — not one in essence or substance.</p></div>
+        <div class="cmp oo"><div class="ct">Historic Christian Faith</div><p>Jesus is the eternal, uncreated Son, of one essence with the Father, by whom all things — including every angel — were made (John 1:3; Colossians 1:16). He is Creator, not a fellow creature.</p><p>The Father, Son, and Holy Spirit are one God in three Persons, sharing one indivisible divine essence — the doctrine of the Holy Trinity defined at Nicaea (325) and Constantinople (381).</p></div>
+      </div>
+      <div class="sv-grid">
+        <div class="sv"><div class="ref">John 1:1–3</div><div class="labels"><span class="oo">OO</span></div><div class="txt">"In the beginning was the Word, and the Word was with God, and the Word was God… All things were made through him, and without him was not any thing made that was made."</div><div class="interp">The Word (Christ) already <em>was</em> "in the beginning" and "was God" — eternal, not begotten in time as a spirit child. And since all created things were made through Him, He cannot Himself be a created spirit-being. The Creator/creature line falls between Christ and everything else — including Lucifer.</div></div>
+        <div class="sv"><div class="ref">Colossians 1:16–17</div><div class="labels"><span class="oo">OO</span></div><div class="txt">"For by him all things were created, in heaven and on earth… all things were created through him and for him. And he is before all things, and in him all things hold together."</div><div class="interp">Christ created "all things," visible and invisible — which includes the angelic realm. He is therefore not Lucifer's brother but Lucifer's Maker. He is "before all things," not the firstborn product of a pre-mortal family.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s5">
+    <div class="sec-hd" onclick="ts(this)"><h2>V. The "Great Apostasy" — Did the Whole Church Fail?</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>The entire LDS claim rests on one historical premise: that shortly after the apostles died, the true Church <em>completely apostatized</em> — lost its authority, corrupted its doctrine, and disappeared from the earth — so that a total <em>restoration</em> through Joseph Smith was necessary. Without a total apostasy, there is nothing to restore, and the LDS Church has no reason to exist.</p>
+      <p>This premise collides directly with Christ's own promise about His Church.</p>
+      <div class="sv-grid">
+        <div class="sv"><div class="ref">Matthew 16:18</div><div class="labels"><span class="oo">OO</span></div><div class="txt">"And I tell you, you are Peter, and on this rock I will build my church, and the gates of hell shall not prevail against it."</div><div class="interp">Christ promised that His Church would never be overcome. A total apostasy — the Church utterly failing for some 1,700 years until 1830 — would mean the gates of hell <em>did</em> prevail, and that Christ's promise failed. The historic Church takes Christ at His word: the Church has been preserved unbroken.</div></div>
+        <div class="sv"><div class="ref">Matthew 28:20</div><div class="labels"><span class="oo">OO</span></div><div class="txt">"And behold, I am with you always, to the end of the age."</div><div class="interp">Christ promised continual presence with His Church to the very end. The "Great Apostasy" theory requires that He abandoned it for most of history — contradicting His own pledge.</div></div>
+        <div class="sv"><div class="ref">Ephesians 3:21</div><div class="labels"><span class="oo">OO</span></div><div class="txt">"To him be glory in the church and in Christ Jesus throughout all generations, forever and ever. Amen."</div><div class="interp">Glory is to be given to God "in the church" throughout <em>all</em> generations — not all generations except the seventeen centuries between the apostles and Joseph Smith. Scripture assumes an unbroken Church.</div></div>
+      </div>
+      <p>The Oriental Orthodox answer is concrete: the Church did <em>not</em> vanish. The Coptic, Syriac, Armenian, Ethiopian, and other ancient churches have an unbroken succession of bishops, an unbroken Eucharist, and an unbroken faith reaching back to the apostles themselves — long before, and entirely independent of, anything in 19th-century America. The living, visible, ancient Church is itself the refutation of the apostasy theory.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s6">
+    <div class="sec-hd" onclick="ts(this)"><h2>VI. The Book of Mormon — Historical & Textual Problems</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>The Book of Mormon claims to record real civilizations — chiefly the Nephites and Lamanites, said to be Israelites who sailed to the Americas around 600 BC and flourished for a thousand years. If true, this is testable history. Examined as history, it faces serious and well-documented problems.</p>
+      <h3>Anachronisms</h3>
+      <p>The Book of Mormon describes pre-Columbian American peoples possessing horses, chariots, cattle, oxen, sheep, goats, wheat, barley, steel swords, and silk — none of which are attested in the Americas in that era by archaeology. These items belong to the Old World of Joseph Smith's own day, not to ancient Mesoamerica.</p>
+      <h3>No Archaeological or Linguistic Trace</h3>
+      <p>No site, inscription, coin, or artifact has ever been identified that corresponds to the great Nephite cities and battles. No language called "Reformed Egyptian" — the script Smith said the plates were written in — is known to scholarship. By contrast, the world of the Bible is anchored in thousands of identifiable places, peoples, and artifacts.</p>
+      <h3>DNA and Ancestry</h3>
+      <p>The Book of Mormon long taught that its Israelite peoples were "the principal ancestors of the American Indians" (so its introduction read until 2006, when the wording was quietly changed to "among the ancestors"). Population genetics, however, shows Native American ancestry tracing overwhelmingly to Asia, not the ancient Near East.</p>
+      <h3>The Book of Abraham</h3>
+      <p>Smith said he translated the Book of Abraham from Egyptian papyri he acquired in 1835. Portions of those papyri were rediscovered in 1966 and examined by Egyptologists, who identified them as ordinary Egyptian funerary texts (the "Book of Breathings"), bearing no relation to Smith's "translation." This is one of the few cases where Smith's translating ability can be checked against a known original — and it does not hold up.</p>
+      <h3>Dependence on the King James Bible</h3>
+      <p>The Book of Mormon, supposedly composed centuries before Christ and on another continent, quotes long passages of the King James Version (1611) nearly verbatim — including phrases that even reproduce the KJV's italicized words (words the King James translators added that are not in the Hebrew or Greek). This points to a 19th-century author with a KJV Bible, not an ancient record.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s7">
+    <div class="sec-hd" onclick="ts(this)"><h2>VII. Exaltation vs. Theosis — "Becoming Gods" Rightly Understood</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>Latter-day Saints sometimes point out that the historic Church — especially the Orthodox East — also speaks of human beings "becoming gods" (<em>theosis</em>, deification). They argue this proves their doctrine of exaltation is the original Christian teaching. This deserves a careful answer, because the words sound similar but the meanings are opposite.</p>
+      <div class="cmp-grid">
+        <div class="cmp lds"><div class="ct">LDS Exaltation</div><p>Faithful Latter-day Saints may become gods of the same kind as God the Father — ruling their own worlds, begetting spirit children, progressing as He did. God Himself was once such a man. Deity is a <em>species</em> that one can join; the line between God and man is one of degree and time.</p></div>
+        <div class="cmp oo"><div class="ct">Orthodox Theosis</div><p>By grace, the redeemed are united to God and come to share in His <em>energies</em> — His life, holiness, and glory — without ever becoming God by nature. The creature remains a creature; God remains the one uncreated Creator. We are "partakers of the divine nature" (2 Peter 1:4) by participation, never by becoming additional gods.</p></div>
+      </div>
+      <p>When St. Athanasius wrote that "God became man that man might become god," he meant that the eternal Son took our flesh so that we, by grace and union with Him, might share in the divine life and be made holy — adopted sons by grace, partaking of what God is by nature. He emphatically did <em>not</em> mean that the Father had once been a man, or that we become independent deities ruling our own planets. The whole patristic doctrine of deification presupposes exactly what Mormonism denies: an absolute, permanent distinction between the one uncreated God and everything He has made.</p>
+      <p>So the resemblance is only verbal. Theosis exalts the creature by uniting it to God; exaltation abolishes the difference between God and creature altogether. One is the fulfillment of monotheism; the other is its dissolution into a plurality of gods.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s8">
+    <div class="sec-hd" onclick="ts(this)"><h2>VIII. Salvation, Works & the Afterlife</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>Latter-day Saint soteriology differs from historic Christianity at several points. Salvation is framed largely as progression toward exaltation, and the afterlife is divided into three "degrees of glory" — the Celestial, Terrestrial, and Telestial kingdoms — with exaltation to full godhood reserved for the most faithful, and contingent on LDS temple ordinances such as celestial marriage.</p>
+      <p>A distinctive LDS practice is <strong>baptism for the dead</strong> — living members are baptized by proxy on behalf of deceased ancestors, so that the dead may accept the LDS gospel in the spirit world. This is supported chiefly by a single, much-disputed verse (1 Corinthians 15:29), which the historic Church has never read as instituting proxy baptism, and which Paul mentions only in passing as an argument <em>for the resurrection</em>, without endorsing the practice he refers to.</p>
+      <p>The Oriental Orthodox understanding is different in kind. Salvation is union with the one true God in Christ — entry, by grace through faith working in love, into the life of the Holy Trinity through the Church and her mysteries. Its goal is not to become a separate god ruling a separate world, but to be healed, sanctified, and brought into eternal communion with God, sharing His glory while remaining forever His creature and child. Heaven is the vision and embrace of God Himself, not a promotion to His office.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s9">
+    <div class="sec-hd" onclick="ts(this)"><h2>IX. The Fathers & the Creed Speak</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <p>The historic faith — one eternal God, an uncreated Son, deification by grace and not by nature — was confessed long before the modern debate, in the Creed and the Fathers.</p>
+      <div class="fc">
+        <div class="fn">The Nicene Creed</div><div class="fw">First Council of Nicaea, AD 325 (with Constantinople, 381) <span class="src direct">Direct Quote</span></div>
+        <div class="fq">"…one Lord Jesus Christ, the only-begotten Son of God, begotten of the Father before all ages… begotten, not made, being of one essence with the Father, by whom all things were made."</div>
+        <div class="fsig"><strong>Significance:</strong> The whole Church confesses that the Son is "begotten, not made" and "of one essence with the Father" — eternal and uncreated, the Maker of all things. This rules out, by name, any idea of Christ as a created spirit-being or the firstborn of a divine family.</div>
+      </div>
+      <div class="fc">
+        <div class="fn">St. Athanasius the Great (c. 296–373)</div><div class="fw">On the Incarnation, §54 — c. AD 318 · NPNF Series 2, vol. 4 <span class="src direct">Direct Quote</span></div>
+        <div class="fq">"For He was made man that we might be made God; and He manifested Himself by a body that we might receive the idea of the unseen Father."</div>
+        <div class="fsig"><strong>Significance:</strong> The classic statement of deification — and its key is that it is the eternal God who "was made man," lifting us into His life by grace. It assumes one God who took flesh, not a man who became God. Read in context, Athanasius is the strongest refutation of the LDS misuse of "becoming gods."</div>
+      </div>
+      <div class="fc">
+        <div class="fn">St. Irenaeus of Lyons (c. 130–202)</div><div class="fw">Against Heresies, Book II — c. AD 180 · ANF vol. 1 <span class="src para">Paraphrase</span></div>
+        <div class="fq">There is one God, the Creator, who made all things by His Word; there is no other God above Him or beside Him, and nothing was made except by Him.</div>
+        <div class="fsig"><strong>Significance:</strong> Against the Gnostics — who, like Mormonism, posited many divine beings and a god below a higher god — Irenaeus insists on a single uncreated Creator with nothing above Him. The early Church already rejected the "plurality of gods" framework. <em>(Paraphrase of Irenaeus's argument in Against Heresies II.1–2.)</em></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s10">
+    <div class="sec-hd" onclick="ts(this)"><h2>X. Objections & Responses</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>"You Orthodox believe in theosis — becoming gods — so our doctrine of exaltation is the same original teaching."</h3><span class="arr">▼</span></div>
+        <div class="obj-bd"><h4>Response</h4><p>The words overlap; the meanings are opposite. Theosis means the creature, by grace, shares in God's life and holiness while remaining a creature — "partakers of the divine nature" by participation (2 Peter 1:4). It presupposes one uncreated God, infinitely distinct from all He made. LDS exaltation means becoming a god of the same kind as the Father, who Himself was once a man — abolishing the Creator/creature distinction and multiplying gods. The Fathers who taught deification (Athanasius, the Cappadocians, Cyril) were the very ones who most fiercely defended that there is only one God by nature. You cannot quote them for exaltation without contradicting everything else they wrote. See Section VII.</p></div>
+      </div>
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>"The Bible was corrupted over the centuries, so a restoration was necessary."</h3><span class="arr">▼</span></div>
+        <div class="obj-bd"><h4>Response</h4><p>The manuscript evidence runs the other way. We possess thousands of New Testament manuscripts, some within a couple of generations of the originals, in multiple languages and from widely separated regions. They allow scholars to reconstruct the text with very high confidence, and they show that the doctrines in question — one God, the eternal Son, the Trinity — are present in the earliest witnesses, not late corruptions. There is no manuscript trail showing an original "Mormon" Christianity that was later edited out. Ironically, it is the Book of Abraham — where Smith's source survives — that fails the test of translation, not the Bible. (See the site's pages on the canon and the reliability of Scripture.)</p></div>
+      </div>
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>"I prayed about the Book of Mormon and felt a burning in my bosom confirming it is true."</h3><span class="arr">▼</span></div>
+        <div class="obj-bd"><h4>Response</h4><p>The invitation to pray and trust an inner feeling comes from the Book of Mormon itself (Moroni 10:4). But Scripture warns that feelings are not a reliable test of truth: "The heart is deceitful above all things" (Jeremiah 17:9), and we are told to "test the spirits" (1 John 4:1), not simply to trust them. Most decisively, Paul says that <em>even an angel from heaven</em> preaching another gospel is to be rejected (Galatians 1:8) — a sobering word given that Mormonism traces to an angelic visitation. Sincere warm feelings are reported by adherents of every religion; they cannot establish competing and contradictory claims. Truth about God must be tested against what He has actually revealed and preserved in His Church.</p></div>
+      </div>
+      <div class="obj">
+        <div class="obj-hd" onclick="tobj(this)"><h3>"Mormons love Jesus, live good lives, and use the Bible — aren't they just another Christian denomination?"</h3><span class="arr">▼</span></div>
+        <div class="obj-bd"><h4>Response</h4><p>The moral seriousness and family devotion of Latter-day Saints are real and admirable, and should be honored. But denominational differences among historic Christians (over church government, sacraments, worship) are differences <em>within</em> a shared confession of one eternal God and one uncreated, co-eternal Christ. Mormonism differs precisely <em>on those foundations</em>: a god who was once a man, a plurality of gods, a Christ who is a created spirit-brother. That is not a denomination of the same faith but a different account of God altogether. We can love Mormons as neighbors and even friends while being honest that, on the identity of God and Christ, we do not share the same religion.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s11">
+    <div class="sec-hd" onclick="ts(this)"><h2>XI. Frequently Asked Questions</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <div class="fi"><div class="fi-hd" onclick="tf(this)"><span>Q: Should I be rude or argumentative with Mormon missionaries?</span><span class="arr">▼</span></div><div class="fi-bd"><p>No. They are usually young, sincere, and courageous, and they deserve kindness and hospitality. Honest conversation about who God is — asked with genuine curiosity and respect — is far more fruitful than argument. The goal is not to win a debate but to bear witness to the one eternal God and the living, ancient Church.</p></div></div>
+      <div class="fi"><div class="fi-hd" onclick="tf(this)"><span>Q: Do Mormons worship the same God as Christians?</span><span class="arr">▼</span></div><div class="fi-bd"><p>They use the same names, but the God they describe — an exalted man, one of many gods, who progressed to deity — is not the God confessed by Israel, the apostles, and the Church. Sharing the word "God" is not the same as sharing the same God. This is why the historic churches generally do not recognize LDS baptism as Christian baptism.</p></div></div>
+      <div class="fi"><div class="fi-hd" onclick="tf(this)"><span>Q: Has the LDS Church changed its teachings?</span><span class="arr">▼</span></div><div class="fi-bd"><p>On several points, yes — polygamy was ended (1890), the priesthood was extended to members of African descent (1978), and the Book of Mormon's introduction was reworded (2006). The modern Church also speaks more cautiously about the "God was once a man" teaching. These shifts are worth knowing, but the foundational doctrines of exaltation, plural gods, and a restored church after a total apostasy remain.</p></div></div>
+      <div class="fi"><div class="fi-hd" onclick="tf(this)"><span>Q: What is the single strongest point to understand?</span><span class="arr">▼</span></div><div class="fi-bd"><p>That the historic Church never disappeared. The ancient Oriental Orthodox churches — Coptic, Syriac, Armenian, Ethiopian — have preserved the apostolic faith, bishops, and Eucharist in unbroken succession since the apostles. If the Church never failed (Matthew 16:18), then no "restoration" was needed, and the premise of Mormonism collapses.</p></div></div>
+    </div>
+  </section>
+
+  <section class="sec" id="s12">
+    <div class="sec-hd" onclick="ts(this)"><h2>XII. Sources</h2><span class="arr">▼</span></div>
+    <div class="sec-bd">
+      <div class="src-grid">
+        <div class="src-card"><div class="src-cat">Scripture</div><div class="src-item"><strong>The Holy Bible (ESV)</strong> — Crossway, 2001.</div></div>
+        <div class="src-card"><div class="src-cat">LDS Primary Sources</div><div class="src-item"><strong>Joseph Smith</strong> — King Follett Discourse, in <em>History of the Church</em>, vol. 6, and <em>Teachings of the Prophet Joseph Smith</em>.</div><div class="src-item"><strong>Lorenzo Snow</strong> — the couplet, in <em>Teachings of Presidents of the Church: Lorenzo Snow</em>.</div><div class="src-item"><strong>The Book of Mormon; Doctrine and Covenants; Pearl of Great Price</strong> — LDS Standard Works.</div></div>
+        <div class="src-card"><div class="src-cat">Church Fathers & Creed</div><div class="src-item"><strong>The Nicene-Constantinopolitan Creed</strong> — 325/381.</div><div class="src-item"><strong>Athanasius — On the Incarnation</strong> — NPNF Series 2, vol. 4.</div><div class="src-item"><strong>Irenaeus — Against Heresies</strong> — ANF vol. 1.</div></div>
+        <div class="src-card"><div class="src-cat">Reference</div><div class="src-item"><strong>The Joseph Smith Papyri</strong> — Egyptological analyses of the Book of Abraham sources (post-1966).</div><div class="src-item"><strong>LDS Gospel Topics Essays</strong> — the Church's own statements on translation, race, and Heavenly Mother.</div></div>
+      </div>
+      <p style="margin-top:1rem;font-size:.85rem;color:var(--mu)">This page describes Latter-day Saint doctrine from LDS sources and responds from the historic Christian and Oriental Orthodox tradition. It is offered in a spirit of charity toward Latter-day Saints as neighbors and friends.</p>
+    </div>
+  </section>
+</main>
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+function ts(h){h.closest('.sec').classList.toggle('open')}
+function tobj(h){h.closest('.obj').classList.toggle('open')}
+function tf(h){h.closest('.fi').classList.toggle('open')}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').classList.toggle('show')}
+function closeMobile(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
+const secs=document.querySelectorAll('.sec[id]');
+const navLinks=document.querySelectorAll('#sidenav a');
+function updateNav(){let cur='';secs.forEach(s=>{if(s.getBoundingClientRect().top<120)cur=s.id;});navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur);})}
+window.addEventListener('scroll',updateNav,{passive:true});
+window.addEventListener('scroll',()=>{const st=document.documentElement.scrollTop;const sh=document.documentElement.scrollHeight-document.documentElement.clientHeight;document.getElementById('progress-bar').style.width=(st/sh*100)+'%';},{passive:true});
+window.addEventListener('scroll',()=>{document.getElementById('btt').style.opacity=window.scrollY>400?'1':'0';},{passive:true});
+let lastQuery='';
+function doSearch(){const q=document.getElementById('search-input').value.trim().toLowerCase();if(q===lastQuery)return;lastQuery=q;clearHighlights();if(!q)return;const walker=document.createTreeWalker(document.getElementById('main-content'),NodeFilter.SHOW_TEXT,null,false);const matches=[];let node;while((node=walker.nextNode())){if(node.nodeValue.toLowerCase().includes(q))matches.push(node);}matches.forEach(n=>{const idx=n.nodeValue.toLowerCase().indexOf(q);const before=document.createTextNode(n.nodeValue.substring(0,idx));const mark=document.createElement('mark');mark.textContent=n.nodeValue.substring(idx,idx+q.length);mark.style.cssText='background:#c9a84c;color:#0d0d0d;border-radius:2px;padding:0 2px;';const after=document.createTextNode(n.nodeValue.substring(idx+q.length));const frag=document.createDocumentFragment();frag.appendChild(before);frag.appendChild(mark);frag.appendChild(after);n.parentNode.replaceChild(frag,n);});const firstMark=document.querySelector('mark');if(firstMark)firstMark.scrollIntoView({behavior:'smooth',block:'center'});}
+function clearHighlights(){document.querySelectorAll('mark').forEach(m=>{m.parentNode.replaceChild(document.createTextNode(m.textContent),m);});}
+document.getElementById('search-input').addEventListener('keydown',e=>{if(e.key==='Enter')doSearch();if(e.key==='Escape'){document.getElementById('search-input').value='';lastQuery='';clearHighlights();}});
+document.getElementById('search-btn').addEventListener('click',doSearch);
+document.querySelector('.sec').classList.add('open');
+</script>
+<button id="ol-tt" onclick="olTheme()" aria-label="Toggle light or dark mode" title="Light/dark mode">☀</button><script>function olTheme(){var l=document.documentElement.classList.toggle('light');try{localStorage.setItem('ol-theme',l?'light':'dark')}catch(e){}olIcon()}function olIcon(){document.getElementById('ol-tt').textContent=document.documentElement.classList.contains('light')?'☾':'☀'}olIcon();</script>
+</body>
+</html>
