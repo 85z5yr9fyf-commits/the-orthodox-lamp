@@ -127,6 +127,20 @@ a:hover{text-decoration:underline}
 .council-title{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
 .council-txt{font-size:.87rem;color:var(--tx);line-height:1.6}
 
+/* Doctrine-history timeline */
+.tl{position:relative;margin:1.3rem 0;padding-left:1.5rem;border-left:2px solid var(--gd)}
+.tl-item{position:relative;margin-bottom:1.2rem}
+.tl-item::before{content:'';position:absolute;left:-1.95rem;top:.3rem;width:.62rem;height:.62rem;border-radius:50%;background:var(--gold);border:2px solid var(--bg2)}
+.tl-item.turn::before{background:var(--red)}
+.tl-yr{font-size:.68rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--gold);margin-bottom:.15rem}
+.tl-item.turn .tl-yr{color:#d08080}
+.tl-h{font-size:.9rem;font-weight:700;color:var(--gl);margin-bottom:.25rem}
+.tl-b{font-size:.85rem;color:var(--tx);line-height:1.55}
+/* Source-marking tag for patristic quotes */
+.src{display:inline-block;font-size:.58rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:.1rem .4rem;border-radius:3px;margin-left:.4rem;vertical-align:middle}
+.src.direct{background:#1a2a1a;color:#7abf7a;border:1px solid #2a502a}
+.src.para{background:#251a35;color:#b07ae0;border:1px solid #4a2a70}
+
 /* Greek term inline highlight */
 .gk-word{font-style:italic;color:var(--gl);font-size:.95em}
 
@@ -206,10 +220,11 @@ html.light #sidenav a.active,html.light #sidenav a:hover{color:var(--gold)}
     <a href="#s13">XIII. Adelphos in Greek &amp; Hebrew</a>
     <a href="#s14">XIV. James — Who Was He?</a>
     <a href="#s15">XV. The Mary at the Cross Evidence</a>
-    <span class="sb-group">Apologetics</span>
-    <a href="#s16">XVI. Protestant Objections</a>
-    <a href="#s17">XVII. FAQ</a>
-    <a href="#s18">XVIII. Sources</a>
+    <span class="sb-group">History &amp; Apologetics</span>
+    <a href="#shist">XVI. History of the Doctrine</a>
+    <a href="#s16">XVII. Protestant Objections</a>
+    <a href="#s17">XVIII. FAQ</a>
+    <a href="#s18">XIX. Sources</a>
   </div>
 </nav>
 
@@ -746,11 +761,130 @@ html.light #sidenav a.active,html.light #sidenav a:hover{color:var(--gold)}
   </div>
 </div>
 
+<!-- XVI HISTORY -->
+<div class="sec" id="shist">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>XVI. The History of the Doctrine — When It Arose &amp; When It Changed</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">16</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+    <p>A frequent Protestant claim is that the perpetual virginity of Mary is a "later addition" — a medieval Catholic accretion with no roots in the apostolic Church. The historical record points the other way. The doctrine is attested in the <em>second</em> century, was held without serious dissent by the Fathers of East and West, was challenged only once in antiquity (and that challenge was decisively rejected), and survived even the Reformation. Its abandonment is the genuinely <em>late</em> development — a product of the seventeenth and eighteenth centuries, not the first.</p>
+
+    <h3>Timeline of the Doctrine</h3>
+    <div class="tl">
+      <div class="tl-item">
+        <div class="tl-yr">1st Century — Apostolic Era</div>
+        <div class="tl-h">The Scriptural Foundation</div>
+        <div class="tl-b">The New Testament neither asserts nor denies that Mary had other children. The data the later tradition draws on — Mary's question in Luke 1:34, the entrusting of Mary to John at the cross (John 19:26–27), and the consistent silence about any sons "of Mary" — is already present in the apostolic writings.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-yr">c. AD 145–150</div>
+        <div class="tl-h">The Protoevangelium of James — Earliest Explicit Witness</div>
+        <div class="tl-b">This early text presents Joseph as an elderly widower with sons from a prior marriage, and Mary as a consecrated virgin. It is the earliest surviving document to state Mary's perpetual virginity explicitly and to identify the "brothers of the Lord" as Joseph's children. It is not Scripture, but it shows the belief was already circulating within a century of the apostles.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-yr">c. AD 230–250</div>
+        <div class="tl-h">Origen of Alexandria Affirms It</div>
+        <div class="tl-b">In his <em>Commentary on Matthew</em>, Origen records that those who say the brothers were Joseph's sons by a former wife do so "wishing to preserve the honour of Mary in virginity to the end" — and he himself endorses the view. The greatest biblical scholar of the early Church treats the perpetual virginity as the received and pious reading.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-yr">4th Century</div>
+        <div class="tl-h">Settled Consensus, East and West</div>
+        <div class="tl-b">The term <span class="gk-word">Aeiparthenos</span> ("Ever-Virgin") is used by Athanasius of Alexandria. Hilary of Poitiers, Ephrem the Syrian, Epiphanius of Salamis, and Ambrose of Milan all affirm it. By the late 300s it is simply the common faith of the Church — not a contested theory.</div>
+      </div>
+      <div class="tl-item turn">
+        <div class="tl-yr">c. AD 380 — The First Challenge</div>
+        <div class="tl-h">Helvidius of Rome</div>
+        <div class="tl-b">Helvidius is the first named Christian to argue that Mary had normal marital relations and bore other children. His goal was not primarily Mariological: he wanted to defend <em>marriage</em> as equal in dignity to consecrated virginity, against the rising ascetic movement that prized celibacy. To do so, he used Mary as his proof — if even she married fully, marriage cannot be inferior. A similar view was advanced by Bonosus of Sardica around the same time and was condemned by a synod.</div>
+      </div>
+      <div class="tl-item turn">
+        <div class="tl-yr">AD 383</div>
+        <div class="tl-h">Jerome's Refutation</div>
+        <div class="tl-b">Jerome answered Helvidius in <em>On the Perpetual Virginity of the Blessed Mary (Against Helvidius)</em>, marshalling the linguistic case for <span class="gk-word">adelphos</span>, the cross scene, and the witness of the Fathers. The Church received Jerome's position; Helvidius's was rejected as a novelty. Crucially, Jerome insisted he was not demeaning marriage — "I do not detract from marriage when I set virginity before it."</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-yr">AD 431 &amp; 451</div>
+        <div class="tl-h">Ephesus and Chalcedon</div>
+        <div class="tl-b">The Council of Ephesus (431) defines <span class="gk-word">Theotokos</span>; the wider conciliar tradition increasingly pairs it with Mary's perpetual virginity. (The Oriental Orthodox receive Ephesus and the first three councils; they do not receive Chalcedon — see the Christology pages — but the Marian doctrine is common to both families.)</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-yr">AD 553</div>
+        <div class="tl-h">Second Council of Constantinople</div>
+        <div class="tl-b">The ecumenical council formally uses the title <span class="gk-word">Aeiparthenos</span> ("Ever-Virgin") of Mary, embedding the perpetual virginity in conciliar language.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-yr">AD 649</div>
+        <div class="tl-h">The Lateran Synod (Pope Martin I)</div>
+        <div class="tl-b">This Western council states the doctrine in its fullest form: Mary was a virgin <em>before</em>, <em>during</em>, and <em>after</em> the birth of Christ. The threefold formula (ante partum, in partu, post partum) is now explicit.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-yr">16th Century — The Reformation</div>
+        <div class="tl-h">The Reformers Keep the Doctrine</div>
+        <div class="tl-b">Luther, Calvin, and Zwingli — for all their breaks with Rome — all affirmed Mary's perpetual virginity (see Section IX). The Reformation did <em>not</em> reject it. This is decisive: the doctrine was not seen as a "Romish corruption" even by Rome's fiercest critics.</div>
+      </div>
+      <div class="tl-item turn">
+        <div class="tl-yr">17th–18th Centuries — The Real Change</div>
+        <div class="tl-h">Later Protestantism Abandons It</div>
+        <div class="tl-b">Only here does the belief begin to fall away — not by the Reformers, but by their successors. Several forces converged: a hardening of <em>sola scriptura</em> into a "plain reading" that treated "brothers" and "until" as self-evidently literal; an anti-Catholic reflex that recoiled from anything resembling Marian devotion; and Enlightenment-era and historical-critical scholarship that dismissed patristic tradition as authoritative evidence. By the nineteenth century the Helvidian view was the Protestant default — sixteen centuries after it was first proposed and rejected.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-yr">Today</div>
+        <div class="tl-h">Where the Traditions Stand</div>
+        <div class="tl-b">The Oriental Orthodox, Eastern Orthodox, and Roman Catholic churches — together the large majority of the world's Christians — confess Mary as Ever-Virgin. Most Protestant bodies do not. The dividing line is not "ancient vs. modern" but "the received tradition vs. a seventeenth-century revision of it."</div>
+      </div>
+    </div>
+
+    <h3>Why Helvidius Challenged It — and Why It Matters</h3>
+    <p>Understanding Helvidius's motive disarms the charge that perpetual virginity was a power-grab by an institutional church. Helvidius was reacting to a real excess: in his day, some ascetics spoke of marriage as if it were second-class. His instinct — that Christian marriage is genuinely holy — was sound, and the Church agrees with it (see Objection 4). His <em>error</em> was the route he took to defend it: enlisting Mary against the testimony of Scripture read in the Church and against the Fathers before him. The Church's answer was not to demean marriage but to deny that Mary's case proves anything about its dignity. Marriage is honourable (Hebrews 13:4); Mary's vocation was simply unique.</p>
+
+    <h3>Consolidated Patristic Witness</h3>
+    <p>The following Fathers — spanning Egypt, Syria, Asia Minor, Gaul, Italy, and Palestine, across five centuries — testify to the perpetual virginity. Each citation is marked <span class="src direct">Direct</span> where it is a translated quotation from the standard editions, or <span class="src para">Paraphrase</span> where it summarises the Father's argument.</p>
+    <div class="fc-grid">
+      <div class="fc">
+        <div class="fc-name">Origen of Alexandria</div>
+        <div class="fc-era">c. AD 248 · Commentary on Matthew 10.17 <span class="src para">Paraphrase</span></div>
+        <div class="fc-txt">Those who hold the brothers to be Joseph's sons by a former wife do so to "preserve the honour of Mary in virginity to the end"; Origen endorses this as the pious reading.</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Hilary of Poitiers</div>
+        <div class="fc-era">c. AD 354 · Commentary on Matthew 1.4 <span class="src para">Paraphrase</span></div>
+        <div class="fc-txt">The "brothers" of the Lord were not sons of Mary but men of an earlier household; those who press them against her virginity are "most depraved."</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Athanasius of Alexandria</div>
+        <div class="fc-era">c. AD 360 · Orations Against the Arians II.70 <span class="src para">Paraphrase</span></div>
+        <div class="fc-txt">Repeatedly names Mary <span class="gk-word">Aeiparthenos</span> — "Ever-Virgin" — as a settled title in defending the true humanity Christ took from her.</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Ephrem the Syrian</div>
+        <div class="fc-era">c. AD 370 · Hymns on the Nativity <span class="src para">Paraphrase</span></div>
+        <div class="fc-txt">Celebrates Mary as the virgin who conceived and bore without losing her virginity — a recurring theme of the Syriac Nativity hymns sung in the Oriental tradition.</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Epiphanius of Salamis</div>
+        <div class="fc-era">c. AD 377 · Panarion 78 <span class="src para">Paraphrase</span></div>
+        <div class="fc-txt">Devotes a full treatise to refuting those who denied Mary's perpetual virginity, naming the brothers as Joseph's sons by a prior marriage — the "Epiphanian" view.</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Jerome</div>
+        <div class="fc-era">c. AD 383 · Against Helvidius §21 <span class="src direct">Direct</span></div>
+        <div class="fc-txt">"You say that Mary did not remain a virgin: I claim still more — that Joseph himself, on account of Mary, was a virgin, so that from a virgin wedlock a virgin son was born."</div>
+      </div>
+      <div class="fc">
+        <div class="fc-name">Augustine of Hippo</div>
+        <div class="fc-era">c. AD 401 · Of Holy Virginity §4 <span class="src para">Paraphrase</span></div>
+        <div class="fc-txt">Mary "remained a virgin in conceiving her Son, a virgin in bearing him, a virgin in carrying him, a virgin always" — virginity both of body and of dedicated will.</div>
+      </div>
+    </div>
+    <p style="font-size:.78rem;color:var(--mu);font-style:italic;margin-top:.4rem">Citations follow the standard English editions (ANF / NPNF / FOTC). "Paraphrase" indicates the Father's argument is summarised rather than quoted verbatim, so the reader is never misled about what is and is not a direct quotation.</p>
+  </div>
+</div>
+
 <!-- XVI -->
 <div class="sec" id="s16">
   <div class="sec-hd" onclick="ts(this)">
-    <h2>XVI. Protestant Objections &amp; Orthodox Responses</h2>
-    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">16</span><span class="arr">▶</span></div>
+    <h2>XVII. Protestant Objections &amp; Orthodox Responses</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">17</span><span class="arr">▶</span></div>
   </div>
   <div class="sec-body">
 
@@ -824,14 +958,42 @@ html.light #sidenav a.active,html.light #sidenav a:hover{color:var(--gold)}
       </div>
     </div>
 
+    <div class="obj">
+      <div class="obj-hd" onclick="tobj(this)">
+        <strong>Objection 6: The brothers are repeatedly named together with Mary "his mother" (Matthew 12:46; Mark 3:31; John 2:12; Acts 1:14) — the natural reading is that they are her children.</strong>
+        <span class="obj-arr">▶</span>
+      </div>
+      <div class="obj-body">
+        <p>When the Gospels say "his mother and his brothers" stood outside, or travelled together to Capernaum, or gathered in the upper room, the grouping implies one immediate family — Mary and her sons.</p>
+        <div class="obj-resp">
+          <strong>Orthodox Response</strong>
+          <p>Appearing <em>with</em> Mary shows a household, not a birth-mother. On the Epiphanian view, Joseph's sons by his first marriage were raised in the same home as Jesus and would naturally accompany Mary, their stepmother and the senior woman of the household, especially after Joseph's death. The same grouping fits cousins living within an extended Jewish family compound. What is striking is the reverse: Scripture never once calls any of these men "son of Mary" or "child of Mary." Jesus alone is called "the son of Mary" (Mark 6:3) — a phrase that would be odd if she had four other sons standing nearby. The grouping proves they shared a household; it does not prove they shared a mother.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="obj">
+      <div class="obj-hd" onclick="tobj(this)">
+        <strong>Objection 7: Jesus also had sisters (Mark 6:3), and Psalm 69:8 prophesies "I have become a stranger to my brothers" — pointing to real biological siblings.</strong>
+        <span class="obj-arr">▶</span>
+      </div>
+      <div class="obj-body">
+        <p>The mention of "sisters" alongside the brothers, and the messianic Psalm 69:8 ("a stranger to my brothers, an alien to my mother's sons"), seem to require literal siblings born of Mary.</p>
+        <div class="obj-resp">
+          <strong>Orthodox Response</strong>
+          <p>The presence of "sisters" changes nothing: the same Semitic word-range that makes <span class="gk-word">adelphos</span> cover half-siblings and cousins applies equally to "sisters." Both the Epiphanian (Joseph's children) and Hieronymian (cousins) readings accommodate sisters without difficulty. As for Psalm 69:8, the verse is Hebrew poetic parallelism, and "sons of my mother" is a standard idiom for close kin and countrymen, not a genealogical statement — the very Psalm is applied to Christ precisely because his own <em>people</em>, not his nuclear family, rejected him (cf. John 1:11). Reading a contested poetic line as a literal claim about Mary's childbearing reverses the proper order: doctrine is not built on the disputed corner of a Psalm against the plain evidence of the cross scene.</p>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
 <!-- XVII -->
 <div class="sec" id="s17">
   <div class="sec-hd" onclick="ts(this)">
-    <h2>XVII. Frequently Asked Questions</h2>
-    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">17</span><span class="arr">▶</span></div>
+    <h2>XVIII. Frequently Asked Questions</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">18</span><span class="arr">▶</span></div>
   </div>
   <div class="sec-body">
 
@@ -891,8 +1053,8 @@ html.light #sidenav a.active,html.light #sidenav a:hover{color:var(--gold)}
 <!-- XVIII -->
 <div class="sec" id="s18">
   <div class="sec-hd" onclick="ts(this)">
-    <h2>XVIII. Primary Sources &amp; Further Reading</h2>
-    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">18</span><span class="arr">▶</span></div>
+    <h2>XIX. Primary Sources &amp; Further Reading</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">19</span><span class="arr">▶</span></div>
   </div>
   <div class="sec-body">
     <h3>Ancient Texts</h3>
