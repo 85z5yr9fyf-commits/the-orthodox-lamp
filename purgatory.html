@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Purgatory &amp; the Afterlife — The Orthodox Lamp</title>
+<style>
+:root{
+  --gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;
+  --bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--bg5:#3a2e10;
+  --tx:#e8e0d0;--mu:#a09880;--br:#2a2a2a;
+  --sidebar-w:270px;
+  --rc:#3a1a1a;--rcc:#d47070;
+  --oo:#1a2e1a;--ooc:#7dc87d;
+  --pr:#15202e;--prc:#6fa8d4;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.7;display:flex;min-height:100vh}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+mark{background:rgba(201,168,76,.28);color:var(--gl);border-radius:2px;padding:0 2px}
+#prog{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--gd),var(--gl));z-index:200;transition:width .1s}
+#sb{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:100;display:flex;flex-direction:column}
+#sb-brand{padding:18px 18px 10px;border-bottom:1px solid var(--br)}
+#sb-brand .lamp{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mu);margin-bottom:4px}
+#sb-brand h1{font-size:1rem;color:var(--gold);line-height:1.3}
+.sb-search{padding:10px 14px 4px}
+.sb-search input{width:100%;background:rgba(255,255,255,.06);border:1px solid var(--br);border-radius:6px;padding:8px 12px;font-size:.8rem;color:var(--tx);font-family:'Georgia',serif;outline:none;transition:border-color .2s}
+.sb-search input::placeholder{color:#666}
+.sb-search input:focus{border-color:var(--gd)}
+.sec.s-hidden{display:none}
+.no-match-msg{display:none;padding:14px 18px;font-size:.8rem;color:var(--mu);font-style:italic;text-align:center}
+.no-match-msg.show{display:block}
+#sb-nav{padding:10px 0 20px;flex:1}
+#sb-nav a{display:block;padding:6px 18px;font-size:.82rem;color:var(--mu);border-left:2px solid transparent;transition:all .15s;line-height:1.4}
+#sb-nav a:hover,#sb-nav a.active{color:var(--gold);border-left-color:var(--gold);background:rgba(201,168,76,.06);text-decoration:none}
+main{margin-left:var(--sidebar-w);flex:1;max-width:820px;padding:48px 48px 80px}
+.pg-title{margin-bottom:10px}
+.pg-title .lamp-label{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--mu);margin-bottom:6px}
+.pg-title h1{font-size:2rem;color:var(--gold);line-height:1.2}
+.pg-title .sub{font-size:1rem;color:var(--mu);margin-top:6px;font-style:italic}
+.pg-intro{max-width:660px;color:var(--mu);font-size:.95rem;margin:16px 0 36px;border-left:3px solid var(--gd);padding-left:14px}
+.sec{border:1px solid var(--br);border-radius:8px;margin-bottom:14px;overflow:hidden;background:var(--bg2)}
+.sec-h{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;cursor:pointer;user-select:none;gap:10px}
+.sec-h:hover{background:rgba(255,255,255,.03)}
+.sec-h h2{font-size:1rem;color:var(--tx);font-weight:600}
+.sec-h .arr{color:var(--mu);font-size:.8rem;transition:transform .2s;flex-shrink:0}
+.sec.open .arr{transform:rotate(90deg)}
+.sec-body{display:none;padding:18px 20px 20px;border-top:1px solid var(--br)}
+.sec.open .sec-body{display:block}
+.sec-body p{color:var(--mu);font-size:.92rem;margin-bottom:10px}
+.sec-body p:last-child{margin-bottom:0}
+.sv{background:var(--bg5);border:1px solid var(--gd);border-radius:6px;padding:12px 16px;margin:12px 0;font-style:italic;color:var(--gl);font-size:.92rem}
+.sv cite{display:block;text-align:right;font-size:.8rem;color:var(--gold);margin-top:6px;font-style:normal}
+.comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.comp-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 0}
+.comp-card{border-radius:8px;padding:14px 16px;border:1px solid}
+.comp-card.rc-card{background:var(--rc);border-color:var(--rcc)}
+.comp-card.oo-card{background:var(--oo);border-color:var(--ooc)}
+.comp-card.prot{background:var(--pr);border-color:var(--prc)}
+.comp-card .cc-label{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;font-weight:700}
+.comp-card.rc-card .cc-label{color:var(--rcc)}
+.comp-card.oo-card .cc-label{color:var(--ooc)}
+.comp-card.prot .cc-label{color:var(--prc)}
+.comp-card ul{padding-left:16px;font-size:.88rem;line-height:1.7}
+.comp-card.rc-card ul{color:#e8c0c0}
+.comp-card.oo-card ul{color:#c8e8c8}
+.comp-card.prot ul{color:#bcd6ec}
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin:14px 0}
+.fc{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:14px 16px}
+.fc-name{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.fc-body{font-size:.88rem;color:var(--mu);font-style:italic;line-height:1.6}
+.fc-src{font-size:.76rem;color:var(--gd);margin-top:6px}
+.tag{display:inline-block;font-style:normal;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;padding:1px 6px;border-radius:3px;margin-left:0;font-weight:700}
+.tag-d{background:rgba(125,200,125,.18);color:var(--ooc);border:1px solid var(--ooc)}
+.tag-p{background:rgba(201,168,76,.16);color:var(--gl);border:1px solid var(--gd)}
+.fi{border:1px solid var(--br);border-radius:6px;margin-bottom:8px;overflow:hidden;background:var(--bg3)}
+.fi-h{display:flex;align-items:flex-start;padding:11px 14px;cursor:pointer;gap:8px;user-select:none}
+.fi-h:hover{background:rgba(255,255,255,.03)}
+.fi-q{font-size:.88rem;color:var(--tx);flex:1}
+.fi-arr{color:var(--mu);font-size:.75rem;transition:transform .2s;flex-shrink:0;margin-top:4px}
+.fi.open .fi-arr{transform:rotate(90deg)}
+.fi-body{display:none;padding:12px 14px 14px;border-top:1px solid var(--br);font-size:.88rem;color:var(--mu);line-height:1.65}
+.fi.open .fi-body{display:block}
+.fi-body p{margin-bottom:9px}.fi-body p:last-child{margin-bottom:0}
+.gt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin:14px 0}
+.gt{background:var(--bg3);border:1px solid var(--br);border-radius:7px;padding:12px 14px}
+.gt-term{font-size:.8rem;font-weight:700;color:var(--gold);margin-bottom:4px}
+.gt-def{font-size:.84rem;color:var(--mu);line-height:1.55}
+.tl{margin:14px 0;border-left:2px solid var(--gd);padding-left:18px}
+.tl-item{position:relative;margin-bottom:14px}
+.tl-item::before{content:'';position:absolute;left:-23px;top:6px;width:8px;height:8px;border-radius:50%;background:var(--gold);border:2px solid var(--bg2)}
+.tl-year{font-size:.75rem;color:var(--gold);margin-bottom:3px;font-weight:600}
+.tl-text{font-size:.88rem;color:var(--mu);line-height:1.55}
+@media(max-width:760px){#sb{transform:translateX(-100%)}main{margin-left:0;padding:24px 18px 60px}.comp-grid,.comp-grid3{grid-template-columns:1fr}}
+
+.lampsvg{display:block;margin:0 auto 14px;height:auto}
+.lampsvg .lampflame{animation:lampflick 3.2s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes lampflick{0%,100%{transform:scaleY(1) scaleX(1);opacity:.95}25%{transform:scaleY(1.06) scaleX(.97);opacity:1}50%{transform:scaleY(.96) scaleX(1.03);opacity:.9}75%{transform:scaleY(1.04) scaleX(.98);opacity:1}}
+
+html.light{--gold:#8a6a20;--gl:#6f5413;--gd:#b08e3e;--bg:#f7f2e6;--bg2:#efe8d5;--bg3:#e7ddc7;--bg4:#ddd2b9;--bg5:#efe0b8;--tx:#2b2415;--mu:#6e6450;--br:#d2c7aa;--rc:#ead1d1;--rcc:#762323;--oo:#d5e7d5;--ooc:#2d6c2d;--pr:#d6e2ee;--prc:#1d4a6b}
+#ol-tt{position:fixed;right:16px;bottom:74px;z-index:9999;width:44px;height:44px;border-radius:50%;background:var(--bg3,var(--panel,#1a1a1a));color:var(--gold,#c9a84c);border:1px solid var(--gd,var(--gold-dark,var(--rule,#8a6a20)));font-size:1.1rem;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35);line-height:1}#ol-tt:hover{filter:brightness(1.15)}
+html.light #sb{background:linear-gradient(180deg,#f5edd5 0%,#ede4cb 100%)}
+html.light .sv{box-shadow:0 1px 4px rgba(100,70,15,.08)}
+html.light .fc{box-shadow:0 1px 4px rgba(100,70,15,.08)}
+html.light .comp-card.rc-card ul{color:#8b2020}
+html.light .comp-card.oo-card ul{color:#1d5c1d}
+html.light .comp-card.prot ul{color:#1d4a6b}
+</style>
+<script>try{if(localStorage.getItem('ol-theme')==='light')document.documentElement.classList.add('light')}catch(e){}</script>
+</head>
+<body>
+<div id="prog"></div>
+<nav id="sb">
+  <div id="sb-brand">
+    <svg class="lampsvg" width="64" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><radialGradient id="lmpGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffb95e" stop-opacity=".55"/><stop offset="100%" stop-color="#ffb95e" stop-opacity="0"/></radialGradient><linearGradient id="lmpFlame" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#ff7a1f"/><stop offset="55%" stop-color="#ffb347"/><stop offset="100%" stop-color="#ffe9b0"/></linearGradient><linearGradient id="lmpBrass" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e3b860"/><stop offset="50%" stop-color="#a87b35"/><stop offset="100%" stop-color="#7a5523"/></linearGradient></defs><circle cx="60" cy="38" r="34" fill="url(#lmpGlow)"/><g class="lampflame"><path d="M60 16 C66 26 70 32 70 40 C70 48 65.5 53 60 53 C54.5 53 50 48 50 40 C50 32 54 26 60 16 Z" fill="url(#lmpFlame)"/><path d="M60 30 C63 35 64.5 38 64.5 42 C64.5 46.5 62.5 49 60 49 C57.5 49 55.5 46.5 55.5 42 C55.5 38 57 35 60 30 Z" fill="#fff3cf" opacity=".85"/></g><rect x="56" y="52" width="8" height="7" rx="2" fill="#8a6228"/><path d="M28 62 L92 62 C92 80 78 92 60 92 C42 92 28 80 28 62 Z" fill="url(#lmpBrass)"/><rect x="24" y="58" width="72" height="6" rx="3" fill="#caa14e"/><rect x="56" y="92" width="8" height="16" fill="url(#lmpBrass)"/><path d="M38 118 C38 110 47 108 60 108 C73 108 82 110 82 118 L82 122 L38 122 Z" fill="url(#lmpBrass)"/><rect x="32" y="122" width="56" height="6" rx="3" fill="#caa14e"/></svg>
+    <div class="lamp">The Orthodox Lamp</div>
+    <h1>Purgatory &amp; the Afterlife</h1>
+  </div>
+  <div class="sb-search">
+    <input type="search" placeholder="Search sections…" oninput="sidebarSearch(this.value)" aria-label="Search sections">
+  </div>
+  <div id="sb-nav">
+    <a href="#core">The Three Positions</a>
+    <a href="#orthodox-death">What the Orthodox Teach</a>
+    <a href="#prayers">Prayers for the Departed</a>
+    <a href="#rc-purgatory">The Catholic Doctrine</a>
+    <a href="#why-reject">Why We Reject Purgatory</a>
+    <a href="#protestant">The Protestant View</a>
+    <a href="#passages">The Disputed Passages</a>
+    <a href="#fathers">Voices of the Fathers</a>
+    <a href="#faq">FAQ</a>
+    <a href="#glossary">Glossary</a>
+  </div>
+  <div class="no-match-msg" id="sb-no-match">No sections match.</div>
+</nav>
+<main>
+  <div class="pg-title">
+    <div class="lamp-label">The Orthodox Lamp</div>
+    <h1>Purgatory &amp; the Afterlife</h1>
+    <div class="sub">The state of the departed, and why the Orthodox pray for the dead but reject Purgatory</div>
+  </div>
+  <p class="pg-intro">The Orthodox Church prays for the departed and believes the dead rest in a real, conscious state as they await the general resurrection. Yet it has never accepted the Roman Catholic doctrine of Purgatory — a defined place of satisfactory, cleansing punishment — nor the system of indulgences once attached to it. Protestants, reacting against those indulgences, rejected Purgatory but also abandoned the ancient practice of praying for the dead altogether. The Orthodox position is neither: we keep the apostolic prayer for the departed, without the Latin machinery of merit and satisfaction.</p>
+
+  <div class="sec open" id="core">
+    <div class="sec-h" onclick="ts(this)"><h2>The Three Positions at a Glance</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>Three Christian traditions answer the question "what happens to a believer between death and the resurrection?" in three different ways. The disagreement is not really about whether the dead exist consciously — all three affirm that — but about <em>purification</em>, <em>punishment</em>, and whether the living can help the dead.</p>
+      <div class="comp-grid3">
+        <div class="comp-card oo-card">
+          <div class="cc-label">Orthodox</div>
+          <ul>
+            <li>The soul lives consciously after death, in repose or distress, awaiting the Last Judgment</li>
+            <li>We pray for the departed and believe these prayers truly help them</li>
+            <li>No defined "purifying fire," no measured temporal punishment, no indulgences</li>
+            <li>Salvation is healing and union with God, not a debt of punishment to be paid off</li>
+            <li>The final state is settled only at the Second Coming</li>
+          </ul>
+        </div>
+        <div class="comp-card rc-card">
+          <div class="cc-label">Roman Catholic</div>
+          <ul>
+            <li>Souls who die in grace but "imperfectly purified" enter Purgatory</li>
+            <li>There they undergo a cleansing — historically described as a purifying fire</li>
+            <li>"Temporal punishment" remains for forgiven sin and must be satisfied</li>
+            <li>The living help by the Mass, prayer, almsgiving, and indulgences</li>
+            <li>Defined dogmatically at Florence (1439) and Trent (1563)</li>
+          </ul>
+        </div>
+        <div class="comp-card prot">
+          <div class="cc-label">Protestant</div>
+          <ul>
+            <li>At death the believer goes immediately and fully into the Lord's presence</li>
+            <li>No Purgatory — Christ's finished work leaves nothing to "satisfy"</li>
+            <li>Prayer for the dead is generally rejected as unbiblical</li>
+            <li>Rooted in <em>sola fide</em>: justification is complete, not progressive after death</li>
+            <li>The 1517 indulgence controversy was a chief trigger of the Reformation</li>
+          </ul>
+        </div>
+      </div>
+      <p>Notice where the lines fall. On <strong style="color:var(--gold)">praying for the dead</strong>, the Orthodox and Catholics stand together against the Protestants. On <strong style="color:var(--gold)">Purgatory as a juridical place of satisfaction with indulgences</strong>, the Orthodox and Protestants stand together against the Catholics. The Orthodox keep the ancient practice while declining the medieval Latin theory built around it.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="orthodox-death">
+    <div class="sec-h" onclick="ts(this)"><h2>What the Orthodox Teach About Death</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>The Orthodox Church teaches that at death the soul is separated from the body and undergoes a <em>particular judgment</em> — a first foretaste of its destiny — while the <em>final judgment</em> and the resurrection of the body await the Second Coming of Christ. Between these two points the soul is not asleep or unconscious; it lives, aware, in either repose or sorrow.</p>
+      <div class="sv">"And just as it is appointed for man to die once, and after that comes judgment…"<cite>Hebrews 9:27 (ESV)</cite></div>
+      <p>Scripture pictures the righteous departed already at rest with God, not in a holding-cell of punishment. The penitent thief is promised Paradise that very day; Paul longs to depart and be <em>with Christ</em>; the souls of the martyrs cry out beneath the heavenly altar.</p>
+      <div class="sv">"And he said to him, &lsquo;Truly, I say to you, today you will be with me in Paradise.&rsquo;"<cite>Luke 23:43 (ESV)</cite></div>
+      <div class="sv">"My desire is to depart and be with Christ, for that is far better."<cite>Philippians 1:23 (ESV)</cite></div>
+      <p>This is the heart of the Orthodox reluctance toward Purgatory: Scripture's repeated image of the faithful departed is one of <em>rest with the Lord</em> — "we would rather be away from the body and at home with the Lord" (2 Corinthians 5:8) — not of a term of expiating punishment to be served before heaven opens. The Church speaks of the souls in the "bosom of Abraham," in Paradise, awaiting the fullness of joy, and of the unrepentant in a state of dread, awaiting judgment. It does not map out a third place of measured satisfaction in between.</p>
+      <p>Importantly, the Orthodox do not claim exhaustive knowledge of the intermediate state. The Church affirms what it has received — a real, conscious existence; the help of prayer; the certainty of final judgment — and is content to leave the rest in the hands of a merciful God rather than systematize it.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="prayers">
+    <div class="sec-h" onclick="ts(this)"><h2>Prayers for the Departed</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>The Orthodox — like the Copts in every Liturgy — pray for the departed by name. We believe these prayers, and above all the offering of the Eucharist, truly benefit the souls of the faithful dead. This is not a Roman innovation; it is one of the oldest and most universal practices of the Church, attested in the earliest liturgies and defended by the Fathers.</p>
+      <p>The practice rests partly on the Scriptures the Orthodox and Catholics share but Protestants set aside — the books of the Maccabees:</p>
+      <div class="sv">"…it was a holy and pious thought. Therefore he made atonement for the dead, that they might be delivered from their sin."<cite>2 Maccabees 12:45 (RSV-CE) — Judas Maccabeus offers sacrifice for fallen soldiers</cite></div>
+      <p>And it rests still more firmly on the unbroken witness of the early Church. In Jerusalem in the fourth century, St. Cyril explained the Liturgy to the newly baptized exactly as the Copts pray today — commemorating the departed during the awesome Sacrifice:</p>
+      <div class="sv">"…in a word of all who in past years have fallen asleep among us, believing that it will be a very great benefit to the souls, for whom the supplication is put up, while that holy and most awful sacrifice is set forth."<cite>St. Cyril of Jerusalem, Catechetical Lecture 23.9 (NPNF 2nd Series, Vol. 7)</cite></div>
+      <p>St. John Chrysostom, the great Antiochene preacher whose Liturgy the Orthodox still serve, was even more direct. He grounds the practice in apostolic authority:</p>
+      <div class="sv">"Not in vain did the Apostles order that remembrance should be made of the dead in the dreadful Mysteries. They know that great gain results to them, great benefit."<cite>St. John Chrysostom, Homily 3 on Philippians (NPNF 1st Series, Vol. 13)</cite></div>
+      <p>So the Orthodox emphatically <em>do</em> pray for the dead, and believe it helps them. What we do not do is build from this a doctrine of a separate place of punishment, with fixed terms reduced by indulgences. The prayer flows from love and from communion in the one Body of Christ — the living and the departed remain one Church — not from a ledger of satisfaction owed.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="rc-purgatory">
+    <div class="sec-h" onclick="ts(this)"><h2>The Roman Catholic Doctrine of Purgatory</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>To reject a doctrine fairly, one must first state it accurately. The Catholic teaching is not the cartoon of "a second hell" — it is a doctrine of <em>final purification</em> for those already saved. The Catechism of the Catholic Church puts it this way:</p>
+      <div class="sv">"All who die in God&rsquo;s grace and friendship, but still imperfectly purified, are indeed assured of their eternal salvation; but after death they undergo purification, so as to achieve the holiness necessary to enter the joy of heaven."<cite>Catechism of the Catholic Church §1030</cite></div>
+      <p>The doctrine has several connected parts. Rome distinguishes between the <em>eternal</em> punishment of sin (forgiven in absolution) and the <em>temporal</em> punishment that remains and must be "satisfied" — either by penance in this life or by purification after death. Purgatory is where that satisfaction is completed for the saved. The Church then teaches that the living can assist the souls there:</p>
+      <p>The Catechism (§1032) commends "almsgiving, indulgences, and works of penance undertaken on behalf of the dead." An <em>indulgence</em> is the remission of this temporal punishment, granted by the Church drawing on the "treasury of merit" of Christ and the saints. It was the sale of such indulgences in 1517 that ignited Luther's protest.</p>
+      <p>This teaching was defined conciliarly, which is why it cannot simply be set aside within Catholicism:</p>
+      <div class="tl">
+        <div class="tl-item">
+          <div class="tl-year">Council of Florence (1439)</div>
+          <div class="tl-text">In the reunion decree with the Greeks, Rome defined that souls who die in grace but have not made full satisfaction are "purged after death by purgatorial punishments," and are helped by the suffrages of the living — the Mass, prayers, and alms.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">Council of Trent, Session 25 (1563)</div>
+          <div class="tl-text">Reaffirmed against the Reformers "that there is a Purgatory, and that the souls there detained are helped by the suffrages of the faithful, but principally by the acceptable sacrifice of the altar." It also told bishops to curb wild speculation and abuses around the doctrine.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">Catechism (1992), §§1030–1032</div>
+          <div class="tl-text">Names this "the final purification of the elect," cites a "cleansing fire," and roots the practice in prayer for the dead (2 Maccabees), commending indulgences and almsgiving for the departed.</div>
+        </div>
+      </div>
+      <p>Catholics also appeal to 1 Corinthians 3:15 — the man "saved, but only as through fire" — and to Christ's words about sin not forgiven "either in this age or in the age to come" (Matthew 12:32), reasoning that if some sin might be dealt with in the age to come, there must be a state where this happens.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="why-reject">
+    <div class="sec-h" onclick="ts(this)"><h2>Why the Orthodox Reject Purgatory</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>The Orthodox objection is not to praying for the dead — we do that fervently — nor to the hope that the departed grow closer to God. The objection is to the specific Latin <em>framework</em> that Purgatory assumes. Three points stand out.</p>
+      <p><strong style="color:var(--gold)">1. Salvation is healing, not a debt of punishment.</strong> Purgatory rests on a juridical picture: forgiven sin still leaves a quantity of "temporal punishment" that must be satisfied, like a fine paid after a pardon. The Orthodox read salvation differently — as the healing of a wounded nature and growing union with God, not as the settling of a penal account. Where there is no ledger of owed punishment, there is no need for a place to discharge it. Christ does not pardon the guilt and then still demand the penalty.</p>
+      <p><strong style="color:var(--gold)">2. There is no indulgences and no "treasury of merit."</strong> The Orthodox Church has never taught that the Church can dispense a stored-up surplus of merit to shorten a soul's punishment. The merits of Christ are infinite and freely given; they are not a fund the hierarchy meters out. This is the piece of the system that produced the gravest abuses, and the Orthodox East simply never had it.</p>
+      <p><strong style="color:var(--gold)">3. The Church does not dogmatize the unrevealed.</strong> Scripture and the Fathers affirm a real intermediate state, the help of prayer, and a final judgment — and stop there. The Orthodox decline to define a measured, temporary fire of expiation as a binding article of faith, because the Church was never given that map. Restraint here is itself a theological conviction: we confess what was handed down, and leave the rest to God's mercy.</p>
+      <p>This was not a minor footnote in history. When East and West met at the Council of Ferrara–Florence (1438–39) to attempt reunion, the doctrine of purgatorial fire was one of the very first points of dispute. St. Mark of Ephesus, the lone bishop who refused to sign the union, argued at length against the Latin teaching of a punitive cleansing fire, insisting the Church had received no such doctrine. His refusal is remembered in the East as a defense of the apostolic faith.</p>
+      <p>Within the Oriental Orthodox tradition the same conclusion was drawn plainly. Pope Shenouda III of Alexandria devoted a study to the question — pointedly titled <em>Why Do We Reject Purgatory?</em> — affirming that the Coptic Church prays for the departed while denying any purgatorial state of cleansing punishment.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="protestant">
+    <div class="sec-h" onclick="ts(this)"><h2>The Protestant View — and Where the Orthodox Differ</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>The Protestant Reformers rejected Purgatory wholesale, and the Orthodox agree with much of their critique of indulgences and the "treasury of merit." But the Reformation went a step further than the Orthodox would, abandoning prayer for the dead entirely — and it did so for a distinctly Protestant reason.</p>
+      <div class="comp-grid">
+        <div class="comp-card prot">
+          <div class="cc-label">The Protestant logic</div>
+          <ul>
+            <li>Justification by faith alone is complete the instant one believes</li>
+            <li>Christ's atonement leaves nothing to be "satisfied" by the sinner</li>
+            <li>The believer at death is therefore already perfectly accepted</li>
+            <li>So there is nothing to purify and nothing to pray about — the dead are settled</li>
+          </ul>
+        </div>
+        <div class="comp-card oo-card">
+          <div class="cc-label">The Orthodox response</div>
+          <ul>
+            <li>Salvation is real union with God that deepens — not a single legal verdict</li>
+            <li>The Church is one Body; the living and the dead remain in communion</li>
+            <li>Prayer is the natural expression of that love across death</li>
+            <li>The earliest Church prayed for the dead — the Reformers broke with that</li>
+          </ul>
+        </div>
+      </div>
+      <p>So the Orthodox part company with Protestantism precisely on the point where it parts company with the ancient Church. The Reformers were right that the medieval indulgence system was an abuse; they were wrong, from the Orthodox view, to throw out the apostolic practice of remembering the dead in the Liturgy along with it. The early Christians whom Chrysostom and Cyril describe were neither selling indulgences nor refusing to pray for their fathers — and the Orthodox have simply kept to that older path.</p>
+      <p>It is also worth noting that most Protestants share with the Orthodox the conviction that the believer goes immediately into the Lord's presence at death (Luke 23:43; Philippians 1:23). On the <em>destination</em> of the righteous soul there is real common ground; the divergence is over whether the living Church still has anything to offer the departed.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="passages">
+    <div class="sec-h" onclick="ts(this)"><h2>The Disputed Passages</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>A handful of texts carry most of the weight in this debate. Here is how the Orthodox read the verses Catholics cite for Purgatory, and the verses that shape the Orthodox picture of the afterlife.</p>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">1 Corinthians 3:13–15 — "saved, but only as through fire"</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">
+          <p>"Each one&rsquo;s work will become manifest, for the Day will disclose it, because it will be revealed by fire… If anyone&rsquo;s work is burned up, he will suffer loss, though he himself will be saved, but only as through fire" (ESV).</p>
+          <p>This is the single strongest text for Purgatory, and the Orthodox take it seriously — but read it differently. Paul speaks of "the Day" — the Day of the Lord, the final judgment — not of an interim state between death and heaven. The fire here tests the <em>works</em> a teacher has built on the foundation of Christ; it is the searching, revealing fire of God's judgment at the end, through which even the saved pass. It does not describe a temporary prison of satisfactory punishment, and Paul attaches no system of indulgences or measured terms to it.</p>
+        </div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Matthew 12:32 — forgiveness "in the age to come"</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">
+          <p>"Whoever speaks against the Holy Spirit will not be forgiven, either in this age or in the age to come" (ESV).</p>
+          <p>Catholics infer that if this sin is unforgivable in the age to come, other sins must be forgivable then — implying Purgatory. The Orthodox read the phrase as a Semitic idiom of total finality: "not in this age or the next" simply means "never, at all, forever." The point is the absolute gravity of blasphemy against the Spirit, not a hidden teaching about post-mortem absolution. To build a whole intermediate realm on an inference from a turn of phrase is to ask more of the verse than it says.</p>
+        </div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">2 Maccabees 12:43–45 — atonement for the dead</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">
+          <p>Judas Maccabeus takes up a collection and sends it to Jerusalem for a sin offering on behalf of soldiers who had fallen: "he made atonement for the dead, that they might be delivered from their sin" (RSV-CE).</p>
+          <p>The Orthodox accept these books and gladly cite this passage — but for <em>prayer for the dead</em>, not for Purgatory. The text shows the faithful interceding for the departed; it says nothing about a purifying fire, temporal punishment, or indulgences. Catholics and Orthodox agree on what it directly establishes (the dead can be helped by the living); they differ on the elaborate doctrine Rome later attached. Protestants, who exclude Maccabees from their canon, set the passage aside entirely.</p>
+        </div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Luke 16:19–31 — the Rich Man and Lazarus</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">
+          <p>Christ depicts Lazarus carried to "Abraham&rsquo;s bosom" and the rich man in torment, with "a great chasm" fixed between them so that none may cross. The Orthodox see here the two-fold intermediate state — repose and distress — and note pointedly that there is <em>no third region</em> and <em>no passage</em> between them. The parable offers comfort for the righteous departed and warning for the unrepentant, but no purgatorial middle ground from which souls graduate upward.</p>
+        </div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Luke 23:43; 2 Corinthians 5:8; Philippians 1:23 — "with the Lord" at once</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">
+          <p>The thief is told "today you will be with me in Paradise"; Paul says he would "rather be away from the body and at home with the Lord," and that to "depart and be with Christ" is "far better" (ESV). These verses anchor the Orthodox (and Protestant) expectation that the faithful go to be with Christ immediately. They do not, by themselves, exclude all growth or all prayer for the departed — but they do weigh heavily against the idea that the normal lot of the saved is a term of punishment before heaven can be entered.</p>
+        </div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Revelation 6:9–11 — the souls beneath the altar</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">
+          <p>John sees "under the altar the souls of those who had been slain for the word of God," crying out "how long?" and told to "rest a little longer" until the number of the martyrs is complete (ESV). The Orthodox read this as a window onto the conscious, expectant repose of the holy dead — alive, aware, in God's presence, yet still awaiting the final consummation and the resurrection of the body. It is a picture of waiting in glory, not of punishment.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" id="fathers">
+    <div class="sec-h" onclick="ts(this)"><h2>Voices of the Fathers</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>The Fathers everywhere pray for the dead. The question between Rome and the Orthodox is whether their words also teach a Latin Purgatory — and the Eastern Fathers, read on their own terms, speak of intercession and mercy, not of satisfactory punishment metered out.</p>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">St. Cyril of Jerusalem (d. 386)</div>
+          <div class="fc-body">"…if a king were to banish certain who had given him offense, and then those who belong to them should weave a crown and offer it to him on behalf of those under punishment, would he not grant a remission of their penalties? In the same way we, when we offer to Him our supplications for those who have fallen asleep… [are] propitiating our merciful God for them."</div>
+          <div class="fc-src">Catechetical Lecture 23.10 (NPNF 2nd Series, Vol. 7) <span class="tag tag-d">Direct quote</span></div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. John Chrysostom (d. 407)</div>
+          <div class="fc-body">"Let us… assist them according to our power… by praying and entreating others to make prayers for them, by continually giving to the poor on their behalf."</div>
+          <div class="fc-src">Homily 3 on Philippians (NPNF 1st Series, Vol. 13) <span class="tag tag-d">Direct quote</span></div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Augustine of Hippo (d. 430)</div>
+          <div class="fc-body">The Western father most often cited for Purgatory: he prayed earnestly for his mother Monica, and speculated that some souls might undergo a purifying fire before judgment. The East never developed this strand into the dogma Rome later defined.</div>
+          <div class="fc-src">Confessions IX; Enchiridion — summary of his position <span class="tag tag-p">Paraphrase</span></div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Mark of Ephesus (d. 1444)</div>
+          <div class="fc-body">At the Council of Ferrara–Florence he argued that the souls of the departed are aided by the Church's prayers and the Eucharist, but denied a purgatorial fire of punishment, holding that the Church had received no such teaching. He alone refused to sign the reunion.</div>
+          <div class="fc-src">Orations at Florence (1438–39) — summary <span class="tag tag-p">Paraphrase</span></div>
+        </div>
+      </div>
+      <p>The pattern is consistent: the Fathers urge us to pray, give alms, and offer the Liturgy for the departed out of love and confidence in God's mercy. That is a far cry from a calibrated sentence of temporal punishment shortened by purchased indulgences.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="faq">
+    <div class="sec-h" onclick="ts(this)"><h2>FAQ</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">If you pray for the dead, why isn't that just Purgatory?</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">Because praying for the dead and the doctrine of Purgatory are two different things. Prayer for the departed is an act of love within the one Body of Christ; it assumes the dead can be helped, but defines nothing about a place of punishment. Purgatory is a specific theory — a state of satisfactory cleansing for "temporal punishment," with indulgences and a treasury of merit. The Orthodox keep the practice and decline the theory.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Do the Orthodox believe in a "second chance" after death?</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">No. "It is appointed for man to die once, and after that comes judgment" (Hebrews 9:27). The Orthodox do not teach that one can repent and change one's fundamental direction after death. Prayer for the dead is not a mechanism for the unrepentant to be re-tried; it is the Church commending her faithful children, who died in Christ, to the mercy of God.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">What about the "toll houses"?</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">Some Orthodox devotional literature describes the soul's ascent past "aerial toll houses" where it is tested. This is a vivid spiritual image found in certain Fathers and lives, but it is <em>not</em> a defined dogma of the Church, and Orthodox theologians differ sharply on how literally to take it. It should not be confused with the Catholic dogma of Purgatory, and the Orthodox Church does not require belief in it.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Isn't this just an argument about words? Catholics say souls are "purified," Orthodox pray for them too.</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">There is real common ground — both pray for the dead, both hope the departed draw nearer to God. But the difference is not merely verbal. Purgatory carries a definite content: temporal punishment owed for forgiven sin, satisfaction made after death, and indulgences drawn from a treasury of merit to reduce it. The Orthodox deny each of those specifics. Where Rome dogmatizes a juridical mechanism, the Orthodox confess only love, prayer, and trust in God's mercy.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Where did Purgatory come from, if the early Church didn't teach it?</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">The raw materials — prayer for the dead, the hope of post-mortem mercy, Augustine's speculation about a cleansing fire — are ancient. But the <em>doctrine</em>, with its juridical language of temporal punishment, satisfaction, and a defined purgatorial fire, took shape in the medieval Latin West and was dogmatized at Florence (1439) and Trent (1563). The Christian East, which was not party to that development, never received it.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" id="glossary">
+    <div class="sec-h" onclick="ts(this)"><h2>Glossary</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <div class="gt-grid">
+        <div class="gt"><div class="gt-term">Purgatory</div><div class="gt-def">In Roman Catholic teaching, the state of final purification after death for those who die in grace but "imperfectly purified," before entering heaven. Defined at Florence and Trent. Rejected by the Orthodox.</div></div>
+        <div class="gt"><div class="gt-term">Particular Judgment</div><div class="gt-def">The immediate judgment of the soul at death, a foretaste of its destiny, distinguished from the General Judgment at the Second Coming.</div></div>
+        <div class="gt"><div class="gt-term">Intermediate State</div><div class="gt-def">The condition of the soul between death and the resurrection — conscious repose for the righteous, dread for the unrepentant — awaiting the final judgment.</div></div>
+        <div class="gt"><div class="gt-term">Temporal Punishment</div><div class="gt-def">In Catholic theology, the punishment for sin that remains even after the guilt is forgiven, to be "satisfied" in this life or in Purgatory. The Orthodox reject this penal framework.</div></div>
+        <div class="gt"><div class="gt-term">Indulgence</div><div class="gt-def">In Catholic practice, the remission of temporal punishment, granted by the Church from the "treasury of merit." Its abuse sparked the Reformation. Unknown in Orthodoxy.</div></div>
+        <div class="gt"><div class="gt-term">Treasury of Merit</div><div class="gt-def">The Catholic notion of a stored surplus of the merits of Christ and the saints, which the Church can apply to souls. The Orthodox do not hold this teaching.</div></div>
+        <div class="gt"><div class="gt-term">Suffrages</div><div class="gt-def">Prayers, alms, and especially the Eucharist offered on behalf of the departed. Affirmed by both Orthodox and Catholics.</div></div>
+        <div class="gt"><div class="gt-term">Abraham&rsquo;s Bosom</div><div class="gt-def">The scriptural image (Luke 16) of the place of repose for the righteous dead awaiting Christ; used by the Fathers for the blessed intermediate state.</div></div>
+      </div>
+    </div>
+  </div>
+</main>
+<script>
+window.addEventListener('scroll',()=>{const h=document.documentElement;document.getElementById('prog').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100+'%';});
+const navLinks=document.querySelectorAll('#sb-nav a[href^="#"]');
+const secs2=document.querySelectorAll('main .sec[id]');
+window.addEventListener('scroll',()=>{let cur='';secs2.forEach(s=>{if(s.getBoundingClientRect().top<=120)cur=s.id;});navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur);});},{passive:true});
+function ts(h){h.closest('.sec').classList.toggle('open');}
+function tf(h){h.closest('.fi').classList.toggle('open');}
+function sidebarSearch(q){
+  q=q.trim().toLowerCase();
+  const secs=document.querySelectorAll('main .sec');
+  let matched=0;
+  secs.forEach(sec=>{
+    if(!q){sec.classList.remove('s-hidden');const h2=sec.querySelector('.sec-h h2');if(h2._orig)h2.innerHTML=h2._orig;matched++;return;}
+    const h2=sec.querySelector('.sec-h h2');
+    const body=sec.querySelector('.sec-body');
+    const hit=(h2._orig||h2.textContent).toLowerCase().includes(q)||(body?body.textContent.toLowerCase():'').includes(q);
+    sec.classList.toggle('s-hidden',!hit);
+    if(hit){matched++;if(!h2._orig)h2._orig=h2.innerHTML;const re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');h2.innerHTML=h2._orig.replace(re,'<mark>$1</mark>');sec.classList.add('open');}
+  });
+  document.getElementById('sb-no-match').classList.toggle('show',!!q&&matched===0);
+}
+</script>
+<button id="ol-tt" onclick="olTheme()" aria-label="Toggle light or dark mode" title="Light/dark mode">☀</button><script>function olTheme(){var l=document.documentElement.classList.toggle('light');try{localStorage.setItem('ol-theme',l?'light':'dark')}catch(e){}olIcon()}function olIcon(){document.getElementById('ol-tt').textContent=document.documentElement.classList.contains('light')?'☾':'☀'}olIcon();</script>
+</body>
+</html>
