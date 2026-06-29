@@ -26,8 +26,9 @@ a{color:inherit;text-decoration:none}
 .topline .t2{font-size:.82rem;color:var(--mu);font-style:italic;margin-top:.15rem}
 
 /* ── Gold hero ── */
-.hero{background:linear-gradient(160deg,var(--olive) 0%,var(--olive2) 100%);padding:4.2rem 1.5rem;border-bottom:3px solid var(--ink)}
-.hero-in{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.05fr 1fr;gap:3rem;align-items:center}
+.hero{background:linear-gradient(160deg,var(--olive) 0%,var(--olive2) 100%);padding:4.2rem 1.5rem;border-bottom:3px solid var(--ink);position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;top:50%;right:-30px;transform:translateY(-50%);width:430px;height:560px;max-width:44%;background:url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Spas_vsederzhitel_sinay.jpg/500px-Spas_vsederzhitel_sinay.jpg') center top/cover no-repeat;filter:sepia(.7) saturate(1.4) hue-rotate(-8deg) contrast(.95) brightness(.92);opacity:.13;-webkit-mask-image:radial-gradient(ellipse 62% 70% at 62% 46%,#000 25%,transparent 72%);mask-image:radial-gradient(ellipse 62% 70% at 62% 46%,#000 25%,transparent 72%);pointer-events:none;z-index:0}
+.hero-in{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.05fr 1fr;gap:3rem;align-items:center;position:relative;z-index:1}
 .hero h1{font-size:clamp(2.3rem,5.5vw,3.7rem);color:var(--ink);font-weight:700;line-height:1.12;letter-spacing:.01em}
 .verse-btn{display:inline-block;margin-top:1.6rem;border:2px solid var(--ink);color:var(--ink);padding:.55rem 1.5rem;font-size:.95rem;letter-spacing:.04em;transition:background .2s,color .2s}
 .verse-btn:hover{background:var(--ink);color:var(--gl)}
@@ -55,6 +56,16 @@ a{color:inherit;text-decoration:none}
 .featured a:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(0,0,0,.5)}
 .featured .f1{font-size:clamp(1.25rem,3vw,1.7rem);color:var(--gl);letter-spacing:.05em}
 .featured .f2{font-size:.85rem;color:var(--mu);font-style:italic;margin-top:.3rem}
+
+/* ── Icon band (authentic icons, gold/sepia duotone) ── */
+.iconband{max-width:1100px;margin:2.6rem auto 0;padding:0 1.5rem;display:flex;justify-content:center;align-items:flex-start;gap:clamp(1.1rem,5vw,3.4rem);flex-wrap:wrap}
+.ib-fig{text-align:center;margin:0}
+.ib-ring{width:clamp(112px,15vw,154px);height:clamp(112px,15vw,154px);border-radius:50%;border:2px solid var(--gd);padding:6px;background:radial-gradient(circle,var(--bg3),var(--bg));box-shadow:0 4px 20px rgba(0,0,0,.55);transition:transform .25s,box-shadow .25s,border-color .25s}
+.ib-photo{width:100%;height:100%;border-radius:50%;background-position:center top;background-size:cover;background-repeat:no-repeat;filter:sepia(.62) saturate(1.65) hue-rotate(-12deg) contrast(1.02) brightness(.95);-webkit-mask-image:radial-gradient(circle at 50% 50%,#000 60%,transparent 97%);mask-image:radial-gradient(circle at 50% 50%,#000 60%,transparent 97%);transition:filter .3s}
+.ib-fig:hover .ib-ring{transform:translateY(-5px);border-color:var(--gl);box-shadow:0 10px 30px rgba(0,0,0,.6)}
+.ib-fig:hover .ib-photo{filter:sepia(.22) saturate(1.25) contrast(1) brightness(1)}
+.ib-fig figcaption{margin-top:.7rem;font-size:.78rem;color:var(--mu);font-style:italic;letter-spacing:.03em;line-height:1.4}
+.ib-fig figcaption b{color:var(--gl);font-style:normal;font-weight:700;display:block;font-size:.84rem;letter-spacing:.02em}
 
 /* ── Sections ── */
 .container{max-width:1100px;margin:0 auto;padding:1.5rem 1.5rem 4rem}
@@ -176,6 +187,22 @@ html.light .lk-drop a::before{color:#b08e3e}
     <div class="f1">What it means to be a Christian</div>
     <div class="f2">Begin here — the foundation of everything else on this site</div>
   </a>
+</div>
+
+<!-- ── Icon band ── -->
+<div class="iconband" aria-label="Sacred icons of the Orthodox tradition">
+  <figure class="ib-fig">
+    <div class="ib-ring"><div class="ib-photo" role="img" aria-label="Icon of Christ and Abbot Mena" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Christ_and_the_Abbot_Menas_Louvre_E11565_n02.jpg/500px-Christ_and_the_Abbot_Menas_Louvre_E11565_n02.jpg')"></div></div>
+    <figcaption><b>Christ &amp; Abbot Mena</b>Coptic · 6th century</figcaption>
+  </figure>
+  <figure class="ib-fig">
+    <div class="ib-ring"><div class="ib-photo" role="img" aria-label="Christ Pantocrator of Sinai" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Spas_vsederzhitel_sinay.jpg/500px-Spas_vsederzhitel_sinay.jpg')"></div></div>
+    <figcaption><b>Christ Pantocrator</b>Sinai · 6th century</figcaption>
+  </figure>
+  <figure class="ib-fig">
+    <div class="ib-ring"><div class="ib-photo" role="img" aria-label="Theotokos of Vladimir" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Vladimirskaya_ikona.jpg/500px-Vladimirskaya_ikona.jpg')"></div></div>
+    <figcaption><b>Theotokos of Vladimir</b>Egg tempera · 12th century</figcaption>
+  </figure>
 </div>
 
 <div class="container">
@@ -666,7 +693,8 @@ html.light .lk-drop a::before{color:#b08e3e}
 
 <footer>
   <span>☩</span> The Orthodox Lamp<br>
-  "Always be ready to give a defence to everyone who asks you a reason for the hope that is in you, with meekness and fear." — 1 Peter 3:15
+  "Always be ready to give a defence to everyone who asks you a reason for the hope that is in you, with meekness and fear." — 1 Peter 3:15<br>
+  <span style="font-size:.72rem;color:var(--mu)">Icons: public domain (PD-Art) via Wikimedia Commons — Christ &amp; Abbot Mena (Louvre), Christ Pantocrator (St Catherine's, Sinai), Theotokos of Vladimir.</span>
 </footer>
 
 <script>
