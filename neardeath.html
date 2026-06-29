@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Near-Death Experiences — The Orthodox Lamp</title>
+<style>
+:root{
+  --gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;
+  --bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--bg5:#3a2e10;
+  --tx:#e8e0d0;--mu:#a09880;--br:#2a2a2a;
+  --sidebar-w:270px;
+  --rc:#3a1a1a;--rcc:#d47070;
+  --oo:#1a2e1a;--ooc:#7dc87d;
+  --pr:#15202e;--prc:#6fa8d4;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.7;display:flex;min-height:100vh}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+mark{background:rgba(201,168,76,.28);color:var(--gl);border-radius:2px;padding:0 2px}
+#prog{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--gd),var(--gl));z-index:200;transition:width .1s}
+#sb{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:100;display:flex;flex-direction:column}
+#sb-brand{padding:18px 18px 10px;border-bottom:1px solid var(--br)}
+#sb-brand .lamp{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mu);margin-bottom:4px}
+#sb-brand h1{font-size:1rem;color:var(--gold);line-height:1.3}
+.sb-search{padding:10px 14px 4px}
+.sb-search input{width:100%;background:rgba(255,255,255,.06);border:1px solid var(--br);border-radius:6px;padding:8px 12px;font-size:.8rem;color:var(--tx);font-family:'Georgia',serif;outline:none;transition:border-color .2s}
+.sb-search input::placeholder{color:#666}
+.sb-search input:focus{border-color:var(--gd)}
+.sec.s-hidden{display:none}
+.no-match-msg{display:none;padding:14px 18px;font-size:.8rem;color:var(--mu);font-style:italic;text-align:center}
+.no-match-msg.show{display:block}
+#sb-nav{padding:10px 0 20px;flex:1}
+#sb-nav a{display:block;padding:6px 18px;font-size:.82rem;color:var(--mu);border-left:2px solid transparent;transition:all .15s;line-height:1.4}
+#sb-nav a:hover,#sb-nav a.active{color:var(--gold);border-left-color:var(--gold);background:rgba(201,168,76,.06);text-decoration:none}
+main{margin-left:var(--sidebar-w);flex:1;max-width:820px;padding:48px 48px 80px}
+.pg-title{margin-bottom:10px}
+.pg-title .lamp-label{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--mu);margin-bottom:6px}
+.pg-title h1{font-size:2rem;color:var(--gold);line-height:1.2}
+.pg-title .sub{font-size:1rem;color:var(--mu);margin-top:6px;font-style:italic}
+.pg-intro{max-width:660px;color:var(--mu);font-size:.95rem;margin:16px 0 36px;border-left:3px solid var(--gd);padding-left:14px}
+.sec{border:1px solid var(--br);border-radius:8px;margin-bottom:14px;overflow:hidden;background:var(--bg2)}
+.sec-h{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;cursor:pointer;user-select:none;gap:10px}
+.sec-h:hover{background:rgba(255,255,255,.03)}
+.sec-h h2{font-size:1rem;color:var(--tx);font-weight:600}
+.sec-h .arr{color:var(--mu);font-size:.8rem;transition:transform .2s;flex-shrink:0}
+.sec.open .arr{transform:rotate(90deg)}
+.sec-body{display:none;padding:18px 20px 20px;border-top:1px solid var(--br)}
+.sec.open .sec-body{display:block}
+.sec-body p{color:var(--mu);font-size:.92rem;margin-bottom:10px}
+.sec-body p:last-child{margin-bottom:0}
+.sv{background:var(--bg5);border:1px solid var(--gd);border-radius:6px;padding:12px 16px;margin:12px 0;font-style:italic;color:var(--gl);font-size:.92rem}
+.sv cite{display:block;text-align:right;font-size:.8rem;color:var(--gold);margin-top:6px;font-style:normal}
+.comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.comp-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 0}
+.comp-card{border-radius:8px;padding:14px 16px;border:1px solid}
+.comp-card.rc-card{background:var(--rc);border-color:var(--rcc)}
+.comp-card.oo-card{background:var(--oo);border-color:var(--ooc)}
+.comp-card.prot{background:var(--pr);border-color:var(--prc)}
+.comp-card .cc-label{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;font-weight:700}
+.comp-card.rc-card .cc-label{color:var(--rcc)}
+.comp-card.oo-card .cc-label{color:var(--ooc)}
+.comp-card.prot .cc-label{color:var(--prc)}
+.comp-card ul{padding-left:16px;font-size:.88rem;line-height:1.7}
+.comp-card.rc-card ul{color:#e8c0c0}
+.comp-card.oo-card ul{color:#c8e8c8}
+.comp-card.prot ul{color:#bcd6ec}
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin:14px 0}
+.fc{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:14px 16px}
+.fc-name{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.fc-body{font-size:.88rem;color:var(--mu);font-style:italic;line-height:1.6}
+.fc-src{font-size:.76rem;color:var(--gd);margin-top:6px}
+.tag{display:inline-block;font-style:normal;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;padding:1px 6px;border-radius:3px;margin-left:0;font-weight:700}
+.tag-d{background:rgba(125,200,125,.18);color:var(--ooc);border:1px solid var(--ooc)}
+.tag-p{background:rgba(201,168,76,.16);color:var(--gl);border:1px solid var(--gd)}
+.fi{border:1px solid var(--br);border-radius:6px;margin-bottom:8px;overflow:hidden;background:var(--bg3)}
+.fi-h{display:flex;align-items:flex-start;padding:11px 14px;cursor:pointer;gap:8px;user-select:none}
+.fi-h:hover{background:rgba(255,255,255,.03)}
+.fi-q{font-size:.88rem;color:var(--tx);flex:1}
+.fi-arr{color:var(--mu);font-size:.75rem;transition:transform .2s;flex-shrink:0;margin-top:4px}
+.fi.open .fi-arr{transform:rotate(90deg)}
+.fi-body{display:none;padding:12px 14px 14px;border-top:1px solid var(--br);font-size:.88rem;color:var(--mu);line-height:1.65}
+.fi.open .fi-body{display:block}
+.fi-body p{margin-bottom:9px}.fi-body p:last-child{margin-bottom:0}
+.gt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin:14px 0}
+.gt{background:var(--bg3);border:1px solid var(--br);border-radius:7px;padding:12px 14px}
+.gt-term{font-size:.8rem;font-weight:700;color:var(--gold);margin-bottom:4px}
+.gt-def{font-size:.84rem;color:var(--mu);line-height:1.55}
+.tl{margin:14px 0;border-left:2px solid var(--gd);padding-left:18px}
+.tl-item{position:relative;margin-bottom:14px}
+.tl-item::before{content:'';position:absolute;left:-23px;top:6px;width:8px;height:8px;border-radius:50%;background:var(--gold);border:2px solid var(--bg2)}
+.tl-year{font-size:.75rem;color:var(--gold);margin-bottom:3px;font-weight:600}
+.tl-text{font-size:.88rem;color:var(--mu);line-height:1.55}
+@media(max-width:760px){#sb{transform:translateX(-100%)}main{margin-left:0;padding:24px 18px 60px}.comp-grid,.comp-grid3{grid-template-columns:1fr}}
+
+.lampsvg{display:block;margin:0 auto 14px;height:auto}
+.lampsvg .lampflame{animation:lampflick 3.2s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes lampflick{0%,100%{transform:scaleY(1) scaleX(1);opacity:.95}25%{transform:scaleY(1.06) scaleX(.97);opacity:1}50%{transform:scaleY(.96) scaleX(1.03);opacity:.9}75%{transform:scaleY(1.04) scaleX(.98);opacity:1}}
+
+html.light{--gold:#8a6a20;--gl:#6f5413;--gd:#b08e3e;--bg:#f7f2e6;--bg2:#efe8d5;--bg3:#e7ddc7;--bg4:#ddd2b9;--bg5:#efe0b8;--tx:#2b2415;--mu:#6e6450;--br:#d2c7aa;--rc:#ead1d1;--rcc:#762323;--oo:#d5e7d5;--ooc:#2d6c2d;--pr:#d6e2ee;--prc:#1d4a6b}
+#ol-tt{position:fixed;right:16px;bottom:74px;z-index:9999;width:44px;height:44px;border-radius:50%;background:var(--bg3,var(--panel,#1a1a1a));color:var(--gold,#c9a84c);border:1px solid var(--gd,var(--gold-dark,var(--rule,#8a6a20)));font-size:1.1rem;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35);line-height:1}#ol-tt:hover{filter:brightness(1.15)}
+html.light #sb{background:linear-gradient(180deg,#f5edd5 0%,#ede4cb 100%)}
+html.light .sv{box-shadow:0 1px 4px rgba(100,70,15,.08)}
+html.light .fc{box-shadow:0 1px 4px rgba(100,70,15,.08)}
+html.light .comp-card.rc-card ul{color:#8b2020}
+html.light .comp-card.oo-card ul{color:#1d5c1d}
+html.light .comp-card.prot ul{color:#1d4a6b}
+</style>
+<script>try{if(localStorage.getItem('ol-theme')==='light')document.documentElement.classList.add('light')}catch(e){}</script>
+</head>
+<body>
+<div id="prog"></div>
+<nav id="sb">
+  <div id="sb-brand">
+    <svg class="lampsvg" width="64" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><radialGradient id="lmpGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffb95e" stop-opacity=".55"/><stop offset="100%" stop-color="#ffb95e" stop-opacity="0"/></radialGradient><linearGradient id="lmpFlame" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#ff7a1f"/><stop offset="55%" stop-color="#ffb347"/><stop offset="100%" stop-color="#ffe9b0"/></linearGradient><linearGradient id="lmpBrass" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e3b860"/><stop offset="50%" stop-color="#a87b35"/><stop offset="100%" stop-color="#7a5523"/></linearGradient></defs><circle cx="60" cy="38" r="34" fill="url(#lmpGlow)"/><g class="lampflame"><path d="M60 16 C66 26 70 32 70 40 C70 48 65.5 53 60 53 C54.5 53 50 48 50 40 C50 32 54 26 60 16 Z" fill="url(#lmpFlame)"/><path d="M60 30 C63 35 64.5 38 64.5 42 C64.5 46.5 62.5 49 60 49 C57.5 49 55.5 46.5 55.5 42 C55.5 38 57 35 60 30 Z" fill="#fff3cf" opacity=".85"/></g><rect x="56" y="52" width="8" height="7" rx="2" fill="#8a6228"/><path d="M28 62 L92 62 C92 80 78 92 60 92 C42 92 28 80 28 62 Z" fill="url(#lmpBrass)"/><rect x="24" y="58" width="72" height="6" rx="3" fill="#caa14e"/><rect x="56" y="92" width="8" height="16" fill="url(#lmpBrass)"/><path d="M38 118 C38 110 47 108 60 108 C73 108 82 110 82 118 L82 122 L38 122 Z" fill="url(#lmpBrass)"/><rect x="32" y="122" width="56" height="6" rx="3" fill="#caa14e"/></svg>
+    <div class="lamp">The Orthodox Lamp</div>
+    <h1>Near-Death Experiences</h1>
+  </div>
+  <div class="sb-search">
+    <input type="search" placeholder="Search sections…" oninput="sidebarSearch(this.value)" aria-label="Search sections">
+  </div>
+  <div id="sb-nav">
+    <a href="#core">The Heart of the Matter</a>
+    <a href="#phenomenon">What People Report</a>
+    <a href="#science">Consciousness at the Edge of Death</a>
+    <a href="#explanations">The Natural Explanations</a>
+    <a href="#discernment">Testing Every Spirit</a>
+    <a href="#afterlife">The Soul Does Not Sleep</a>
+    <a href="#coptic">The Coptic Path of the Soul</a>
+    <a href="#tollhouses">A Word on the Toll-Houses</a>
+    <a href="#fathers">Voices of the Fathers</a>
+    <a href="#objections">Objections &amp; Answers</a>
+    <a href="#faq">FAQ</a>
+    <a href="#glossary">Glossary</a>
+  </div>
+  <div class="no-match-msg" id="sb-no-match">No sections match.</div>
+</nav>
+<main>
+  <div class="pg-title">
+    <div class="lamp-label">The Orthodox Lamp</div>
+    <h1>Near-Death Experiences</h1>
+    <div class="sub">What they show, what they don&rsquo;t — and where the Christian hope really rests</div>
+  </div>
+  <p class="pg-intro">Millions of people, revived from the edge of death, return with vivid accounts: a sense of leaving the body, a tunnel, a brilliant light, a life review, a meeting with the departed or with a luminous being. To some these prove that consciousness survives the brain; to others they are nothing but the misfiring of a dying brain. The Orthodox Christian need neither stake the faith on them nor dismiss them. We already know — on far surer ground than any experience — that the soul survives death, that it is conscious, and that it will face God. Near-death experiences can be a genuine glimpse, a natural event, or even a deception; the task is discernment, and the measure is Christ and the apostolic faith, never the experience itself.</p>
+
+  <div class="sec open" id="core">
+    <div class="sec-h" onclick="ts(this)"><h2>The Heart of the Matter</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>Three very different worldviews look at the same reports and draw opposite conclusions. Seeing how they differ clears away most of the confusion.</p>
+      <div class="comp-grid3">
+        <div class="comp-card oo-card">
+          <div class="cc-label">Orthodox Christian</div>
+          <ul>
+            <li>The soul truly survives death and is conscious — known from Christ, not from NDEs</li>
+            <li>An NDE may be a real glimpse, a natural event, or a deception — it must be discerned</li>
+            <li>No experience can overrule the Gospel; the Church judges the experience, not the reverse</li>
+            <li>The Christian hope rests on Christ&rsquo;s Resurrection, not on stories of the dying</li>
+          </ul>
+        </div>
+        <div class="comp-card prot">
+          <div class="cc-label">Materialist / Skeptic</div>
+          <ul>
+            <li>Mind is only brain activity; death is extinction</li>
+            <li>NDEs are hallucinations of an oxygen-starved, chemically flooded brain</li>
+            <li>The features are products of neurology and expectation</li>
+            <li>Nothing survives; the &ldquo;light&rdquo; is a dying retina or cortex</li>
+          </ul>
+        </div>
+        <div class="comp-card rc-card">
+          <div class="cc-label">Popular &ldquo;Heaven Tourism&rdquo;</div>
+          <ul>
+            <li>NDEs are direct, reliable proof of heaven and the afterlife</li>
+            <li>The &ldquo;being of light&rdquo; is taken as God or Christ without question</li>
+            <li>Often universalist: all are welcomed, judgment falls away</li>
+            <li>The experience becomes its own authority, above Scripture</li>
+          </ul>
+        </div>
+      </div>
+      <p>The Orthodox path runs between bare materialism and credulous &ldquo;proof of heaven.&rdquo; We do not need NDEs to believe in the life of the soul, and we do not let any private experience — however moving — rewrite what God has revealed. Where an experience agrees with the faith, it may console and confirm; where it contradicts the faith, it is to be rejected, no matter how real it felt.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="phenomenon">
+    <div class="sec-h" onclick="ts(this)"><h2>What People Report</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>Researchers since the 1970s have catalogued a recurring set of features in near-death accounts, though no single experience contains them all and their order varies. The most commonly described elements are:</p>
+      <div class="comp-grid">
+        <div class="comp-card oo-card">
+          <div class="cc-label">Frequently reported</div>
+          <ul>
+            <li>A sense of peace and the cessation of pain</li>
+            <li>Separation from the body, sometimes &ldquo;looking down&rdquo; on the scene</li>
+            <li>Moving through darkness or a tunnel</li>
+            <li>A brilliant light, often felt as loving</li>
+            <li>A panoramic &ldquo;life review&rdquo;</li>
+            <li>Meeting deceased relatives or a luminous figure</li>
+            <li>A border or point of no return, then a return to the body</li>
+          </ul>
+        </div>
+        <div class="comp-card rc-card">
+          <div class="cc-label">Less often acknowledged</div>
+          <ul>
+            <li>Distressing or frightening experiences (by serious estimates, roughly one in seven to one in five)</li>
+            <li>A sense of void, isolation, or nonexistence</li>
+            <li>Hellish landscapes or hostile beings</li>
+            <li>Cultural variation: the &ldquo;tunnel and light&rdquo; pattern is far more common in Western accounts than elsewhere</li>
+          </ul>
+        </div>
+      </div>
+      <p>Two facts are worth holding together. First, the experiences are real <em>to those who have them</em> — they are not simply lies. Second, they are not uniform: the content varies by person and culture, and a substantial minority are not blissful at all. Any honest account of NDEs has to reckon with the frightening ones, which popular books tend to pass over in silence.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="science">
+    <div class="sec-h" onclick="ts(this)"><h2>Consciousness at the Edge of Death</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>The most serious scientific work on NDEs comes from intensive-care and resuscitation medicine, where cardiac arrest offers a rare window: a patient whose heart has stopped is, by clinical measures, in the process of dying, yet may later be revived and interviewed.</p>
+      <p>The largest such study is <strong style="color:var(--gold)">AWARE II</strong>, led by Dr. Sam Parnia and published in the journal <em>Resuscitation</em> in 2023. Carried out with NYU Grossman School of Medicine and 25 mostly US and British hospitals, it studied 567 patients who suffered cardiac arrest in hospital and used brain monitors (EEG) and oxygen sensors during the brief pauses in CPR. Fewer than one in ten survived to be discharged — a reminder of how grave cardiac arrest is.</p>
+      <p>Its striking finding: although about half the monitored patients showed flat or suppressed brain activity, roughly half displayed near-normal EEG patterns — markers normally linked to consciousness, thought, and memory — emerging well into the arrest, despite severe lack of blood flow to the brain. Among the patients, a number reported awareness during the period, and several recalled a lucid &ldquo;experience of death.&rdquo;</p>
+      <div class="sv">The researchers described it as evidence that, for some patients, &ldquo;recalled experiences and brain activity may occur during cardiac arrest&rdquo; — when the brain is ordinarily assumed to be wholly offline.<cite>AWARE II, summary of findings, Resuscitation (2023)</cite></div>
+      <p>It is essential to be precise about what this does and does not show. AWARE II does <em>not</em> prove the soul, heaven, or God; serious researchers, Parnia included, are careful not to claim that. What it does establish is that the simple story — &ldquo;the brain switches off, so any experience is impossible&rdquo; — is harder to maintain than skeptics once assumed. Lucid, structured experience and memory appear to be possible at a stage of dying when the standard model predicts nothing at all. That is a genuine scientific puzzle; it is not, by itself, a proof of the afterlife.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="explanations">
+    <div class="sec-h" onclick="ts(this)"><h2>The Natural Explanations</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>Skeptics offer a range of physical mechanisms for NDEs. The Orthodox Christian has no stake in denying that natural factors are often involved — God ordinarily works through the order of nature. The honest question is whether these mechanisms <em>fully</em> account for the phenomenon. Most remain partial.</p>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Oxygen starvation (cerebral hypoxia / anoxia)</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">
+          <p>A dying brain is starved of oxygen, which can cause tunnel vision and visual disturbance. But oxygen-deprivation states (as in pilots in centrifuges or fainting) typically produce confusion and fragmentary, poorly-remembered images — not the lucid, ordered, vividly-recalled narratives reported in many NDEs. Hypoxia may contribute; it does not obviously explain the clarity.</p>
+        </div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Brain chemistry (DMT, endorphins, ketamine-like effects)</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">
+          <p>Various endogenous chemicals and drugs (such as ketamine) can produce dissociation and a sense of leaving the body. These show that <em>parts</em> of the experience can be chemically triggered. They do not establish that every NDE is merely chemical, and drug-induced states are generally recognised afterward as unreal, unlike the conviction of reality NDEs leave behind.</p>
+        </div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Temporal-lobe and REM-intrusion theories</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">
+          <p>Stimulation of certain brain regions can evoke out-of-body sensations, and dream-sleep mechanisms intruding into waking may play a role. Again these account for components — the bodily-displacement feeling — without explaining the coherence of the whole or the cases where patients report accurate details of events around them.</p>
+        </div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Expectation and culture</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">
+          <p>People often see what their culture has taught them to expect, which is why the imagery differs across societies. This is an important caution against treating any NDE as a literal map of the next world. But expectation shapes the <em>interpretation</em> of an experience without showing that nothing happened — and it cuts against &ldquo;proof of heaven&rdquo; claims as much as it complicates pure skepticism.</p>
+        </div>
+      </div>
+      <p>The reasonable conclusion is mixed and modest: natural factors clearly shape near-death experiences, yet no single mechanism, nor all of them together, has so far given a complete account. For the Christian this is unsurprising. We are body <em>and</em> soul; that the dying brain leaves its fingerprints on the experience does not prove there is no soul, any more than a fingerprint on a letter proves there was no writer.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="discernment">
+    <div class="sec-h" onclick="ts(this)"><h2>Testing Every Spirit</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>Here is the decisive Orthodox principle. An experience, however powerful, is not self-authenticating. The Church has always known that the unseen world contains not only God and His saints and angels but also fallen spirits who can deceive — and that the enemy&rsquo;s most dangerous disguise is light, not darkness.</p>
+      <div class="sv">&ldquo;And no wonder, for even Satan disguises himself as an angel of light.&rdquo;<cite>2 Corinthians 11:14 (ESV)</cite></div>
+      <div class="sv">&ldquo;Beloved, do not believe every spirit, but test the spirits to see whether they are from God, for many false prophets have gone out into the world.&rdquo;<cite>1 John 4:1 (ESV)</cite></div>
+      <p>This is why no Orthodox Christian should assume that the &ldquo;being of light&rdquo; in an NDE is necessarily Christ, or that a message received in such a state is necessarily from God. The test is doctrinal and moral: does the experience lead toward Christ, repentance, humility, and the faith handed down — or toward a vague, judgment-free spirituality in which the cross is unnecessary and all paths are equal? A great many popular NDE accounts preach exactly the latter: a universal acceptance with no call to repentance. That message is not the Gospel, and the warmth with which it is delivered is no guarantee of its source.</p>
+      <p>Two further cautions belong here. First, the frightening NDEs — by careful estimates somewhere between roughly 11 and 22 percent of cases — are quietly real, and they should keep us from reading every account as a postcard from paradise. Second, even St. Paul, caught up to &ldquo;the third heaven,&rdquo; spoke of it rarely and with reticence, and would not boast of it.</p>
+      <div class="sv">&ldquo;I know a man in Christ who fourteen years ago was caught up to the third heaven… and he heard things that cannot be told, which man may not utter.&rdquo;<cite>2 Corinthians 12:2&ndash;4 (ESV)</cite></div>
+      <p>If the Apostle treated his own genuine heavenly vision with such sobriety, the Christian today should receive the flood of popular NDE testimony with discernment rather than wonder-struck credulity. The experiences may comfort; they are not Scripture.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="afterlife">
+    <div class="sec-h" onclick="ts(this)"><h2>The Soul Does Not Sleep</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>The good news for the Christian is that we are not dependent on near-death reports to know what happens at death. God has revealed it. The soul does not perish with the body, nor does it fall into unconsciousness until the resurrection — a view (&ldquo;soul-sleep&rdquo;) held by some sects but rejected by the ancient Church. The soul lives on, awake and aware, in the hands of God.</p>
+      <div class="sv">&ldquo;Truly, I say to you, today you will be with me in paradise.&rdquo;<cite>Luke 23:43 (ESV) — Christ to the thief on the cross</cite></div>
+      <div class="sv">&ldquo;Yes, we are of good courage, and we would rather be away from the body and at home with the Lord.&rdquo;<cite>2 Corinthians 5:8 (ESV)</cite></div>
+      <div class="sv">&ldquo;My desire is to depart and be with Christ, for that is far better.&rdquo;<cite>Philippians 1:23 (ESV)</cite></div>
+      <p>St. John&rsquo;s vision shows the departed not asleep but conscious, even crying out to God:</p>
+      <div class="sv">&ldquo;I saw under the altar the souls of those who had been slain for the word of God… they cried out with a loud voice, &lsquo;O Sovereign Lord, holy and true, how long…?&rsquo;&rdquo;<cite>Revelation 6:9&ndash;10 (ESV)</cite></div>
+      <p>And the Lord&rsquo;s own parable of the rich man and Lazarus pictures the soul, immediately after death, conscious and already in a state of comfort or torment, with a &ldquo;great chasm&rdquo; fixed between them (Luke 16:19&ndash;26). Yet this state between death and the resurrection is not the end of the story. Scripture is equally clear that a final, general judgment awaits at Christ&rsquo;s return, when soul and body are reunited.</p>
+      <div class="sv">&ldquo;And just as it is appointed for man to die once, and after that comes judgment…&rdquo;<cite>Hebrews 9:27 (ESV)</cite></div>
+      <p>So the Christian map of death has two horizons: the <em>particular</em> reckoning each soul meets at death, entering a foretaste of joy or sorrow; and the <em>general</em> judgment at the end, when the bodies of all are raised and the verdict is made complete and public. Our hope is anchored not in any glimpse the dying report, but in the historical fact on which the whole faith stands: that Christ has been raised, the firstfruits of all who sleep (1 Corinthians 15:20).</p>
+    </div>
+  </div>
+
+  <div class="sec" id="coptic">
+    <div class="sec-h" onclick="ts(this)"><h2>The Coptic Path of the Soul</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>The Coptic Orthodox Church, like the wider ancient tradition, teaches that between death and the Last Day there is an <em>intermediate state</em>. At death the soul separates from the body — which returns to the dust to await the resurrection — and goes to await the general judgment in a condition that already anticipates its final destiny.</p>
+      <p>In this understanding, the souls of the great saints, pre-eminently the Theotokos, are admitted to Paradise to be with the Lord. The souls of the righteous rest in peace and consolation. The souls of believers who died with sins not fully repented are in Hades — the abode of the departed — where, in the Coptic and broader Eastern view, they may be helped, comforted, and refined through the prayers of the living Church, the offering of the Liturgy, almsgiving, and the intercession of the saints. This is why the Coptic Church, from antiquity, has prayed for the departed and commemorated them in the Liturgy.</p>
+      <div class="sv">&ldquo;For if he were not expecting that those who had fallen would rise again, it would have been superfluous and foolish to pray for the dead… Therefore he made atonement for the dead, that they might be delivered from their sin.&rdquo;<cite>2 Maccabees 12:44&ndash;45 (RSV) — received as Scripture in the Coptic Orthodox canon</cite></div>
+      <p>Two clarifications guard this teaching from misunderstanding. First, the Coptic Church does <em>not</em> hold the developed Roman Catholic doctrine of Purgatory as a juridical place of satisfaction with measured penalties and indulgences; it speaks rather of repose, of Hades, and of the help the Church gives the departed through prayer — a difference of framework, even where the instinct to pray for the dead is shared. Second, this whole picture is a matter of revealed faith and the Church&rsquo;s constant practice — not something we have learned, or need to learn, from near-death testimony. For the deeper treatment of the intermediate state, refining, and prayers for the dead, see the companion pages on <a href="purgatory.html">the afterlife and purgatory</a> and <a href="saints_intercession.html">the saints and intercession</a>.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="tollhouses">
+    <div class="sec-h" onclick="ts(this)"><h2>A Word on the Toll-Houses</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>Anyone reading about the Orthodox view of the soul after death will soon meet the teaching of the <em>aerial toll-houses</em> (Greek <em>telōnia</em>): the picture, drawn from certain ascetic writings and visions, of the soul after death passing through a series of &ldquo;stations&rdquo; where demonic powers test it over particular sins, while angels defend it. It is worth being clear and careful about this, because it is often presented to inquirers as though it were the settled teaching of all Orthodoxy.</p>
+      <p>The toll-house imagery belongs primarily to the <strong style="color:var(--gold)">Eastern (Byzantine) Orthodox</strong> ascetic and devotional tradition, where it is drawn from sources such as the Life of St. Basil the Younger and various patristic and hagiographic writings. Even within Eastern Orthodoxy it is debated: some treat it as a venerable and edifying teaching, others as a vivid image not to be taken with crude literalism, and the question has been the subject of real controversy.</p>
+      <p>For the <strong style="color:var(--gold)">Oriental Orthodox</strong> — the Coptic, Armenian, Syriac, Ethiopian, and Indian Churches — the elaborated toll-house schema is <em>not</em> a defining article of the faith. The Coptic tradition speaks of the soul&rsquo;s separation, its journey, the encounter with hostile powers, partial judgment, Hades, and the help of the Church&rsquo;s prayers — and there is real common ground in the conviction that the soul faces a reckoning and that the demons accuse. But the Coptic Church does not bind the faithful to the detailed system of numbered toll-stations as Byzantine devotion describes it. The underlying truth it dramatises — that the soul is examined, that sin must be answered for, that the prayers of the Church and the mercy of Christ avail — is held firmly; the elaborate machinery is not made dogma. When evaluating NDE accounts of &ldquo;tests&rdquo; or &ldquo;beings&rdquo; encountered after death, this is the sober frame: take seriously that the soul meets the unseen world and is accountable, without treating any one schema, or any one experience, as a literal blueprint.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="fathers">
+    <div class="sec-h" onclick="ts(this)"><h2>Voices of the Fathers</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>The Fathers say little about &ldquo;near-death experiences&rdquo; as such, but a great deal about the soul&rsquo;s survival, its journey, the assaults of the enemy, and the duty of the living to pray for the departed. Their witness frames how a Christian should think.</p>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">St. Athanasius the Great (d. 373)</div>
+          <div class="fc-body">In the Life of Antony, the saint is granted a vision of souls ascending after death, with a great hostile figure trying to seize and hinder those who had not lived faithfully, while those who had lived in Christ passed by unhindered and rejoicing.</div>
+          <div class="fc-src">Life of Antony §65&ndash;66 (NPNF 2nd Series, Vol. 4) — summary of the vision <span class="tag tag-p">Paraphrase</span></div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. John Chrysostom (d. 407)</div>
+          <div class="fc-body">He urged the living not to hesitate to help the departed, to pray for them and offer the Liturgy on their behalf, teaching that such offerings bring the dead real consolation and benefit.</div>
+          <div class="fc-src">Homilies on Philippians 3 — summary of his teaching on prayer for the dead <span class="tag tag-p">Paraphrase</span></div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Macarius the Great (d. 391)</div>
+          <div class="fc-body">In the Egyptian desert tradition, Macarius is remembered teaching that the prayers of the Church bring some relief even to the souls of the lost — a witness to the early Coptic conviction that the living can aid the departed.</div>
+          <div class="fc-src">Sayings of the Desert Fathers / Coptic tradition — summary <span class="tag tag-p">Paraphrase</span></div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Paul the Apostle</div>
+          <div class="fc-body">&ldquo;…caught up to the third heaven… he heard things that cannot be told, which man may not utter.&rdquo;</div>
+          <div class="fc-src">2 Corinthians 12:2&ndash;4 (ESV) — even a true heavenly vision was held with reticence <span class="tag tag-d">Direct quote</span></div>
+        </div>
+      </div>
+      <p>The pattern is consistent: the soul lives and is accountable; the enemy contests its passage; the Church&rsquo;s prayers help the departed; and genuine visions of the next world are received with humility, not paraded as proofs. None of this depends on modern NDE research — it is the inheritance of the Church.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="objections">
+    <div class="sec-h" onclick="ts(this)"><h2>Objections &amp; Answers</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">&ldquo;NDEs prove there is life after death — science has shown it.&rdquo;</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">
+          <p>Science has shown something narrower and genuinely interesting: that lucid experience and brain activity can occur during cardiac arrest, when the standard model expects none. That undercuts confident materialism, but it does not &ldquo;prove&rdquo; heaven, God, or the soul, and reputable researchers do not claim it does. The Christian believes in the life of the soul on the authority of Christ and His Church, not because a study settled it. We can welcome the scientific puzzle without overstating it.</p>
+        </div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">&ldquo;The being of light people meet must be God or Jesus.&rdquo;</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">
+          <p>Not necessarily. Scripture explicitly warns that &ldquo;Satan disguises himself as an angel of light&rdquo; (2 Cor 11:14) and commands us to &ldquo;test the spirits&rdquo; (1 John 4:1). A luminous, loving presence is exactly the form a deception might take. The test is its fruit and its message: does it lead to Christ, repentance, and the faith of the Church, or to a judgment-free spirituality in which the cross is unnecessary? Light and warmth are not, by themselves, proof of holiness.</p>
+        </div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">&ldquo;Many NDEs say everyone is accepted and there is no judgment — isn&rsquo;t that good news?&rdquo;</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">
+          <p>It contradicts the words of Christ Himself, who spoke plainly of judgment, of the narrow gate, and of a real division of the saved and the lost (Matthew 7:13&ndash;14; 25:31&ndash;46; Luke 16:19&ndash;31). A message that abolishes judgment and repentance is not a higher gospel; by the apostolic standard (&ldquo;even if an angel preaches another gospel, let him be accursed,&rdquo; Galatians 1:8) it is a counterfeit. The comfort it offers is false comfort if it dissolves the very things our Lord came to save us from.</p>
+        </div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">&ldquo;If NDEs are just the dying brain, doesn&rsquo;t that disprove the soul?&rdquo;</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">
+          <p>No. Even if natural factors shape the experience, that no more disproves the soul than the chemistry of the brain disproves that we think real thoughts. Christianity holds that we are a union of body and soul; the dying brain&rsquo;s involvement in an experience is fully compatible with the soul&rsquo;s reality and survival. The faith never rested on NDEs, so &ldquo;explaining&rdquo; them naturally takes nothing from it.</p>
+        </div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">&ldquo;People of every religion have NDEs — doesn&rsquo;t that mean all religions are equally true?&rdquo;</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">
+          <p>That the experiences differ by culture and belief actually argues against treating any of them as a literal revelation of the next world. People tend to perceive and interpret within the categories they already hold. The variety shows that NDEs are not a reliable, neutral map of the afterlife — which is precisely why the Church measures them against the revelation given in Christ, rather than measuring Christ against them.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" id="faq">
+    <div class="sec-h" onclick="ts(this)"><h2>FAQ</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Should a Christian believe near-death experiences?</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">Believe that the person had a real experience — yes; few are simply lying. But do not treat the <em>content</em> as automatically true or as revelation. Receive each account with discernment, weighing it against Scripture and the faith of the Church. Where it confirms the faith it may console; where it contradicts the faith it is to be rejected.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Does the Church teach that the soul is conscious after death?</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">Yes. The ancient Church — Coptic and the wider tradition — has always rejected &ldquo;soul-sleep,&rdquo; the idea that the soul lapses into unconsciousness until the resurrection. Scripture shows the departed conscious (the thief in paradise, the souls under the altar in Revelation, the rich man and Lazarus), awaiting the general judgment in a foretaste of joy or sorrow.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Are the frightening NDEs real too?</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">Yes, and they are more common than popular books admit — careful estimates put distressing experiences at roughly one in seven to one in five. Researchers describe several types: pleasant features experienced as terrifying, a sense of void or nonexistence, and frankly hellish scenes. Their existence is one more reason not to read NDEs as uniform &ldquo;proof of heaven.&rdquo;</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Do I have to believe in the toll-houses as an Oriental Orthodox Christian?</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">The elaborated system of numbered aerial toll-houses is primarily an Eastern (Byzantine) Orthodox devotional teaching, debated even there. For the Oriental Orthodox it is not a defining dogma. What is held firmly is the underlying truth: the soul survives, meets the unseen world, is accountable for sin, and is helped by the prayers of the Church and the mercy of Christ. The detailed schema is not binding.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">If NDEs aren&rsquo;t the basis of our hope, what is?</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">The Resurrection of Jesus Christ. &ldquo;If Christ has not been raised, your faith is futile&rdquo; (1 Cor 15:17); but in fact He is risen, &ldquo;the firstfruits of those who have fallen asleep&rdquo; (1 Cor 15:20). The Christian hope of eternal life rests on a historical, witnessed event and on the promise of God — far firmer ground than any private experience at the edge of death.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" id="glossary">
+    <div class="sec-h" onclick="ts(this)"><h2>Glossary</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <div class="gt-grid">
+        <div class="gt"><div class="gt-term">Near-death experience (NDE)</div><div class="gt-def">A vivid experience reported by some people revived from the brink of death, often including a sense of peace, leaving the body, a tunnel, light, a life review, or meeting others.</div></div>
+        <div class="gt"><div class="gt-term">Intermediate state</div><div class="gt-def">The condition of the soul between death and the general resurrection — conscious, and already in a foretaste of joy or sorrow, awaiting the final judgment.</div></div>
+        <div class="gt"><div class="gt-term">Particular judgment</div><div class="gt-def">The reckoning each soul meets at death, determining its state in the intermediate period — distinct from the general judgment at the end.</div></div>
+        <div class="gt"><div class="gt-term">General judgment</div><div class="gt-def">The final, universal judgment at Christ&rsquo;s return, when body and soul are reunited and the verdict on all is made complete and public.</div></div>
+        <div class="gt"><div class="gt-term">Soul-sleep</div><div class="gt-def">The belief that the soul becomes unconscious at death until the resurrection. Held by some sects (e.g. Seventh-day Adventists, Jehovah&rsquo;s Witnesses) but rejected by the ancient Church.</div></div>
+        <div class="gt"><div class="gt-term">Hades / Sheol</div><div class="gt-def">The abode of the departed in Scripture; in the Coptic and Eastern view, the place where souls await the resurrection, some in rest and some in need of the Church&rsquo;s prayers.</div></div>
+        <div class="gt"><div class="gt-term">Aerial toll-houses (telōnia)</div><div class="gt-def">A primarily Eastern Orthodox devotional teaching that the soul after death passes &ldquo;stations&rdquo; where demons test it over particular sins. Not a binding dogma for the Oriental Orthodox.</div></div>
+        <div class="gt"><div class="gt-term">Distressing NDE</div><div class="gt-def">A frightening near-death experience — inverse (pleasant features felt as terrifying), void (a sense of nonexistence), or hellish. By careful estimates, roughly 11&ndash;22% of cases.</div></div>
+        <div class="gt"><div class="gt-term">Discernment of spirits</div><div class="gt-def">The Christian practice, commanded in 1 John 4:1, of testing experiences and messages against Scripture and the faith of the Church to tell the holy from the deceptive.</div></div>
+        <div class="gt"><div class="gt-term">AWARE II</div><div class="gt-def">A 2023 multi-hospital study led by Dr. Sam Parnia, using brain monitoring during cardiac arrest, which found near-normal brain activity and recalled experiences in some dying patients.</div></div>
+      </div>
+    </div>
+  </div>
+</main>
+<script>
+window.addEventListener('scroll',()=>{const h=document.documentElement;document.getElementById('prog').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100+'%';});
+const navLinks=document.querySelectorAll('#sb-nav a[href^="#"]');
+const secs2=document.querySelectorAll('main .sec[id]');
+window.addEventListener('scroll',()=>{let cur='';secs2.forEach(s=>{if(s.getBoundingClientRect().top<=120)cur=s.id;});navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur);});},{passive:true});
+function ts(h){h.closest('.sec').classList.toggle('open');}
+function tf(h){h.closest('.fi').classList.toggle('open');}
+function sidebarSearch(q){
+  q=q.trim().toLowerCase();
+  const secs=document.querySelectorAll('main .sec');
+  let matched=0;
+  secs.forEach(sec=>{
+    if(!q){sec.classList.remove('s-hidden');const h2=sec.querySelector('.sec-h h2');if(h2._orig)h2.innerHTML=h2._orig;matched++;return;}
+    const h2=sec.querySelector('.sec-h h2');
+    const body=sec.querySelector('.sec-body');
+    const hit=(h2._orig||h2.textContent).toLowerCase().includes(q)||(body?body.textContent.toLowerCase():'').includes(q);
+    sec.classList.toggle('s-hidden',!hit);
+    if(hit){matched++;if(!h2._orig)h2._orig=h2.innerHTML;const re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');h2.innerHTML=h2._orig.replace(re,'<mark>$1</mark>');sec.classList.add('open');}
+  });
+  document.getElementById('sb-no-match').classList.toggle('show',!!q&&matched===0);
+}
+</script>
+<button id="ol-tt" onclick="olTheme()" aria-label="Toggle light or dark mode" title="Light/dark mode">☀</button><script>function olTheme(){var l=document.documentElement.classList.toggle('light');try{localStorage.setItem('ol-theme',l?'light':'dark')}catch(e){}olIcon()}function olIcon(){document.getElementById('ol-tt').textContent=document.documentElement.classList.contains('light')?'☾':'☀'}olIcon();</script>
+</body>
+</html>
