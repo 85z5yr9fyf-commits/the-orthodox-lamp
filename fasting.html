@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fasting — The Orthodox Lamp</title>
+<style>
+:root{
+  --gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;
+  --bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--bg5:#3a2e10;
+  --tx:#e8e0d0;--mu:#a09880;--br:#2a2a2a;
+  --sidebar-w:270px;
+  --rc:#3a1a1a;--rcc:#d47070;
+  --oo:#1a2e1a;--ooc:#7dc87d;
+  --pr:#15202e;--prc:#6fa8d4;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.7;display:flex;min-height:100vh}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+mark{background:rgba(201,168,76,.28);color:var(--gl);border-radius:2px;padding:0 2px}
+#prog{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--gd),var(--gl));z-index:200;transition:width .1s}
+#sb{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:100;display:flex;flex-direction:column}
+#sb-brand{padding:18px 18px 10px;border-bottom:1px solid var(--br)}
+#sb-brand .lamp{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mu);margin-bottom:4px}
+#sb-brand h1{font-size:1rem;color:var(--gold);line-height:1.3}
+.sb-search{padding:10px 14px 4px}
+.sb-search input{width:100%;background:rgba(255,255,255,.06);border:1px solid var(--br);border-radius:6px;padding:8px 12px;font-size:.8rem;color:var(--tx);font-family:'Georgia',serif;outline:none;transition:border-color .2s}
+.sb-search input::placeholder{color:#666}
+.sb-search input:focus{border-color:var(--gd)}
+.sec.s-hidden{display:none}
+.no-match-msg{display:none;padding:14px 18px;font-size:.8rem;color:var(--mu);font-style:italic;text-align:center}
+.no-match-msg.show{display:block}
+#sb-nav{padding:10px 0 20px;flex:1}
+#sb-nav a{display:block;padding:6px 18px;font-size:.82rem;color:var(--mu);border-left:2px solid transparent;transition:all .15s;line-height:1.4}
+#sb-nav a:hover,#sb-nav a.active{color:var(--gold);border-left-color:var(--gold);background:rgba(201,168,76,.06);text-decoration:none}
+main{margin-left:var(--sidebar-w);flex:1;max-width:820px;padding:48px 48px 80px}
+.pg-title{margin-bottom:10px}
+.pg-title .lamp-label{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--mu);margin-bottom:6px}
+.pg-title h1{font-size:2rem;color:var(--gold);line-height:1.2}
+.pg-title .sub{font-size:1rem;color:var(--mu);margin-top:6px;font-style:italic}
+.pg-intro{max-width:660px;color:var(--mu);font-size:.95rem;margin:16px 0 36px;border-left:3px solid var(--gd);padding-left:14px}
+.sec{border:1px solid var(--br);border-radius:8px;margin-bottom:14px;overflow:hidden;background:var(--bg2)}
+.sec-h{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;cursor:pointer;user-select:none;gap:10px}
+.sec-h:hover{background:rgba(255,255,255,.03)}
+.sec-h h2{font-size:1rem;color:var(--tx);font-weight:600}
+.sec-h .arr{color:var(--mu);font-size:.8rem;transition:transform .2s;flex-shrink:0}
+.sec.open .arr{transform:rotate(90deg)}
+.sec-body{display:none;padding:18px 20px 20px;border-top:1px solid var(--br)}
+.sec.open .sec-body{display:block}
+.sec-body p{color:var(--mu);font-size:.92rem;margin-bottom:10px}
+.sec-body p:last-child{margin-bottom:0}
+.sv{background:var(--bg5);border:1px solid var(--gd);border-radius:6px;padding:12px 16px;margin:12px 0;font-style:italic;color:var(--gl);font-size:.92rem}
+.sv cite{display:block;text-align:right;font-size:.8rem;color:var(--gold);margin-top:6px;font-style:normal}
+.comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.comp-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 0}
+.comp-card{border-radius:8px;padding:14px 16px;border:1px solid}
+.comp-card.rc-card{background:var(--rc);border-color:var(--rcc)}
+.comp-card.oo-card{background:var(--oo);border-color:var(--ooc)}
+.comp-card.prot{background:var(--pr);border-color:var(--prc)}
+.comp-card .cc-label{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;font-weight:700}
+.comp-card.rc-card .cc-label{color:var(--rcc)}
+.comp-card.oo-card .cc-label{color:var(--ooc)}
+.comp-card.prot .cc-label{color:var(--prc)}
+.comp-card ul{padding-left:16px;font-size:.88rem;line-height:1.7}
+.comp-card.rc-card ul{color:#e8c0c0}
+.comp-card.oo-card ul{color:#c8e8c8}
+.comp-card.prot ul{color:#bcd6ec}
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin:14px 0}
+.fc{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:14px 16px}
+.fc-name{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.fc-body{font-size:.88rem;color:var(--mu);font-style:italic;line-height:1.6}
+.fc-src{font-size:.76rem;color:var(--gd);margin-top:6px}
+.tag{display:inline-block;font-style:normal;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;padding:1px 6px;border-radius:3px;margin-left:0;font-weight:700}
+.tag-d{background:rgba(125,200,125,.18);color:var(--ooc);border:1px solid var(--ooc)}
+.tag-p{background:rgba(201,168,76,.16);color:var(--gl);border:1px solid var(--gd)}
+.fi{border:1px solid var(--br);border-radius:6px;margin-bottom:8px;overflow:hidden;background:var(--bg3)}
+.fi-h{display:flex;align-items:flex-start;padding:11px 14px;cursor:pointer;gap:8px;user-select:none}
+.fi-h:hover{background:rgba(255,255,255,.03)}
+.fi-q{font-size:.88rem;color:var(--tx);flex:1}
+.fi-arr{color:var(--mu);font-size:.75rem;transition:transform .2s;flex-shrink:0;margin-top:4px}
+.fi.open .fi-arr{transform:rotate(90deg)}
+.fi-body{display:none;padding:12px 14px 14px;border-top:1px solid var(--br);font-size:.88rem;color:var(--mu);line-height:1.65}
+.fi.open .fi-body{display:block}
+.fi-body p{margin-bottom:9px}.fi-body p:last-child{margin-bottom:0}
+.gt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin:14px 0}
+.gt{background:var(--bg3);border:1px solid var(--br);border-radius:7px;padding:12px 14px}
+.gt-term{font-size:.8rem;font-weight:700;color:var(--gold);margin-bottom:4px}
+.gt-def{font-size:.84rem;color:var(--mu);line-height:1.55}
+.tl{margin:14px 0;border-left:2px solid var(--gd);padding-left:18px}
+.tl-item{position:relative;margin-bottom:14px}
+.tl-item::before{content:'';position:absolute;left:-23px;top:6px;width:8px;height:8px;border-radius:50%;background:var(--gold);border:2px solid var(--bg2)}
+.tl-year{font-size:.75rem;color:var(--gold);margin-bottom:3px;font-weight:600}
+.tl-text{font-size:.88rem;color:var(--mu);line-height:1.55}
+@media(max-width:760px){#sb{transform:translateX(-100%)}main{margin-left:0;padding:24px 18px 60px}.comp-grid,.comp-grid3{grid-template-columns:1fr}}
+
+.lampsvg{display:block;margin:0 auto 14px;height:auto}
+.lampsvg .lampflame{animation:lampflick 3.2s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes lampflick{0%,100%{transform:scaleY(1) scaleX(1);opacity:.95}25%{transform:scaleY(1.06) scaleX(.97);opacity:1}50%{transform:scaleY(.96) scaleX(1.03);opacity:.9}75%{transform:scaleY(1.04) scaleX(.98);opacity:1}}
+
+html.light{--gold:#8a6a20;--gl:#6f5413;--gd:#b08e3e;--bg:#f7f2e6;--bg2:#efe8d5;--bg3:#e7ddc7;--bg4:#ddd2b9;--bg5:#efe0b8;--tx:#2b2415;--mu:#6e6450;--br:#d2c7aa;--rc:#ead1d1;--rcc:#762323;--oo:#d5e7d5;--ooc:#2d6c2d;--pr:#d6e2ee;--prc:#1d4a6b}
+#ol-tt{position:fixed;right:16px;bottom:74px;z-index:9999;width:44px;height:44px;border-radius:50%;background:var(--bg3,var(--panel,#1a1a1a));color:var(--gold,#c9a84c);border:1px solid var(--gd,var(--gold-dark,var(--rule,#8a6a20)));font-size:1.1rem;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35);line-height:1}#ol-tt:hover{filter:brightness(1.15)}
+html.light #sb{background:linear-gradient(180deg,#f5edd5 0%,#ede4cb 100%)}
+html.light .sv{box-shadow:0 1px 4px rgba(100,70,15,.08)}
+html.light .fc{box-shadow:0 1px 4px rgba(100,70,15,.08)}
+html.light .comp-card.rc-card ul{color:#8b2020}
+html.light .comp-card.oo-card ul{color:#1d5c1d}
+html.light .comp-card.prot ul{color:#1d4a6b}
+</style>
+<script>try{if(localStorage.getItem('ol-theme')==='light')document.documentElement.classList.add('light')}catch(e){}</script>
+</head>
+<body>
+<div id="prog"></div>
+<nav id="sb">
+  <div id="sb-brand">
+    <svg class="lampsvg" width="64" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><radialGradient id="lmpGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffb95e" stop-opacity=".55"/><stop offset="100%" stop-color="#ffb95e" stop-opacity="0"/></radialGradient><linearGradient id="lmpFlame" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#ff7a1f"/><stop offset="55%" stop-color="#ffb347"/><stop offset="100%" stop-color="#ffe9b0"/></linearGradient><linearGradient id="lmpBrass" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e3b860"/><stop offset="50%" stop-color="#a87b35"/><stop offset="100%" stop-color="#7a5523"/></linearGradient></defs><circle cx="60" cy="38" r="34" fill="url(#lmpGlow)"/><g class="lampflame"><path d="M60 16 C66 26 70 32 70 40 C70 48 65.5 53 60 53 C54.5 53 50 48 50 40 C50 32 54 26 60 16 Z" fill="url(#lmpFlame)"/><path d="M60 30 C63 35 64.5 38 64.5 42 C64.5 46.5 62.5 49 60 49 C57.5 49 55.5 46.5 55.5 42 C55.5 38 57 35 60 30 Z" fill="#fff3cf" opacity=".85"/></g><rect x="56" y="52" width="8" height="7" rx="2" fill="#8a6228"/><path d="M28 62 L92 62 C92 80 78 92 60 92 C42 92 28 80 28 62 Z" fill="url(#lmpBrass)"/><rect x="24" y="58" width="72" height="6" rx="3" fill="#caa14e"/><rect x="56" y="92" width="8" height="16" fill="url(#lmpBrass)"/><path d="M38 118 C38 110 47 108 60 108 C73 108 82 110 82 118 L82 122 L38 122 Z" fill="url(#lmpBrass)"/><rect x="32" y="122" width="56" height="6" rx="3" fill="#caa14e"/></svg>
+    <div class="lamp">The Orthodox Lamp</div>
+    <h1>Fasting</h1>
+  </div>
+  <div class="sb-search">
+    <input type="search" placeholder="Search sections…" oninput="sidebarSearch(this.value)" aria-label="Search sections">
+  </div>
+  <div id="sb-nav">
+    <a href="#core">The Heart of the Matter</a>
+    <a href="#why">Why the Church Fasts</a>
+    <a href="#biblical">Fasting Throughout Scripture</a>
+    <a href="#lent">The Forty Days &amp; the Lord&rsquo;s Example</a>
+    <a href="#seasons">The Fasts of the Coptic Year</a>
+    <a href="#how">How the Copts Fast</a>
+    <a href="#fathers">Voices of the Fathers</a>
+    <a href="#objections">Objections &amp; Answers</a>
+    <a href="#coptic">Fasting in the Living Tradition</a>
+    <a href="#faq">FAQ</a>
+    <a href="#glossary">Glossary</a>
+  </div>
+  <div class="no-match-msg" id="sb-no-match">No sections match.</div>
+</nav>
+<main>
+  <div class="pg-title">
+    <div class="lamp-label">The Orthodox Lamp</div>
+    <h1>Fasting</h1>
+    <div class="sub">Why the Orthodox fast so much — and why it is not legalism</div>
+  </div>
+  <p class="pg-intro">No church on earth fasts more than the Coptic Orthodox. Counting the Great Fast, the Nativity and Apostles&rsquo; and Theotokos fasts, the Fast of Nineveh, and every Wednesday and Friday of the year, a devout Copt fasts more than two hundred days out of every three hundred and sixty-five. To many Protestants this looks like the very "doctrine of demons" Paul warned against — a yoke of food-laws that the gospel set us free from. The Orthodox answer is that fasting is not a law that saves but a medicine that heals: a discipline Christ Himself assumed and commanded, the apostles practised, and the whole ancient Church kept — training the body, taming the passions, and freeing the soul for prayer and love.</p>
+
+  <div class="sec open" id="core">
+    <div class="sec-h" onclick="ts(this)"><h2>The Heart of the Matter</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>The dispute over fasting turns on two questions. First, is fasting <em>commanded</em> for the Christian, or is it an optional private devotion the gospel left behind? And second, does the Church have the authority to <em>appoint set seasons</em> of fasting — Lent, Wednesdays and Fridays — or is any such calendar a return to the Law? The Orthodox and many Protestants answer both differently.</p>
+      <div class="comp-grid">
+        <div class="comp-card oo-card">
+          <div class="cc-label">Orthodox</div>
+          <ul>
+            <li>Christ said "<em>when</em> you fast," assuming His followers will</li>
+            <li>He foretold that the Church would fast once the Bridegroom was taken up</li>
+            <li>The apostles fasted and ordained with fasting (Acts 13&ndash;14)</li>
+            <li>The Church may appoint common seasons, as she did from the first century</li>
+            <li>Fasting is ascesis — medicine for the passions — not a means of earning salvation</li>
+          </ul>
+        </div>
+        <div class="comp-card prot">
+          <div class="cc-label">Common Protestant view</div>
+          <ul>
+            <li>Fasting is permitted but never commanded; it is private and spontaneous</li>
+            <li>Fixed fasting seasons are man-made rules (Colossians 2; Romans 14)</li>
+            <li>Mandatory food-laws are the "doctrine of demons" of 1 Timothy 4</li>
+            <li>Such discipline easily becomes works-righteousness and legalism</li>
+            <li>The believer is free; "the kingdom of God is not eating and drinking"</li>
+          </ul>
+        </div>
+      </div>
+      <p>The Orthodox case is not that fasting earns God&rsquo;s favour, nor that food is unclean — both ideas the Church explicitly condemns. It is that the Lord who fasted forty days, who taught His disciples how to fast, and who promised they would fast in His bodily absence, left the Church a discipline she has kept unbroken. The argument that follows rests on four pillars: the words of Christ, the witness of all Scripture, the unanimous practice of the early Church, and the Fathers&rsquo; insistence that the true fast is inward.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="why">
+    <div class="sec-h" onclick="ts(this)"><h2>Why the Church Fasts</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>Fasting in the Orthodox tradition is never an end in itself, and never a hunger strike to bend God&rsquo;s arm. It is <em>ascesis</em> — spiritual training, as an athlete trains the body. Its purposes are several and they work together:</p>
+      <p><strong style="color:var(--gold)">To master the body and weaken the passions.</strong> The appetite for food is the most basic of the bodily appetites; the one who cannot say "no" to the stomach will not easily say "no" to anger, lust, or greed. By learning to govern the simplest hunger, the Christian trains the will to govern the rest. Fasting "subdues the body and brings it into subjection" (cf. 1 Corinthians 9:27).</p>
+      <p><strong style="color:var(--gold)">To free the soul for prayer.</strong> Scripture again and again joins fasting to prayer — Anna in the Temple, the church at Antioch, the Lord in the wilderness. A lightened, disciplined body prays more readily than a sated and drowsy one. Fasting clears a space; prayer fills it.</p>
+      <p><strong style="color:var(--gold)">To give to the poor.</strong> The Fathers insist that the food and money saved by fasting are owed to the hungry. A fast that merely shifts the rich man&rsquo;s diet from meat to costly delicacies, while the poor go unfed, is no fast at all. Fasting and almsgiving are two hands of the same mercy.</p>
+      <p><strong style="color:var(--gold)">To repent.</strong> Throughout the Bible, fasting is the language of repentance and mourning for sin — Nineveh in sackcloth, Joel&rsquo;s call to "return with fasting and weeping." The Church&rsquo;s fasts are seasons of return, drawing the soul back toward God.</p>
+      <p><strong style="color:var(--gold)">To remember Paradise.</strong> The Fathers saw in the fast a return to the diet of Eden, where Adam ate only the fruit of the garden and no flesh was killed. Fasting is a brief recovery of that first innocence — and a foretaste of the Kingdom, where the appetites of this fallen body will be no more.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="biblical">
+    <div class="sec-h" onclick="ts(this)"><h2>Fasting Throughout Scripture</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>Fasting is not a relic of the Old Covenant that the gospel abolished. It runs from Sinai to the Apostles, and the Lord Himself both practised it and taught His followers how to do it rightly.</p>
+      <p>First, Christ assumes His disciples will fast. He does not say "if," but "when":</p>
+      <div class="sv">"And when you fast, do not look gloomy like the hypocrites… But when you fast, anoint your head and wash your face, that your fasting may not be seen by others but by your Father who is in secret."<cite>Matthew 6:16&ndash;18 (ESV)</cite></div>
+      <p>Second, He foretold that His Church <em>would</em> fast — precisely in the age that began at His Ascension:</p>
+      <div class="sv">"Can the wedding guests mourn as long as the bridegroom is with them? The days will come when the bridegroom is taken away from them, and then they will fast."<cite>Matthew 9:15 (ESV)</cite></div>
+      <p>Third, the apostolic Church did exactly that — fasting at the great moments of decision and ordination:</p>
+      <div class="sv">"While they were worshiping the Lord and fasting, the Holy Spirit said… Then after fasting and praying they laid their hands on them and sent them off."<cite>Acts 13:2&ndash;3 (ESV)</cite></div>
+      <div class="sv">"And when they had appointed elders for them in every church, with prayer and fasting they committed them to the Lord."<cite>Acts 14:23 (ESV)</cite></div>
+      <p>The prophets call God&rsquo;s people to fast as the very form of repentance, and Daniel models the abstinence from rich food that the Church&rsquo;s fasts imitate:</p>
+      <div class="sv">"Yet even now," declares the LORD, "return to me with all your heart, with fasting, with weeping, and with mourning."<cite>Joel 2:12 (ESV)</cite></div>
+      <div class="sv">"I ate no delicacies, no meat or wine entered my mouth, nor did I anoint myself at all, for the full three weeks."<cite>Daniel 10:3 (ESV)</cite></div>
+      <p>And the holiest figures of the New Testament are marked by fasting: Anna the prophetess "worshiping with fasting and prayer night and day" (Luke 2:37), and St. Paul "in fastings often" (2 Corinthians 11:27). The pattern is unbroken — fasting is the normal posture of the people of God before their Lord.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="lent">
+    <div class="sec-h" onclick="ts(this)"><h2>The Forty Days &amp; the Lord&rsquo;s Example</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>At the centre of the Christian fasting year stands the Great Fast — the forty days that imitate the Lord&rsquo;s own fast in the wilderness, where He overcame the tempter not by power but by abstinence and the word of God.</p>
+      <div class="sv">"And after fasting forty days and forty nights, he was hungry."<cite>Matthew 4:2 (ESV)</cite></div>
+      <p>The number forty is woven through salvation history as the measure of testing and preparation. Moses fasted forty days on the mountain before receiving the Law; Elijah journeyed forty days on the strength of one meal to the mountain of God; Israel was tested forty years in the desert.</p>
+      <div class="sv">"So he was there with the LORD forty days and forty nights. He neither ate bread nor drank water."<cite>Exodus 34:28 (ESV)</cite></div>
+      <div class="sv">"And he arose and ate and drank, and went in the strength of that food forty days and forty nights to Horeb, the mount of God."<cite>1 Kings 19:8 (ESV)</cite></div>
+      <p>The Church, following her Lord, keeps a Holy Forty before Pascha (Easter) so that the faithful may walk with Christ into the wilderness and emerge with Him to the Resurrection. This is no late invention: by the fourth century the forty-day Lenten fast was universal, and St. Athanasius of Alexandria — the great Coptic father — announced its dates each year to the churches of Egypt in his <em>Festal Letters</em>, urging all the faithful to keep it. The Lenten fast is thus among the oldest common observances of the whole Church, East and West alike.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="seasons">
+    <div class="sec-h" onclick="ts(this)"><h2>The Fasts of the Coptic Year</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>The Coptic Orthodox Church keeps more fasting days than any other apostolic church — over two hundred a year. Each fast has its own length, its own commemoration, and its own degree of strictness. (Gregorian dates are approximate, since the Coptic calendar runs on its own months and some fasts move with the date of Pascha.)</p>
+      <div class="tl">
+        <div class="tl-item">
+          <div class="tl-year">The Great Fast (Great Lent) — 55 days</div>
+          <div class="tl-text">The strictest and greatest fast, before Pascha. It joins a week of preparation, the Holy Forty (in imitation of Christ&rsquo;s wilderness fast), and Holy Week. No animal products and no fish; the faithful also abstain from all food and drink until a set hour. Preceded by the joyful pre-Lenten weeks.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">The Fast of Nineveh — 3 days</div>
+          <div class="tl-text">A short, strict fast about two weeks before Great Lent, recalling the repentance of Nineveh at the preaching of Jonah (Jonah 3). A foretaste and rehearsal of the Great Fast.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">The Nativity Fast (Advent) — about 43 days</div>
+          <div class="tl-text">Before the Feast of the Nativity (celebrated 7 January). Forty days recall Moses&rsquo; fast before receiving the Law, with additional days added in later centuries. Fish is generally permitted. A season of preparation for the coming of Christ in the flesh.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">The Apostles&rsquo; Fast — variable length</div>
+          <div class="tl-text">Begins the Monday after Pentecost and ends on the Feast of the martyrdom of Sts. Peter and Paul (about 12 July). Its length changes each year with the date of Pascha. It commemorates the apostles fasting before they went out to preach (Acts 13). Fish is generally permitted.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">The Fast of the Theotokos (St. Mary&rsquo;s Fast) — 15 days</div>
+          <div class="tl-text">In August, ending on the Feast of the Dormition (Assumption) of the Virgin (about 22 August). A beloved and well-kept fast in honour of the Mother of God. Fish is generally permitted.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">Every Wednesday and Friday — year-round</div>
+          <div class="tl-text">Kept throughout the year (apart from the joyful fifty days from Pascha to Pentecost and a few feast exceptions). Wednesday recalls the council that resolved to betray Christ; Friday recalls His crucifixion. Observed strictly, like Lent — no animal products and no fish. This is the very practice attested in the <em>Didache</em> around AD 100.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">The Paramoun (vigil) fasts</div>
+          <div class="tl-text">Strict fasting on the eve of the great feasts of the Nativity and Theophany (Epiphany), preparing the faithful to receive the feast.</div>
+        </div>
+      </div>
+      <p>Beneath the variety lies a single rhythm: the Church&rsquo;s year breathes in and out between fasting and feasting. Every great joy is preceded by a fast, and every fast is crowned by a feast — so that the body and soul together pass from preparation to celebration, from the wilderness to the Kingdom.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="how">
+    <div class="sec-h" onclick="ts(this)"><h2>How the Copts Fast</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>Coptic fasting has two dimensions, and both belong to it. The first is <em>abstaining from food and drink altogether</em> for part of the day — traditionally from midnight until a set hour, often the ninth hour (about three in the afternoon) or until the Divine Liturgy has ended. The second is, when one does eat, <em>keeping a strict vegan diet</em>: no meat, poultry, eggs, milk, butter, cheese, or any other animal product.</p>
+      <p>The degree of strictness varies by season. During the lighter fasts — the Nativity Fast, the Apostles&rsquo; Fast, and the Fast of the Theotokos — <strong style="color:var(--gold)">fish is permitted</strong>. During the strict fasts — Great Lent, the Fast of Nineveh, Holy Week, and every Wednesday and Friday — even fish is set aside, and the diet is entirely plant-based.</p>
+      <p>Why a vegan diet in particular? The Fathers saw in it a return to the food of Paradise. Before the Fall, God gave humankind only the fruit of the earth:</p>
+      <div class="sv">"Behold, I have given you every plant yielding seed that is on the face of all the earth, and every tree with seed in its fruit. You shall have them for food."<cite>Genesis 1:29 (ESV)</cite></div>
+      <p>The eating of flesh was permitted only after the Flood — a concession to a fallen world: "Every moving thing that lives shall be food for you" (Genesis 9:3). To fast from animal products, then, is to step briefly back behind the Fall, to eat as Adam ate, and to loosen the grip of an appetite that entered the world with death. It is not that meat is unclean — the Church blesses and gives thanks for it on every feast — but that abstaining from it for a season disciplines the body and recalls Eden.</p>
+      <p>Two cautions the Church herself insists upon. First, the fast is adjusted for the weak: the sick, the elderly, young children, expectant and nursing mothers, and those doing heavy labour are not bound to its full rigour. Fasting is medicine, and medicine is dosed to the patient. Second — and far more important — the bodily fast is worthless without the inward one. To abstain from meat while feasting on anger and gossip, the Fathers say, is no fast at all.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="fathers">
+    <div class="sec-h" onclick="ts(this)"><h2>Voices of the Fathers</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>The witness to fasting runs from the earliest Christian manual through the great preachers of the fourth century. Two themes recur: that fasting is an ancient and binding part of Christian life, and that its whole worth lies in the change of heart it serves.</p>
+      <div class="fc-grid">
+        <div class="fc">
+          <div class="fc-name">The Didache (c. AD 80&ndash;100)</div>
+          <div class="fc-body">"But let not your fasts be with the hypocrites, for they fast on the second and fifth day of the week. Rather, fast on the fourth day and the Preparation (Friday)."</div>
+          <div class="fc-src">Didache 8 (ANF, Roberts-Donaldson) — the Wednesday &amp; Friday fast, attested c. AD 100 <span class="tag tag-d">Direct quote</span></div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. John Chrysostom (d. 407)</div>
+          <div class="fc-body">"The honour of fasting consists not in abstinence from food, but in withdrawing from sinful practices… let not the mouth only fast, but also the eye, and the ear, and the feet, and the hands, and all the members of our bodies."</div>
+          <div class="fc-src">Homily 3 on the Statues §11 (NPNF 1st Series, Vol. 9) <span class="tag tag-d">Direct quote</span></div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Basil the Great (d. 379)</div>
+          <div class="fc-body">He taught that fasting is as old as Paradise: the first command God gave Adam — "you shall not eat" of the tree — was itself a law of fasting and self-restraint. We fell, he said, because we did not fast; let us fast now that we may return.</div>
+          <div class="fc-src">First Homily on Fasting — summary of his argument <span class="tag tag-p">Paraphrase</span></div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Athanasius of Alexandria (d. 373)</div>
+          <div class="fc-body">In his annual Festal Letters the great Coptic father announced the dates of the Holy Forty Days to the churches of Egypt and urged all the faithful to keep the Lenten fast, binding the whole Church to the discipline in imitation of the Lord&rsquo;s forty days.</div>
+          <div class="fc-src">Festal Letters (NPNF 2nd Series, Vol. 4) — summary <span class="tag tag-p">Paraphrase</span></div>
+        </div>
+      </div>
+      <p>Chrysostom&rsquo;s words are the Church&rsquo;s own answer to the charge that fasting is empty ritual: the food-fast is nothing if the eyes, ears, hands, and tongue do not fast from sin. And the Didache shows that the Wednesday-and-Friday rhythm Copts keep to this day was already the Christian custom within living memory of the Apostles.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="objections">
+    <div class="sec-h" onclick="ts(this)"><h2>Objections &amp; Answers</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>The Protestant case against mandatory fasting rests on a handful of texts. Read in context, none of them condemns the fasting Christ commanded; each targets something quite different.</p>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Romans 14 — "One person esteems one day above another"</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">
+          <p>Paul is settling a quarrel between Jewish and Gentile believers who were <em>judging and despising one another</em> over private observance of days and foods (Romans 14:3&ndash;4). His point is pastoral: do not condemn a brother over disputable matters of conscience. This is not a ruling that the Church may never appoint a common fast; it is a warning against contempt and division. Indeed Paul, who wrote this, "fasted often" himself (2 Corinthians 11:27) and ordained with fasting (Acts 14:23). The Church&rsquo;s fasts are kept in love and freedom, not to despise the weak.</p>
+        </div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Colossians 2:16 — "Let no one pass judgment on you… in regard to food"</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">
+          <p>The whole chapter is aimed at false teachers binding the Colossians to the <em>Mosaic ceremonial law</em> and to a strange asceticism tied to "the worship of angels" and visions (Colossians 2:18). Paul tells the believers not to let these Judaizers condemn them for failing to keep the old shadows — "a festival or a new moon or a Sabbath… a shadow of the things to come" (2:17). He is dismissing the obligatory observance of the Old Covenant calendar, not the gospel discipline of fasting that the Lord Himself instituted.</p>
+        </div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Colossians 2:20&ndash;23 — "Do not handle, do not taste, do not touch"</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">
+          <p>These "regulations" have "an appearance of wisdom in promoting self-made religion and asceticism… but they are of no value in stopping the indulgence of the flesh" (2:23). Paul is condemning a proto-Gnostic asceticism that treated <em>matter itself as evil</em> and sought righteousness by rule-keeping apart from Christ. Orthodox fasting is the opposite: it honours the body as God&rsquo;s good creation, eats every food with thanksgiving outside the fast, and is rooted in Christ, not in self-salvation by abstinence.</p>
+        </div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">1 Timothy 4:1&ndash;5 — "doctrines of demons… abstinence from foods"</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">
+          <p>This is the sharpest objection, and the context answers it precisely. Paul condemns those who "forbid marriage and require abstinence from foods <em>that God created to be received with thanksgiving</em>… for everything created by God is good" (4:3&ndash;4). The error is teaching that certain foods or marriage are <em>intrinsically evil or unclean</em> — the doctrine of the Gnostics and later the Manichaeans. The Orthodox hold the exact opposite: all food is good, marriage is holy, and the fast is a <em>voluntary, temporary</em> abstaining from good things, after which they are received again with thanksgiving on the feast. To fast from a good gift for a season is not to call it evil.</p>
+        </div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">"Fasting is legalism — works-righteousness."</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">
+          <p>Fasting earns nothing and saves no one; the Orthodox confess that salvation is the gift of God&rsquo;s grace. Fasting is not payment but <em>training</em> — ascesis, the discipline of an athlete (1 Corinthians 9:25&ndash;27). It weakens the passions, frees the soul for prayer, and funds almsgiving. The Pharisee who boasted "I fast twice a week" went home unjustified (Luke 18:12); the danger is real. But the remedy for proud fasting is humble fasting, not no fasting at all — exactly as Christ taught when He said to fast in secret, before the Father alone (Matthew 6:18).</p>
+        </div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">"Jesus&rsquo; own disciples didn&rsquo;t fast." (Matthew 9:14)</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">
+          <p>Jesus answered that very objection Himself. The disciples did not fast while the Bridegroom was present — a wedding is no time to mourn — "but the days will come when the bridegroom is taken away from them, and then they will fast" (Matthew 9:15). That time is now: the age of the Church between the Ascension and the Lord&rsquo;s return. Far from excusing the Church from fasting, the verse <em>commands</em> it for precisely this age.</p>
+        </div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">"Fasting is just an empty external ritual."</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">
+          <p>The Fathers say this more forcefully than any critic. "The honour of fasting consists not in abstinence from food, but in withdrawing from sinful practices," says Chrysostom; let the eyes, ears, hands, and tongue fast too, for "what does it profit if we abstain from birds and fishes, and yet bite and devour our brethren?" The bodily fast is the outward scaffold for an inward repentance joined to prayer and mercy. Kept that way, it is not empty at all; kept as mere diet, it condemns itself — which is exactly the Orthodox teaching.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" id="coptic">
+    <div class="sec-h" onclick="ts(this)"><h2>Fasting in the Living Tradition</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <p>For the Copts, fasting is not an idea in a book but the texture of ordinary life. A Coptic household keeps the strict fast through the whole of Great Lent, cooking from a deep repertoire of vegan dishes — <em>ful</em> (stewed fava beans), <em>koshari</em>, lentils, vegetables, tahini and pickles — that the cuisine itself has shaped over centuries of fasting. Children grow up knowing which days are "fasting days," and the Wednesday-and-Friday rhythm marks the week as surely as Sunday does.</p>
+      <p>The fast is bound tightly to the sacraments. The faithful fast before receiving the Holy Communion — keeping the eucharistic fast from the night before — so that the first food of the day is the Body and Blood of Christ. The great fasts climax in the feasts they prepare: the Nativity Fast in the joy of Christmas, the Great Fast in the Resurrection, the Theotokos Fast in the feast of the Virgin&rsquo;s Dormition. Fasting and feasting are inseparable; the one makes the other sweet.</p>
+      <p>It is also a fast kept with the whole Church, and often with the wider community. In Egypt the long fasting seasons are publicly known; restaurants and shops offer "fasting" (vegan) food, and the rhythm of abstaining and feasting is woven into the shared life of an ancient Christian people who have kept it under every kind of pressure for nearly two thousand years.</p>
+      <p>What holds it all together is the conviction that the body and the soul are saved together. The Copt does not fast to punish the body or to earn heaven, but to offer the whole person — appetite and all — back to God, and to walk, in some small bodily way, the road the Lord walked into the wilderness and out again to the empty tomb.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="faq">
+    <div class="sec-h" onclick="ts(this)"><h2>FAQ</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Isn&rsquo;t fasting trying to earn salvation by works?</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">No. The Orthodox confess that salvation is God&rsquo;s gift, received by grace through faith and lived out in love. Fasting earns nothing; it is spiritual <em>training</em> — discipline for the body, fuel for prayer, and a source of alms for the poor. Christ commanded it ("when you fast"), so to keep it is obedience, not merit. The proud fast of the Pharisee is condemned; the humble fast in secret, before the Father alone, is what the Lord asked for.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Why do Copts fast from <em>animal products</em> rather than from all food?</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">They do both. There is a daily abstaining from <em>all</em> food and drink until a set hour, and then, when one eats, a vegan diet. The plant-based diet recalls the food of Paradise (Genesis 1:29), where no flesh was eaten; the eating of meat came only after the Flood (Genesis 9:3). To fast from animal products is to step briefly back behind the Fall — not because meat is unclean, but to discipline an appetite and remember Eden.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Doesn&rsquo;t 1 Timothy 4 call forbidding foods a "doctrine of demons"?</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">It condemns teaching that certain foods or marriage are <em>intrinsically evil</em> — the error of the Gnostics, "who forbid marriage and require abstinence from foods that God created to be received with thanksgiving" (1 Timothy 4:3). The Orthodox teach the opposite: all food is good and is received with thanksgiving on every feast. Fasting is a voluntary, temporary abstaining from good things — the very reverse of calling them unclean.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">What if I&rsquo;m sick, pregnant, elderly, or doing hard labour?</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">The Church relaxes the fast for those who cannot bear its full rigour — the sick, the elderly, young children, pregnant and nursing mothers, and those in heavy work or travel. Fasting is medicine, and medicine is dosed to the patient. Anyone unsure of how to fast should speak with their priest or father of confession, who applies the rule with discernment rather than rigidity.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Where does the Wednesday-and-Friday fast come from?</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">From the very first generation of Christians. The <em>Didache</em>, a manual from around AD 100, already directs believers to fast on "the fourth day and the Preparation" — Wednesday and Friday. Wednesday recalls the plot to betray Christ; Friday recalls His crucifixion. The Copts have kept this weekly fast unbroken ever since, which is why it is observed as strictly as Lent itself.</div>
+      </div>
+      <div class="fi">
+        <div class="fi-h" onclick="tf(this)"><span class="fi-q">Do other Orthodox and ancient churches fast like this?</span><span class="fi-arr">▶</span></div>
+        <div class="fi-body">Yes. The Eastern Orthodox, the other Oriental Orthodox churches (Armenian, Syriac, Ethiopian, Indian), and the ancient liturgical churches all keep substantial fasting seasons built on the same biblical and patristic foundations — the Forty Days, the weekly fast, and seasons before the great feasts. The Coptic Church keeps the fullest calendar of all, but the practice itself is the common inheritance of the undivided early Church.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" id="glossary">
+    <div class="sec-h" onclick="ts(this)"><h2>Glossary</h2><span class="arr">▶</span></div>
+    <div class="sec-body">
+      <div class="gt-grid">
+        <div class="gt"><div class="gt-term">Fasting (Coptic: <em>ṣawm</em>)</div><div class="gt-def">Abstaining from food and drink for part of the day and, when eating, keeping a vegan diet — undertaken for spiritual training, prayer, repentance, and almsgiving.</div></div>
+        <div class="gt"><div class="gt-term">Ascesis</div><div class="gt-def">From the Greek for an athlete&rsquo;s training. The spiritual discipline — fasting, prayer, vigil — by which the Christian trains the will and weakens the passions.</div></div>
+        <div class="gt"><div class="gt-term">The Great Fast</div><div class="gt-def">Coptic Great Lent: a 55-day fast before Pascha, joining a preparation week, the Holy Forty, and Holy Week. The strictest fast of the year.</div></div>
+        <div class="gt"><div class="gt-term">The Holy Forty</div><div class="gt-def">The forty days of Lent that imitate Christ&rsquo;s forty-day fast in the wilderness (Matthew 4:2), echoing Moses and Elijah before Him.</div></div>
+        <div class="gt"><div class="gt-term">Fast of Nineveh</div><div class="gt-def">A three-day fast before Great Lent recalling the repentance of Nineveh at Jonah&rsquo;s preaching (Jonah 3).</div></div>
+        <div class="gt"><div class="gt-term">Apostles&rsquo; Fast</div><div class="gt-def">A variable-length fast after Pentecost, ending on the feast of Sts. Peter and Paul, commemorating the apostles fasting before they preached (Acts 13).</div></div>
+        <div class="gt"><div class="gt-term">Fast of the Theotokos</div><div class="gt-def">A 15-day fast in August honouring the Virgin Mary, ending on the Feast of her Dormition (Assumption).</div></div>
+        <div class="gt"><div class="gt-term">Nativity Fast</div><div class="gt-def">The roughly 43-day Advent fast before the Feast of the Nativity (7 January), preparing for the coming of Christ in the flesh.</div></div>
+        <div class="gt"><div class="gt-term">Paramoun</div><div class="gt-def">The strict vigil-fast on the eve of the great feasts of the Nativity and Theophany (Epiphany).</div></div>
+        <div class="gt"><div class="gt-term">Eucharistic fast</div><div class="gt-def">The fast kept before receiving Holy Communion — abstaining from food and drink from the night before — so that the Body and Blood of Christ are the first food of the day.</div></div>
+        <div class="gt"><div class="gt-term">Didache</div><div class="gt-def">"The Teaching of the Twelve Apostles," a Christian manual of about AD 100 that already prescribes the Wednesday-and-Friday fast.</div></div>
+        <div class="gt"><div class="gt-term">Festal Letters</div><div class="gt-def">The annual letters of the Patriarch of Alexandria (notably St. Athanasius) announcing the date of Pascha and the start of the Lenten fast to the churches of Egypt.</div></div>
+      </div>
+    </div>
+  </div>
+</main>
+<script>
+window.addEventListener('scroll',()=>{const h=document.documentElement;document.getElementById('prog').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100+'%';});
+const navLinks=document.querySelectorAll('#sb-nav a[href^="#"]');
+const secs2=document.querySelectorAll('main .sec[id]');
+window.addEventListener('scroll',()=>{let cur='';secs2.forEach(s=>{if(s.getBoundingClientRect().top<=120)cur=s.id;});navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur);});},{passive:true});
+function ts(h){h.closest('.sec').classList.toggle('open');}
+function tf(h){h.closest('.fi').classList.toggle('open');}
+function sidebarSearch(q){
+  q=q.trim().toLowerCase();
+  const secs=document.querySelectorAll('main .sec');
+  let matched=0;
+  secs.forEach(sec=>{
+    if(!q){sec.classList.remove('s-hidden');const h2=sec.querySelector('.sec-h h2');if(h2._orig)h2.innerHTML=h2._orig;matched++;return;}
+    const h2=sec.querySelector('.sec-h h2');
+    const body=sec.querySelector('.sec-body');
+    const hit=(h2._orig||h2.textContent).toLowerCase().includes(q)||(body?body.textContent.toLowerCase():'').includes(q);
+    sec.classList.toggle('s-hidden',!hit);
+    if(hit){matched++;if(!h2._orig)h2._orig=h2.innerHTML;const re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');h2.innerHTML=h2._orig.replace(re,'<mark>$1</mark>');sec.classList.add('open');}
+  });
+  document.getElementById('sb-no-match').classList.toggle('show',!!q&&matched===0);
+}
+</script>
+<button id="ol-tt" onclick="olTheme()" aria-label="Toggle light or dark mode" title="Light/dark mode">☀</button><script>function olTheme(){var l=document.documentElement.classList.toggle('light');try{localStorage.setItem('ol-theme',l?'light':'dark')}catch(e){}olIcon()}function olIcon(){document.getElementById('ol-tt').textContent=document.documentElement.classList.contains('light')?'☾':'☀'}olIcon();</script>
+</body>
+</html>
