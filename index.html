@@ -52,20 +52,12 @@ a{color:inherit;text-decoration:none}
 
 /* ── Featured banner ── */
 .featured{max-width:1100px;margin:2.6rem auto 0;padding:0 1.5rem}
-.featured a{display:block;text-align:center;border:1px solid var(--gd);border-radius:10px;background:linear-gradient(180deg,var(--bg3),var(--bg2));padding:1.6rem 1rem;transition:transform .2s,box-shadow .2s}
+.featured a{position:relative;display:block;text-align:center;border:1px solid var(--gd);border-radius:10px;background:linear-gradient(180deg,var(--bg3),var(--bg2));padding:1.6rem 1rem;transition:transform .2s,box-shadow .2s;overflow:hidden}
+.featured a::before{content:'';position:absolute;inset:0;background:url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Christ_and_the_Abbot_Menas_Louvre_E11565_n02.jpg/500px-Christ_and_the_Abbot_Menas_Louvre_E11565_n02.jpg') center 28%/cover no-repeat;filter:sepia(.7) saturate(1.5) hue-rotate(-10deg) brightness(.85);opacity:.1;-webkit-mask-image:linear-gradient(90deg,transparent,#000 35%,#000 65%,transparent);mask-image:linear-gradient(90deg,transparent,#000 35%,#000 65%,transparent);pointer-events:none}
+.featured .f1,.featured .f2{position:relative;z-index:1}
 .featured a:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(0,0,0,.5)}
 .featured .f1{font-size:clamp(1.25rem,3vw,1.7rem);color:var(--gl);letter-spacing:.05em}
 .featured .f2{font-size:.85rem;color:var(--mu);font-style:italic;margin-top:.3rem}
-
-/* ── Icon band (authentic icons, gold/sepia duotone) ── */
-.iconband{max-width:1100px;margin:2.6rem auto 0;padding:0 1.5rem;display:flex;justify-content:center;align-items:flex-start;gap:clamp(1.1rem,5vw,3.4rem);flex-wrap:wrap}
-.ib-fig{text-align:center;margin:0}
-.ib-ring{width:clamp(112px,15vw,154px);height:clamp(112px,15vw,154px);border-radius:50%;border:2px solid var(--gd);padding:6px;background:radial-gradient(circle,var(--bg3),var(--bg));box-shadow:0 4px 20px rgba(0,0,0,.55);transition:transform .25s,box-shadow .25s,border-color .25s}
-.ib-photo{width:100%;height:100%;border-radius:50%;background-position:center top;background-size:cover;background-repeat:no-repeat;filter:sepia(.62) saturate(1.65) hue-rotate(-12deg) contrast(1.02) brightness(.95);-webkit-mask-image:radial-gradient(circle at 50% 50%,#000 60%,transparent 97%);mask-image:radial-gradient(circle at 50% 50%,#000 60%,transparent 97%);transition:filter .3s}
-.ib-fig:hover .ib-ring{transform:translateY(-5px);border-color:var(--gl);box-shadow:0 10px 30px rgba(0,0,0,.6)}
-.ib-fig:hover .ib-photo{filter:sepia(.22) saturate(1.25) contrast(1) brightness(1)}
-.ib-fig figcaption{margin-top:.7rem;font-size:.78rem;color:var(--mu);font-style:italic;letter-spacing:.03em;line-height:1.4}
-.ib-fig figcaption b{color:var(--gl);font-style:normal;font-weight:700;display:block;font-size:.84rem;letter-spacing:.02em}
 
 /* ── Sections ── */
 .container{max-width:1100px;margin:0 auto;padding:1.5rem 1.5rem 4rem}
@@ -100,8 +92,9 @@ section.atheism .lk{border-left-color:#5a4a7a}
 .s-hidden{display:none!important}
 
 /* ── Help section ── */
-.help{background:var(--bg2);border-top:3px solid var(--gd);margin-top:3.5rem}
-.help-in{max-width:900px;margin:0 auto;padding:3.2rem 1.5rem;text-align:center}
+.help{position:relative;overflow:hidden;background:var(--bg2);border-top:3px solid var(--gd);margin-top:3.5rem}
+.help::before{content:'';position:absolute;top:50%;left:-40px;transform:translateY(-50%);width:360px;height:480px;max-width:38%;background:url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Vladimirskaya_ikona.jpg/500px-Vladimirskaya_ikona.jpg') center top/cover no-repeat;filter:sepia(.7) saturate(1.5) hue-rotate(-10deg) brightness(.9);opacity:.1;-webkit-mask-image:radial-gradient(ellipse 60% 70% at 40% 50%,#000 22%,transparent 72%);mask-image:radial-gradient(ellipse 60% 70% at 40% 50%,#000 22%,transparent 72%);pointer-events:none}
+.help-in{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:3.2rem 1.5rem;text-align:center}
 .help-in h2{color:var(--gold);font-size:1.7rem;letter-spacing:.05em;margin-bottom:1.1rem}
 .help-in p{color:#fff;font-size:1rem;line-height:1.9;max-width:720px;margin:0 auto 1rem}
 .help-actions{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;margin-top:1.6rem}
@@ -187,22 +180,6 @@ html.light .lk-drop a::before{color:#b08e3e}
     <div class="f1">What it means to be a Christian</div>
     <div class="f2">Begin here — the foundation of everything else on this site</div>
   </a>
-</div>
-
-<!-- ── Icon band ── -->
-<div class="iconband" aria-label="Sacred icons of the Orthodox tradition">
-  <figure class="ib-fig">
-    <div class="ib-ring"><div class="ib-photo" role="img" aria-label="Icon of Christ and Abbot Mena" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Christ_and_the_Abbot_Menas_Louvre_E11565_n02.jpg/500px-Christ_and_the_Abbot_Menas_Louvre_E11565_n02.jpg')"></div></div>
-    <figcaption><b>Christ &amp; Abbot Mena</b>Coptic · 6th century</figcaption>
-  </figure>
-  <figure class="ib-fig">
-    <div class="ib-ring"><div class="ib-photo" role="img" aria-label="Christ Pantocrator of Sinai" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Spas_vsederzhitel_sinay.jpg/500px-Spas_vsederzhitel_sinay.jpg')"></div></div>
-    <figcaption><b>Christ Pantocrator</b>Sinai · 6th century</figcaption>
-  </figure>
-  <figure class="ib-fig">
-    <div class="ib-ring"><div class="ib-photo" role="img" aria-label="Theotokos of Vladimir" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Vladimirskaya_ikona.jpg/500px-Vladimirskaya_ikona.jpg')"></div></div>
-    <figcaption><b>Theotokos of Vladimir</b>Egg tempera · 12th century</figcaption>
-  </figure>
 </div>
 
 <div class="container">
