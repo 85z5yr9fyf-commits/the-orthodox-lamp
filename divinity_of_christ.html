@@ -123,6 +123,11 @@ html.light #sidenav a.active,html.light #sidenav a:hover{color:var(--gold)}
 
 
 
+
+
+
+
+
 /* AUTO-ENHANCE */
 html.js-anim .sec{opacity:0;transform:translateY(18px);transition:opacity .6s cubic-bezier(.16,.7,.3,1),transform .6s cubic-bezier(.16,.7,.3,1)}
 html.js-anim .sec.in{opacity:1;transform:none}
@@ -152,8 +157,7 @@ body,main,.sec,.sec-h,.sec-hd,.sec-body,.sec-bd,#sb,#sb-nav a{transition:backgro
 /* typography polish */
 main .sec-body p,main .sec-bd p{line-height:1.8}
 .sec-h,.sec-hd{letter-spacing:.005em}
-main .sec:first-of-type .sec-body>p:first-child::first-letter,
-main .sec:first-of-type .sec-bd>p:first-child::first-letter{float:left;font-size:3.1em;line-height:.78;padding:6px 10px 0 0;color:var(--ol-acc);font-weight:700}
+p.ol-lead::first-letter{float:left;font-size:3.1em;line-height:.78;padding:6px 10px 0 0;color:var(--ol-acc);font-weight:700}
 /* card hover depth */
 [class*="-card"],[class*="-box"],.vbox{transition:transform .22s cubic-bezier(.16,.7,.3,1),box-shadow .22s ease,border-color .22s ease,background-color .35s ease,color .35s ease}
 [class*="-card"]:hover,[class*="-box"]:hover,.vbox:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.28)}
@@ -166,12 +170,6 @@ html.light [class*="-card"]:hover,html.light [class*="-box"]:hover,html.light .v
 @keyframes olDot{to{transform:translateY(-50%) scale(1)}}
 /* bare blockquote uplift (does not touch styled quote-cards) */
 main blockquote{border-left:3px solid var(--ol-acc);padding:8px 0 8px 18px;margin:18px 0;font-style:italic}
-/* collapsible source section (JS-driven, default expanded) */
-.ol-srctoggle{cursor:pointer;user-select:none}
-.ol-srctoggle .ol-srcq{font-size:.75rem;opacity:.6;margin-left:8px;font-weight:400;transition:transform .25s;display:inline-block}
-.ol-src-collapsed .ol-srctoggle .ol-srcq{transform:rotate(-90deg)}
-.ol-src-body{overflow:hidden;transition:max-height .4s ease,opacity .3s ease}
-.ol-src-collapsed .ol-src-body{max-height:0!important;opacity:0}
 /* END-AESTHETIC2 */
 </style>
 <script>try{if(localStorage.getItem('ol-theme')==='light')document.documentElement.classList.add('light')}catch(e){}</script>
@@ -386,6 +384,8 @@ document.querySelector('.sec').classList.add('open');
 </script>
 <button id="ol-tt" onclick="olTheme()" aria-label="Toggle light or dark mode" title="Light/dark mode">☀</button><script>function olTheme(){var l=document.documentElement.classList.toggle('light');try{localStorage.setItem('ol-theme',l?'light':'dark')}catch(e){}olIcon()}function olIcon(){document.getElementById('ol-tt').textContent=document.documentElement.classList.contains('light')?'☾':'☀'}olIcon();</script>
 
+
+
 <script>
 /* AUTO-ENHANCE-JS */
 (function(){
@@ -427,22 +427,9 @@ document.querySelector('.sec').classList.add('open');
         s.parentNode.insertBefore(d,s);
       }
     });
-    // collapsible source sections (default expanded; preserves verifiability)
-    ['sources','srch','refs'].forEach(function(id){
-      var box=document.getElementById(id);
-      if(!box||box.dataset.olSrc) return;
-      var head=box.querySelector(':scope > h2,:scope > h3,:scope > .sec-h,:scope > .sec-hd')||box.querySelector('h2,h3');
-      if(!head) return;
-      box.dataset.olSrc='1';
-      head.classList.add('ol-srctoggle');head.setAttribute('role','button');head.setAttribute('tabindex','0');
-      var q=document.createElement('span');q.className='ol-srcq';q.textContent='\u25be';head.appendChild(q);
-      var body=document.createElement('div');body.className='ol-src-body';
-      var n=head.nextSibling;while(n){var nx=n.nextSibling;body.appendChild(n);n=nx;}
-      box.appendChild(body);body.style.maxHeight=body.scrollHeight+'px';
-      function tog(){var c=box.classList.toggle('ol-src-collapsed');body.style.maxHeight=c?'0':body.scrollHeight+'px';}
-      head.addEventListener('click',tog);
-      head.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();tog();}});
-    });
+    // drop-cap on the first section's opening paragraph (chapter-opener feel)
+    var lead=document.querySelector('main .sec .sec-body p, main .sec .sec-bd p');
+    if(lead && (lead.textContent||'').trim().length>40){ lead.classList.add('ol-lead'); }
   }catch(e){}
 })();
 /* END-AESTHETIC2-JS */</script>
