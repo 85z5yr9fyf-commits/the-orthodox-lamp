@@ -126,6 +126,13 @@ html.light #sidenav a.active,html.light #sidenav a:hover{color:var(--gold)}
 
 
 
+
+
+
+
+
+
+
 /* AUTO-ENHANCE */
 html.js-anim .sec{opacity:0;transform:translateY(18px);transition:opacity .6s cubic-bezier(.16,.7,.3,1),transform .6s cubic-bezier(.16,.7,.3,1)}
 html.js-anim .sec.in{opacity:1;transform:none}
@@ -206,6 +213,13 @@ html.light .ol-modal{box-shadow:0 24px 70px rgba(40,30,10,.22)}
 .ol-r mark{background:rgba(201,168,76,.32);color:inherit;border-radius:2px;padding:0 1px}
 .r-empty{padding:26px 18px;text-align:center;color:var(--mu);font-size:.92rem}
 .ol-hint{border-top:1px solid var(--br);padding:9px 18px;font-size:.74rem;color:var(--mu);letter-spacing:.03em}
+.ol-r .r-s.r-topic::before{content:"\2756  ";color:var(--gd,#c9a84c)}
+/* verse-mode card */
+.ol-vcard{margin:6px 6px 4px;padding:14px 16px;border:1px solid var(--br);border-radius:10px;background:var(--bg,#1a140a)}
+.ol-vcard .vref{font-weight:700;color:var(--gd,#c9a84c);font-size:1rem}
+.ol-vcard .vkjv{display:block;margin-top:7px;font-size:.93rem;line-height:1.6;color:var(--tx,#e7ddc8)}
+.ol-vcard .vkjv em{font-style:normal;font-size:.64rem;color:var(--mu);border:1px solid var(--br);border-radius:4px;padding:0 5px;margin-left:6px;letter-spacing:.06em;vertical-align:middle}
+.ol-vcard .vmeta{display:block;margin-top:8px;font-size:.76rem;color:var(--mu);line-height:1.5}
 /* scripture verse + tooltip */
 .ol-verse{border-bottom:1px dotted var(--gd,#c9a84c);cursor:help;text-decoration:none}
 .ol-tip{position:absolute;z-index:1100;max-width:330px;background:var(--bg2,#221a0e);color:var(--tx,#e7ddc8);border:1px solid var(--br);border-radius:10px;padding:12px 15px;font-size:.9rem;line-height:1.55;box-shadow:0 12px 34px rgba(0,0,0,.5);pointer-events:none}
@@ -435,6 +449,9 @@ document.querySelector('.sec').classList.add('open');
 
 
 
+
+
+
 <script>
 /* AUTO-ENHANCE-JS */
 (function(){
@@ -504,12 +521,14 @@ document.querySelector('.sec').classList.add('open');
         else{var t=document.createElement('textarea');t.value=url;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(t);ok();}
       });
       var arr=h.querySelector('.arr');
-      if(arr)h.insertBefore(b,arr);else h.appendChild(b);
+      if(arr&&arr.parentNode===h)h.insertBefore(b,arr);else h.appendChild(b);
     });
 
     /* ---- shared index + bundled KJV ---- */
-    var IDX=null,idxP=null;
-    function loadIndex(){if(idxP)return idxP;idxP=fetch('search-index.json').then(function(r){return r.json();}).then(function(d){IDX=d;return d;});return idxP;}
+    var IDX=null,idxP=null,SEC={};
+    function loadIndex(){if(idxP)return idxP;idxP=fetch('search-index.json').then(function(r){return r.json();}).then(function(d){IDX=d;(d.pages||[]).forEach(function(p){var m={};(p.secs||[]).forEach(function(s){m[s.a]=s.h;});SEC[p.f]=m;});return d;});return idxP;}
+    var VP=null,vpP=null;
+    function loadVP(){if(vpP)return vpP;vpP=fetch('verse-pages.json').then(function(r){return r.json();}).then(function(d){VP=d;return d;}).catch(function(){VP={};});return vpP;}
     var VERSES=null;
     fetch('verses.json').then(function(r){return r.json();}).then(function(d){VERSES=d;}).catch(function(){VERSES={};});
 
@@ -528,33 +547,121 @@ document.querySelector('.sec').classList.add('open');
 
     /* ---- 3. site-wide search ---- */
     var ov=document.createElement('div');ov.className='ol-ov';
-    ov.innerHTML='<div class="ol-modal" role="dialog" aria-label="Search all topics"><input class="ol-search-input" type="text" placeholder="Search all topics…" aria-label="Search all topics" autocomplete="off"><div class="ol-results" role="listbox"></div><div class="ol-hint">↑↓ navigate · ↵ open · esc close</div></div>';
+    ov.innerHTML='<div class="ol-modal" role="dialog" aria-label="Search topics and verses"><input class="ol-search-input" type="text" placeholder="Search topics or a Bible verse (e.g. John 3:16)…" aria-label="Search topics and Bible verses" autocomplete="off"><div class="ol-results" role="listbox"></div><div class="ol-hint">↑↓ navigate · ↵ open · esc close · type a reference like Rom 5 or 1 Cor 10:12</div></div>';
     document.body.appendChild(ov);
     var input=ov.querySelector('.ol-search-input');
     var results=ov.querySelector('.ol-results');
     var flat=[],sel=-1;
     function hilite(text,q){if(!q)return esc(text);var i=text.toLowerCase().indexOf(q);if(i<0)return esc(text);return esc(text.slice(0,i))+'<mark>'+esc(text.slice(i,i+q.length))+'</mark>'+esc(text.slice(i+q.length));}
-    function render(){
-      var q=(input.value||'').trim().toLowerCase();
+
+    /* fuzzy / typo-tolerant scorer */
+    function lev(a,b){var m=a.length,n=b.length;if(!m)return n;if(!n)return m;var prev=[],cur=[],i,j;for(j=0;j<=n;j++)prev[j]=j;for(i=1;i<=m;i++){cur[0]=i;for(j=1;j<=n;j++){var c=a.charAt(i-1)===b.charAt(j-1)?0:1;cur[j]=Math.min(prev[j]+1,cur[j-1]+1,prev[j-1]+c);}for(j=0;j<=n;j++)prev[j]=cur[j];}return prev[n];}
+    function scoreText(hay,q){
+      if(!q)return 0.5;hay=String(hay).toLowerCase();
+      var idx=hay.indexOf(q);
+      if(idx===0)return 1000;
+      if(idx>0)return 800-idx;
+      var words=hay.split(/[^a-z0-9]+/),best=-1,w,word,d,thr;
+      for(w=0;w<words.length;w++){word=words[w];if(!word)continue;
+        if(word.indexOf(q)===0){best=Math.max(best,600);continue;}
+        if(q.length>=4){thr=q.length<=5?1:2;d=lev(word,q);if(d<=thr)best=Math.max(best,420-d*40);}
+      }
+      if(best>=0)return best;
+      var hi=0,qi=0;for(;hi<hay.length&&qi<q.length;hi++){if(hay.charAt(hi)===q.charAt(qi))qi++;}
+      if(qi===q.length)return 200;
+      return -1;
+    }
+
+    /* Bible-book resolver (abbreviations + full names) */
+    var BK={};
+    function reg(c,al){BK[c.toLowerCase().replace(/\s+/g,'')]=c;al.split(',').forEach(function(a){a=a.replace(/\s+/g,'');if(a)BK[a]=c;});}
+    reg('Genesis','gen,ge,gn');reg('Exodus','exo,ex,exod');reg('Leviticus','lev,le,lv');reg('Numbers','num,nu,nm,nb');
+    reg('Deuteronomy','deut,dt,deu');reg('Joshua','josh,jos,jsh');reg('Judges','judg,jdg,jg,jdgs');reg('Ruth','rut,ru,rth');
+    reg('1 Samuel','1sam,1sa,1s,1sm');reg('2 Samuel','2sam,2sa,2s,2sm');reg('1 Kings','1kings,1kgs,1ki,1kg');reg('2 Kings','2kings,2kgs,2ki,2kg');
+    reg('1 Chronicles','1chron,1chr,1ch');reg('2 Chronicles','2chron,2chr,2ch');reg('Ezra','ezr');reg('Nehemiah','neh,ne');
+    reg('Esther','est,esth,es');reg('Job','jb');reg('Psalms','ps,psa,psalm,pss,psm');reg('Proverbs','prov,pro,prv,pr');
+    reg('Ecclesiastes','eccl,ecc,ec,eccles,qoh');reg('Song of Solomon','song,sos,songofsongs,canticles,cant,ss');
+    reg('Isaiah','isa,is,isai');reg('Jeremiah','jer,jr');reg('Lamentations','lam,la');reg('Ezekiel','ezek,eze,ezk');
+    reg('Daniel','dan,da,dn');reg('Hosea','hos,ho');reg('Joel','joe,jl');reg('Amos','am,amo');reg('Obadiah','obad,ob,oba');
+    reg('Jonah','jon,jnh');reg('Micah','mic,mc');reg('Nahum','nah,na');reg('Habakkuk','hab');reg('Zephaniah','zeph,zep,zp');
+    reg('Haggai','hag,hg');reg('Zechariah','zech,zec,zc');reg('Malachi','mal,ml');reg('Matthew','matt,mt,mat');
+    reg('Mark','mk,mar,mrk');reg('Luke','lk,luk,lu');reg('John','jn,joh,jhn');reg('Acts','act,ac');reg('Romans','rom,ro,rm');
+    reg('1 Corinthians','1cor,1co,1c');reg('2 Corinthians','2cor,2co,2c');reg('Galatians','gal,ga');reg('Ephesians','eph,ephes');
+    reg('Philippians','phil,php,pp');reg('Colossians','col');reg('1 Thessalonians','1thess,1thes,1th');reg('2 Thessalonians','2thess,2thes,2th');
+    reg('1 Timothy','1tim,1ti,1tm');reg('2 Timothy','2tim,2ti,2tm');reg('Titus','tit,ti,tts');reg('Philemon','philem,phlm,phm,pm');
+    reg('Hebrews','heb,hebr');reg('James','jas,jm,jms');reg('1 Peter','1pet,1pe,1pt,1p');reg('2 Peter','2pet,2pe,2pt,2p');
+    reg('1 John','1john,1jn,1jo,1j');reg('2 John','2john,2jn,2jo,2j');reg('3 John','3john,3jn,3jo,3j');reg('Jude','jud,jd');
+    reg('Revelation','rev,re,rv,apocalypse,apoc');
+    function parseRef(raw){
+      if(!raw)return null;
+      var m=raw.match(/^\s*([1-3]?\s*[a-zA-Z][a-zA-Z\s]*?)\s*(\d{1,3})(?:\s*[:.\s]\s*(\d{1,3}))?\s*$/);
+      if(!m)return null;
+      var bk=m[1].toLowerCase().replace(/[\s.]+/g,'');var canon=BK[bk];
+      if(!canon)return null;
+      return {canon:canon,ch:parseInt(m[2],10),vs:m[3]?parseInt(m[3],10):null};
+    }
+    function uniqPages(entries){var seen={},out=[];entries.forEach(function(e){if(!seen[e[0]]){seen[e[0]]=1;out.push({f:e[0],t:e[1],a:e[2]});}});return out;}
+    function rowsHTML(){
+      if(!flat.length)return '<div class="r-empty">No page cites this on the site yet.</div>';
+      return flat.map(function(r,i){return '<a class="ol-r'+(i===sel?' sel':'')+'" data-i="'+i+'" href="'+r.f+(r.a?'#'+r.a:'')+'"><span class="r-t">'+esc(r.t)+'</span>'+(r.sub?'<span class="r-s">'+esc(r.sub)+'</span>':'')+'</a>';}).join('');
+    }
+
+    function renderVerse(vq){
+      if(!VP){results.innerHTML='<div class="r-empty">Loading verse index…</div>';flat=[];sel=-1;return;}
+      var canon=vq.canon,ch=vq.ch,vs=vq.vs,card='',rows=[];
+      if(vs!=null){
+        var key=canon+' '+ch+':'+vs,e=VP[key];
+        card='<div class="ol-vcard"><span class="vref">'+esc(key)+'</span>'+(e&&e.k?'<span class="vkjv">'+esc(e.k)+'<em>KJV</em></span>':'')+(e?'':'<span class="vmeta">Not cited on the site yet.</span>')+'</div>';
+        if(e)rows=uniqPages(e.r);
+      }else{
+        var prefix=canon+' '+ch+':',vnums=[],agg=[];
+        Object.keys(VP).forEach(function(k){if(k.indexOf(prefix)===0){vnums.push(parseInt(k.slice(prefix.length),10));VP[k].r.forEach(function(r){agg.push(r);});}});
+        vnums.sort(function(a,b){return a-b;});
+        card='<div class="ol-vcard"><span class="vref">'+esc(canon+' '+ch)+'</span><span class="vmeta">'+(vnums.length?'Verses cited here: '+vnums.join(', '):'No verses from this chapter are cited yet.')+'</span></div>';
+        rows=uniqPages(agg);
+      }
+      flat=rows.map(function(r){return {f:r.f,t:r.t,a:r.a,sub:(SEC[r.f]&&SEC[r.f][r.a])?SEC[r.f][r.a]:''};});
+      sel=flat.length?0:-1;
+      results.innerHTML=card+rowsHTML();
+    }
+
+    function renderText(q){
       flat=[];
       if(IDX&&IDX.pages){
-        IDX.pages.forEach(function(p){
-          var pt=p.t.toLowerCase();var pi=pt.indexOf(q);
-          if(!q||pi>=0)flat.push({f:p.f,t:p.t,sub:'',sc:(!q?1:(pi===0?0:1))});
-          if(q&&p.secs)p.secs.forEach(function(s){if(s.h.toLowerCase().indexOf(q)>=0)flat.push({f:p.f,t:p.t,sub:s.h,a:s.a,sc:2});});
-        });
+        if(!q){
+          IDX.pages.slice().sort(function(a,b){return a.t.localeCompare(b.t);}).forEach(function(p){flat.push({f:p.f,t:p.t,sub:'',a:'',sc:0});});
+        }else{
+          IDX.pages.forEach(function(p){
+            var ts=scoreText(p.t,q),bs=null,bss=-1,kw=-1,kwn='';
+            if(p.secs)p.secs.forEach(function(s){var sc=scoreText(s.h,q)*0.85;if(sc>bss){bss=sc;bs=s;}});
+            if(p.kw)p.kw.forEach(function(k){var sc=scoreText(k,q)*0.7;if(sc>kw){kw=sc;kwn=k;}});
+            var best=Math.max(ts,bss,kw);if(best<=0)return;
+            var it={f:p.f,t:p.t,sc:best};
+            if(best===bss&&bs){it.sub=bs.h;it.a=bs.a;}
+            else if(best===kw&&kwn){it.sub='topic · '+kwn;it.topic=1;}
+            else it.sub='';
+            flat.push(it);
+          });
+          flat.sort(function(a,b){return b.sc-a.sc;});
+        }
       }
-      if(q)flat.sort(function(a,b){return a.sc-b.sc;});
-      flat=flat.slice(0,40);
-      sel=flat.length?0:-1;
-      if(!flat.length){results.innerHTML='<div class="r-empty">'+(IDX?'No matches found':'Loading index…')+'</div>';return;}
+      flat=flat.slice(0,40);sel=flat.length?0:-1;
+      if(!flat.length){results.innerHTML='<div class="r-empty">'+(IDX?'No matches — try a topic or a Bible verse (e.g. John 3:16)':'Loading index…')+'</div>';return;}
       results.innerHTML=flat.map(function(r,i){
-        return '<a class="ol-r'+(i===sel?' sel':'')+'" data-i="'+i+'" href="'+r.f+(r.a?'#'+r.a:'')+'"><span class="r-t">'+hilite(r.t,q)+'</span>'+(r.sub?'<span class="r-s">'+hilite(r.sub,q)+'</span>':'')+'</a>';
+        return '<a class="ol-r'+(i===sel?' sel':'')+'" data-i="'+i+'" href="'+r.f+(r.a?'#'+r.a:'')+'"><span class="r-t">'+hilite(r.t,q)+'</span>'+(r.sub?'<span class="r-s'+(r.topic?' r-topic':'')+'">'+(r.topic?esc(r.sub):hilite(r.sub,q))+'</span>':'')+'</a>';
       }).join('');
+    }
+
+    function render(){
+      var raw=(input.value||'').trim();
+      var vq=parseRef(raw);
+      if(vq){if(!VP)loadVP().then(function(){if(ov.classList.contains('open')&&parseRef((input.value||'').trim()))render();});renderVerse(vq);return;}
+      renderText(raw.toLowerCase());
     }
     function setSel(i){var a=results.querySelectorAll('.ol-r');if(!a.length)return;sel=(i+a.length)%a.length;a.forEach(function(el,j){el.classList.toggle('sel',j===sel);});a[sel].scrollIntoView({block:'nearest'});}
     function go(){if(sel>=0&&flat[sel]){var r=flat[sel];location.href=r.f+(r.a?'#'+r.a:'');}}
-    function openS(){ov.classList.add('open');document.body.style.overflow='hidden';input.value='';render();loadIndex().then(function(){if(ov.classList.contains('open'))render();}).catch(function(){});setTimeout(function(){input.focus();},30);}
+    function openS(seed){ov.classList.add('open');document.body.style.overflow='hidden';input.value=seed||'';render();loadIndex().then(function(){if(ov.classList.contains('open'))render();}).catch(function(){});loadVP().then(function(){if(ov.classList.contains('open'))render();}).catch(function(){});setTimeout(function(){input.focus();if(seed)input.select();},30);}
+    window.__olOpenSearch=openS;
     function closeS(){ov.classList.remove('open');document.body.style.overflow='';}
     input.addEventListener('input',render);
     input.addEventListener('keydown',function(e){
@@ -570,7 +677,7 @@ document.querySelector('.sec').classList.add('open');
       else if(e.key==='Escape'&&ov.classList.contains('open')){closeS();}
     });
     var launcher=document.createElement('button');launcher.className='ol-search-btn';launcher.type='button';
-    launcher.innerHTML='Search all topics <span>/</span>';launcher.addEventListener('click',openS);
+    launcher.innerHTML='Search topics &amp; verses <span>/</span>';launcher.addEventListener('click',function(){openS();});
     var sbs=document.querySelector('.sb-search');
     if(sbs&&sbs.parentNode)sbs.parentNode.insertBefore(launcher,sbs);
     else{var nav=document.querySelector('#sidebar nav,#sb nav,#sidebar,#sb');if(nav)nav.insertBefore(launcher,nav.firstChild);}
