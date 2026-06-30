@@ -139,8 +139,52 @@ html.light .purpose{color:#3a3012;text-shadow:none}
 html.light .help-in p{color:#3a3012}
 html.light .verse-btn:hover{color:#e8c96a}
 html.light .lk-drop a::before{color:#b08e3e}
+
+/* ════ Motion & transitions ════ */
+/* Card hover glow + smoother accordion */
+.lk:hover{border-color:var(--acc,var(--gd));box-shadow:0 4px 18px color-mix(in srgb,var(--acc,var(--gd)) 28%,transparent)}
+.lk-drop{transition:max-height .4s cubic-bezier(.4,0,.2,1),border-color .25s ease,padding .4s ease}
+/* Sticky nav gains depth once scrolled */
+.snav{transition:box-shadow .3s ease,background .3s ease}
+.snav.scrolled{background:rgba(8,8,8,.98);box-shadow:0 6px 22px rgba(0,0,0,.5)}
+html.light .snav.scrolled{background:rgba(243,237,222,.98)}
+
+/* All motion below only when JS is on AND user hasn't requested reduced motion */
+html.js-anim .container>section,
+html.js-anim .featured,
+html.js-anim .help{opacity:0;transform:translateY(28px);transition:opacity .75s ease,transform .75s cubic-bezier(.22,.61,.36,1)}
+html.js-anim .container>section.in,
+html.js-anim .featured.in,
+html.js-anim .help.in{opacity:1;transform:none}
+
+/* Cards stagger in after their section reveals */
+html.js-anim .container>section .lk{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s cubic-bezier(.22,.61,.36,1)}
+html.js-anim .container>section.in .lk{opacity:1;transform:none}
+html.js-anim .container>section.in .lk:nth-child(2){transition-delay:.06s}
+html.js-anim .container>section.in .lk:nth-child(3){transition-delay:.12s}
+html.js-anim .container>section.in .lk:nth-child(4){transition-delay:.18s}
+html.js-anim .container>section.in .lk:nth-child(5){transition-delay:.24s}
+html.js-anim .container>section.in .lk:nth-child(6){transition-delay:.30s}
+html.js-anim .container>section.in .lk:nth-child(7){transition-delay:.36s}
+html.js-anim .container>section.in .lk:nth-child(n+8){transition-delay:.42s}
+
+/* Section-title underline sweeps across on reveal */
+html.js-anim .sec-head::after{transform:scaleX(0);transform-origin:left;transition:transform .85s cubic-bezier(.22,.61,.36,1) .15s}
+html.js-anim .container>section.in .sec-head::after{transform:scaleX(1)}
+
+/* Hero staggers in on page load */
+html.js-anim .hero .lampsvg,
+html.js-anim .hero h1,
+html.js-anim .hero .verse-btn,
+html.js-anim .hero .purpose{opacity:0;animation:heroIn .85s cubic-bezier(.22,.61,.36,1) forwards}
+html.js-anim .hero .lampsvg{animation-delay:.1s}
+html.js-anim .hero h1{animation-delay:.28s}
+html.js-anim .hero .verse-btn{animation-delay:.52s}
+html.js-anim .hero .purpose{animation-delay:.62s}
+@keyframes heroIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
 </style>
-<script>try{if(localStorage.getItem('ol-theme')==='light')document.documentElement.classList.add('light')}catch(e){}</script>
+<script>try{if(localStorage.getItem('ol-theme')==='light')document.documentElement.classList.add('light')}catch(e){}
+try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('js-anim')}catch(e){}</script>
 </head>
 <body>
 
@@ -708,6 +752,33 @@ function doSearch(q){
   });
   document.getElementById('no-results').classList.toggle('show',hits===0);
 }
+</script>
+<script>
+(function(){
+  var animOn=document.documentElement.classList.contains('js-anim');
+  var nav=document.querySelector('.snav');
+  if(nav){
+    var onScroll=function(){nav.classList.toggle('scrolled',window.scrollY>80)};
+    onScroll();window.addEventListener('scroll',onScroll,{passive:true});
+  }
+  if(!animOn||!('IntersectionObserver' in window)){
+    // Fallback: ensure everything is visible if observer unsupported
+    document.querySelectorAll('.container>section,.featured,.help').forEach(function(e){e.classList.add('in')});
+    return;
+  }
+  var targets=document.querySelectorAll('.container>section,.featured,.help');
+  var io=new IntersectionObserver(function(ents){
+    ents.forEach(function(en){
+      if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}
+    });
+  },{threshold:.12,rootMargin:'0px 0px -7% 0px'});
+  targets.forEach(function(t){io.observe(t);});
+  // While searching, reveal everything so matches in un-scrolled sections show
+  var sb=document.getElementById('search');
+  if(sb)sb.addEventListener('input',function(){
+    if(this.value.trim())targets.forEach(function(t){t.classList.add('in');});
+  });
+})();
 </script>
 <button id="ol-tt" onclick="olTheme()" aria-label="Toggle light or dark mode" title="Light/dark mode">☀</button>
 <script>function olTheme(){var l=document.documentElement.classList.toggle('light');try{localStorage.setItem('ol-theme',l?'light':'dark')}catch(e){}olIcon()}function olIcon(){document.getElementById('ol-tt').textContent=document.documentElement.classList.contains('light')?'☾':'☀'}olIcon();</script>
