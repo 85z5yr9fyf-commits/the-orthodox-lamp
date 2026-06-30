@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sources & Bibliography — The Orthodox Lamp</title>
+<style>
+:root{--gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;--bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--tx:#e8e0d0;--mu:#a09880;--red:#8b2020;--br:#2a2a2a;--bg5:#3a2e10;--sidebar-w:270px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.7;display:flex;flex-direction:column;min-height:100vh}
+a{color:var(--gold);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ── Progress bar ── */
+#prog{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--gd),var(--gold),var(--gl));z-index:9999;transition:width .1s}
+
+/* ── Sidebar ── */
+#sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:200;transform:translateX(0);transition:transform .3s}
+#sidebar header{padding:1.4rem 1.2rem 1rem;border-bottom:1px solid var(--br)}
+#sidebar header .logo{font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem}
+#sidebar header h2{font-size:.85rem;color:var(--gl);line-height:1.3}
+#sb-nav{padding:.8rem 0 2rem}
+#sb-nav a{display:block;padding:.42rem 1.2rem;font-size:.78rem;color:var(--mu);border-left:2px solid transparent;transition:all .2s;line-height:1.4}
+#sb-nav a:hover{color:var(--tx);background:var(--bg3);text-decoration:none}
+#sb-nav a.active{color:var(--gold);border-left-color:var(--gold);background:var(--bg5)}
+#sb-nav .sb-group{font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gd);padding:.9rem 1.2rem .3rem;display:block}
+
+/* ── Mobile toggle ── */
+#menu-btn{display:none;position:fixed;top:.8rem;left:.8rem;z-index:300;background:var(--bg3);border:1px solid var(--br);color:var(--gold);font-size:1.1rem;width:2.2rem;height:2.2rem;border-radius:6px;cursor:pointer;align-items:center;justify-content:center}
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:150}
+#overlay.show{display:block}
+
+/* ── Main ── */
+#main{margin-left:var(--sidebar-w);flex:1;min-width:0}
+
+/* ── Hero ── */
+.hero{text-align:center;padding:5rem 2rem 3.5rem;background:linear-gradient(180deg,var(--bg2) 0%,var(--bg) 100%);border-bottom:1px solid var(--br);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(201,168,76,.08) 0%,transparent 70%);pointer-events:none}
+.back{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gd);border:1px solid var(--gd);padding:.2rem .7rem;border-radius:3px;margin-bottom:1.5rem;transition:color .2s,border-color .2s}
+.back:hover{color:var(--gold);border-color:var(--gold);text-decoration:none}
+.si{font-size:2.4rem;color:var(--gold);display:block;margin-bottom:.6rem}
+.st{font-size:clamp(1.6rem,4vw,2.6rem);font-weight:700;letter-spacing:.08em;text-transform:uppercase;line-height:1.15}
+.st span{color:var(--gold)}
+.ss{font-size:1rem;color:var(--gl);margin:.7rem 0 .3rem;font-style:italic}
+.tg{font-size:.85rem;color:var(--mu);font-style:italic}
+.orn{color:var(--gold);font-size:.9rem;letter-spacing:.5em;margin-top:1.2rem;opacity:.7}
+
+/* ── Content ── */
+.content{max-width:860px;margin:0 auto;padding:3rem 2rem 5rem}
+
+/* ── Sections ── */
+.sec{background:var(--bg2);border:1px solid var(--br);border-radius:10px;margin-bottom:1.2rem;overflow:hidden}
+.sec-hd{padding:1.1rem 1.4rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;user-select:none;transition:background .2s}
+.sec-hd:hover{background:var(--bg3)}
+.sec-hd h2{font-size:1rem;font-weight:700;color:var(--gl);line-height:1.3}
+.sec-hd .num{font-size:.65rem;font-weight:700;letter-spacing:.1em;color:var(--gold);min-width:2rem;text-align:right;flex-shrink:0}
+.arr{color:var(--gd);font-size:.8rem;flex-shrink:0;transition:transform .3s}
+.sec.open .arr{transform:rotate(90deg)}
+.sec-body{display:none;padding:1.2rem 1.4rem 1.4rem;border-top:1px solid var(--br)}
+.sec.open .sec-body{display:block}
+.sec-body p{margin-bottom:1rem;font-size:.92rem}
+.sec-body h3{font-size:.85rem;font-weight:700;color:var(--gold);letter-spacing:.06em;text-transform:uppercase;margin:1.4rem 0 .6rem}
+.sec-body ul{margin:.4rem 0 1rem 1.2rem;font-size:.88rem}
+.sec-body ul li{margin-bottom:.4rem}
+.sec-body blockquote{border-left:3px solid var(--gd);padding:.6rem 1rem;background:var(--bg3);border-radius:0 6px 6px 0;font-style:italic;font-size:.88rem;color:var(--tx);margin:1rem 0}
+.sec-body blockquote cite{display:block;margin-top:.4rem;font-size:.78rem;color:var(--mu);font-style:normal}
+
+/* ── Scripture cards ── */
+.sv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin:1rem 0}
+.sv{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:1rem 1.1rem}
+.sv-ref{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+.sv-txt{font-size:.88rem;font-style:italic;color:var(--tx);margin-bottom:.6rem;line-height:1.55}
+.labels{display:flex;flex-wrap:wrap;gap:.3rem}
+.label{font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.15rem .45rem;border-radius:3px}
+.oo{background:#3a2e10;color:var(--gold);border:1px solid var(--gd)}
+.prot{background:#1a2535;color:#7aa8d0;border:1px solid #2a4060}
+.ctx{background:#1a2a1a;color:#7abf7a;border:1px solid #2a502a}
+.pl{background:#2a1a2a;color:#c07ac0;border:1px solid #502a50}
+
+/* ── Father / quote cards ── */
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin:1rem 0}
+.fc{background:var(--bg3);border:1px solid var(--br);border-left:3px solid var(--gd);border-radius:0 8px 8px 0;padding:1rem 1.1rem}
+.fc-name{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem}
+.fc-era{font-size:.65rem;color:var(--mu);margin-bottom:.5rem}
+.fc-txt{font-size:.85rem;font-style:italic;color:var(--tx);line-height:1.55}
+
+/* ── Glossary ── */
+.gt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:.9rem;margin:1rem 0}
+.gt{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:.9rem 1rem}
+.gt-term{font-size:.9rem;font-weight:700;color:var(--gl);margin-bottom:.2rem}
+.gt-gk{font-size:.75rem;color:var(--gold);font-style:italic;margin-bottom:.4rem}
+.gt-def{font-size:.8rem;color:var(--tx);opacity:.9}
+
+/* ── Comparison grid ── */
+.comp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin:1rem 0}
+.comp-card{border-radius:8px;padding:1rem 1.1rem;border:1px solid var(--br)}
+.comp-card.oo{background:#3a2e10;border-color:var(--gd)}
+.comp-card.prot{background:#1a2535;border-color:#2a4060}
+.comp-card.rc{background:#1a1a2a;border-color:#3a3060}
+.comp-card h4{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.6rem}
+.comp-card.oo h4{color:var(--gold)}
+.comp-card.prot h4{color:#7aa8d0}
+.comp-card.rc h4{color:#a090d0}
+.comp-card ul{margin-left:1rem;font-size:.8rem;color:var(--tx)}
+.comp-card ul li{margin-bottom:.3rem}
+
+/* ── Objection accordions ── */
+.obj{background:var(--bg3);border:1px solid #3a1a1a;border-radius:8px;margin-bottom:.8rem;overflow:hidden}
+.obj-hd{padding:.9rem 1.1rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:.8rem;user-select:none}
+.obj-hd:hover{background:#1f1010}
+.obj-hd strong{font-size:.87rem;color:#d08080;line-height:1.3}
+.obj-arr{color:#804040;font-size:.75rem;flex-shrink:0;transition:transform .3s}
+.obj.open .obj-arr{transform:rotate(90deg)}
+.obj-body{display:none;padding:.9rem 1.1rem 1.1rem;border-top:1px solid #3a1a1a;font-size:.87rem}
+.obj.open .obj-body{display:block}
+.obj-body p{margin-bottom:.7rem}
+.obj-resp{background:#1a2510;border-left:3px solid #4a7030;border-radius:0 6px 6px 0;padding:.7rem 1rem;font-size:.85rem;margin-top:.6rem}
+.obj-resp strong{color:#6abf6a;display:block;margin-bottom:.3rem;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase}
+
+/* ── FAQ ── */
+.fi{background:var(--bg3);border:1px solid var(--br);border-radius:8px;margin-bottom:.7rem;overflow:hidden}
+.fi-hd{padding:.85rem 1.1rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:.8rem;user-select:none}
+.fi-hd:hover{background:var(--bg4)}
+.fi-hd strong{font-size:.87rem;color:var(--gl);line-height:1.3}
+.fi-arr{color:var(--gd);font-size:.75rem;flex-shrink:0;transition:transform .3s}
+.fi.open .fi-arr{transform:rotate(90deg)}
+.fi-body{display:none;padding:.85rem 1.1rem 1.1rem;border-top:1px solid var(--br);font-size:.87rem}
+.fi.open .fi-body{display:block}
+.fi-body p{margin-bottom:.6rem}
+
+/* ── Stage cards ── */
+.stage-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin:1rem 0}
+.stage{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:1rem 1.1rem;border-top:3px solid var(--gd)}
+.stage-num{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem}
+.stage-title{font-size:.95rem;font-weight:700;color:var(--gl);margin-bottom:.4rem}
+.stage-gk{font-size:.75rem;color:var(--gd);font-style:italic;margin-bottom:.5rem}
+.stage-desc{font-size:.82rem;color:var(--tx)}
+
+/* ── Sacrament cards ── */
+.sac-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem;margin:1rem 0}
+.sac{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:1rem 1.1rem}
+.sac-icon{font-size:1.4rem;margin-bottom:.4rem;display:block}
+.sac-name{font-size:.85rem;font-weight:700;color:var(--gl);margin-bottom:.2rem}
+.sac-role{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+.sac-desc{font-size:.82rem;color:var(--tx)}
+
+/* ── Footer ── */
+footer{text-align:center;padding:2rem 1rem;border-top:1px solid var(--br);font-size:.8rem;color:var(--mu)}
+footer span{color:var(--gold)}
+
+/* ── Responsive ── */
+@media(max-width:800px){
+  #sidebar{transform:translateX(calc(-1 * var(--sidebar-w)))}
+  #sidebar.open{transform:translateX(0)}
+  #main{margin-left:0}
+  #menu-btn{display:flex}
+  .hero{padding:4rem 1.2rem 2.5rem}
+  .content{padding:2rem 1.2rem 4rem}
+}
+
+.lampsvg{display:block;margin:0 auto 14px;height:auto}
+.lampsvg .lampflame{animation:lampflick 3.2s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes lampflick{0%,100%{transform:scaleY(1) scaleX(1);opacity:.95}25%{transform:scaleY(1.06) scaleX(.97);opacity:1}50%{transform:scaleY(.96) scaleX(1.03);opacity:.9}75%{transform:scaleY(1.04) scaleX(.98);opacity:1}}
+
+html.light{--gold:#8a6a20;--gl:#6f5413;--gd:#b08e3e;--bg:#f7f2e6;--bg2:#efe8d5;--bg3:#e7ddc7;--bg4:#ddd2b9;--tx:#2b2415;--mu:#6e6450;--br:#d2c7aa;--bg5:#efe0b8}
+#ol-tt{position:fixed;right:16px;bottom:74px;z-index:9999;width:44px;height:44px;border-radius:50%;background:var(--bg3,var(--panel,#1a1a1a));color:var(--gold,#c9a84c);border:1px solid var(--gd,var(--gold-dark,var(--rule,#8a6a20)));font-size:1.1rem;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35);line-height:1}#ol-tt:hover{filter:brightness(1.15)}
+html.light .pl,html.light .labels .prot{background:#eed6d6;color:#8b2020}
+html.light .gl-tag,html.light .labels .oo{background:#d8e8d8;color:#1d5c1d}
+html.light .labels .ctx{background:#d8e3ee;color:#1d4a6b}
+html.light .obj{border-color:#dcc0c0}
+html.light .obj-bd{border-top-color:#dcc0c0}
+html.light .obj-hd h3{color:#8b2020}
+html.light .comp-card.prot{border-top-color:#a83232}
+html.light .comp-card.prot .ct{color:#a83232}
+html.light .prot{color:#1a3d5b}
+html.light .ctx{color:#215321}
+html.light .obj-hd strong{color:#5a1b1b}
+html.light .obj-resp strong{color:#1e551e}
+/* ol-aes-v1 */
+html.light #sidebar{background:linear-gradient(180deg,#f5edd5 0%,#ede4cb 100%)}
+html.light .sec{box-shadow:0 2px 8px rgba(100,70,15,.10)}
+html.light .sec.open .sec-hd{border-left:3px solid var(--gold)}
+html.light .hero{background:linear-gradient(155deg,#ede9d6 0%,#e6d896 100%);border-bottom-color:#b08e3e}
+html.light .sv{box-shadow:0 1px 4px rgba(100,70,15,.08)}
+html.light .fc{box-shadow:0 1px 4px rgba(100,70,15,.08)}
+html.light a{color:#6b4a10}
+html.light #sidenav a{color:var(--mu)}
+html.light #sidenav a.active,html.light #sidenav a:hover{color:var(--gold)}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* AUTO-ENHANCE */
+html.js-anim .sec{opacity:0;transform:translateY(18px);transition:opacity .6s cubic-bezier(.16,.7,.3,1),transform .6s cubic-bezier(.16,.7,.3,1)}
+html.js-anim .sec.in{opacity:1;transform:none}
+.sec.open .sec-body,.sec.open .sec-bd,.sec.open .sec-body2{animation:olSecOpen .4s cubic-bezier(.16,.7,.3,1)}
+.fi.open .fi-body,.fi.open .fi-bd{animation:olSecOpen .32s cubic-bezier(.16,.7,.3,1)}
+@keyframes olSecOpen{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.sec{margin-bottom:20px;transition:border-color .25s,box-shadow .25s}
+.sec-h:hover,.sec-hd:hover{box-shadow:inset 3px 0 0 var(--gd)}
+.sec-body,.sec-bd{line-height:1.75}
+.sec-body p,.sec-bd p{margin-bottom:12px}
+#ol-top{position:fixed;right:22px;bottom:24px;width:42px;height:42px;border-radius:50%;border:1px solid var(--br);background:var(--bg2);color:var(--gd);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .3s,transform .3s,background .2s;z-index:150;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+#ol-top.show{opacity:1;pointer-events:auto;transform:none}
+#ol-top:hover{background:var(--gd);color:#1a140a}
+.ol-readtime{display:inline-flex;align-items:center;gap:7px;font-size:.74rem;letter-spacing:.04em;color:var(--mu);border:1px solid var(--br);border-radius:20px;padding:4px 12px;margin-top:10px;text-transform:uppercase}
+.ol-readtime::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--gd)}
+@media(prefers-reduced-motion:reduce){html.js-anim .sec{opacity:1;transform:none}#ol-top{transition:none}}
+/* END-ENHANCE */
+
+/* AUTO-AESTHETIC2 */
+:root{--ol-acc:var(--gd,#c9a84c)}
+/* smooth anchor scrolling + sticky-header offset */
+html{scroll-behavior:smooth}
+:where(.sec,[id]){scroll-margin-top:88px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+/* theme cross-fade */
+body,main,.sec,.sec-h,.sec-hd,.sec-body,.sec-bd,#sb,#sb-nav a{transition:background-color .35s ease,color .35s ease,border-color .35s ease}
+/* typography polish */
+main .sec-body p,main .sec-bd p{line-height:1.8}
+.sec-h,.sec-hd{letter-spacing:.005em}
+p.ol-lead::first-letter{float:left;font-size:3.1em;line-height:.78;padding:6px 10px 0 0;color:var(--ol-acc);font-weight:700}
+/* card hover depth */
+[class*="-card"],[class*="-box"],.vbox{transition:transform .22s cubic-bezier(.16,.7,.3,1),box-shadow .22s ease,border-color .22s ease,background-color .35s ease,color .35s ease}
+[class*="-card"]:hover,[class*="-box"]:hover,.vbox:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.28)}
+html.light [class*="-card"]:hover,html.light [class*="-box"]:hover,html.light .vbox:hover{box-shadow:0 8px 22px rgba(40,30,10,.12)}
+/* section dividers (inserted by JS) */
+.ol-divider{text-align:center;color:var(--ol-acc);opacity:.45;font-size:1rem;margin:4px auto 26px;line-height:1;letter-spacing:0;user-select:none}
+/* sidebar active-dot fill */
+#sb-nav a{position:relative}
+#sb-nav a.active::before{content:"";position:absolute;left:-2px;top:50%;width:6px;height:6px;border-radius:50%;background:var(--ol-acc);box-shadow:0 0 7px var(--ol-acc);transform:translateY(-50%) scale(0);animation:olDot .3s cubic-bezier(.16,.7,.3,1) forwards}
+@keyframes olDot{to{transform:translateY(-50%) scale(1)}}
+/* bare blockquote uplift (does not touch styled quote-cards) */
+main blockquote{border-left:3px solid var(--ol-acc);padding:8px 0 8px 18px;margin:18px 0;font-style:italic}
+/* END-AESTHETIC2 */
+
+/* AUTO-FEATURES3 */
+/* copy-link buttons */
+.ol-copy{opacity:0;margin:0 8px;background:none;border:none;cursor:pointer;font-size:.8rem;color:var(--mu);transition:opacity .2s,color .2s;vertical-align:middle;padding:2px 5px;line-height:1;border-radius:5px}
+.ol-copy::before{content:"\1F517"}
+.sec-h:hover .ol-copy,.sec-hd:hover .ol-copy,.ol-copy:focus-visible{opacity:.65}
+.ol-copy:hover{opacity:1;color:var(--gd,#c9a84c)}
+.ol-copy.ok{opacity:1;color:#3fa34d}
+.ol-copy.ok::before{content:"\2713";margin-right:4px}
+.ol-copy.ok::after{content:"copied";font-size:.7rem;letter-spacing:.03em}
+/* related topics */
+.ol-related{margin:42px 0 8px;padding:22px 24px;border:1px solid var(--br);border-radius:12px;background:var(--bg2)}
+.ol-related h3{margin:0 0 14px;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gd,#c9a84c);font-weight:700}
+.ol-related-links{display:flex;flex-wrap:wrap;gap:10px}
+.ol-related-links a{display:inline-block;padding:8px 15px;border:1px solid var(--br);border-radius:22px;font-size:.9rem;color:var(--tx,#e7ddc8);text-decoration:none;background:var(--bg,#1a140a);transition:border-color .2s,color .2s,background .2s,transform .2s}
+.ol-related-links a:hover{border-color:var(--gd,#c9a84c);color:var(--gd,#c9a84c);transform:translateY(-1px)}
+/* search launcher */
+.ol-search-btn{display:flex;align-items:center;justify-content:space-between;width:100%;margin:10px 0 4px;padding:9px 13px;border:1px solid var(--br);border-radius:9px;background:var(--bg2);color:var(--mu);font:inherit;font-size:.86rem;cursor:pointer;transition:border-color .2s,color .2s}
+.ol-search-btn:hover{border-color:var(--gd,#c9a84c);color:var(--gd,#c9a84c)}
+.ol-search-btn span{border:1px solid var(--br);border-radius:5px;padding:1px 7px;font-size:.78rem;opacity:.8}
+/* search overlay */
+.ol-ov{position:fixed;inset:0;background:rgba(0,0,0,.62);backdrop-filter:blur(3px);z-index:1000;display:none;align-items:flex-start;justify-content:center;padding:11vh 16px 16px}
+.ol-ov.open{display:flex}
+.ol-modal{width:100%;max-width:620px;background:var(--bg2,#221a0e);border:1px solid var(--br);border-radius:14px;box-shadow:0 24px 70px rgba(0,0,0,.55);overflow:hidden;display:flex;flex-direction:column;max-height:74vh}
+html.light .ol-modal{box-shadow:0 24px 70px rgba(40,30,10,.22)}
+.ol-search-input{border:none;border-bottom:1px solid var(--br);background:none;color:var(--tx,#e7ddc8);font:inherit;font-size:1.12rem;padding:18px 22px;outline:none;width:100%}
+.ol-search-input::placeholder{color:var(--mu)}
+.ol-results{overflow-y:auto;padding:8px}
+.ol-r{display:block;padding:10px 14px;border-radius:9px;text-decoration:none;color:var(--tx,#e7ddc8);transition:background .12s}
+.ol-r .r-t{display:block;font-weight:600;font-size:.97rem}
+.ol-r .r-s{display:block;font-size:.83rem;color:var(--mu);margin-top:2px}
+.ol-r .r-s::before{content:"\2192  ";color:var(--gd,#c9a84c)}
+.ol-r.sel,.ol-r:hover{background:var(--bg,#1a140a)}
+.ol-r.sel{box-shadow:inset 3px 0 0 var(--gd,#c9a84c)}
+.ol-r mark{background:rgba(201,168,76,.32);color:inherit;border-radius:2px;padding:0 1px}
+.r-empty{padding:26px 18px;text-align:center;color:var(--mu);font-size:.92rem}
+.ol-hint{border-top:1px solid var(--br);padding:9px 18px;font-size:.74rem;color:var(--mu);letter-spacing:.03em}
+/* scripture verse + tooltip */
+.ol-verse{border-bottom:1px dotted var(--gd,#c9a84c);cursor:help;text-decoration:none}
+.ol-tip{position:absolute;z-index:1100;max-width:330px;background:var(--bg2,#221a0e);color:var(--tx,#e7ddc8);border:1px solid var(--br);border-radius:10px;padding:12px 15px;font-size:.9rem;line-height:1.55;box-shadow:0 12px 34px rgba(0,0,0,.5);pointer-events:none}
+html.light .ol-tip{box-shadow:0 12px 34px rgba(40,30,10,.2)}
+.ol-tip b{color:var(--gd,#c9a84c);font-size:.84rem;letter-spacing:.02em}
+.ol-tip-kjv{font-size:.66rem;color:var(--mu);border:1px solid var(--br);border-radius:4px;padding:0 5px;margin-left:6px;letter-spacing:.05em}
+.ol-tip-load,.ol-tip-err{color:var(--mu);font-style:italic}
+/* print / pdf */
+@media print{
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #sidebar,#sb,#ham,#overlay,#prog,#ol-top,#ol-tt,.ol-search-btn,.ol-copy,.back-link,.ol-ov,.ol-tip,.ol-divider,.ol-related,.sb-search,nav,.arr{display:none!important}
+  html,body{background:#fff!important;color:#000!important}
+  main{margin:0!important;padding:0!important;max-width:100%!important;width:100%!important}
+  .sec-body,.sec-bd,.sec-body2,.fi-body,.fi-bd{display:block!important;max-height:none!important;opacity:1!important;transform:none!important;animation:none!important}
+  .sec{opacity:1!important;transform:none!important;page-break-inside:avoid;border:none!important;margin-bottom:14px!important}
+  .sec-h,.sec-hd{cursor:default}
+  .hero,.pg-title,.page-head,.pg-head,.hd{background:#fff!important;color:#000!important;border:none!important}
+  .ol-verse{border-bottom:none}
+  a{color:#000!important;text-decoration:none}
+  h1,h2,h3{color:#000!important}
+}
+/* END-FEATURES3 */
+</style>
+<script>try{if(localStorage.getItem('ol-theme')==='light')document.documentElement.classList.add('light')}catch(e){}</script>
+<script>try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('js-anim')}catch(e){}</script>
+</head>
+<body>
+
+<div id="prog"></div>
+
+<button id="menu-btn" onclick="toggleSidebar()" aria-label="Menu">☰</button>
+<div id="overlay" onclick="closeMobile()"></div>
+
+<nav id="sidebar">
+  <header>
+  <svg class="lampsvg" width="92" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><radialGradient id="lmpGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffb95e" stop-opacity=".55"/><stop offset="100%" stop-color="#ffb95e" stop-opacity="0"/></radialGradient><linearGradient id="lmpFlame" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#ff7a1f"/><stop offset="55%" stop-color="#ffb347"/><stop offset="100%" stop-color="#ffe9b0"/></linearGradient><linearGradient id="lmpBrass" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e3b860"/><stop offset="50%" stop-color="#a87b35"/><stop offset="100%" stop-color="#7a5523"/></linearGradient></defs><circle cx="60" cy="38" r="34" fill="url(#lmpGlow)"/><g class="lampflame"><path d="M60 16 C66 26 70 32 70 40 C70 48 65.5 53 60 53 C54.5 53 50 48 50 40 C50 32 54 26 60 16 Z" fill="url(#lmpFlame)"/><path d="M60 30 C63 35 64.5 38 64.5 42 C64.5 46.5 62.5 49 60 49 C57.5 49 55.5 46.5 55.5 42 C55.5 38 57 35 60 30 Z" fill="#fff3cf" opacity=".85"/></g><rect x="56" y="52" width="8" height="7" rx="2" fill="#8a6228"/><path d="M28 62 L92 62 C92 80 78 92 60 92 C42 92 28 80 28 62 Z" fill="url(#lmpBrass)"/><rect x="24" y="58" width="72" height="6" rx="3" fill="#caa14e"/><rect x="56" y="92" width="8" height="16" fill="url(#lmpBrass)"/><path d="M38 118 C38 110 47 108 60 108 C73 108 82 110 82 118 L82 122 L38 122 Z" fill="url(#lmpBrass)"/><rect x="32" y="122" width="56" height="6" rx="3" fill="#caa14e"/></svg>
+    <div class="logo">The Orthodox Lamp</div>
+    <h2>Sources &amp; Bibliography</h2>
+  </header>
+  <div id="sb-nav">
+    <span class="sb-group">How We Cite</span>
+    <a href="#s1">I. Scripture (KJV)</a>
+    <a href="#s2">II. Patristic Collections</a>
+    <span class="sb-group">The Fathers</span>
+    <a href="#s3">III. Apostolic &amp; Ante-Nicene</a>
+    <a href="#s4">IV. Nicene &amp; Post-Nicene</a>
+    <a href="#s5">V. Oriental Orthodox Witnesses</a>
+    <span class="sb-group">Councils</span>
+    <a href="#s6">VI. Creeds &amp; Councils</a>
+    <span class="sb-group">Method</span>
+    <a href="#s7">VII. Modern Editions</a>
+    <a href="#s8">VIII. A Note on Accuracy</a>
+  </div>
+</nav>
+
+<div id="main">
+
+<div class="hero">
+  <a class="back" href="index.html">← Library</a>
+  <span class="si">☩</span>
+  <h1 class="st">THE <span>ORTHODOX</span> LAMP</h1>
+  <p class="ss">Sources &amp; Bibliography</p>
+  <p class="tg">"Test all things; hold fast that which is good." — 1 Thessalonians 5:21</p>
+  <div class="orn">✦ ✦ ✦</div>
+</div>
+
+<div class="content">
+
+<div class="sec open" id="s1">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>I. Scripture</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">01</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+
+    <p>Unless otherwise noted, every Scripture quotation on this site is taken from the <strong>Authorized (King James) Version</strong> of 1611, which is in the public domain. The KJV was chosen for its public-domain status and its enduring place in the English-speaking Christian tradition.</p>
+    <p>Throughout the site, Scripture references now carry a dotted underline; hovering (or focusing) a reference displays the full KJV text of the verse, drawn from a copy bundled directly with the site — no external service is contacted.</p>
+    <ul>
+      <li><strong>The Holy Bible, Authorized (King James) Version.</strong> London, 1611; public domain. Old and New Testaments.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="sec open" id="s2">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>II. Patristic Collections</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">02</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+
+    <p>The bulk of patristic citation on this site rests on the two great public-domain English collections of the nineteenth century, supplemented by modern critical translations where the older versions are dated or incomplete.</p>
+    <ul>
+      <li><strong>The Ante-Nicene Fathers (ANF).</strong> Eds. Alexander Roberts &amp; James Donaldson; American edition arranged by A. Cleveland Coxe. 10 vols. Buffalo &amp; New York: Christian Literature Publishing Company, 1885–1887. Public domain. — Writings of the Fathers down to A.D. 325.</li>
+      <li><strong>Nicene and Post-Nicene Fathers, Series 1 (NPNF1).</strong> Ed. Philip Schaff. 14 vols. 1886–1890. Public domain. — Augustine and John Chrysostom.</li>
+      <li><strong>Nicene and Post-Nicene Fathers, Series 2 (NPNF2).</strong> Eds. Philip Schaff &amp; Henry Wace. 14 vols. 1890–1900. Public domain. — Athanasius, the Cappadocians, Cyril of Jerusalem, Jerome, Ambrose, Ephrem, Eusebius, John of Damascus, and the canons of the Ecumenical Councils.</li>
+      <li><strong>The Fathers of the Church (FOTC).</strong> Washington, D.C.: Catholic University of America Press. — Modern critical translations consulted where ANF/NPNF is incomplete, especially for Cyril of Alexandria. (In copyright; cited, not reproduced.)</li>
+      <li><strong>Popular Patristics Series.</strong> Crestwood / Yonkers, NY: St Vladimir's Seminary Press. — Modern translations of select works (e.g. Athanasius, <em>On the Incarnation</em>; Cyril of Alexandria, <em>On the Unity of Christ</em>, trans. J. A. McGuckin).</li>
+    </ul>
+  </div>
+</div>
+
+<div class="sec open" id="s3">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>III. Apostolic &amp; Ante-Nicene Fathers</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">03</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+
+    <p>The earliest witnesses, cited chiefly from the ANF.</p>
+    <ul>
+      <li><strong>The Didache</strong> (Teaching of the Twelve Apostles). 1st–2nd c. — ANF, vol. 7.</li>
+      <li><strong>Ignatius of Antioch</strong>, <em>Epistles</em> (c. 107). — ANF, vol. 1.</li>
+      <li><strong>Polycarp of Smyrna</strong>, <em>Epistle to the Philippians</em>; <em>Martyrdom of Polycarp</em>. — ANF, vol. 1.</li>
+      <li><strong>Justin Martyr</strong>, <em>First &amp; Second Apology</em>, <em>Dialogue with Trypho</em>. — ANF, vol. 1.</li>
+      <li><strong>Irenaeus of Lyons</strong>, <em>Against Heresies</em>. — ANF, vol. 1.</li>
+      <li><strong>Clement of Alexandria</strong>, <em>The Instructor</em>, <em>Stromata</em>. — ANF, vol. 2.</li>
+      <li><strong>Tertullian</strong>, various treatises. — ANF, vols. 3–4.</li>
+      <li><strong>Origen</strong>, <em>Against Celsus</em>, <em>On First Principles</em>, commentaries. — ANF, vol. 4.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="sec open" id="s4">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>IV. Nicene &amp; Post-Nicene Fathers</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">04</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+
+    <p>The fourth- and fifth-century Fathers, cited chiefly from the NPNF series.</p>
+    <ul>
+      <li><strong>Eusebius of Caesarea</strong>, <em>Ecclesiastical History</em>. — NPNF2, vol. 1.</li>
+      <li><strong>Athanasius of Alexandria</strong>, <em>On the Incarnation</em>, <em>Against the Arians</em>, festal letters. — NPNF2, vol. 4.</li>
+      <li><strong>Cyril of Jerusalem</strong>, <em>Catechetical Lectures</em>. — NPNF2, vol. 7.</li>
+      <li><strong>Basil the Great</strong>, <em>On the Holy Spirit</em>, hexaemeron, letters. — NPNF2, vol. 8.</li>
+      <li><strong>Gregory of Nazianzus</strong> &amp; <strong>Gregory of Nyssa</strong>, orations and treatises. — NPNF2, vols. 5 &amp; 7.</li>
+      <li><strong>John Chrysostom</strong>, homilies on the Gospels and Epistles. — NPNF1, vols. 9–14.</li>
+      <li><strong>Jerome</strong>, letters and treatises. — NPNF2, vol. 6.</li>
+      <li><strong>Ambrose of Milan</strong>, dogmatic and ascetic works. — NPNF2, vol. 10.</li>
+      <li><strong>Augustine of Hippo</strong>, <em>Confessions</em>, <em>City of God</em>, anti-Pelagian and anti-Donatist works. — NPNF1, vols. 1–8.</li>
+      <li><strong>Ephrem the Syrian</strong>, hymns and homilies. — NPNF2, vol. 13.</li>
+      <li><strong>John of Damascus</strong>, <em>Exposition of the Orthodox Faith</em>. — NPNF2, vol. 9.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="sec open" id="s5">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>V. Oriental Orthodox Witnesses</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">05</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+
+    <p>The distinctively non-Chalcedonian and Alexandrian voices central to this site. Much of this material survives in Syriac, Coptic, Greek, and Armenian, and is found in modern critical editions rather than the older English collections.</p>
+    <ul>
+      <li><strong>Cyril of Alexandria</strong>, <em>On the Unity of Christ</em>, <em>That Christ Is One</em>, the Twelve Anathemas, <em>Commentary on John</em>, festal letters. — FOTC and Popular Patristics editions; some letters in NPNF2, vol. 14 (conciliar acts).</li>
+      <li><strong>Dioscorus of Alexandria</strong>, conciliar acts and letters. — Surviving documents in the acts of Ephesus II (449) and Chalcedon (451).</li>
+      <li><strong>Timothy Aelurus</strong>, anti-Chalcedonian writings. — Preserved in Syriac; <em>Patrologia Orientalis</em> and critical editions.</li>
+      <li><strong>Severus of Antioch</strong>, homilies, letters, and the <em>Philalethes</em>. — Mostly Syriac; <em>Patrologia Orientalis</em>.</li>
+      <li><strong>Shenoute of Atripe</strong>, Coptic sermons and treatises. — Critical Coptic editions.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="sec open" id="s6">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>VI. Creeds &amp; Councils</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">06</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+
+    <p>The Oriental Orthodox Churches receive the first three Ecumenical Councils and reject the Council of Chalcedon (451) as having gone beyond the faith of Cyril; this distinction is treated at length elsewhere on the site.</p>
+    <ul>
+      <li><strong>First Council of Nicaea (325)</strong> — canons and creed.</li>
+      <li><strong>First Council of Constantinople (381)</strong> — the Niceno-Constantinopolitan Creed.</li>
+      <li><strong>Council of Ephesus (431)</strong> — affirmation of the Theotokos and condemnation of Nestorius.</li>
+      <li><strong>Second Council of Ephesus (449)</strong> — received in the Oriental Orthodox tradition.</li>
+      <li><strong>Council of Chalcedon (451)</strong> — <em>not</em> received by the Oriental Orthodox; see the Christology and Chalcedon pages.</li>
+      <li>Conciliar acts and canons in <strong>NPNF2, vol. 14</strong> (<em>The Seven Ecumenical Councils</em>, ed. Henry R. Percival).</li>
+    </ul>
+  </div>
+</div>
+
+<div class="sec open" id="s7">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>VII. Modern Editions &amp; Reference Works</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">07</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+
+    <p>Where the nineteenth-century translations are archaic or where critical scholarship has advanced, modern editions are consulted. These are cited for accuracy but, being in copyright, are never reproduced at length.</p>
+    <ul>
+      <li><em>The Fathers of the Church</em> series (Catholic University of America Press).</li>
+      <li><em>Popular Patristics Series</em> (St Vladimir's Seminary Press).</li>
+      <li><em>Patrologia Orientalis</em> and <em>Patrologia Graeca</em> (Migne) for original-language texts.</li>
+      <li>Standard critical studies on the Council of Chalcedon and miaphysite Christology (e.g. the works of J. A. McGuckin and V. C. Samuel) for historical framing.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="sec open" id="s8">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>VIII. A Note on Accuracy</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">08</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+
+    <p>Quotation accuracy is the first priority of this site. Every patristic quotation is checked against the editions listed above and is marked as either a <strong>Direct</strong> quotation (verbatim from the cited translation) or a <strong>Paraphrase</strong> (a faithful summary in our own words). Where a translation differs across editions, the public-domain ANF/NPNF reading is preferred unless a modern critical edition is explicitly noted.</p>
+    <p>Scripture is quoted from the King James Version throughout. If you find any misattribution or inaccuracy, it is an error to be corrected — the aim is to represent the Fathers and the Scriptures faithfully, never to bend them to a conclusion.</p>
+  </div>
+</div>
+
+</div><!-- /content -->
+</div><!-- /main -->
+
+<footer>
+  <p>THE <span>ORTHODOX LAMP</span> &nbsp;·&nbsp; Biblical, Historical &amp; Patristic Apologetics</p>
+  <p style="margin-top:.5rem;font-size:.72rem;opacity:.6;">☩ &nbsp; In the name of the Father, and of the Son, and of the Holy Spirit &nbsp; ☩</p>
+</footer>
+
+<script>
+function ts(h){h.closest('.sec').classList.toggle('open')}
+function tobj(h){h.closest('.obj').classList.toggle('open')}
+function tf(h){h.closest('.fi').classList.toggle('open')}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').classList.toggle('show')}
+function closeMobile(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
+
+// Scroll progress bar
+window.addEventListener('scroll',()=>{
+  const s=document.documentElement,b=document.body;
+  const h=s.scrollHeight-s.clientHeight;
+  const p=h>0?(s.scrollTop||b.scrollTop)/h*100:0;
+  document.getElementById('prog').style.width=p+'%';
+});
+
+// Sidebar active link
+const links=[...document.querySelectorAll('#sb-nav a')];
+const secs=[...document.querySelectorAll('.sec')];
+window.addEventListener('scroll',()=>{
+  let cur='';
+  secs.forEach(s=>{if(window.scrollY>=s.offsetTop-120)cur='#'+s.id});
+  links.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')===cur)});
+},{ passive:true });
+</script>
+<button id="ol-tt" onclick="olTheme()" aria-label="Toggle light or dark mode" title="Light/dark mode">☀</button><script>function olTheme(){var l=document.documentElement.classList.toggle('light');try{localStorage.setItem('ol-theme',l?'light':'dark')}catch(e){}olIcon()}function olIcon(){document.getElementById('ol-tt').textContent=document.documentElement.classList.contains('light')?'☾':'☀'}olIcon();</script>
+
+
+
+
+
+
+
+
+<script>
+/* AUTO-ENHANCE-JS */
+(function(){
+  try{
+    // back-to-top
+    var bt=document.createElement('button');bt.id='ol-top';bt.setAttribute('aria-label','Back to top');bt.innerHTML='\u2191';
+    bt.onclick=function(){window.scrollTo({top:0,behavior:'smooth'});};
+    document.body.appendChild(bt);
+    window.addEventListener('scroll',function(){bt.classList.toggle('show',window.scrollY>420);},{passive:true});
+    // reading time
+    var main=document.querySelector('main');
+    if(main){
+      var txt=main.innerText||'';var words=txt.trim().split(/\s+/).length;
+      var mins=Math.max(1,Math.round(words/200));
+      var rt=document.createElement('div');rt.className='ol-readtime';rt.textContent=mins+' min read';
+      var anchor=main.querySelector('.pg-title,.page-head,.pg-head,.hd');
+      if(anchor)anchor.appendChild(rt);else main.insertBefore(rt,main.firstChild);
+    }
+    // scroll-reveal
+    var secs=document.querySelectorAll('.sec');
+    if('IntersectionObserver' in window && document.documentElement.classList.contains('js-anim')){
+      var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.08,rootMargin:'0px 0px -6% 0px'});
+      secs.forEach(function(s){io.observe(s);});
+    }else{secs.forEach(function(s){s.classList.add('in');});}
+    // ensure search reveals all
+    document.querySelectorAll('.sb-search input,input[oninput*=sidebarSearch]').forEach(function(i){i.addEventListener('input',function(){document.querySelectorAll('.sec').forEach(function(s){s.classList.add('in');});});});
+  }catch(e){document.querySelectorAll('.sec').forEach(function(s){s.classList.add('in');});}
+})();
+/* END-ENHANCE-JS */</script>
+<script>
+/* AUTO-AESTHETIC2-JS */
+(function(){
+  try{
+    // section dividers between sibling .sec elements
+    Array.prototype.slice.call(document.querySelectorAll('.sec')).forEach(function(s){
+      var prev=s.previousElementSibling;
+      if(prev&&prev.classList&&prev.classList.contains('sec')&&!prev.classList.contains('ol-divider')){
+        var d=document.createElement('div');d.className='ol-divider';d.setAttribute('aria-hidden','true');d.textContent='\u2629';
+        s.parentNode.insertBefore(d,s);
+      }
+    });
+    // drop-cap on the first section's opening paragraph (chapter-opener feel)
+    var lead=document.querySelector('main .sec .sec-body p, main .sec .sec-bd p');
+    if(lead && (lead.textContent||'').trim().length>40){ lead.classList.add('ol-lead'); }
+  }catch(e){}
+})();
+/* END-AESTHETIC2-JS */</script>
+<script>
+/* AUTO-FEATURES3-JS */
+(function(){
+  try{
+    var here=(location.pathname.split('/').pop()||'index.html');
+    var base=location.href.split('#')[0];
+    function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+    /* ---- 1. copy-link buttons ---- */
+    document.querySelectorAll('.sec[id]').forEach(function(sec){
+      var h=sec.querySelector('.sec-h,.sec-hd');
+      if(!h||h.querySelector('.ol-copy'))return;
+      var b=document.createElement('button');
+      b.className='ol-copy';b.type='button';b.setAttribute('aria-label','Copy link to this section');
+      b.addEventListener('click',function(ev){
+        ev.stopPropagation();ev.preventDefault();
+        var url=base+'#'+sec.id;
+        var ok=function(){b.classList.add('ok');setTimeout(function(){b.classList.remove('ok');},1500);};
+        if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(ok,ok);}
+        else{var t=document.createElement('textarea');t.value=url;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(t);ok();}
+      });
+      var arr=h.querySelector('.arr');
+      if(arr)h.insertBefore(b,arr);else h.appendChild(b);
+    });
+
+    /* ---- shared index + bundled KJV ---- */
+    var IDX=null,idxP=null;
+    function loadIndex(){if(idxP)return idxP;idxP=fetch('search-index.json').then(function(r){return r.json();}).then(function(d){IDX=d;return d;});return idxP;}
+    var VERSES=null;
+    fetch('verses.json').then(function(r){return r.json();}).then(function(d){VERSES=d;}).catch(function(){VERSES={};});
+
+    /* ---- 2. related topics ---- */
+    loadIndex().then(function(idx){
+      if(!idx||!idx.pages)return;
+      var page=null;idx.pages.forEach(function(p){if(p.f===here)page=p;});
+      if(!page||!page.rel||!page.rel.length)return;
+      var main=document.querySelector('main')||document.getElementById('main');if(!main)return;
+      var box=document.createElement('div');box.className='ol-related';
+      var hh=document.createElement('h3');hh.textContent='Related topics';box.appendChild(hh);
+      var wrap=document.createElement('div');wrap.className='ol-related-links';
+      page.rel.forEach(function(r){var a=document.createElement('a');a.href=r.f;a.textContent=r.t;wrap.appendChild(a);});
+      box.appendChild(wrap);main.appendChild(box);
+    }).catch(function(){});
+
+    /* ---- 3. site-wide search ---- */
+    var ov=document.createElement('div');ov.className='ol-ov';
+    ov.innerHTML='<div class="ol-modal" role="dialog" aria-label="Search all topics"><input class="ol-search-input" type="text" placeholder="Search all topics…" aria-label="Search all topics" autocomplete="off"><div class="ol-results" role="listbox"></div><div class="ol-hint">↑↓ navigate · ↵ open · esc close</div></div>';
+    document.body.appendChild(ov);
+    var input=ov.querySelector('.ol-search-input');
+    var results=ov.querySelector('.ol-results');
+    var flat=[],sel=-1;
+    function hilite(text,q){if(!q)return esc(text);var i=text.toLowerCase().indexOf(q);if(i<0)return esc(text);return esc(text.slice(0,i))+'<mark>'+esc(text.slice(i,i+q.length))+'</mark>'+esc(text.slice(i+q.length));}
+    function render(){
+      var q=(input.value||'').trim().toLowerCase();
+      flat=[];
+      if(IDX&&IDX.pages){
+        IDX.pages.forEach(function(p){
+          var pt=p.t.toLowerCase();var pi=pt.indexOf(q);
+          if(!q||pi>=0)flat.push({f:p.f,t:p.t,sub:'',sc:(!q?1:(pi===0?0:1))});
+          if(q&&p.secs)p.secs.forEach(function(s){if(s.h.toLowerCase().indexOf(q)>=0)flat.push({f:p.f,t:p.t,sub:s.h,a:s.a,sc:2});});
+        });
+      }
+      if(q)flat.sort(function(a,b){return a.sc-b.sc;});
+      flat=flat.slice(0,40);
+      sel=flat.length?0:-1;
+      if(!flat.length){results.innerHTML='<div class="r-empty">'+(IDX?'No matches found':'Loading index…')+'</div>';return;}
+      results.innerHTML=flat.map(function(r,i){
+        return '<a class="ol-r'+(i===sel?' sel':'')+'" data-i="'+i+'" href="'+r.f+(r.a?'#'+r.a:'')+'"><span class="r-t">'+hilite(r.t,q)+'</span>'+(r.sub?'<span class="r-s">'+hilite(r.sub,q)+'</span>':'')+'</a>';
+      }).join('');
+    }
+    function setSel(i){var a=results.querySelectorAll('.ol-r');if(!a.length)return;sel=(i+a.length)%a.length;a.forEach(function(el,j){el.classList.toggle('sel',j===sel);});a[sel].scrollIntoView({block:'nearest'});}
+    function go(){if(sel>=0&&flat[sel]){var r=flat[sel];location.href=r.f+(r.a?'#'+r.a:'');}}
+    function openS(){ov.classList.add('open');document.body.style.overflow='hidden';input.value='';render();loadIndex().then(function(){if(ov.classList.contains('open'))render();}).catch(function(){});setTimeout(function(){input.focus();},30);}
+    function closeS(){ov.classList.remove('open');document.body.style.overflow='';}
+    input.addEventListener('input',render);
+    input.addEventListener('keydown',function(e){
+      if(e.key==='ArrowDown'){e.preventDefault();setSel(sel+1);}
+      else if(e.key==='ArrowUp'){e.preventDefault();setSel(sel-1);}
+      else if(e.key==='Enter'){e.preventDefault();go();}
+      else if(e.key==='Escape'){e.preventDefault();closeS();}
+    });
+    results.addEventListener('mousemove',function(e){var a=e.target.closest('.ol-r');if(a)setSel(+a.getAttribute('data-i'));});
+    ov.addEventListener('click',function(e){if(e.target===ov)closeS();});
+    document.addEventListener('keydown',function(e){
+      if(e.key==='/'&&!ov.classList.contains('open')){var t=document.activeElement;var tn=t?t.tagName:'';if(tn==='INPUT'||tn==='TEXTAREA'||(t&&t.isContentEditable))return;e.preventDefault();openS();}
+      else if(e.key==='Escape'&&ov.classList.contains('open')){closeS();}
+    });
+    var launcher=document.createElement('button');launcher.className='ol-search-btn';launcher.type='button';
+    launcher.innerHTML='Search all topics <span>/</span>';launcher.addEventListener('click',openS);
+    var sbs=document.querySelector('.sb-search');
+    if(sbs&&sbs.parentNode)sbs.parentNode.insertBefore(launcher,sbs);
+    else{var nav=document.querySelector('#sidebar nav,#sb nav,#sidebar,#sb');if(nav)nav.insertBefore(launcher,nav.firstChild);}
+
+    /* ---- 4. scripture tooltips (KJV bundled locally in verses.json, public domain) ---- */
+    var BOOKS='Genesis|Exodus|Leviticus|Numbers|Deuteronomy|Joshua|Judges|Ruth|1 ?Samuel|2 ?Samuel|1 ?Kings|2 ?Kings|1 ?Chronicles|2 ?Chronicles|Ezra|Nehemiah|Esther|Job|Psalms|Psalm|Proverbs|Ecclesiastes|Song of Solomon|Song of Songs|Isaiah|Jeremiah|Lamentations|Ezekiel|Daniel|Hosea|Joel|Amos|Obadiah|Jonah|Micah|Nahum|Habakkuk|Zephaniah|Haggai|Zechariah|Malachi|Matthew|Mark|Luke|John|Acts|Romans|1 ?Corinthians|2 ?Corinthians|Galatians|Ephesians|Philippians|Colossians|1 ?Thessalonians|2 ?Thessalonians|1 ?Timothy|2 ?Timothy|Titus|Philemon|Hebrews|James|1 ?Peter|2 ?Peter|1 ?John|2 ?John|3 ?John|Jude|Revelation';
+    var VRE=new RegExp('\\b((?:'+BOOKS+')\\.?\\s+\\d{1,3}:\\d{1,3}(?:[-–]\\d{1,3})?(?:,\\s?\\d{1,3}(?:[-–]\\d{1,3})?)*)','g');
+    function wrap(root){
+      var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:function(n){
+        if(!n.nodeValue||n.nodeValue.indexOf(':')<0)return NodeFilter.FILTER_REJECT;
+        var p=n.parentNode;
+        while(p&&p!==root){var t=p.nodeName.toLowerCase();
+          if(t==='a'||t==='button'||t==='script'||t==='style'||(p.classList&&(p.classList.contains('ol-verse')||p.classList.contains('ol-copy'))))return NodeFilter.FILTER_REJECT;
+          p=p.parentNode;}
+        return NodeFilter.FILTER_ACCEPT;
+      }});
+      var nodes=[],n;while(n=w.nextNode())nodes.push(n);
+      nodes.forEach(function(node){
+        var txt=node.nodeValue;VRE.lastIndex=0;if(!VRE.test(txt))return;VRE.lastIndex=0;
+        var frag=document.createDocumentFragment(),last=0,m;
+        while(m=VRE.exec(txt)){
+          if(m.index>last)frag.appendChild(document.createTextNode(txt.slice(last,m.index)));
+          var sp=document.createElement('span');sp.className='ol-verse';sp.textContent=m[0];sp.setAttribute('data-ref',m[1]);
+          frag.appendChild(sp);last=m.index+m[0].length;
+        }
+        if(last<txt.length)frag.appendChild(document.createTextNode(txt.slice(last)));
+        node.parentNode.replaceChild(frag,node);
+      });
+    }
+    document.querySelectorAll('.sec-body,.sec-bd,.sec-body2').forEach(wrap);
+    var tip=document.createElement('div');tip.className='ol-tip';tip.style.display='none';document.body.appendChild(tip);
+    function place(el){var r=el.getBoundingClientRect();tip.style.display='block';var w=tip.offsetWidth||330;
+      var left=window.scrollX+r.left;var max=window.scrollX+document.documentElement.clientWidth-w-10;
+      tip.style.left=Math.max(8,Math.min(left,max))+'px';tip.style.top=(window.scrollY+r.bottom+8)+'px';}
+    function lookup(ref){var k=ref.replace(/\s+/g,' ').trim();if(VERSES&&VERSES[k])return VERSES[k];return null;}
+    function show(el){
+      var ref=el.getAttribute('data-ref');if(!ref)return;
+      var t=lookup(ref);
+      if(t){tip.innerHTML='<b>'+esc(ref)+'</b><span class="ol-tip-kjv">KJV</span><br>'+esc(t);}
+      else if(VERSES===null){tip.innerHTML='<b>'+esc(ref)+'</b><br><span class="ol-tip-load">Loading…</span>';}
+      else{tip.innerHTML='<b>'+esc(ref)+'</b><br><span class="ol-tip-err">Text unavailable</span>';}
+      place(el);
+    }
+    function hide(){tip.style.display='none';}
+    document.addEventListener('mouseover',function(e){var t=e.target;if(t.classList&&t.classList.contains('ol-verse'))show(t);});
+    document.addEventListener('mouseout',function(e){var t=e.target;if(t.classList&&t.classList.contains('ol-verse'))hide();});
+    document.addEventListener('focusin',function(e){var t=e.target;if(t.classList&&t.classList.contains('ol-verse'))show(t);});
+    document.addEventListener('focusout',function(e){var t=e.target;if(t.classList&&t.classList.contains('ol-verse'))hide();});
+    document.querySelectorAll('.ol-verse').forEach(function(v){v.setAttribute('tabindex','0');});
+  }catch(e){}
+})();
+/* END-FEATURES3-JS */</script>
+</body>
+</html>
