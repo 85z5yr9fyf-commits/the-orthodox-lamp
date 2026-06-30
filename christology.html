@@ -202,6 +202,13 @@ html.light #sidenav a.active,html.light #sidenav a:hover{color:var(--gold)}
 
 
 
+
+
+
+
+
+
+
 /* AUTO-ENHANCE */
 html.js-anim .sec{opacity:0;transform:translateY(18px);transition:opacity .6s cubic-bezier(.16,.7,.3,1),transform .6s cubic-bezier(.16,.7,.3,1)}
 html.js-anim .sec.in{opacity:1;transform:none}
@@ -311,6 +318,48 @@ html.light .ol-tip{box-shadow:0 12px 34px rgba(40,30,10,.2)}
   h1,h2,h3{color:#000!important}
 }
 /* END-FEATURES3 */
+
+/* AUTO-FEATURES4 */
+.ol-ask-fab{position:fixed;right:22px;bottom:24px;z-index:1200;display:flex;align-items:center;gap:9px;height:52px;padding:0 19px 0 15px;border:1px solid var(--br);border-radius:30px;background:var(--gd,#c9a84c);color:#1a140a;font:inherit;font-weight:600;font-size:.9rem;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.35);transition:transform .2s,box-shadow .2s}
+.ol-ask-fab:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(0,0,0,.45)}
+.ol-ask-fab svg{width:20px;height:20px;flex:none;display:block}
+.ol-ask-fab.hide{display:none}
+#ol-top{bottom:88px}
+.ol-ask-wrap{position:fixed;right:22px;bottom:24px;z-index:1201;width:380px;max-width:calc(100vw - 32px);height:560px;max-height:calc(100vh - 70px);background:var(--bg2,#221a0e);border:1px solid var(--br);border-radius:16px;box-shadow:0 24px 70px rgba(0,0,0,.55);display:none;flex-direction:column;overflow:hidden}
+.ol-ask-wrap.open{display:flex}
+html.light .ol-ask-wrap{box-shadow:0 24px 70px rgba(40,30,10,.22)}
+.ol-ask-hd{display:flex;align-items:center;gap:10px;padding:13px 15px;border-bottom:1px solid var(--br);background:var(--bg,#1a140a)}
+.ol-ask-hd .ti{flex:1;line-height:1.25}
+.ol-ask-hd .ti b{color:var(--gd,#c9a84c);font-size:.97rem}
+.ol-ask-hd .ti span{display:block;font-size:.7rem;color:var(--mu);font-weight:400;letter-spacing:.02em}
+.ol-ask-x{background:none;border:none;color:var(--mu);font-size:1.4rem;line-height:1;cursor:pointer;padding:0 6px;border-radius:6px}
+.ol-ask-x:hover{color:var(--tx,#e7ddc8)}
+.ol-ask-log{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:11px}
+.ol-ask-msg{max-width:92%;font-size:.9rem;line-height:1.55;word-wrap:break-word}
+.ol-ask-msg.user{align-self:flex-end;background:var(--gd,#c9a84c);color:#1a140a;padding:8px 13px;border-radius:14px 14px 4px 14px;font-weight:500}
+.ol-ask-msg.bot{align-self:flex-start;color:var(--tx,#e7ddc8);width:100%}
+.ol-ask-msg.bot .lead{margin:0 0 9px;color:var(--mu);font-size:.85rem}
+.ol-ans{display:block;text-decoration:none;color:var(--tx,#e7ddc8);border:1px solid var(--br);border-radius:10px;padding:9px 12px;margin-bottom:8px;background:var(--bg,#1a140a);transition:border-color .18s,transform .18s}
+.ol-ans:hover{border-color:var(--gd,#c9a84c);transform:translateY(-1px)}
+.ol-ans .a-t{display:block;font-weight:600;font-size:.88rem}
+.ol-ans .a-h{display:block;font-size:.78rem;color:var(--gd,#c9a84c);margin-top:1px}
+.ol-ans .a-x{display:block;font-size:.81rem;color:var(--mu);margin-top:5px;line-height:1.5}
+.ol-ans mark,.ol-ask-msg mark{background:rgba(201,168,76,.32);color:inherit;border-radius:2px;padding:0 1px}
+.ol-vans{border:1px solid var(--br);border-radius:10px;padding:11px 13px;margin-bottom:9px;background:var(--bg,#1a140a)}
+.ol-vans .vr{font-weight:700;color:var(--gd,#c9a84c)}
+.ol-vans .vt{display:block;margin-top:5px;font-size:.85rem;line-height:1.55;color:var(--tx,#e7ddc8)}
+.ol-vans .vt em{font-style:normal;font-size:.62rem;color:var(--mu);border:1px solid var(--br);border-radius:4px;padding:0 4px;margin-left:5px;letter-spacing:.05em;vertical-align:middle}
+.ol-ask-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+.ol-ask-chips button{font:inherit;font-size:.78rem;color:var(--tx,#e7ddc8);background:var(--bg,#1a140a);border:1px solid var(--br);border-radius:16px;padding:5px 11px;cursor:pointer;transition:border-color .18s,color .18s}
+.ol-ask-chips button:hover{border-color:var(--gd,#c9a84c);color:var(--gd,#c9a84c)}
+.ol-ask-foot{border-top:1px solid var(--br);padding:10px 10px 4px;display:flex;gap:8px;align-items:center}
+.ol-ask-foot input{flex:1;border:1px solid var(--br);background:var(--bg,#1a140a);color:var(--tx,#e7ddc8);font:inherit;font-size:.9rem;padding:9px 12px;border-radius:9px;outline:none}
+.ol-ask-foot input:focus{border-color:var(--gd,#c9a84c)}
+.ol-ask-foot button.send{flex:none;border:none;background:var(--gd,#c9a84c);color:#1a140a;width:38px;height:38px;border-radius:9px;cursor:pointer;font-size:1.15rem;line-height:1;display:flex;align-items:center;justify-content:center}
+.ol-ask-foot button.send:hover{filter:brightness(1.06)}
+.ol-ask-note{font-size:.66rem;color:var(--mu);text-align:center;padding:6px 12px 9px;line-height:1.4}
+@media(max-width:480px){.ol-ask-wrap{right:8px;bottom:8px;width:auto;left:8px;height:80vh;max-height:none}.ol-ask-fab{right:12px;bottom:14px}#ol-top{bottom:78px}}
+/* END-FEATURES4 */
 </style>
 <script>try{if(localStorage.getItem('ol-theme')==='light')document.documentElement.classList.add('light')}catch(e){}</script>
 <script>try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('js-anim')}catch(e){}</script>
@@ -974,6 +1023,9 @@ function doSearch(q){
 
 
 
+
+
+
 <script>
 /* AUTO-ENHANCE-JS */
 (function(){
@@ -1123,6 +1175,24 @@ function doSearch(q){
       return {canon:canon,ch:parseInt(m[2],10),vs:m[3]?parseInt(m[3],10):null};
     }
     function uniqPages(entries){var seen={},out=[];entries.forEach(function(e){if(!seen[e[0]]){seen[e[0]]=1;out.push({f:e[0],t:e[1],a:e[2]});}});return out;}
+    /* exported verse engine — used by the FE4 "Ask the Lamp" assistant.
+       resolves to null if `raw` is not a bare Bible reference. */
+    window.__olVerseQuery=function(raw){
+      var vq=parseRef((raw||'').trim());
+      if(!vq)return Promise.resolve(null);
+      return Promise.all([loadVP(),loadIndex()]).then(function(){
+        function sub(f,a){return (SEC[f]&&SEC[f][a])||'';}
+        function pages(arr){return uniqPages(arr).map(function(r){return {f:r.f,t:r.t,a:r.a,sub:sub(r.f,r.a)};});}
+        if(vq.vs!=null){
+          var key=vq.canon+' '+vq.ch+':'+vq.vs,e=VP[key];
+          return {mode:'verse',ref:key,kjv:(e&&e.k)?e.k:null,pages:e?pages(e.r):[]};
+        }
+        var prefix=vq.canon+' '+vq.ch+':',vnums=[],agg=[];
+        Object.keys(VP).forEach(function(k){if(k.indexOf(prefix)===0){vnums.push(parseInt(k.slice(prefix.length),10));VP[k].r.forEach(function(r){agg.push(r);});}});
+        vnums.sort(function(a,b){return a-b;});
+        return {mode:'chapter',ref:vq.canon+' '+vq.ch,vnums:vnums,pages:pages(agg)};
+      }).catch(function(){return null;});
+    };
     function rowsHTML(){
       if(!flat.length)return '<div class="r-empty">No page cites this on the site yet.</div>';
       return flat.map(function(r,i){return '<a class="ol-r'+(i===sel?' sel':'')+'" data-i="'+i+'" href="'+r.f+(r.a?'#'+r.a:'')+'"><span class="r-t">'+esc(r.t)+'</span>'+(r.sub?'<span class="r-s">'+esc(r.sub)+'</span>':'')+'</a>';}).join('');
@@ -1252,5 +1322,133 @@ function doSearch(q){
   }catch(e){}
 })();
 /* END-FEATURES3-JS */</script>
+<script>
+/* AUTO-FEATURES4-JS */
+(function(){
+  try{
+    function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+    var STOP={};'the a an and or but of to in on at for with as is are was were be been being do does did this that these those it its their them they we you i he she his her our your my me us not no yes can could would should will shall may might must have has had what why how who whom whose which when where does did about into from than then so such also more most very just only own same other any all both each few how into about'.split(/\s+/).forEach(function(w){STOP[w]=1;});
+    function toks(q){return (String(q).toLowerCase().match(/[a-z0-9]+/g)||[]).filter(function(w){return w.length>=3&&!STOP[w];});}
+
+    var C=null,cP=null;
+    function loadC(){if(cP)return cP;cP=fetch('ask-content.json').then(function(r){return r.json();}).then(function(d){C=d;return d;}).catch(function(){C={pages:[]};return C;});return cP;}
+
+    function reEsc(t){return t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}
+    function excerpt(x,tk){
+      if(!x)return '';
+      var lx=x.toLowerCase(),pos=-1,i,p;
+      for(i=0;i<tk.length;i++){p=lx.indexOf(tk[i]);if(p>=0&&(pos<0||p<pos))pos=p;}
+      if(pos<0)pos=0;
+      var start=Math.max(0,pos-65),end=Math.min(x.length,pos+165);
+      var frag=x.slice(start,end);
+      if(start>0)frag=frag.replace(/^\S*\s/,'');
+      if(end<x.length)frag=frag.replace(/\s\S*$/,'');
+      var out=esc(frag);
+      if(start>0)out='…'+out;
+      if(end<x.length)out=out+'…';
+      tk.forEach(function(t){if(t.length<3)return;try{out=out.replace(new RegExp('('+reEsc(t)+')','ig'),'<mark>$1</mark>');}catch(e){}});
+      return out;
+    }
+    function scoreSec(p,s,tk){
+      var head=(s.h||'').toLowerCase(),body=(s.x||'').toLowerCase(),title=(p.t||'').toLowerCase(),kw=(p.kw||[]).join(' ').toLowerCase();
+      var sc=0,covered=0;
+      tk.forEach(function(t){
+        var any=false;
+        if(head.indexOf(t)>=0){sc+=14;any=true;}
+        if(title.indexOf(t)>=0){sc+=8;any=true;}
+        if(kw.indexOf(t)>=0){sc+=7;any=true;}
+        var occ=0,idx=body.indexOf(t);
+        while(idx>=0&&occ<6){occ++;idx=body.indexOf(t,idx+t.length);}
+        if(occ){sc+=Math.min(occ,4)*4;any=true;}
+        if(any)covered++;
+      });
+      if(tk.length>1){if(covered===tk.length)sc+=14;sc+=covered*3;}
+      return sc;
+    }
+    function rank(q){
+      var tk=toks(q);if(!tk.length||!C||!C.pages)return {tk:tk,top:[]};
+      var hits=[];
+      C.pages.forEach(function(p){(p.secs||[]).forEach(function(s){var sc=scoreSec(p,s,tk);if(sc>0)hits.push({f:p.f,t:p.t,h:s.h,a:s.a,x:s.x,sc:sc});});});
+      hits.sort(function(a,b){return b.sc-a.sc;});
+      var per={},top=[];
+      for(var i=0;i<hits.length&&top.length<4;i++){var f=hits[i].f;if((per[f]||0)>=2)continue;per[f]=(per[f]||0)+1;top.push(hits[i]);}
+      return {tk:tk,top:top};
+    }
+
+    /* ---- UI ---- */
+    var fab=document.createElement('button');fab.className='ol-ask-fab';fab.type='button';
+    fab.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg><span>Ask the Lamp</span>';
+    document.body.appendChild(fab);
+
+    var wrap=document.createElement('div');wrap.className='ol-ask-wrap';wrap.setAttribute('role','dialog');wrap.setAttribute('aria-label','Ask the Lamp');
+    wrap.innerHTML='<div class="ol-ask-hd"><div class="ti"><b>Ask the Lamp</b><span>Search the whole site by question or verse</span></div><button class="ol-ask-x" type="button" aria-label="Close">×</button></div><div class="ol-ask-log" role="log" aria-live="polite"></div><div class="ol-ask-foot"><input type="text" placeholder="Ask a question or type a verse…" aria-label="Ask a question" autocomplete="off"><button class="send" type="button" aria-label="Send">➤</button></div><div class="ol-ask-note">Answers are drawn only from this site’s pages · not a live AI chat</div>';
+    document.body.appendChild(wrap);
+    var log=wrap.querySelector('.ol-ask-log'),inp=wrap.querySelector('.ol-ask-foot input'),sendB=wrap.querySelector('.send'),xB=wrap.querySelector('.ol-ask-x');
+
+    function scrollDown(){log.scrollTop=log.scrollHeight;}
+    function addUser(t){var d=document.createElement('div');d.className='ol-ask-msg user';d.textContent=t;log.appendChild(d);scrollDown();}
+    function addBot(html){var d=document.createElement('div');d.className='ol-ask-msg bot';d.innerHTML=html;log.appendChild(d);scrollDown();return d;}
+
+    function pageRows(pages,limit){
+      return pages.slice(0,limit||5).map(function(r){
+        return '<a class="ol-ans" href="'+esc(r.f)+(r.a?'#'+esc(r.a):'')+'"><span class="a-t">'+esc(r.t)+'</span>'+(r.sub?'<span class="a-h">'+esc(r.sub)+'</span>':'')+'</a>';
+      }).join('');
+    }
+    function renderVerse(v){
+      var h='';
+      if(v.mode==='verse'){
+        h+='<div class="ol-vans"><span class="vr">'+esc(v.ref)+'</span>'+(v.kjv?'<span class="vt">'+esc(v.kjv)+'<em>KJV</em></span>':'<span class="vt">Not cited on the site yet.</span>')+'</div>';
+        if(v.pages.length){h+='<p class="lead">Cited on '+v.pages.length+' page'+(v.pages.length>1?'s':'')+':</p>'+pageRows(v.pages,6);}
+      }else{
+        h+='<div class="ol-vans"><span class="vr">'+esc(v.ref)+'</span><span class="vt">'+(v.vnums.length?'Verses cited here: '+v.vnums.join(', '):'No verses from this chapter are cited yet.')+'</span></div>';
+        if(v.pages.length){h+='<p class="lead">Pages citing this chapter:</p>'+pageRows(v.pages,6);}
+      }
+      addBot(h);
+    }
+    function renderTopic(q){
+      var r=rank(q),tk=r.tk,top=r.top;
+      if(!tk.length){addBot('<p class="lead">Try a question like <em>why do you venerate icons?</em> or type a Bible reference such as <em>John 3:16</em>.</p>');return;}
+      if(!top.length||top[0].sc<10){
+        var h='<p class="lead">I couldn’t find a confident match on the site. ';
+        if(top.length){h+='The closest pages:</p>'+top.map(function(it){return '<a class="ol-ans" href="'+esc(it.f)+(it.a?'#'+esc(it.a):'')+'"><span class="a-t">'+esc(it.t)+'</span>'+(it.h?'<span class="a-h">'+esc(it.h)+'</span>':'')+'</a>';}).join('');}
+        else{h+='Try different words, or browse from the menu.</p>';}
+        addBot(h);return;
+      }
+      var lead=top[0].sc>=22?'Here’s where the site addresses that:':'This looks closest on the site:';
+      var body=top.map(function(it){
+        return '<a class="ol-ans" href="'+esc(it.f)+(it.a?'#'+esc(it.a):'')+'"><span class="a-t">'+esc(it.t)+'</span>'+(it.h?'<span class="a-h">'+esc(it.h)+'</span>':'')+'<span class="a-x">'+excerpt(it.x,tk)+'</span></a>';
+      }).join('');
+      addBot('<p class="lead">'+lead+'</p>'+body);
+    }
+
+    var busy=false;
+    function handle(q){
+      q=(q||'').trim();if(!q||busy)return;
+      addUser(q);inp.value='';busy=true;
+      var vp=(window.__olVerseQuery?window.__olVerseQuery(q):Promise.resolve(null));
+      Promise.resolve(vp).then(function(v){
+        if(v){renderVerse(v);busy=false;return;}
+        loadC().then(function(){renderTopic(q);busy=false;});
+      }).catch(function(){loadC().then(function(){renderTopic(q);busy=false;});});
+    }
+
+    var greeted=false;
+    function greet(){
+      if(greeted)return;greeted=true;
+      var d=addBot('<p class="lead">Ask me anything about the Oriental Orthodox faith, other traditions, or type a Bible reference — I’ll point you to the answer on the site.</p><div class="ol-ask-chips"></div>');
+      var chips=['Why venerate icons?','Are we monophysite?','Purgatory','John 3:16'];
+      var cw=d.querySelector('.ol-ask-chips');
+      chips.forEach(function(c){var b=document.createElement('button');b.type='button';b.textContent=c;b.addEventListener('click',function(){handle(c);});cw.appendChild(b);});
+    }
+    function openAsk(){wrap.classList.add('open');fab.classList.add('hide');greet();loadC();setTimeout(function(){inp.focus();},40);scrollDown();}
+    function closeAsk(){wrap.classList.remove('open');fab.classList.remove('hide');}
+    fab.addEventListener('click',openAsk);
+    xB.addEventListener('click',closeAsk);
+    sendB.addEventListener('click',function(){handle(inp.value);});
+    inp.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();handle(inp.value);}else if(e.key==='Escape'){closeAsk();}});
+    window.__olOpenAsk=openAsk;
+  }catch(e){}
+})();
+/* END-FEATURES4-JS */</script>
 </body>
 </html>
