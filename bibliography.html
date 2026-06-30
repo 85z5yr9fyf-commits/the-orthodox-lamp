@@ -215,6 +215,13 @@ html.light #sidenav a.active,html.light #sidenav a:hover{color:var(--gold)}
 
 
 
+
+
+
+
+
+
+
 /* AUTO-ENHANCE */
 html.js-anim .sec{opacity:0;transform:translateY(18px);transition:opacity .6s cubic-bezier(.16,.7,.3,1),transform .6s cubic-bezier(.16,.7,.3,1)}
 html.js-anim .sec.in{opacity:1;transform:none}
@@ -548,6 +555,9 @@ window.addEventListener('scroll',()=>{
 
 
 
+
+
+
 <script>
 /* AUTO-ENHANCE-JS */
 (function(){
@@ -617,7 +627,7 @@ window.addEventListener('scroll',()=>{
         else{var t=document.createElement('textarea');t.value=url;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(t);ok();}
       });
       var arr=h.querySelector('.arr');
-      if(arr)h.insertBefore(b,arr);else h.appendChild(b);
+      if(arr&&arr.parentNode===h)h.insertBefore(b,arr);else h.appendChild(b);
     });
 
     /* ---- shared index + bundled KJV ---- */
