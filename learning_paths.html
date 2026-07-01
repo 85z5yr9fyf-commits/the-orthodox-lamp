@@ -3,125 +3,109 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>THE ORTHODOX LAMP — Jesus the Jewish Messiah</title>
+<title>Guided Learning Paths — The Orthodox Lamp</title>
+<meta name="description" content="Curated, ordered reading tracks through The Orthodox Lamp — from the existence of God to the apostolic Church, Protestantism, Rome, Islam, and the Oriental Orthodox faith.">
 <style>
-:root{--gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;--bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--tx:#e8e0d0;--mu:#a09880;--red:#8b2020;--br:#2a2a2a;--bg5:#3a2e10;--sidebar-w:270px}
+:root{
+  --gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;
+  --bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--bg5:#3a2e10;
+  --tx:#e8e0d0;--mu:#a09880;--br:#2a2a2a;
+  --sidebar-w:270px;
+  --rc:#3a1a1a;--rcc:#d47070;
+  --oo:#1a2e1a;--ooc:#7dc87d;
+  --pr:#15202e;--prc:#6fa8d4;
+}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.75}
-a{color:var(--gold);text-decoration:none}
-#progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(to right,var(--gd),var(--gold),var(--gl));width:0%;z-index:500}
-#sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:200;transition:transform .3s}
-#sidebar h2{font-size:.7rem;letter-spacing:.15em;color:var(--gold);text-transform:uppercase;padding:1.4rem 1.2rem .5rem;border-bottom:1px solid var(--br)}
-#sidenav a{display:block;padding:.42rem 1.2rem;font-size:.82rem;color:var(--mu);border-left:3px solid transparent;transition:all .2s}
-#sidenav a:hover,#sidenav a.active{color:var(--gl);border-left-color:var(--gold);background:var(--bg5)}
-.search-wrap{padding:.8rem 1rem;border-bottom:1px solid var(--br);display:flex;gap:.4rem}
-.search-wrap input{flex:1;background:var(--bg3);border:1px solid var(--br);color:var(--tx);padding:.35rem .6rem;border-radius:4px;font-size:.8rem}
-.search-wrap button{background:var(--gold);color:#0d0d0d;border:none;padding:.35rem .7rem;border-radius:4px;cursor:pointer;font-weight:700;font-size:.8rem}
-#main-content{margin-left:var(--sidebar-w);padding:0 2rem 4rem}
-.mob-toggle{display:none;position:fixed;bottom:1.2rem;right:1.2rem;background:var(--gold);color:#0d0d0d;border:none;width:48px;height:48px;border-radius:50%;font-size:1.4rem;cursor:pointer;z-index:300;box-shadow:0 2px 12px rgba(0,0,0,.5)}
-#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:150}
-#overlay.show{display:block}
-.hero{text-align:center;padding:4rem 1rem 2.5rem;border-bottom:1px solid var(--br);background:linear-gradient(to bottom,var(--bg2),var(--bg))}
-.si{font-size:2.2rem;color:var(--gold);display:block;margin-bottom:.5rem}
-.st{font-size:2rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
-.st span{color:var(--gold)}
-.ss{font-size:1.05rem;color:var(--gl);margin:.6rem 0 .4rem;font-style:italic}
-.tg{font-size:.85rem;color:var(--mu);margin-bottom:.8rem}
-.orn{color:var(--gold);font-size:1.1rem;letter-spacing:.4em;margin-top:.5rem}
-.sec{border:1px solid var(--br);border-radius:8px;margin:1.5rem 0;background:var(--bg2);overflow:hidden}
-.sec-hd{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.3rem;cursor:pointer;user-select:none;background:var(--bg3);border-bottom:1px solid transparent;transition:background .2s}
-.sec-hd:hover{background:var(--bg4)}
-.sec.open .sec-hd{border-bottom-color:var(--br);background:var(--bg4)}
-.sec-hd h2{font-size:1rem;color:var(--gl);text-transform:uppercase;letter-spacing:.05em}
-.sec-bd{display:none;padding:1.4rem 1.5rem}
-.sec.open .sec-bd{display:block}
-.sec-bd h3{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin:1.4rem 0 .7rem;padding-bottom:.3rem;border-bottom:1px solid var(--bg5)}
-.sec-bd p{color:var(--tx);margin-bottom:.9rem;font-size:.95rem}
-.arr{color:var(--gold);font-size:.9rem;transition:transform .3s}
-.sec.open .arr{transform:rotate(180deg)}
-.sv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin:.8rem 0 1.2rem}
-.sv{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:1rem}
-.sv .ref{font-size:.75rem;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.4rem}
-.sv .labels{margin-bottom:.5rem;display:flex;gap:.4rem}
-.sv .labels span{font-size:.65rem;font-weight:700;padding:.15rem .45rem;border-radius:3px;text-transform:uppercase;letter-spacing:.06em}
-.labels .prot{background:#4a1a1a;color:#e87070}
-.labels .oo{background:#1a3a1a;color:#70c870}
-.labels .ctx{background:#1a2a3a;color:#70aacc}
-.sv .txt{font-style:italic;color:var(--gl);font-size:.88rem;margin-bottom:.5rem;border-left:2px solid var(--gold);padding-left:.7rem}
-.sv .interp{font-size:.82rem;color:var(--mu)}
-.fc{background:var(--bg3);border:1px solid var(--br);border-left:3px solid var(--gold);border-radius:6px;padding:1rem 1.1rem;margin:.8rem 0}
-.fn{font-size:.8rem;font-weight:700;color:var(--gl);text-transform:uppercase;letter-spacing:.07em}
-.fw{font-size:.75rem;color:var(--mu);margin:.2rem 0 .5rem;font-style:italic}
-.fq{font-style:italic;color:var(--tx);font-size:.88rem;border-left:2px solid var(--bg5);padding-left:.8rem;margin:.4rem 0 .6rem}
-.fsig{font-size:.8rem;color:var(--mu)}
-.src{font-size:.6rem;font-weight:700;padding:.12rem .4rem;border-radius:3px;text-transform:uppercase;letter-spacing:.06em;margin-left:.4rem;vertical-align:middle;font-style:normal}
-.src.direct{background:#16331a;color:#6fc879}
-.src.para{background:#2a1a3a;color:#b98ad0}
-.cmp-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:.8rem 0 1.2rem}
-.cmp{border:1px solid var(--br);border-radius:6px;padding:1rem;background:var(--bg3)}
-.cmp.lds{border-top:3px solid var(--red)}
-.cmp.oo{border-top:3px solid var(--gold)}
-.cmp .ct{font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.6rem;padding-bottom:.35rem;border-bottom:1px solid var(--bg5)}
-.cmp.lds .ct{color:#e87070}
-.cmp.oo .ct{color:var(--gl)}
-.cmp p{font-size:.84rem;color:var(--tx);margin-bottom:.5rem}
-.obj{background:var(--bg3);border:1px solid #4a1a1a;border-left:3px solid var(--red);border-radius:6px;margin:.8rem 0;overflow:hidden}
-.obj-hd{display:flex;justify-content:space-between;align-items:center;padding:.8rem 1rem;cursor:pointer;user-select:none}
-.obj-hd:hover{background:var(--bg4)}
-.obj-hd h3{font-size:.85rem;color:#e87070;font-weight:700}
-.obj-bd{display:none;padding:.9rem 1.1rem;border-top:1px solid #4a1a1a}
-.obj.open .obj-bd{display:block}
-.obj.open .arr{transform:rotate(180deg)}
-.obj-bd h4{font-size:.75rem;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.4rem;margin-top:.6rem}
-.obj-bd h4:first-child{margin-top:0}
-.obj-bd p{font-size:.85rem;color:var(--tx);margin-bottom:.6rem}
-.fi{background:var(--bg3);border:1px solid var(--br);border-radius:6px;margin:.6rem 0;overflow:hidden}
-.fi-hd{display:flex;justify-content:space-between;align-items:center;padding:.8rem 1rem;cursor:pointer;user-select:none;font-size:.88rem;color:var(--gl)}
-.fi-hd:hover{background:var(--bg4)}
-.fi-bd{display:none;padding:.9rem 1.1rem;border-top:1px solid var(--br);font-size:.85rem;color:var(--tx)}
-.fi.open .fi-bd{display:block}
-.fi.open .arr{transform:rotate(180deg)}
-.fi-bd p{margin-bottom:.7rem}
-.tl{list-style:none;margin:.5rem 0 1rem;padding-left:1.4rem;border-left:2px solid var(--gold)}
-.tl li{position:relative;margin-bottom:1rem;padding-left:.6rem}
-.tl li::before{content:"";position:absolute;left:-1.92rem;top:.35rem;width:11px;height:11px;border-radius:50%;background:var(--gold);border:2px solid var(--bg)}
-.tl li.turn::before{background:var(--red)}
-.tl .yr{font-size:.72rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.08em}
-.tl .ev{font-size:.88rem;color:var(--tx);margin-top:.15rem}
-.src-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;margin:.8rem 0}
-.src-card{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:1rem}
-.src-cat{font-size:.72rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.6rem;padding-bottom:.4rem;border-bottom:1px solid var(--bg5)}
-.src-item{font-size:.8rem;color:var(--mu);margin-bottom:.5rem;padding-left:.7rem;border-left:2px solid var(--br)}
-.btt{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--gold);color:#0d0d0d;border:none;width:44px;height:44px;border-radius:50%;font-size:1.2rem;cursor:pointer;opacity:0;transition:opacity .3s;z-index:300;font-weight:700}
-@media(max-width:768px){#sidebar{transform:translateX(-100%)}#sidebar.open{transform:translateX(0)}#main-content{margin-left:0;padding:0 1rem 4rem}.mob-toggle{display:flex;align-items:center;justify-content:center}.sv-grid{grid-template-columns:1fr}.cmp-grid{grid-template-columns:1fr}}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.7;display:flex;min-height:100vh}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+mark{background:rgba(201,168,76,.28);color:var(--gl);border-radius:2px;padding:0 2px}
+#prog{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--gd),var(--gl));z-index:200;transition:width .1s}
+#sb{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:100;display:flex;flex-direction:column}
+#sb-brand{padding:18px 18px 10px;border-bottom:1px solid var(--br)}
+#sb-brand .lamp{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mu);margin-bottom:4px}
+#sb-brand h1{font-size:1rem;color:var(--gold);line-height:1.3}
+.sb-search{padding:10px 14px 4px}
+.sb-search input{width:100%;background:rgba(255,255,255,.06);border:1px solid var(--br);border-radius:6px;padding:8px 12px;font-size:.8rem;color:var(--tx);font-family:'Georgia',serif;outline:none;transition:border-color .2s}
+.sb-search input::placeholder{color:#666}
+.sb-search input:focus{border-color:var(--gd)}
+.sec.s-hidden{display:none}
+.no-match-msg{display:none;padding:14px 18px;font-size:.8rem;color:var(--mu);font-style:italic;text-align:center}
+.no-match-msg.show{display:block}
+#sb-nav{padding:10px 0 20px;flex:1}
+#sb-nav a{display:block;padding:6px 18px;font-size:.82rem;color:var(--mu);border-left:2px solid transparent;transition:all .15s;line-height:1.4}
+#sb-nav a:hover,#sb-nav a.active{color:var(--gold);border-left-color:var(--gold);background:rgba(201,168,76,.06);text-decoration:none}
+main{margin-left:var(--sidebar-w);flex:1;max-width:820px;padding:48px 48px 80px}
+.pg-title{margin-bottom:10px}
+.pg-title .lamp-label{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--mu);margin-bottom:6px}
+.pg-title h1{font-size:2rem;color:var(--gold);line-height:1.2}
+.pg-title .sub{font-size:1rem;color:var(--mu);margin-top:6px;font-style:italic}
+.pg-intro{max-width:660px;color:var(--mu);font-size:.95rem;margin:16px 0 36px;border-left:3px solid var(--gd);padding-left:14px}
+.sec{border:1px solid var(--br);border-radius:8px;margin-bottom:14px;overflow:hidden;background:var(--bg2)}
+.sec-h{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;cursor:pointer;user-select:none;gap:10px}
+.sec-h:hover{background:rgba(255,255,255,.03)}
+.sec-h h2{font-size:1rem;color:var(--tx);font-weight:600}
+.sec-h .arr{color:var(--mu);font-size:.8rem;transition:transform .2s;flex-shrink:0}
+.sec.open .arr{transform:rotate(90deg)}
+.sec-body{display:none;padding:18px 20px 20px;border-top:1px solid var(--br)}
+.sec.open .sec-body{display:block}
+.sec-body p{color:var(--mu);font-size:.92rem;margin-bottom:10px}
+.sec-body p:last-child{margin-bottom:0}
+.sv{background:var(--bg5);border:1px solid var(--gd);border-radius:6px;padding:12px 16px;margin:12px 0;font-style:italic;color:var(--gl);font-size:.92rem}
+.sv cite{display:block;text-align:right;font-size:.8rem;color:var(--gold);margin-top:6px;font-style:normal}
+.comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.comp-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 0}
+.comp-card{border-radius:8px;padding:14px 16px;border:1px solid}
+.comp-card.rc-card{background:var(--rc);border-color:var(--rcc)}
+.comp-card.oo-card{background:var(--oo);border-color:var(--ooc)}
+.comp-card.prot{background:var(--pr);border-color:var(--prc)}
+.comp-card .cc-label{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;font-weight:700}
+.comp-card.rc-card .cc-label{color:var(--rcc)}
+.comp-card.oo-card .cc-label{color:var(--ooc)}
+.comp-card.prot .cc-label{color:var(--prc)}
+.comp-card ul{padding-left:16px;font-size:.88rem;line-height:1.7}
+.comp-card.rc-card ul{color:#e8c0c0}
+.comp-card.oo-card ul{color:#c8e8c8}
+.comp-card.prot ul{color:#bcd6ec}
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin:14px 0}
+.fc{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:14px 16px}
+.fc-name{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.fc-body{font-size:.88rem;color:var(--mu);font-style:italic;line-height:1.6}
+.fc-src{font-size:.76rem;color:var(--gd);margin-top:6px}
+.tag{display:inline-block;font-style:normal;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;padding:1px 6px;border-radius:3px;margin-left:0;font-weight:700}
+.tag-d{background:rgba(125,200,125,.18);color:var(--ooc);border:1px solid var(--ooc)}
+.tag-p{background:rgba(201,168,76,.16);color:var(--gl);border:1px solid var(--gd)}
+.fi{border:1px solid var(--br);border-radius:6px;margin-bottom:8px;overflow:hidden;background:var(--bg3)}
+.fi-h{display:flex;align-items:flex-start;padding:11px 14px;cursor:pointer;gap:8px;user-select:none}
+.fi-h:hover{background:rgba(255,255,255,.03)}
+.fi-q{font-size:.88rem;color:var(--tx);flex:1}
+.fi-arr{color:var(--mu);font-size:.75rem;transition:transform .2s;flex-shrink:0;margin-top:4px}
+.fi.open .fi-arr{transform:rotate(90deg)}
+.fi-body{display:none;padding:12px 14px 14px;border-top:1px solid var(--br);font-size:.88rem;color:var(--mu);line-height:1.65}
+.fi.open .fi-body{display:block}
+.fi-body p{margin-bottom:9px}.fi-body p:last-child{margin-bottom:0}
+.gt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin:14px 0}
+.gt{background:var(--bg3);border:1px solid var(--br);border-radius:7px;padding:12px 14px}
+.gt-term{font-size:.8rem;font-weight:700;color:var(--gold);margin-bottom:4px}
+.gt-def{font-size:.84rem;color:var(--mu);line-height:1.55}
+.tl{margin:14px 0;border-left:2px solid var(--gd);padding-left:18px}
+.tl-item{position:relative;margin-bottom:14px}
+.tl-item::before{content:'';position:absolute;left:-23px;top:6px;width:8px;height:8px;border-radius:50%;background:var(--gold);border:2px solid var(--bg2)}
+.tl-year{font-size:.75rem;color:var(--gold);margin-bottom:3px;font-weight:600}
+.tl-text{font-size:.88rem;color:var(--mu);line-height:1.55}
+@media(max-width:760px){#sb{transform:translateX(-100%)}main{margin-left:0;padding:24px 18px 60px}.comp-grid,.comp-grid3{grid-template-columns:1fr}}
 
 .lampsvg{display:block;margin:0 auto 14px;height:auto}
 .lampsvg .lampflame{animation:lampflick 3.2s ease-in-out infinite;transform-origin:50% 100%}
 @keyframes lampflick{0%,100%{transform:scaleY(1) scaleX(1);opacity:.95}25%{transform:scaleY(1.06) scaleX(.97);opacity:1}50%{transform:scaleY(.96) scaleX(1.03);opacity:.9}75%{transform:scaleY(1.04) scaleX(.98);opacity:1}}
 
-html.light{--gold:#8a6a20;--gl:#6f5413;--gd:#b08e3e;--bg:#f7f2e6;--bg2:#efe8d5;--bg3:#e7ddc7;--bg4:#ddd2b9;--tx:#2b2415;--mu:#6e6450;--br:#d2c7aa;--bg5:#efe0b8}
+html.light{--gold:#8a6a20;--gl:#6f5413;--gd:#b08e3e;--bg:#f7f2e6;--bg2:#efe8d5;--bg3:#e7ddc7;--bg4:#ddd2b9;--bg5:#efe0b8;--tx:#2b2415;--mu:#6e6450;--br:#d2c7aa;--rc:#ead1d1;--rcc:#762323;--oo:#d5e7d5;--ooc:#2d6c2d;--pr:#d6e2ee;--prc:#1d4a6b}
 #ol-tt{position:fixed;right:16px;bottom:74px;z-index:9999;width:44px;height:44px;border-radius:50%;background:var(--bg3,var(--panel,#1a1a1a));color:var(--gold,#c9a84c);border:1px solid var(--gd,var(--gold-dark,var(--rule,#8a6a20)));font-size:1.1rem;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35);line-height:1}#ol-tt:hover{filter:brightness(1.15)}
-html.light .src.direct{background:#d2ead4;color:#1d5c1d}
-html.light .src.para{background:#e4d8ee;color:#5a2e7a}
-html.light .labels .prot{background:#eed6d6;color:#8b2020}
-html.light .labels .oo{background:#d8e8d8;color:#1d5c1d}
-html.light .labels .ctx{background:#d8e3ee;color:#1d4a6b}
-html.light .obj{border-color:#dcc0c0}
-html.light .obj-bd{border-top-color:#dcc0c0}
-html.light .obj-hd h3{color:#8b2020}
-html.light .cmp.lds{border-top-color:#a83232}
-html.light .cmp.lds .ct{color:#a83232}
-
-/* ol-aes-v1 */
-html.light #sidebar{background:linear-gradient(180deg,#f5edd5 0%,#ede4cb 100%)}
-html.light .sec{box-shadow:0 2px 8px rgba(100,70,15,.10)}
-html.light .sec.open .sec-hd{border-left:3px solid var(--gold)}
-html.light .hero{background:linear-gradient(155deg,#ede9d6 0%,#e6d896 100%);border-bottom-color:#b08e3e}
+html.light #sb{background:linear-gradient(180deg,#f5edd5 0%,#ede4cb 100%)}
 html.light .sv{box-shadow:0 1px 4px rgba(100,70,15,.08)}
 html.light .fc{box-shadow:0 1px 4px rgba(100,70,15,.08)}
-html.light a{color:#6b4a10}
-html.light #sidenav a{color:var(--mu)}
-html.light #sidenav a.active,html.light #sidenav a:hover{color:var(--gold)}
+html.light .comp-card.rc-card ul{color:#8b2020}
+html.light .comp-card.oo-card ul{color:#1d5c1d}
+html.light .comp-card.prot ul{color:#1d4a6b}
 
 
 
@@ -346,252 +330,54 @@ html.light .ol-ask-wrap{box-shadow:0 24px 70px rgba(40,30,10,.22)}
 @media print{.ol-print-btn{display:none!important}}
 /* END-FEATURES5 */
 </style>
-<script>try{if(localStorage.getItem('ol-theme')==='light')document.documentElement.classList.add('light')}catch(e){}</script>
+<style>
+.lp-intro-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin:22px 0 6px}
+.lp-jump{display:block;padding:12px 14px;border:1px solid var(--br);border-left:3px solid var(--gd);border-radius:8px;background:var(--bg2);color:var(--tx);transition:all .15s}
+.lp-jump:hover{border-color:var(--gd);background:rgba(201,168,76,.07);text-decoration:none}
+.lp-jump b{color:var(--gold);display:block;font-size:.95rem;margin-bottom:3px}
+.lp-jump span{font-size:.76rem;color:var(--mu)}
+.track{margin:38px 0 8px;border-top:1px solid var(--br);padding-top:22px}
+.track-h .tt{font-size:1.35rem;color:var(--gold)}
+.track-h .ts{font-size:.9rem;color:var(--mu);font-style:italic;margin:6px 0 4px;line-height:1.55}
+.track-meta{font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;color:var(--gd);margin-bottom:14px}
+.steps{list-style:none;counter-reset:step;padding:0;margin:0}
+.step{position:relative;padding:0 0 0 46px;margin:0 0 12px}
+.step:before{counter-increment:step;content:counter(step);position:absolute;left:0;top:2px;width:30px;height:30px;border-radius:50%;background:var(--bg3);border:1px solid var(--gd);color:var(--gold);font-size:.85rem;display:flex;align-items:center;justify-content:center;font-weight:bold}
+.step:not(:last-child):after{content:"";position:absolute;left:15px;top:34px;bottom:-12px;width:1px;background:var(--br)}
+.step a.sl{font-size:1rem;color:var(--gold)}
+.step a.sl:hover{text-decoration:underline}
+.step .sw{display:block;font-size:.85rem;color:var(--mu);line-height:1.5;margin-top:2px}
+@media print{.lp-intro-cards{display:none}.track{break-inside:avoid}}
+</style>
 <script>try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('js-anim')}catch(e){}</script>
 <link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#141008"><link rel="apple-touch-icon" href="icon-192.png">
 </head>
 <body>
-<div id="progress-bar"></div>
-<nav id="sidebar">
-  <div class="search-wrap"><input type="text" id="search-input" placeholder="Search…"><button id="search-btn">Go</button></div>
-  <svg class="lampsvg" width="64" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><radialGradient id="lmpGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffb95e" stop-opacity=".55"/><stop offset="100%" stop-color="#ffb95e" stop-opacity="0"/></radialGradient><linearGradient id="lmpFlame" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#ff7a1f"/><stop offset="55%" stop-color="#ffb347"/><stop offset="100%" stop-color="#ffe9b0"/></linearGradient><linearGradient id="lmpBrass" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e3b860"/><stop offset="50%" stop-color="#a87b35"/><stop offset="100%" stop-color="#7a5523"/></linearGradient></defs><circle cx="60" cy="38" r="34" fill="url(#lmpGlow)"/><g class="lampflame"><path d="M60 16 C66 26 70 32 70 40 C70 48 65.5 53 60 53 C54.5 53 50 48 50 40 C50 32 54 26 60 16 Z" fill="url(#lmpFlame)"/><path d="M60 30 C63 35 64.5 38 64.5 42 C64.5 46.5 62.5 49 60 49 C57.5 49 55.5 46.5 55.5 42 C55.5 38 57 35 60 30 Z" fill="#fff3cf" opacity=".85"/></g><rect x="56" y="52" width="8" height="7" rx="2" fill="#8a6228"/><path d="M28 62 L92 62 C92 80 78 92 60 92 C42 92 28 80 28 62 Z" fill="url(#lmpBrass)"/><rect x="24" y="58" width="72" height="6" rx="3" fill="#caa14e"/><rect x="56" y="92" width="8" height="16" fill="url(#lmpBrass)"/><path d="M38 118 C38 110 47 108 60 108 C73 108 82 110 82 118 L82 122 L38 122 Z" fill="url(#lmpBrass)"/><rect x="32" y="122" width="56" height="6" rx="3" fill="#caa14e"/></svg>
-  <h2>The Orthodox Lamp</h2>
-  <nav id="sidenav">
-    <a href="#s1">I. Introduction</a>
-    <a href="#s2">II. What "Messiah" Means</a>
-    <a href="#s3">III. The Suffering Servant</a>
-    <a href="#s4">IV. Bethlehem & David's Throne</a>
-    <a href="#s5">V. Daniel's Seventy Weeks</a>
-    <a href="#s6">VI. The Pierced One</a>
-    <a href="#s7">VII. Two Comings</a>
-    <a href="#s8">VIII. The Sign of the Temple</a>
-    <a href="#s9">IX. The Fathers Speak</a>
-    <a href="#s10">X. Objections</a>
-    <a href="#s11">XI. FAQ</a>
-    <a href="#s12">XII. Sources</a>
-  </nav>
-</nav>
-<div id="overlay" onclick="closeMobile()"></div>
-<button class="mob-toggle" onclick="toggleSidebar()">☰</button>
-<main id="main-content">
-  <div class="hero">
-    <span class="si">☩</span>
-    <h1 class="st">THE <span>ORTHODOX</span> LAMP</h1>
-    <p class="ss">Judaism &amp; Jesus — Is He the Promised Messiah of Israel?</p>
-    <p class="tg">"For if you believed Moses, you would believe me; for he wrote of me." — John 5:46</p>
-    <div class="orn">✦ ✦ ✦</div>
+<div id="prog"></div>
+<nav id="sb">
+  <div id="sb-brand">
+    <svg class="lampsvg" width="64" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><radialGradient id="lmpGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffb95e" stop-opacity=".55"/><stop offset="100%" stop-color="#ffb95e" stop-opacity="0"/></radialGradient><linearGradient id="lmpFlame" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#ff7a1f"/><stop offset="55%" stop-color="#ffb347"/><stop offset="100%" stop-color="#ffe9b0"/></linearGradient><linearGradient id="lmpBrass" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e3b860"/><stop offset="50%" stop-color="#a87b35"/><stop offset="100%" stop-color="#7a5523"/></linearGradient></defs><circle cx="60" cy="38" r="34" fill="url(#lmpGlow)"/><g class="lampflame"><path d="M60 16 C66 26 70 32 70 40 C70 48 65.5 53 60 53 C54.5 53 50 48 50 40 C50 32 54 26 60 16 Z" fill="url(#lmpFlame)"/><path d="M60 30 C63 35 64.5 38 64.5 42 C64.5 46.5 62.5 49 60 49 C57.5 49 55.5 46.5 55.5 42 C55.5 38 57 35 60 30 Z" fill="#fff3cf" opacity=".85"/></g><rect x="56" y="52" width="8" height="7" rx="2" fill="#8a6228"/><path d="M28 62 L92 62 C92 80 78 92 60 92 C42 92 28 80 28 62 Z" fill="url(#lmpBrass)"/><rect x="24" y="58" width="72" height="6" rx="3" fill="#caa14e"/><rect x="56" y="92" width="8" height="16" fill="url(#lmpBrass)"/><path d="M38 118 C38 110 47 108 60 108 C73 108 82 110 82 118 L82 122 L38 122 Z" fill="url(#lmpBrass)"/><rect x="32" y="122" width="56" height="6" rx="3" fill="#caa14e"/></svg>
+    <div class="lamp">The Orthodox Lamp</div>
+    <h1>Learning Paths</h1>
   </div>
-
-  <section class="sec open" id="s1">
-    <div class="sec-hd" onclick="ts(this)"><h2>I. Introduction — Charity and Clarity</h2><span class="arr">▼</span></div>
-    <div class="sec-bd">
-      <p>Christianity owes an immeasurable debt to the Jewish people. The Scriptures of Israel are our Scriptures; the patriarchs, the prophets, the psalms, and the Law are our inheritance. Our Lord was born a Jew, of the tribe of Judah and the house of David; His mother, His apostles, and the first thousands of His followers were Jews. Any contempt for the Jewish people is a sin against the very root from which the Church grew (Romans 11:18), and the long history of "Christian" antisemitism is a betrayal of Christ, not an expression of Him. This page is written in friendship and respect.</p>
-      <p>The question between Judaism and Christianity is not whether God chose Israel — He did — but a single, specific question: <strong>has the Messiah promised to Israel already come, in Jesus of Nazareth?</strong> Faithful Jews say not yet; Christians say He has come, and will come again in glory. This page sets out, from the Hebrew Scriptures themselves, why the Church believes Jesus is the Messiah of whom Moses and the prophets wrote.</p>
-      <p>Throughout, we state the traditional Jewish reading fairly before responding, and we argue from the Scriptures both faiths hold in common — not by importing the New Testament as proof, but by asking what the prophets foretold.</p>
-    </div>
-  </section>
-
-  <section class="sec" id="s2">
-    <div class="sec-hd" onclick="ts(this)"><h2>II. What "Messiah" Means — The Hope of Israel</h2><span class="arr">▼</span></div>
-    <div class="sec-bd">
-      <p>"Messiah" (Hebrew <em>Mashiach</em>, Greek <em>Christos</em>) means "anointed one." In Israel, kings, priests, and prophets were anointed with oil to mark them as set apart for God's service. Over time, the prophets spoke of a coming <em>Anointed One</em> above all others — a descendant of King David who would reign forever, bring God's justice to the nations, and usher in an age of peace and the knowledge of God.</p>
-      <h3>The Core Expectations</h3>
-      <p>From the Hebrew Scriptures, the traditional hope gathered several threads: the Messiah would be a <strong>son of David</strong> (2 Samuel 7:12–16), born in <strong>Bethlehem</strong> (Micah 5:2); He would be <strong>a king and deliverer</strong>, would <strong>gather Israel</strong>, draw the <strong>nations to the God of Israel</strong> (Isaiah 2:2–4; 49:6), and establish <strong>everlasting peace and righteousness</strong> (Isaiah 9:6–7; 11:1–10).</p>
-      <h3>The Tension Within the Prophets</h3>
-      <p>Yet the same Scriptures also describe an Anointed One who is <strong>despised, rejected, and made to suffer</strong> for the sins of others (Isaiah 53), who is <strong>"cut off"</strong> (Daniel 9:26), and who is <strong>"pierced"</strong> (Zechariah 12:10; Psalm 22). How can the Messiah be both a triumphant king and a rejected sufferer? The Christian answer — that He comes <em>twice</em>, first in humility to atone, then in glory to reign — resolves this tension. As we will see, even some of the rabbis sensed two messianic profiles in the text.</p>
-    </div>
-  </section>
-
-  <section class="sec" id="s3">
-    <div class="sec-hd" onclick="ts(this)"><h2>III. The Suffering Servant — Isaiah 53</h2><span class="arr">▼</span></div>
-    <div class="sec-bd">
-      <p>The fourth "Servant Song" (Isaiah 52:13–53:12) is the single most striking messianic passage in the Hebrew Bible. Written centuries before Christ — and preserved in the Dead Sea Scrolls' great Isaiah scroll (c. 125 BC), so it cannot be a later Christian insertion — it describes a righteous servant who suffers and dies for the sins of others, and is then exalted.</p>
-      <div class="sv-grid">
-        <div class="sv"><div class="ref">Isaiah 53:3–6</div><div class="labels"><span class="oo">OO</span></div><div class="txt">"He was despised and rejected by men, a man of sorrows and acquainted with grief… But he was pierced for our transgressions; he was crushed for our iniquities; upon him was the chastisement that brought us peace, and with his wounds we are healed… and the LORD has laid on him the iniquity of us all."</div><div class="interp">A righteous, innocent sufferer bears the sins of others and brings them healing and peace. This is precisely the Christian understanding of the Cross — the Messiah suffering not for His own sin but for ours.</div></div>
-        <div class="sv"><div class="ref">Isaiah 53:8–9</div><div class="labels"><span class="oo">OO</span></div><div class="txt">"By oppression and judgment he was taken away… stricken for the transgression of my people? And they made his grave with the wicked and with a rich man in his death, although he had done no violence, and there was no deceit in his mouth."</div><div class="interp">The Servant dies ("cut off out of the land of the living," v.8), is buried, and is sinless. The detail of being with "the wicked" yet "a rich man in his death" matches the crucifixion between criminals and burial in the tomb of Joseph of Arimathea.</div></div>
-      </div>
-      <div class="cmp-grid">
-        <div class="cmp lds"><div class="ct">The Traditional Jewish Reading</div><p>Following Rashi (11th c.), many later rabbis read the Servant as a personification of <em>the nation of Israel</em>, suffering among the gentiles. On this view Isaiah 53 is not about an individual Messiah at all.</p></div>
-        <div class="cmp oo"><div class="ct">The Older &amp; Christian Reading</div><p>The Servant is an innocent <em>individual</em> who suffers <em>for</em> the people — "for the transgression of <em>my people</em>" (v.8). Israel cannot atone for Israel. Notably, several ancient Jewish sources (e.g. the Targum, and the Babylonian Talmud, <em>Sanhedrin</em> 98b) read the passage messianically, before the medieval national reading became standard.</p></div>
-      </div>
-      <p>The honest point is this: the national reading is a relatively late development, adopted partly in response to Christian use of the chapter. The passage's own words — an individual, sinless, suffering "for the transgression of my people," then "see his offspring" and be exalted — fit a personal, atoning, then vindicated Messiah far better than a collective nation.</p>
-    </div>
-  </section>
-
-  <section class="sec" id="s4">
-    <div class="sec-hd" onclick="ts(this)"><h2>IV. Bethlehem &amp; the Throne of David</h2><span class="arr">▼</span></div>
-    <div class="sec-bd">
-      <p>The Messiah was to be a son of David, born in David's town. Both are foretold plainly, and both were fulfilled in Jesus — a Galilean whose family nonetheless traces to David and whose birth was in Bethlehem.</p>
-      <div class="sv-grid">
-        <div class="sv"><div class="ref">Micah 5:2</div><div class="labels"><span class="oo">OO</span></div><div class="txt">"But you, O Bethlehem Ephrathah, who are too little to be among the clans of Judah, from you shall come forth for me one who is to be ruler in Israel, whose coming forth is from of old, from ancient days."</div><div class="interp">The ruler of Israel comes from the small town of Bethlehem — and his "coming forth is from of old, from ancient days," language hinting at an origin beyond mere human birth. Jewish tradition itself names Bethlehem as the Messiah's birthplace.</div></div>
-        <div class="sv"><div class="ref">2 Samuel 7:12–13, 16</div><div class="labels"><span class="oo">OO</span></div><div class="txt">"I will raise up your offspring after you… and I will establish his kingdom… And your house and your kingdom shall be made sure forever before me. Your throne shall be established forever."</div><div class="interp">God's covenant with David promises an everlasting throne through David's line. The Messiah must therefore be a verifiable son of David — a point that becomes decisive once the genealogical records are considered (Section VIII).</div></div>
-      </div>
-      <p>This is more than a coincidence of birthplace. The prophet ties the ruler's origin both to a definite town and to "ancient days," and Scripture binds the Messiah to an unbroken Davidic line. Jesus meets both: born in Bethlehem, of the house and lineage of David.</p>
-    </div>
-  </section>
-
-  <section class="sec" id="s5">
-    <div class="sec-hd" onclick="ts(this)"><h2>V. Daniel's Seventy Weeks — The Timing of Messiah</h2><span class="arr">▼</span></div>
-    <div class="sec-bd">
-      <p>Daniel 9 gives the most precise prophecy of <em>when</em> the Messiah would come — and, strikingly, that He would be "cut off" <em>before</em> the destruction of the city and Temple. That destruction happened in AD 70. The Messiah, therefore, had to come — and be killed — before then.</p>
-      <div class="sv-grid">
-        <div class="sv"><div class="ref">Daniel 9:25–26</div><div class="labels"><span class="oo">OO</span></div><div class="txt">"From the going out of the word to restore and build Jerusalem to the coming of an anointed one, a prince, there shall be seven weeks. Then for sixty-two weeks it shall be built again… And after the sixty-two weeks, an anointed one shall be cut off and shall have nothing. And the people of the prince who is to come shall destroy the city and the sanctuary."</div><div class="interp">An "anointed one" (Messiah) appears after a measured period from the decree to rebuild Jerusalem (5th c. BC), and is then "cut off" — killed — <em>before</em> the city and sanctuary are destroyed. The Temple fell in AD 70. So the prophecy locates the Messiah's coming and death in the late Second Temple era — exactly the time of Jesus.</div></div>
-      </div>
-      <p>The exact arithmetic of the "weeks" (taken as weeks of years) is debated, but the structural point is firm and was felt acutely in antiquity: the Messiah's death is placed <em>before</em> the destruction of the Second Temple. After AD 70, that window closed. This is part of why the talmudic sages themselves recorded a sense that the time for Messiah had already passed (e.g. the discussions in <em>Sanhedrin</em> 97–98), and why some lamented that the appointed times had come and gone.</p>
-    </div>
-  </section>
-
-  <section class="sec" id="s6">
-    <div class="sec-hd" onclick="ts(this)"><h2>VI. The Pierced One — Psalm 22 &amp; Zechariah 12</h2><span class="arr">▼</span></div>
-    <div class="sec-bd">
-      <p>Two further passages describe a figure who is <em>pierced</em>, in language that the Gospels apply to the crucifixion.</p>
-      <div class="sv-grid">
-        <div class="sv"><div class="ref">Psalm 22:16–18</div><div class="labels"><span class="oo">OO</span></div><div class="txt">"A company of evildoers encircles me; they have pierced my hands and feet — I can count all my bones… they divide my garments among them, and for my clothing they cast lots."</div><div class="interp">A psalm of David describes pierced hands and feet, exposed bones, and garments divided by lot — a vivid picture of crucifixion, a form of execution not practised in David's day. (See the note on the text below.)</div></div>
-        <div class="sv"><div class="ref">Zechariah 12:10</div><div class="labels"><span class="oo">OO</span></div><div class="txt">"And I will pour out on the house of David… a spirit of grace and pleas for mercy, so that, when they look on me, on him whom they have pierced, they shall mourn for him, as one mourns for an only child."</div><div class="interp">God speaks: the people will look on "me" — and yet mourn for "him whom they have pierced," as for an only son. The pierced one is somehow identified with the LORD Himself, and is mourned in repentance. Christians see here both the Cross and the future turning of Israel to her Messiah.</div></div>
-      </div>
-      <h3>A Note on the Text of Psalm 22:16</h3>
-      <p>This is worth stating honestly. The standard Masoretic Hebrew here reads <em>ka'ari</em> ("like a lion"), while the Septuagint (Greek, 3rd–2nd c. BC) and other ancient versions read a verb meaning "they pierced/dug." A Dead Sea Scroll fragment from Nahal Hever supports a reading closer to "pierced." Both traditions are ancient; we do not hide the variant. But the older Greek translation made by Jewish scholars centuries before Christ already read "pierced," which weighs against the idea that the Christian reading is a late invention.</p>
-    </div>
-  </section>
-
-  <section class="sec" id="s7">
-    <div class="sec-hd" onclick="ts(this)"><h2>VII. Two Comings — Suffering, Then Glory</h2><span class="arr">▼</span></div>
-    <div class="sec-bd">
-      <p>The most common Jewish objection is straightforward: <em>the Messiah was to bring world peace, gather the exiles, and rebuild the Temple — and the world is plainly not at peace. So Jesus cannot be the Messiah.</em> This deserves a serious answer.</p>
-      <p>The Christian reply is that the Scriptures describe <strong>two distinct profiles</strong> of the Anointed One that cannot both be fulfilled at once: one <em>suffering, rejected, and "cut off"</em> (Isaiah 53; Daniel 9; Psalm 22), and one <em>reigning in everlasting glory and peace</em> (Isaiah 9; 11; Daniel 7:13–14). The simplest way to honour both sets of texts is that the Messiah comes <strong>twice</strong>: first in lowliness to atone for sin and open the way to God, and again in glory to judge the world and complete the kingdom. The peace of the messianic age belongs to the second coming, which Christians still await.</p>
-      <p>Remarkably, the rabbinic tradition itself wrestled with the same tension and produced a "two-Messiah" framework — <strong>Mashiach ben Joseph</strong>, a suffering and dying Messiah, and <strong>Mashiach ben David</strong>, the reigning one (see the discussion in <em>Sukkah</em> 52a). The rabbis split the offices between two figures; the Church confesses them united in one Person who comes in two advents. Either way, the suffering-then-glory pattern is not a Christian imposition but is read out of the Hebrew text.</p>
-      <div class="sv-grid">
-        <div class="sv"><div class="ref">Daniel 7:13–14</div><div class="labels"><span class="oo">OO</span></div><div class="txt">"Behold, with the clouds of heaven there came one like a son of man… And to him was given dominion and glory and a kingdom… an everlasting dominion, which shall not pass away."</div><div class="interp">Alongside the suffering Servant stands this glorious "son of man" who receives an everlasting kingdom. Both belong to the Messiah — and Jesus took "Son of Man" as His own title, pointing to this very text.</div></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec" id="s8">
-    <div class="sec-hd" onclick="ts(this)"><h2>VIII. The Sign of the Temple's Fall</h2><span class="arr">▼</span></div>
-    <div class="sec-bd">
-      <p>Several prophecies require the Messiah to come <em>while the Second Temple still stood</em> and while Davidic descent could still be traced. The destruction of Jerusalem and the Temple in AD 70 — with the loss of the genealogical and priestly records — closed both windows. This is among the strongest reasons to look to the late Second Temple era for the Messiah.</p>
-      <div class="sv-grid">
-        <div class="sv"><div class="ref">Genesis 49:10</div><div class="labels"><span class="oo">OO</span></div><div class="txt">"The scepter shall not depart from Judah, nor the ruler's staff from between his feet, until tribute comes to him; and to him shall be the obedience of the peoples."</div><div class="interp">Authority would remain with Judah "until" the one comes to whom it belongs — and to whom even the nations will be obedient. With the loss of Jewish self-rule and records after AD 70, the tribal identity of a future claimant became unverifiable. The "until" points to a coming already in the Second Temple period.</div></div>
-        <div class="sv"><div class="ref">Malachi 3:1</div><div class="labels"><span class="oo">OO</span></div><div class="txt">"Behold, I send my messenger, and he will prepare the way before me. And the Lord whom you seek will suddenly come to his temple… behold, he is coming, says the LORD of hosts."</div><div class="interp">"The Lord" comes to "his temple" — which requires the Temple to be standing at His coming. After its destruction in AD 70, this could no longer be fulfilled in the way the prophet describes. So the Lord's coming to the Temple must have occurred before then.</div></div>
-      </div>
-      <p>Put together with Daniel's seventy weeks, the picture is consistent: the Messiah's first coming and "cutting off" were to fall in the era of the Second Temple, and the records needed to prove Davidic descent perished with it. A Messiah who arrives only after AD 70 cannot, in principle, demonstrate the lineage and Temple-presence that the prophets require — but Jesus, who came before, can.</p>
-    </div>
-  </section>
-
-  <section class="sec" id="s9">
-    <div class="sec-hd" onclick="ts(this)"><h2>IX. The Fathers Speak</h2><span class="arr">▼</span></div>
-    <div class="sec-bd">
-      <p>From the earliest centuries, Christians argued for Jesus as Israel's Messiah precisely from the Hebrew Scriptures, often in direct dialogue with Jewish teachers. Two witnesses stand out — one Greek, one Syriac (and so especially dear to the Oriental Orthodox tradition).</p>
-      <div class="fc">
-        <div class="fn">St. Justin Martyr (c. 100–165)</div><div class="fw">Dialogue with Trypho the Jew — c. AD 160 · ANF vol. 1 <span class="src para">Paraphrase</span></div>
-        <div class="fq">The prophets foretold two advents of the Christ: one in which He comes in dishonour and suffering, despised and pierced; and a second in which He comes in glory from the clouds of heaven, as Daniel foretold of the Son of Man.</div>
-        <div class="fsig"><strong>Significance:</strong> In the earliest surviving Christian–Jewish dialogue, Justin already answers Trypho's objection by distinguishing the two comings of the Messiah from the Hebrew prophets themselves. The "suffering then glory" solution is second-century, argued from Scripture, not a modern device. <em>(Paraphrase of Justin's argument across Dialogue chs. 32, 49, and 110.)</em></div>
-      </div>
-      <div class="fc">
-        <div class="fn">Aphrahat the Persian Sage (c. 280–345)</div><div class="fw">Demonstrations 17, "On Christ the Son of God" · Syriac, NPNF Series 2, vol. 13 <span class="src para">Paraphrase</span></div>
-        <div class="fq">From the Law and the Prophets it is shown that the Messiah was to come of the seed of David, to be born in Bethlehem, to suffer and be rejected, and yet to be honoured as Lord — and that in Him the nations would come to worship the God of Israel.</div>
-        <div class="fsig"><strong>Significance:</strong> Aphrahat, a Syriac-speaking father writing in the Persian Empire, frames the whole case from the Hebrew Scriptures in conversation with Jewish neighbours — a model close to the Oriental Orthodox heritage. He shows the messianic argument was being made in the Semitic East as well as the Greek West. <em>(Paraphrase of the themes of Demonstration 17.)</em></div>
-      </div>
-      <div class="fc">
-        <div class="fn">St. Athanasius the Great (c. 296–373)</div><div class="fw">On the Incarnation, §40 — NPNF Series 2, vol. 4 <span class="src para">Paraphrase</span></div>
-        <div class="fq">When did prophet and king cease in Israel, and Jerusalem and the Temple stand desolate, except from the time that Christ came? For the prophecy held only until His coming.</div>
-        <div class="fsig"><strong>Significance:</strong> Athanasius makes the same historical argument as Section VIII — that the ceasing of the Jewish polity, prophecy, and Temple after the first century is itself a sign that the Messiah of the prophets had already appeared. <em>(Paraphrase of On the Incarnation §§37–40.)</em></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec" id="s10">
-    <div class="sec-hd" onclick="ts(this)"><h2>X. Objections &amp; Responses</h2><span class="arr">▼</span></div>
-    <div class="sec-bd">
-      <div class="obj">
-        <div class="obj-hd" onclick="tobj(this)"><h3>"The Messiah was to bring world peace and gather the exiles. The world is not at peace, so Jesus is not the Messiah."</h3><span class="arr">▼</span></div>
-        <div class="obj-bd"><h4>Response</h4><p>This is the most serious objection, and it assumes the Messiah comes only once. But the Hebrew Scriptures describe two incompatible profiles — a suffering, "cut off" Servant (Isaiah 53; Daniel 9) and a glorious everlasting King (Isaiah 9; Daniel 7). They cannot both be true of a single coming. Christians hold that the Messiah comes twice: first to atone (already accomplished), then to reign in the peace of the messianic age (still awaited). Strikingly, the rabbis felt the same tension and proposed two Messiahs — ben Joseph (suffering) and ben David (reigning). The unfulfilled peace is not evidence against Jesus; it is the still-future part of His own work. See Section VII.</p></div>
-      </div>
-      <div class="obj">
-        <div class="obj-hd" onclick="tobj(this)"><h3>"Isaiah 53 is about the nation of Israel suffering among the gentiles, not about a personal Messiah."</h3><span class="arr">▼</span></div>
-        <div class="obj-bd"><h4>Response</h4><p>The text resists this. The Servant suffers "for the transgression of <em>my people</em>" (53:8) — distinguishing the Servant <em>from</em> the people he suffers for; Israel cannot atone for Israel. The Servant is sinless ("no deceit in his mouth," 53:9), which is not said of the nation. And the national reading is comparatively late, becoming standard with Rashi in the 11th century, partly in response to Christian usage; older Jewish sources (the Targum; <em>Sanhedrin</em> 98b) read it of the Messiah. The plain sense — an innocent individual suffering and dying for others, then exalted — fits a person, not a personified nation.</p></div>
-      </div>
-      <div class="obj">
-        <div class="obj-hd" onclick="tobj(this)"><h3>"Isaiah 7:14 says 'young woman' (almah), not 'virgin' — so the virgin birth rests on a mistranslation."</h3><span class="arr">▼</span></div>
-        <div class="obj-bd"><h4>Response</h4><p>The Hebrew <em>almah</em> denotes a young woman of marriageable age, and in its biblical uses she is unmarried — hence the assumption of virginity. Decisively, Jewish scholars themselves, in the Septuagint (c. 2nd century BC, long before Christ), translated <em>almah</em> here with the Greek <em>parthenos</em>, "virgin." So the "virgin" reading is pre-Christian and Jewish in origin, not a later Christian twist. And the verse calls the child <em>Immanuel</em>, "God with us" — a name pointing beyond an ordinary birth. Christians read this within the larger pattern of messianic prophecy, not as a lone proof-text.</p></div>
-      </div>
-      <div class="obj">
-        <div class="obj-hd" onclick="tobj(this)"><h3>"Christianity worships three gods (or a man as God), which violates the Shema — 'the LORD is one.'"</h3><span class="arr">▼</span></div>
-        <div class="obj-bd"><h4>Response</h4><p>Christians wholeheartedly confess the Shema: there is one God (Deuteronomy 6:4). The doctrine of the Trinity is not three gods but one God in three Persons — one indivisible divine essence. The Hebrew Scriptures themselves contain hints of plurality-in-unity within the one God: the plural "let us make man" (Genesis 1:26), the Angel of the LORD who is both distinct from and identified with God, the Word and Spirit of God as agents of His action, and Zechariah 12:10, where the LORD says they will look on "me" yet mourn "him whom they pierced." On Jesus' divinity, that the Messiah is more than merely human is suggested by Micah 5:2 ("from ancient days"), Isaiah 9:6 ("Mighty God"), and Daniel 7's heavenly Son of Man. (See this site's page on the Trinity.)</p></div>
-      </div>
-      <div class="obj">
-        <div class="obj-hd" onclick="tobj(this)"><h3>"Jesus didn't keep or fulfil the Torah, and Christianity abandoned the Law — so He broke the covenant."</h3><span class="arr">▼</span></div>
-        <div class="obj-bd"><h4>Response</h4><p>Jesus lived as an observant Jew and said He came "not to abolish the Law… but to fulfil" it (Matthew 5:17). The prophets themselves foretold a <em>new covenant</em> written on the heart (Jeremiah 31:31–34) and a day when the nations would worship the God of Israel (Isaiah 49:6; 56:6–7; Zechariah 8:23) — which is exactly what has happened through the Jewish Messiah. The Church holds that the ceremonial and sacrificial Law pointed forward to the Messiah and finds its goal in Him, while the moral law abides. Far from breaking the covenant, the Messiah extends the knowledge of the God of Israel to the whole world, as the prophets said He would.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec" id="s11">
-    <div class="sec-hd" onclick="ts(this)"><h2>XI. Frequently Asked Questions</h2><span class="arr">▼</span></div>
-    <div class="sec-bd">
-      <div class="fi"><div class="fi-hd" onclick="tf(this)"><span>Q: Is it antisemitic to say Jesus is the Messiah?</span><span class="arr">▼</span></div><div class="fi-bd"><p>No. Believing that the Jewish Messiah has come is not hatred of Jews — it is, in fact, a deeply Jewish hope brought to fulfilment. What <em>is</em> sinful is contempt, persecution, or collective blame, which the Church condemns. We honour the Jewish people as the root onto which we gentiles were grafted (Romans 11), and we hold this conviction in love, not enmity.</p></div></div>
-      <div class="fi"><div class="fi-hd" onclick="tf(this)"><span>Q: Don't Christians just quote the Old Testament out of context?</span><span class="arr">▼</span></div><div class="fi-bd"><p>It is a fair caution, and some popular apologetics do overreach. That is why this page leans on passages whose messianic force is recognised even within Jewish tradition (Isaiah 53 in the Targum and Talmud; Bethlehem as the Messiah's birthplace; the two-Messiah idea), and is honest about textual variants (Psalm 22:16). The cumulative case — birthplace, lineage, timing, suffering, vindication — is stronger than any single verse.</p></div></div>
-      <div class="fi"><div class="fi-hd" onclick="tf(this)"><span>Q: Why do most Jews not accept Jesus, if the case is so clear?</span><span class="arr">▼</span></div><div class="fi-bd"><p>The reasons are historical and human as much as exegetical: the expectation of a one-time, triumphant deliverer; the trauma of centuries of persecution carried out in Jesus' name, which understandably hardened hearts against Him; and the development of rabbinic Judaism as a distinct tradition after AD 70. None of this settles the question of truth, but it explains why sincere, faithful people read the same Scriptures differently — and why Christians should approach the conversation with humility and repentance for past wrongs.</p></div></div>
-      <div class="fi"><div class="fi-hd" onclick="tf(this)"><span>Q: What is the single strongest line of argument?</span><span class="arr">▼</span></div><div class="fi-bd"><p>The convergence of <em>timing</em> and <em>suffering</em>. Daniel 9 and the AD 70 destruction place the Messiah's "cutting off" in the Second Temple era; Genesis 49:10 and Malachi 3:1 require Him to come while Judah's identity and the Temple still stood; and Isaiah 53, Psalm 22, and Zechariah 12 describe Him as pierced and dying for others. A suffering, atoning Messiah who comes before AD 70 fits Jesus precisely — and no later claimant can meet those conditions.</p></div></div>
-    </div>
-  </section>
-
-  <section class="sec" id="s12">
-    <div class="sec-hd" onclick="ts(this)"><h2>XII. Sources</h2><span class="arr">▼</span></div>
-    <div class="sec-bd">
-      <div class="src-grid">
-        <div class="src-card"><div class="src-cat">Scripture</div><div class="src-item"><strong>The Holy Bible (ESV)</strong> — Crossway, 2001. Hebrew Scripture citations follow the Masoretic Text, with the Septuagint and Dead Sea Scrolls noted where relevant.</div></div>
-        <div class="src-card"><div class="src-cat">Jewish Tradition Referenced</div><div class="src-item"><strong>Babylonian Talmud</strong> — <em>Sanhedrin</em> 97–98 (the times of Messiah); 98b (Isaiah 53 messianically); <em>Sukkah</em> 52a (Messiah ben Joseph &amp; ben David).</div><div class="src-item"><strong>Targum Jonathan</strong> on Isaiah 52–53 (messianic reading).</div><div class="src-item"><strong>Rashi</strong> — the medieval national reading of Isaiah 53.</div></div>
-        <div class="src-card"><div class="src-cat">Church Fathers</div><div class="src-item"><strong>Justin Martyr — Dialogue with Trypho</strong> — ANF vol. 1.</div><div class="src-item"><strong>Aphrahat — Demonstrations 17</strong> — NPNF Series 2, vol. 13.</div><div class="src-item"><strong>Athanasius — On the Incarnation §§37–40</strong> — NPNF Series 2, vol. 4.</div></div>
-        <div class="src-card"><div class="src-cat">Reference</div><div class="src-item"><strong>The Great Isaiah Scroll (1QIsaa)</strong> — Dead Sea Scrolls, c. 125 BC: confirms Isaiah 53 predates Christ.</div><div class="src-item"><strong>Nahal Hever Psalms fragment</strong> — supports "pierced" in Psalm 22:16.</div></div>
-      </div>
-      <p style="margin-top:1rem;font-size:.85rem;color:var(--mu)">This page argues from the Scriptures shared by Jews and Christians, presents the traditional Jewish readings fairly, and is offered in friendship and respect toward the Jewish people — the root onto which the Church was grafted.</p>
-    </div>
-  </section>
+  <div id="sb-nav">
+    <a href="index.html">← Home</a>
+    <a href="#lp-god">Does God Exist?</a><a href="#lp-christ">Is Christianity True?</a><a href="#lp-church">Finding the Apostolic Church</a><a href="#lp-protestant">Answering Protestantism</a><a href="#lp-rome">The Orthodox &amp; Rome</a><a href="#lp-islam">Understanding Islam</a><a href="#lp-faith">The Oriental Orthodox Faith</a>
+  </div>
+</nav>
+<main>
+  <div class="pg-title">
+    <div class="lamp-label">The Orthodox Lamp</div>
+    <h1>Guided Learning Paths</h1>
+    <div class="sub">Ordered journeys through the site — each step builds on the last</div>
+  </div>
+  <p class="pg-intro">The pages of this site can be read in any order, but some questions are best approached as a journey. These paths gather existing articles into ordered tracks &mdash; from the first question of whether God exists, through the truth of Christianity, to the finding of the apostolic Church and the answering of the questions most often raised. Begin wherever your own questions begin.</p>
+  <div class="lp-intro-cards"><a class="lp-jump" href="#lp-god"><b>Does God Exist?</b><span>6 steps</span></a><a class="lp-jump" href="#lp-christ"><b>Is Christianity True?</b><span>6 steps</span></a><a class="lp-jump" href="#lp-church"><b>Finding the Apostolic Church</b><span>6 steps</span></a><a class="lp-jump" href="#lp-protestant"><b>Answering Protestantism</b><span>7 steps</span></a><a class="lp-jump" href="#lp-rome"><b>The Orthodox &amp; Rome</b><span>5 steps</span></a><a class="lp-jump" href="#lp-islam"><b>Understanding Islam</b><span>5 steps</span></a><a class="lp-jump" href="#lp-faith"><b>The Oriental Orthodox Faith</b><span>7 steps</span></a></div>
+  <div class="track" id="lp-god"><div class="track-h"><div class="tt">Does God Exist?</div><div class="ts">Start here if you are asking whether there is a God at all. The case is built one step at a time, from evidence to the hardest objections.</div></div><div class="track-meta">6 steps</div><ol class="steps"><li class="step"><a class="sl" href="evidence_for_god.html">The Evidence for God</a><span class="sw">The positive case: why the universe, its fine-tuning, and its intelligibility point to a Creator.</span></li><li class="step"><a class="sl" href="moral_argument.html">The Moral Argument</a><span class="sw">If good and evil are real, where do they come from? The argument from conscience to God.</span></li><li class="step"><a class="sl" href="problem_of_evil.html">The Problem of Evil</a><span class="sw">The strongest objection to God, faced honestly — and why suffering does not disprove Him.</span></li><li class="step"><a class="sl" href="miracles_and_hume.html">Miracles: Answering Hume</a><span class="sw">Can a rational person believe in miracles? Answering the classic skeptical argument.</span></li><li class="step"><a class="sl" href="science_and_faith.html">Science &amp; Christianity</a><span class="sw">The "conflict" between science and faith is a myth — here is the real history.</span></li><li class="step"><a class="sl" href="creation_evolution.html">Creation, Evolution &amp; the Age of the Earth</a><span class="sw">How the Fathers read Genesis, and what the Church actually requires you to believe.</span></li></ol></div><div class="track" id="lp-christ"><div class="track-h"><div class="tt">Is Christianity True?</div><div class="ts">Granting that God exists — is Jesus who the Gospels say He is? This track moves from history to the Resurrection.</div></div><div class="track-meta">6 steps</div><ol class="steps"><li class="step"><a class="sl" href="did_jesus_exist.html">Did Jesus Exist?</a><span class="sw">Answering the claim that Jesus is a myth, from the earliest historical sources.</span></li><li class="step"><a class="sl" href="gospel_reliability.html">The Reliability of the Gospels</a><span class="sw">Were the Gospels written early, by those who knew the facts? The manuscript and historical case.</span></li><li class="step"><a class="sl" href="divinity_of_christ.html">The Divinity of Christ</a><span class="sw">Lord, prophet, or legend? Why the claim that Jesus is God is the only one that fits.</span></li><li class="step"><a class="sl" href="crucifixion_denial.html">Did Jesus Die on the Cross?</a><span class="sw">Answering the claim — Islamic and modern — that Jesus never truly died.</span></li><li class="step"><a class="sl" href="resurrection_skepticism.html">The Resurrection of Christ</a><span class="sw">The best skeptical theories, and why the empty tomb and the witnesses defeat them.</span></li><li class="step"><a class="sl" href="bible_corruption.html">Has the Bible Been Corrupted?</a><span class="sw">Answering the charge that the text we have is not the text that was written.</span></li></ol></div><div class="track" id="lp-church"><div class="track-h"><div class="tt">Finding the Apostolic Church</div><div class="ts">If Christianity is true, which Church is His? This track leads from the confusion of denominations to apostolic succession.</div></div><div class="track-meta">6 steps</div><ol class="steps"><li class="step"><a class="sl" href="christian_diversity.html">The Challenge of Christian Diversity</a><span class="sw">Thousands of denominations — how does one find the Church the Apostles founded?</span></li><li class="step"><a class="sl" href="apostolic_succession.html">Apostolic Succession</a><span class="sw">The unbroken chain of ordination from the Apostles, and why it matters.</span></li><li class="step"><a class="sl" href="church_fathers_authority.html">Why Trust the Church Fathers?</a><span class="sw">Who the Fathers were, and why their united witness carries authority.</span></li><li class="step"><a class="sl" href="church_authority.html">The Authority of the Church</a><span class="sw">Christ gave authority to a Church, not only to a book. What that means.</span></li><li class="step"><a class="sl" href="sola_scriptura.html">Scripture and Tradition</a><span class="sw">Why "the Bible alone" is neither biblical nor how the early Church read Scripture.</span></li><li class="step"><a class="sl" href="eo_oo_differences.html">Eastern &amp; Oriental Orthodoxy</a><span class="sw">Two ancient families, one faith — the history and the real points of difference.</span></li></ol></div><div class="track" id="lp-protestant"><div class="track-h"><div class="tt">Answering Protestantism</div><div class="ts">For questions raised by Evangelical and Reformed friends. Each step meets a common objection with Scripture and the Fathers.</div></div><div class="track-meta">7 steps</div><ol class="steps"><li class="step"><a class="sl" href="sola_scriptura.html">Sola Scriptura</a><span class="sw">Is Scripture the only authority? Where the doctrine comes from and where it fails.</span></li><li class="step"><a class="sl" href="sola_fide.html">Sola Fide</a><span class="sw">Faith alone? What St. James, St. Paul, and the Fathers actually taught about salvation.</span></li><li class="step"><a class="sl" href="calvinism.html">Calvinism &amp; TULIP</a><span class="sw">Predestination, election, and free will — the Orthodox answer to Reformed theology.</span></li><li class="step"><a class="sl" href="infant_baptism.html">Infant Baptism</a><span class="sw">Why the Church has always baptized children, from the Apostles onward.</span></li><li class="step"><a class="sl" href="icons.html">Icons &amp; Veneration</a><span class="sw">Is honoring images idolatry? The distinction the iconoclasts missed.</span></li><li class="step"><a class="sl" href="saints_intercession.html">Saints &amp; Intercession</a><span class="sw">Why asking the saints to pray is not worship, and has always been Christian.</span></li><li class="step"><a class="sl" href="marian_theology.html">Mary: Theotokos &amp; Ever-Virgin</a><span class="sw">What the Church confesses about the Mother of God, and why.</span></li></ol></div><div class="track" id="lp-rome"><div class="track-h"><div class="tt">The Orthodox &amp; Rome</div><div class="ts">Where the Orthodox East and Oriental churches part ways with Roman Catholicism — the papacy, the Filioque, and the schisms.</div></div><div class="track-meta">5 steps</div><ol class="steps"><li class="step"><a class="sl" href="papal_authority.html">The Papacy</a><span class="sw">Church head, universal jurisdiction, infallibility — tested against the early Church.</span></li><li class="step"><a class="sl" href="filioque.html">The Filioque</a><span class="sw">The clause added to the Creed, and why the East never accepted it.</span></li><li class="step"><a class="sl" href="roman_catholic_dogmas.html">Roman Catholic Dogmas</a><span class="sw">The later dogmas — Immaculate Conception, Purgatory, and more — examined.</span></li><li class="step"><a class="sl" href="purgatory.html">Purgatory &amp; the Afterlife</a><span class="sw">What the Church teaches about the departed, and where Rome went further.</span></li><li class="step"><a class="sl" href="chalcedon_schism.html">The Chalcedonian Schism</a><span class="sw">The council of 451 and the real reasons behind the Oriental Orthodox witness.</span></li></ol></div><div class="track" id="lp-islam"><div class="track-h"><div class="tt">Understanding Islam</div><div class="ts">A careful, charitable Christian response to Islam — steelmanning the questions before answering them.</div></div><div class="track-meta">5 steps</div><ol class="steps"><li class="step"><a class="sl" href="islam_and_christians.html">Islam &amp; Christians</a><span class="sw">A steelmanned inquiry: the honest questions Islam raises for a Christian.</span></li><li class="step"><a class="sl" href="islamic_dilemma.html">The Islamic Dilemma</a><span class="sw">If the Qur’an affirms the earlier Scriptures, what follows for Islam?</span></li><li class="step"><a class="sl" href="quran_claims.html">The Qur’an’s Own Claims Tested</a><span class="sw">Examining the Qur’an by the standard it sets for itself.</span></li><li class="step"><a class="sl" href="trinity_in_the_quran.html">The Trinity in the Qur’an</a><span class="sw">What the Qur’an actually says about the Trinity — and misunderstands.</span></li><li class="step"><a class="sl" href="muhammad_in_the_bible.html">Is Muhammad Prophesied in the Bible?</a><span class="sw">Examining the passages said to foretell Muhammad.</span></li></ol></div><div class="track" id="lp-faith"><div class="track-h"><div class="tt">The Oriental Orthodox Faith</div><div class="ts">For the believer who wants to understand and live the faith they have received.</div></div><div class="track-meta">7 steps</div><ol class="steps"><li class="step"><a class="sl" href="what_is_a_christian.html">What Is a Christian?</a><span class="sw">The oldest answer to the most basic question — beyond labels and denominations.</span></li><li class="step"><a class="sl" href="salvation.html">Salvation in the Orthodox Faith</a><span class="sw">Salvation as healing and union with God, not a legal transaction.</span></li><li class="step"><a class="sl" href="christology.html">Miaphysitism &amp; Dyophysitism</a><span class="sw">The one incarnate nature of the Word — the heart of Oriental Orthodox Christology.</span></li><li class="step"><a class="sl" href="oo_history.html">History of the Oriental Orthodox Church</a><span class="sw">From the Apostles to today, the story of the non-Chalcedonian churches.</span></li><li class="step"><a class="sl" href="liturgy.html">The Sacred Liturgy of the Early Church</a><span class="sw">How the first Christians worshipped — and how we still do.</span></li><li class="step"><a class="sl" href="mysteries_of_christ.html">The Seven Mysteries</a><span class="sw">Baptism, Eucharist, and the sacraments as the ongoing life of Christ in the Church.</span></li><li class="step"><a class="sl" href="monasticism.html">Monasticism &amp; the Desert Fathers</a><span class="sw">Egypt’s gift to the whole Church — the school of prayer in the desert.</span></li></ol></div>
 </main>
-<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 <script>
-function ts(h){h.closest('.sec').classList.toggle('open')}
-function tobj(h){h.closest('.obj').classList.toggle('open')}
-function tf(h){h.closest('.fi').classList.toggle('open')}
-function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').classList.toggle('show')}
-function closeMobile(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
-const secs=document.querySelectorAll('.sec[id]');
-const navLinks=document.querySelectorAll('#sidenav a');
-function updateNav(){let cur='';secs.forEach(s=>{if(s.getBoundingClientRect().top<120)cur=s.id;});navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur);})}
-window.addEventListener('scroll',updateNav,{passive:true});
-window.addEventListener('scroll',()=>{const st=document.documentElement.scrollTop;const sh=document.documentElement.scrollHeight-document.documentElement.clientHeight;document.getElementById('progress-bar').style.width=(st/sh*100)+'%';},{passive:true});
-window.addEventListener('scroll',()=>{document.getElementById('btt').style.opacity=window.scrollY>400?'1':'0';},{passive:true});
-let lastQuery='';
-function doSearch(){const q=document.getElementById('search-input').value.trim().toLowerCase();if(q===lastQuery)return;lastQuery=q;clearHighlights();if(!q)return;const walker=document.createTreeWalker(document.getElementById('main-content'),NodeFilter.SHOW_TEXT,null,false);const matches=[];let node;while((node=walker.nextNode())){if(node.nodeValue.toLowerCase().includes(q))matches.push(node);}matches.forEach(n=>{const idx=n.nodeValue.toLowerCase().indexOf(q);const before=document.createTextNode(n.nodeValue.substring(0,idx));const mark=document.createElement('mark');mark.textContent=n.nodeValue.substring(idx,idx+q.length);mark.style.cssText='background:#c9a84c;color:#0d0d0d;border-radius:2px;padding:0 2px;';const after=document.createTextNode(n.nodeValue.substring(idx+q.length));const frag=document.createDocumentFragment();frag.appendChild(before);frag.appendChild(mark);frag.appendChild(after);n.parentNode.replaceChild(frag,n);});const firstMark=document.querySelector('mark');if(firstMark)firstMark.scrollIntoView({behavior:'smooth',block:'center'});}
-function clearHighlights(){document.querySelectorAll('mark').forEach(m=>{m.parentNode.replaceChild(document.createTextNode(m.textContent),m);});}
-document.getElementById('search-input').addEventListener('keydown',e=>{if(e.key==='Enter')doSearch();if(e.key==='Escape'){document.getElementById('search-input').value='';lastQuery='';clearHighlights();}});
-document.getElementById('search-btn').addEventListener('click',doSearch);
-document.querySelector('.sec').classList.add('open');
+window.addEventListener('scroll',()=>{const h=document.documentElement;document.getElementById('prog').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100+'%';});
 </script>
-<button id="ol-tt" onclick="olTheme()" aria-label="Toggle light or dark mode" title="Light/dark mode">☀</button><script>function olTheme(){var l=document.documentElement.classList.toggle('light');try{localStorage.setItem('ol-theme',l?'light':'dark')}catch(e){}olIcon()}function olIcon(){document.getElementById('ol-tt').textContent=document.documentElement.classList.contains('light')?'☾':'☀'}olIcon();</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

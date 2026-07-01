@@ -1,0 +1,19 @@
+{
+  "name": "The Orthodox Lamp",
+  "short_name": "Orthodox Lamp",
+  "description": "An Oriental Orthodox apologetics library — the faith of the Apostles, explained and defended.",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0d0d0d",
+  "theme_color": "#141008",
+  "lang": "en",
+  "categories": ["education", "books", "reference"],
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

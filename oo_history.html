@@ -166,6 +166,26 @@ html.light #sb{background:linear-gradient(180deg,#f5edd5 0%,#ede4cb 100%)}
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* AUTO-ENHANCE */
 html.js-anim .sec{opacity:0;transform:translateY(18px);transition:opacity .6s cubic-bezier(.16,.7,.3,1),transform .6s cubic-bezier(.16,.7,.3,1)}
 html.js-anim .sec.in{opacity:1;transform:none}
@@ -317,9 +337,17 @@ html.light .ol-ask-wrap{box-shadow:0 24px 70px rgba(40,30,10,.22)}
 .ol-ask-note{font-size:.66rem;color:var(--mu);text-align:center;padding:6px 12px 9px;line-height:1.4}
 @media(max-width:480px){.ol-ask-wrap{right:8px;bottom:8px;width:auto;left:8px;height:80vh;max-height:none}.ol-ask-fab{right:12px;bottom:14px}#ol-top{bottom:78px}}
 /* END-FEATURES4 */
+
+/* AUTO-FEATURES5 */
+.ol-print-btn{display:flex;align-items:center;gap:9px;width:100%;margin:4px 0 6px;padding:9px 13px;border:1px solid var(--br);border-radius:9px;background:var(--bg2);color:var(--mu);font:inherit;font-size:.86rem;cursor:pointer;transition:border-color .2s,color .2s}
+.ol-print-btn:hover{border-color:var(--gd,#c9a84c);color:var(--gd,#c9a84c)}
+.ol-print-btn svg{width:16px;height:16px;flex:none;display:block}
+@media print{.ol-print-btn{display:none!important}}
+/* END-FEATURES5 */
 </style>
 <script>try{if(localStorage.getItem('ol-theme')==='light')document.documentElement.classList.add('light')}catch(e){}</script>
 <script>try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('js-anim')}catch(e){}</script>
+<link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#141008"><link rel="apple-touch-icon" href="icon-192.png">
 </head>
 <body>
 <div id="prog"></div>
@@ -1012,6 +1040,15 @@ function sidebarSearch(v){
 
 
 
+
+
+
+
+
+
+
+
+
 <script>
 /* AUTO-ENHANCE-JS */
 (function(){
@@ -1453,5 +1490,28 @@ function sidebarSearch(v){
   }catch(e){}
 })();
 /* END-FEATURES4-JS */</script>
+<script>
+/* AUTO-FEATURES5-JS */
+(function(){
+  try{
+    /* ---- 1. print / save-as-PDF button in the sidebar ---- */
+    if(!document.querySelector('.ol-print-btn')){
+      var pb=document.createElement('button');pb.className='ol-print-btn';pb.type='button';
+      pb.setAttribute('aria-label','Print or save this page as PDF');
+      pb.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg><span>Print / Save as PDF</span>';
+      pb.addEventListener('click',function(){window.print();});
+      var sbtn=document.querySelector('.ol-search-btn');
+      if(sbtn&&sbtn.parentNode){sbtn.parentNode.insertBefore(pb,sbtn.nextSibling);}
+      else{var nav=document.querySelector('#sidebar nav,#sb nav,#sidebar,#sb');if(nav)nav.insertBefore(pb,nav.firstChild);}
+    }
+    /* ---- 2. offline / installable (PWA) service worker ---- */
+    if('serviceWorker' in navigator){
+      window.addEventListener('load',function(){
+        navigator.serviceWorker.register('sw.js').catch(function(){});
+      });
+    }
+  }catch(e){}
+})();
+/* END-FEATURES5-JS */</script>
 </body>
 </html>
