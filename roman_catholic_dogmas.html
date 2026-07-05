@@ -1522,6 +1522,7 @@ try{
               attr:name?clean(name.textContent):'', src:srcTxt};
     }else{ /* .sv */
       var cl=el.cloneNode(true), cite=cl.querySelector('cite'); var attr='';
+      var sb=cl.querySelector('.ol-sc-btn'); if(sb)sb.remove();
       if(cite){attr=clean(cite.textContent);cite.remove();}
       return {quote:dequote(clean(cl.textContent)), attr:attr, src:''};
     }
