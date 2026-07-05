@@ -8,7 +8,7 @@
 :root{
   --gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;
   --bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--bg5:#3a2e10;
-  --tx:#e8e0d0;--mu:#a09880;--br:#2a2a2a;
+  --tx:#e8e0d0;--mu:#b8ac82;--br:#2a2a2a;
   --sidebar-w:270px;
   --rc:#3a1a1a;--rcc:#d47070;
   --oo:#1a2e1a;--ooc:#7dc87d;
@@ -203,7 +203,7 @@ html.light .comp-card.oo-card ul{color:#206f20}
 /* END-LIGHTFIX */
 
 /* AUTO-ENHANCE */
-html.js-anim .sec{opacity:0;transform:translateY(18px);transition:opacity .6s cubic-bezier(.16,.7,.3,1),transform .6s cubic-bezier(.16,.7,.3,1)}
+html.js-anim .sec{opacity:0;transform:translateY(14px);transition:opacity .55s cubic-bezier(.16,.7,.3,1),transform .55s cubic-bezier(.16,.7,.3,1)}
 html.js-anim .sec.in{opacity:1;transform:none}
 .sec.open .sec-body,.sec.open .sec-bd,.sec.open .sec-body2{animation:olSecOpen .4s cubic-bezier(.16,.7,.3,1)}
 .fi.open .fi-body,.fi.open .fi-bd{animation:olSecOpen .32s cubic-bezier(.16,.7,.3,1)}
@@ -677,7 +677,7 @@ function sidebarSearch(q){
     // scroll-reveal
     var secs=document.querySelectorAll('.sec');
     if('IntersectionObserver' in window && document.documentElement.classList.contains('js-anim')){
-      var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.08,rootMargin:'0px 0px -6% 0px'});
+      var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.01,rootMargin:'0px 0px 12% 0px'});
       secs.forEach(function(s){io.observe(s);});
     }else{secs.forEach(function(s){s.classList.add('in');});}
     // ensure search reveals all
