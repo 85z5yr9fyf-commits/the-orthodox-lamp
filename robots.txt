@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/sitemap.xml
