@@ -10,11 +10,17 @@
   --olive:#94781f;--olive2:#7d6418;
   --bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;
   --tx:#e8e0d0;--mu:#b8ac82;--br:#2a2a2a;--ink:#1c1604;
+  --disp:'Cormorant Garamond','Georgia',serif;
 }
+.hero h1,.sec-title,.topline .t1,.f1{font-family:var(--disp);letter-spacing:.015em}
+.hero h1,.sec-title{font-weight:700}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:radial-gradient(130% 90% at 50% -15%,rgba(201,168,76,.13),transparent 55%),radial-gradient(120% 75% at 50% 116%,rgba(148,120,31,.11),transparent 55%),var(--bg);background-attachment:fixed;color:var(--tx);font-family:'Georgia',serif;line-height:1.7;min-height:100vh}
 a{color:inherit;text-decoration:none}
+/* ── Faint parchment grain ── */
+body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.05;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23g)'/%3E%3C/svg%3E")}
+html.light body::before{opacity:.045;mix-blend-mode:multiply}
 
 /* ── Top header bar ── */
 .topbar{background:#0a0a0a;border-bottom:1px solid var(--br);padding:1.1rem 1.5rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
@@ -24,15 +30,17 @@ a{color:inherit;text-decoration:none}
 .topline .t1{font-size:clamp(1.05rem,2.6vw,1.55rem);color:var(--gl);letter-spacing:.02em}
 .topline .t2{font-size:.82rem;color:var(--mu);font-style:italic;margin-top:.15rem}
 
-/* ── Gold hero ── */
-.hero{background:linear-gradient(160deg,var(--olive) 0%,var(--olive2) 100%);padding:4.2rem 1.5rem;border-bottom:3px solid var(--ink);position:relative;overflow:hidden}
-.hero::after{content:'';position:absolute;top:50%;right:-30px;transform:translateY(-50%);width:430px;height:560px;max-width:44%;background:url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Spas_vsederzhitel_sinay.jpg/500px-Spas_vsederzhitel_sinay.jpg') center top/cover no-repeat;filter:sepia(.7) saturate(1.4) hue-rotate(-8deg) contrast(.95) brightness(.92);opacity:.13;-webkit-mask-image:radial-gradient(ellipse 62% 70% at 62% 46%,#000 25%,transparent 72%);mask-image:radial-gradient(ellipse 62% 70% at 62% 46%,#000 25%,transparent 72%);pointer-events:none;z-index:0}
+/* ── Hero (dark, matches the body) ── */
+.hero{background:radial-gradient(ellipse 54% 84% at 21% 44%,rgba(201,168,76,.16),transparent 64%),linear-gradient(180deg,#111 0%,var(--bg) 100%);padding:4.2rem 1.5rem;border-bottom:1px solid var(--br);position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;top:50%;right:-30px;transform:translateY(-50%);width:430px;height:560px;max-width:44%;background:url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Spas_vsederzhitel_sinay.jpg/500px-Spas_vsederzhitel_sinay.jpg') center top/cover no-repeat;filter:sepia(.55) saturate(1.35) hue-rotate(-8deg) contrast(.98) brightness(1.02);opacity:.2;-webkit-mask-image:radial-gradient(ellipse 62% 70% at 62% 46%,#000 25%,transparent 72%);mask-image:radial-gradient(ellipse 62% 70% at 62% 46%,#000 25%,transparent 72%);pointer-events:none;z-index:0}
 .hero-in{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.05fr 1fr;gap:3rem;align-items:center;position:relative;z-index:1}
-.hero h1{font-size:clamp(2.3rem,5.5vw,3.7rem);color:var(--ink);font-weight:700;line-height:1.12;letter-spacing:.01em}
-.verse-btn{display:inline-block;margin-top:1.6rem;border:2px solid var(--ink);color:var(--ink);padding:.55rem 1.5rem;font-size:.95rem;letter-spacing:.04em;transition:background .2s,color .2s}
-.verse-btn:hover{background:var(--ink);color:var(--gl)}
-.purpose{color:#fff;font-size:1.02rem;line-height:1.85;text-shadow:0 1px 2px rgba(0,0,0,.25)}
+.hero h1{font-size:clamp(2.3rem,5.5vw,3.7rem);color:var(--gl);font-weight:700;line-height:1.12;letter-spacing:.01em;text-shadow:0 2px 18px rgba(0,0,0,.5)}
+.verse-btn{display:inline-block;margin-top:1.6rem;border:2px solid var(--gd);color:var(--gl);padding:.55rem 1.5rem;font-size:.95rem;letter-spacing:.04em;transition:background .2s,color .2s}
+.verse-btn:hover{background:var(--gl);color:var(--bg)}
+.purpose{color:var(--tx);font-size:1.02rem;line-height:1.85}
 .purpose p+p{margin-top:1.1rem}
+.purpose p:first-of-type::first-letter{float:left;font-family:var(--disp);font-weight:700;font-size:3.5em;line-height:.78;color:var(--gl);margin:.06em .12em 0 0;text-shadow:0 2px 14px rgba(0,0,0,.45)}
+html.light .purpose p:first-of-type::first-letter{color:#5d4b10;text-shadow:none}
 
 /* ── Sticky section nav ── */
 .snav{position:sticky;top:0;z-index:50;background:rgba(10,10,10,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--br);padding:.65rem 1rem;display:flex;justify-content:center;gap:.35rem;flex-wrap:wrap}
@@ -68,6 +76,11 @@ a{color:inherit;text-decoration:none}
 .sec-head::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--acc,var(--gd)),transparent)}
 .sec-title{font-size:clamp(1.6rem,4vw,2.4rem);color:var(--acc,var(--gold));font-weight:700;letter-spacing:.04em;padding:.2rem .9rem .2rem 0}
 .sec-sub{font-size:.85rem;color:var(--mu);font-style:italic;margin:-1rem 0 1.4rem}
+/* ── Ornamental section divider ── */
+.sec-div{display:flex;align-items:center;justify-content:center;gap:1rem;max-width:1100px;margin:2.2rem auto;padding:0 1.5rem}
+.sec-div::before,.sec-div::after{content:'';height:1px;width:min(30%,220px);background:linear-gradient(90deg,transparent,var(--gd))}
+.sec-div::after{background:linear-gradient(90deg,var(--gd),transparent)}
+.sec-div i{width:22px;height:30px;background:var(--gold);opacity:.85;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 150'%3E%3Crect x='44' y='6' width='12' height='138' rx='3'/%3E%3Crect x='20' y='42' width='60' height='12' rx='3'/%3E%3Crect x='36' y='9' width='28' height='6' rx='2'/%3E%3Crect x='36' y='135' width='28' height='6' rx='2'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 150'%3E%3Crect x='44' y='6' width='12' height='138' rx='3'/%3E%3Crect x='20' y='42' width='60' height='12' rx='3'/%3E%3Crect x='36' y='9' width='28' height='6' rx='2'/%3E%3Crect x='36' y='135' width='28' height='6' rx='2'/%3E%3C/svg%3E") center/contain no-repeat}
 
 /* per-section accent colours */
 section.oriental{--acc:#caa14e}
@@ -83,6 +96,28 @@ section.oriental::before,section.eastern::before,section.catholicism::before{bac
 section.oriental::before{background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Christ_and_the_Abbot_Menas_Louvre_E11565_n02.jpg/500px-Christ_and_the_Abbot_Menas_Louvre_E11565_n02.jpg')}
 section.eastern::before{background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Spas_vsederzhitel_sinay.jpg/500px-Spas_vsederzhitel_sinay.jpg')}
 section.catholicism::before{background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Vladimirskaya_ikona.jpg/500px-Vladimirskaya_ikona.jpg')}
+
+/* ── Per-category header emblems (small icon on each section title) ── */
+section.oriental .sec-head::before,
+section.protestantism .sec-head::before,
+section.catholicism .sec-head::before,
+section.eastern .sec-head::before,
+section.islam .sec-head::before,
+section.atheism .sec-head::before,
+section.other-faiths .sec-head::before{content:'';width:1.4em;height:1.4em;background:var(--acc,var(--gold));opacity:.9;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;-webkit-mask-size:contain;mask-size:contain}
+section.oriental .sec-head::before{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='10.8' y='3' width='2.4' height='18' rx='.6'/%3E%3Crect x='3' y='10.8' width='18' height='2.4' rx='.6'/%3E%3Crect x='8' y='3.7' width='8' height='1.5' rx='.5'/%3E%3Crect x='8' y='18.8' width='8' height='1.5' rx='.5'/%3E%3Crect x='3.7' y='8' width='1.5' height='8' rx='.5'/%3E%3Crect x='18.8' y='8' width='1.5' height='8' rx='.5'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='10.8' y='3' width='2.4' height='18' rx='.6'/%3E%3Crect x='3' y='10.8' width='18' height='2.4' rx='.6'/%3E%3Crect x='8' y='3.7' width='8' height='1.5' rx='.5'/%3E%3Crect x='8' y='18.8' width='8' height='1.5' rx='.5'/%3E%3Crect x='3.7' y='8' width='1.5' height='8' rx='.5'/%3E%3Crect x='18.8' y='8' width='1.5' height='8' rx='.5'/%3E%3C/svg%3E")}
+section.protestantism .sec-head::before{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M11 5.2C9 3.8 5.8 3.5 3.3 4.4V17c2.3-.8 5.3-.6 7.7 .8z'/%3E%3Cpath d='M13 5.2c2-1.4 5.2-1.7 7.7-.8V17c-2.3-.8-5.3-.6-7.7 .8z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M11 5.2C9 3.8 5.8 3.5 3.3 4.4V17c2.3-.8 5.3-.6 7.7 .8z'/%3E%3Cpath d='M13 5.2c2-1.4 5.2-1.7 7.7-.8V17c-2.3-.8-5.3-.6-7.7 .8z'/%3E%3C/svg%3E")}
+section.catholicism .sec-head::before{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='6' r='3.5' fill='none' stroke='%23000' stroke-width='2'/%3E%3Crect x='11' y='9' width='2' height='11'/%3E%3Crect x='13' y='13' width='3' height='2'/%3E%3Crect x='13' y='17' width='3' height='2'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='6' r='3.5' fill='none' stroke='%23000' stroke-width='2'/%3E%3Crect x='11' y='9' width='2' height='11'/%3E%3Crect x='13' y='13' width='3' height='2'/%3E%3Crect x='13' y='17' width='3' height='2'/%3E%3C/svg%3E")}
+section.eastern .sec-head::before{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='11' y='2' width='2' height='20'/%3E%3Crect x='8.5' y='5' width='7' height='1.8'/%3E%3Crect x='6' y='9' width='12' height='2'/%3E%3Crect x='8.5' y='16' width='7' height='1.8'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='11' y='2' width='2' height='20'/%3E%3Crect x='8.5' y='5' width='7' height='1.8'/%3E%3Crect x='6' y='9' width='12' height='2'/%3E%3Crect x='8.5' y='16' width='7' height='1.8'/%3E%3C/svg%3E")}
+section.islam .sec-head::before{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M14.5 4a8 8 0 1 0 0 16 6.4 6.4 0 1 1 0-16z'/%3E%3Cpath d='M17.8 8.5l.85 1.75 1.95 .28-1.4 1.37 .33 1.94-1.73-.91-1.74 .91 .33-1.94-1.4-1.37 1.95-.28z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M14.5 4a8 8 0 1 0 0 16 6.4 6.4 0 1 1 0-16z'/%3E%3Cpath d='M17.8 8.5l.85 1.75 1.95 .28-1.4 1.37 .33 1.94-1.73-.91-1.74 .91 .33-1.94-1.4-1.37 1.95-.28z'/%3E%3C/svg%3E")}
+section.atheism .sec-head::before{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%23000' stroke-width='1.4'%3E%3Cellipse cx='12' cy='12' rx='9' ry='3.6'/%3E%3Cellipse cx='12' cy='12' rx='9' ry='3.6' transform='rotate(60 12 12)'/%3E%3Cellipse cx='12' cy='12' rx='9' ry='3.6' transform='rotate(120 12 12)'/%3E%3C/g%3E%3Ccircle cx='12' cy='12' r='1.9'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%23000' stroke-width='1.4'%3E%3Cellipse cx='12' cy='12' rx='9' ry='3.6'/%3E%3Cellipse cx='12' cy='12' rx='9' ry='3.6' transform='rotate(60 12 12)'/%3E%3Cellipse cx='12' cy='12' rx='9' ry='3.6' transform='rotate(120 12 12)'/%3E%3C/g%3E%3Ccircle cx='12' cy='12' r='1.9'/%3E%3C/svg%3E")}
+section.other-faiths .sec-head::before{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='6.5' y='6.5' width='11' height='11'/%3E%3Crect x='6.5' y='6.5' width='11' height='11' transform='rotate(45 12 12)'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='6.5' y='6.5' width='11' height='11'/%3E%3Crect x='6.5' y='6.5' width='11' height='11' transform='rotate(45 12 12)'/%3E%3C/svg%3E")}
+
+/* ── Category watermark emblems on sections without a photo watermark ── */
+section.protestantism::before{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M11 5.2C9 3.8 5.8 3.5 3.3 4.4V17c2.3-.8 5.3-.6 7.7 .8z'/%3E%3Cpath d='M13 5.2c2-1.4 5.2-1.7 7.7-.8V17c-2.3-.8-5.3-.6-7.7 .8z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M11 5.2C9 3.8 5.8 3.5 3.3 4.4V17c2.3-.8 5.3-.6 7.7 .8z'/%3E%3Cpath d='M13 5.2c2-1.4 5.2-1.7 7.7-.8V17c-2.3-.8-5.3-.6-7.7 .8z'/%3E%3C/svg%3E");-webkit-mask-position:right 12% center;mask-position:right 12% center;-webkit-mask-size:auto 60%;mask-size:auto 60%;opacity:.08}
+section.islam::before{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M14.5 4a8 8 0 1 0 0 16 6.4 6.4 0 1 1 0-16z'/%3E%3Cpath d='M17.8 8.5l.85 1.75 1.95 .28-1.4 1.37 .33 1.94-1.73-.91-1.74 .91 .33-1.94-1.4-1.37 1.95-.28z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M14.5 4a8 8 0 1 0 0 16 6.4 6.4 0 1 1 0-16z'/%3E%3Cpath d='M17.8 8.5l.85 1.75 1.95 .28-1.4 1.37 .33 1.94-1.73-.91-1.74 .91 .33-1.94-1.4-1.37 1.95-.28z'/%3E%3C/svg%3E");-webkit-mask-position:right 12% center;mask-position:right 12% center;-webkit-mask-size:auto 60%;mask-size:auto 60%;opacity:.08}
+section.atheism::before{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%23000' stroke-width='1.4'%3E%3Cellipse cx='12' cy='12' rx='9' ry='3.6'/%3E%3Cellipse cx='12' cy='12' rx='9' ry='3.6' transform='rotate(60 12 12)'/%3E%3Cellipse cx='12' cy='12' rx='9' ry='3.6' transform='rotate(120 12 12)'/%3E%3C/g%3E%3Ccircle cx='12' cy='12' r='1.9'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%23000' stroke-width='1.4'%3E%3Cellipse cx='12' cy='12' rx='9' ry='3.6'/%3E%3Cellipse cx='12' cy='12' rx='9' ry='3.6' transform='rotate(60 12 12)'/%3E%3Cellipse cx='12' cy='12' rx='9' ry='3.6' transform='rotate(120 12 12)'/%3E%3C/g%3E%3Ccircle cx='12' cy='12' r='1.9'/%3E%3C/svg%3E");-webkit-mask-position:right 12% center;mask-position:right 12% center;-webkit-mask-size:auto 58%;mask-size:auto 58%;opacity:.08}
+section.other-faiths::before{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='6.5' y='6.5' width='11' height='11'/%3E%3Crect x='6.5' y='6.5' width='11' height='11' transform='rotate(45 12 12)'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='6.5' y='6.5' width='11' height='11'/%3E%3Crect x='6.5' y='6.5' width='11' height='11' transform='rotate(45 12 12)'/%3E%3C/svg%3E");-webkit-mask-position:right 12% center;mask-position:right 12% center;-webkit-mask-size:auto 56%;mask-size:auto 56%;opacity:.08}
 
 /* ── Card grid ── */
 .links{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:.8rem}
@@ -134,7 +169,10 @@ html.light{--gold:#8a6a20;--gl:#6f5413;--gd:#b08e3e;--olive:#6f5a13;--olive2:#5d
 #ol-tt:hover{filter:brightness(1.15)}
 html.light .topbar{background:#efe8d5}
 html.light .snav{background:rgba(247,242,230,.96)}
-html.light .hero{background:linear-gradient(160deg,#e3d193 0%,#d6c178 100%);border-bottom-color:#b08e3e}
+html.light .hero{background:radial-gradient(ellipse 54% 84% at 21% 44%,rgba(138,106,32,.14),transparent 64%),linear-gradient(180deg,#f2ead6 0%,var(--bg) 100%);border-bottom-color:var(--br)}
+html.light .hero h1{color:#5d4b10;text-shadow:none}
+html.light .hero::after{opacity:.13;filter:sepia(.5) saturate(1.15) contrast(.95) brightness(1.05)}
+html.light .verse-btn:hover{background:var(--gd);color:#fff}
 html.light .purpose{color:#3a3012;text-shadow:none}
 html.light .help-in p{color:#3a3012}
 html.light .verse-btn:hover{color:#e8c96a}
@@ -331,6 +369,8 @@ try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.document
 <meta name="twitter:image" content="https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/og-cover.png">
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "name": "The Orthodox Lamp — Home", "description": "This website is not meant to spark arguments; however, it is supposed to be used to venture closer to the truth, which is Jesus Christ, our Lord. Learn and…", "url": "https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/index.html", "isPartOf": {"@type": "WebSite", "name": "The Orthodox Lamp", "url": "https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/"}, "inLanguage": "en"}]}</script>
 <!-- SEO-META-END -->
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -518,6 +558,7 @@ try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.document
 </section>
 
 <!-- ══ PROTESTANTISM ══ -->
+<div class="sec-div" aria-hidden="true"><i></i></div>
 <section id="protestantism" class="protestantism">
   <div class="sec-head"><h2 class="sec-title">Protestantism</h2></div>
   <p class="sec-sub">Answering the Reformation — sola fide, sola scriptura, and the questions between us</p>
@@ -650,6 +691,7 @@ try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.document
 </section>
 
 <!-- ══ CATHOLICISM ══ -->
+<div class="sec-div" aria-hidden="true"><i></i></div>
 <section id="catholicism" class="catholicism">
   <div class="sec-head"><h2 class="sec-title">Catholicism</h2></div>
   <p class="sec-sub">Where Rome and the Oriental Orthodox agree — and where we differ</p>
@@ -714,6 +756,7 @@ try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.document
 </section>
 
 <!-- ══ EASTERN ORTHODOXY ══ -->
+<div class="sec-div" aria-hidden="true"><i></i></div>
 <section id="eastern" class="eastern">
   <div class="sec-head"><h2 class="sec-title">Eastern Orthodoxy</h2></div>
   <p class="sec-sub">Our closest brothers — the questions that remain from 451</p>
@@ -738,6 +781,7 @@ try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.document
 </section>
 
 <!-- ══ ISLAM ══ -->
+<div class="sec-div" aria-hidden="true"><i></i></div>
 <section id="islam" class="islam">
   <div class="sec-head"><h2 class="sec-title">Islam</h2></div>
   <p class="sec-sub">Honest, sourced engagement with Islamic claims and history</p>
@@ -806,6 +850,7 @@ try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.document
 </section>
 
 <!-- ══ ATHEISM / AGNOSTICISM ══ -->
+<div class="sec-div" aria-hidden="true"><i></i></div>
 <section id="atheism" class="atheism">
   <div class="sec-head"><h2 class="sec-title">Atheism &amp; Agnosticism</h2></div>
   <p class="sec-sub">Reasons to believe — philosophy, evidence and the hard questions</p>
@@ -882,6 +927,7 @@ try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.document
 </section>
 
 <!-- ══ OTHER FAITHS &amp; WORLDVIEWS ══ -->
+<div class="sec-div" aria-hidden="true"><i></i></div>
 <section id="other-faiths" class="other-faiths">
   <div class="sec-head"><h2 class="sec-title">Other Faiths &amp; Worldviews</h2></div>
   <p class="sec-sub">Charitable, sourced engagement with other religions and movements</p>
