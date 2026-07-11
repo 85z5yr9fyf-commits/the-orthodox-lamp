@@ -367,6 +367,49 @@ html.light .ol-ask-wrap{box-shadow:0 24px 70px rgba(40,30,10,.22)}
 .ol-difflegend span{display:inline-flex;align-items:center;gap:.35rem}
 .ol-difflegend i{width:10px;height:10px;border-radius:50%;display:inline-block}
 /* END-OL-DIFF */
+
+/* OL-AESTHETIC */
+/* 1. Card grid — full-width titles, badge & subtitle on their own rows, equal-height cards */
+.links{gap:.7rem;align-items:stretch}
+.lk{display:flex;flex-direction:column;height:100%}
+.lk-row{flex:1}
+.lk-a{align-items:center;row-gap:.28rem;column-gap:.6rem}
+.lk-a .lt{flex:1 1 auto;order:1;min-width:0}
+.lk-diff{order:2;margin-left:.4rem;align-self:center}
+.lk-a .ls{order:3;flex-basis:100%;max-width:none;text-align:left;white-space:normal;opacity:.85;margin-top:.05rem}
+@media(max-width:760px){.lk-a .ls{display:block}}
+
+/* 2. Card surface — subtle gradient, soft hover-lift with accent glow */
+.lk{background:linear-gradient(158deg,color-mix(in srgb,var(--acc,var(--gd)) 7%,var(--bg2)),var(--bg2) 68%);border-radius:8px;transition:border-color .18s,box-shadow .22s,transform .18s,background .2s}
+.lk:hover{transform:translateY(-3px);border-color:var(--acc,var(--gd));box-shadow:0 8px 26px color-mix(in srgb,var(--acc,var(--gd)) 26%,rgba(0,0,0,.35))}
+.lk.open{background:linear-gradient(158deg,color-mix(in srgb,var(--acc,var(--gd)) 11%,var(--bg2)),var(--bg2) 60%)}
+
+/* 3. Section header — richer ornament + soft accent underline on the title */
+.sec-title{position:relative}
+.sec-title::after{content:'';position:absolute;left:0;bottom:-.15rem;width:2.2rem;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--acc,var(--gold)),transparent)}
+.sec-head::after{height:2px;background:linear-gradient(90deg,color-mix(in srgb,var(--acc,var(--gold)) 65%,transparent),transparent);border-radius:2px}
+.sec-head::before{opacity:1}
+
+/* 4. Hero + disclaimer balance — softer tagline, gentler icon bleed */
+.topline .t2{opacity:.72;font-size:.78rem}
+.hero::after{opacity:.15}
+html.light .hero::after{opacity:.1}
+
+/* 5. Whitespace / density — tighten section rhythm */
+.container>section{margin-bottom:1.5rem}
+.container{padding-bottom:3rem}
+
+/* 6. Colour depth — accent tint on hover title, subtle accent card foot */
+.lk:hover .lt{color:color-mix(in srgb,var(--acc,var(--gl)) 45%,var(--gl))}
+.lk:hover .lk-btn{color:var(--gl)}
+/* END-OL-AESTHETIC */
+/* OL-FABALIGN */
+#ol-top,#ol-tt{right:22px;width:44px;height:44px}
+.ol-ask-fab{right:22px;bottom:24px}
+#ol-tt{bottom:90px}
+#ol-top{bottom:148px}
+@media(max-width:480px){.ol-ask-fab{right:14px;bottom:16px}#ol-tt{right:14px;bottom:82px;width:42px;height:42px}#ol-top{right:14px;bottom:138px;width:42px;height:42px}}
+/* END-OL-FABALIGN */
 </style>
 <script>try{if(localStorage.getItem('ol-theme')==='light')document.documentElement.classList.add('light')}catch(e){}
 try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('js-anim')}catch(e){}</script>
