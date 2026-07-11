@@ -354,6 +354,15 @@ html.sb-collapsed main{margin-left:0}
 html.sb-collapsed #ol-sbt{left:0}
 @media(max-width:768px){#ol-sbt{display:none}}
 @media print{#ol-sbt{display:none!important}}
+
+/* OL-BREADCRUMB */
+.ol-bc{margin:0;padding:16px 24px 2px;font-size:.8rem;color:var(--mu);display:flex;flex-wrap:wrap;align-items:center;gap:.45rem;letter-spacing:.02em}
+.ol-bc a{color:var(--mu);text-decoration:none;transition:color .15s}
+.ol-bc a:hover{color:var(--gd,#c9a84c)}
+.ol-bc i{opacity:.45;font-style:normal;font-size:.9em}
+.ol-bc .cur{color:var(--gd,#c9a84c);font-weight:600}
+@media print{.ol-bc{display:none!important}}
+/* END-OL-BREADCRUMB */
 </style>
 <script>try{if(localStorage.getItem('ol-sb')==='1')document.documentElement.classList.add('sb-collapsed')}catch(e){}</script>
 <!-- SEO-META-START -->
@@ -395,6 +404,7 @@ html.sb-collapsed #ol-sbt{left:0}
 <div id="overlay" onclick="closeMobile()"></div>
 <button class="mob-toggle" onclick="toggleSidebar()">☰</button>
 <main id="main-content">
+<nav class="ol-bc" aria-label="Breadcrumb"><a href="index.html">Home</a><i>›</i><a href="index.html#atheism">Atheism &amp; Agnosticism</a><i>›</i><span class="cur">Science &amp; Christianity — The Conflict Myth</span></nav>
   <div class="hero">
     <span class="si">☩</span>
     <h1 class="st">THE <span>ORTHODOX</span> LAMP</h1>

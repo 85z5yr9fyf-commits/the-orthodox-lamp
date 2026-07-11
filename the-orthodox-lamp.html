@@ -459,6 +459,15 @@ html.light .ol-ask-wrap{box-shadow:0 24px 70px rgba(40,30,10,.22)}
 .ol-print-btn svg{width:16px;height:16px;flex:none;display:block}
 @media print{.ol-print-btn{display:none!important}}
 /* END-FEATURES5 */
+
+/* OL-BREADCRUMB */
+.ol-bc{margin:0;padding:16px 24px 2px;font-size:.8rem;color:var(--mu);display:flex;flex-wrap:wrap;align-items:center;gap:.45rem;letter-spacing:.02em}
+.ol-bc a{color:var(--mu);text-decoration:none;transition:color .15s}
+.ol-bc a:hover{color:var(--gd,#c9a84c)}
+.ol-bc i{opacity:.45;font-style:normal;font-size:.9em}
+.ol-bc .cur{color:var(--gd,#c9a84c);font-weight:600}
+@media print{.ol-bc{display:none!important}}
+/* END-OL-BREADCRUMB */
 </style>
 <script>try{if(localStorage.getItem('ol-theme')==='light')document.documentElement.classList.add('light')}catch(e){}</script>
 <script>try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('js-anim')}catch(e){}</script>
@@ -512,6 +521,7 @@ html.light .ol-ask-wrap{box-shadow:0 24px 70px rgba(40,30,10,.22)}
 </nav>
 
 <main>
+<nav class="ol-bc" aria-label="Breadcrumb"><a href="index.html">Home</a><i>›</i><a href="index.html#islam">Islam</a><i>›</i><span class="cur">God, the Trinity, Christ &amp; His Ministry — Twenty Questions</span></nav>
 
 <section class="intro" id="contents">
   <p class="dropcap">In the Orthodox Church a lamp is never merely decoration. It burns before the icons, in the sanctuary, and in the homes of the faithful as a confession: that Christ is “the true Light which gives light to every man coming into the world” <span class="verse-ref">(John 1:9)</span>, and that His Church is set on a lampstand to give light to all <span class="verse-ref">(Matthew 5:15)</span>. This series takes up twenty questions — some sounding simple, all of them deep — and answers them from the Holy Scriptures and the writings of the Church Fathers, in the faith of the Apostles handed down through the One, Holy, Catholic, and Apostolic Church, and treasured in the Oriental Orthodox communion of Alexandria, Antioch, Armenia, Ethiopia, Eritrea, and India.</p>

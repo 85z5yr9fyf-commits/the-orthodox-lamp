@@ -441,6 +441,15 @@ main{max-width:none!important;margin-right:1.4rem;min-width:0}
 .htl-detail .dhint{font-size:.9rem;opacity:.5;font-style:italic;margin:0}
 @media(max-width:640px){.htl-zoom{margin-left:0}.htl-slider{width:96px}.htl-detail .ddate{font-size:1.15rem}}
 
+
+/* OL-BREADCRUMB */
+.ol-bc{margin:0;padding:16px 24px 2px;font-size:.8rem;color:var(--mu);display:flex;flex-wrap:wrap;align-items:center;gap:.45rem;letter-spacing:.02em}
+.ol-bc a{color:var(--mu);text-decoration:none;transition:color .15s}
+.ol-bc a:hover{color:var(--gd,#c9a84c)}
+.ol-bc i{opacity:.45;font-style:normal;font-size:.9em}
+.ol-bc .cur{color:var(--gd,#c9a84c);font-weight:600}
+@media print{.ol-bc{display:none!important}}
+/* END-OL-BREADCRUMB */
 </style>
 </head>
 <body>
@@ -460,6 +469,7 @@ main{max-width:none!important;margin-right:1.4rem;min-width:0}
   <div class="no-match-msg" id="sb-no-match">No sections match.</div>
 </nav>
 <main>
+<nav class="ol-bc" aria-label="Breadcrumb"><a href="index.html">Home</a><i>›</i><a href="index.html#foundations">Foundations &amp; Method</a><i>›</i><span class="cur">Timeline of the Church</span></nav>
   <p class="htl-intro">Two thousand years of the one Church on a single line. Events branch above and below the spine &mdash; councils, saints, schisms, popes, heresies, and the wars and persecutions the Church has passed through. Move through the centuries like a map.</p>
 
   <div class="htl-toolbar" id="htl-top">
