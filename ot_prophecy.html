@@ -413,6 +413,15 @@ main{max-width:880px}
 .typ-h{color:var(--gold);font-weight:600;margin-bottom:6px;font-size:.94rem}
 .typ-b{color:var(--mu);font-size:.85rem;line-height:1.6}
 .typ-ref{display:block;margin-top:8px;font-size:.77rem;color:var(--gd);letter-spacing:.02em}
+
+/* OL-BREADCRUMB */
+.ol-bc{margin:0;padding:16px 24px 2px;font-size:.8rem;color:var(--mu);display:flex;flex-wrap:wrap;align-items:center;gap:.45rem;letter-spacing:.02em}
+.ol-bc a{color:var(--mu);text-decoration:none;transition:color .15s}
+.ol-bc a:hover{color:var(--gd,#c9a84c)}
+.ol-bc i{opacity:.45;font-style:normal;font-size:.9em}
+.ol-bc .cur{color:var(--gd,#c9a84c);font-weight:600}
+@media print{.ol-bc{display:none!important}}
+/* END-OL-BREADCRUMB */
 </style>
 </head>
 <body>
@@ -438,6 +447,7 @@ main{max-width:880px}
   <div class="no-match-msg" id="sb-no-match">No sections match.</div>
 </nav>
 <main>
+<nav class="ol-bc" aria-label="Breadcrumb"><a href="index.html">Home</a><i>›</i><a href="index.html#atheism">Atheism &amp; Agnosticism</a><i>›</i><span class="cur">Christ in the Old Testament — Prophecy &amp; Typology</span></nav>
   <div class="pg-title">
     <div class="lamp-label">The Orthodox Lamp</div>
     <h1>Christ in the Old Testament</h1>
