@@ -389,6 +389,15 @@ html.sb-collapsed main{margin-left:0}
 html.sb-collapsed #ol-sbt{left:0}
 @media(max-width:768px){#ol-sbt{display:none}}
 @media print{#ol-sbt{display:none!important}}
+
+/* OL-BREADCRUMB */
+.ol-bc{margin:0;padding:16px 24px 2px;font-size:.8rem;color:var(--mu);display:flex;flex-wrap:wrap;align-items:center;gap:.45rem;letter-spacing:.02em}
+.ol-bc a{color:var(--mu);text-decoration:none;transition:color .15s}
+.ol-bc a:hover{color:var(--gd,#c9a84c)}
+.ol-bc i{opacity:.45;font-style:normal;font-size:.9em}
+.ol-bc .cur{color:var(--gd,#c9a84c);font-weight:600}
+@media print{.ol-bc{display:none!important}}
+/* END-OL-BREADCRUMB */
 </style>
 <script>try{if(localStorage.getItem('ol-sb')==='1')document.documentElement.classList.add('sb-collapsed')}catch(e){}</script>
 <!-- SEO-META-START -->
@@ -442,6 +451,7 @@ html.sb-collapsed #ol-sbt{left:0}
   </div>
 </nav>
 <main id="main">
+<nav class="ol-bc" aria-label="Breadcrumb"><a href="index.html">Home</a><i>›</i><a href="index.html#islam">Islam</a><i>›</i><span class="cur">The Persecution of the Oriental Orthodox Church</span></nav>
   <div class="page-head">
     <div class="tag">Islamic Apologetics &mdash; Orthodox Lamp</div>
     <h1>Islam &amp; Christians: A Steelmanned Inquiry</h1>
@@ -816,7 +826,7 @@ html.sb-collapsed #ol-sbt{left:0}
         </div>
         <div class="dhimmi-card">
           <div class="dc-title">&#128081; Distinctive Dress &amp; Yellow Badges</div>
-          <p>Caliph al-Mutawakkil (847 AD) mandated yellow garments and wooden devil-images on Christian doors. This predated European yellow stars by six centuries and was derived directly from the principle of visible subjugation in Q.9:29.</p>
+          <p>Caliph al-Mutawakkil (r. 847&ndash;861; sumptuary decree 850 AD) mandated distinctive garments and wooden devil-images on Christian doors. This predated European yellow stars by six centuries and was derived directly from the principle of visible subjugation in Q.9:29.</p>
         </div>
         <div class="dhimmi-card">
           <div class="dc-title">&#128178; The Jizyah &mdash; Humiliation by Design</div>
