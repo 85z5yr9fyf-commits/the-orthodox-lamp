@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Study — Flashcards &amp; Quiz (rough draft) — The Orthodox Lamp</title>
+<style>
+:root{--gold:#c9a84c;--gl:#e8c96a;--bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--br:#2a2a2a;--tx:#e8e0d0;--mu:#b8ac82;--red:#8b2020;--grn:#2e6b3a}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:Georgia,serif;line-height:1.6;padding:2rem 1rem;max-width:760px;margin:0 auto}
+h1{color:var(--gl);font-size:1.6rem;text-align:center;letter-spacing:.05em}
+.note{background:#2a1e00;border:1px solid var(--gold);color:var(--mu);font-size:.8rem;padding:.6rem .9rem;border-radius:6px;margin:1rem 0;text-align:center}
+.tabs{display:flex;gap:.5rem;justify-content:center;margin:1.5rem 0}
+.tabs button{background:var(--bg3);color:var(--mu);border:1px solid var(--br);padding:.5rem 1.2rem;border-radius:6px;cursor:pointer;font-family:inherit;font-size:.9rem}
+.tabs button.on{background:var(--gold);color:#0d0d0d;font-weight:700;border-color:var(--gold)}
+.panel{display:none}.panel.on{display:block}
+/* flashcards */
+.card{background:var(--bg2);border:1px solid var(--br);border-radius:10px;min-height:220px;display:flex;align-items:center;justify-content:center;text-align:center;padding:2rem;cursor:pointer;font-size:1.15rem;position:relative}
+.card .side{max-width:560px}
+.card .q{color:var(--gl)}.card .a{color:var(--tx);font-size:1rem}
+.card .hint{position:absolute;bottom:.6rem;left:0;right:0;font-size:.7rem;color:var(--mu);letter-spacing:.1em;text-transform:uppercase}
+.cardnav{display:flex;justify-content:space-between;align-items:center;margin-top:1rem}
+.cardnav button{background:var(--bg3);color:var(--gold);border:1px solid var(--br);padding:.5rem 1rem;border-radius:6px;cursor:pointer;font-family:inherit}
+.count{color:var(--mu);font-size:.85rem}
+/* quiz */
+.q-block{background:var(--bg2);border:1px solid var(--br);border-radius:10px;padding:1.2rem 1.4rem;margin-bottom:1rem}
+.q-block .qt{color:var(--gl);margin-bottom:.7rem;font-size:1rem}
+.opt{display:block;width:100%;text-align:left;background:var(--bg3);color:var(--tx);border:1px solid var(--br);padding:.55rem .8rem;border-radius:6px;margin:.35rem 0;cursor:pointer;font-family:inherit;font-size:.9rem}
+.opt.correct{background:var(--grn);border-color:#4c9a5e;color:#fff}
+.opt.wrong{background:var(--red);border-color:#b33;color:#fff}
+.opt:disabled{cursor:default}
+.expl{font-size:.82rem;color:var(--mu);margin-top:.5rem;display:none}
+.score{text-align:center;color:var(--gl);font-size:1.1rem;margin:1rem 0}
+a.back{color:var(--gold);font-size:.85rem;display:block;text-align:center;margin-top:2rem}
+/* OL-FABALIGN */
+#ol-top,#ol-tt{right:22px;width:44px;height:44px}
+.ol-ask-fab{right:22px;bottom:24px}
+#ol-tt{bottom:90px}
+#ol-top{bottom:148px}
+@media(max-width:480px){.ol-ask-fab{right:14px;bottom:16px}#ol-tt{right:14px;bottom:82px;width:42px;height:42px}#ol-top{right:14px;bottom:138px;width:42px;height:42px}}
+/* END-OL-FABALIGN */
+</style>
+</head>
+<body>
+<h1>Study — Flashcards &amp; Quiz</h1>
+<div class="note">Rough working draft — a sketch of the study feature, not final. Content is a small sample deck.</div>
+
+<div class="tabs">
+  <button id="tb-cards" class="on" onclick="tab('cards')">Flashcards</button>
+  <button id="tb-quiz" onclick="tab('quiz')">Quiz</button>
+</div>
+
+<div id="cards" class="panel on">
+  <div class="card" id="card" onclick="flip()">
+    <div class="side" id="cardside"></div>
+    <div class="hint">click to flip</div>
+  </div>
+  <div class="cardnav">
+    <button onclick="prev()">‹ Prev</button>
+    <span class="count" id="ccount"></span>
+    <button onclick="next()">Next ›</button>
+  </div>
+</div>
+
+<div id="quiz" class="panel">
+  <div id="quizbody"></div>
+  <div class="score" id="score"></div>
+</div>
+
+<a class="back" href="index.html">← Back to The Orthodox Lamp</a>
+
+<script>
+// --- sample flashcard deck (rough) ---
+var deck=[
+ {q:"On what day did the earliest Church gather to break bread?",a:"The Lord's Day (Sunday), the day of the Resurrection — see Acts 20:7, 1 Cor 16:2, Rev 1:10."},
+ {q:"What does Colossians 2:16-17 call the Sabbath?",a:"A 'shadow of the things to come' — the substance belongs to Christ."},
+ {q:"Which c.90-110 text calls the Eucharist a 'pure sacrifice' and cites Malachi 1:11?",a:"The Didache, chapter 14."},
+ {q:"How is the Eucharistic sacrifice reconciled with Hebrews' 'once for all'?",a:"It does not repeat Calvary but re-presents the one eternal sacrifice — the Lamb 'slain' yet standing (Rev 5:6)."},
+ {q:"What did Irenaeus (AH IV.18) say the consecrated bread is?",a:"'No longer common bread, but the Eucharist, consisting of two realities, earthly and heavenly.'"},
+ {q:"Whose 'pure offering... in every place' do Justin and the Didache apply to the Eucharist?",a:"The prophecy of Malachi 1:11."},
+ {q:"What is the 'argument from silence' fallacy?",a:"Assuming that because Scripture does not explicitly command a practice, the practice is therefore forbidden."},
+ {q:"Vincent of Lerins' test for authentic Tradition?",a:"'Quod ubique, quod semper, quod ab omnibus' — what is believed everywhere, always, and by all."}
+];
+var i=0, showBack=false;
+function renderCard(){var c=deck[i];document.getElementById('cardside').innerHTML= showBack ? '<div class="a">'+c.a+'</div>' : '<div class="q">'+c.q+'</div>';document.getElementById('ccount').textContent=(i+1)+' / '+deck.length;}
+function flip(){showBack=!showBack;renderCard();}
+function next(){i=(i+1)%deck.length;showBack=false;renderCard();}
+function prev(){i=(i-1+deck.length)%deck.length;showBack=false;renderCard();}
+renderCard();
+
+// --- sample quiz (rough) ---
+var quiz=[
+ {q:"Which verse names 'the Lord's day'?",opts:["Acts 20:7","Revelation 1:10","Genesis 2:3"],ans:1,ex:"Rev 1:10 — 'I was in the Spirit on the Lord's day.'"},
+ {q:"Constantine's 321 Sunday edict...",opts:["invented Christian Sunday worship","recognized an existing practice","abolished the Sabbath"],ans:1,ex:"Sunday worship is attested by the Didache, Ignatius and Justin — long before 321."},
+ {q:"Ignatius (c.107) speaks of the Church having...",opts:["one altar","many altars","no altar"],ans:0,ex:"Philadelphians 4: 'one altar; as there is one bishop.'"},
+ {q:"'Do this in remembrance' uses the Greek word...",opts:["agape","anamnesis","kenosis"],ans:1,ex:"Anamnesis — a liturgical making-present, used of temple memorial offerings."}
+];
+function renderQuiz(){var h='';quiz.forEach(function(q,qi){h+='<div class="q-block"><div class="qt">'+(qi+1)+'. '+q.q+'</div>';q.opts.forEach(function(o,oi){h+='<button class="opt" onclick="pick('+qi+','+oi+')" id="q'+qi+'o'+oi+'">'+o+'</button>';});h+='<div class="expl" id="ex'+qi+'">'+q.ex+'</div></div>';});document.getElementById('quizbody').innerHTML=h;}
+var answered={};
+function pick(qi,oi){if(answered[qi]!==undefined)return;answered[qi]=oi;var q=quiz[qi];for(var k=0;k<q.opts.length;k++){var b=document.getElementById('q'+qi+'o'+k);b.disabled=true;if(k===q.ans)b.classList.add('correct');}if(oi!==q.ans)document.getElementById('q'+qi+'o'+oi).classList.add('wrong');document.getElementById('ex'+qi).style.display='block';updateScore();}
+function updateScore(){var n=0,tot=quiz.length;for(var k in answered)if(answered[k]===quiz[k].ans)n++;if(Object.keys(answered).length===tot)document.getElementById('score').textContent='Score: '+n+' / '+tot;}
+renderQuiz();
+
+function tab(name){['cards','quiz'].forEach(function(t){document.getElementById(t).classList.toggle('on',t===name);document.getElementById('tb-'+t).classList.toggle('on',t===name);});}
+</script>
+</body>
+</html>
