@@ -370,6 +370,20 @@ html.sb-collapsed #ol-sbt{left:0}
 #ol-top{bottom:148px}
 @media(max-width:480px){.ol-ask-fab{right:14px;bottom:16px}#ol-tt{right:14px;bottom:82px;width:42px;height:42px}#ol-top{right:14px;bottom:138px;width:42px;height:42px}}
 /* END-OL-FABALIGN */
+
+
+
+
+/* OL-PGBAND */
+.oo-pgband{position:relative;margin:14px 0 6px;border-radius:10px;overflow:hidden;border:1px solid var(--br);box-shadow:0 4px 14px rgba(0,0,0,.3)}
+.oo-pgband .im{height:106px;background-size:cover;filter:sepia(.5) saturate(.82) brightness(.86) contrast(.95);transition:filter .5s ease}
+.oo-pgband:hover .im{filter:sepia(.3) saturate(.95) brightness(.98) contrast(1)}
+.oo-pgband .cap{position:absolute;left:15px;bottom:9px;font:600 .68rem/1.3 var(--disp,Georgia),serif;letter-spacing:.11em;text-transform:uppercase;color:var(--gl);opacity:.92;text-shadow:0 1px 6px rgba(0,0,0,1)}
+.oo-pgband .cap b{display:block;font-size:.85rem;letter-spacing:.05em;opacity:1}
+.oo-pgband::after{content:"\271A";position:absolute;top:9px;right:13px;color:var(--gl);opacity:.6;font-size:.85rem;text-shadow:0 1px 3px rgba(0,0,0,.9)}
+@media(max-width:760px){.oo-pgband .im{height:86px}}
+@media print{.oo-pgband{display:none}}
+/* END-OL-PGBAND */
 </style>
 <script>try{if(localStorage.getItem('ol-sb')==='1')document.documentElement.classList.add('sb-collapsed')}catch(e){}</script>
 <!-- SEO-META-START -->
@@ -413,6 +427,9 @@ html.sb-collapsed #ol-sbt{left:0}
 <button class="mob-toggle" onclick="toggleSidebar()">☰</button>
 <main id="main-content">
 <nav class="ol-bc" aria-label="Breadcrumb"><a href="index.html">Home</a><i>›</i><a href="index.html#islam">Islam</a><i>›</i><span class="cur">Did Jesus Die on the Cross?</span></nav>
+<!-- OL-PGBAND -->
+<div class="oo-pgband" aria-hidden="true"><div class="im" style="background-image:linear-gradient(180deg,rgba(12,12,12,.5) 0%,rgba(12,12,12,.86) 100%),url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Ura_Kidane_Mehret_Church_01.jpg/960px-Ura_Kidane_Mehret_Church_01.jpg');background-position:center 48%"></div><span class="cap"><b>Ura Kidane Mehret</b>Ethiopian Orthodox · Lake Tana</span></div>
+<!-- END-OL-PGBAND -->
   <div class="hero">
     <span class="si">☩</span>
     <h1 class="st">THE <span>ORTHODOX</span> LAMP</h1>

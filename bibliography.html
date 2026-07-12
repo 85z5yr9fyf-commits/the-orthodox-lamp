@@ -452,6 +452,20 @@ html.sb-collapsed #ol-sbt{left:0}
 #ol-top{bottom:148px}
 @media(max-width:480px){.ol-ask-fab{right:14px;bottom:16px}#ol-tt{right:14px;bottom:82px;width:42px;height:42px}#ol-top{right:14px;bottom:138px;width:42px;height:42px}}
 /* END-OL-FABALIGN */
+
+
+
+
+/* OL-PGBAND */
+.oo-pgband{position:relative;margin:14px 0 6px;border-radius:10px;overflow:hidden;border:1px solid var(--br);box-shadow:0 4px 14px rgba(0,0,0,.3)}
+.oo-pgband .im{height:106px;background-size:cover;filter:sepia(.5) saturate(.82) brightness(.86) contrast(.95);transition:filter .5s ease}
+.oo-pgband:hover .im{filter:sepia(.3) saturate(.95) brightness(.98) contrast(1)}
+.oo-pgband .cap{position:absolute;left:15px;bottom:9px;font:600 .68rem/1.3 var(--disp,Georgia),serif;letter-spacing:.11em;text-transform:uppercase;color:var(--gl);opacity:.92;text-shadow:0 1px 6px rgba(0,0,0,1)}
+.oo-pgband .cap b{display:block;font-size:.85rem;letter-spacing:.05em;opacity:1}
+.oo-pgband::after{content:"\271A";position:absolute;top:9px;right:13px;color:var(--gl);opacity:.6;font-size:.85rem;text-shadow:0 1px 3px rgba(0,0,0,.9)}
+@media(max-width:760px){.oo-pgband .im{height:86px}}
+@media print{.oo-pgband{display:none}}
+/* END-OL-PGBAND */
 </style>
 <script>try{if(localStorage.getItem('ol-sb')==='1')document.documentElement.classList.add('sb-collapsed')}catch(e){}</script>
 <!-- SEO-META-START -->
@@ -498,6 +512,8 @@ html.sb-collapsed #ol-sbt{left:0}
     <span class="sb-group">Method</span>
     <a href="#s7">VII. Modern Editions</a>
     <a href="#s8">VIII. A Note on Accuracy</a>
+    <span class="sb-group">Images</span>
+    <a href="#s9">IX. Photograph Credits</a>
   </div>
 </nav>
 
@@ -514,6 +530,9 @@ html.sb-collapsed #ol-sbt{left:0}
 
 <div class="content">
 <nav class="ol-bc" aria-label="Breadcrumb"><a href="index.html">Home</a><i>›</i><a href="index.html#foundations">Foundations &amp; Method</a><i>›</i><span class="cur">Sources &amp; Bibliography</span></nav>
+<!-- OL-PGBAND -->
+<div class="oo-pgband" aria-hidden="true"><div class="im" style="background-image:linear-gradient(180deg,rgba(12,12,12,.5) 0%,rgba(12,12,12,.86) 100%),url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Kairo_Hanging_Church_BW_1.jpg/960px-Kairo_Hanging_Church_BW_1.jpg');background-position:center 38%"></div><span class="cap"><b>The Hanging Church</b>Coptic Orthodox · Cairo</span></div>
+<!-- END-OL-PGBAND -->
 
 <div class="sec open" id="s1">
   <div class="sec-hd" onclick="ts(this)">
@@ -658,6 +677,61 @@ html.sb-collapsed #ol-sbt{left:0}
 
     <p>Quotation accuracy is the first priority of this site. Every patristic quotation is checked against the editions listed above and is marked as either a <strong>Direct</strong> quotation (verbatim from the cited translation) or a <strong>Paraphrase</strong> (a faithful summary in our own words). Where a translation differs across editions, the public-domain ANF/NPNF reading is preferred unless a modern critical edition is explicitly noted.</p>
     <p>Scripture is quoted from the King James Version throughout. If you find any misattribution or inaccuracy, it is an error to be corrected — the aim is to represent the Fathers and the Scriptures faithfully, never to bend them to a conclusion.</p>
+  </div>
+</div>
+
+<div class="sec open" id="s9">
+  <div class="sec-hd" onclick="ts(this)">
+    <h2>IX. Photograph Credits</h2>
+    <div style="display:flex;align-items:center;gap:.7rem"><span class="num">09</span><span class="arr">▶</span></div>
+  </div>
+  <div class="sec-body">
+
+    <p>The header photograph on each page — and the gallery on the home page — shows a real church of the Oriental Orthodox communion: Coptic, Ethiopian, Eritrean, Armenian, Syriac, and Malankara. <strong>No image on this site is AI-generated.</strong> Every photograph is real and is used under a free licence (public domain, Creative Commons, or an equivalent free-culture licence) via <a href="https://commons.wikimedia.org/" target="_blank" rel="noopener">Wikimedia Commons</a>. Each photographer is credited below; where a Creative Commons licence requires attribution, that requirement is met here and on the source file page.</p>
+
+    <p><strong>Coptic Orthodox (Egypt)</strong></p>
+    <ul>
+      <li><strong>The Hanging Church (Al-Muʿallaqa), Cairo</strong> — Berthold Werner. CC BY-SA 3.0.</li>
+      <li><strong>St Mark's Coptic Orthodox Cathedral, Abbasiya, Cairo</strong> — Ashashyou. CC BY-SA 3.0.</li>
+      <li><strong>Monastery of St Anthony, Eastern Desert</strong> — Tentoila. Public domain.</li>
+      <li><strong>The Red Monastery (Deir al-Ahmar), Sohag</strong> — Roland Unger. CC BY-SA 3.0.</li>
+    </ul>
+
+    <p><strong>Ethiopian Orthodox Tewahedo</strong></p>
+    <ul>
+      <li><strong>Church of St George (Bete Giyorgis), Lalibela</strong> — Giustino. CC BY 2.0.</li>
+      <li><strong>Debre Berhan Selassie, Gondar</strong> — Bernard Gagnon. CC BY-SA 3.0.</li>
+      <li><strong>Church of St Mary of Zion, Axum</strong> — A. Savin. Free Art License.</li>
+      <li><strong>Ura Kidane Mehret, Lake Tana</strong> — Bernard Gagnon. CC BY-SA 3.0.</li>
+      <li><strong>Debre Damo Monastery, Tigray</strong> — Rod Waddington. CC BY-SA 2.0.</li>
+    </ul>
+
+    <p><strong>Eritrean Orthodox Tewahedo</strong></p>
+    <ul>
+      <li><strong>Enda Mariam Cathedral, Asmara</strong> — David Stanley. CC BY 2.0.</li>
+    </ul>
+
+    <p><strong>Armenian Apostolic</strong></p>
+    <ul>
+      <li><strong>Etchmiadzin Cathedral, Vagharshapat</strong> — David Holt. CC BY-SA 2.0.</li>
+      <li><strong>Geghard Monastery, Kotayk</strong> — via Wikimedia Commons. CC BY-SA 2.0 (DE).</li>
+      <li><strong>Tatev Monastery, Syunik</strong> — Eupator. CC BY-SA 3.0.</li>
+      <li><strong>Khor Virap Monastery, Ararat Plain</strong> — Tamara Areshian. CC BY 2.0.</li>
+      <li><strong>St Hripsime Church, Vagharshapat</strong> — MSyuzan. CC BY-SA 4.0.</li>
+    </ul>
+
+    <p><strong>Syriac Orthodox</strong></p>
+    <ul>
+      <li><strong>Deyrul Zafaran (Mor Hananyo Monastery), Mardin</strong> — Adam Jones. CC BY-SA 2.0.</li>
+      <li><strong>Mor Gabriel Monastery, Tur Abdin</strong> — Furkan Elveren. CC0 (public-domain dedication).</li>
+    </ul>
+
+    <p><strong>Malankara Orthodox (India)</strong></p>
+    <ul>
+      <li><strong>Parumala Church, Kerala</strong> — Gramam. CC BY-SA 4.0.</li>
+    </ul>
+
+    <p style="font-size:.86rem;opacity:.85">Licence texts: <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a> · <a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener">CC BY-SA 2.0</a> · <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a> · <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">CC0</a> · <a href="https://artlibre.org/licence/lal/en/" target="_blank" rel="noopener">Free Art License</a>. Each source file, with its full authorship and licence history, can be found by its title on Wikimedia Commons.</p>
   </div>
 </div>
 
