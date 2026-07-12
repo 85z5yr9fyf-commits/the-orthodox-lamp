@@ -410,6 +410,25 @@ html.light .hero::after{opacity:.1}
 #ol-top{bottom:148px}
 @media(max-width:480px){.ol-ask-fab{right:14px;bottom:16px}#ol-tt{right:14px;bottom:82px;width:42px;height:42px}#ol-top{right:14px;bottom:138px;width:42px;height:42px}}
 /* END-OL-FABALIGN */
+/* OL-CHURCHIMG */
+.oo-churches{max-width:1180px;margin:10px auto 0;padding:64px 24px 8px;position:relative}
+.oo-churches::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:min(560px,80%);height:1px;background:linear-gradient(90deg,transparent,var(--gd),var(--gold),var(--gd),transparent)}
+.oo-ch-head{text-align:center;max-width:720px;margin:0 auto 34px}
+.oo-ch-orn{display:block;font-size:1.3rem;color:var(--gold);opacity:.8;margin-bottom:6px}
+.oo-ch-head h2{font-family:var(--disp);font-weight:600;font-size:clamp(1.5rem,3.4vw,2.15rem);color:var(--gl);margin:0 0 10px;letter-spacing:.4px}
+.oo-ch-head p{color:var(--mu);font-size:.98rem;line-height:1.6;margin:0}
+.oo-ch-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:820px){.oo-ch-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.oo-ch-grid{grid-template-columns:1fr}}
+.oo-ch{margin:0;position:relative;border:1px solid var(--br);border-radius:10px;overflow:hidden;background:var(--bg3);transition:transform .35s ease,border-color .35s ease,box-shadow .35s ease}
+.oo-ch:hover{transform:translateY(-4px);border-color:var(--gd);box-shadow:0 14px 30px rgba(0,0,0,.45)}
+.oo-ch-img{height:190px;background-image:var(--ch);background-size:cover;background-position:center;filter:sepia(.32) saturate(1.1) contrast(.98);transition:filter .35s ease,transform .5s ease}
+.oo-ch:hover .oo-ch-img{filter:sepia(.12) saturate(1.12) contrast(1);transform:scale(1.05)}
+.oo-ch figcaption{padding:11px 14px 13px;border-top:1px solid var(--br);background:linear-gradient(180deg,var(--bg2),var(--bg3))}
+.oo-ch figcaption strong{display:block;font-family:var(--disp);font-weight:600;font-size:1.06rem;color:var(--gl);letter-spacing:.3px}
+.oo-ch figcaption span{display:block;font-size:.8rem;color:var(--mu);margin-top:2px;letter-spacing:.3px}
+.oo-ch-cred{text-align:center;font-size:.74rem;color:var(--mu);opacity:.72;margin:26px 0 0}
+/* END-OL-CHURCHIMG */
 </style>
 <script>try{if(localStorage.getItem('ol-theme')==='light')document.documentElement.classList.add('light')}catch(e){}
 try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('js-anim')}catch(e){}</script>
@@ -1175,6 +1194,44 @@ try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.document
 <div class="no-results" id="no-results">No pages match your search.</div>
 
 </div><!-- /container -->
+
+<!-- ══ CHURCHES GALLERY ══ -->
+<section class="oo-churches" id="churches" aria-label="Churches of the Oriental Orthodox Communion">
+  <div class="oo-ch-in">
+    <div class="oo-ch-head">
+      <span class="oo-ch-orn" aria-hidden="true">&#10016;</span>
+      <h2>Churches of the Oriental Orthodox Communion</h2>
+      <p>One faith held across many lands — the ancient sister Churches that together confess the miaphysite christology of St Cyril and the first three Ecumenical Councils.</p>
+    </div>
+    <div class="oo-ch-grid">
+      <figure class="oo-ch" style="--ch:url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Bet_Giyorgis_church_Lalibela_01.jpg/500px-Bet_Giyorgis_church_Lalibela_01.jpg')">
+        <div class="oo-ch-img"></div>
+        <figcaption><strong>Bet Giyorgis</strong><span>Ethiopian Orthodox &middot; Lalibela</span></figcaption>
+      </figure>
+      <figure class="oo-ch" style="--ch:url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Kairo_Hanging_Church_BW_1.jpg/500px-Kairo_Hanging_Church_BW_1.jpg')">
+        <div class="oo-ch-img"></div>
+        <figcaption><strong>The Hanging Church</strong><span>Coptic Orthodox &middot; Cairo</span></figcaption>
+      </figure>
+      <figure class="oo-ch" style="--ch:url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/021_Echmiadzin_%281541465058%29.jpg/500px-021_Echmiadzin_%281541465058%29.jpg')">
+        <div class="oo-ch-img"></div>
+        <figcaption><strong>Etchmiadzin Cathedral</strong><span>Armenian Apostolic &middot; Vagharshapat</span></figcaption>
+      </figure>
+      <figure class="oo-ch" style="--ch:url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Deyrul_Zafaran_-_Ancient_Syriac_Monastery_-_Outside_Mardin_-_Turkey_-_02_%285789013289%29.jpg/500px-Deyrul_Zafaran_-_Ancient_Syriac_Monastery_-_Outside_Mardin_-_Turkey_-_02_%285789013289%29.jpg')">
+        <div class="oo-ch-img"></div>
+        <figcaption><strong>Deyrul Zafaran</strong><span>Syriac Orthodox &middot; Mardin</span></figcaption>
+      </figure>
+      <figure class="oo-ch" style="--ch:url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Parumala_Church_-_New_Pic.jpg/500px-Parumala_Church_-_New_Pic.jpg')">
+        <div class="oo-ch-img"></div>
+        <figcaption><strong>Parumala Church</strong><span>Malankara Orthodox &middot; Kerala</span></figcaption>
+      </figure>
+      <figure class="oo-ch" style="--ch:url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Church_of_Debra_Berhan_Selassie_01_%28cropped%29.jpg/500px-Church_of_Debra_Berhan_Selassie_01_%28cropped%29.jpg')">
+        <div class="oo-ch-img"></div>
+        <figcaption><strong>Debre Berhan Selassie</strong><span>Ethiopian Orthodox &middot; Gondar</span></figcaption>
+      </figure>
+    </div>
+    <p class="oo-ch-cred">Photographs: Creative Commons / public domain via Wikimedia Commons.</p>
+  </div>
+</section>
 
 <!-- ══ HELP ══ -->
 <div class="help" id="help">
