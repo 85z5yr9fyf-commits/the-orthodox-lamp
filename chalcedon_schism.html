@@ -543,7 +543,7 @@ html.sb-collapsed #ol-sbt{left:0}
 <main>
 <nav class="ol-bc" aria-label="Breadcrumb"><a href="index.html">Home</a><i>›</i><a href="index.html#oriental">Oriental Orthodoxy</a><i>›</i><span class="cur">Chalcedon — Schism &amp; Councils</span></nav>
 <!-- OL-PGBAND -->
-<div class="oo-pgband" aria-hidden="true"><div class="im" style="background-image:linear-gradient(180deg,rgba(12,12,12,.5) 0%,rgba(12,12,12,.86) 100%),url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Parumala_Church_-_New_Pic.jpg/960px-Parumala_Church_-_New_Pic.jpg');background-position:center 46%"></div><span class="cap"><b>Parumala Church</b>Malankara Orthodox · Kerala</span></div>
+<a class="oo-pgband" href="https://upload.wikimedia.org/wikipedia/commons/1/1d/Parumala_Church_-_New_Pic.jpg" target="_blank" rel="noopener noreferrer" title="Parumala Church — Malankara Orthodox · Kerala · view full photo (Wikimedia Commons)" aria-label="View the full photograph of Parumala Church, Malankara Orthodox · Kerala — opens in a new tab"><div class="im" style="background-image:linear-gradient(180deg,rgba(12,12,12,.5) 0%,rgba(12,12,12,.86) 100%),url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Parumala_Church_-_New_Pic.jpg/960px-Parumala_Church_-_New_Pic.jpg');background-position:center 46%"></div><span class="cap"><b>Parumala Church</b>Malankara Orthodox · Kerala</span></a>
 <!-- END-OL-PGBAND -->
 <div class="hero">
   <div class="tag">The Orthodox Lamp — Christological Theology</div>
@@ -581,13 +581,16 @@ html.sb-collapsed #ol-sbt{left:0}
 
 
 
+
 /* OL-PGBAND */
-.oo-pgband{position:relative;margin:14px 0 6px;border-radius:10px;overflow:hidden;border:1px solid var(--br);box-shadow:0 4px 14px rgba(0,0,0,.3)}
-.oo-pgband .im{height:106px;background-size:cover;filter:sepia(.5) saturate(.82) brightness(.86) contrast(.95);transition:filter .5s ease}
-.oo-pgband:hover .im{filter:sepia(.3) saturate(.95) brightness(.98) contrast(1)}
+.oo-pgband{display:block;text-decoration:none;position:relative;margin:14px 0 6px;border-radius:10px;overflow:hidden;border:1px solid var(--br);box-shadow:0 4px 14px rgba(0,0,0,.3);cursor:pointer}
+.oo-pgband .im{height:106px;background-size:cover;filter:sepia(.5) saturate(.82) brightness(.86) contrast(.95);transition:filter .5s ease,transform .5s ease}
+.oo-pgband:hover .im,.oo-pgband:focus-visible .im{filter:sepia(.3) saturate(.95) brightness(.98) contrast(1);transform:scale(1.03)}
+.oo-pgband:focus-visible{outline:2px solid var(--gl);outline-offset:2px}
 .oo-pgband .cap{position:absolute;left:15px;bottom:9px;font:600 .68rem/1.3 var(--disp,Georgia),serif;letter-spacing:.11em;text-transform:uppercase;color:var(--gl);opacity:.92;text-shadow:0 1px 6px rgba(0,0,0,1)}
 .oo-pgband .cap b{display:block;font-size:.85rem;letter-spacing:.05em;opacity:1}
-.oo-pgband::after{content:"\271A";position:absolute;top:9px;right:13px;color:var(--gl);opacity:.6;font-size:.85rem;text-shadow:0 1px 3px rgba(0,0,0,.9)}
+.oo-pgband::after{content:"\2626";position:absolute;top:7px;right:13px;color:var(--gl);opacity:.62;font-size:1.02rem;line-height:1;text-shadow:0 1px 3px rgba(0,0,0,.9);transition:opacity .4s ease}
+.oo-pgband:hover::after,.oo-pgband:focus-visible::after{opacity:.96}
 @media(max-width:760px){.oo-pgband .im{height:86px}}
 @media print{.oo-pgband{display:none}}
 /* END-OL-PGBAND */
@@ -1302,7 +1305,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <p><strong>1–3.</strong> Same as OO above</p>
         <p><strong>4.</strong> Chalcedon (451) — Two natures; against Eutychianism</p>
         <p><strong>5.</strong> Constantinople II (553) — Three Chapters condemned</p>
-        <p><strong>6.</strong> Constantinople III (681) — Two wills; Monothelitism condemned</p>
+        <p><strong>6.</strong> Constantinople III (680–681) — Two wills; Monothelitism condemned</p>
         <p><strong>7.</strong> Nicaea II (787) — Icon veneration defined; Iconoclasm condemned</p>
         <p style="margin-top:10px;font-size:.78rem;color:var(--mu)">Stops here — considers the Faith fully defined; all subsequent councils are local Western synods.</p>
       </div>
