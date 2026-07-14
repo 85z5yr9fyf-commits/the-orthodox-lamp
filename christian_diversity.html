@@ -319,6 +319,17 @@ html.light .ol-ask-wrap{box-shadow:0 24px 70px rgba(40,30,10,.22)}
 .ol-ans .a-h{display:block;font-size:.78rem;color:var(--gd,#c9a84c);margin-top:1px}
 .ol-ans .a-x{display:block;font-size:.81rem;color:var(--mu);margin-top:5px;line-height:1.5}
 .ol-ans mark,.ol-ask-msg mark{background:rgba(201,168,76,.32);color:inherit;border-radius:2px;padding:0 1px}
+.ol-ai-txt{font-size:.9rem;line-height:1.6;color:var(--tx,#e7ddc8)}
+.ol-ai-txt p{margin:0 0 9px}.ol-ai-txt p:last-child{margin-bottom:0}
+.ol-ai-txt strong{color:var(--gl,#e8c96a);font-weight:600}
+.ol-ai-txt sup.ol-ci{color:var(--gd,#c9a84c);font-weight:600;font-size:.7em;padding:0 1px}
+.ol-ai-cite{margin-top:11px;padding-top:9px;border-top:1px solid var(--br)}
+.ol-ai-cite .lead{margin:0 0 7px;color:var(--mu);font-size:.78rem;text-transform:uppercase;letter-spacing:.04em}
+.ol-ans .a-c{display:inline-block;color:var(--gd,#c9a84c);font-weight:700;font-size:.78rem;margin-right:5px}
+.ol-ai-dots{display:inline-flex;gap:5px;padding:4px 0}
+.ol-ai-dots i{width:7px;height:7px;border-radius:50%;background:var(--gd,#c9a84c);opacity:.4;animation:olaiblink 1.2s infinite}
+.ol-ai-dots i:nth-child(2){animation-delay:.2s}.ol-ai-dots i:nth-child(3){animation-delay:.4s}
+@keyframes olaiblink{0%,60%,100%{opacity:.35}30%{opacity:1}}
 .ol-vans{border:1px solid var(--br);border-radius:10px;padding:11px 13px;margin-bottom:9px;background:var(--bg,#1a140a)}
 .ol-vans .vr{font-weight:700;color:var(--gd,#c9a84c)}
 .ol-vans .vt{display:block;margin-top:5px;font-size:.85rem;line-height:1.55;color:var(--tx,#e7ddc8)}
@@ -968,10 +979,30 @@ document.querySelector('.sec').classList.add('open');
 })();
 /* END-FEATURES3-JS */</script>
 <script>
+/* Ask the Lamp — AI config. Paste your Cloudflare Worker URL between the
+   quotes to turn on grounded AI answers. Leave blank for site-search only.
+   See ask-lamp-SETUP.md for the 10-minute setup. */
+window.OL_ASK_ENDPOINT = "https://ask-the-lamp.sebazz7397.workers.dev";
+</script>
+<script>
 /* AUTO-FEATURES4-JS */
 (function(){
   try{
     function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+    /* Optional strict-RAG AI answers. Set window.OL_ASK_ENDPOINT to the
+       Cloudflare Worker URL to turn "Ask the Lamp" from a search box into a
+       grounded assistant. If blank or unreachable, it silently falls back to
+       the retrieval-only behaviour below. See ask-lamp-SETUP.md. */
+    var AI_ENDPOINT=(window.OL_ASK_ENDPOINT||'').trim();
+    /* plain model text -> safe HTML: escape, light **bold**, [n] citations, paragraphs */
+    function fmtAI(s){
+      var out=esc(s);
+      out=out.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
+      /* normalise fancy citation brackets (【1】〔1〕〖1〗) the model sometimes emits to plain [1] */
+      out=out.replace(/[【〔〖]\s*(\d{1,2})\s*[】〕〗]/g,'[$1]');
+      out=out.replace(/\[(\d{1,2})\]/g,'<sup class="ol-ci">[$1]</sup>');
+      return out.split(/\n{2,}/).map(function(p){return '<p>'+p.replace(/\n/g,'<br>')+'</p>';}).join('');
+    }
     var STOP={};'the a an and or but of to in on at for with as is are was were be been being do does did this that these those it its their them they we you i he she his her our your my me us not no yes can could would should will shall may might must have has had what why how who whom whose which when where does did about into from than then so such also more most very just only own same other any all both each few how into about'.split(/\s+/).forEach(function(w){STOP[w]=1;});
     function toks(q){return (String(q).toLowerCase().match(/[a-z0-9]+/g)||[]).filter(function(w){return w.length>=3&&!STOP[w];});}
 
@@ -1044,6 +1075,12 @@ document.querySelector('.sec').classList.add('open');
     wrap.innerHTML='<div class="ol-ask-hd"><div class="ti"><b>Ask the Lamp</b><span>Search the whole site by question or verse</span></div><button class="ol-ask-x" type="button" aria-label="Close">×</button></div><div class="ol-ask-log" role="log" aria-live="polite"></div><div class="ol-ask-foot"><input type="text" placeholder="Ask a question or type a verse…" aria-label="Ask a question" autocomplete="off"><button class="send" type="button" aria-label="Send">➤</button></div><div class="ol-ask-note">Answers are drawn only from this site’s pages · not a live AI chat</div>';
     document.body.appendChild(wrap);
     var log=wrap.querySelector('.ol-ask-log'),inp=wrap.querySelector('.ol-ask-foot input'),sendB=wrap.querySelector('.send'),xB=wrap.querySelector('.ol-ask-x');
+    var noteEl=wrap.querySelector('.ol-ask-note');
+    if(noteEl)noteEl.textContent=AI_ENDPOINT
+      ?'AI answers are generated only from this site’s pages, with sources shown — always verify against the cited pages.'
+      :'Answers are drawn only from this site’s pages · not a live AI chat';
+    var subEl=wrap.querySelector('.ol-ask-hd .ti span');
+    if(subEl&&AI_ENDPOINT)subEl.textContent='Grounded answers from the site, with sources';
 
     function scrollDown(){log.scrollTop=log.scrollHeight;}
     function addUser(t){var d=document.createElement('div');d.className='ol-ask-msg user';d.textContent=t;log.appendChild(d);scrollDown();}
@@ -1083,15 +1120,64 @@ document.querySelector('.sec').classList.add('open');
       addBot('<p class="lead">'+lead+'</p>'+body);
     }
 
+    /* citation links under an AI answer, numbered to match [1]/[2] in the text */
+    function citeHTML(top){
+      return '<div class="ol-ai-cite"><p class="lead">Sources on the site</p>'+top.map(function(it,i){
+        return '<a class="ol-ans" href="'+esc(it.f)+(it.a?'#'+esc(it.a):'')+'"><span class="a-t"><span class="a-c">['+(i+1)+']</span>'+esc(it.t)+'</span>'+(it.h?'<span class="a-h">'+esc(it.h)+'</span>':'')+'</a>';
+      }).join('')+'</div>';
+    }
+    /* stream a grounded answer from the Worker; onErr triggers retrieval fallback */
+    function streamAI(q,passages,bubble,onDone,onErr){
+      var txt=document.createElement('div');txt.className='ol-ai-txt';
+      var acc='',started=false,gotErr=false;
+      function begin(){if(!started){started=true;bubble.innerHTML='';bubble.appendChild(txt);}}
+      fetch(AI_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({q:q,passages:passages})}).then(function(res){
+        if(!res.ok||!res.body)throw new Error('bad response');
+        var reader=res.body.getReader(),dec=new TextDecoder(),buf='';
+        function finish(){begin();txt.innerHTML=fmtAI(acc||'—');onDone();}
+        function pump(){
+          return reader.read().then(function(r){
+            if(r.done){finish();return;}
+            buf+=dec.decode(r.value,{stream:true});
+            var lines=buf.split('\n');buf=lines.pop()||'';
+            lines.forEach(function(line){
+              var t=line.trim();
+              if(t.indexOf('data:')!==0)return;
+              var p=t.slice(5).trim();
+              if(p==='[DONE]'||!p)return;
+              try{var tok=JSON.parse(p);if(typeof tok==='string'){begin();acc+=tok;txt.innerHTML=fmtAI(acc);scrollDown();}}catch(e){}
+            });
+            return pump();
+          });
+        }
+        return pump();
+      }).catch(function(){if(!gotErr){gotErr=true;onErr();}});
+    }
+    function renderTopicAI(q){
+      var r=rank(q),tk=r.tk,top=r.top;
+      if(!tk.length){addBot('<p class="lead">Try a question like <em>why do you venerate icons?</em> or type a Bible reference such as <em>John 3:16</em>.</p>');busy=false;return;}
+      if(!top.length){addBot('<p class="lead">I couldn’t find that on the site. Try different words, or browse from the menu.</p>');busy=false;return;}
+      var passages=top.slice(0,6).map(function(it){return {t:it.t,h:it.h,x:it.x};});
+      var bubble=addBot('<div class="ol-ai-dots"><i></i><i></i><i></i></div>');
+      streamAI(q,passages,bubble,function(){
+        var c=document.createElement('div');c.innerHTML=citeHTML(top);
+        bubble.appendChild(c.firstChild);scrollDown();busy=false;
+      },function(){
+        bubble.parentNode&&bubble.parentNode.removeChild(bubble);
+        renderTopic(q);busy=false;
+      });
+    }
+
     var busy=false;
     function handle(q){
       q=(q||'').trim();if(!q||busy)return;
       addUser(q);inp.value='';busy=true;
+      var topic=function(){loadC().then(function(){if(AI_ENDPOINT)renderTopicAI(q);else{renderTopic(q);busy=false;}});};
       var vp=(window.__olVerseQuery?window.__olVerseQuery(q):Promise.resolve(null));
       Promise.resolve(vp).then(function(v){
         if(v){renderVerse(v);busy=false;return;}
-        loadC().then(function(){renderTopic(q);busy=false;});
-      }).catch(function(){loadC().then(function(){renderTopic(q);busy=false;});});
+        topic();
+      }).catch(topic);
     }
 
     var greeted=false;
