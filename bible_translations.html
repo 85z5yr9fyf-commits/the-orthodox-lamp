@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bible Translations | The Orthodox Lamp</title>
+<style>
+:root{
+  --gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;
+  --bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--bg5:#3a2e10;
+  --tx:#e8e0d0;--mu:#b8ac82;--br:#2a2a2a;--sidebar-w:270px;
+  --oo:#1a2e1a;--ooc:#7dc87d;
+  --eo:#1a1e2e;--eoc:#7090d4;
+  --rc:#3a1a1a;--rcc:#d47070;
+  --prot:#2a1e12;--protc:#d49050;
+  --eth:#2a1a2e;--ethc:#c080d4;
+  --syr:#1e2a2a;--syrc:#60c8c0;
+  --both:#2a2218;--bothc:#c9a84c;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.7;display:flex;min-height:100vh}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+mark{background:rgba(201,168,76,.28);color:var(--gl);border-radius:2px;padding:0 2px}
+#prog{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--gd),var(--gl));z-index:200;transition:width .1s}
+#sb{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:100;display:flex;flex-direction:column}
+#sb-brand{padding:18px 18px 10px;border-bottom:1px solid var(--br)}
+#sb-brand .lamp{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mu);margin-bottom:4px}
+#sb-brand h1{font-size:1rem;color:var(--gold);line-height:1.3}
+.sb-search{padding:10px 14px 4px}
+.sb-search input{width:100%;background:rgba(255,255,255,.06);border:1px solid var(--br);border-radius:6px;padding:8px 12px;font-size:.8rem;color:var(--tx);font-family:'Georgia',serif;outline:none;transition:border-color .2s}
+.sb-search input::placeholder{color:#666}
+.sb-search input:focus{border-color:var(--gd)}
+.sec.s-hidden{display:none}
+.no-match-msg{display:none;padding:14px 18px;font-size:.8rem;color:var(--mu);font-style:italic;text-align:center}
+.no-match-msg.show{display:block}
+#sb-nav{padding:8px 0 20px;flex:1}
+.sb-part{padding:8px 18px 2px;font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mu)}
+#sb-nav a{display:block;padding:5px 18px;font-size:.79rem;color:var(--mu);border-left:2px solid transparent;transition:all .15s;line-height:1.35}
+#sb-nav a:hover,#sb-nav a.active{color:var(--gold);border-left-color:var(--gold);background:rgba(201,168,76,.06);text-decoration:none}
+main{margin-left:var(--sidebar-w);flex:1;max-width:900px;padding:48px 48px 80px}
+.pg-title .lamp-label{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--mu);margin-bottom:6px}
+.pg-title h1{font-size:2rem;color:var(--gold);line-height:1.2;margin-bottom:8px}
+.pg-title .sub{font-size:1rem;color:var(--mu);margin-top:6px;font-style:italic}
+.pg-intro{max-width:700px;color:var(--mu);font-size:.93rem;margin:14px 0 32px;border-left:3px solid var(--gd);padding-left:14px}
+.sec{border:1px solid var(--br);border-radius:8px;margin-bottom:14px;overflow:hidden;background:var(--bg2)}
+.sec-h{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;cursor:pointer;user-select:none;gap:10px}
+.sec-h:hover{background:rgba(255,255,255,.03)}
+.sec-h h2{font-size:1rem;color:var(--tx);font-weight:600}
+.sec-h .arr{color:var(--mu);font-size:.8rem;transition:transform .2s;flex-shrink:0}
+.sec.open .arr{transform:rotate(90deg)}
+.sec-body{display:none;padding:18px 20px 22px;border-top:1px solid var(--br)}
+.sec.open .sec-body{display:block}
+.sec-body p{color:var(--mu);font-size:.92rem;margin-bottom:10px}
+.sec-body p:last-child{margin-bottom:0}
+.sec-body h3{font-size:.84rem;color:var(--gold);letter-spacing:.07em;text-transform:uppercase;margin:18px 0 8px}
+.sv{background:var(--bg5);border:1px solid var(--gd);border-radius:6px;padding:10px 14px;margin:10px 0;font-style:italic;color:var(--gl);font-size:.9rem}
+.sv cite{display:block;text-align:right;font-size:.76rem;color:var(--gold);margin-top:4px;font-style:normal}
+.fc{background:var(--bg3);border:1px solid var(--br);border-radius:7px;padding:12px 15px;margin:10px 0;border-left:3px solid var(--gd)}
+.fc-name{font-size:.74rem;letter-spacing:.09em;text-transform:uppercase;color:var(--gold);margin-bottom:5px}
+.fc-body{font-size:.87rem;color:var(--mu);font-style:italic;line-height:1.62}
+.fc-src{font-size:.75rem;color:var(--gd);margin-top:5px}
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:10px;margin:12px 0}
+/* canon comparison table */
+.canon-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.84rem}
+.canon-table th{padding:9px 12px;text-align:center;border-bottom:2px solid var(--br);color:var(--gold);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;background:var(--bg3)}
+.canon-table th:first-child{text-align:left}
+.canon-table td{padding:8px 12px;border-bottom:1px solid var(--br);color:var(--mu);vertical-align:middle;text-align:center}
+.canon-table td:first-child{text-align:left;color:var(--tx);font-size:.88rem}
+.canon-table tr:last-child td{border-bottom:none}
+.canon-table .section-row td{background:var(--bg3);color:var(--gold);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;text-align:left}
+.badge{font-size:.7rem;padding:2px 8px;border-radius:10px;font-weight:700;white-space:nowrap;display:inline-block}
+.b-yes{background:var(--oo);color:var(--ooc);border:1px solid var(--ooc)}
+.b-no{background:#1a0a0a;color:#c05050;border:1px solid #c05050}
+.b-read{background:var(--bg5);color:var(--gold);border:1px solid var(--gd)}
+.b-eth{background:var(--eth);color:var(--ethc);border:1px solid var(--ethc)}
+.b-syr{background:var(--syr);color:var(--syrc);border:1px solid var(--syrc)}
+.b-var{background:#1e1e2e;color:#a0a0d0;border:1px solid #6060b0}
+/* comp grid */
+.comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.comp-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:14px 0}
+.comp-card{border-radius:8px;padding:13px 15px;border:1px solid}
+.comp-card.oo{background:var(--oo);border-color:var(--ooc)}
+.comp-card.eo{background:var(--eo);border-color:var(--eoc)}
+.comp-card.rc{background:var(--rc);border-color:var(--rcc)}
+.comp-card.prot{background:var(--prot);border-color:var(--protc)}
+.comp-card.eth{background:var(--eth);border-color:var(--ethc)}
+.comp-card.syr{background:var(--syr);border-color:var(--syrc)}
+.comp-card.shared{background:var(--both);border-color:var(--bothc)}
+.comp-card .cc-label{font-size:.67rem;letter-spacing:.11em;text-transform:uppercase;margin-bottom:7px;font-weight:700}
+.comp-card.oo .cc-label{color:var(--ooc)}
+.comp-card.eo .cc-label{color:var(--eoc)}
+.comp-card.rc .cc-label{color:var(--rcc)}
+.comp-card.prot .cc-label{color:var(--protc)}
+.comp-card.eth .cc-label{color:var(--ethc)}
+.comp-card.syr .cc-label{color:var(--syrc)}
+.comp-card.shared .cc-label{color:var(--bothc)}
+.comp-card ul{padding-left:16px;font-size:.86rem;line-height:1.75}
+.comp-card.oo ul{color:#c8e8c8}
+.comp-card.eo ul{color:#b8c8f0}
+.comp-card.rc ul{color:#f0c8c8}
+.comp-card.prot ul{color:#f0d8b8}
+.comp-card.eth ul{color:#e8c8f8}
+.comp-card.syr ul{color:#b8e8e8}
+.comp-card p{font-size:.87rem;line-height:1.6}
+.comp-card.prot p{color:#f0d8b8}
+.comp-card.oo p{color:#c8e8c8}
+/* book profile cards */
+.book-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin:14px 0}
+.book-card{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:14px 16px}
+.bk-title{font-size:.9rem;color:var(--gold);font-weight:700;margin-bottom:4px}
+.bk-accept{font-size:.72rem;color:var(--mu);margin-bottom:8px}
+.bk-accept span{padding:1px 6px;border-radius:8px;margin-right:4px;font-weight:600;font-size:.68rem}
+.bk-accept .yes{background:rgba(125,200,125,.2);color:var(--ooc);border:1px solid rgba(125,200,125,.4)}
+.bk-accept .no{background:rgba(200,80,80,.15);color:#d47070;border:1px solid rgba(200,80,80,.3)}
+.bk-accept .read{background:rgba(201,168,76,.15);color:var(--gold);border:1px solid rgba(201,168,76,.3)}
+.bk-body{font-size:.85rem;color:var(--mu);line-height:1.6}
+.bk-verse{font-size:.82rem;color:var(--gl);font-style:italic;margin-top:7px;padding-top:7px;border-top:1px solid var(--br)}
+/* objection */
+.obj{border:1px solid var(--br);border-radius:6px;margin-bottom:8px;overflow:hidden;background:var(--bg3)}
+.obj-h{display:flex;align-items:flex-start;padding:10px 14px;cursor:pointer;gap:10px;user-select:none}
+.obj-h:hover{background:rgba(255,255,255,.03)}
+.obj-tag{font-size:.68rem;letter-spacing:.09em;text-transform:uppercase;padding:2px 7px;border-radius:9px;flex-shrink:0;margin-top:3px;font-weight:600}
+.obj-tag.prot{background:var(--prot);color:var(--protc);border:1px solid var(--protc)}
+.obj-tag.oo{background:var(--oo);color:var(--ooc);border:1px solid var(--ooc)}
+.obj-h span{font-size:.88rem;color:var(--tx)}
+.obj-h .arr2{color:var(--mu);font-size:.74rem;transition:transform .2s;margin-left:auto;margin-top:3px;flex-shrink:0}
+.obj.open .arr2{transform:rotate(90deg)}
+.obj-body{display:none;padding:12px 14px 14px;border-top:1px solid var(--br);font-size:.88rem;color:var(--mu);line-height:1.65}
+.obj.open .obj-body{display:block}
+/* faq */
+.fi{border:1px solid var(--br);border-radius:6px;margin-bottom:8px;overflow:hidden;background:var(--bg3)}
+.fi-h{display:flex;align-items:flex-start;padding:10px 14px;cursor:pointer;gap:8px;user-select:none}
+.fi-h:hover{background:rgba(255,255,255,.03)}
+.fi-q{font-size:.88rem;color:var(--tx);flex:1}
+.fi-arr{color:var(--mu);font-size:.74rem;transition:transform .2s;flex-shrink:0;margin-top:4px}
+.fi.open .fi-arr{transform:rotate(90deg)}
+.fi-body{display:none;padding:12px 14px 14px;border-top:1px solid var(--br);font-size:.88rem;color:var(--mu);line-height:1.65}
+.fi.open .fi-body{display:block}
+/* timeline */
+.tl{margin:14px 0;border-left:2px solid var(--gd);padding-left:20px}
+.tl-item{position:relative;margin-bottom:14px}
+.tl-item::before{content:'';position:absolute;left:-25px;top:6px;width:8px;height:8px;border-radius:50%;background:var(--gold);border:2px solid var(--bg2)}
+.tl-year{font-size:.75rem;color:var(--gold);margin-bottom:3px;font-weight:600}
+.tl-text{font-size:.87rem;color:var(--mu);line-height:1.55}
+/* glossary */
+.gt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin:12px 0}
+.gt{background:var(--bg3);border:1px solid var(--br);border-radius:7px;padding:12px 14px}
+.gt-term{font-size:.8rem;font-weight:700;color:var(--gold);margin-bottom:4px}
+.gt-def{font-size:.83rem;color:var(--mu);line-height:1.55}
+/* lxx highlight */
+.lxx-box{background:#1a1e2e;border:1px solid #7090d4;border-radius:8px;padding:15px 18px;margin:12px 0}
+.lxx-label{font-size:.67rem;letter-spacing:.12em;text-transform:uppercase;color:#90b0f4;margin-bottom:7px}
+.lxx-text{font-size:.9rem;color:#c0d0f8;line-height:1.65}
+/* count display */
+.count-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin:14px 0}
+.count-card{border-radius:8px;padding:14px;text-align:center;border:1px solid}
+.count-card .num{font-size:2rem;font-weight:700;line-height:1}
+.count-card .lbl{font-size:.75rem;margin-top:6px;letter-spacing:.05em}
+.count-card.oo{background:var(--oo);border-color:var(--ooc)}.count-card.oo .num{color:var(--ooc)}.count-card.oo .lbl{color:#c8e8c8}
+.count-card.eo{background:var(--eo);border-color:var(--eoc)}.count-card.eo .num{color:var(--eoc)}.count-card.eo .lbl{color:#b8c8f0}
+.count-card.rc{background:var(--rc);border-color:var(--rcc)}.count-card.rc .num{color:var(--rcc)}.count-card.rc .lbl{color:#f0c8c8}
+.count-card.prot{background:var(--prot);border-color:var(--protc)}.count-card.prot .num{color:var(--protc)}.count-card.prot .lbl{color:#f0d8b8}
+.count-card.eth{background:var(--eth);border-color:var(--ethc)}.count-card.eth .num{color:var(--ethc)}.count-card.eth .lbl{color:#e8c8f8}
+.count-card.syr{background:var(--syr);border-color:var(--syrc)}.count-card.syr .num{color:var(--syrc)}.count-card.syr .lbl{color:#b8e8e8}
+@media(max-width:760px){#sb{transform:translateX(-100%)}main{margin-left:0;padding:24px 18px 60px}}
+
+.lampsvg{display:block;margin:0 auto 14px;height:auto}
+.lampsvg .lampflame{animation:lampflick 3.2s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes lampflick{0%,100%{transform:scaleY(1) scaleX(1);opacity:.95}25%{transform:scaleY(1.06) scaleX(.97);opacity:1}50%{transform:scaleY(.96) scaleX(1.03);opacity:.9}75%{transform:scaleY(1.04) scaleX(.98);opacity:1}}
+
+html.light{--gold:#8a6a20;--gl:#6f5413;--gd:#b08e3e;--bg:#f7f2e6;--bg2:#efe8d5;--bg3:#e7ddc7;--bg4:#ddd2b9;--bg5:#efe0b8;--tx:#2b2415;--mu:#6e6450;--br:#d2c7aa;--oo:#d5e7d5;--ooc:#2d6c2d;--eo:#d5d8e7;--eoc:#233e76;--rc:#ead1d1;--rcc:#762323;--prot:#ebded1;--protc:#7b4b1e;--eth:#e3d5e7;--ethc:#602772;--syr:#d8e3e3;--syrc:#27726c;--both:#e7dfd5}
+#ol-tt{position:fixed;right:16px;bottom:74px;z-index:9999;width:44px;height:44px;border-radius:50%;background:var(--bg3,var(--panel,#1a1a1a));color:var(--gold,#c9a84c);border:1px solid var(--gd,var(--gold-dark,var(--rule,#8a6a20)));font-size:1.1rem;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35);line-height:1}#ol-tt:hover{filter:brightness(1.15)}
+html.light .pl,html.light .labels .prot{background:#eed6d6;color:#8b2020}
+html.light .gl-tag,html.light .labels .oo{background:#d8e8d8;color:#1d5c1d}
+html.light .labels .ctx{background:#d8e3ee;color:#1d4a6b}
+html.light .obj{border-color:#dcc0c0}
+html.light .obj-bd{border-top-color:#dcc0c0}
+html.light .obj-h h3{color:#8b2020}
+html.light .comp-card.prot{border-top-color:#a83232}
+html.light .comp-card.prot .ct{color:#a83232}
+html.light .b-var{color:#232354}
+html.light .bk-accept .no{color:#5e1616}
+html.light .lxx-label{color:#112d67}
+html.light .lxx-text{color:#112b6a}
+html.light .comp-card.eo ul{color:#1d4a6b}
+html.light .comp-card.rc ul{color:#8b2020}
+html.light .comp-card.eth ul{color:#5a2080}
+html.light .comp-card.syr ul{color:#1d6060}
+html.light .count-card.eo .lbl{color:#1d4a6b}
+html.light .count-card.rc .lbl{color:#8b2020}
+html.light .count-card.eth .lbl{color:#5a2080}
+html.light .count-card.syr .lbl{color:#1d6060}
+/* ol-aes-v1 */
+html.light #sb{background:linear-gradient(180deg,#f5edd5 0%,#ede4cb 100%)}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* AUTO-LIGHTFIX */
+html.light .comp-card.oo ul{color:#206f20}
+html.light .comp-card.prot ul{color:#764e19}
+html.light .comp-card.prot p{color:#764e19}
+html.light .comp-card.oo p{color:#206f20}
+html.light .count-card.oo .lbl{color:#206f20}
+html.light .count-card.prot .lbl{color:#764e19}
+/* END-LIGHTFIX */
+
+/* AUTO-ENHANCE */
+html.js-anim .sec{opacity:0;transform:translateY(14px);transition:opacity .55s cubic-bezier(.16,.7,.3,1),transform .55s cubic-bezier(.16,.7,.3,1)}
+html.js-anim .sec.in{opacity:1;transform:none}
+.sec.open .sec-body,.sec.open .sec-bd,.sec.open .sec-body2{animation:olSecOpen .4s cubic-bezier(.16,.7,.3,1)}
+.fi.open .fi-body,.fi.open .fi-bd{animation:olSecOpen .32s cubic-bezier(.16,.7,.3,1)}
+@keyframes olSecOpen{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.sec{margin-bottom:20px;transition:border-color .25s,box-shadow .25s}
+.sec-h:hover,.sec-hd:hover{box-shadow:inset 3px 0 0 var(--gd)}
+.sec-body,.sec-bd{line-height:1.75}
+.sec-body p,.sec-bd p{margin-bottom:12px}
+#ol-top{position:fixed;right:22px;bottom:24px;width:42px;height:42px;border-radius:50%;border:1px solid var(--br);background:var(--bg2);color:var(--gd);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .3s,transform .3s,background .2s;z-index:150;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+#ol-top.show{opacity:1;pointer-events:auto;transform:none}
+#ol-top:hover{background:var(--gd);color:#1a140a}
+.ol-readtime{display:inline-flex;align-items:center;gap:7px;font-size:.74rem;letter-spacing:.04em;color:var(--mu);border:1px solid var(--br);border-radius:20px;padding:4px 12px;margin-top:10px;text-transform:uppercase}
+.ol-readtime::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--gd)}
+@media(prefers-reduced-motion:reduce){html.js-anim .sec{opacity:1;transform:none}#ol-top{transition:none}}
+/* END-ENHANCE */
+
+/* AUTO-AESTHETIC2 */
+:root{--ol-acc:var(--gd,#c9a84c)}
+/* smooth anchor scrolling + sticky-header offset */
+html{scroll-behavior:smooth}
+:where(.sec,[id]){scroll-margin-top:88px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+/* theme cross-fade */
+body,main,.sec,.sec-h,.sec-hd,.sec-body,.sec-bd,#sb,#sb-nav a{transition:background-color .35s ease,color .35s ease,border-color .35s ease}
+/* typography polish */
+main .sec-body p,main .sec-bd p{line-height:1.8}
+.sec-h,.sec-hd{letter-spacing:.005em}
+p.ol-lead::first-letter{float:left;font-size:3.1em;line-height:.78;padding:6px 10px 0 0;color:var(--ol-acc);font-weight:700}
+/* card hover depth */
+[class*="-card"],[class*="-box"],.vbox{transition:transform .22s cubic-bezier(.16,.7,.3,1),box-shadow .22s ease,border-color .22s ease,background-color .35s ease,color .35s ease}
+[class*="-card"]:hover,[class*="-box"]:hover,.vbox:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.28)}
+html.light [class*="-card"]:hover,html.light [class*="-box"]:hover,html.light .vbox:hover{box-shadow:0 8px 22px rgba(40,30,10,.12)}
+/* section dividers (inserted by JS) */
+.ol-divider{text-align:center;color:var(--ol-acc);opacity:.45;font-size:1rem;margin:4px auto 26px;line-height:1;letter-spacing:0;user-select:none}
+/* sidebar active-dot fill */
+#sb-nav a{position:relative}
+#sb-nav a.active::before{content:"";position:absolute;left:-2px;top:50%;width:6px;height:6px;border-radius:50%;background:var(--ol-acc);box-shadow:0 0 7px var(--ol-acc);transform:translateY(-50%) scale(0);animation:olDot .3s cubic-bezier(.16,.7,.3,1) forwards}
+@keyframes olDot{to{transform:translateY(-50%) scale(1)}}
+/* bare blockquote uplift (does not touch styled quote-cards) */
+main blockquote{border-left:3px solid var(--ol-acc);padding:8px 0 8px 18px;margin:18px 0;font-style:italic}
+/* END-AESTHETIC2 */
+
+/* AUTO-FEATURES3 */
+/* copy-link buttons */
+.ol-copy{opacity:0;margin:0 8px;background:none;border:none;cursor:pointer;font-size:.8rem;color:var(--mu);transition:opacity .2s,color .2s;vertical-align:middle;padding:2px 5px;line-height:1;border-radius:5px}
+.ol-copy::before{content:"\1F517"}
+.sec-h:hover .ol-copy,.sec-hd:hover .ol-copy,.ol-copy:focus-visible{opacity:.65}
+.ol-copy:hover{opacity:1;color:var(--gd,#c9a84c)}
+.ol-copy.ok{opacity:1;color:#3fa34d}
+.ol-copy.ok::before{content:"\2713";margin-right:4px}
+.ol-copy.ok::after{content:"copied";font-size:.7rem;letter-spacing:.03em}
+/* related topics */
+.ol-related{margin:42px 0 8px;padding:22px 24px;border:1px solid var(--br);border-radius:12px;background:var(--bg2)}
+.ol-related h3{margin:0 0 14px;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gd,#c9a84c);font-weight:700}
+.ol-related-links{display:flex;flex-wrap:wrap;gap:10px}
+.ol-related-links a{display:inline-block;padding:8px 15px;border:1px solid var(--br);border-radius:22px;font-size:.9rem;color:var(--tx,#e7ddc8);text-decoration:none;background:var(--bg,#1a140a);transition:border-color .2s,color .2s,background .2s,transform .2s}
+.ol-related-links a:hover{border-color:var(--gd,#c9a84c);color:var(--gd,#c9a84c);transform:translateY(-1px)}
+/* search launcher */
+.ol-search-btn{display:flex;align-items:center;justify-content:space-between;width:100%;margin:10px 0 4px;padding:9px 13px;border:1px solid var(--br);border-radius:9px;background:var(--bg2);color:var(--mu);font:inherit;font-size:.86rem;cursor:pointer;transition:border-color .2s,color .2s}
+.ol-search-btn:hover{border-color:var(--gd,#c9a84c);color:var(--gd,#c9a84c)}
+.ol-search-btn span{border:1px solid var(--br);border-radius:5px;padding:1px 7px;font-size:.78rem;opacity:.8}
+/* search overlay */
+.ol-ov{position:fixed;inset:0;background:rgba(0,0,0,.62);backdrop-filter:blur(3px);z-index:1000;display:none;align-items:flex-start;justify-content:center;padding:11vh 16px 16px}
+.ol-ov.open{display:flex}
+.ol-modal{width:100%;max-width:620px;background:var(--bg2,#221a0e);border:1px solid var(--br);border-radius:14px;box-shadow:0 24px 70px rgba(0,0,0,.55);overflow:hidden;display:flex;flex-direction:column;max-height:74vh}
+html.light .ol-modal{box-shadow:0 24px 70px rgba(40,30,10,.22)}
+.ol-search-input{border:none;border-bottom:1px solid var(--br);background:none;color:var(--tx,#e7ddc8);font:inherit;font-size:1.12rem;padding:18px 22px;outline:none;width:100%}
+.ol-search-input::placeholder{color:var(--mu)}
+.ol-results{overflow-y:auto;padding:8px}
+.ol-r{display:block;padding:10px 14px;border-radius:9px;text-decoration:none;color:var(--tx,#e7ddc8);transition:background .12s}
+.ol-r .r-t{display:block;font-weight:600;font-size:.97rem}
+.ol-r .r-s{display:block;font-size:.83rem;color:var(--mu);margin-top:2px}
+.ol-r .r-s::before{content:"\2192  ";color:var(--gd,#c9a84c)}
+.ol-r.sel,.ol-r:hover{background:var(--bg,#1a140a)}
+.ol-r.sel{box-shadow:inset 3px 0 0 var(--gd,#c9a84c)}
+.ol-r mark{background:rgba(201,168,76,.32);color:inherit;border-radius:2px;padding:0 1px}
+.r-empty{padding:26px 18px;text-align:center;color:var(--mu);font-size:.92rem}
+.ol-hint{border-top:1px solid var(--br);padding:9px 18px;font-size:.74rem;color:var(--mu);letter-spacing:.03em}
+.ol-r .r-s.r-topic::before{content:"\2756  ";color:var(--gd,#c9a84c)}
+/* verse-mode card */
+.ol-vcard{margin:6px 6px 4px;padding:14px 16px;border:1px solid var(--br);border-radius:10px;background:var(--bg,#1a140a)}
+.ol-vcard .vref{font-weight:700;color:var(--gd,#c9a84c);font-size:1rem}
+.ol-vcard .vkjv{display:block;margin-top:7px;font-size:.93rem;line-height:1.6;color:var(--tx,#e7ddc8)}
+.ol-vcard .vkjv em{font-style:normal;font-size:.64rem;color:var(--mu);border:1px solid var(--br);border-radius:4px;padding:0 5px;margin-left:6px;letter-spacing:.06em;vertical-align:middle}
+.ol-vcard .vmeta{display:block;margin-top:8px;font-size:.76rem;color:var(--mu);line-height:1.5}
+/* scripture verse + tooltip */
+.ol-verse{border-bottom:1px dotted var(--gd,#c9a84c);cursor:help;text-decoration:none}
+.ol-tip{position:absolute;z-index:1100;max-width:330px;background:var(--bg2,#221a0e);color:var(--tx,#e7ddc8);border:1px solid var(--br);border-radius:10px;padding:12px 15px;font-size:.9rem;line-height:1.55;box-shadow:0 12px 34px rgba(0,0,0,.5);pointer-events:none}
+html.light .ol-tip{box-shadow:0 12px 34px rgba(40,30,10,.2)}
+.ol-tip b{color:var(--gd,#c9a84c);font-size:.84rem;letter-spacing:.02em}
+.ol-tip-kjv{font-size:.66rem;color:var(--mu);border:1px solid var(--br);border-radius:4px;padding:0 5px;margin-left:6px;letter-spacing:.05em}
+.ol-tip-load,.ol-tip-err{color:var(--mu);font-style:italic}
+/* print / pdf */
+@media print{
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #sidebar,#sb,#ham,#overlay,#prog,#ol-top,#ol-tt,.ol-search-btn,.ol-copy,.back-link,.ol-ov,.ol-tip,.ol-divider,.ol-related,.sb-search,nav,.arr{display:none!important}
+  html,body{background:#fff!important;color:#000!important}
+  main{margin:0!important;padding:0!important;max-width:100%!important;width:100%!important}
+  .sec-body,.sec-bd,.sec-body2,.fi-body,.fi-bd{display:block!important;max-height:none!important;opacity:1!important;transform:none!important;animation:none!important}
+  .sec{opacity:1!important;transform:none!important;page-break-inside:avoid;border:none!important;margin-bottom:14px!important}
+  .sec-h,.sec-hd{cursor:default}
+  .hero,.pg-title,.page-head,.pg-head,.hd{background:#fff!important;color:#000!important;border:none!important}
+  .ol-verse{border-bottom:none}
+  a{color:#000!important;text-decoration:none}
+  h1,h2,h3{color:#000!important}
+}
+/* END-FEATURES3 */
+
+/* AUTO-FEATURES4 */
+.ol-ask-fab{position:fixed;right:22px;bottom:24px;z-index:1200;display:flex;align-items:center;gap:9px;height:52px;padding:0 19px 0 15px;border:1px solid var(--br);border-radius:30px;background:var(--gd,#c9a84c);color:#1a140a;font:inherit;font-weight:600;font-size:.9rem;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.35);transition:transform .2s,box-shadow .2s}
+.ol-ask-fab:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(0,0,0,.45)}
+.ol-ask-fab svg{width:20px;height:20px;flex:none;display:block}
+.ol-ask-fab.hide{display:none}
+#ol-top{bottom:128px}
+.ol-ask-wrap{position:fixed;right:22px;bottom:24px;z-index:1201;width:380px;max-width:calc(100vw - 32px);height:560px;max-height:calc(100vh - 70px);background:var(--bg2,#221a0e);border:1px solid var(--br);border-radius:16px;box-shadow:0 24px 70px rgba(0,0,0,.55);display:none;flex-direction:column;overflow:hidden}
+.ol-ask-wrap.open{display:flex}
+html.light .ol-ask-wrap{box-shadow:0 24px 70px rgba(40,30,10,.22)}
+.ol-ask-hd{display:flex;align-items:center;gap:10px;padding:13px 15px;border-bottom:1px solid var(--br);background:var(--bg,#1a140a)}
+.ol-ask-hd .ti{flex:1;line-height:1.25}
+.ol-ask-hd .ti b{color:var(--gd,#c9a84c);font-size:.97rem}
+.ol-ask-hd .ti span{display:block;font-size:.7rem;color:var(--mu);font-weight:400;letter-spacing:.02em}
+.ol-ask-x{background:none;border:none;color:var(--mu);font-size:1.4rem;line-height:1;cursor:pointer;padding:0 6px;border-radius:6px}
+.ol-ask-x:hover{color:var(--tx,#e7ddc8)}
+.ol-ask-log{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:11px}
+.ol-ask-msg{max-width:92%;font-size:.9rem;line-height:1.55;word-wrap:break-word}
+.ol-ask-msg.user{align-self:flex-end;background:var(--gd,#c9a84c);color:#1a140a;padding:8px 13px;border-radius:14px 14px 4px 14px;font-weight:500}
+.ol-ask-msg.bot{align-self:flex-start;color:var(--tx,#e7ddc8);width:100%}
+.ol-ask-msg.bot .lead{margin:0 0 9px;color:var(--mu);font-size:.85rem}
+.ol-ans{display:block;text-decoration:none;color:var(--tx,#e7ddc8);border:1px solid var(--br);border-radius:10px;padding:9px 12px;margin-bottom:8px;background:var(--bg,#1a140a);transition:border-color .18s,transform .18s}
+.ol-ans:hover{border-color:var(--gd,#c9a84c);transform:translateY(-1px)}
+.ol-ans .a-t{display:block;font-weight:600;font-size:.88rem}
+.ol-ans .a-h{display:block;font-size:.78rem;color:var(--gd,#c9a84c);margin-top:1px}
+.ol-ans .a-x{display:block;font-size:.81rem;color:var(--mu);margin-top:5px;line-height:1.5}
+.ol-ans mark,.ol-ask-msg mark{background:rgba(201,168,76,.32);color:inherit;border-radius:2px;padding:0 1px}
+.ol-ai-txt{font-size:.9rem;line-height:1.6;color:var(--tx,#e7ddc8)}
+.ol-ai-txt p{margin:0 0 9px}.ol-ai-txt p:last-child{margin-bottom:0}
+.ol-ai-txt strong{color:var(--gl,#e8c96a);font-weight:600}
+.ol-ai-txt sup.ol-ci{color:var(--gd,#c9a84c);font-weight:600;font-size:.7em;padding:0 1px}
+.ol-ai-cite{margin-top:11px;padding-top:9px;border-top:1px solid var(--br)}
+.ol-ai-cite .lead{margin:0 0 7px;color:var(--mu);font-size:.78rem;text-transform:uppercase;letter-spacing:.04em}
+.ol-ans .a-c{display:inline-block;color:var(--gd,#c9a84c);font-weight:700;font-size:.78rem;margin-right:5px}
+.ol-ai-dots{display:inline-flex;gap:5px;padding:4px 0}
+.ol-ai-dots i{width:7px;height:7px;border-radius:50%;background:var(--gd,#c9a84c);opacity:.4;animation:olaiblink 1.2s infinite}
+.ol-ai-dots i:nth-child(2){animation-delay:.2s}.ol-ai-dots i:nth-child(3){animation-delay:.4s}
+@keyframes olaiblink{0%,60%,100%{opacity:.35}30%{opacity:1}}
+.ol-ai-lamp{display:inline-block;font-size:1.15em;line-height:1;transform-origin:50% 85%;animation:ollampflick 1.7s infinite ease-in-out}
+@keyframes ollampflick{0%,100%{opacity:.85;filter:drop-shadow(0 0 2px rgba(201,168,76,.45));transform:scale(1) rotate(0)}40%{opacity:1;filter:drop-shadow(0 0 8px rgba(201,168,76,.95));transform:scale(1.08) rotate(-2deg)}68%{opacity:.92;filter:drop-shadow(0 0 4px rgba(201,168,76,.7));transform:scale(1.02) rotate(1deg)}}
+.ol-ai-think{margin-left:7px;font-style:italic;font-size:.94em;opacity:.85}
+.ol-ask-msg{animation:olmsgin .4s cubic-bezier(.22,1,.36,1) both}
+@keyframes olmsgin{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
+.ol-ai-caret{display:inline-block;width:2px;height:1.05em;background:var(--gd,#c9a84c);margin-left:2px;vertical-align:-2px;border-radius:1px;animation:olcaret .8s step-end infinite}
+@keyframes olcaret{50%{opacity:0}}
+.ol-lamp{display:inline-block;line-height:0;vertical-align:-7px}.ol-lamp svg{width:24px;height:28px;overflow:visible}.ol-lamp-hd{vertical-align:middle;flex:0 0 auto}.ol-lamp-hd svg{width:34px;height:40px}.ol-lamp .eyes-happy,.ol-lamp .m-idle,.ol-lamp .m-think,.ol-lamp .m-happy{display:none}.ol-lamp.st-idle .m-idle{display:block}.ol-lamp.st-think .m-think{display:block}.ol-lamp.st-happy .m-happy{display:block}.ol-lamp.st-happy .eyes{display:none}.ol-lamp.st-happy .eyes-happy{display:block}.ol-lamp .eyes{transform-box:fill-box;transform-origin:center;animation:ollampblink 4.8s infinite}.ol-lamp.st-think .eyes{transform:translateY(-1px)}.ol-lamp .fl{transform-box:fill-box;transform-origin:50% 100%;animation:ollampfl 2.1s infinite ease-in-out}.ol-lamp.st-think .fl{animation-duration:1.1s}.ol-lamp.st-happy .fl{animation-duration:1.3s}.ol-lamp .rays{transform-box:fill-box;transform-origin:center;animation:olrays 2.6s infinite ease-in-out}.ol-lamp.st-think .rays{animation-duration:1.4s}.ol-lamp.st-happy .rays{animation-duration:1.6s}.ol-lamp.st-think .lampg{transform-box:fill-box;transform-origin:50% 100%;animation:ollampsway 2.6s infinite ease-in-out}.ol-lamp.st-happy .lampg{transform-box:fill-box;transform-origin:50% 100%;animation:ollamphop .6s ease}@keyframes ollampfl{0%,100%{transform:scaleY(1) scaleX(1)}30%{transform:scaleY(1.05) scaleX(.97)}60%{transform:scaleY(.98) scaleX(1.02)}}@keyframes olrays{0%,100%{transform:scale(1);opacity:.8}50%{transform:scale(1.08);opacity:1}}@keyframes ollampblink{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}@keyframes ollampsway{0%,100%{transform:rotate(-2.5deg)}50%{transform:rotate(2.5deg)}}@keyframes ollamphop{0%{transform:translateY(0)}40%{transform:translateY(-3px)}100%{transform:translateY(0)}}
+.ol-vans{border:1px solid var(--br);border-radius:10px;padding:11px 13px;margin-bottom:9px;background:var(--bg,#1a140a)}
+.ol-vans .vr{font-weight:700;color:var(--gd,#c9a84c)}
+.ol-vans .vt{display:block;margin-top:5px;font-size:.85rem;line-height:1.55;color:var(--tx,#e7ddc8)}
+.ol-vans .vt em{font-style:normal;font-size:.62rem;color:var(--mu);border:1px solid var(--br);border-radius:4px;padding:0 4px;margin-left:5px;letter-spacing:.05em;vertical-align:middle}
+.ol-ask-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+.ol-ask-chips button{font:inherit;font-size:.78rem;color:var(--tx,#e7ddc8);background:var(--bg,#1a140a);border:1px solid var(--br);border-radius:16px;padding:5px 11px;cursor:pointer;transition:border-color .18s,color .18s}
+.ol-ask-chips button:hover{border-color:var(--gd,#c9a84c);color:var(--gd,#c9a84c)}
+.ol-ask-foot{border-top:1px solid var(--br);padding:10px 10px 4px;display:flex;gap:8px;align-items:center}
+.ol-ask-foot input{flex:1;border:1px solid var(--br);background:var(--bg,#1a140a);color:var(--tx,#e7ddc8);font:inherit;font-size:.9rem;padding:9px 12px;border-radius:9px;outline:none}
+.ol-ask-foot input:focus{border-color:var(--gd,#c9a84c)}
+.ol-ask-foot button.send{flex:none;border:none;background:var(--gd,#c9a84c);color:#1a140a;width:38px;height:38px;border-radius:9px;cursor:pointer;font-size:1.15rem;line-height:1;display:flex;align-items:center;justify-content:center}
+.ol-ask-foot button.send:hover{filter:brightness(1.06)}
+.ol-ask-note{font-size:.66rem;color:var(--mu);text-align:center;padding:6px 12px 9px;line-height:1.4}
+@media(max-width:480px){.ol-ask-wrap{right:8px;bottom:8px;width:auto;left:8px;height:80vh;max-height:none}.ol-ask-fab{right:12px;bottom:14px}#ol-top{bottom:78px}}
+/* END-FEATURES4 */
+
+/* AUTO-FEATURES5 */
+.ol-print-btn{display:flex;align-items:center;gap:9px;width:100%;margin:4px 0 6px;padding:9px 13px;border:1px solid var(--br);border-radius:9px;background:var(--bg2);color:var(--mu);font:inherit;font-size:.86rem;cursor:pointer;transition:border-color .2s,color .2s}
+.ol-print-btn:hover{border-color:var(--gd,#c9a84c);color:var(--gd,#c9a84c)}
+.ol-print-btn svg{width:16px;height:16px;flex:none;display:block}
+@media print{.ol-print-btn{display:none!important}}
+/* END-FEATURES5 */
+</style>
+<script>try{if(localStorage.getItem('ol-theme')==='light')document.documentElement.classList.add('light')}catch(e){}</script>
+<script>try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('js-anim')}catch(e){}</script>
+<link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#141008"><link rel="apple-touch-icon" href="icon-192.png">
+<style id="ol-sb-css">
+main{transition:margin-left .3s ease}
+#ol-sbt{position:fixed;top:50%;transform:translateY(-50%);left:var(--sidebar-w);z-index:150;width:20px;height:52px;display:flex;align-items:center;justify-content:center;background:var(--bg3);color:var(--gold);border:1px solid var(--br);border-left:none;border-radius:0 8px 8px 0;cursor:pointer;font-size:.95rem;line-height:1;box-shadow:2px 0 8px rgba(0,0,0,.28);transition:left .3s ease,filter .2s;font-family:Georgia,serif}
+#ol-sbt:hover{filter:brightness(1.18)}
+html.sb-collapsed #sidebar,html.sb-collapsed #sb{transform:translateX(-100%)}
+html.sb-collapsed main{margin-left:0}
+html.sb-collapsed #ol-sbt{left:0}
+@media(max-width:768px){#ol-sbt{display:none}}
+@media print{#ol-sbt{display:none!important}}
+</style>
+<script>try{if(localStorage.getItem('ol-sb')==='1')document.documentElement.classList.add('sb-collapsed')}catch(e){}</script>
+<!-- SEO-META-START -->
+<meta name="description" content="Book totals vary significantly across traditions. The Protestant Old Testament follows a post-Christian Jewish list finalized around AD 90. Every other major…">
+<link rel="canonical" href="https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/biblical_canon.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="The Orthodox Lamp">
+<meta property="og:title" content="The Biblical Canon | The Orthodox Lamp">
+<meta property="og:description" content="Book totals vary significantly across traditions. The Protestant Old Testament follows a post-Christian Jewish list finalized around AD 90. Every other major…">
+<meta property="og:url" content="https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/biblical_canon.html">
+<meta property="og:image" content="https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Biblical Canon | The Orthodox Lamp">
+<meta name="twitter:description" content="Book totals vary significantly across traditions. The Protestant Old Testament follows a post-Christian Jewish list finalized around AD 90. Every other major…">
+<meta name="twitter:image" content="https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/og-cover.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "name": "The Biblical Canon | The Orthodox Lamp", "description": "Book totals vary significantly across traditions. The Protestant Old Testament follows a post-Christian Jewish list finalized around AD 90. Every other major…", "url": "https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/biblical_canon.html", "isPartOf": {"@type": "WebSite", "name": "The Orthodox Lamp", "url": "https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/"}, "inLanguage": "en"}]}</script>
+<!-- SEO-META-END -->
+<style>/* SVLK */.sv-lk{color:inherit;text-decoration:none;border-bottom:1px dotted currentColor;transition:opacity .15s}.sv-lk:hover{opacity:.72}
+/* OL-BREADCRUMB */
+.ol-bc{margin:0;padding:16px 24px 2px;font-size:.8rem;color:var(--mu);display:flex;flex-wrap:wrap;align-items:center;gap:.45rem;letter-spacing:.02em}
+.ol-bc a{color:var(--mu);text-decoration:none;transition:color .15s}
+.ol-bc a:hover{color:var(--gd,#c9a84c)}
+.ol-bc i{opacity:.45;font-style:normal;font-size:.9em}
+.ol-bc .cur{color:var(--gd,#c9a84c);font-weight:600}
+@media print{.ol-bc{display:none!important}}
+/* END-OL-BREADCRUMB */
+/* OL-FABALIGN */
+#ol-top,#ol-tt{right:22px;width:44px;height:44px}
+.ol-ask-fab{right:22px;bottom:24px}
+#ol-tt{bottom:90px}
+#ol-top{bottom:148px}
+@media(max-width:480px){.ol-ask-fab{right:14px;bottom:16px}#ol-tt{right:14px;bottom:82px;width:42px;height:42px}#ol-top{right:14px;bottom:138px;width:42px;height:42px}}
+/* END-OL-FABALIGN */
+
+
+
+
+
+
+/* OL-PGBAND */
+.oo-pgband{display:block;text-decoration:none;position:relative;margin:14px 0 6px;border-radius:10px;overflow:hidden;border:1px solid var(--br);box-shadow:0 4px 14px rgba(0,0,0,.3);cursor:pointer}
+.oo-pgband .im{height:106px;background-size:cover;filter:sepia(.5) saturate(.82) brightness(.86) contrast(.95);transition:filter .5s ease,transform .5s ease}
+.oo-pgband:hover .im,.oo-pgband:focus-visible .im{filter:sepia(.3) saturate(.95) brightness(.98) contrast(1);transform:scale(1.03)}
+.oo-pgband:focus-visible{outline:2px solid var(--gl);outline-offset:2px}
+.oo-pgband .cap{position:absolute;left:15px;bottom:9px;font:600 .68rem/1.3 var(--disp,Georgia),serif;letter-spacing:.11em;text-transform:uppercase;color:var(--gl);opacity:.92;text-shadow:0 1px 6px rgba(0,0,0,1)}
+.oo-pgband .cap b{display:block;font-size:.85rem;letter-spacing:.05em;opacity:1}
+.oo-pgband::after{content:"\2626";position:absolute;top:7px;right:13px;color:var(--gl);opacity:.62;font-size:1.02rem;line-height:1;text-shadow:0 1px 3px rgba(0,0,0,.9);transition:opacity .4s ease}
+.oo-pgband:hover::after,.oo-pgband:focus-visible::after{opacity:.96}
+@media(max-width:760px){.oo-pgband .im{height:86px}}
+@media print{.oo-pgband{display:none}}
+/* END-OL-PGBAND */
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<nav id="sb">
+  <div id="sb-brand">
+    <svg class="lampsvg" width="64" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><radialGradient id="lmpGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffb95e" stop-opacity=".55"/><stop offset="100%" stop-color="#ffb95e" stop-opacity="0"/></radialGradient><linearGradient id="lmpFlame" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#ff7a1f"/><stop offset="55%" stop-color="#ffb347"/><stop offset="100%" stop-color="#ffe9b0"/></linearGradient><linearGradient id="lmpBrass" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e3b860"/><stop offset="50%" stop-color="#a87b35"/><stop offset="100%" stop-color="#7a5523"/></linearGradient></defs><circle cx="60" cy="38" r="34" fill="url(#lmpGlow)"/><g class="lampflame"><path d="M60 16 C66 26 70 32 70 40 C70 48 65.5 53 60 53 C54.5 53 50 48 50 40 C50 32 54 26 60 16 Z" fill="url(#lmpFlame)"/><path d="M60 30 C63 35 64.5 38 64.5 42 C64.5 46.5 62.5 49 60 49 C57.5 49 55.5 46.5 55.5 42 C55.5 38 57 35 60 30 Z" fill="#fff3cf" opacity=".85"/></g><rect x="56" y="52" width="8" height="7" rx="2" fill="#8a6228"/><path d="M28 62 L92 62 C92 80 78 92 60 92 C42 92 28 80 28 62 Z" fill="url(#lmpBrass)"/><rect x="24" y="58" width="72" height="6" rx="3" fill="#caa14e"/><rect x="56" y="92" width="8" height="16" fill="url(#lmpBrass)"/><path d="M38 118 C38 110 47 108 60 108 C73 108 82 110 82 118 L82 122 L38 122 Z" fill="url(#lmpBrass)"/><rect x="32" y="122" width="56" height="6" rx="3" fill="#caa14e"/></svg>
+    <div class="lamp">The Orthodox Lamp</div>
+    <h1>Bible Translations</h1>
+  </div>
+  <div class="sb-search">
+    <input type="text" id="sb-inp" placeholder="Search sections..." oninput="sidebarSearch(this.value)">
+  </div>
+  <div class="no-match-msg" id="no-match">No sections match</div>
+  <div id="sb-nav">
+    <div class="sb-part">Overview</div>
+    <a href="#intro">Introduction</a>
+    <a href="#why-not">One Bible, Many Versions</a>
+    <a href="#philosophy">Translation Philosophies</a>
+    <div class="sb-part">Good &amp; Bad</div>
+    <a href="#good-bad">Which Are Trustworthy?</a>
+    <a href="#niv">A Closer Look at the NIV</a>
+    <div class="sb-part">The Orthodox Text</div>
+    <a href="#coptic">What the Coptic Church Recommends</a>
+    <a href="#septuagint">Why the Septuagint Matters</a>
+    <a href="#tradition">Why Tradition Matters</a>
+    <div class="sb-part">History &amp; Reliability</div>
+    <a href="#kjv-history">The King James Version</a>
+    <div class="sb-part">Practical</div>
+    <a href="#how-to-choose">How to Choose</a>
+    <a href="#faq">FAQ</a>
+  </div>
+</nav>
+
+<main>
+<nav class="ol-bc" aria-label="Breadcrumb"><a href="index.html">Home</a><i>›</i><a href="index.html#foundations">Foundations &amp; Method</a><i>›</i><span class="cur">Bible Translations</span></nav>
+<!-- OL-PGBAND -->
+<a class="oo-pgband" href="https://upload.wikimedia.org/wikipedia/commons/3/3d/Kairo_Hanging_Church_BW_1.jpg" target="_blank" rel="noopener noreferrer" title="The Hanging Church — Coptic Orthodox · Cairo · view full photo (Wikimedia Commons)" aria-label="View the full photograph of the Hanging Church, Coptic Orthodox · Cairo — opens in a new tab"><div class="im" style="background-image:linear-gradient(180deg,rgba(12,12,12,.5) 0%,rgba(12,12,12,.86) 100%),url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Kairo_Hanging_Church_BW_1.jpg/960px-Kairo_Hanging_Church_BW_1.jpg');background-position:center 40%"></div><span class="cap"><b>The Hanging Church</b>Coptic Orthodox · Cairo</span></a>
+<!-- END-OL-PGBAND -->
+  <div class="pg-title" id="intro">
+    <div class="lamp-label">The Orthodox Lamp</div>
+    <h1>Bible Translations</h1>
+    <div class="sub">Why so many versions &bull; Which are trustworthy &bull; How to choose</div>
+  </div>
+  <div class="pg-intro">
+    A newcomer standing in front of a shelf of Bibles &#8212; KJV, NKJV, ESV, NIV, NASB, and a dozen more &#8212; often asks a worried question: <em>which one is the real Bible?</em> The short answer is that these are not different Bibles but different <strong>translations</strong> of the same inspired text into English. Some are careful and faithful; a few take real liberties. This page explains why the number of versions is nothing to fear, sorts the trustworthy from the loose, tells you what the Coptic Orthodox Church actually recommends, and gives you a simple way to choose.
+  </div>
+
+  <!-- SECTION: WHY NOT DIFFERENT -->
+  <div class="sec open" id="why-not">
+    <div class="sec-h" onclick="ts(this)"><h2>Why Many Translations Doesn&#39;t Mean Many Bibles</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>Every mainstream English Bible is translated from the same body of ancient manuscripts &#8212; Hebrew and Greek for the Old Testament (with the Church favouring the Greek Septuagint), and Greek for the New Testament. A translation is simply the act of carrying that fixed, inspired message from one language into another. The words on the English page differ; the revelation behind them is one.</p>
+      <p>Think of it the way the Church has always thought of the Gospel itself: one truth proclaimed in many tongues. At Pentecost the Apostles spoke and &#8220;each one heard them speaking in his own language&#8221; (Acts 2:6) &#8212; the same message, many languages, no contradiction. The Coptic Church has read the scriptures in Greek, Coptic, Arabic, Ge&#39;ez and now English for two thousand years without ever supposing it had more than one Bible.</p>
+      <div class="lxx-box">
+        <strong>A helpful test:</strong> open any three reputable translations side by side at John 1:1. Every one of them says the Word was God, was in the beginning, and was with God. The vocabulary shifts &#8212; word order, punctuation, a synonym here or there &#8212; but the doctrine is identical. Translations vary in <em>wording</em>, not in <em>the faith they deliver</em>.
+      </div>
+      <h3>So Why Do Any Differences Exist At All?</h3>
+      <p>Three honest reasons, none of them sinister. First, English changes: &#8220;thee&#8221; and &#8220;thou&#8221; were plain speech in 1611 and are archaic now, so revisions modernise the language. Second, translators must choose how literally to render idioms and figures of speech &#8212; this is the real dividing line, covered in the next section. Third, translators occasionally weigh manuscript evidence differently for a handful of verses. These are matters of craft and clarity, not competing revelations.</p>
+      <div class="sv">&#8220;The grass withers, the flower fades, but the word of our God will stand forever.&#8221; <cite>Isaiah 40:8</cite></div>
+    </div>
+  </div>
+
+  <!-- SECTION: PHILOSOPHY -->
+  <div class="sec" id="philosophy">
+    <div class="sec-h" onclick="ts(this)"><h2>The Three Translation Philosophies</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>Almost every difference you will ever notice between two Bibles comes down to <em>how literally the translators chose to work</em>. There are three broad approaches, and knowing them lets you read any version wisely.</p>
+      <div class="count-grid">
+        <div class="count-card" style="border-color:var(--ooc)">
+          <div class="count-num" style="color:var(--ooc);font-size:1.4rem;line-height:2.4">Word&#8209;for&#8209;Word</div>
+          <div class="count-label">Formal Equivalence</div>
+          <div class="count-note">KJV &bull; NKJV &bull; ESV<br>NASB &bull; RSV<br><em>Stays close to the original</em></div>
+        </div>
+        <div class="count-card" style="border-color:var(--protc)">
+          <div class="count-num" style="color:var(--protc);font-size:1.4rem;line-height:2.4">Thought&#8209;for&#8209;Thought</div>
+          <div class="count-label">Dynamic Equivalence</div>
+          <div class="count-note">NIV &bull; NAB &bull; NJB<br>NEB &bull; REB<br><em>Prioritises readability</em></div>
+        </div>
+        <div class="count-card" style="border-color:var(--rcc)">
+          <div class="count-num" style="color:var(--rcc);font-size:1.4rem;line-height:2.4">Paraphrase</div>
+          <div class="count-label">Free Retelling</div>
+          <div class="count-note">Living Bible &bull; The Message<br>Good News (GNT)<br><em>Loosest &#8212; use with caution</em></div>
+        </div>
+      </div>
+      <h3>Formal Equivalence &#8212; Word-for-Word</h3>
+      <p>The translator tries to render each word and grammatical form of the original as closely as English allows, even at the cost of some smoothness. The great strength is fidelity: when the Greek is ambiguous, a formal translation tends to preserve the ambiguity and let the reader (and the Church) interpret, rather than deciding for you. This is why serious study, doctrine and liturgy lean on word-for-word versions.</p>
+      <h3>Dynamic Equivalence &#8212; Thought-for-Thought</h3>
+      <p>The translator asks &#8220;what did this sentence mean?&#8221; and then says that meaning in natural, flowing English. The strength is readability &#8212; excellent for a child, a new reader, or reading aloud. The weakness is that <em>somebody has already interpreted the text for you</em>. Where the original is deliberately layered or ambiguous, a thought-for-thought version often flattens it into a single reading, and that reading reflects the translators&#39; judgement. For casual reading this is fine; for pinning down doctrine it can quietly mislead.</p>
+      <h3>Paraphrase &#8212; A Free Retelling</h3>
+      <p>A paraphrase is not really a translation at all but one person&#8217;s restatement of the Bible in his own words. The Message and the old Living Bible can be vivid and moving, but they should never be used to settle a question of doctrine or to study a passage closely. Read them, if at all, alongside a faithful translation &#8212; never instead of one.</p>
+      <div class="lxx-box">
+        <strong>The rule of thumb:</strong> the more literal the translation, the more the interpreting is left to <em>you and the Church</em>; the freer the translation, the more the interpreting has already been done <em>for you</em> by the committee. For the Orthodox reader, who receives scripture within the Church&#39;s Tradition, that is a strong reason to keep a word-for-word Bible as the main text.
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION: GOOD VS BAD -->
+  <div class="sec" id="good-bad">
+    <div class="sec-h" onclick="ts(this)"><h2>Which Translations Are Trustworthy?</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>No English translation is perfect, and none is &#8220;forbidden.&#8221; But some are markedly more reliable than others for an Orthodox Christian who wants both accuracy and a text compatible with the Church&#39;s Tradition. The table below rates common versions on three things that matter: how <strong>faithful</strong> (literal) they are, how <strong>readable</strong> they are, and whether they make a good main study Bible.</p>
+      <div class="table-wrap">
+      <table class="canon-table">
+        <thead>
+          <tr><th>Translation</th><th>Approach</th><th>Faithful</th><th>Readable</th><th>Good Main Bible?</th></tr>
+        </thead>
+        <tbody>
+          <tr class="section-row"><td colspan="5">Recommended &#8212; Faithful &amp; Church-compatible</td></tr>
+          <tr><td>Orthodox Study Bible</td><td>Word-for-word (LXX + NKJV)</td><td><span class="badge b-yes">High</span></td><td><span class="badge b-yes">Good</span></td><td><span class="badge b-yes">Best</span></td></tr>
+          <tr><td>NKJV (New King James)</td><td>Word-for-word</td><td><span class="badge b-yes">High</span></td><td><span class="badge b-yes">Good</span></td><td><span class="badge b-yes">Yes</span></td></tr>
+          <tr><td>KJV (King James)</td><td>Word-for-word</td><td><span class="badge b-yes">High</span></td><td><span class="badge b-var">Archaic</span></td><td><span class="badge b-yes">Yes</span></td></tr>
+          <tr><td>NASB (New American Standard)</td><td>Word-for-word</td><td><span class="badge b-yes">Very High</span></td><td><span class="badge b-var">Stiff</span></td><td><span class="badge b-yes">Yes</span></td></tr>
+          <tr class="section-row"><td colspan="5">Usable with care</td></tr>
+          <tr><td>ESV (English Standard)</td><td>Word-for-word</td><td><span class="badge b-yes">High</span></td><td><span class="badge b-yes">Good</span></td><td><span class="badge b-read">Care</span></td></tr>
+          <tr><td>RSV (Revised Standard)</td><td>Word-for-word</td><td><span class="badge b-yes">High</span></td><td><span class="badge b-yes">Good</span></td><td><span class="badge b-read">Care</span></td></tr>
+          <tr><td>NIV (New International)</td><td>Thought-for-thought</td><td><span class="badge b-var">Medium</span></td><td><span class="badge b-yes">Very Good</span></td><td><span class="badge b-read">Care</span></td></tr>
+          <tr class="section-row"><td colspan="5">Not for study or doctrine</td></tr>
+          <tr><td>Good News / GNT</td><td>Thought-for-thought / free</td><td><span class="badge b-no">Low</span></td><td><span class="badge b-yes">Very Good</span></td><td><span class="badge b-no">No</span></td></tr>
+          <tr><td>Living Bible</td><td>Paraphrase</td><td><span class="badge b-no">Low</span></td><td><span class="badge b-yes">Very Good</span></td><td><span class="badge b-no">No</span></td></tr>
+          <tr><td>The Message</td><td>Paraphrase</td><td><span class="badge b-no">Very Low</span></td><td><span class="badge b-yes">Very Good</span></td><td><span class="badge b-no">No</span></td></tr>
+          <tr><td>New World Translation</td><td>Sectarian (JW)</td><td><span class="badge b-no">Corrupted</span></td><td><span class="badge b-var">&#8212;</span></td><td><span class="badge b-no">Avoid</span></td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p style="margin-top:10px;font-size:.8rem;color:var(--mu)"><span class="badge b-yes" style="font-size:.7rem">Yes / High</span> reliable &nbsp;|&nbsp; <span class="badge b-read" style="font-size:.7rem">Care</span> good but watch specific verses &nbsp;|&nbsp; <span class="badge b-var" style="font-size:.7rem">Var.</span> mixed &nbsp;|&nbsp; <span class="badge b-no" style="font-size:.7rem">No</span> not for serious study</p>
+      <h3>A Word on the &#8220;Bad&#8221; End</h3>
+      <p>Paraphrases such as The Message are not evil &#8212; they are simply one man&#8217;s commentary dressed as scripture, and they should never anchor doctrine. The one version to genuinely <em>avoid</em> is the Jehovah&#8217;s Witnesses&#8217; New World Translation, which deliberately alters key verses (most infamously John 1:1, rendered &#8220;the Word was <em>a</em> god&#8221;) to deny the divinity of Christ. That is not a translation choice but a doctrinal corruption. See our page on the <a href="divinity_of_christ.html">Divinity of Christ</a>.</p>
+    </div>
+  </div>
+
+  <!-- SECTION: NIV -->
+  <div class="sec" id="niv">
+    <div class="sec-h" onclick="ts(this)"><h2>A Closer Look at the NIV</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>The New International Version deserves its own section because it is the most popular modern Bible in the English-speaking world, and because its strengths and weaknesses are widely misunderstood. A fair Orthodox assessment is this: <strong>the NIV is fine for children and new readers, but it muddies things once you dig into the details.</strong> This is the view held across many &#8212; if not all &#8212; of the Oriental Orthodox churches, and it holds up under examination.</p>
+      <h3>What the NIV Does Well</h3>
+      <p>The NIV reads clearly and naturally. For a child, a catechumen, or anyone reading Scripture for the first time, its plain English removes needless obstacles, and it is far more accurate than any paraphrase. As a first Bible or a reading Bible, it does real good.</p>
+      <h3>Where It Muddies the Details</h3>
+      <p>Because the NIV is a thought-for-thought translation, its committee frequently decides <em>for</em> the reader what an ambiguous verse means, and then prints only that meaning. Three examples that matter to Orthodox doctrine:</p>
+      <p><strong>1. Holy Tradition (2 Thessalonians 2:15).</strong> Paul tells the Thessalonians to hold fast to what they were taught &#8220;by word&#8221; and &#8220;by letter.&#8221; The Greek is <em>paradosis</em> &#8212; &#8220;that which is handed down,&#8221; traditionally rendered &#8220;traditions.&#8221; The NIV renders it &#8220;teachings,&#8221; a softer word that blunts a verse plainly supporting the Church&#39;s Holy Tradition alongside Scripture.</p>
+      <p><strong>2. Flesh vs. &#8220;sinful nature&#8221; (Romans 8, Galatians 5).</strong> The Greek <em>sarx</em> (&#8220;flesh&#8221;) carries a rich range of meaning the Fathers explored deeply. Older NIV editions repeatedly replaced &#8220;flesh&#8221; with the interpretive phrase &#8220;sinful nature,&#8221; committing the text to one theological reading and obscuring the patristic understanding. (The 2011 revision restored &#8220;flesh&#8221; in many places &#8212; itself an admission that the earlier choice had been an interpretation, not a translation.)</p>
+      <p><strong>3. Readability over precision.</strong> In smoothing the text for easy reading, the NIV frequently resolves a deliberate ambiguity into a single sense. That is a gift to a beginner and a hazard to anyone building doctrine on the exact words.</p>
+      <div class="lxx-box">
+        <strong>The pattern:</strong> none of these is a &#8220;lie&#8221; &#8212; each is a defensible interpretive choice. But that is exactly the problem. A study Bible should hand you the text and let the Church interpret; the NIV often hands you the interpretation and hides the text. Fine for a child; not what you want when the details matter.
+      </div>
+      <div class="sv">&#8220;Therefore, brethren, stand fast and hold the traditions which you were taught, whether by word or our epistle.&#8221; <cite>2 Thessalonians 2:15 (NKJV)</cite></div>
+      <p style="margin-top:10px">The practical counsel that follows is simple: keep the NIV, if you like it, as a readable companion &#8212; but study, memorise doctrine, and settle arguments from a word-for-word Bible.</p>
+    </div>
+  </div>
+
+  <!-- SECTION: COPTIC / POPE -->
+  <div class="sec" id="coptic">
+    <div class="sec-h" onclick="ts(this)"><h2>What the Coptic Orthodox Church Recommends</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>The Coptic Orthodox Church has never bound the faithful to a single English translation the way it holds to the Greek Septuagint and the Coptic texts for its liturgy. But its guidance to English-speaking Copts has been consistent and clear.</p>
+      <div class="fc-grid" style="margin-top:4px">
+        <div class="fc">
+          <div class="fc-name">Pope Shenouda III of Alexandria</div>
+          <div class="fc-date">117th Pope &bull; 1971&#8211;2012</div>
+          <div class="fc-body">Under Pope Shenouda III the Coptic Church consistently pointed English-speaking faithful toward the <strong>New King James Version</strong> as the most suitable everyday English Bible: faithful and word-for-word, based on the traditional Byzantine / Received Text underlying the Church&#39;s New Testament, yet readable in modern English. Coptic parishes and Sunday-school materials across the English-speaking diaspora overwhelmingly use the NKJV for exactly this reason.</div>
+        </div>
+      </div>
+      <h3>The Orthodox Study Bible</h3>
+      <p>The fullest recommendation for a serious English reader is the <strong>Orthodox Study Bible</strong> (St. Athanasius Academy / Thomas Nelson, 2008). Its Old Testament is translated from the <em>Septuagint</em> &#8212; the Church&#39;s Old Testament &#8212; rather than the later Hebrew Masoretic text, and its New Testament is the NKJV. Crucially it includes the deuterocanonical books the Church has always read, and its notes draw on the Fathers rather than modern Protestant commentary. For an Orthodox Christian it is the single best English study Bible available.</p>
+      <div class="lxx-box">
+        <strong>In short:</strong> for daily reading and study, the Coptic Church&#39;s practical counsel is the <strong>NKJV</strong>; for the fullest Orthodox text with the Septuagint Old Testament and patristic notes, the <strong>Orthodox Study Bible</strong>. Both are word-for-word and both carry the Church&#39;s tradition faithfully.
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION: SEPTUAGINT -->
+  <div class="sec" id="septuagint">
+    <div class="sec-h" onclick="ts(this)"><h2>Why the Septuagint Matters for the Old Testament</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>Choosing a translation is not only about English style; for the Old Testament it is also about <em>which ancient text</em> is being translated. Here the Orthodox position is distinctive and important. The Church&#39;s Old Testament is the <strong>Septuagint</strong> (LXX), the Greek translation used by the Apostles themselves, not the later Hebrew Masoretic text that most Protestant Bibles follow.</p>
+      <p>This is not a minor preference. When the New Testament quotes the Old Testament &#8212; roughly 300 times &#8212; it is almost always quoting the Septuagint. The most famous case is the prophecy of the Virgin Birth.</p>
+      <h3>Isaiah 7:14 &#8212; &#8220;Virgin&#8221; or &#8220;Young Woman&#8221;?</h3>
+      <p>The Septuagint renders Isaiah 7:14 with <em>parthenos</em> &#8212; &#8220;virgin.&#8221; Matthew 1:23 quotes it in exactly that form to announce the birth of Christ. But some modern translations, following the Hebrew <em>almah</em> and modern critical fashion, render it &#8220;young woman.&#8221; The RSV famously did this and caused an uproar; a young-woman reading quietly weakens the Messianic prophecy that the Gospel itself depends on. A translation that keeps &#8220;virgin&#8221; is standing with Matthew and the Church.</p>
+      <div class="sv">&#8220;Therefore the Lord Himself will give you a sign: Behold, the virgin shall conceive and bear a Son, and shall call His name Immanuel.&#8221; <cite>Isaiah 7:14 (LXX) / Matthew 1:23</cite></div>
+      <p>This is why an Orthodox reader benefits from a Bible whose Old Testament rests on the Septuagint &#8212; above all the Orthodox Study Bible &#8212; and why, among ordinary translations, the ones that preserve the traditional readings (KJV, NKJV) are preferred. For the full story see our page on the <a href="biblical_canon.html">Biblical Canon</a>.</p>
+    </div>
+  </div>
+
+  <!-- SECTION: TRADITION -->
+  <div class="sec" id="tradition">
+    <div class="sec-h" onclick="ts(this)"><h2>Scripture Came Through the Church &#8212; Why Tradition Matters</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>Once you understand how the Bible was translated, copied and handed down, a deeper point comes into view &#8212; one that is among the most useful things an Orthodox Christian can raise with a Protestant friend. The Bible did not drop from heaven as a finished, bound book. It came to us <em>through the Church</em>, and that fact quietly undoes the idea that Scripture can stand entirely alone, apart from Tradition.</p>
+      <h3>The Church Came First</h3>
+      <p>For the first decades of Christianity there was no New Testament at all. The Apostles preached, taught and celebrated the Eucharist; the faith was living and complete before a single Gospel was written. When the New Testament letters and Gospels were finally set down, they were written <em>within</em> the Church, by her members, to her congregations &#8212; not handed to outsiders as a rulebook. The community existed first; the text was born inside it.</p>
+      <h3>The Bible&#39;s Own Table of Contents Is Tradition</h3>
+      <p>Here is the argument that stops many a discussion: nowhere does the Bible list its own books. No verse names the twenty-seven books of the New Testament. The <em>canon</em> &#8212; the very decision about which writings are Scripture and which are not &#8212; was discerned and settled by the Church over several centuries, through her bishops, councils and Fathers. So <strong>to hold the Bible at all is already to trust a decision of Holy Tradition.</strong> A Protestant who says &#8220;the Bible alone&#8221; is relying, for the contents of that Bible, on the very Church authority he means to set aside. Sola scriptura cannot even tell you what &#8220;scriptura&#8221; is.</p>
+      <h3>Scripture Itself Commands Holding to Tradition</h3>
+      <p>Far from opposing Tradition, the New Testament explicitly commands it. St. Paul tells the faithful to hold fast the traditions they were taught &#8220;by word&#8221; as well as &#8220;by epistle,&#8221; and praises those who keep them. The written word never claims to be the whole of the deposit; John says as much when he notes that not everything Christ did was written down (John 21:25).</p>
+      <div class="sv">&#8220;Now I praise you, brethren, that you remember me in all things and keep the traditions just as I delivered them to you.&#8221; <cite>1 Corinthians 11:2 (NKJV)</cite></div>
+      <div class="sv">&#8220;Therefore, brethren, stand fast and hold the traditions which you were taught, whether by word or our epistle.&#8221; <cite>2 Thessalonians 2:15 (NKJV)</cite></div>
+      <div class="fc-grid" style="margin-top:14px">
+        <div class="fc">
+          <div class="fc-name">St. Basil the Great</div>
+          <div class="fc-date">c. 330&#8211;379 AD</div>
+          <div class="fc-body">In his work <em>On the Holy Spirit</em>, Basil teaches that the Church holds her faith from two sources &#8212; the written Scriptures and the unwritten Tradition handed down from the Apostles &#8212; and that both carry the same force for true religion. Practices as basic as facing east to pray, the words of the Eucharistic blessing, and the sign of the cross, he observes, are nowhere written in Scripture but come from Apostolic Tradition. The Church never lived by the text alone.</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Irenaeus of Lyon</div>
+          <div class="fc-date">c. 130&#8211;202 AD</div>
+          <div class="fc-body">Writing against the Gnostics, Irenaeus argued that the true faith is guarded in the Church through the unbroken succession of bishops from the Apostles. He pointed to whole nations of believers who held the faith rightly by Tradition, &#8220;without paper or ink&#8221; &#8212; proof that the Gospel lived in the Church&#39;s teaching before, and beneath, the written page. (<em>Against Heresies</em> 3.4)</div>
+        </div>
+      </div>
+      <div class="lxx-box">
+        <strong>The whole point:</strong> the same Church that preached the Gospel, discerned the canon, copied the manuscripts and translated the text is the Church whose living Tradition guards its meaning. Text and Tradition flow from one source. You cannot keep the book while discarding the community that wrote, chose and preserved it &#8212; which is exactly why the Bible is read most safely within the Church. See <a href="sola_scriptura.html">Scripture &amp; Tradition</a> and <a href="biblical_canon.html">The Biblical Canon</a>.
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION: KJV HISTORY -->
+  <div class="sec" id="kjv-history">
+    <div class="sec-h" onclick="ts(this)"><h2>The King James Version &#8212; A History, and Why It Is Reliable</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>The King James Version of 1611 is one of the most influential books in the English language &#8212; and one of the most misunderstood. A claim heard often today runs like this: because King James I was a man, and a king, the Bible he commissioned was slanted to make women submit and subjects obey. It is a memorable charge. It is also historically false, and the record is public and checkable. Here is what actually happened.</p>
+      <h3>How the KJV Was Made</h3>
+      <p>King James authorised the translation at the Hampton Court Conference in 1604, and it was published in 1611. The work was done not by one man but by roughly <strong>47 scholars</strong> organised into six committees &#8212; two each at Westminster, Oxford and Cambridge. They translated from the Hebrew of the Old Testament and the Greek Received Text of the New, and they leaned heavily on the earlier English Bibles, above all the work of William Tyndale. Each company&#39;s draft was reviewed by the others and by a final revising committee. The whole structure was built to make sure no single person &#8212; least of all the king &#8212; could quietly insert his own agenda.</p>
+      <h3>It Was a Revision, Not a Royal Invention</h3>
+      <p>The KJV was not composed from scratch in 1611. Scholars estimate that roughly <strong>80 to 90 percent of its New Testament wording is taken directly from William Tyndale</strong>, whose translation appeared in 1526 and who was strangled and burned for it in 1536 &#8212; decades before James was even born. The English Bible the KJV gives us is essentially Tyndale&#39;s, polished through three generations of revisers (the Great Bible, the Geneva Bible, the Bishops&#39; Bible). The supposedly &#8220;biased&#8221; passages were already fixed in English long before James, and they stood in Latin, Greek and Syriac for more than a thousand years before that.</p>
+      <h3>What James Actually Cared About</h3>
+      <p>James did give the translators rules, drawn up by Archbishop Richard Bancroft. His one genuine political concern was <em>marginal notes</em>. The Geneva Bible, beloved of the Puritans, carried study notes, some of which questioned the authority of kings &#8212; one famous note on Exodus praised the Hebrew midwives for disobeying Pharaoh. James considered such notes seditious. So Bancroft&#39;s sixth rule forbade doctrinal margin notes, permitting only brief explanations of Hebrew and Greek words. His other preferences were matters of <em>church government</em>, not sex: keep the old church vocabulary, render the Greek as &#8220;church&#8221; rather than &#8220;congregation,&#8221; &#8220;bishop&#8221; rather than &#8220;elder.&#8221; Nowhere in the rules, the translators&#39; records, or the finished text is there a single instruction touching the status of women. That part of the story is simply an anachronism.</p>
+      <div class="lxx-box">
+        <strong>Why this makes the KJV reliable:</strong> its trustworthiness rests on public, verifiable history &#8212; a large committee that checked one another, a known Hebrew and Greek textual base, a documented chain of descent back to Tyndale and the ancient manuscripts, and a set of royal rules whose one political edge concerned anti-monarchy footnotes, not women. The KJV is a faithful English rendering of the same Scriptures the Church has always read. That is precisely why the Coptic Church is at home with its careful modern descendant, the NKJV.
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION: HOW TO CHOOSE -->
+  <div class="sec" id="how-to-choose">
+    <div class="sec-h" onclick="ts(this)"><h2>How to Choose a Bible Translation</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>Put the pieces together and the decision becomes simple. Start with your purpose, then pick accordingly.</p>
+      <h3>1. Decide what the Bible is for</h3>
+      <p>For <em>study, doctrine and liturgy</em>, choose a word-for-word translation &#8212; the Orthodox Study Bible or the NKJV first of all. For <em>a young child or a brand-new reader</em>, a readable version such as the NIV is a reasonable starting point, with the plan of moving to a fuller translation as they grow. For <em>devotional reading aloud</em>, readability matters more, but never let a paraphrase be someone&#39;s only Bible.</p>
+      <h3>2. Prefer a text the Church can stand behind</h3>
+      <p>Favour translations whose Old Testament respects the Septuagint readings and whose New Testament rests on the traditional Received Text &#8212; the NKJV and KJV both do. The Orthodox Study Bible does this most completely and adds the deuterocanonical books the Church reads.</p>
+      <h3>3. Match the reader to the version</h3>
+      <p>An honest, practical ranking for an Orthodox home: keep the <strong>Orthodox Study Bible</strong> as the anchor; use the <strong>NKJV</strong> as the everyday text (this is the Coptic Church&#39;s counsel); let a child begin with a clear version like the <strong>NIV</strong> and grow into the NKJV; treat paraphrases as devotional extras, never as the main Bible; and avoid the New World Translation entirely.</p>
+      <h3>4. Read it within the Church, not alone</h3>
+      <p>The deepest safeguard is not the translation but the community. Scripture was written in the Church, canonised by the Church, and is rightly read within the Church&#39;s Tradition and the mind of the Fathers. No translation, however good, is a substitute for reading with the Church. See <a href="sola_scriptura.html">Scripture &amp; Tradition</a>.</p>
+      <div class="lxx-box">
+        <strong>The one-line answer:</strong> get the Orthodox Study Bible if you can; otherwise the NKJV. Use the NIV for children as a first step. Skip the paraphrases for study, and avoid the New World Translation altogether.
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION: FAQ -->
+  <div class="sec" id="faq">
+    <div class="sec-h" onclick="ts(this)"><h2>Frequently Asked Questions</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <h3>Is it a sin to read the NIV?</h3>
+      <p>No. The NIV is a real translation of Scripture, not a corruption, and reading it is no sin. The counsel is simply to prefer a word-for-word Bible for study and doctrine, because the NIV&#39;s thought-for-thought method sometimes settles interpretive questions for you.</p>
+      <h3>Is the King James Version the only true Bible?</h3>
+      <p>No. The &#8220;KJV-only&#8221; position is a modern Protestant idea the Orthodox Church does not hold. The KJV is an excellent, faithful translation resting on the traditional text, and Orthodox readers love it &#8212; but the NKJV carries the same textual tradition in modern English, and the Church has never taught that salvation depends on one English version.</p>
+      <h3>Which Bible should I buy first?</h3>
+      <p>If you can get one Bible, get the Orthodox Study Bible: Septuagint Old Testament, NKJV New Testament, the deuterocanonical books, and notes from the Fathers. If you want a plain, affordable everyday Bible, the NKJV.</p>
+      <h3>Why do Orthodox Bibles have more books?</h3>
+      <p>Because the Church&#39;s Old Testament is the Septuagint, which always contained the deuterocanonical books &#8212; Tobit, Judith, Wisdom, Sirach, and others. These were read as Scripture from the beginning and only removed from Protestant Bibles in the 16th century. The full account is on our <a href="biblical_canon.html">Biblical Canon</a> page.</p>
+      <h3>Are modern translations trying to change Christianity?</h3>
+      <p>Mostly no. Most differences are honest questions of English style and manuscript weighing. A few choices &#8212; &#8220;young woman&#8221; for &#8220;virgin,&#8221; &#8220;teachings&#8221; for &#8220;traditions&#8221; &#8212; do carry doctrinal weight, which is exactly why an Orthodox reader keeps a faithful, word-for-word Bible as the main text and reads within the Church.</p>
+    </div>
+  </div>
+
+</main>
+
+<script>
+var sections=document.querySelectorAll('.sec');
+var links=document.querySelectorAll('#sb-nav a');
+function ts(h){var s=h.closest('.sec');s.classList.toggle('open')}
+function tobj(h){var o=h.closest('.obj');o.classList.toggle('open')}
+function tf(h){var f=h.closest('.fi');f.classList.toggle('open')}
+window.addEventListener('scroll',function(){
+  var st=window.scrollY,dh=document.documentElement.scrollHeight-window.innerHeight;
+  document.getElementById('prog').style.width=(dh>0?Math.min(st/dh*100,100):0)+'%';
+  var cur='';
+  sections.forEach(function(s){if(window.scrollY+120>=s.offsetTop)cur='#'+s.id});
+  links.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')===cur)});
+});
+function sidebarSearch(v){
+  var q=v.trim().toLowerCase();
+  var anyVis=false;
+  sections.forEach(function(s){
+    if(!q){s.classList.remove('s-hidden');anyVis=true;return;}
+    var h=s.querySelector('h2');
+    if(!h)return;
+    if(h._orig===undefined)h._orig=h.innerHTML;
+    var txt=h._orig.toLowerCase();
+    if(txt.includes(q)){
+      s.classList.remove('s-hidden');
+      h.innerHTML=h._orig.replace(new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'),'<mark>$1</mark>');
+      anyVis=true;
+    } else {
+      s.classList.add('s-hidden');
+      h.innerHTML=h._orig;
+    }
+  });
+  document.getElementById('no-match').classList.toggle('show',!anyVis&&q.length>0);
+}
+document.querySelectorAll('.sec-h').forEach(function(h){
+  var s=h.closest('.sec');
+  if(s.classList.contains('open')) return;
+  s.classList.remove('open');
+});
+</script>
+<button id="ol-tt" onclick="olTheme()" aria-label="Toggle light or dark mode" title="Light/dark mode">☀</button><script>function olTheme(){var l=document.documentElement.classList.toggle('light');try{localStorage.setItem('ol-theme',l?'light':'dark')}catch(e){}olIcon()}function olIcon(){document.getElementById('ol-tt').textContent=document.documentElement.classList.contains('light')?'☾':'☀'}olIcon();</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+/* AUTO-ENHANCE-JS */
+(function(){
+  try{
+    // back-to-top
+    var bt=document.createElement('button');bt.id='ol-top';bt.setAttribute('aria-label','Back to top');bt.innerHTML='\u2191';
+    bt.onclick=function(){window.scrollTo({top:0,behavior:'smooth'});};
+    document.body.appendChild(bt);
+    window.addEventListener('scroll',function(){bt.classList.toggle('show',window.scrollY>420);},{passive:true});
+    // reading time
+    var main=document.querySelector('main');
+    if(main){
+      var txt=main.innerText||'';var words=txt.trim().split(/\s+/).length;
+      var mins=Math.max(1,Math.round(words/200));
+      var rt=document.createElement('div');rt.className='ol-readtime';rt.textContent=mins+' min read';
+      var anchor=main.querySelector('.pg-title,.page-head,.pg-head,.hd');
+      if(anchor)anchor.appendChild(rt);else main.insertBefore(rt,main.firstChild);
+    }
+    // scroll-reveal
+    var secs=document.querySelectorAll('.sec');
+    if('IntersectionObserver' in window && document.documentElement.classList.contains('js-anim')){
+      var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.01,rootMargin:'0px 0px 12% 0px'});
+      secs.forEach(function(s){io.observe(s);});
+    }else{secs.forEach(function(s){s.classList.add('in');});}
+    // ensure search reveals all
+    document.querySelectorAll('.sb-search input,input[oninput*=sidebarSearch]').forEach(function(i){i.addEventListener('input',function(){document.querySelectorAll('.sec').forEach(function(s){s.classList.add('in');});});});
+  }catch(e){document.querySelectorAll('.sec').forEach(function(s){s.classList.add('in');});}
+})();
+/* END-ENHANCE-JS */</script>
+<script>
+/* AUTO-AESTHETIC2-JS */
+(function(){
+  try{
+    // section dividers between sibling .sec elements
+    Array.prototype.slice.call(document.querySelectorAll('.sec')).forEach(function(s){
+      var prev=s.previousElementSibling;
+      if(prev&&prev.classList&&prev.classList.contains('sec')&&!prev.classList.contains('ol-divider')){
+        var d=document.createElement('div');d.className='ol-divider';d.setAttribute('aria-hidden','true');d.textContent='\u2629';
+        s.parentNode.insertBefore(d,s);
+      }
+    });
+    // drop-cap on the first section's opening paragraph (chapter-opener feel)
+    var lead=document.querySelector('main .sec .sec-body p, main .sec .sec-bd p');
+    if(lead && (lead.textContent||'').trim().length>40){ lead.classList.add('ol-lead'); }
+  }catch(e){}
+})();
+/* END-AESTHETIC2-JS */</script>
+<script>
+/* AUTO-FEATURES3-JS */
+(function(){
+  try{
+    var here=(location.pathname.split('/').pop()||'index.html');
+    var base=location.href.split('#')[0];
+    function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+    /* ---- 1. copy-link buttons ---- */
+    document.querySelectorAll('.sec[id]').forEach(function(sec){
+      var h=sec.querySelector('.sec-h,.sec-hd');
+      if(!h||h.querySelector('.ol-copy'))return;
+      var b=document.createElement('button');
+      b.className='ol-copy';b.type='button';b.setAttribute('aria-label','Copy link to this section');
+      b.addEventListener('click',function(ev){
+        ev.stopPropagation();ev.preventDefault();
+        var url=base+'#'+sec.id;
+        var ok=function(){b.classList.add('ok');setTimeout(function(){b.classList.remove('ok');},1500);};
+        if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(ok,ok);}
+        else{var t=document.createElement('textarea');t.value=url;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(t);ok();}
+      });
+      var arr=h.querySelector('.arr');
+      if(arr&&arr.parentNode===h)h.insertBefore(b,arr);else h.appendChild(b);
+    });
+
+    /* ---- shared index + bundled KJV ---- */
+    var IDX=null,idxP=null,SEC={};
+    function loadIndex(){if(idxP)return idxP;idxP=fetch('search-index.json').then(function(r){return r.json();}).then(function(d){IDX=d;(d.pages||[]).forEach(function(p){var m={};(p.secs||[]).forEach(function(s){m[s.a]=s.h;});SEC[p.f]=m;});return d;});return idxP;}
+    var VP=null,vpP=null;
+    function loadVP(){if(vpP)return vpP;vpP=fetch('verse-pages.json').then(function(r){return r.json();}).then(function(d){VP=d;return d;}).catch(function(){VP={};});return vpP;}
+    var VERSES=null;
+    fetch('verses.json').then(function(r){return r.json();}).then(function(d){VERSES=d;}).catch(function(){VERSES={};});
+
+    /* ---- 2. related topics ---- */
+    loadIndex().then(function(idx){
+      if(!idx||!idx.pages)return;
+      var page=null;idx.pages.forEach(function(p){if(p.f===here)page=p;});
+      if(!page||!page.rel||!page.rel.length)return;
+      var main=document.querySelector('main')||document.getElementById('main');if(!main)return;
+      var box=document.createElement('div');box.className='ol-related';
+      var hh=document.createElement('h3');hh.textContent='Related topics';box.appendChild(hh);
+      var wrap=document.createElement('div');wrap.className='ol-related-links';
+      page.rel.forEach(function(r){var a=document.createElement('a');a.href=r.f;a.textContent=r.t;wrap.appendChild(a);});
+      box.appendChild(wrap);main.appendChild(box);
+    }).catch(function(){});
+
+    /* ---- 3. site-wide search ---- */
+    var ov=document.createElement('div');ov.className='ol-ov';
+    ov.innerHTML='<div class="ol-modal" role="dialog" aria-label="Search topics and verses"><input class="ol-search-input" type="text" placeholder="Search topics or a Bible verse (e.g. John 3:16)…" aria-label="Search topics and Bible verses" autocomplete="off"><div class="ol-results" role="listbox"></div><div class="ol-hint">↑↓ navigate · ↵ open · esc close · type a reference like Rom 5 or 1 Cor 10:12</div></div>';
+    document.body.appendChild(ov);
+    var input=ov.querySelector('.ol-search-input');
+    var results=ov.querySelector('.ol-results');
+    var flat=[],sel=-1;
+    function hilite(text,q){if(!q)return esc(text);var i=text.toLowerCase().indexOf(q);if(i<0)return esc(text);return esc(text.slice(0,i))+'<mark>'+esc(text.slice(i,i+q.length))+'</mark>'+esc(text.slice(i+q.length));}
+
+    /* fuzzy / typo-tolerant scorer */
+    function lev(a,b){var m=a.length,n=b.length;if(!m)return n;if(!n)return m;var prev=[],cur=[],i,j;for(j=0;j<=n;j++)prev[j]=j;for(i=1;i<=m;i++){cur[0]=i;for(j=1;j<=n;j++){var c=a.charAt(i-1)===b.charAt(j-1)?0:1;cur[j]=Math.min(prev[j]+1,cur[j-1]+1,prev[j-1]+c);}for(j=0;j<=n;j++)prev[j]=cur[j];}return prev[n];}
+    function scoreText(hay,q){
+      if(!q)return 0.5;hay=String(hay).toLowerCase();
+      var idx=hay.indexOf(q);
+      if(idx===0)return 1000;
+      if(idx>0)return 800-idx;
+      var words=hay.split(/[^a-z0-9]+/),best=-1,w,word,d,thr;
+      for(w=0;w<words.length;w++){word=words[w];if(!word)continue;
+        if(word.indexOf(q)===0){best=Math.max(best,600);continue;}
+        if(q.length>=4){thr=q.length<=5?1:2;d=lev(word,q);if(d<=thr)best=Math.max(best,420-d*40);}
+      }
+      if(best>=0)return best;
+      var hi=0,qi=0;for(;hi<hay.length&&qi<q.length;hi++){if(hay.charAt(hi)===q.charAt(qi))qi++;}
+      if(qi===q.length)return 200;
+      return -1;
+    }
+
+    /* Bible-book resolver (abbreviations + full names) */
+    var BK={};
+    function reg(c,al){BK[c.toLowerCase().replace(/\s+/g,'')]=c;al.split(',').forEach(function(a){a=a.replace(/\s+/g,'');if(a)BK[a]=c;});}
+    reg('Genesis','gen,ge,gn');reg('Exodus','exo,ex,exod');reg('Leviticus','lev,le,lv');reg('Numbers','num,nu,nm,nb');
+    reg('Deuteronomy','deut,dt,deu');reg('Joshua','josh,jos,jsh');reg('Judges','judg,jdg,jg,jdgs');reg('Ruth','rut,ru,rth');
+    reg('1 Samuel','1sam,1sa,1s,1sm');reg('2 Samuel','2sam,2sa,2s,2sm');reg('1 Kings','1kings,1kgs,1ki,1kg');reg('2 Kings','2kings,2kgs,2ki,2kg');
+    reg('1 Chronicles','1chron,1chr,1ch');reg('2 Chronicles','2chron,2chr,2ch');reg('Ezra','ezr');reg('Nehemiah','neh,ne');
+    reg('Esther','est,esth,es');reg('Job','jb');reg('Psalms','ps,psa,psalm,pss,psm');reg('Proverbs','prov,pro,prv,pr');
+    reg('Ecclesiastes','eccl,ecc,ec,eccles,qoh');reg('Song of Solomon','song,sos,songofsongs,canticles,cant,ss');
+    reg('Isaiah','isa,is,isai');reg('Jeremiah','jer,jr');reg('Lamentations','lam,la');reg('Ezekiel','ezek,eze,ezk');
+    reg('Daniel','dan,da,dn');reg('Hosea','hos,ho');reg('Joel','joe,jl');reg('Amos','am,amo');reg('Obadiah','obad,ob,oba');
+    reg('Jonah','jon,jnh');reg('Micah','mic,mc');reg('Nahum','nah,na');reg('Habakkuk','hab');reg('Zephaniah','zeph,zep,zp');
+    reg('Haggai','hag,hg');reg('Zechariah','zech,zec,zc');reg('Malachi','mal,ml');reg('Matthew','matt,mt,mat');
+    reg('Mark','mk,mar,mrk');reg('Luke','lk,luk,lu');reg('John','jn,joh,jhn');reg('Acts','act,ac');reg('Romans','rom,ro,rm');
+    reg('1 Corinthians','1cor,1co,1c');reg('2 Corinthians','2cor,2co,2c');reg('Galatians','gal,ga');reg('Ephesians','eph,ephes');
+    reg('Philippians','phil,php,pp');reg('Colossians','col');reg('1 Thessalonians','1thess,1thes,1th');reg('2 Thessalonians','2thess,2thes,2th');
+    reg('1 Timothy','1tim,1ti,1tm');reg('2 Timothy','2tim,2ti,2tm');reg('Titus','tit,ti,tts');reg('Philemon','philem,phlm,phm,pm');
+    reg('Hebrews','heb,hebr');reg('James','jas,jm,jms');reg('1 Peter','1pet,1pe,1pt,1p');reg('2 Peter','2pet,2pe,2pt,2p');
+    reg('1 John','1john,1jn,1jo,1j');reg('2 John','2john,2jn,2jo,2j');reg('3 John','3john,3jn,3jo,3j');reg('Jude','jud,jd');
+    reg('Revelation','rev,re,rv,apocalypse,apoc');
+    function parseRef(raw){
+      if(!raw)return null;
+      var m=raw.match(/^\s*([1-3]?\s*[a-zA-Z][a-zA-Z\s]*?)\s*(\d{1,3})(?:\s*[:.\s]\s*(\d{1,3}))?\s*$/);
+      if(!m)return null;
+      var bk=m[1].toLowerCase().replace(/[\s.]+/g,'');var canon=BK[bk];
+      if(!canon)return null;
+      return {canon:canon,ch:parseInt(m[2],10),vs:m[3]?parseInt(m[3],10):null};
+    }
+    function uniqPages(entries){var seen={},out=[];entries.forEach(function(e){if(!seen[e[0]]){seen[e[0]]=1;out.push({f:e[0],t:e[1],a:e[2]});}});return out;}
+    /* exported verse engine — used by the FE4 "Ask the Lamp" assistant.
+       resolves to null if `raw` is not a bare Bible reference. */
+    window.__olVerseQuery=function(raw){
+      var vq=parseRef((raw||'').trim());
+      if(!vq)return Promise.resolve(null);
+      return Promise.all([loadVP(),loadIndex()]).then(function(){
+        function sub(f,a){return (SEC[f]&&SEC[f][a])||'';}
+        function pages(arr){return uniqPages(arr).map(function(r){return {f:r.f,t:r.t,a:r.a,sub:sub(r.f,r.a)};});}
+        if(vq.vs!=null){
+          var key=vq.canon+' '+vq.ch+':'+vq.vs,e=VP[key];
+          return {mode:'verse',ref:key,kjv:(e&&e.k)?e.k:null,pages:e?pages(e.r):[]};
+        }
+        var prefix=vq.canon+' '+vq.ch+':',vnums=[],agg=[];
+        Object.keys(VP).forEach(function(k){if(k.indexOf(prefix)===0){vnums.push(parseInt(k.slice(prefix.length),10));VP[k].r.forEach(function(r){agg.push(r);});}});
+        vnums.sort(function(a,b){return a-b;});
+        return {mode:'chapter',ref:vq.canon+' '+vq.ch,vnums:vnums,pages:pages(agg)};
+      }).catch(function(){return null;});
+    };
+    function rowsHTML(){
+      if(!flat.length)return '<div class="r-empty">No page cites this on the site yet.</div>';
+      return flat.map(function(r,i){return '<a class="ol-r'+(i===sel?' sel':'')+'" data-i="'+i+'" href="'+r.f+(r.a?'#'+r.a:'')+'"><span class="r-t">'+esc(r.t)+'</span>'+(r.sub?'<span class="r-s">'+esc(r.sub)+'</span>':'')+'</a>';}).join('');
+    }
+
+    function renderVerse(vq){
+      if(!VP){results.innerHTML='<div class="r-empty">Loading verse index…</div>';flat=[];sel=-1;return;}
+      var canon=vq.canon,ch=vq.ch,vs=vq.vs,card='',rows=[];
+      if(vs!=null){
+        var key=canon+' '+ch+':'+vs,e=VP[key];
+        card='<div class="ol-vcard"><span class="vref">'+esc(key)+'</span>'+(e&&e.k?'<span class="vkjv">'+esc(e.k)+'<em>KJV</em></span>':'')+(e?'':'<span class="vmeta">Not cited on the site yet.</span>')+'</div>';
+        if(e)rows=uniqPages(e.r);
+      }else{
+        var prefix=canon+' '+ch+':',vnums=[],agg=[];
+        Object.keys(VP).forEach(function(k){if(k.indexOf(prefix)===0){vnums.push(parseInt(k.slice(prefix.length),10));VP[k].r.forEach(function(r){agg.push(r);});}});
+        vnums.sort(function(a,b){return a-b;});
+        card='<div class="ol-vcard"><span class="vref">'+esc(canon+' '+ch)+'</span><span class="vmeta">'+(vnums.length?'Verses cited here: '+vnums.join(', '):'No verses from this chapter are cited yet.')+'</span></div>';
+        rows=uniqPages(agg);
+      }
+      flat=rows.map(function(r){return {f:r.f,t:r.t,a:r.a,sub:(SEC[r.f]&&SEC[r.f][r.a])?SEC[r.f][r.a]:''};});
+      sel=flat.length?0:-1;
+      results.innerHTML=card+rowsHTML();
+    }
+
+    function renderText(q){
+      flat=[];
+      if(IDX&&IDX.pages){
+        if(!q){
+          IDX.pages.slice().sort(function(a,b){return a.t.localeCompare(b.t);}).forEach(function(p){flat.push({f:p.f,t:p.t,sub:'',a:'',sc:0});});
+        }else{
+          IDX.pages.forEach(function(p){
+            var ts=scoreText(p.t,q),bs=null,bss=-1,kw=-1,kwn='';
+            if(p.secs)p.secs.forEach(function(s){var sc=scoreText(s.h,q)*0.85;if(sc>bss){bss=sc;bs=s;}});
+            if(p.kw)p.kw.forEach(function(k){var sc=scoreText(k,q)*0.7;if(sc>kw){kw=sc;kwn=k;}});
+            var best=Math.max(ts,bss,kw);if(best<=0)return;
+            var it={f:p.f,t:p.t,sc:best};
+            if(best===bss&&bs){it.sub=bs.h;it.a=bs.a;}
+            else if(best===kw&&kwn){it.sub='topic · '+kwn;it.topic=1;}
+            else it.sub='';
+            flat.push(it);
+          });
+          flat.sort(function(a,b){return b.sc-a.sc;});
+        }
+      }
+      flat=flat.slice(0,40);sel=flat.length?0:-1;
+      if(!flat.length){results.innerHTML='<div class="r-empty">'+(IDX?'No matches — try a topic or a Bible verse (e.g. John 3:16)':'Loading index…')+'</div>';return;}
+      results.innerHTML=flat.map(function(r,i){
+        return '<a class="ol-r'+(i===sel?' sel':'')+'" data-i="'+i+'" href="'+r.f+(r.a?'#'+r.a:'')+'"><span class="r-t">'+hilite(r.t,q)+'</span>'+(r.sub?'<span class="r-s'+(r.topic?' r-topic':'')+'">'+(r.topic?esc(r.sub):hilite(r.sub,q))+'</span>':'')+'</a>';
+      }).join('');
+    }
+
+    function render(){
+      var raw=(input.value||'').trim();
+      var vq=parseRef(raw);
+      if(vq){if(!VP)loadVP().then(function(){if(ov.classList.contains('open')&&parseRef((input.value||'').trim()))render();});renderVerse(vq);return;}
+      renderText(raw.toLowerCase());
+    }
+    function setSel(i){var a=results.querySelectorAll('.ol-r');if(!a.length)return;sel=(i+a.length)%a.length;a.forEach(function(el,j){el.classList.toggle('sel',j===sel);});a[sel].scrollIntoView({block:'nearest'});}
+    function go(){if(sel>=0&&flat[sel]){var r=flat[sel];location.href=r.f+(r.a?'#'+r.a:'');}}
+    function openS(seed){ov.classList.add('open');document.body.style.overflow='hidden';input.value=seed||'';render();loadIndex().then(function(){if(ov.classList.contains('open'))render();}).catch(function(){});loadVP().then(function(){if(ov.classList.contains('open'))render();}).catch(function(){});setTimeout(function(){input.focus();if(seed)input.select();},30);}
+    window.__olOpenSearch=openS;
+    function closeS(){ov.classList.remove('open');document.body.style.overflow='';}
+    input.addEventListener('input',render);
+    input.addEventListener('keydown',function(e){
+      if(e.key==='ArrowDown'){e.preventDefault();setSel(sel+1);}
+      else if(e.key==='ArrowUp'){e.preventDefault();setSel(sel-1);}
+      else if(e.key==='Enter'){e.preventDefault();go();}
+      else if(e.key==='Escape'){e.preventDefault();closeS();}
+    });
+    results.addEventListener('mousemove',function(e){var a=e.target.closest('.ol-r');if(a)setSel(+a.getAttribute('data-i'));});
+    ov.addEventListener('click',function(e){if(e.target===ov)closeS();});
+    document.addEventListener('keydown',function(e){
+      if(e.key==='/'&&!ov.classList.contains('open')){var t=document.activeElement;var tn=t?t.tagName:'';if(tn==='INPUT'||tn==='TEXTAREA'||(t&&t.isContentEditable))return;e.preventDefault();openS();}
+      else if(e.key==='Escape'&&ov.classList.contains('open')){closeS();}
+    });
+    var launcher=document.createElement('button');launcher.className='ol-search-btn';launcher.type='button';
+    launcher.innerHTML='Search topics &amp; verses <span>/</span>';launcher.addEventListener('click',function(){openS();});
+    var sbs=document.querySelector('.sb-search');
+    if(sbs&&sbs.parentNode)sbs.parentNode.insertBefore(launcher,sbs);
+    else{var nav=document.querySelector('#sidebar nav,#sb nav,#sidebar,#sb');if(nav)nav.insertBefore(launcher,nav.firstChild);}
+
+    /* ---- 4. scripture tooltips (KJV bundled locally in verses.json, public domain) ---- */
+    var BOOKS='Genesis|Exodus|Leviticus|Numbers|Deuteronomy|Joshua|Judges|Ruth|1 ?Samuel|2 ?Samuel|1 ?Kings|2 ?Kings|1 ?Chronicles|2 ?Chronicles|Ezra|Nehemiah|Esther|Job|Psalms|Psalm|Proverbs|Ecclesiastes|Song of Solomon|Song of Songs|Isaiah|Jeremiah|Lamentations|Ezekiel|Daniel|Hosea|Joel|Amos|Obadiah|Jonah|Micah|Nahum|Habakkuk|Zephaniah|Haggai|Zechariah|Malachi|Matthew|Mark|Luke|John|Acts|Romans|1 ?Corinthians|2 ?Corinthians|Galatians|Ephesians|Philippians|Colossians|1 ?Thessalonians|2 ?Thessalonians|1 ?Timothy|2 ?Timothy|Titus|Philemon|Hebrews|James|1 ?Peter|2 ?Peter|1 ?John|2 ?John|3 ?John|Jude|Revelation';
+    var VRE=new RegExp('\\b((?:'+BOOKS+')\\.?\\s+\\d{1,3}:\\d{1,3}(?:[-–]\\d{1,3})?(?:,\\s?\\d{1,3}(?:[-–]\\d{1,3})?)*)','g');
+    function wrap(root){
+      var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:function(n){
+        if(!n.nodeValue||n.nodeValue.indexOf(':')<0)return NodeFilter.FILTER_REJECT;
+        var p=n.parentNode;
+        while(p&&p!==root){var t=p.nodeName.toLowerCase();
+          if(t==='a'||t==='button'||t==='script'||t==='style'||(p.classList&&(p.classList.contains('ol-verse')||p.classList.contains('ol-copy'))))return NodeFilter.FILTER_REJECT;
+          p=p.parentNode;}
+        return NodeFilter.FILTER_ACCEPT;
+      }});
+      var nodes=[],n;while(n=w.nextNode())nodes.push(n);
+      nodes.forEach(function(node){
+        var txt=node.nodeValue;VRE.lastIndex=0;if(!VRE.test(txt))return;VRE.lastIndex=0;
+        var frag=document.createDocumentFragment(),last=0,m;
+        while(m=VRE.exec(txt)){
+          if(m.index>last)frag.appendChild(document.createTextNode(txt.slice(last,m.index)));
+          var sp=document.createElement('span');sp.className='ol-verse';sp.textContent=m[0];sp.setAttribute('data-ref',m[1]);
+          frag.appendChild(sp);last=m.index+m[0].length;
+        }
+        if(last<txt.length)frag.appendChild(document.createTextNode(txt.slice(last)));
+        node.parentNode.replaceChild(frag,node);
+      });
+    }
+    document.querySelectorAll('.sec-body,.sec-bd,.sec-body2').forEach(wrap);
+    var tip=document.createElement('div');tip.className='ol-tip';tip.style.display='none';document.body.appendChild(tip);
+    function place(el){var r=el.getBoundingClientRect();tip.style.display='block';var w=tip.offsetWidth||330;
+      var left=window.scrollX+r.left;var max=window.scrollX+document.documentElement.clientWidth-w-10;
+      tip.style.left=Math.max(8,Math.min(left,max))+'px';tip.style.top=(window.scrollY+r.bottom+8)+'px';}
+    function lookup(ref){var k=ref.replace(/\s+/g,' ').trim();if(VERSES&&VERSES[k])return VERSES[k];return null;}
+    function show(el){
+      var ref=el.getAttribute('data-ref');if(!ref)return;
+      var t=lookup(ref);
+      if(t){tip.innerHTML='<b>'+esc(ref)+'</b><span class="ol-tip-kjv">KJV</span><br>'+esc(t);}
+      else if(VERSES===null){tip.innerHTML='<b>'+esc(ref)+'</b><br><span class="ol-tip-load">Loading…</span>';}
+      else{tip.innerHTML='<b>'+esc(ref)+'</b><br><span class="ol-tip-err">Text unavailable</span>';}
+      place(el);
+    }
+    function hide(){tip.style.display='none';}
+    document.addEventListener('mouseover',function(e){var t=e.target;if(t.classList&&t.classList.contains('ol-verse'))show(t);});
+    document.addEventListener('mouseout',function(e){var t=e.target;if(t.classList&&t.classList.contains('ol-verse'))hide();});
+    document.addEventListener('focusin',function(e){var t=e.target;if(t.classList&&t.classList.contains('ol-verse'))show(t);});
+    document.addEventListener('focusout',function(e){var t=e.target;if(t.classList&&t.classList.contains('ol-verse'))hide();});
+    document.querySelectorAll('.ol-verse').forEach(function(v){v.setAttribute('tabindex','0');});
+  }catch(e){}
+})();
+/* END-FEATURES3-JS */</script>
+<script>
+/* Ask the Lamp — AI config. Paste your Cloudflare Worker URL between the
+   quotes to turn on grounded AI answers. Leave blank for site-search only.
+   See ask-lamp-SETUP.md for the 10-minute setup. */
+window.OL_ASK_ENDPOINT = "https://ask-the-lamp.sebazz7397.workers.dev";
+</script>
+<script>
+/* AUTO-FEATURES4-JS */
+(function(){
+  try{
+    function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+    /* Optional strict-RAG AI answers. Set window.OL_ASK_ENDPOINT to the
+       Cloudflare Worker URL to turn "Ask the Lamp" from a search box into a
+       grounded assistant. If blank or unreachable, it silently falls back to
+       the retrieval-only behaviour below. See ask-lamp-SETUP.md. */
+    var AI_ENDPOINT=(window.OL_ASK_ENDPOINT||'').trim();
+    /* plain model text -> safe HTML: escape, light **bold**, [n] citations, paragraphs */
+    function fmtAI(s){
+      var out=esc(s);
+      out=out.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
+      /* normalise fancy citation brackets (【1】〔1〕〖1〗) the model sometimes emits to plain [1] */
+      out=out.replace(/[【〔〖]\s*(\d{1,2})\s*[】〕〗]/g,'[$1]');
+      out=out.replace(/\[(\d{1,2})\]/g,'<sup class="ol-ci">[$1]</sup>');
+      return out.split(/\n{2,}/).map(function(p){return '<p>'+p.replace(/\n/g,'<br>')+'</p>';}).join('');
+    }
+    var STOP={};'the a an and or but of to in on at for with as is are was were be been being do does did this that these those it its their them they we you i he she his her our your my me us not no yes can could would should will shall may might must have has had what why how who whom whose which when where does did about into from than then so such also more most very just only own same other any all both each few how into about'.split(/\s+/).forEach(function(w){STOP[w]=1;});
+    function toks(q){return (String(q).toLowerCase().match(/[a-z0-9]+/g)||[]).filter(function(w){return w.length>=3&&!STOP[w];});}
+
+    var C=null,cP=null;
+    function loadC(){if(cP)return cP;cP=fetch('ask-content.json').then(function(r){return r.json();}).then(function(d){C=d;return d;}).catch(function(){C={pages:[]};return C;});return cP;}
+
+    function reEsc(t){return t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}
+    function excerpt(x,tk){
+      if(!x)return '';
+      var lx=x.toLowerCase(),pos=-1,i,p;
+      for(i=0;i<tk.length;i++){p=lx.indexOf(tk[i]);if(p>=0&&(pos<0||p<pos))pos=p;}
+      if(pos<0)pos=0;
+      var start=Math.max(0,pos-65),end=Math.min(x.length,pos+165);
+      var frag=x.slice(start,end);
+      if(start>0)frag=frag.replace(/^\S*\s/,'');
+      if(end<x.length)frag=frag.replace(/\s\S*$/,'');
+      var out=esc(frag);
+      if(start>0)out='…'+out;
+      if(end<x.length)out=out+'…';
+      tk.forEach(function(t){if(t.length<3)return;try{out=out.replace(new RegExp('('+reEsc(t)+')','ig'),'<mark>$1</mark>');}catch(e){}});
+      return out;
+    }
+    /* whole-word matcher (with light plural/possessive tolerance) so that a query
+       for "christ" does NOT match inside "christian"/"christology", and vice-versa. */
+    function mkRx(t){return new RegExp('\\b'+reEsc(t)+"(?:'s|s)?\\b",'gi');}
+    function nWord(text,rx){if(!text)return 0;var m=String(text).match(rx);return m?m.length:0;}
+    function rank(q){
+      var tk=toks(q);if(!tk.length||!C||!C.pages)return {tk:tk,top:[],broad:false};
+      var rx=tk.map(mkRx);
+      /* pass 1 — how many sections each term appears in (for rarity weighting) */
+      var N=0,dfSec=tk.map(function(){return 0;});
+      C.pages.forEach(function(p){var pk=(p.t||'')+' '+((p.kw||[]).join(' '));(p.secs||[]).forEach(function(s){
+        N++;var blob=pk+' '+(s.h||'')+' '+(s.x||'');
+        tk.forEach(function(t,i){if(nWord(blob,rx[i]))dfSec[i]++;});
+      });});
+      /* rarer term => higher weight; ubiquitous terms (Christ, church…) => near-zero */
+      var idf=dfSec.map(function(df){return Math.log((N+1)/(df+1))+0.15;});
+      /* pass 2 — score every section, weighting each term by its rarity */
+      var hits=[];
+      C.pages.forEach(function(p){
+        var title=(p.t||''),kw=(p.kw||[]).join(' ');
+        (p.secs||[]).forEach(function(s){
+          var head=(s.h||''),body=(s.x||''),sc=0,covered=0;
+          tk.forEach(function(t,i){
+            var w=idf[i],any=false,r=rx[i];
+            if(nWord(head,r)){sc+=14*w;any=true;}
+            if(nWord(title,r)){sc+=8*w;any=true;}
+            if(nWord(kw,r)){sc+=7*w;any=true;}
+            var occ=nWord(body,r);if(occ){sc+=Math.min(occ,4)*4*w;any=true;}
+            if(any)covered++;
+          });
+          if(tk.length>1){if(covered===tk.length)sc+=14;sc+=covered*3;}
+          if(sc>0)hits.push({f:p.f,t:p.t,h:s.h,a:s.a,x:s.x,sc:sc,cov:covered});
+        });
+      });
+      hits.sort(function(a,b){return b.sc-a.sc;});
+      /* a single word that appears in a large share of the site is "broad" */
+      var broad=(tk.length===1&&N>0&&dfSec[0]>Math.max(40,N*0.18));
+      var per={},top=[],cap=broad?1:2,lim=broad?6:4;
+      for(var i=0;i<hits.length&&top.length<lim;i++){var f=hits[i].f;if((per[f]||0)>=cap)continue;per[f]=(per[f]||0)+1;top.push(hits[i]);}
+      return {tk:tk,top:top,broad:broad,term:tk[0]};
+    }
+
+    /* ---- UI ---- */
+    var fab=document.createElement('button');fab.className='ol-ask-fab';fab.type='button';
+    fab.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg><span>Ask the Lamp</span>';
+    document.body.appendChild(fab);
+
+    var wrap=document.createElement('div');wrap.className='ol-ask-wrap';wrap.setAttribute('role','dialog');wrap.setAttribute('aria-label','Ask the Lamp');
+    wrap.innerHTML='<div class="ol-ask-hd"><div class="ti"><b>Ask the Lamp</b><span>Search the whole site by question or verse</span></div><button class="ol-ask-x" type="button" aria-label="Close">×</button></div><div class="ol-ask-log" role="log" aria-live="polite"></div><div class="ol-ask-foot"><input type="text" placeholder="Ask a question or type a verse…" aria-label="Ask a question" autocomplete="off"><button class="send" type="button" aria-label="Send">➤</button></div><div class="ol-ask-note">Answers are drawn only from this site’s pages · not a live AI chat</div>';
+    document.body.appendChild(wrap);
+    var log=wrap.querySelector('.ol-ask-log'),inp=wrap.querySelector('.ol-ask-foot input'),sendB=wrap.querySelector('.send'),xB=wrap.querySelector('.ol-ask-x');
+    var LAMP_SVG="<svg viewBox='0 0 40 48' fill='none' xmlns='http://www.w3.org/2000/svg' aria-hidden='true'><defs><radialGradient id='olflame' cx='50%' cy='72%' r='62%'><stop offset='0%' stop-color='#ffe89c'/><stop offset='45%' stop-color='#f8ab3c'/><stop offset='100%' stop-color='#ee6f1e'/></radialGradient><radialGradient id='olfoot' cx='50%' cy='25%' r='85%'><stop offset='0%' stop-color='#c9a35a'/><stop offset='100%' stop-color='#8a6a26'/></radialGradient></defs><g class='lampg'><g class='rays' stroke='#f4a63a' stroke-width='1.6' stroke-linecap='round'><line x1='33' y1='25' x2='36.5' y2='25'/><line x1='7' y1='25' x2='3.5' y2='25'/><line x1='29.2' y1='14.4' x2='31.7' y2='11.6'/><line x1='10.8' y1='14.4' x2='8.3' y2='11.6'/><line x1='29.2' y1='35.6' x2='31.7' y2='38.4'/><line x1='10.8' y1='35.6' x2='8.3' y2='38.4'/><line x1='25' y1='11.1' x2='26.3' y2='7.4'/><line x1='15' y1='11.1' x2='13.7' y2='7.4'/></g><ellipse class='foot' cx='20' cy='44.4' rx='6' ry='1.7' fill='url(#olfoot)'/><rect class='wick' x='18.5' y='39.5' width='3' height='5.2' rx='1.4' fill='#5a4020'/><g class='fl'><path class='body' d='M20 10 C26 15.5 30.5 20.5 30 28 C29.5 35 25 40.5 20 41.5 C15 40.5 10.5 35 10 28 C9.5 20.5 14 15.5 20 10 Z' fill='url(#olflame)'/><path d='M20 18 C23.8 22.5 26 26.5 24.8 31.5 C23.9 35 22 37.2 20 37.6 C18 37.2 16.1 35 15.2 31.5 C14 26.5 16.2 22.5 20 18 Z' fill='#ffe488' opacity='.5'/><ellipse cx='15.6' cy='23' rx='1.6' ry='3' fill='#fff8df' opacity='.4'/></g><g class='eyes' fill='#5a3212'><ellipse cx='15.6' cy='27.5' rx='2.5' ry='3'/><ellipse cx='24.4' cy='27.5' rx='2.5' ry='3'/><circle cx='14.8' cy='26.5' r='.95' fill='#fff'/><circle cx='23.6' cy='26.5' r='.95' fill='#fff'/></g><g class='eyes-happy' stroke='#5a3212' stroke-width='1.7' stroke-linecap='round' fill='none'><path d='M13.1 27.9 Q15.6 24.7 18.1 27.9'/><path d='M21.9 27.9 Q24.4 24.7 26.9 27.9'/></g><path class='m-idle' d='M17.2 32.4 Q20 34.5 22.8 32.4' stroke='#5a3212' stroke-width='1.4' stroke-linecap='round' fill='none'/><path class='m-think' d='M18.5 32.6 Q20 33.4 21.5 32.6' stroke='#5a3212' stroke-width='1.4' stroke-linecap='round' fill='none'/><path class='m-happy' d='M16.4 32 Q20 35.9 23.6 32' stroke='#5a3212' stroke-width='1.6' stroke-linecap='round' fill='none'/></g></svg>";
+    function LAMP(s){return "<span class='ol-lamp st-"+s+"'>"+LAMP_SVG+"</span>";}
+    var lampAv=(function(){var hd=wrap.querySelector('.ol-ask-hd');if(!hd)return null;var a=document.createElement('span');a.className='ol-lamp ol-lamp-hd st-idle';a.innerHTML=LAMP_SVG;hd.insertBefore(a,hd.firstChild);return a;})();
+    function lampState(s){if(lampAv)lampAv.className='ol-lamp ol-lamp-hd st-'+s;}
+    var noteEl=wrap.querySelector('.ol-ask-note');
+    if(noteEl)noteEl.textContent=AI_ENDPOINT
+      ?'AI answers are generated only from this site’s pages, with sources shown — always verify against the cited pages.'
+      :'Answers are drawn only from this site’s pages · not a live AI chat';
+    var subEl=wrap.querySelector('.ol-ask-hd .ti span');
+    if(subEl&&AI_ENDPOINT)subEl.textContent='Grounded answers from the site, with sources';
+
+    function scrollDown(){log.scrollTop=log.scrollHeight;}
+    function addUser(t){var d=document.createElement('div');d.className='ol-ask-msg user';d.textContent=t;log.appendChild(d);scrollDown();}
+    function addBot(html){var d=document.createElement('div');d.className='ol-ask-msg bot';d.innerHTML=html;log.appendChild(d);scrollDown();return d;}
+
+    function pageRows(pages,limit){
+      return pages.slice(0,limit||5).map(function(r){
+        return '<a class="ol-ans" href="'+esc(r.f)+(r.a?'#'+esc(r.a):'')+'"><span class="a-t">'+esc(r.t)+'</span>'+(r.sub?'<span class="a-h">'+esc(r.sub)+'</span>':'')+'</a>';
+      }).join('');
+    }
+    function renderVerse(v){
+      var h='';
+      if(v.mode==='verse'){
+        h+='<div class="ol-vans"><span class="vr">'+esc(v.ref)+'</span>'+(v.kjv?'<span class="vt">'+esc(v.kjv)+'<em>KJV</em></span>':'<span class="vt">Not cited on the site yet.</span>')+'</div>';
+        if(v.pages.length){h+='<p class="lead">Cited on '+v.pages.length+' page'+(v.pages.length>1?'s':'')+':</p>'+pageRows(v.pages,6);}
+      }else{
+        h+='<div class="ol-vans"><span class="vr">'+esc(v.ref)+'</span><span class="vt">'+(v.vnums.length?'Verses cited here: '+v.vnums.join(', '):'No verses from this chapter are cited yet.')+'</span></div>';
+        if(v.pages.length){h+='<p class="lead">Pages citing this chapter:</p>'+pageRows(v.pages,6);}
+      }
+      addBot(h);
+    }
+    function cap1(s){return s?s.charAt(0).toUpperCase()+s.slice(1):s;}
+    function renderTopic(q){
+      var r=rank(q),tk=r.tk,top=r.top;
+      if(!tk.length){addBot('<p class="lead">Try a question like <em>why do you venerate icons?</em> or type a Bible reference such as <em>John 3:16</em>.</p>');return;}
+      if(!top.length){addBot('<p class="lead">I couldn’t find that on the site. Try different words, or browse from the menu.</p>');return;}
+      if(r.broad){
+        var h='<p class="lead">“'+esc(cap1(r.term))+'” runs through much of the site — that’s a broad topic. Here are the main places it’s covered; add a few more words to narrow things down:</p>';
+        h+=top.map(function(it){return '<a class="ol-ans" href="'+esc(it.f)+(it.a?'#'+esc(it.a):'')+'"><span class="a-t">'+esc(it.t)+'</span>'+(it.h?'<span class="a-h">'+esc(it.h)+'</span>':'')+'</a>';}).join('');
+        addBot(h);return;
+      }
+      var strong=(top[0].cov===tk.length);
+      var lead=strong?'Here’s where the site addresses that:':'This looks closest on the site:';
+      var body=top.map(function(it){
+        return '<a class="ol-ans" href="'+esc(it.f)+(it.a?'#'+esc(it.a):'')+'"><span class="a-t">'+esc(it.t)+'</span>'+(it.h?'<span class="a-h">'+esc(it.h)+'</span>':'')+'<span class="a-x">'+excerpt(it.x,tk)+'</span></a>';
+      }).join('');
+      addBot('<p class="lead">'+lead+'</p>'+body);
+    }
+
+    /* citation links under an AI answer, numbered to match [1]/[2] in the text */
+    function citeHTML(top){
+      return '<div class="ol-ai-cite"><p class="lead">Sources on the site</p>'+top.map(function(it,i){
+        return '<a class="ol-ans" href="'+esc(it.f)+(it.a?'#'+esc(it.a):'')+'"><span class="a-t"><span class="a-c">['+(i+1)+']</span>'+esc(it.t)+'</span>'+(it.h?'<span class="a-h">'+esc(it.h)+'</span>':'')+'</a>';
+      }).join('')+'</div>';
+    }
+    /* stream a grounded answer from the Worker; onErr triggers retrieval fallback */
+    function streamAI(q,passages,bubble,onDone,onErr){
+      var txt=document.createElement('div');txt.className='ol-ai-txt';
+      var acc='',started=false,gotErr=false,pinned=false;
+      function begin(){if(!started){started=true;bubble.innerHTML='';bubble.appendChild(txt);}}
+      /* keep the START of the answer at the top of the log so the reader begins at the beginning */
+      function pinStart(){if(pinned)return;pinned=true;var head=bubble.previousElementSibling||bubble;var lr=log.getBoundingClientRect(),er=head.getBoundingClientRect();log.scrollTop+=(er.top-lr.top)-10;}
+      /* gently type the answer in, word by word, with a blinking caret */
+      function typeReveal(full,done){
+        var parts=full.match(/\S+\s*/g)||[full];var i=0,n=parts.length,step=n>90?3:(n>45?2:1);
+        (function tick(){
+          i=Math.min(n,i+step);
+          txt.innerHTML=fmtAI(parts.slice(0,i).join(''))+(i<n?'<span class="ol-ai-caret"></span>':'');
+          if(i<n){setTimeout(tick,18);}else{txt.innerHTML=fmtAI(full||'—');done();}
+        })();
+      }
+      fetch(AI_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({q:q,passages:passages})}).then(function(res){
+        if(!res.ok||!res.body)throw new Error('bad response');
+        var reader=res.body.getReader(),dec=new TextDecoder(),buf='';
+        function finish(){begin();pinStart();typeReveal(acc,onDone);}
+        function pump(){
+          return reader.read().then(function(r){
+            if(r.done){finish();return;}
+            buf+=dec.decode(r.value,{stream:true});
+            var lines=buf.split('\n');buf=lines.pop()||'';
+            lines.forEach(function(line){
+              var t=line.trim();
+              if(t.indexOf('data:')!==0)return;
+              var p=t.slice(5).trim();
+              if(p==='[DONE]'||!p)return;
+              try{var tok=JSON.parse(p);if(typeof tok==='string'){acc+=tok;}}catch(e){}
+            });
+            return pump();
+          });
+        }
+        return pump();
+      }).catch(function(){if(!gotErr){gotErr=true;onErr();}});
+    }
+    function renderTopicAI(q){
+      var r=rank(q),tk=r.tk,top=r.top;
+      if(!tk.length){addBot('<p class="lead">Try a question like <em>why do you venerate icons?</em> or type a Bible reference such as <em>John 3:16</em>.</p>');busy=false;return;}
+      if(!top.length){addBot('<p class="lead">I couldn’t find that on the site. Try different words, or browse from the menu.</p>');busy=false;return;}
+      var passages=top.slice(0,6).map(function(it){return {t:it.t,h:it.h,x:it.x};});
+      lampState('think');
+      var bubble=addBot(''+LAMP('think')+'<span class="ol-ai-think">consulting the lamp…</span>');
+      streamAI(q,passages,bubble,function(){
+        var c=document.createElement('div');c.innerHTML=citeHTML(top);
+        bubble.appendChild(c.firstChild);busy=false;lampState('happy');setTimeout(function(){lampState('idle');},4200);
+      },function(){
+        bubble.parentNode&&bubble.parentNode.removeChild(bubble);
+        lampState('idle');renderTopic(q);busy=false;
+      });
+    }
+
+    var busy=false;
+    function handle(q){
+      q=(q||'').trim();if(!q||busy)return;
+      addUser(q);inp.value='';busy=true;
+      var topic=function(){loadC().then(function(){if(AI_ENDPOINT)renderTopicAI(q);else{renderTopic(q);busy=false;}});};
+      var vp=(window.__olVerseQuery?window.__olVerseQuery(q):Promise.resolve(null));
+      Promise.resolve(vp).then(function(v){
+        if(v){renderVerse(v);busy=false;return;}
+        topic();
+      }).catch(topic);
+    }
+
+    var greeted=false;
+    function greet(){
+      if(greeted)return;greeted=true;
+      var d=addBot('<p class="lead">'+LAMP('idle')+' Ask me anything about the Oriental Orthodox faith, other traditions, or type a Bible reference — I’ll point you to the answer on the site.</p><div class="ol-ask-chips"></div>');
+      var chips=['Why venerate icons?','Are we monophysite?','Purgatory','John 3:16'];
+      var cw=d.querySelector('.ol-ask-chips');
+      chips.forEach(function(c){var b=document.createElement('button');b.type='button';b.textContent=c;b.addEventListener('click',function(){handle(c);});cw.appendChild(b);});
+    }
+    function openAsk(){wrap.classList.add('open');fab.classList.add('hide');greet();lampState('idle');loadC();setTimeout(function(){inp.focus();},40);scrollDown();}
+    function closeAsk(){wrap.classList.remove('open');fab.classList.remove('hide');}
+    fab.addEventListener('click',openAsk);
+    xB.addEventListener('click',closeAsk);
+    sendB.addEventListener('click',function(){handle(inp.value);});
+    inp.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();handle(inp.value);}else if(e.key==='Escape'){closeAsk();}});
+    window.__olOpenAsk=openAsk;
+  }catch(e){}
+})();
+/* END-FEATURES4-JS */</script>
+<script>
+/* AUTO-FEATURES5-JS */
+(function(){
+  try{
+    /* ---- 1. print / save-as-PDF button in the sidebar ---- */
+    if(!document.querySelector('.ol-print-btn')){
+      var pb=document.createElement('button');pb.className='ol-print-btn';pb.type='button';
+      pb.setAttribute('aria-label','Print or save this page as PDF');
+      pb.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg><span>Print / Save as PDF</span>';
+      pb.addEventListener('click',function(){window.print();});
+      var sbtn=document.querySelector('.ol-search-btn');
+      if(sbtn&&sbtn.parentNode){sbtn.parentNode.insertBefore(pb,sbtn.nextSibling);}
+      else{var nav=document.querySelector('#sidebar nav,#sb nav,#sidebar,#sb');if(nav)nav.insertBefore(pb,nav.firstChild);}
+    }
+    /* ---- 2. offline / installable (PWA) service worker ---- */
+    if('serviceWorker' in navigator){
+      window.addEventListener('load',function(){
+        navigator.serviceWorker.register('sw.js').catch(function(){});
+      });
+    }
+  }catch(e){}
+})();
+/* END-FEATURES5-JS */</script>
+<button id="ol-sbt" onclick="olSb()" aria-label="Collapse or expand the contents sidebar" title="Hide or show contents"><span id="ol-sbi">&#8249;</span></button>
+<script>function olSb(){var c=document.documentElement.classList.toggle('sb-collapsed');try{localStorage.setItem('ol-sb',c?'1':'0')}catch(e){}olSbIcon()}function olSbIcon(){var i=document.getElementById('ol-sbi');if(i)i.innerHTML=document.documentElement.classList.contains('sb-collapsed')?'&#8250;':'&#8249;'}olSbIcon();</script>
+<script>/* AUTO-SHARECARDS-JS */
+(function(){
+try{
+  var SITE="The Orthodox Lamp";
+  var HOST="85z5yr9fyf-commits.github.io/the-orthodox-lamp";
+  /* ---- styles ---- */
+  if(!document.getElementById('ol-sc-style')){
+    var st=document.createElement('style');st.id='ol-sc-style';
+    st.textContent='.fc,.sv{position:relative}'+
+      '.ol-sc-btn{position:absolute;top:8px;right:8px;z-index:5;display:inline-flex;align-items:center;gap:5px;'+
+      'background:rgba(201,168,76,.12);border:1px solid var(--gd,#8a6a20);color:var(--gold,#c9a84c);'+
+      'border-radius:6px;padding:3px 8px;font:600 .7rem/1 Georgia,serif;cursor:pointer;opacity:0;'+
+      'transition:opacity .18s,background .18s}'+
+      '.fc:hover .ol-sc-btn,.sv:hover .ol-sc-btn,.ol-sc-btn:focus{opacity:.92}'+
+      '.ol-sc-btn:hover{background:rgba(201,168,76,.24)}'+
+      '.ol-sc-btn svg{width:12px;height:12px}'+
+      '@media(hover:none){.ol-sc-btn{opacity:.6}}'+
+      '@media print{.ol-sc-btn{display:none!important}}';
+    document.head.appendChild(st);
+  }
+  var ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"></line><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"></line></svg>';
+  function clean(s){return (s||'').replace(/\s+/g,' ').trim();}
+  function dequote(s){return s.replace(/^[“‘"']+/,'').replace(/[”’"']+$/,'').trim();}
+  function collect(el){
+    if(el.classList.contains('fc')){
+      var body=el.querySelector('.fc-body'), name=el.querySelector('.fc-name'), src=el.querySelector('.fc-src');
+      var srcTxt='';
+      if(src){var cl=src.cloneNode(true);var tg=cl.querySelector('.tag');if(tg)tg.remove();srcTxt=clean(cl.textContent);}
+      return {quote:dequote(clean(body?body.textContent:el.textContent)),
+              attr:name?clean(name.textContent):'', src:srcTxt};
+    }else{ /* .sv */
+      var cl=el.cloneNode(true), cite=cl.querySelector('cite'); var attr='';
+      var sb=cl.querySelector('.ol-sc-btn'); if(sb)sb.remove();
+      if(cite){attr=clean(cite.textContent);cite.remove();}
+      return {quote:dequote(clean(cl.textContent)), attr:attr, src:''};
+    }
+  }
+  function wrap(x,text,maxW){
+    var words=text.split(' '),lines=[],cur='';
+    for(var i=0;i<words.length;i++){
+      var t=cur?cur+' '+words[i]:words[i];
+      if(x.measureText(t).width>maxW&&cur){lines.push(cur);cur=words[i];}else{cur=t;}
+    }
+    if(cur)lines.push(cur);
+    return lines;
+  }
+  function draw(d){
+    var S=1080,c=document.createElement('canvas');c.width=S;c.height=S;
+    var x=c.getContext('2d');
+    var g=x.createLinearGradient(0,0,0,S);g.addColorStop(0,'#151515');g.addColorStop(1,'#0b0b0b');
+    x.fillStyle=g;x.fillRect(0,0,S,S);
+    x.strokeStyle='#c9a84c';x.lineWidth=3;x.strokeRect(46,46,S-92,S-92);
+    x.strokeStyle='#5a4a20';x.lineWidth=1;x.strokeRect(58,58,S-116,S-116);
+    x.textAlign='center';
+    /* label */
+    x.fillStyle='#a09880';x.font='600 22px Georgia,serif';
+    x.fillText('T H E   O R T H O D O X   L A M P',S/2,132);
+    /* lamp flame */
+    x.fillStyle='#e8c96a';x.beginPath();x.ellipse(S/2,182,11,17,0,0,Math.PI*2);x.fill();
+    x.fillStyle='#c9a84c';x.beginPath();x.moveTo(S/2,150);x.lineTo(S/2-11,180);x.lineTo(S/2+11,180);x.closePath();x.fill();
+    /* opening quote mark */
+    x.fillStyle='rgba(201,168,76,.35)';x.font='italic 150px Georgia,serif';
+    x.fillText('“',S/2,300);
+    /* quote text: size to fit */
+    var maxW=S-220, q=d.quote, size=46;
+    var lens=[[170,46],[300,40],[460,34],[680,29]], picked=25;
+    for(var i=0;i<lens.length;i++){if(q.length<=lens[i][0]){picked=lens[i][1];break;}}
+    size=picked;
+    x.fillStyle='#ece4d4';x.font='italic '+size+'px Georgia,serif';
+    var lines=wrap(x,q,maxW), lh=size*1.34;
+    if(lines.length>15){lines=lines.slice(0,15);lines[14]=lines[14].replace(/[.,;: ]+$/,'')+'…';}
+    var blockH=lines.length*lh, cy=560-blockH/2;
+    /* keep within frame */
+    if(cy<330)cy=330;
+    for(var j=0;j<lines.length;j++){x.fillText(lines[j],S/2,cy+j*lh);}
+    var y=cy+lines.length*lh+34;
+    /* divider */
+    x.strokeStyle='#5a4a20';x.lineWidth=1;x.beginPath();x.moveTo(S/2-46,y);x.lineTo(S/2+46,y);x.stroke();
+    y+=44;
+    /* attribution */
+    if(d.attr){x.fillStyle='#c9a84c';x.font='700 30px Georgia,serif';
+      var al=wrap(x,'— '+d.attr,maxW);for(var k=0;k<al.length;k++){x.fillText(al[k],S/2,y);y+=38;}}
+    /* source */
+    if(d.src){x.fillStyle='#9a9078';x.font='italic 22px Georgia,serif';
+      var sl=wrap(x,d.src,maxW);for(var m=0;m<sl.length;m++){x.fillText(sl[m],S/2,y);y+=28;}}
+    /* footer */
+    x.fillStyle='#8a8268';x.font='20px Georgia,serif';
+    x.fillText(HOST,S/2,S-70);
+    return c;
+  }
+  function share(d){
+    var c=draw(d);
+    c.toBlob(function(blob){
+      if(!blob)return;
+      var url=URL.createObjectURL(blob);
+      var a=document.createElement('a');
+      a.href=url;a.download='orthodox-lamp-quote.png';
+      document.body.appendChild(a);a.click();a.remove();
+      setTimeout(function(){URL.revokeObjectURL(url);},4000);
+    },'image/png');
+  }
+  var nodes=document.querySelectorAll('.fc, .sv');
+  nodes.forEach(function(el){
+    if(el.querySelector('.ol-sc-btn'))return;
+    var txt=clean(el.textContent);
+    if(txt.length<25)return;
+    var b=document.createElement('button');
+    b.type='button';b.className='ol-sc-btn';b.title='Download this quote as an image';
+    b.setAttribute('aria-label','Download this quote as a shareable image');
+    b.innerHTML=ICON+'<span>Share</span>';
+    b.addEventListener('click',function(ev){ev.stopPropagation();share(collect(el));});
+    el.appendChild(b);
+  });
+}catch(e){}
+})();
+/* END-SHARECARDS-JS */</script>
