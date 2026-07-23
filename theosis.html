@@ -1,0 +1,1921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Theosis &amp; Deification &#8212; The Orthodox Lamp</title>
+<style>
+:root{
+  --gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;
+  --bg:#0d0b08;--bg2:#141109;--bg3:#1c160e;--bg4:#241d10;--bg5:#3a2e10;
+  --tx:#ede4d0;--mu:#b8ac82;--br:#2e2510;--sidebar-w:270px;
+  --amber:#e8901a;--amberl:#f0b840;--red:#c04020;
+  --blue:#3a6a9a;--bluel:#5a9aca;
+  --rc:#3a1a1a;--rcc:#d47070;
+  --oo:#1a2e1a;--ooc:#7dc87d;
+  --pr:#15202e;--prc:#6fa8d4;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.75;display:flex;min-height:100vh}
+
+/* PROGRESS BAR */
+#prog{position:fixed;top:0;left:0;height:3px;width:0%;
+  background:linear-gradient(90deg,var(--gd),var(--amberl),var(--gold));z-index:9999;transition:width .1s}
+
+/* SIDEBAR */
+#sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;
+  background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:100;display:flex;flex-direction:column}
+#sidebar-logo{padding:22px 18px 14px;border-bottom:1px solid var(--br)}
+#sidebar-logo .lamp{font-size:1.35rem;font-weight:700;color:var(--gold);letter-spacing:.04em}
+#sidebar-logo .sub{font-size:.72rem;color:var(--mu);margin-top:2px;text-transform:uppercase;letter-spacing:.08em}
+#search-wrap{padding:10px 12px;border-bottom:1px solid var(--br)}
+#search-wrap input{width:100%;background:var(--bg3);border:1px solid var(--br);color:var(--tx);
+  padding:6px 10px;border-radius:4px;font-size:.8rem;outline:none}
+#search-wrap input:focus{border-color:var(--gold)}
+#nav{padding:10px 0 20px;flex:1}
+#nav a{display:block;padding:7px 18px;font-size:.82rem;color:var(--mu);text-decoration:none;
+  border-left:3px solid transparent;transition:all .15s;line-height:1.4}
+#nav a:hover{color:var(--tx);background:var(--bg3);border-left-color:var(--gold)}
+#nav a.active{color:var(--gold);border-left-color:var(--gold);background:var(--bg3)}
+#nav .nav-head{padding:8px 18px 3px;font-size:.68rem;color:var(--gd);text-transform:uppercase;letter-spacing:.1em;margin-top:4px}
+
+/* MAIN */
+#main{margin-left:var(--sidebar-w);flex:1;max-width:920px;padding:0 48px 80px}
+
+/* BREADCRUMB */
+.ol-bc{margin:0;padding:16px 24px 2px;font-size:.8rem;color:var(--mu);display:flex;flex-wrap:wrap;align-items:center;gap:.45rem;letter-spacing:.02em}
+.ol-bc a{color:var(--mu);text-decoration:none;transition:color .15s}
+.ol-bc a:hover{color:var(--gd,#c9a84c)}
+.ol-bc i{opacity:.45;font-style:normal;font-size:.9em}
+.ol-bc .cur{color:var(--gd,#c9a84c);font-weight:600}
+@media print{.ol-bc{display:none!important}}
+
+/* OL-PGBAND */
+.oo-pgband{display:block;text-decoration:none;position:relative;margin:14px 0 6px;border-radius:10px;overflow:hidden;border:1px solid var(--br);box-shadow:0 4px 14px rgba(0,0,0,.3);cursor:pointer}
+.oo-pgband .im{height:106px;background-size:cover;filter:sepia(.5) saturate(.82) brightness(.86) contrast(.95);transition:filter .5s ease,transform .5s ease}
+.oo-pgband:hover .im,.oo-pgband:focus-visible .im{filter:sepia(.3) saturate(.95) brightness(.98) contrast(1);transform:scale(1.03)}
+.oo-pgband:focus-visible{outline:2px solid var(--gl);outline-offset:2px}
+.oo-pgband .cap{position:absolute;left:15px;bottom:9px;font:600 .68rem/1.3 var(--disp,Georgia),serif;letter-spacing:.11em;text-transform:uppercase;color:var(--gl);opacity:.92;text-shadow:0 1px 6px rgba(0,0,0,1)}
+.oo-pgband .cap b{display:block;font-size:.85rem;letter-spacing:.05em;opacity:1}
+.oo-pgband::after{content:"\2626";position:absolute;top:7px;right:13px;color:var(--gl);opacity:.62;font-size:1.02rem;line-height:1;text-shadow:0 1px 3px rgba(0,0,0,.9);transition:opacity .4s ease}
+.oo-pgband:hover::after,.oo-pgband:focus-visible::after{opacity:.96}
+@media(max-width:760px){.oo-pgband .im{height:86px}}
+@media print{.oo-pgband{display:none}}
+
+/* OL-FABALIGN */
+#ol-top,#ol-tt{right:22px;width:44px;height:44px}
+.ol-ask-fab{right:22px;bottom:24px}
+#ol-tt{bottom:90px}
+#ol-top{bottom:148px}
+@media(max-width:480px){.ol-ask-fab{right:14px;bottom:16px}#ol-tt{right:14px;bottom:82px;width:42px;height:42px}#ol-top{right:14px;bottom:138px;width:42px;height:42px}}
+/* END-OL-FABALIGN */
+
+/* AT-A-GLANCE COMPARISON GRID */
+.cmp-top{margin:6px 0 20px}
+.cmp-top-h{font:700 .72rem/1.4 Georgia,serif;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);margin:0 0 8px}
+html.light .cmp-top-h{color:var(--gd)}
+.comp-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 0}
+.comp-card{border-radius:8px;padding:14px 16px;border:1px solid}
+.comp-card.rc-card{background:var(--rc);border-color:var(--rcc)}
+.comp-card.oo-card{background:var(--oo);border-color:var(--ooc)}
+.comp-card.prot{background:var(--pr);border-color:var(--prc)}
+.comp-card .cc-label{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;font-weight:700}
+.comp-card.rc-card .cc-label{color:var(--rcc)}
+.comp-card.oo-card .cc-label{color:var(--ooc)}
+.comp-card.prot .cc-label{color:var(--prc)}
+.comp-card ul{padding-left:16px;font-size:.88rem;line-height:1.7}
+.comp-card.rc-card ul{color:#e8c0c0}
+.comp-card.oo-card ul{color:#c8e8c8}
+html.light .comp-card.rc-card ul{color:#8b2020}
+html.light .comp-card.oo-card ul{color:#1d5c1d}
+html.light .comp-card.prot{border-top-color:#a83232}
+html.light .comp-card.prot .ct{color:#a83232}
+@media(max-width:760px){.comp-grid3{grid-template-columns:1fr}}
+/* END-AT-A-GLANCE */
+
+/* ===== ANIMATED OIL LAMP HEADER ===== */
+.lamp-header{text-align:center;padding:54px 0 40px;border-bottom:2px solid var(--br);margin-bottom:44px;position:relative;overflow:hidden}
+.lamp-header::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:400px;height:300px;background:radial-gradient(ellipse at 50% 40%,rgba(201,168,76,.08) 0%,transparent 70%);pointer-events:none}
+
+.lamp-wrap{display:inline-block;position:relative;margin-bottom:28px}
+
+/* FLAME ELEMENTS */
+.fl-glow{animation:glow-pulse 2.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center 80%}
+.fl-a{animation:flicker-a 2.3s ease-in-out infinite;transform-box:fill-box;transform-origin:center bottom}
+.fl-b{animation:flicker-b 1.9s ease-in-out infinite .3s;transform-box:fill-box;transform-origin:center bottom}
+.fl-c{animation:flicker-c 2.1s ease-in-out infinite .1s;transform-box:fill-box;transform-origin:center bottom}
+.fl-d{animation:flicker-d 1.7s ease-in-out infinite .5s;transform-box:fill-box;transform-origin:center bottom}
+.fl-e{animation:core-pulse 1.5s ease-in-out infinite .2s;transform-box:fill-box;transform-origin:center center}
+
+@keyframes flicker-a{
+  0%,100%{transform:scaleX(1) skewX(0deg) translateY(0)}
+  28%{transform:scaleX(.92) skewX(-2.5deg) translateY(-3px)}
+  55%{transform:scaleX(1.06) skewX(1.5deg) translateY(2px)}
+  78%{transform:scaleX(.96) skewX(2deg) translateY(-1px)}
+}
+@keyframes flicker-b{
+  0%,100%{transform:scaleX(1) skewX(1deg) translateY(0)}
+  22%{transform:scaleX(1.05) skewX(-1.5deg) translateY(-4px)}
+  52%{transform:scaleX(.93) skewX(2.5deg) translateY(2px)}
+  74%{transform:scaleX(1.03) skewX(-2deg) translateY(-2px)}
+}
+@keyframes flicker-c{
+  0%,100%{transform:scaleX(1) translateY(0);opacity:1}
+  38%{transform:scaleX(.95) translateY(-3px);opacity:.88}
+  68%{transform:scaleX(1.04) translateY(1px);opacity:.95}
+}
+@keyframes flicker-d{
+  0%,100%{transform:scaleY(1) translateY(0)}
+  32%{transform:scaleY(1.08) translateY(-5px)}
+  62%{transform:scaleY(.93) translateY(3px)}
+}
+@keyframes core-pulse{
+  0%,100%{opacity:.85;transform:scaleY(1)}
+  50%{opacity:1;transform:scaleY(1.12)}
+}
+@keyframes glow-pulse{
+  0%,100%{opacity:.35;transform:scale(1)}
+  50%{opacity:.65;transform:scale(1.2)}
+}
+
+.lamp-header h1{font-size:2.6rem;color:var(--gold);line-height:1.2;margin-bottom:12px;letter-spacing:.02em}
+.lamp-header .tagline{font-size:1.05rem;color:var(--mu);max-width:640px;margin:0 auto;line-height:1.65}
+.lamp-header .tag{font-size:.72rem;color:var(--amber);text-transform:uppercase;letter-spacing:.16em;margin-bottom:14px}
+
+/* SECTION ACCORDION */
+.sec{margin-bottom:10px;border:1px solid var(--br);border-radius:6px;overflow:hidden}
+.sec-h{display:flex;justify-content:space-between;align-items:center;padding:16px 22px;
+  cursor:pointer;background:var(--bg2);transition:background .15s}
+.sec-h:hover{background:var(--bg3)}
+.sec-h h2{font-size:1.12rem;color:var(--gold);font-weight:600}
+.arr{color:var(--mu);font-size:.85rem;transition:transform .2s}
+.sec-body{padding:28px 30px;background:var(--bg3);display:none}
+.sec-body p{margin-bottom:15px;color:var(--tx);font-size:.96rem;line-height:1.75}
+.sec-body h3{color:var(--gl);font-size:1rem;margin:24px 0 11px;border-bottom:1px solid var(--br);padding-bottom:6px}
+.sec-body h4{color:var(--amberl);font-size:.88rem;margin:18px 0 7px;text-transform:uppercase;letter-spacing:.07em}
+.sec-body a,.callout a,.dist-card a,.glo-item a{color:var(--gl);text-decoration:underline;text-decoration-color:var(--gd);text-underline-offset:2px;transition:color .15s}
+.sec-body a:hover,.callout a:hover,.dist-card a:hover,.glo-item a:hover{color:var(--amberl);text-decoration-color:var(--amberl)}
+
+/* VERSE / QUOTE BOXES */
+.vbox{border-left:4px solid var(--gold);background:var(--bg4);padding:14px 20px;
+  border-radius:0 6px 6px 0;margin:15px 0}
+.vbox .vref{font-size:.75rem;color:var(--gl);text-transform:uppercase;letter-spacing:.1em;margin-bottom:7px}
+.vbox .vtext{font-style:italic;color:var(--tx);font-size:.94rem;line-height:1.7}
+.vbox.father{border-left-color:var(--amber)}
+.vbox.father .vref{color:var(--amberl)}
+.vbox.key{border-left-color:var(--amberl);background:var(--bg5)}
+.vbox.key .vref{color:var(--gl)}
+
+/* FATHER CARDS */
+.father-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}
+.fc{background:var(--bg4);border:1px solid var(--br);border-top:3px solid var(--amber);
+  border-radius:0 0 6px 6px;padding:16px 18px}
+.fc .fc-name{font-size:.9rem;color:var(--amberl);font-weight:700;margin-bottom:3px}
+.fc .fc-dates{font-size:.72rem;color:var(--mu);margin-bottom:10px}
+.fc .fc-quote{font-style:italic;font-size:.87rem;color:var(--tx);line-height:1.65;margin-bottom:8px}
+.fc .fc-cite{font-size:.78rem;color:var(--mu)}
+
+/* CONCEPT CARDS */
+.concept-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:16px 0}
+.cc{background:var(--bg4);border:1px solid var(--br);border-radius:6px;padding:15px;text-align:center}
+.cc .cc-term{font-size:1.1rem;color:var(--gold);font-weight:700;margin-bottom:6px;font-style:italic}
+.cc .cc-greek{font-size:.75rem;color:var(--mu);margin-bottom:8px}
+.cc .cc-def{font-size:.82rem;color:var(--tx);line-height:1.55}
+
+/* THREE-PERSON DIAGRAM */
+.triad{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin:20px 0;position:relative}
+.triad::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:80%;height:1px;background:var(--br)}
+.person-card{background:var(--bg4);border:1px solid var(--br);border-radius:8px;padding:18px 14px;text-align:center;position:relative}
+.person-card.father{border-top:4px solid var(--gold)}
+.person-card.son{border-top:4px solid var(--amberl)}
+.person-card.spirit{border-top:4px solid var(--amber)}
+.person-card .pc-name{font-size:1rem;font-weight:700;margin-bottom:6px}
+.person-card.father .pc-name{color:var(--gold)}
+.person-card.son .pc-name{color:var(--amberl)}
+.person-card.spirit .pc-name{color:var(--amber)}
+.person-card .pc-greek{font-size:.72rem;color:var(--mu);font-style:italic;margin-bottom:8px}
+.person-card .pc-role{font-size:.82rem;color:var(--tx);line-height:1.5}
+.person-card .pc-relation{font-size:.75rem;color:var(--mu);margin-top:8px;padding-top:6px;border-top:1px solid var(--br)}
+
+/* DISTINCTION BOX */
+.dist-box{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}
+.dist-card{padding:16px 18px;border-radius:6px;border:1px solid var(--br)}
+.dist-card.wrong{background:rgba(180,40,20,.08);border-color:rgba(180,40,20,.2)}
+.dist-card.right{background:rgba(42,100,50,.08);border-color:rgba(42,100,50,.2)}
+.dist-card .dl{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;font-weight:700}
+.dist-card.wrong .dl{color:#c06050}
+.dist-card.right .dl{color:#60a870}
+.dist-card p{font-size:.87rem;color:var(--tx);line-height:1.55;margin:0}
+
+/* HERESY GRID */
+.heresy-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}
+.heresy-card{background:rgba(180,40,20,.06);border:1px solid rgba(180,40,20,.2);
+  border-radius:6px;padding:14px 16px}
+.heresy-card .hc-name{font-size:.88rem;color:#d06050;font-weight:700;margin-bottom:4px}
+.heresy-card .hc-claim{font-size:.82rem;font-style:italic;color:var(--mu);margin-bottom:6px}
+.heresy-card p{font-size:.83rem;color:var(--tx);line-height:1.5;margin:0}
+
+/* CALLOUT */
+.callout{background:var(--bg5);border:1px solid var(--gold);border-radius:6px;padding:18px 22px;margin:20px 0}
+.callout .cl-title{font-size:.75rem;color:var(--gold);text-transform:uppercase;letter-spacing:.12em;margin-bottom:9px;font-weight:700}
+.callout p{font-size:.92rem;color:var(--tx);margin:0;line-height:1.7}
+
+/* TIMELINE */
+.tl{margin:16px 0}
+.tl-item{display:flex;gap:16px;margin-bottom:22px;align-items:flex-start}
+.tl-dot{width:12px;height:12px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:5px}
+.tl-content{flex:1}
+.tl-date{font-size:.75rem;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:3px}
+.tl-title{font-size:.95rem;color:var(--tx);font-weight:700;margin-bottom:4px}
+.tl-content p{font-size:.87rem;color:var(--mu);line-height:1.6;margin:0}
+
+/* FAQ */
+.faq{margin:8px 0}
+.fi{background:var(--bg4);border:1px solid var(--br);border-radius:4px;margin-bottom:6px;overflow:hidden}
+.fi-q{padding:13px 17px;cursor:pointer;font-size:.92rem;color:var(--tx);display:flex;justify-content:space-between;align-items:center}
+.fi-q:hover{background:var(--bg3)}
+.fi-a{display:none;padding:13px 17px;font-size:.88rem;color:var(--mu);border-top:1px solid var(--br);line-height:1.7}
+
+/* GLOSSARY */
+.glo{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+.glo-item{background:var(--bg4);border:1px solid var(--br);border-radius:4px;padding:13px 15px}
+.glo-item .gt{font-size:.85rem;color:var(--gold);font-weight:700;margin-bottom:4px}
+.glo-item .gd{font-size:.82rem;color:var(--mu);line-height:1.55}
+
+/* SCRIPTURE GRID */
+.scripture-grid{display:grid;grid-template-columns:1fr;gap:10px;margin:14px 0}
+.sg-item{background:var(--bg4);border:1px solid var(--br);border-left:4px solid var(--gold);border-radius:0 6px 6px 0;padding:14px 18px}
+.sg-item .sg-ref{font-size:.75rem;color:var(--gl);font-weight:700;margin-bottom:5px;text-transform:uppercase;letter-spacing:.08em}
+.sg-item .sg-text{font-style:italic;font-size:.92rem;color:var(--tx);line-height:1.65;margin-bottom:6px}
+.sg-item .sg-note{font-size:.82rem;color:var(--mu);line-height:1.5}
+
+/* CHAIN BOX (generation/procession arrows) */
+.chain{display:flex;align-items:center;gap:10px;margin:18px 0;flex-wrap:wrap}
+.chain-node{background:var(--bg4);border:1px solid var(--br);border-radius:6px;padding:10px 16px;
+  font-size:.9rem;font-weight:700;color:var(--gold);text-align:center;min-width:90px}
+.chain-arrow{color:var(--amber);font-size:1.4rem;flex-shrink:0}
+.chain-label{font-size:.72rem;color:var(--mu);text-align:center;margin-top:4px}
+
+@media(max-width:900px){
+  #sidebar{transform:translateX(-100%)}
+  #main{margin-left:0;padding:0 22px 60px}
+  .father-grid,.concept-grid,.triad,.dist-box,.heresy-grid,.glo{grid-template-columns:1fr}
+  .lamp-header h1{font-size:1.9rem}
+}
+
+.lampsvg{display:block;margin:0 auto 14px;height:auto}
+.lampsvg .lampflame{animation:lampflick 3.2s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes lampflick{0%,100%{transform:scaleY(1) scaleX(1);opacity:.95}25%{transform:scaleY(1.06) scaleX(.97);opacity:1}50%{transform:scaleY(.96) scaleX(1.03);opacity:.9}75%{transform:scaleY(1.04) scaleX(.98);opacity:1}}
+
+html.light{--gold:#8a6a20;--gl:#6f5413;--gd:#b08e3e;--bg:#f7f2e6;--bg2:#efe8d5;--bg3:#e7ddc7;--bg4:#ddd2b9;--bg5:#efe0b8;--tx:#2b2415;--mu:#6e6450;--br:#d2c7aa;--amberl:#8e640b;--bluel:#255274;--rc:#ead1d1;--rcc:#762323;--oo:#d5e7d5;--ooc:#2d6c2d;--pr:#d6e2ee;--prc:#1d4a6b}
+#ol-tt{position:fixed;right:16px;bottom:74px;z-index:9999;width:44px;height:44px;border-radius:50%;background:var(--bg3,var(--panel,#1a1a1a));color:var(--gold,#c9a84c);border:1px solid var(--gd,var(--gold-dark,var(--rule,#8a6a20)));font-size:1.1rem;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35);line-height:1}#ol-tt:hover{filter:brightness(1.15)}
+html.light .pl,html.light .labels .prot{background:#eed6d6;color:#8b2020}
+html.light .gl-tag,html.light .labels .oo{background:#d8e8d8;color:#1d5c1d}
+html.light .labels .ctx{background:#d8e3ee;color:#1d4a6b}
+html.light .obj{border-color:#dcc0c0}
+html.light .obj-bd{border-top-color:#dcc0c0}
+html.light .obj-h h3{color:#8b2020}
+html.light .comp-card.prot{border-top-color:#a83232}
+html.light .comp-card.prot .ct{color:#a83232}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* AUTO-ENHANCE */
+html.js-anim .sec{opacity:0;transform:translateY(14px);transition:opacity .55s cubic-bezier(.16,.7,.3,1),transform .55s cubic-bezier(.16,.7,.3,1)}
+html.js-anim .sec.in{opacity:1;transform:none}
+.sec.open .sec-body,.sec.open .sec-bd,.sec.open .sec-body2{animation:olSecOpen .4s cubic-bezier(.16,.7,.3,1)}
+.fi.open .fi-body,.fi.open .fi-bd{animation:olSecOpen .32s cubic-bezier(.16,.7,.3,1)}
+@keyframes olSecOpen{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.sec{margin-bottom:20px;transition:border-color .25s,box-shadow .25s}
+.sec-h:hover,.sec-hd:hover{box-shadow:inset 3px 0 0 var(--gd)}
+.sec-body,.sec-bd{line-height:1.75}
+.sec-body p,.sec-bd p{margin-bottom:12px}
+#ol-top{position:fixed;right:22px;bottom:24px;width:42px;height:42px;border-radius:50%;border:1px solid var(--br);background:var(--bg2);color:var(--gd);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .3s,transform .3s,background .2s;z-index:150;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+#ol-top.show{opacity:1;pointer-events:auto;transform:none}
+#ol-top:hover{background:var(--gd);color:#1a140a}
+.ol-readtime{display:inline-flex;align-items:center;gap:7px;font-size:.74rem;letter-spacing:.04em;color:var(--mu);border:1px solid var(--br);border-radius:20px;padding:4px 12px;margin-top:10px;text-transform:uppercase}
+.ol-readtime::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--gd)}
+@media(prefers-reduced-motion:reduce){html.js-anim .sec{opacity:1;transform:none}#ol-top{transition:none}}
+/* END-ENHANCE */
+
+/* AUTO-AESTHETIC2 */
+:root{--ol-acc:var(--gd,#c9a84c)}
+/* smooth anchor scrolling + sticky-header offset */
+html{scroll-behavior:smooth}
+:where(.sec,[id]){scroll-margin-top:88px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+/* theme cross-fade */
+body,main,.sec,.sec-h,.sec-hd,.sec-body,.sec-bd,#sb,#sb-nav a{transition:background-color .35s ease,color .35s ease,border-color .35s ease}
+/* typography polish */
+main .sec-body p,main .sec-bd p{line-height:1.8}
+.sec-h,.sec-hd{letter-spacing:.005em}
+p.ol-lead::first-letter{float:left;font-size:3.1em;line-height:.78;padding:6px 10px 0 0;color:var(--ol-acc);font-weight:700}
+/* card hover depth */
+[class*="-card"],[class*="-box"],.vbox{transition:transform .22s cubic-bezier(.16,.7,.3,1),box-shadow .22s ease,border-color .22s ease,background-color .35s ease,color .35s ease}
+[class*="-card"]:hover,[class*="-box"]:hover,.vbox:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.28)}
+html.light [class*="-card"]:hover,html.light [class*="-box"]:hover,html.light .vbox:hover{box-shadow:0 8px 22px rgba(40,30,10,.12)}
+/* section dividers (inserted by JS) */
+.ol-divider{text-align:center;color:var(--ol-acc);opacity:.45;font-size:1rem;margin:4px auto 26px;line-height:1;letter-spacing:0;user-select:none}
+/* sidebar active-dot fill */
+#sb-nav a{position:relative}
+#sb-nav a.active::before{content:"";position:absolute;left:-2px;top:50%;width:6px;height:6px;border-radius:50%;background:var(--ol-acc);box-shadow:0 0 7px var(--ol-acc);transform:translateY(-50%) scale(0);animation:olDot .3s cubic-bezier(.16,.7,.3,1) forwards}
+@keyframes olDot{to{transform:translateY(-50%) scale(1)}}
+/* bare blockquote uplift (does not touch styled quote-cards) */
+main blockquote{border-left:3px solid var(--ol-acc);padding:8px 0 8px 18px;margin:18px 0;font-style:italic}
+/* END-AESTHETIC2 */
+
+/* AUTO-FEATURES3 */
+/* copy-link buttons */
+.ol-copy{opacity:0;margin:0 8px;background:none;border:none;cursor:pointer;font-size:.8rem;color:var(--mu);transition:opacity .2s,color .2s;vertical-align:middle;padding:2px 5px;line-height:1;border-radius:5px}
+.ol-copy::before{content:"\1F517"}
+.sec-h:hover .ol-copy,.sec-hd:hover .ol-copy,.ol-copy:focus-visible{opacity:.65}
+.ol-copy:hover{opacity:1;color:var(--gd,#c9a84c)}
+.ol-copy.ok{opacity:1;color:#3fa34d}
+.ol-copy.ok::before{content:"\2713";margin-right:4px}
+.ol-copy.ok::after{content:"copied";font-size:.7rem;letter-spacing:.03em}
+/* related topics */
+.ol-related{margin:42px 0 8px;padding:22px 24px;border:1px solid var(--br);border-radius:12px;background:var(--bg2)}
+.ol-related h3{margin:0 0 14px;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gd,#c9a84c);font-weight:700}
+.ol-related-links{display:flex;flex-wrap:wrap;gap:10px}
+.ol-related-links a{display:inline-block;padding:8px 15px;border:1px solid var(--br);border-radius:22px;font-size:.9rem;color:var(--tx,#e7ddc8);text-decoration:none;background:var(--bg,#1a140a);transition:border-color .2s,color .2s,background .2s,transform .2s}
+.ol-related-links a:hover{border-color:var(--gd,#c9a84c);color:var(--gd,#c9a84c);transform:translateY(-1px)}
+/* search launcher */
+.ol-search-btn{display:flex;align-items:center;justify-content:space-between;width:100%;margin:10px 0 4px;padding:9px 13px;border:1px solid var(--br);border-radius:9px;background:var(--bg2);color:var(--mu);font:inherit;font-size:.86rem;cursor:pointer;transition:border-color .2s,color .2s}
+.ol-search-btn:hover{border-color:var(--gd,#c9a84c);color:var(--gd,#c9a84c)}
+.ol-search-btn span{border:1px solid var(--br);border-radius:5px;padding:1px 7px;font-size:.78rem;opacity:.8}
+/* search overlay */
+.ol-ov{position:fixed;inset:0;background:rgba(0,0,0,.62);backdrop-filter:blur(3px);z-index:1000;display:none;align-items:flex-start;justify-content:center;padding:11vh 16px 16px}
+.ol-ov.open{display:flex}
+.ol-modal{width:100%;max-width:620px;background:var(--bg2,#221a0e);border:1px solid var(--br);border-radius:14px;box-shadow:0 24px 70px rgba(0,0,0,.55);overflow:hidden;display:flex;flex-direction:column;max-height:74vh}
+html.light .ol-modal{box-shadow:0 24px 70px rgba(40,30,10,.22)}
+.ol-search-input{border:none;border-bottom:1px solid var(--br);background:none;color:var(--tx,#e7ddc8);font:inherit;font-size:1.12rem;padding:18px 22px;outline:none;width:100%}
+.ol-search-input::placeholder{color:var(--mu)}
+.ol-results{overflow-y:auto;padding:8px}
+.ol-r{display:block;padding:10px 14px;border-radius:9px;text-decoration:none;color:var(--tx,#e7ddc8);transition:background .12s}
+.ol-r .r-t{display:block;font-weight:600;font-size:.97rem}
+.ol-r .r-s{display:block;font-size:.83rem;color:var(--mu);margin-top:2px}
+.ol-r .r-s::before{content:"\2192  ";color:var(--gd,#c9a84c)}
+.ol-r.sel,.ol-r:hover{background:var(--bg,#1a140a)}
+.ol-r.sel{box-shadow:inset 3px 0 0 var(--gd,#c9a84c)}
+.ol-r mark{background:rgba(201,168,76,.32);color:inherit;border-radius:2px;padding:0 1px}
+.r-empty{padding:26px 18px;text-align:center;color:var(--mu);font-size:.92rem}
+.ol-hint{border-top:1px solid var(--br);padding:9px 18px;font-size:.74rem;color:var(--mu);letter-spacing:.03em}
+.ol-r .r-s.r-topic::before{content:"\2756  ";color:var(--gd,#c9a84c)}
+/* verse-mode card */
+.ol-vcard{margin:6px 6px 4px;padding:14px 16px;border:1px solid var(--br);border-radius:10px;background:var(--bg,#1a140a)}
+.ol-vcard .vref{font-weight:700;color:var(--gd,#c9a84c);font-size:1rem}
+.ol-vcard .vkjv{display:block;margin-top:7px;font-size:.93rem;line-height:1.6;color:var(--tx,#e7ddc8)}
+.ol-vcard .vkjv em{font-style:normal;font-size:.64rem;color:var(--mu);border:1px solid var(--br);border-radius:4px;padding:0 5px;margin-left:6px;letter-spacing:.06em;vertical-align:middle}
+.ol-vcard .vmeta{display:block;margin-top:8px;font-size:.76rem;color:var(--mu);line-height:1.5}
+/* scripture verse + tooltip */
+.ol-verse{border-bottom:1px dotted var(--gd,#c9a84c);cursor:help;text-decoration:none}
+.ol-tip{position:absolute;z-index:1100;max-width:330px;background:var(--bg2,#221a0e);color:var(--tx,#e7ddc8);border:1px solid var(--br);border-radius:10px;padding:12px 15px;font-size:.9rem;line-height:1.55;box-shadow:0 12px 34px rgba(0,0,0,.5);pointer-events:none}
+html.light .ol-tip{box-shadow:0 12px 34px rgba(40,30,10,.2)}
+.ol-tip b{color:var(--gd,#c9a84c);font-size:.84rem;letter-spacing:.02em}
+.ol-tip-kjv{font-size:.66rem;color:var(--mu);border:1px solid var(--br);border-radius:4px;padding:0 5px;margin-left:6px;letter-spacing:.05em}
+.ol-tip-load,.ol-tip-err{color:var(--mu);font-style:italic}
+/* print / pdf */
+@media print{
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #sidebar,#sb,#ham,#overlay,#prog,#ol-top,#ol-tt,.ol-search-btn,.ol-copy,.back-link,.ol-ov,.ol-tip,.ol-divider,.ol-related,.sb-search,nav,.arr{display:none!important}
+  html,body{background:#fff!important;color:#000!important}
+  main{margin:0!important;padding:0!important;max-width:100%!important;width:100%!important}
+  .sec-body,.sec-bd,.sec-body2,.fi-body,.fi-bd{display:block!important;max-height:none!important;opacity:1!important;transform:none!important;animation:none!important}
+  .sec{opacity:1!important;transform:none!important;page-break-inside:avoid;border:none!important;margin-bottom:14px!important}
+  .sec-h,.sec-hd{cursor:default}
+  .hero,.pg-title,.page-head,.pg-head,.hd{background:#fff!important;color:#000!important;border:none!important}
+  .ol-verse{border-bottom:none}
+  a{color:#000!important;text-decoration:none}
+  h1,h2,h3{color:#000!important}
+}
+/* END-FEATURES3 */
+
+/* AUTO-FEATURES4 */
+.ol-ask-fab{position:fixed;right:22px;bottom:24px;z-index:1200;display:flex;align-items:center;gap:9px;height:52px;padding:0 19px 0 15px;border:1px solid var(--br);border-radius:30px;background:var(--gd,#c9a84c);color:#1a140a;font:inherit;font-weight:600;font-size:.9rem;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.35);transition:transform .2s,box-shadow .2s}
+.ol-ask-fab:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(0,0,0,.45)}
+.ol-ask-fab svg{width:20px;height:20px;flex:none;display:block}
+.ol-ask-fab.hide{display:none}
+#ol-top{bottom:128px}
+.ol-ask-wrap{position:fixed;right:22px;bottom:24px;z-index:1201;width:380px;max-width:calc(100vw - 32px);height:560px;max-height:calc(100vh - 70px);background:var(--bg2,#221a0e);border:1px solid var(--br);border-radius:16px;box-shadow:0 24px 70px rgba(0,0,0,.55);display:none;flex-direction:column;overflow:hidden}
+.ol-ask-wrap.open{display:flex}
+html.light .ol-ask-wrap{box-shadow:0 24px 70px rgba(40,30,10,.22)}
+.ol-ask-hd{display:flex;align-items:center;gap:10px;padding:13px 15px;border-bottom:1px solid var(--br);background:var(--bg,#1a140a)}
+.ol-ask-hd .ti{flex:1;line-height:1.25}
+.ol-ask-hd .ti b{color:var(--gd,#c9a84c);font-size:.97rem}
+.ol-ask-hd .ti span{display:block;font-size:.7rem;color:var(--mu);font-weight:400;letter-spacing:.02em}
+.ol-ask-x{background:none;border:none;color:var(--mu);font-size:1.4rem;line-height:1;cursor:pointer;padding:0 6px;border-radius:6px}
+.ol-ask-x:hover{color:var(--tx,#e7ddc8)}
+.ol-ask-log{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:11px}
+.ol-ask-msg{max-width:92%;font-size:.9rem;line-height:1.55;word-wrap:break-word}
+.ol-ask-msg.user{align-self:flex-end;background:var(--gd,#c9a84c);color:#1a140a;padding:8px 13px;border-radius:14px 14px 4px 14px;font-weight:500}
+.ol-ask-msg.bot{align-self:flex-start;color:var(--tx,#e7ddc8);width:100%}
+.ol-ask-msg.bot .lead{margin:0 0 9px;color:var(--mu);font-size:.85rem}
+.ol-ans{display:block;text-decoration:none;color:var(--tx,#e7ddc8);border:1px solid var(--br);border-radius:10px;padding:9px 12px;margin-bottom:8px;background:var(--bg,#1a140a);transition:border-color .18s,transform .18s}
+.ol-ans:hover{border-color:var(--gd,#c9a84c);transform:translateY(-1px)}
+.ol-ans .a-t{display:block;font-weight:600;font-size:.88rem}
+.ol-ans .a-h{display:block;font-size:.78rem;color:var(--gd,#c9a84c);margin-top:1px}
+.ol-ans .a-x{display:block;font-size:.81rem;color:var(--mu);margin-top:5px;line-height:1.5}
+.ol-ans mark,.ol-ask-msg mark{background:rgba(201,168,76,.32);color:inherit;border-radius:2px;padding:0 1px}
+.ol-ai-txt{font-size:.9rem;line-height:1.6;color:var(--tx,#e7ddc8)}
+.ol-ai-txt p{margin:0 0 9px}.ol-ai-txt p:last-child{margin-bottom:0}
+.ol-ai-txt strong{color:var(--gl,#e8c96a);font-weight:600}
+.ol-ai-txt sup.ol-ci{color:var(--gd,#c9a84c);font-weight:600;font-size:.7em;padding:0 1px}
+.ol-ai-cite{margin-top:11px;padding-top:9px;border-top:1px solid var(--br)}
+.ol-ai-cite .lead{margin:0 0 7px;color:var(--mu);font-size:.78rem;text-transform:uppercase;letter-spacing:.04em}
+.ol-ans .a-c{display:inline-block;color:var(--gd,#c9a84c);font-weight:700;font-size:.78rem;margin-right:5px}
+.ol-ai-dots{display:inline-flex;gap:5px;padding:4px 0}
+.ol-ai-dots i{width:7px;height:7px;border-radius:50%;background:var(--gd,#c9a84c);opacity:.4;animation:olaiblink 1.2s infinite}
+.ol-ai-dots i:nth-child(2){animation-delay:.2s}.ol-ai-dots i:nth-child(3){animation-delay:.4s}
+@keyframes olaiblink{0%,60%,100%{opacity:.35}30%{opacity:1}}
+.ol-ai-lamp{display:inline-block;font-size:1.15em;line-height:1;transform-origin:50% 85%;animation:ollampflick 1.7s infinite ease-in-out}
+@keyframes ollampflick{0%,100%{opacity:.85;filter:drop-shadow(0 0 2px rgba(201,168,76,.45));transform:scale(1) rotate(0)}40%{opacity:1;filter:drop-shadow(0 0 8px rgba(201,168,76,.95));transform:scale(1.08) rotate(-2deg)}68%{opacity:.92;filter:drop-shadow(0 0 4px rgba(201,168,76,.7));transform:scale(1.02) rotate(1deg)}}
+.ol-ai-think{margin-left:7px;font-style:italic;font-size:.94em;opacity:.85}
+.ol-ask-msg{animation:olmsgin .4s cubic-bezier(.22,1,.36,1) both}
+@keyframes olmsgin{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
+.ol-ai-caret{display:inline-block;width:2px;height:1.05em;background:var(--gd,#c9a84c);margin-left:2px;vertical-align:-2px;border-radius:1px;animation:olcaret .8s step-end infinite}
+@keyframes olcaret{50%{opacity:0}}
+.ol-lamp{display:inline-block;line-height:0;vertical-align:-7px}.ol-lamp svg{width:24px;height:28px;overflow:visible}.ol-lamp-hd{vertical-align:middle;flex:0 0 auto}.ol-lamp-hd svg{width:34px;height:40px}.ol-lamp .eyes-happy,.ol-lamp .m-idle,.ol-lamp .m-think,.ol-lamp .m-happy{display:none}.ol-lamp.st-idle .m-idle{display:block}.ol-lamp.st-think .m-think{display:block}.ol-lamp.st-happy .m-happy{display:block}.ol-lamp.st-happy .eyes{display:none}.ol-lamp.st-happy .eyes-happy{display:block}.ol-lamp .eyes{transform-box:fill-box;transform-origin:center;animation:ollampblink 4.8s infinite}.ol-lamp.st-think .eyes{transform:translateY(-1px)}.ol-lamp .fl{transform-box:fill-box;transform-origin:50% 100%;animation:ollampfl 2.1s infinite ease-in-out}.ol-lamp.st-think .fl{animation-duration:1.1s}.ol-lamp.st-happy .fl{animation-duration:1.3s}.ol-lamp .rays{transform-box:fill-box;transform-origin:center;animation:olrays 2.6s infinite ease-in-out}.ol-lamp.st-think .rays{animation-duration:1.4s}.ol-lamp.st-happy .rays{animation-duration:1.6s}.ol-lamp.st-think .lampg{transform-box:fill-box;transform-origin:50% 100%;animation:ollampsway 2.6s infinite ease-in-out}.ol-lamp.st-happy .lampg{transform-box:fill-box;transform-origin:50% 100%;animation:ollamphop .6s ease}@keyframes ollampfl{0%,100%{transform:scaleY(1) scaleX(1)}30%{transform:scaleY(1.05) scaleX(.97)}60%{transform:scaleY(.98) scaleX(1.02)}}@keyframes olrays{0%,100%{transform:scale(1);opacity:.8}50%{transform:scale(1.08);opacity:1}}@keyframes ollampblink{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}@keyframes ollampsway{0%,100%{transform:rotate(-2.5deg)}50%{transform:rotate(2.5deg)}}@keyframes ollamphop{0%{transform:translateY(0)}40%{transform:translateY(-3px)}100%{transform:translateY(0)}}
+.ol-vans{border:1px solid var(--br);border-radius:10px;padding:11px 13px;margin-bottom:9px;background:var(--bg,#1a140a)}
+.ol-vans .vr{font-weight:700;color:var(--gd,#c9a84c)}
+.ol-vans .vt{display:block;margin-top:5px;font-size:.85rem;line-height:1.55;color:var(--tx,#e7ddc8)}
+.ol-vans .vt em{font-style:normal;font-size:.62rem;color:var(--mu);border:1px solid var(--br);border-radius:4px;padding:0 4px;margin-left:5px;letter-spacing:.05em;vertical-align:middle}
+.ol-ask-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+.ol-ask-chips button{font:inherit;font-size:.78rem;color:var(--tx,#e7ddc8);background:var(--bg,#1a140a);border:1px solid var(--br);border-radius:16px;padding:5px 11px;cursor:pointer;transition:border-color .18s,color .18s}
+.ol-ask-chips button:hover{border-color:var(--gd,#c9a84c);color:var(--gd,#c9a84c)}
+.ol-ask-foot{border-top:1px solid var(--br);padding:10px 10px 4px;display:flex;gap:8px;align-items:center}
+.ol-ask-foot input{flex:1;border:1px solid var(--br);background:var(--bg,#1a140a);color:var(--tx,#e7ddc8);font:inherit;font-size:.9rem;padding:9px 12px;border-radius:9px;outline:none}
+.ol-ask-foot input:focus{border-color:var(--gd,#c9a84c)}
+.ol-ask-foot button.send{flex:none;border:none;background:var(--gd,#c9a84c);color:#1a140a;width:38px;height:38px;border-radius:9px;cursor:pointer;font-size:1.15rem;line-height:1;display:flex;align-items:center;justify-content:center}
+.ol-ask-foot button.send:hover{filter:brightness(1.06)}
+.ol-ask-note{font-size:.66rem;color:var(--mu);text-align:center;padding:6px 12px 9px;line-height:1.4}
+@media(max-width:480px){.ol-ask-wrap{right:8px;bottom:8px;width:auto;left:8px;height:80vh;max-height:none}.ol-ask-fab{right:12px;bottom:14px}#ol-top{bottom:78px}}
+/* END-FEATURES4 */
+
+/* AUTO-FEATURES5 */
+.ol-print-btn{display:flex;align-items:center;gap:9px;width:100%;margin:4px 0 6px;padding:9px 13px;border:1px solid var(--br);border-radius:9px;background:var(--bg2);color:var(--mu);font:inherit;font-size:.86rem;cursor:pointer;transition:border-color .2s,color .2s}
+.ol-print-btn:hover{border-color:var(--gd,#c9a84c);color:var(--gd,#c9a84c)}
+.ol-print-btn svg{width:16px;height:16px;flex:none;display:block}
+@media print{.ol-print-btn{display:none!important}}
+/* END-FEATURES5 */
+</style>
+<script>try{if(localStorage.getItem('ol-theme')==='light')document.documentElement.classList.add('light')}catch(e){}</script>
+<script>try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('js-anim')}catch(e){}</script>
+<link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#141008"><link rel="apple-touch-icon" href="icon-192.png">
+<style id="ol-sb-css">
+main{transition:margin-left .3s ease}
+#ol-sbt{position:fixed;top:50%;transform:translateY(-50%);left:var(--sidebar-w);z-index:150;width:20px;height:52px;display:flex;align-items:center;justify-content:center;background:var(--bg3);color:var(--gold);border:1px solid var(--br);border-left:none;border-radius:0 8px 8px 0;cursor:pointer;font-size:.95rem;line-height:1;box-shadow:2px 0 8px rgba(0,0,0,.28);transition:left .3s ease,filter .2s;font-family:Georgia,serif}
+#ol-sbt:hover{filter:brightness(1.18)}
+html.sb-collapsed #sidebar,html.sb-collapsed #sb{transform:translateX(-100%)}
+html.sb-collapsed main{margin-left:0}
+html.sb-collapsed #ol-sbt{left:0}
+@media(max-width:768px){#ol-sbt{display:none}}
+@media print{#ol-sbt{display:none!important}}
+</style>
+<script>try{if(localStorage.getItem('ol-sb')==='1')document.documentElement.classList.add('sb-collapsed')}catch(e){}</script>
+<!-- SEO-META-START -->
+<meta name="description" content="What theosis (deification) means in Oriental Orthodox theology, and how it compares to the wider Catholic and Protestant spectrum of atonement — from satisfaction theory to penal substitution — grounded in 2 Peter 1:4 and the Church Fathers.">
+<link rel="canonical" href="https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/theosis.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="The Orthodox Lamp">
+<meta property="og:title" content="Theosis & Deification — The Orthodox Lamp">
+<meta property="og:description" content="What theosis (deification) means in Oriental Orthodox theology, and how it compares to the wider Catholic and Protestant spectrum of atonement — from satisfaction theory to penal substitution — grounded in 2 Peter 1:4 and the Church Fathers.">
+<meta property="og:url" content="https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/theosis.html">
+<meta property="og:image" content="https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Theosis & Deification — The Orthodox Lamp">
+<meta name="twitter:description" content="What theosis (deification) means in Oriental Orthodox theology, and how it compares to the wider Catholic and Protestant spectrum of atonement — from satisfaction theory to penal substitution — grounded in 2 Peter 1:4 and the Church Fathers.">
+<meta name="twitter:image" content="https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/og-cover.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "name": "Theosis & Deification — The Orthodox Lamp", "description": "What theosis (deification) means in Oriental Orthodox theology, and how it compares to the wider Catholic and Protestant spectrum of atonement — from satisfaction theory to penal substitution — grounded in 2 Peter 1:4 and the Church Fathers.", "url": "https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/theosis.html", "isPartOf": {"@type": "WebSite", "name": "The Orthodox Lamp", "url": "https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/"}, "inLanguage": "en"}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does theosis mean becoming God?", "acceptedAnswer": {"@type": "Answer", "text": "No. Theosis means partaking of God's uncreated energies and grace by adoption, not becoming God in essence. The Creator/creature distinction is preserved absolutely; only the divine essence remains forever incommunicable."}}, {"@type": "Question", "name": "Did the Father hate Jesus on the cross?", "acceptedAnswer": {"@type": "Answer", "text": "No. This is a popular rhetorical distortion, not careful Reformed or Orthodox theology. The Trinity is never divided; the Son's cry of dereliction in Matthew 27:46 expresses the depth of his identification with sinful humanity, not a rupture in the Godhead."}}]}]}</script>
+<!-- SEO-META-END -->
+</head>
+<body>
+<div id="prog"></div>
+
+<nav id="sidebar">
+  <div id="sidebar-logo">
+    <svg class="lampsvg" width="64" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><radialGradient id="lmpGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffb95e" stop-opacity=".55"/><stop offset="100%" stop-color="#ffb95e" stop-opacity="0"/></radialGradient><linearGradient id="lmpFlame" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#ff7a1f"/><stop offset="55%" stop-color="#ffb347"/><stop offset="100%" stop-color="#ffe9b0"/></linearGradient><linearGradient id="lmpBrass" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e3b860"/><stop offset="50%" stop-color="#a87b35"/><stop offset="100%" stop-color="#7a5523"/></linearGradient></defs><circle cx="60" cy="38" r="34" fill="url(#lmpGlow)"/><g class="lampflame"><path d="M60 16 C66 26 70 32 70 40 C70 48 65.5 53 60 53 C54.5 53 50 48 50 40 C50 32 54 26 60 16 Z" fill="url(#lmpFlame)"/><path d="M60 30 C63 35 64.5 38 64.5 42 C64.5 46.5 62.5 49 60 49 C57.5 49 55.5 46.5 55.5 42 C55.5 38 57 35 60 30 Z" fill="#fff3cf" opacity=".85"/></g><rect x="56" y="52" width="8" height="7" rx="2" fill="#8a6228"/><path d="M28 62 L92 62 C92 80 78 92 60 92 C42 92 28 80 28 62 Z" fill="url(#lmpBrass)"/><rect x="24" y="58" width="72" height="6" rx="3" fill="#caa14e"/><rect x="56" y="92" width="8" height="16" fill="url(#lmpBrass)"/><path d="M38 118 C38 110 47 108 60 108 C73 108 82 110 82 118 L82 122 L38 122 Z" fill="url(#lmpBrass)"/><rect x="32" y="122" width="56" height="6" rx="3" fill="#caa14e"/></svg>
+    <div class="lamp">&#9632; The Orthodox Lamp</div>
+    <div class="sub">Theosis &amp; Deification</div>
+  </div>
+  <div id="search-wrap"><input type="text" id="srch" placeholder="Search&#8230;" oninput="sidebarSearch(this.value)"></div>
+  <div id="nav">
+    <div class="nav-head">Orthodox Teaching</div>
+    <a href="#overview">What Is Theosis?</a>
+    <a href="#patristic">Patristic Foundations</a>
+    <a href="#scripture">Scriptural Anchors</a>
+    <div class="nav-head">The Spectrum</div>
+    <a href="#spectrum">The Wider Spectrum</a>
+    <a href="#catholic">The Catholic View</a>
+    <a href="#protestant">The Protestant / Reformed View</a>
+    <a href="#critique">Where Each View Falls Short</a>
+    <a href="#rhetoric">Popular Rhetoric &amp; Pushback</a>
+    <div class="nav-head">Orthodox Response</div>
+    <a href="#distinction">Why Theosis, Not Merely Forensic</a>
+    <a href="#fairness">Fair Criticisms, Fairly Answered</a>
+    <div class="nav-head">Reference</div>
+    <a href="#faq">FAQ</a>
+    <a href="#glossary">Glossary</a>
+  </div>
+</nav>
+
+<main id="main">
+<nav class="ol-bc" aria-label="Breadcrumb"><a href="index.html">Home</a><i>›</i><a href="index.html#oriental">Oriental Orthodoxy</a><i>›</i><a href="index.html#oriental">Christ &amp; the Councils</a><i>›</i><span class="cur">Theosis &amp; Deification</span></nav>
+<!-- OL-PGBAND -->
+<a class="oo-pgband" href="https://upload.wikimedia.org/wikipedia/commons/3/30/Deyrul_Zafaran_-_Ancient_Syriac_Monastery_-_Outside_Mardin_-_Turkey_-_02_%285789013289%29.jpg" target="_blank" rel="noopener noreferrer" title="Deyrul Zafaran — Syriac Orthodox · Mardin · view full photo (Wikimedia Commons)" aria-label="View the full photograph of Deyrul Zafaran, Syriac Orthodox · Mardin — opens in a new tab"><div class="im" style="background-image:linear-gradient(180deg,rgba(12,12,12,.5) 0%,rgba(12,12,12,.86) 100%),url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Deyrul_Zafaran_-_Ancient_Syriac_Monastery_-_Outside_Mardin_-_Turkey_-_02_%285789013289%29.jpg/960px-Deyrul_Zafaran_-_Ancient_Syriac_Monastery_-_Outside_Mardin_-_Turkey_-_02_%285789013289%29.jpg');background-position:center 54%"></div><span class="cap"><b>Deyrul Zafaran</b>Syriac Orthodox · Mardin</span></a>
+<!-- END-OL-PGBAND -->
+
+  <!-- ANIMATED LAMP HEADER -->
+  <div class="lamp-header">
+    <div class="lamp-wrap">
+      <svg width="170" height="250" viewBox="0 0 160 240" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="glowRad" cx="50%" cy="55%" r="50%">
+            <stop offset="0%" stop-color="#f0b030" stop-opacity="0.9"/>
+            <stop offset="50%" stop-color="#c8801a" stop-opacity="0.5"/>
+            <stop offset="100%" stop-color="#c9a84c" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="bodyGrad" cx="40%" cy="35%" r="70%">
+            <stop offset="0%" stop-color="#deb84a"/>
+            <stop offset="100%" stop-color="#8a6a18"/>
+          </radialGradient>
+        </defs>
+        <!-- Ambient glow -->
+        <ellipse class="fl-glow" cx="80" cy="108" rx="42" ry="55" fill="url(#glowRad)"/>
+        <!-- Outer flame (deep orange) -->
+        <path class="fl-a"
+          d="M80,158 C63,150 53,132 55,110 C57,90 64,76 80,66 C96,76 103,90 105,110 C107,132 97,150 80,158Z"
+          fill="#b84808"/>
+        <!-- Mid flame (amber) -->
+        <path class="fl-b"
+          d="M80,156 C65,148 57,131 59,112 C61,93 68,79 80,70 C92,79 99,93 101,112 C103,131 95,148 80,156Z"
+          fill="#d8720e"/>
+        <!-- Bright flame -->
+        <path class="fl-c"
+          d="M80,152 C67,144 62,128 63,112 C64,96 70,84 80,76 C90,84 96,96 97,112 C98,128 93,144 80,152Z"
+          fill="#f09820"/>
+        <!-- Inner flame (yellow) -->
+        <path class="fl-d"
+          d="M80,148 C71,139 68,125 69,113 C70,101 74,91 80,84 C86,91 90,101 91,113 C92,125 89,139 80,148Z"
+          fill="#f8c838"/>
+        <!-- Hot core -->
+        <ellipse class="fl-e" cx="80" cy="116" rx="7" ry="20" fill="#fef4c0" opacity="0.85"/>
+        <!-- Wick glow dot -->
+        <ellipse cx="80" cy="158" rx="5" ry="4" fill="#f09820" opacity="0.6"/>
+
+        <!-- LAMP BODY (drawn over base of flame) -->
+        <!-- Spout/nozzle -->
+        <path d="M102,170 Q120,163 128,157 Q132,163 125,171 Q113,178 102,178Z" fill="#9a7014"/>
+        <!-- Handle -->
+        <path d="M57,172 Q44,165 41,157 Q45,153 50,158 Q55,165 62,172Z" fill="#9a7014"/>
+        <!-- Body shadow -->
+        <ellipse cx="80" cy="190" rx="52" ry="16" fill="#000" opacity="0.3"/>
+        <!-- Main body ellipse -->
+        <ellipse cx="80" cy="182" rx="52" ry="22" fill="#8a6a14"/>
+        <!-- Top surface of body -->
+        <ellipse cx="80" cy="174" rx="52" ry="18" fill="url(#bodyGrad)"/>
+        <!-- Oil fill (slightly darker center) -->
+        <ellipse cx="80" cy="175" rx="44" ry="12" fill="#9a7a20" opacity="0.6"/>
+        <!-- Shine highlight -->
+        <ellipse cx="64" cy="169" rx="18" ry="5" fill="#e8c870" opacity="0.4"/>
+        <!-- Small decorative ridge -->
+        <path d="M30,175 Q80,168 130,175" stroke="#b89030" stroke-width="1.5" fill="none" opacity="0.5"/>
+        <!-- Wick holder -->
+        <rect x="76" y="158" width="8" height="20" rx="4" fill="#7a4a12"/>
+        <!-- Wick top -->
+        <ellipse cx="80" cy="160" rx="5" ry="4" fill="#5a3410"/>
+      </svg>
+    </div>
+
+    <div class="tag">Oriental Orthodox Theology &mdash; The Orthodox Lamp</div>
+    <h1>Theosis &amp; Deification</h1>
+    <p class="tagline">Salvation as becoming, by grace, "partakers of the divine nature" (2 Peter 1:4) &mdash; and how this Orthodox vision of theosis compares with the wider Catholic and Protestant spectrum of atonement, from satisfaction theory to penal substitution.</p>
+  </div>
+
+  <!-- AUTO-CMPTOP-START -->
+  <div class="cmp-top">
+    <div class="cmp-top-h">At a Glance &mdash; What Does Salvation Ultimately Mean?</div>
+    <div class="comp-grid3">
+      <div class="comp-card oo-card">
+        <div class="cc-label">Orthodox &mdash; Theosis</div>
+        <ul>
+          <li>Real, ontological participation in God's uncreated energies</li>
+          <li>Union with Christ that actually transforms human nature</li>
+          <li>Forgiveness is real, but subordinate to healing and deification</li>
+          <li>Grounded in 2 Peter 1:4, John 17:20&ndash;23, 2 Cor 3:18</li>
+        </ul>
+      </div>
+      <div class="comp-card rc-card">
+        <div class="cc-label">Catholic &mdash; Satisfaction &amp; Infused Grace</div>
+        <ul>
+          <li>Christ's death satisfies the offense sin gives to God's honor</li>
+          <li>Justification really infuses created sanctifying grace</li>
+          <li>Own deification language (CCC &sect;460), but through created grace</li>
+          <li>Anselm's <em>Cur Deus Homo</em>; Aquinas, <em>Summa</em> III qq.46&ndash;49</li>
+        </ul>
+      </div>
+      <div class="comp-card prot">
+        <div class="cc-label">Protestant &mdash; Forensic Justification</div>
+        <ul>
+          <li>Christ bears the legal penalty sin deserves (PSA)</li>
+          <li>Righteousness is imputed, credited, declared &mdash; not infused</li>
+          <li><em lang="la">Simul justus et peccator</em>: righteous and sinner at once</li>
+          <li>Calvin, <em>Institutes</em> III.11; Westminster Confession XI</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- AUTO-CMPTOP-END -->
+
+  <!-- SECTION 1: OVERVIEW -->
+  <div class="sec" id="overview">
+    <div class="sec-h" onclick="ts(this)"><h2>What Is Theosis?</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p><em>Theosis</em> (Greek: &#x03B8;&#x03AD;&#x03C9;&#x03C3;&#x03B9;&#x03C2;, "deification" or "divinization") is the Orthodox Christian understanding of the goal and substance of salvation: the human person, by grace, genuinely participates in the life of God. It is not a peripheral mystical idea reserved for monks; it is, in the Oriental Orthodox and broader Eastern Christian tradition, simply what "being saved" means. To be saved is not merely to be forgiven a debt or acquitted of a charge &mdash; though it includes forgiveness &mdash; it is to be united with God, healed in the depths of one's nature, and progressively transformed into the likeness of Christ, so that what Christ is by nature, the believer becomes by grace and participation.</p>
+
+      <div class="vbox key">
+        <div class="vref">2 Peter 1:4 &mdash; The Charter Text of Theosis</div>
+        <div class="vtext">"Whereby are given unto us exceeding great and precious promises: that by these ye might be partakers of the divine nature, having escaped the corruption that is in the world through lust."</div>
+      </div>
+
+      <p>This verse states plainly what theosis means: believers are to become "partakers of the divine nature" (Greek: <em>theias koin&#333;noi physe&#333;s</em>). This is a staggering claim, and the Church has always been careful to define exactly what it does and does not mean, because the same words can be badly misunderstood in at least two directions.</p>
+
+      <div class="dist-box">
+        <div class="dist-card wrong">
+          <div class="dl">&#9888; Misreading: Theosis means becoming God in essence</div>
+          <p>If "partakers of the divine nature" meant absorption into God's essence, the Creator/creature distinction would collapse into pantheism, and the human person would cease to be a genuinely distinct creature at all. This is not the Christian claim, and it is explicitly and repeatedly denied by every Father who teaches theosis.</p>
+        </div>
+        <div class="dist-card right">
+          <div class="dl">&#10003; The Orthodox Position: Partaking of God's energies, not His essence</div>
+          <p>The Church distinguishes between God's utterly transcendent, incommunicable <em>essence</em> (ousia) and His uncreated <em>energies</em> (energeiai) &mdash; His grace, glory, life, and power, by which He acts toward and indwells creation. Theosis is real participation in the uncreated energies of God, by grace and adoption, while the divine essence remains forever beyond all creaturely participation. This distinction, articulated with technical precision by St. Gregory Palamas in the 14th century but rooted in the earlier Fathers, is what keeps theosis from becoming pantheism.</p>
+        </div>
+      </div>
+
+      <h3>Deification by Grace, Not by Nature</h3>
+      <p>The classic patristic formula is that Christ became what we are (fully human) so that we might become what He is (partakers of the divine life) &mdash; but with an essential qualification always attached: Christ is God <em>by nature</em>; the believer becomes divine only <em>by grace</em> and adoption. The Son's sonship is eternal and essential; ours is adoptive and given. This is why the Fathers can say "God became man that man might become god" without teaching that redeemed humanity ceases to be creaturely, finite, and dependent on God for its very existence. Theosis does not erase the ontological gap between Creator and creature; it is the free, gracious bridging of that gap from God's side, offered to the creature without dissolving the creature's creatureliness.</p>
+
+      <div class="callout">
+        <div class="cl-title">Why This Matters for the Rest of This Page</div>
+        <p>Theosis is the Orthodox answer to the question "what does salvation ultimately accomplish?" It stands within a wider Christian family of answers to that same question &mdash; the Catholic tradition of satisfaction and infused grace, and the Protestant tradition of forensic, imputed righteousness. This page lays out theosis on its own patristic and scriptural terms, then places it fairly alongside those other traditions, including places where those traditions overlap with or diverge sharply from the Orthodox vision, and including honest engagement with popular distortions and legitimate criticisms on all sides.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: PATRISTIC FOUNDATIONS -->
+  <div class="sec" id="patristic">
+    <div class="sec-h" onclick="ts(this)"><h2>Patristic Foundations</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>Theosis is not a late or marginal theme in patristic literature; it runs through the Church's theology of the Incarnation from the earliest centuries, precisely because the Fathers understood salvation and Christology as inseparable. Why the Word became flesh, and what that accomplishes for humanity, are the same question.</p>
+
+      <div class="father-grid">
+        <div class="fc">
+          <div class="fc-name">St. Athanasius of Alexandria</div>
+          <div class="fc-dates">c. 296&ndash;373 AD &mdash; On the Incarnation, &sect;54</div>
+          <div class="fc-quote">"For He was made man that we might be made God (<em>theopoi&#275;th&#333;men</em>); and He manifested Himself by a body that we might receive the idea of the unseen Father; and He endured the insolence of men that we might inherit incorruption."</div>
+          <div class="fc-cite">On the Incarnation of the Word 54.3 &mdash; the single most quoted patristic statement of theosis</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Irenaeus of Lyon</div>
+          <div class="fc-dates">c. 130&ndash;202 AD &mdash; Against Heresies, Book V, Preface</div>
+          <div class="fc-quote">"The Word of God, our Lord Jesus Christ, who did, through His transcendent love, become what we are, that He might bring us to be even what He is Himself."</div>
+          <div class="fc-cite">Against Heresies, Book V, Preface &mdash; the doctrine of recapitulation (Christ retracing and healing the course of Adam's fall) as the framework for deification</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Cyril of Alexandria</div>
+          <div class="fc-dates">c. 376&ndash;444 AD &mdash; On the Unity of Christ</div>
+          <div class="fc-quote">"We do not say that the nature of the Word was changed and became flesh, nor that it was transformed into a whole man consisting of soul and body; but rather that the Word, having personally united to himself flesh animated by a rational soul, did in an inexpressible and incomprehensible manner become man."</div>
+          <div class="fc-cite">On the Unity of Christ &mdash; the communicatio idiomatum (exchange of properties): because the two natures are united in one Person, what belongs to humanity can rightly be said of the divine Word incarnate, and what belongs to divinity is genuinely communicated to the humanity He assumed &mdash; the very ground of theosis</div>
+        </div>
+        <div class="fc">
+          <div class="fc-name">St. Athanasius &amp; St. Cyril on the Cry of Dereliction</div>
+          <div class="fc-dates">Matthew 27:46 &mdash; "My God, my God, why hast thou forsaken me?"</div>
+          <div class="fc-quote">Athanasius (Orations Against the Arians III.56) and Cyril both read this cry as spoken by the incarnate Word <em>in and through</em> the human nature He assumed, voicing the full weight of humanity's estrangement and Psalm 22 on our behalf &mdash; not as evidence of a rupture within the Trinity or a withdrawal of the Father's love from the Son.</div>
+          <div class="fc-cite">Against the Arians III.56; Cyril, Commentary on Luke &mdash; the impassible Word suffers "in the flesh," not in His divine nature, and the Father never ceases to love or behold the Son</div>
+        </div>
+      </div>
+
+      <h3>Recapitulation: Retracing Adam's Path</h3>
+      <p>Irenaeus's theology of <em>recapitulation</em> (Greek <em>anakephalai&#333;sis</em>, from Ephesians 1:10, "to sum up all things in Christ") is the deep structural logic behind theosis. Christ, as the New Adam, retraces the entire course of human life &mdash; obedient where Adam was disobedient, faithful in the wilderness where Israel failed, victorious over death where the first Adam succumbed &mdash; and in so doing heals and elevates human nature at every point He assumes it. Because the Word Himself takes on human nature and lives it perfectly, human nature as such is healed and opened to participation in the divine life. This is why the Incarnation itself, not only the crucifixion, is soteriologically load-bearing in Orthodox theology: the assumption of humanity by God is already the beginning of humanity's deification.</p>
+
+      <div class="vbox father">
+        <div class="vref">St. Irenaeus of Lyon &mdash; Against Heresies III.19.1</div>
+        <div class="vtext">"For it was for this end that the Word of God was made man, and He who was the Son of God became the Son of man, that man, having been taken into the Word, and receiving the adoption, might become the son of God."</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: SCRIPTURAL ANCHORS -->
+  <div class="sec" id="scripture">
+    <div class="sec-h" onclick="ts(this)"><h2>Scriptural Anchors for Theosis</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>Theosis is not a philosophical importation into Scripture; it draws together a consistent scriptural pattern of participatory language &mdash; union, indwelling, transformation, adoption, and glorification &mdash; that runs from the Gospels through the Epistles.</p>
+
+      <div class="vbox">
+        <div class="vref">2 Peter 1:4</div>
+        <div class="vtext">"Whereby are given unto us exceeding great and precious promises: that by these ye might be partakers of the divine nature, having escaped the corruption that is in the world through lust."</div>
+      </div>
+      <div class="vbox">
+        <div class="vref">John 17:20&ndash;23</div>
+        <div class="vtext">"Neither pray I for these alone, but for them also which shall believe on me through their word; that they all may be one; as thou, Father, art in me, and I in thee, that they also may be one in us... I in them, and thou in me, that they may be made perfect in one."</div>
+      </div>
+      <div class="vbox">
+        <div class="vref">2 Corinthians 3:18</div>
+        <div class="vtext">"But we all, with open face beholding as in a glass the glory of the Lord, are changed into the same image from glory to glory, even as by the Spirit of the Lord."</div>
+      </div>
+      <div class="vbox">
+        <div class="vref">Galatians 2:20</div>
+        <div class="vtext">"I am crucified with Christ: nevertheless I live; yet not I, but Christ liveth in me: and the life which I now live in the flesh I live by the faith of the Son of God, who loved me, and gave himself for me."</div>
+      </div>
+      <div class="vbox">
+        <div class="vref">Romans 8:29</div>
+        <div class="vtext">"For whom he did foreknow, he also did predestinate to be conformed to the image of his Son, that he might be the firstborn among many brethren."</div>
+      </div>
+      <div class="vbox">
+        <div class="vref">1 John 3:2</div>
+        <div class="vtext">"Beloved, now are we the sons of God, and it doth not yet appear what we shall be: but we know that, when he shall appear, we shall be like him; for we shall see him as he is."</div>
+      </div>
+
+      <p>Each of these texts moves beyond a merely external or declarative account of salvation: believers are "changed into the same image," "conformed" to Christ, indwelt so fully that Paul can say "Christ liveth in me," and promised that they "shall be like him." This is the vocabulary of real transformation and participation, not only legal reassignment.</p>
+
+      <h3>The Cross Is Not Divine Abandonment</h3>
+      <p>Because later sections of this page examine popular rhetoric about the Father "turning His back" on the Son, it is worth anchoring here, from Scripture itself, why the Orthodox and the broader patristic tradition reject any reading of the crucifixion as a rupture within the Godhead.</p>
+
+      <div class="scripture-grid">
+        <div class="sg-item">
+          <div class="sg-ref">Psalm 22:1, 24</div>
+          <div class="sg-text">"My God, my God, why hast thou forsaken me?... For he hath not despised nor abhorred the affliction of the afflicted; neither hath he hid his face from him; but when he cried unto him, he heard."</div>
+          <div class="sg-note">Matthew 27:46 quotes the opening line of Psalm 22 &mdash; a lament psalm that moves from apparent abandonment to vindication and praise. The Fathers read Christ's cry as praying the whole psalm, including its resolution, not merely voicing despair.</div>
+        </div>
+        <div class="sg-item">
+          <div class="sg-ref">John 10:17&ndash;18</div>
+          <div class="sg-text">"Therefore doth my Father love me, because I lay down my life, that I might take it again. No man taketh it from me, but I lay it down of myself... This commandment have I received of my Father."</div>
+          <div class="sg-note">Christ states explicitly that the Father's love for Him is bound up with, not withdrawn during, His self-offering on the cross. The cross is the Father's beloved Son fulfilling the Father's will in love, not the Father's wrath displacing His love.</div>
+        </div>
+        <div class="sg-item">
+          <div class="sg-ref">2 Corinthians 5:19</div>
+          <div class="sg-text">"To wit, that God was in Christ, reconciling the world unto himself, not imputing their trespasses unto them."</div>
+          <div class="sg-note">The cross is presented as God's own act in Christ, not an act done by the Father against the Son. Father and Son are together the reconciling agent, not opposed parties.</div>
+        </div>
+        <div class="sg-item">
+          <div class="sg-ref">Colossians 1:19&ndash;20</div>
+          <div class="sg-text">"For it pleased the Father that in him should all fulness dwell; and, having made peace through the blood of his cross, by him to reconcile all things unto himself."</div>
+          <div class="sg-note">The Father's good pleasure and the Son's blood are presented as one unified act of reconciliation, not two conflicting wills momentarily divided from each other.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: THE WIDER SPECTRUM -->
+  <div class="sec" id="spectrum">
+    <div class="sec-h" onclick="ts(this)"><h2>The Wider Spectrum &mdash; From Forensic PSA to Theosis</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>Christian traditions differ meaningfully on what salvation ultimately accomplishes and how the cross achieves it. The following walks across that spectrum, presenting each position as its own adherents would state it, before the following sections examine the Catholic and Protestant positions in depth.</p>
+
+      <div class="tl">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-date">Strict Forensic View</div>
+            <div class="tl-title">Penal Substitutionary Atonement (PSA)</div>
+            <p>Sin incurs a legal penalty that God's justice requires be paid. Christ, as substitute, bears the punishment sinners deserved; God's wrath against sin is satisfied in Him. Salvation is chiefly the legal transfer of guilt to Christ and righteousness to the believer. Associated with much of the Reformed and evangelical tradition, especially post-Reformation.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-date">Moderate Reformed View</div>
+            <div class="tl-title">Forensic Justification with Union with Christ</div>
+            <p>Retains imputed, forensic righteousness as central, but increasingly (especially in recent Reformed scholarship) emphasizes "union with Christ" as the umbrella category within which justification, sanctification, and even glorification occur &mdash; softening a purely transactional picture without abandoning forensic categories.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-date">Catholic View</div>
+            <div class="tl-title">Satisfaction (Anselm) and Infused Grace (Aquinas)</div>
+            <p>Sin is an offense against God's honor and justice requiring satisfaction; Christ's sacrifice offers this satisfaction. Justification is not merely declared but really infuses sanctifying grace into the soul, making the believer inwardly righteous, in a process synergistic with human cooperation and the sacraments.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-date">Wesleyan / Arminian View</div>
+            <div class="tl-title">Governmental Atonement and Entire Sanctification</div>
+            <p>Christ's death upholds God's moral government of the universe rather than paying a strict penal debt one-to-one; salvation includes real, progressive transformation of character, moving toward what Wesley called "Christian perfection" or "entire sanctification" &mdash; a view with real affinities to theosis, though still framed within a broadly Protestant grace-and-free-will structure.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-date">Orthodox View</div>
+            <div class="tl-title">Theosis &mdash; Participatory, Ontological Transformation</div>
+            <p>Salvation is chiefly the healing, transformation, and deification of human nature through real union with the God-man Christ, accomplished through the Incarnation, the whole of Christ's life, death, and resurrection, and applied through the sacraments and ascetic-spiritual life. Legal categories (forgiveness of trespasses) are affirmed but are not the central or exhaustive frame.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <div class="cl-title">A Spectrum, Not a Wall</div>
+        <p>It would be a caricature to say "Catholics and Protestants believe only in a legal transaction while Orthodox alone believe in real transformation." As the next two sections show, both Catholic and Protestant theology contain genuine participatory and transformative strands &mdash; the Catholic doctrine of infused grace and its own deification language (CCC &sect;460), and Reformed theologians like T.F. Torrance who explicitly recover theotic categories. The real difference is one of emphasis, structure, and metaphysics (created grace vs. uncreated energies) rather than a total absence of participatory categories on one side.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: THE CATHOLIC VIEW -->
+  <div class="sec" id="catholic">
+    <div class="sec-h" onclick="ts(this)"><h2>The Catholic View in Full</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>The Roman Catholic tradition offers a considered, sophisticated theology of salvation that is neither purely forensic nor identical to Orthodox theosis. Two figures anchor it: St. Anselm of Canterbury, who gave satisfaction theory its classical shape, and St. Thomas Aquinas, who systematized and refined it within a broader sacramental and metaphysical framework.</p>
+
+      <h3>Anselm's Satisfaction Theory</h3>
+      <p>In <em>Cur Deus Homo</em> ("Why God Became Man," c. 1098), Anselm argues that sin is an infinite offense against God's honor, because it is committed against an infinite being. Human beings, being finite, cannot render the infinite satisfaction such an offense requires; only God can render infinite satisfaction, yet it is humanity that owes the debt. The solution is the God-man: Christ, being both fully God and fully human, can as man owe the debt and as God possess the infinite worth to pay it. His voluntary death, which He did not personally owe (being sinless), constitutes a superabundant satisfaction that outweighs the debt of human sin.</p>
+
+      <div class="vbox">
+        <div class="vref">St. Anselm of Canterbury &mdash; Cur Deus Homo, Book I, Ch. 21&ndash;25 (paraphrase of the argument)</div>
+        <div class="vtext">Sin dishonors God; justice requires either punishment or satisfaction. Because the offense is against infinite majesty, only an infinite satisfaction suffices, and only the God-man can render it: as man, obligated to obey; as God, able to offer something of infinite worth beyond what is owed.</div>
+      </div>
+
+      <h3>Aquinas: Satisfaction Within a Fuller Sacramental Theology</h3>
+      <p>Aquinas takes up Anselm's satisfaction framework in the <em>Summa Theologiae</em> III, questions 46&ndash;49, but integrates it within a richer picture. For Aquinas, Christ's passion is simultaneously a satisfaction for sin (III q.48), a sacrifice, a redemption (a ransom paying the price of freedom from sin and the devil's bondage), and a meritorious cause of grace, applied to believers principally through the sacraments &mdash; above all baptism and the Eucharist. Aquinas is careful to say that God did not strictly <em>require</em> satisfaction by necessity of justice in the sense of having no other option; rather, satisfaction through the Incarnation was the fittest (most congruent) way for God to reconcile mercy and justice (III q.46 a.1&ndash;3).</p>
+
+      <div class="vbox father">
+        <div class="vref">St. Thomas Aquinas &mdash; Summa Theologiae III, q.48, a.2</div>
+        <div class="vtext">"Christ's Passion was not only a sufficient but a superabundant atonement for the sins of the human race... because of the exceeding charity from which He suffered; because of the dignity of His life which He laid down for atonement, for it was the life of one who was God and man; because of the extent of the Passion, and the greatness of the grief endured."</div>
+      </div>
+
+      <h3>Justification: Infused, Not Merely Imputed</h3>
+      <p>The most significant structural difference between the Catholic and later Protestant accounts is that Catholic theology, following Aquinas, holds that justification really <em>infuses</em> sanctifying grace into the soul &mdash; making the believer actually, inherently righteous, not merely declared righteous while remaining sinful in fact. This process is understood as synergistic (grace-enabled human cooperation matters) and ongoing through the sacramental life, particularly penance and the Eucharist. This "infused" model is structurally closer to a participatory account than strict forensic imputation, even though Catholic theology still frames the fundamental problem in juridical terms (offended justice, satisfaction, merit) more thoroughly than Orthodox theology does.</p>
+
+      <h3>The Catechism's Own Deification Language</h3>
+      <p>It is a common oversimplification to treat Catholic soteriology as wholly forensic and Orthodox soteriology as wholly participatory. The <em>Catechism of the Catholic Church</em> explicitly uses deification language, showing a real overlap with (though not identity to) the Orthodox doctrine.</p>
+
+      <div class="vbox key">
+        <div class="vref">Catechism of the Catholic Church, &sect;460</div>
+        <div class="vtext">"The Word became flesh to make us 'partakers of the divine nature': 'For this is why the Word became man, and the Son of God became the Son of man: so that man, by entering into communion with the Word and thus receiving divine sonship, might become a son of God.' 'For the Son of God became man so that we might become God.' 'The only-begotten Son of God, wanting to make us sharers in his divinity, assumed our nature, so that he, made man, might make men gods.'"</div>
+      </div>
+
+      <p>Catechism &sect;460 cites Irenaeus, Athanasius, and Aquinas himself &mdash; the same patristic deification tradition drawn on throughout this page. The real distinction from Orthodox theosis is not the presence or absence of deification language but its metaphysical grounding: Catholic theology (following Aquinas's Aristotelian-Thomist framework) speaks of a single, created, infused grace by which the soul participates in divine life analogically, whereas Orthodox theology, following Palamas, distinguishes God's uncreated energies from His essence and holds that it is the uncreated energies themselves &mdash; not a created effect standing in for them &mdash; in which the believer really participates. This created-grace/uncreated-energies distinction is the technical crux of the historic East&ndash;West disagreement over deification, debated directly in the 14th-century Palamite controversy with Barlaam of Calabria.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 6: THE PROTESTANT VIEW -->
+  <div class="sec" id="protestant">
+    <div class="sec-h" onclick="ts(this)"><h2>The Protestant / Reformed View in Full</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>The Reformation sharpened the forensic dimension of salvation into its clearest and most systematic expression, above all in the doctrine of justification by faith alone (<em>sola fide</em>), understood as a legal declaration rather than an infusion of righteousness.</p>
+
+      <h3>Calvin's Institutes</h3>
+      <p>John Calvin, in the <em>Institutes of the Christian Religion</em>, Book II, chapters 16&ndash;17, and Book III, chapters 11&ndash;18, presents Christ's work chiefly under the offices of Priest and King, satisfying God's justice as a substitute and securing believers' righteousness by imputation. For Calvin, justification is God reckoning believers righteous on the basis of Christ's righteousness credited to them, not on the basis of a righteousness inherent in them. Sanctification is real and necessary, but Calvin insists it is logically and theologically distinct from justification itself, which remains a forensic, once-for-all legal verdict.</p>
+
+      <div class="vbox father">
+        <div class="vref">John Calvin &mdash; Institutes of the Christian Religion, III.11.2</div>
+        <div class="vtext">"A man will be justified by faith when, excluded from the righteousness of works, he by faith lays hold of the righteousness of Christ, and clothed in it, appears in the sight of God not as a sinner but as righteous... Justification, therefore, we understand to be the acceptance with which God receives us into his favor as righteous... it consists in the remission of sins and the imputation of the righteousness of Christ."</div>
+      </div>
+
+      <h3>The Westminster Confession</h3>
+      <p>The Westminster Confession of Faith (1646), chapter 11, gives the classic Reformed confessional statement: God justifies the elect "not for any thing wrought in them, or done by them, but for Christ's sake alone; nor by imputing faith itself, the act of believing... as their righteousness, but by imputing the obedience and satisfaction of Christ unto them." Justification is entirely forensic: a legal act of God as judge, not a change wrought within the sinner.</p>
+
+      <div class="vbox">
+        <div class="vref">Westminster Confession of Faith, XI.1</div>
+        <div class="vtext">"Those whom God effectually calleth, he also freely justifieth: not by infusing righteousness into them, but by pardoning their sins, and by accounting and accepting their persons as righteous; not for any thing wrought in them, or done by them, but for Christ's sake alone."</div>
+      </div>
+
+      <h3>Simul Justus et Peccator</h3>
+      <p>Martin Luther's formula <em>simul justus et peccator</em> ("simultaneously righteous and sinner") captures the forensic logic sharply: the believer is, at one and the same time, actually and truly sinful in themselves, and yet truly reckoned righteous before God because of Christ's imputed righteousness received by faith. This is not a legal fiction in the Reformers' own understanding &mdash; the imputation is grounded in real union with Christ received by faith &mdash; but it is structurally a declarative, not (in the first instance) a transformative, account of justification itself, with sanctification treated as a separate, ongoing work of the Spirit.</p>
+
+      <h3>T.F. Torrance: A Reformed Recovery of Theotic Categories</h3>
+      <p>It would be inaccurate to treat Protestant theology as monolithically forensic. The 20th-century Scottish Reformed theologian Thomas F. Torrance, in works including <em>The Mediation of Christ</em> and <em>Theology in Reconciliation</em>, explicitly draws on the patristic theology of theosis &mdash; citing Athanasius and Irenaeus directly &mdash; to argue that the "wonderful exchange" (Christ taking what is ours to give us what is His) must be understood as a real, ontological union between Christ's humanity and ours, not merely an external legal transaction. Torrance criticizes what he calls "Latin heresy" tendencies (both Catholic and Protestant) toward externalizing salvation, and insists that atonement and incarnation cannot be separated: Christ heals human nature by assuming it, in a manner deeply resonant with Athanasius's own logic.</p>
+
+      <div class="vbox father">
+        <div class="vref">T.F. Torrance &mdash; The Mediation of Christ (paraphrase of his central thesis)</div>
+        <div class="vtext">Torrance argues that the vicarious humanity of Christ means the Incarnation itself is already atoning: the Son sanctifies human nature by uniting it to Himself from the very moment of conception, so that our salvation is grounded in a real ontological union with Christ, not only in a legal transaction accomplished at the cross. He explicitly invokes the patristic axiom that "the unassumed is the unhealed."</div>
+      </div>
+
+      <p>Torrance's work shows that the spectrum described in this page is genuinely a spectrum, not two sealed camps: a Reformed theologian, working from within Nicene and Reformed commitments, can recover categories close to theosis while still differing from Orthodoxy on matters such as the essence/energies distinction and the normative authority of the seven (or three) Ecumenical Councils.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 6b: WHERE EACH VIEW FALLS SHORT -->
+  <div class="sec" id="critique">
+    <div class="sec-h" onclick="ts(this)"><h2>Where Each View Falls Short &mdash; An Orthodox Assessment</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>Having presented the Catholic and Protestant positions on their own terms, fairness does not require silence about where Orthodoxy judges them insufficient. This is, after all, an apologetics page: the goal is not merely comparison but an honest argument for why theosis represents the fuller and more biblically adequate account of salvation. What follows takes each major position in turn, states plainly what it gets right, and then argues &mdash; respectfully, but without hedging &mdash; where it falls short.</p>
+
+      <h3>Penal Substitutionary Atonement (PSA)</h3>
+      <div class="dist-card right">
+        <div class="dl">&#10003; What It Gets Right</div>
+        <p>PSA takes with full seriousness that sin is a real offense against a holy God, that Scripture speaks of Christ bearing sin (1 Peter 2:24, Isaiah 53:5&ndash;6), and that the cross is not merely a moral example but an objective act accomplishing something before God on humanity's behalf. It refuses to sentimentalize sin or the cost of forgiveness.</p>
+      </div>
+      <div class="dist-card wrong">
+        <div class="dl">&#9888; Where It Falls Short</div>
+        <p>Taken as the primary or exhaustive lens for the atonement, PSA runs into serious difficulties. First, it risks portraying God's justice and God's love as opposed attributes that must be reconciled by a transaction, rather than a single, simple divine nature acting in perfect unity &mdash; the very "Father hated the Son" distortion examined below is not an accident but a fairly natural (if illegitimate) extension of PSA's own logic once it is popularized. Second, the mechanism of literally transferring guilt and punishment from one person to another sits uneasily with the classical Christian conviction, affirmed across East and West, that guilt is not a transferable substance but a personal reality; the Fathers speak instead of Christ voluntarily entering into and healing humanity's condition from within, not of a legal ledger being rebalanced by penal exchange. Third, and most decisively for this page's purposes, PSA by itself has no intrinsic mechanism for real transformation: if the cross accomplishes only a legal verdict, nothing about the believer's actual nature has changed, and passages like 2 Peter 1:4, 2 Corinthians 3:18, and 1 John 3:2 &mdash; which describe an actual, ongoing participation in the divine nature and growing conformity to Christ's likeness &mdash; are left as an add-on to justification rather than what salvation centrally is. A theory that must import a second doctrine (sanctification) to explain the New Testament's own vocabulary of transformation has not yet reached the New Testament's center of gravity.</p>
+      </div>
+
+      <h3>Governmental Atonement (Grotius, and the Wesleyan/Arminian Variant)</h3>
+      <div class="dist-card right">
+        <div class="dl">&#10003; What It Gets Right</div>
+        <p>Developed by the Dutch jurist-theologian Hugo Grotius in <em>Defensio Fidei Catholicae de Satisfactione Christi</em> (1617) and later adopted in modified form by Wesleyan and Arminian theology, the governmental theory holds that Christ's suffering is not a literal payment of a debt or a literal bearing of the exact punishment sinners deserved, but a public demonstration that God's moral law and government of the universe are serious and cannot be set aside without cost, thereby making forgiveness righteously grantable. Its strength is taking seriously that the atonement has a public, moral, and pedagogical dimension &mdash; the cross really does reveal something to creation about the seriousness of sin and the character of God's justice, a point Orthodox theology also affirms in its own key.</p>
+      </div>
+      <div class="dist-card wrong">
+        <div class="dl">&#9888; Where It Falls Short</div>
+        <p>The governmental view's own architects intended it partly as a corrective to PSA's harsher edges, but this comes at a steep cost: if Christ does not actually bear the specific penalty sinners deserved, but only demonstrates the seriousness of the law in a general way, the atonement risks becoming more illustrative than truly effective &mdash; a display rather than an accomplishment. It remains, moreover, a fundamentally forensic and governmental picture: sin is still primarily conceived as a violation of moral law requiring a public-order response, not as the corruption or death of human nature requiring healing. Even paired with the Wesleyan doctrine of "entire sanctification," which is the closest Western analogue to theosis on this page's spectrum, the governmental theory keeps justification and transformation as two logically separate acts (a legal-governmental one at the cross, a moral-transformative one in the believer's ongoing life) rather than describing, as Orthodoxy does, a single, unified reality of union with the crucified and risen Christ in which forgiveness and deification are two aspects of the very same event, not two different events joined by a bridge.</p>
+      </div>
+
+      <h3>Catholic Satisfaction and Infused Grace</h3>
+      <div class="dist-card right">
+        <div class="dl">&#10003; What It Gets Right</div>
+        <p>Catholic theology, as shown above, is genuinely closer to Orthodoxy than either PSA or the governmental theory: infused grace really changes the believer, and Catechism &sect;460 uses authentic deification language, citing the same Fathers &mdash; Irenaeus and Athanasius &mdash; that Orthodoxy draws on. This is a serious, sacramental, participatory soteriology, not a bare legal fiction.</p>
+      </div>
+      <div class="dist-card wrong">
+        <div class="dl">&#9888; Where It Falls Short</div>
+        <p>The difficulty is structural and metaphysical rather than a matter of good intentions. Because Aquinas works within an Aristotelian framework of created, infused habits of grace, the grace by which the soul participates in God remains, on the Catholic account, a created effect caused by God rather than God's own uncreated life directly communicated &mdash; participation in a gift from God, rather than participation in God Himself. This has concrete downstream consequences the Reformers were not wrong to notice, even if their own solution overcorrected: a created-grace framework more easily generates a quantifiable economy of merit, satisfaction, purgatorial debt, and indulgence that treats grace as a substance to be measured and transferred, a picture considerably more juridical in daily piety and moral theology than the language of Catechism &sect;460 alone suggests. Anselm's starting point &mdash; that the fundamental problem is an affront to God's honor requiring satisfaction &mdash; also still frames the human predicament primarily as a debt of justice rather than, as the Fathers surveyed above insist, a wound of mortality and corruption requiring healing and re-creation. The Palamite essence/energies distinction is not a minor technicality; it is what allows Orthodoxy to say the believer partakes of God Himself, uncreated and undiminished, without collapsing into the exact difficulty (an economy of created, transferable, quantifiable grace) that the Catholic system, for all its real strengths, has not fully escaped.</p>
+      </div>
+
+      <h3>Reformed Forensic Imputation (<em lang="la">Simul Justus et Peccator</em>)</h3>
+      <div class="dist-card right">
+        <div class="dl">&#10003; What It Gets Right</div>
+        <p>The Reformers were responding to genuine abuses in the late medieval economy of merit, and their insistence that justification cannot be earned, only received by grace through faith, recovers something the New Testament states unambiguously (Romans 3:24, Ephesians 2:8&ndash;9). Their emphasis on the sufficiency and finality of Christ's finished work is a real gain against any theology that makes the believer anxiously responsible for completing their own salvation.</p>
+      </div>
+      <div class="dist-card wrong">
+        <div class="dl">&#9888; Where It Falls Short</div>
+        <p>The formula <em>simul justus et peccator</em> &mdash; simultaneously righteous and sinner &mdash; is, on Orthodox terms, precisely the problem stated as if it were the solution. If justification is a legal declaration laid over a nature that remains, in itself, actually and unchangeably sinful, then God is declaring to be true of the believer something that is not, in fact, true of the believer &mdash; a difficulty the Reformers themselves worked hard, not always successfully, to keep from collapsing into a legal fiction. Scripture's own vocabulary resists this ceiling: to be "a new creation" (2 Corinthians 5:17), to have Christ actually live in the believer rather than merely be credited to the believer's account (Galatians 2:20), to be "partakers of the divine nature" (2 Peter 1:4) and "changed... from glory to glory" (2 Corinthians 3:18) describes a real, ongoing, ontological transformation, not a legal status held statically alongside an unchanged nature. Orthodoxy does not deny that believers continue to struggle with sin after baptism &mdash; the ascetic tradition is built on exactly this reality &mdash; but it insists this is a real, unfinished healing in progress (synergistic cooperation with grace toward an actual, growing conformity to Christ), not a permanent, unmoving contradiction papered over by a legal verdict. A gospel whose deepest promise is a change in God's bookkeeping, rather than the actual, gradual deification of the believer through real union with the God-man, has not yet arrived at what 2 Peter 1:4 or John 17:20&ndash;23 are describing.</p>
+      </div>
+
+      <div class="callout">
+        <div class="cl-title">Not a Dismissal of Truth Found Elsewhere</div>
+        <p>None of this denies that Catholic and Protestant Christians are truly united to Christ by grace through faith, or that these traditions contain real elements of the gospel &mdash; sections above deliberately highlighted the genuinely participatory strands within both (infused grace, Torrance's theotic Reformed theology). The argument here is narrower and more precise: as systems, taken on their own explicit terms, each falls short of theosis's fuller account of what salvation is, and the shortfall is traceable to a specific point &mdash; a forensic or juridical starting point that treats transformation as secondary, added-on, or metaphysically thinner than the New Testament's own language of real participation in the divine nature warrants.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 7: POPULAR RHETORIC AND PUSHBACK -->
+  <div class="sec" id="rhetoric">
+    <div class="sec-h" onclick="ts(this)"><h2>Popular Worship Rhetoric &mdash; and the Pushback Against It</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>Distinct from the careful Reformed theology described above, a specific and widely repeated rhetorical claim has become common in contemporary Protestant worship music and preaching: that on the cross, God the Father "turned His back" on the Son, or that the Father "hated" or "could not look at" the Son because He had become sin. This section names that rhetoric fairly, and documents that it has drawn significant pushback from within Protestant and Reformed theology itself &mdash; making clear that this is a popularization issue, not a fair representation of careful Reformed doctrine as described in the previous section.</p>
+
+      <h3>Where the Rhetoric Comes From</h3>
+      <p>The idea has circulated through several channels. The hymn "How Deep the Father's Love for Us" by British songwriter Stuart Townend (1995) contains a line often read as describing the Father turning His face away from the Son on the cross. Some contemporary worship songs associated with Bethel Music and similar congregations have used related imagery of divine forsakenness or wrath displacing love in the crucifixion. In preaching, some popularizers &mdash; John Piper's sermons on the atonement are frequently cited in this connection &mdash; have at times used vivid rhetorical language describing the Father's wrath falling fully upon the Son in a way hearers often take to mean a rupture of the Father's love or fellowship with the Son. (In fairness to Piper and others, their formal theological writing on the Trinity affirms Nicene orthodoxy; the concern here is with how such rhetoric is popularly heard and repeated, which frequently outruns its authors' careful qualifications.)</p>
+
+      <div class="callout">
+        <div class="cl-title">A Note on Copyright</div>
+        <p>This page does not reproduce song lyrics verbatim, in keeping with copyright policy. The songs and their authors are named so readers can locate and evaluate the language for themselves; the theological claim under discussion is described rather than quoted.</p>
+      </div>
+
+      <h3>The Documented Internal Reformed Pushback</h3>
+      <p>Importantly, this rhetoric has been directly and repeatedly criticized by Reformed and evangelical theologians themselves, on classical Trinitarian grounds &mdash; not only by Orthodox or Catholic critics from outside the tradition. The core objection is that "the Father hated/turned away from the Son" violates the ancient rule that the external works of the Trinity are undivided (<em>opera Trinitatis ad extra sunt indivisa</em>), and that it risks a functional, if unintended, breach of the eternal, unbreakable love between Father and Son that classical Trinitarian theology (which Reformed confessions formally affirm, including the Westminster Confession's own Trinitarian chapter) does not permit.</p>
+
+      <div class="dist-box">
+        <div class="dist-card wrong">
+          <div class="dl">&#9888; The Popular Rhetoric</div>
+          <p>"God turned His back on Jesus." "The Father could not look at the Son because He had become sin." "The Father poured out hatred on the Son in our place." This framing is common in worship contexts and can leave the impression of a genuine, if temporary, rupture of love or fellowship within the Godhead.</p>
+        </div>
+        <div class="dist-card right">
+          <div class="dl">&#10003; Careful Trinitarian Christology (Reformed, Catholic, and Orthodox alike)</div>
+          <p>The Father never ceases to love the Son, even at the cross (John 10:17). The Son's cry of dereliction (Matthew 27:46) expresses His identification with sinful humanity's estrangement from God, voiced through the human nature He assumed, quoting Psalm 22 &mdash; a psalm that moves to vindication, not a psalm of final despair. Whatever "bearing sin" or "bearing wrath" means theologically, it cannot mean the eternal Trinity is divided against itself; that would contradict the very doctrine of God that makes salvation through the cross coherent in the first place.</p>
+        </div>
+      </div>
+
+      <p>Reformed voices who have explicitly pushed back on "God hated Jesus on the cross" framing include theologians associated with confessional Reformed and Presbyterian circles who have written and preached specifically against the formulation, arguing it collapses into a form of practical tritheism or at least a serious misstatement of the <em>communicatio idiomatum</em> and the unity of the divine will. The concern is not idiosyncratic to Orthodoxy: it is a live internal debate within contemporary Reformed and evangelical theology about how loosely atonement rhetoric can speak of the Father's disposition toward the Son without compromising Trinitarian orthodoxy.</p>
+
+      <div class="callout">
+        <div class="cl-title">The Orthodox Contribution to This Conversation</div>
+        <p>Orthodox Christology offers a long-developed vocabulary &mdash; the <em>communicatio idiomatum</em>, the impassibility of the divine nature alongside the genuine suffering of the incarnate Word "in the flesh," and the patristic reading of the cry of dereliction discussed in the Patristic Foundations and Scriptural Anchors sections above &mdash; that can help clarify exactly why the popular rhetoric goes wrong, without requiring anyone to abandon a robust doctrine of the atonement or of Christ's real bearing of sin's consequences.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 8: WHY THEOSIS, NOT MERELY FORENSIC -->
+  <div class="sec" id="distinction">
+    <div class="sec-h" onclick="ts(this)"><h2>Why Theosis, Not Merely Forensic Declaration</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>Having laid out the Catholic and Protestant positions fairly on their own terms, this section states the Orthodox critique of the wider spectrum &mdash; not to dismiss those traditions, both of which contain real elements of truth and, as shown above, their own participatory strands, but to explain why Orthodox theology insists that a merely or primarily forensic account of salvation is theologically insufficient.</p>
+
+      <h3>Union, Not Only Verdict</h3>
+      <p>The concern is this: if justification is understood chiefly as a legal declaration &mdash; a change in one's status before God's tribunal without a corresponding real change in one's nature &mdash; then the New Testament's rich vocabulary of union, transformation, indwelling, and glorification (surveyed in the Scriptural Anchors section above) becomes secondary or merely consequent to justification, rather than describing what salvation itself fundamentally is. Orthodox theology reads Scripture as describing salvation primarily in ontological and relational terms &mdash; real union with Christ that really changes the one united to Him &mdash; with forensic categories (the remission of trespasses, e.g. Colossians 2:13) present but subordinate to and flowing from that union, not the other way around.</p>
+
+      <div class="vbox father">
+        <div class="vref">St. Cyril of Alexandria &mdash; Commentary on John, on 17:20&ndash;21 (paraphrase of his argument)</div>
+        <div class="vtext">Christ's prayer that His disciples "may be one" is not asking merely for agreement of will or an external, accidental unity. Cyril argues the standard set by the words "as we" is the real, essential unity of the divine persons themselves &mdash; so that the Church's oneness, through the shared indwelling of the one Spirit of Christ in each believer, images the natural coinherence of the Trinity.</div>
+      </div>
+
+      <p>This same Trinitarian foundation for theosis is developed at greater length elsewhere on this site. See also: <a href="trinity.html#theosis">Theosis in Trinitarian Theology</a>, which explains why only a fully divine Son and fully divine Spirit make real deification metaphysically possible &mdash; a created intermediary could offer only a created participation in a created life.</p>
+
+      <h3>Sin as Sickness, Not Only Crime</h3>
+      <p>A related emphasis: while Orthodox theology fully affirms sin's guilt and its rupture of the relationship with God, it more consistently frames sin's fundamental character as a wound, corruption, or sickness in human nature (following especially the Alexandrian and Cappadocian Fathers) rather than primarily as a crime requiring a corresponding legal penalty. On this reading, what humanity needs is not chiefly a legal verdict reversed but a nature healed, restored, and elevated &mdash; which is precisely what union with the incarnate, resurrected Christ, mediated through the sacraments and the whole ascetic-spiritual life of the Church, accomplishes.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 9: FAIR CRITICISMS -->
+  <div class="sec" id="fairness">
+    <div class="sec-h" onclick="ts(this)"><h2>Fair Criticisms of Theosis, Fairly Answered</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <p>Intellectual honesty requires stating the strongest objections to theosis as its critics would state them, not merely as strawmen. Two concerns recur, and both deserve serious, direct answers.</p>
+
+      <h3>Concern One: Does Theosis Blur the Creator/Creature Distinction?</h3>
+      <p>If theosis is misunderstood as literal absorption into God's essence &mdash; the human person ceasing to be a distinct creature and becoming, in some sense, part of God's own being &mdash; it would collapse into pantheism or a kind of Christianized monism, undermining the entire biblical picture of God as radically other than and ontologically distinct from His creation. This is a legitimate worry, and it is exactly the concern the 14th-century monk Barlaam of Calabria raised against St. Gregory Palamas in the Hesychast controversy.</p>
+
+      <div class="callout">
+        <div class="cl-title">The Orthodox Answer: The Essence/Energies Distinction</div>
+        <p>St. Gregory Palamas answered this directly by distinguishing God's <em>essence</em> (ousia) &mdash; utterly transcendent, simple, and forever incommunicable to any creature &mdash; from God's <em>uncreated energies</em> (energeiai) &mdash; His grace, glory, power, and life, genuinely God Himself in action, by which He really indwells and deifies creatures without creatures ever becoming, or merging into, the divine essence. The human person who attains theosis remains fully and forever a creature, dependent on God for existence, distinct in personhood and nature from God, even while participating truly in God's own uncreated life. Essence is never communicated; energies are. This distinction is precisely what rules out pantheism while still allowing "partakers of the divine nature" (2 Peter 1:4) to be taken with full seriousness.</p>
+      </div>
+
+      <div class="concept-grid">
+        <div class="cc">
+          <div class="cc-term">Ousia</div>
+          <div class="cc-greek">Essence &mdash; incommunicable</div>
+          <div class="cc-def">What God is in Himself. Absolutely transcendent, simple, and beyond all creaturely participation, always and forever. No creature ever partakes of the divine essence.</div>
+        </div>
+        <div class="cc">
+          <div class="cc-term">Energeiai</div>
+          <div class="cc-greek">Uncreated Energies &mdash; communicable</div>
+          <div class="cc-def">God's grace, glory, life, and power, genuinely God Himself acting toward and dwelling in creation. Creatures really participate in these by grace &mdash; this is theosis.</div>
+        </div>
+        <div class="cc">
+          <div class="cc-term">Theosis</div>
+          <div class="cc-greek">Deification by grace, not nature</div>
+          <div class="cc-def">Real participation in God's uncreated energies, given by grace and adoption. The creature remains a creature; the Creator/creature distinction is never erased.</div>
+        </div>
+      </div>
+
+      <h3>Concern Two: Does Theosis Underemphasize Guilt and Legal Satisfaction?</h3>
+      <p>A second, honest Protestant critique runs as follows: by placing such heavy weight on ontological transformation and participation, does Orthodox theology risk underplaying the seriousness of sin as guilt &mdash; a real legal debt incurred before a holy and just God, requiring a real legal satisfaction, which forensic categories (justification, imputation, propitiation of wrath) are specifically designed to take with full seriousness? Scripture does use unmistakably forensic and juridical language &mdash; propitiation (Romans 3:25), justification (Romans 5:1), the language of a debt cancelled (Colossians 2:14) &mdash; and a theology that treats this language as secondary risks flattening real biblical data.</p>
+
+      <div class="callout">
+        <div class="cl-title">The Orthodox Response</div>
+        <p>Orthodox theology does not deny sin's guilt or the reality of God's righteous judgment against sin; the Divine Liturgy, the sacrament of confession, and the Church's ascetic and penitential tradition all take personal sin and guilt with total seriousness, and forensic language in Scripture (propitiation, justification, redemption as ransom) is affirmed, not explained away. The Orthodox claim is one of priority and integration, not exclusion: legal categories describe real and important aspects of what Christ accomplishes, but they are held within, and find their deepest meaning inside, the more fundamental categories of union, healing, and participation &mdash; much as, within Catholic theology itself, Aquinas integrates Anselm's satisfaction language into a fuller sacramental and participatory picture rather than treating it as the whole of the doctrine. The steelman critique is taken seriously; the Orthodox answer is "both, in right order," not "instead of."</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 10: FAQ -->
+  <div class="sec" id="faq">
+    <div class="sec-h" onclick="ts(this)"><h2>Frequently Asked Questions</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <div class="faq">
+        <div class="fi">
+          <div class="fi-q" onclick="tf(this)">Does theosis mean becoming God?<span>+</span></div>
+          <div class="fi-a">No. Theosis means becoming a "partaker of the divine nature" (2 Peter 1:4) by grace, not by essence. The Orthodox tradition, especially through St. Gregory Palamas's essence/energies distinction, is emphatic that the divine essence remains forever incommunicable and that the human person always remains a creature, ontologically distinct from the Creator. What is communicated is God's uncreated energies &mdash; His grace, glory, and life &mdash; not His essence. To say a Christian is "becoming God" in the sense of literally becoming identical with or absorbed into the Godhead would be a serious misunderstanding of the doctrine, explicitly rejected by every Father who teaches it.</div>
+        </div>
+        <div class="fi">
+          <div class="fi-q" onclick="tf(this)">Is theosis the same as Mormon exaltation?<span>+</span></div>
+          <div class="fi-a">No, and the difference is fundamental rather than incidental. Latter-day Saint theology of exaltation teaches that God the Father was once a man who progressed to godhood, that humans can likewise progress to become gods ruling their own worlds, and generally operates within a materialist, developmental view of deity in which the Creator/creature distinction as classically understood does not hold (God and humans share the same kind of being, differing in degree of progression). Orthodox theosis, by contrast, insists on an absolute, permanent, ontological Creator/creature distinction: God alone is eternally, necessarily, and uncaused divine by nature; the human person is deified only by grace, participating in God's energies while remaining forever a creature, dependent on God for existence. There is no doctrine in Orthodoxy of humans becoming independent gods, ruling separate creations, or God Himself having once been a creature.</div>
+        </div>
+        <div class="fi">
+          <div class="fi-q" onclick="tf(this)">Did the Father hate Jesus on the cross?<span>+</span></div>
+          <div class="fi-a">No. This is a popular rhetorical claim, associated with some contemporary worship songs and preaching, but it is not careful Reformed, Catholic, or Orthodox theology, and it has drawn documented pushback from within Reformed theology itself. Scripture states the opposite: "Therefore doth my Father love me, because I lay down my life" (John 10:17). Classical Trinitarian theology, affirmed across all three traditions discussed on this page, holds that the external works of the Trinity are undivided and that the Father, Son, and Spirit are never divided against one another, including at the cross. Christ's cry of dereliction (Matthew 27:46) expresses His identification with humanity's estrangement from God, spoken through the human nature He assumed and quoting the opening of Psalm 22, a psalm that moves toward vindication rather than final despair.</div>
+        </div>
+        <div class="fi">
+          <div class="fi-q" onclick="tf(this)">Is the Catholic view of salvation totally different from Orthodoxy?<span>+</span></div>
+          <div class="fi-a">Not totally &mdash; there is real overlap alongside a real, technical difference. The Catechism of the Catholic Church (&sect;460) explicitly uses deification language, quoting Irenaeus and Athanasius directly and stating that "the Son of God became man so that we might become God." The structural difference is metaphysical: Catholic theology (following Aquinas) speaks of justification as the infusion of a single created grace into the soul, by which the soul participates in divine life analogically; Orthodox theology (following Palamas) holds that believers participate directly in God's own uncreated energies, not merely in a created effect that stands in for them. Catholic theology also retains a more thoroughly juridical framework (Anselm's satisfaction theory) alongside its participatory strand than Orthodox theology typically emphasizes.</div>
+        </div>
+        <div class="fi">
+          <div class="fi-q" onclick="tf(this)">What is penal substitutionary atonement, and is it rejected by Orthodoxy?<span>+</span></div>
+          <div class="fi-a">Penal substitutionary atonement (PSA) is the view, associated especially with the Reformed tradition and articulated classically by Calvin and the Westminster Confession, that Christ bore the legal penalty for sin that sinners themselves deserved, satisfying God's justice and wrath as a substitute, so that believers are reckoned righteous through the imputation of Christ's righteousness. Orthodox theology does not typically frame the atonement in this specific penal-substitutionary structure, and is often critical of formulations that suggest the Father's wrath is directed at the Son as though against an enemy, since this risks obscuring the unity of the Trinity's will and love. However, Orthodox theology does affirm that Christ bears the consequences of sin on humanity's behalf, that His sacrifice reconciles humanity to God, and that Scripture uses genuinely juridical language (propitiation, ransom, redemption) about the cross &mdash; it integrates this language within a wider participatory and therapeutic framework rather than treating penal substitution as the master category.</div>
+        </div>
+        <div class="fi">
+          <div class="fi-q" onclick="tf(this)">What's the difference between theosis and Wesleyan sanctification?<span>+</span></div>
+          <div class="fi-a">The two traditions share significant common ground: both insist that salvation involves a real, progressive transformation of the believer's actual character and life, not merely a legal declaration. John Wesley's doctrine of "entire sanctification" or "Christian perfection" describes believers being brought, by grace, to a state of whole-hearted love for God and neighbor in this life. The differences are structural rather than absolute: Wesleyan theology remains within a broadly Protestant framework of prevenient, justifying, and sanctifying grace understood primarily as God's favor and enabling power rather than the specific Palamite category of uncreated energies; it does not typically employ the essence/energies distinction, and it generally locates final glorification more exclusively in the future rather than describing present participation in the divine life in the same ontological terms Orthodox theology uses. The family resemblance, however, is real and worth noting.</div>
+        </div>
+        <div class="fi">
+          <div class="fi-q" onclick="tf(this)">Is theosis found explicitly in the Bible, or is it a later development?<span>+</span></div>
+          <div class="fi-a">The word "theosis" itself is Greek theological terminology that developed within the patristic tradition, not a biblical word (much like "Trinity" or "Incarnation"). But its content is drawn directly from scriptural texts: 2 Peter 1:4's explicit statement that believers become "partakers of the divine nature," John 17:20-23's prayer that believers be united to the Father and Son as the Son is united to the Father, 2 Corinthians 3:18's language of being "changed into the same image from glory to glory," and 1 John 3:2's promise that "we shall be like him." The Fathers who articulate theosis &mdash; Irenaeus in the 2nd century, Athanasius in the 4th &mdash; are drawing out and systematizing what they read as already present in these texts, not inventing a new doctrine detached from Scripture.</div>
+        </div>
+        <div class="fi">
+          <div class="fi-q" onclick="tf(this)">Does believing in theosis mean rejecting justification by faith?<span>+</span></div>
+          <div class="fi-a">No. Orthodox theology affirms that faith is essential to salvation and that God's grace, not human merit, is the ground of the believer's righteousness before God. What Orthodox theology resists is treating "justification by faith" as the total and exhaustive description of salvation, understood in narrowly forensic terms as a one-time legal declaration separable from ongoing transformation. Orthodox theology holds faith, baptism, participation in the sacraments, and the whole trajectory of a life united to Christ together as the means by which the believer is progressively justified, sanctified, and ultimately glorified &mdash; a more integrated and less strictly sequential picture than some (not all) Protestant formulations, but one that still places grace-given faith at the center.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 11: GLOSSARY -->
+  <div class="sec" id="glossary">
+    <div class="sec-h" onclick="ts(this)"><h2>Glossary of Key Terms</h2><span class="arr">&#9654;</span></div>
+    <div class="sec-body">
+      <div class="glo">
+        <div class="glo-item"><div class="gt">Theosis (&#x03B8;&#x03AD;&#x03C9;&#x03C3;&#x03B9;&#x03C2;)</div><div class="gd">Deification; the participation of the human person in the divine nature (2 Peter 1:4) by grace, not by essence. The Orthodox understanding of the goal of salvation.</div></div>
+        <div class="glo-item"><div class="gt">Deification</div><div class="gd">English equivalent of theosis; the process by which the believer, united to Christ, is transformed and comes to share in God's own life and glory, while remaining fully a creature.</div></div>
+        <div class="glo-item"><div class="gt">Uncreated Energies (Palamas)</div><div class="gd">God's grace, glory, power, and life &mdash; genuinely God Himself in action toward and within creation, as distinguished from His incommunicable essence. The category St. Gregory Palamas used to explain how theosis is possible without pantheism.</div></div>
+        <div class="glo-item"><div class="gt">Essence/Energies Distinction</div><div class="gd">The Palamite distinction between God's utterly transcendent, incommunicable essence (ousia) and His uncreated energies, which are communicable to creatures. Preserves the Creator/creature distinction while allowing real participation in God.</div></div>
+        <div class="glo-item"><div class="gt">Recapitulation</div><div class="gd">St. Irenaeus's doctrine (Greek <em>anakephalai&#333;sis</em>, cf. Ephesians 1:10) that Christ, as the New Adam, retraces and heals the whole course of human life, undoing Adam's fall at every point He assumes it.</div></div>
+        <div class="glo-item"><div class="gt">Satisfaction Theory</div><div class="gd">St. Anselm's theory (Cur Deus Homo) that sin is an infinite offense against God's honor requiring an infinite satisfaction, rendered by the God-man's voluntary death.</div></div>
+        <div class="glo-item"><div class="gt">Penal Substitutionary Atonement (PSA)</div><div class="gd">The view, classically Reformed, that Christ bore the legal penalty for sin that sinners deserved, satisfying God's justice as a substitute, so believers are reckoned righteous through Christ's imputed righteousness.</div></div>
+        <div class="glo-item"><div class="gt">Governmental Theory</div><div class="gd">Hugo Grotius's view that Christ's suffering is a public demonstration of the seriousness of God's moral law, making forgiveness righteously grantable, rather than a literal payment of the exact penalty sinners deserved. Adopted in modified form by much Wesleyan and Arminian theology.</div></div>
+        <div class="glo-item"><div class="gt">Forensic Justification</div><div class="gd">Justification understood as a legal declaration &mdash; God accounting the believer righteous on the basis of Christ's righteousness &mdash; rather than, or prior to, any inward transformation of the believer's actual nature.</div></div>
+        <div class="glo-item"><div class="gt">Imputation</div><div class="gd">The legal crediting of Christ's righteousness to the believer's account (and the believer's sin to Christ's), central to Reformed forensic justification, as distinct from the Catholic doctrine of infused grace.</div></div>
+        <div class="glo-item"><div class="gt">Simul Justus et Peccator</div><div class="gd">Luther's formula: "simultaneously righteous and sinner." The believer remains actually sinful while being truly reckoned righteous before God through Christ's imputed righteousness, received by faith.</div></div>
+        <div class="glo-item"><div class="gt">Participatory Union</div><div class="gd">Real, ontological union between the believer and Christ, by which the believer genuinely shares in Christ's life, not merely a change of legal status. Central to Orthodox theosis and recovered by some Reformed theologians such as T.F. Torrance.</div></div>
+        <div class="glo-item"><div class="gt">Communicatio Idiomatum</div><div class="gd">"Exchange of properties." Because Christ's divine and human natures are united in one Person, what belongs to His humanity may rightly be said of the divine Word incarnate, and divine attributes are genuinely communicated to His assumed humanity &mdash; the christological foundation of theosis.</div></div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+function ts(h){
+  const b=h.nextElementSibling;
+  const a=h.querySelector('.arr');
+  const open=b.style.display==='block';
+  b.style.display=open?'none':'block';
+  a.style.transform=open?'':'rotate(90deg)';
+}
+function tf(h){
+  const a=h.nextElementSibling;
+  const s=h.querySelector('span');
+  const open=a.style.display==='block';
+  a.style.display=open?'none':'block';
+  s.textContent=open?'+':'&#x2212;';
+}
+function sidebarSearch(v){
+  const q=v.toLowerCase();
+  document.querySelectorAll('#nav a').forEach(a=>{
+    a.style.display=(!q||a.textContent.toLowerCase().includes(q))?'':'none';
+  });
+}
+window.addEventListener('scroll',()=>{
+  const st=window.scrollY;
+  const dh=document.documentElement.scrollHeight-window.innerHeight;
+  document.getElementById('prog').style.width=(dh>0?st/dh*100:0)+'%';
+  const secs=document.querySelectorAll('.sec[id]');
+  let cur='';
+  secs.forEach(s=>{if(s.offsetTop-120<=st)cur=s.id;});
+  document.querySelectorAll('#nav a').forEach(a=>{
+    a.classList.toggle('active',a.getAttribute('href')==='#'+cur);
+  });
+});
+(function(){
+  const first=document.querySelector('.sec .sec-h');
+  if(first)ts(first);
+})();
+</script>
+<button id="ol-tt" onclick="olTheme()" aria-label="Toggle light or dark mode" title="Light/dark mode">☀</button><script>function olTheme(){var l=document.documentElement.classList.toggle('light');try{localStorage.setItem('ol-theme',l?'light':'dark')}catch(e){}olIcon()}function olIcon(){document.getElementById('ol-tt').textContent=document.documentElement.classList.contains('light')?'☾':'☀'}olIcon();</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+/* AUTO-ENHANCE-JS */
+(function(){
+  try{
+    // back-to-top
+    var bt=document.createElement('button');bt.id='ol-top';bt.setAttribute('aria-label','Back to top');bt.innerHTML='\u2191';
+    bt.onclick=function(){window.scrollTo({top:0,behavior:'smooth'});};
+    document.body.appendChild(bt);
+    window.addEventListener('scroll',function(){bt.classList.toggle('show',window.scrollY>420);},{passive:true});
+    // reading time
+    var main=document.querySelector('main');
+    if(main){
+      var txt=main.innerText||'';var words=txt.trim().split(/\s+/).length;
+      var mins=Math.max(1,Math.round(words/200));
+      var rt=document.createElement('div');rt.className='ol-readtime';rt.textContent=mins+' min read';
+      var anchor=main.querySelector('.pg-title,.page-head,.pg-head,.hd');
+      if(anchor)anchor.appendChild(rt);else main.insertBefore(rt,main.firstChild);
+    }
+    // scroll-reveal
+    var secs=document.querySelectorAll('.sec');
+    if('IntersectionObserver' in window && document.documentElement.classList.contains('js-anim')){
+      var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.01,rootMargin:'0px 0px 12% 0px'});
+      secs.forEach(function(s){io.observe(s);});
+    }else{secs.forEach(function(s){s.classList.add('in');});}
+    // ensure search reveals all
+    document.querySelectorAll('.sb-search input,input[oninput*=sidebarSearch]').forEach(function(i){i.addEventListener('input',function(){document.querySelectorAll('.sec').forEach(function(s){s.classList.add('in');});});});
+  }catch(e){document.querySelectorAll('.sec').forEach(function(s){s.classList.add('in');});}
+})();
+/* END-ENHANCE-JS */</script>
+<script>
+/* AUTO-AESTHETIC2-JS */
+(function(){
+  try{
+    // section dividers between sibling .sec elements
+    Array.prototype.slice.call(document.querySelectorAll('.sec')).forEach(function(s){
+      var prev=s.previousElementSibling;
+      if(prev&&prev.classList&&prev.classList.contains('sec')&&!prev.classList.contains('ol-divider')){
+        var d=document.createElement('div');d.className='ol-divider';d.setAttribute('aria-hidden','true');d.textContent='\u2629';
+        s.parentNode.insertBefore(d,s);
+      }
+    });
+    // drop-cap on the first section's opening paragraph (chapter-opener feel)
+    var lead=document.querySelector('main .sec .sec-body p, main .sec .sec-bd p');
+    if(lead && (lead.textContent||'').trim().length>40){ lead.classList.add('ol-lead'); }
+  }catch(e){}
+})();
+/* END-AESTHETIC2-JS */</script>
+<script>
+/* AUTO-FEATURES3-JS */
+(function(){
+  try{
+    var here=(location.pathname.split('/').pop()||'index.html');
+    var base=location.href.split('#')[0];
+    function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+    /* ---- 1. copy-link buttons ---- */
+    document.querySelectorAll('.sec[id]').forEach(function(sec){
+      var h=sec.querySelector('.sec-h,.sec-hd');
+      if(!h||h.querySelector('.ol-copy'))return;
+      var b=document.createElement('button');
+      b.className='ol-copy';b.type='button';b.setAttribute('aria-label','Copy link to this section');
+      b.addEventListener('click',function(ev){
+        ev.stopPropagation();ev.preventDefault();
+        var url=base+'#'+sec.id;
+        var ok=function(){b.classList.add('ok');setTimeout(function(){b.classList.remove('ok');},1500);};
+        if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(ok,ok);}
+        else{var t=document.createElement('textarea');t.value=url;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(t);ok();}
+      });
+      var arr=h.querySelector('.arr');
+      if(arr&&arr.parentNode===h)h.insertBefore(b,arr);else h.appendChild(b);
+    });
+
+    /* ---- shared index + bundled KJV ---- */
+    var IDX=null,idxP=null,SEC={};
+    function loadIndex(){if(idxP)return idxP;idxP=fetch('search-index.json').then(function(r){return r.json();}).then(function(d){IDX=d;(d.pages||[]).forEach(function(p){var m={};(p.secs||[]).forEach(function(s){m[s.a]=s.h;});SEC[p.f]=m;});return d;});return idxP;}
+    var VP=null,vpP=null;
+    function loadVP(){if(vpP)return vpP;vpP=fetch('verse-pages.json').then(function(r){return r.json();}).then(function(d){VP=d;return d;}).catch(function(){VP={};});return vpP;}
+    var VERSES=null;
+    fetch('verses.json').then(function(r){return r.json();}).then(function(d){VERSES=d;}).catch(function(){VERSES={};});
+
+    /* ---- 2. related topics ---- */
+    loadIndex().then(function(idx){
+      if(!idx||!idx.pages)return;
+      var page=null;idx.pages.forEach(function(p){if(p.f===here)page=p;});
+      if(!page||!page.rel||!page.rel.length)return;
+      var main=document.querySelector('main')||document.getElementById('main');if(!main)return;
+      var box=document.createElement('div');box.className='ol-related';
+      var hh=document.createElement('h3');hh.textContent='Related topics';box.appendChild(hh);
+      var wrap=document.createElement('div');wrap.className='ol-related-links';
+      page.rel.forEach(function(r){var a=document.createElement('a');a.href=r.f;a.textContent=r.t;wrap.appendChild(a);});
+      box.appendChild(wrap);main.appendChild(box);
+    }).catch(function(){});
+
+    /* ---- 3. site-wide search ---- */
+    var ov=document.createElement('div');ov.className='ol-ov';
+    ov.innerHTML='<div class="ol-modal" role="dialog" aria-label="Search topics and verses"><input class="ol-search-input" type="text" placeholder="Search topics or a Bible verse (e.g. John 3:16)…" aria-label="Search topics and Bible verses" autocomplete="off"><div class="ol-results" role="listbox"></div><div class="ol-hint">↑↓ navigate · ↵ open · esc close · type a reference like Rom 5 or 1 Cor 10:12</div></div>';
+    document.body.appendChild(ov);
+    var input=ov.querySelector('.ol-search-input');
+    var results=ov.querySelector('.ol-results');
+    var flat=[],sel=-1;
+    function hilite(text,q){if(!q)return esc(text);var i=text.toLowerCase().indexOf(q);if(i<0)return esc(text);return esc(text.slice(0,i))+'<mark>'+esc(text.slice(i,i+q.length))+'</mark>'+esc(text.slice(i+q.length));}
+
+    /* fuzzy / typo-tolerant scorer */
+    function lev(a,b){var m=a.length,n=b.length;if(!m)return n;if(!n)return m;var prev=[],cur=[],i,j;for(j=0;j<=n;j++)prev[j]=j;for(i=1;i<=m;i++){cur[0]=i;for(j=1;j<=n;j++){var c=a.charAt(i-1)===b.charAt(j-1)?0:1;cur[j]=Math.min(prev[j]+1,cur[j-1]+1,prev[j-1]+c);}for(j=0;j<=n;j++)prev[j]=cur[j];}return prev[n];}
+    function scoreText(hay,q){
+      if(!q)return 0.5;hay=String(hay).toLowerCase();
+      var idx=hay.indexOf(q);
+      if(idx===0)return 1000;
+      if(idx>0)return 800-idx;
+      var words=hay.split(/[^a-z0-9]+/),best=-1,w,word,d,thr;
+      for(w=0;w<words.length;w++){word=words[w];if(!word)continue;
+        if(word.indexOf(q)===0){best=Math.max(best,600);continue;}
+        if(q.length>=4){thr=q.length<=5?1:2;d=lev(word,q);if(d<=thr)best=Math.max(best,420-d*40);}
+      }
+      if(best>=0)return best;
+      var hi=0,qi=0;for(;hi<hay.length&&qi<q.length;hi++){if(hay.charAt(hi)===q.charAt(qi))qi++;}
+      if(qi===q.length)return 200;
+      return -1;
+    }
+
+    /* Bible-book resolver (abbreviations + full names) */
+    var BK={};
+    function reg(c,al){BK[c.toLowerCase().replace(/\s+/g,'')]=c;al.split(',').forEach(function(a){a=a.replace(/\s+/g,'');if(a)BK[a]=c;});}
+    reg('Genesis','gen,ge,gn');reg('Exodus','exo,ex,exod');reg('Leviticus','lev,le,lv');reg('Numbers','num,nu,nm,nb');
+    reg('Deuteronomy','deut,dt,deu');reg('Joshua','josh,jos,jsh');reg('Judges','judg,jdg,jg,jdgs');reg('Ruth','rut,ru,rth');
+    reg('1 Samuel','1sam,1sa,1s,1sm');reg('2 Samuel','2sam,2sa,2s,2sm');reg('1 Kings','1kings,1kgs,1ki,1kg');reg('2 Kings','2kings,2kgs,2ki,2kg');
+    reg('1 Chronicles','1chron,1chr,1ch');reg('2 Chronicles','2chron,2chr,2ch');reg('Ezra','ezr');reg('Nehemiah','neh,ne');
+    reg('Esther','est,esth,es');reg('Job','jb');reg('Psalms','ps,psa,psalm,pss,psm');reg('Proverbs','prov,pro,prv,pr');
+    reg('Ecclesiastes','eccl,ecc,ec,eccles,qoh');reg('Song of Solomon','song,sos,songofsongs,canticles,cant,ss');
+    reg('Isaiah','isa,is,isai');reg('Jeremiah','jer,jr');reg('Lamentations','lam,la');reg('Ezekiel','ezek,eze,ezk');
+    reg('Daniel','dan,da,dn');reg('Hosea','hos,ho');reg('Joel','joe,jl');reg('Amos','am,amo');reg('Obadiah','obad,ob,oba');
+    reg('Jonah','jon,jnh');reg('Micah','mic,mc');reg('Nahum','nah,na');reg('Habakkuk','hab');reg('Zephaniah','zeph,zep,zp');
+    reg('Haggai','hag,hg');reg('Zechariah','zech,zec,zc');reg('Malachi','mal,ml');reg('Matthew','matt,mt,mat');
+    reg('Mark','mk,mar,mrk');reg('Luke','lk,luk,lu');reg('John','jn,joh,jhn');reg('Acts','act,ac');reg('Romans','rom,ro,rm');
+    reg('1 Corinthians','1cor,1co,1c');reg('2 Corinthians','2cor,2co,2c');reg('Galatians','gal,ga');reg('Ephesians','eph,ephes');
+    reg('Philippians','phil,php,pp');reg('Colossians','col');reg('1 Thessalonians','1thess,1thes,1th');reg('2 Thessalonians','2thess,2thes,2th');
+    reg('1 Timothy','1tim,1ti,1tm');reg('2 Timothy','2tim,2ti,2tm');reg('Titus','tit,ti,tts');reg('Philemon','philem,phlm,phm,pm');
+    reg('Hebrews','heb,hebr');reg('James','jas,jm,jms');reg('1 Peter','1pet,1pe,1pt,1p');reg('2 Peter','2pet,2pe,2pt,2p');
+    reg('1 John','1john,1jn,1jo,1j');reg('2 John','2john,2jn,2jo,2j');reg('3 John','3john,3jn,3jo,3j');reg('Jude','jud,jd');
+    reg('Revelation','rev,re,rv,apocalypse,apoc');
+    function parseRef(raw){
+      if(!raw)return null;
+      var m=raw.match(/^\s*([1-3]?\s*[a-zA-Z][a-zA-Z\s]*?)\s*(\d{1,3})(?:\s*[:.\s]\s*(\d{1,3}))?\s*$/);
+      if(!m)return null;
+      var bk=m[1].toLowerCase().replace(/[\s.]+/g,'');var canon=BK[bk];
+      if(!canon)return null;
+      return {canon:canon,ch:parseInt(m[2],10),vs:m[3]?parseInt(m[3],10):null};
+    }
+    function uniqPages(entries){var seen={},out=[];entries.forEach(function(e){if(!seen[e[0]]){seen[e[0]]=1;out.push({f:e[0],t:e[1],a:e[2]});}});return out;}
+    /* exported verse engine — used by the FE4 "Ask the Lamp" assistant.
+       resolves to null if `raw` is not a bare Bible reference. */
+    window.__olVerseQuery=function(raw){
+      var vq=parseRef((raw||'').trim());
+      if(!vq)return Promise.resolve(null);
+      return Promise.all([loadVP(),loadIndex()]).then(function(){
+        function sub(f,a){return (SEC[f]&&SEC[f][a])||'';}
+        function pages(arr){return uniqPages(arr).map(function(r){return {f:r.f,t:r.t,a:r.a,sub:sub(r.f,r.a)};});}
+        if(vq.vs!=null){
+          var key=vq.canon+' '+vq.ch+':'+vq.vs,e=VP[key];
+          return {mode:'verse',ref:key,kjv:(e&&e.k)?e.k:null,pages:e?pages(e.r):[]};
+        }
+        var prefix=vq.canon+' '+vq.ch+':',vnums=[],agg=[];
+        Object.keys(VP).forEach(function(k){if(k.indexOf(prefix)===0){vnums.push(parseInt(k.slice(prefix.length),10));VP[k].r.forEach(function(r){agg.push(r);});}});
+        vnums.sort(function(a,b){return a-b;});
+        return {mode:'chapter',ref:vq.canon+' '+vq.ch,vnums:vnums,pages:pages(agg)};
+      }).catch(function(){return null;});
+    };
+    function rowsHTML(){
+      if(!flat.length)return '<div class="r-empty">No page cites this on the site yet.</div>';
+      return flat.map(function(r,i){return '<a class="ol-r'+(i===sel?' sel':'')+'" data-i="'+i+'" href="'+r.f+(r.a?'#'+r.a:'')+'"><span class="r-t">'+esc(r.t)+'</span>'+(r.sub?'<span class="r-s">'+esc(r.sub)+'</span>':'')+'</a>';}).join('');
+    }
+
+    function renderVerse(vq){
+      if(!VP){results.innerHTML='<div class="r-empty">Loading verse index…</div>';flat=[];sel=-1;return;}
+      var canon=vq.canon,ch=vq.ch,vs=vq.vs,card='',rows=[];
+      if(vs!=null){
+        var key=canon+' '+ch+':'+vs,e=VP[key];
+        card='<div class="ol-vcard"><span class="vref">'+esc(key)+'</span>'+(e&&e.k?'<span class="vkjv">'+esc(e.k)+'<em>KJV</em></span>':'')+(e?'':'<span class="vmeta">Not cited on the site yet.</span>')+'</div>';
+        if(e)rows=uniqPages(e.r);
+      }else{
+        var prefix=canon+' '+ch+':',vnums=[],agg=[];
+        Object.keys(VP).forEach(function(k){if(k.indexOf(prefix)===0){vnums.push(parseInt(k.slice(prefix.length),10));VP[k].r.forEach(function(r){agg.push(r);});}});
+        vnums.sort(function(a,b){return a-b;});
+        card='<div class="ol-vcard"><span class="vref">'+esc(canon+' '+ch)+'</span><span class="vmeta">'+(vnums.length?'Verses cited here: '+vnums.join(', '):'No verses from this chapter are cited yet.')+'</span></div>';
+        rows=uniqPages(agg);
+      }
+      flat=rows.map(function(r){return {f:r.f,t:r.t,a:r.a,sub:(SEC[r.f]&&SEC[r.f][r.a])?SEC[r.f][r.a]:''};});
+      sel=flat.length?0:-1;
+      results.innerHTML=card+rowsHTML();
+    }
+
+    function renderText(q){
+      flat=[];
+      if(IDX&&IDX.pages){
+        if(!q){
+          IDX.pages.slice().sort(function(a,b){return a.t.localeCompare(b.t);}).forEach(function(p){flat.push({f:p.f,t:p.t,sub:'',a:'',sc:0});});
+        }else{
+          IDX.pages.forEach(function(p){
+            var ts=scoreText(p.t,q),bs=null,bss=-1,kw=-1,kwn='';
+            if(p.secs)p.secs.forEach(function(s){var sc=scoreText(s.h,q)*0.85;if(sc>bss){bss=sc;bs=s;}});
+            if(p.kw)p.kw.forEach(function(k){var sc=scoreText(k,q)*0.7;if(sc>kw){kw=sc;kwn=k;}});
+            var best=Math.max(ts,bss,kw);if(best<=0)return;
+            var it={f:p.f,t:p.t,sc:best};
+            if(best===bss&&bs){it.sub=bs.h;it.a=bs.a;}
+            else if(best===kw&&kwn){it.sub='topic · '+kwn;it.topic=1;}
+            else it.sub='';
+            flat.push(it);
+          });
+          flat.sort(function(a,b){return b.sc-a.sc;});
+        }
+      }
+      flat=flat.slice(0,40);sel=flat.length?0:-1;
+      if(!flat.length){results.innerHTML='<div class="r-empty">'+(IDX?'No matches — try a topic or a Bible verse (e.g. John 3:16)':'Loading index…')+'</div>';return;}
+      results.innerHTML=flat.map(function(r,i){
+        return '<a class="ol-r'+(i===sel?' sel':'')+'" data-i="'+i+'" href="'+r.f+(r.a?'#'+r.a:'')+'"><span class="r-t">'+hilite(r.t,q)+'</span>'+(r.sub?'<span class="r-s'+(r.topic?' r-topic':'')+'">'+(r.topic?esc(r.sub):hilite(r.sub,q))+'</span>':'')+'</a>';
+      }).join('');
+    }
+
+    function render(){
+      var raw=(input.value||'').trim();
+      var vq=parseRef(raw);
+      if(vq){if(!VP)loadVP().then(function(){if(ov.classList.contains('open')&&parseRef((input.value||'').trim()))render();});renderVerse(vq);return;}
+      renderText(raw.toLowerCase());
+    }
+    function setSel(i){var a=results.querySelectorAll('.ol-r');if(!a.length)return;sel=(i+a.length)%a.length;a.forEach(function(el,j){el.classList.toggle('sel',j===sel);});a[sel].scrollIntoView({block:'nearest'});}
+    function go(){if(sel>=0&&flat[sel]){var r=flat[sel];location.href=r.f+(r.a?'#'+r.a:'');}}
+    function openS(seed){ov.classList.add('open');document.body.style.overflow='hidden';input.value=seed||'';render();loadIndex().then(function(){if(ov.classList.contains('open'))render();}).catch(function(){});loadVP().then(function(){if(ov.classList.contains('open'))render();}).catch(function(){});setTimeout(function(){input.focus();if(seed)input.select();},30);}
+    window.__olOpenSearch=openS;
+    function closeS(){ov.classList.remove('open');document.body.style.overflow='';}
+    input.addEventListener('input',render);
+    input.addEventListener('keydown',function(e){
+      if(e.key==='ArrowDown'){e.preventDefault();setSel(sel+1);}
+      else if(e.key==='ArrowUp'){e.preventDefault();setSel(sel-1);}
+      else if(e.key==='Enter'){e.preventDefault();go();}
+      else if(e.key==='Escape'){e.preventDefault();closeS();}
+    });
+    results.addEventListener('mousemove',function(e){var a=e.target.closest('.ol-r');if(a)setSel(+a.getAttribute('data-i'));});
+    ov.addEventListener('click',function(e){if(e.target===ov)closeS();});
+    document.addEventListener('keydown',function(e){
+      if(e.key==='/'&&!ov.classList.contains('open')){var t=document.activeElement;var tn=t?t.tagName:'';if(tn==='INPUT'||tn==='TEXTAREA'||(t&&t.isContentEditable))return;e.preventDefault();openS();}
+      else if(e.key==='Escape'&&ov.classList.contains('open')){closeS();}
+    });
+    var launcher=document.createElement('button');launcher.className='ol-search-btn';launcher.type='button';
+    launcher.innerHTML='Search topics &amp; verses <span>/</span>';launcher.addEventListener('click',function(){openS();});
+    var sbs=document.querySelector('.sb-search');
+    if(sbs&&sbs.parentNode)sbs.parentNode.insertBefore(launcher,sbs);
+    else{var nav=document.querySelector('#sidebar nav,#sb nav,#sidebar,#sb');if(nav)nav.insertBefore(launcher,nav.firstChild);}
+
+    /* ---- 4. scripture tooltips (KJV bundled locally in verses.json, public domain) ---- */
+    var BOOKS='Genesis|Exodus|Leviticus|Numbers|Deuteronomy|Joshua|Judges|Ruth|1 ?Samuel|2 ?Samuel|1 ?Kings|2 ?Kings|1 ?Chronicles|2 ?Chronicles|Ezra|Nehemiah|Esther|Job|Psalms|Psalm|Proverbs|Ecclesiastes|Song of Solomon|Song of Songs|Isaiah|Jeremiah|Lamentations|Ezekiel|Daniel|Hosea|Joel|Amos|Obadiah|Jonah|Micah|Nahum|Habakkuk|Zephaniah|Haggai|Zechariah|Malachi|Matthew|Mark|Luke|John|Acts|Romans|1 ?Corinthians|2 ?Corinthians|Galatians|Ephesians|Philippians|Colossians|1 ?Thessalonians|2 ?Thessalonians|1 ?Timothy|2 ?Timothy|Titus|Philemon|Hebrews|James|1 ?Peter|2 ?Peter|1 ?John|2 ?John|3 ?John|Jude|Revelation';
+    var VRE=new RegExp('\\b((?:'+BOOKS+')\\.?\\s+\\d{1,3}:\\d{1,3}(?:[-–]\\d{1,3})?(?:,\\s?\\d{1,3}(?:[-–]\\d{1,3})?)*)','g');
+    function wrap(root){
+      var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:function(n){
+        if(!n.nodeValue||n.nodeValue.indexOf(':')<0)return NodeFilter.FILTER_REJECT;
+        var p=n.parentNode;
+        while(p&&p!==root){var t=p.nodeName.toLowerCase();
+          if(t==='a'||t==='button'||t==='script'||t==='style'||(p.classList&&(p.classList.contains('ol-verse')||p.classList.contains('ol-copy'))))return NodeFilter.FILTER_REJECT;
+          p=p.parentNode;}
+        return NodeFilter.FILTER_ACCEPT;
+      }});
+      var nodes=[],n;while(n=w.nextNode())nodes.push(n);
+      nodes.forEach(function(node){
+        var txt=node.nodeValue;VRE.lastIndex=0;if(!VRE.test(txt))return;VRE.lastIndex=0;
+        var frag=document.createDocumentFragment(),last=0,m;
+        while(m=VRE.exec(txt)){
+          if(m.index>last)frag.appendChild(document.createTextNode(txt.slice(last,m.index)));
+          var sp=document.createElement('span');sp.className='ol-verse';sp.textContent=m[0];sp.setAttribute('data-ref',m[1]);
+          frag.appendChild(sp);last=m.index+m[0].length;
+        }
+        if(last<txt.length)frag.appendChild(document.createTextNode(txt.slice(last)));
+        node.parentNode.replaceChild(frag,node);
+      });
+    }
+    document.querySelectorAll('.sec-body,.sec-bd,.sec-body2').forEach(wrap);
+    var tip=document.createElement('div');tip.className='ol-tip';tip.style.display='none';document.body.appendChild(tip);
+    function place(el){var r=el.getBoundingClientRect();tip.style.display='block';var w=tip.offsetWidth||330;
+      var left=window.scrollX+r.left;var max=window.scrollX+document.documentElement.clientWidth-w-10;
+      tip.style.left=Math.max(8,Math.min(left,max))+'px';tip.style.top=(window.scrollY+r.bottom+8)+'px';}
+    function lookup(ref){var k=ref.replace(/\s+/g,' ').trim();if(VERSES&&VERSES[k])return VERSES[k];return null;}
+    function show(el){
+      var ref=el.getAttribute('data-ref');if(!ref)return;
+      var t=lookup(ref);
+      if(t){tip.innerHTML='<b>'+esc(ref)+'</b><span class="ol-tip-kjv">KJV</span><br>'+esc(t);}
+      else if(VERSES===null){tip.innerHTML='<b>'+esc(ref)+'</b><br><span class="ol-tip-load">Loading…</span>';}
+      else{tip.innerHTML='<b>'+esc(ref)+'</b><br><span class="ol-tip-err">Text unavailable</span>';}
+      place(el);
+    }
+    function hide(){tip.style.display='none';}
+    document.addEventListener('mouseover',function(e){var t=e.target;if(t.classList&&t.classList.contains('ol-verse'))show(t);});
+    document.addEventListener('mouseout',function(e){var t=e.target;if(t.classList&&t.classList.contains('ol-verse'))hide();});
+    document.addEventListener('focusin',function(e){var t=e.target;if(t.classList&&t.classList.contains('ol-verse'))show(t);});
+    document.addEventListener('focusout',function(e){var t=e.target;if(t.classList&&t.classList.contains('ol-verse'))hide();});
+    document.querySelectorAll('.ol-verse').forEach(function(v){v.setAttribute('tabindex','0');});
+  }catch(e){}
+})();
+/* END-FEATURES3-JS */</script>
+<script>
+/* Ask the Lamp — AI config. Paste your Cloudflare Worker URL between the
+   quotes to turn on grounded AI answers. Leave blank for site-search only.
+   See ask-lamp-SETUP.md for the 10-minute setup. */
+window.OL_ASK_ENDPOINT = "https://ask-the-lamp.sebazz7397.workers.dev";
+</script>
+<script>
+/* AUTO-FEATURES4-JS */
+(function(){
+  try{
+    function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+    /* Optional strict-RAG AI answers. Set window.OL_ASK_ENDPOINT to the
+       Cloudflare Worker URL to turn "Ask the Lamp" from a search box into a
+       grounded assistant. If blank or unreachable, it silently falls back to
+       the retrieval-only behaviour below. See ask-lamp-SETUP.md. */
+    var AI_ENDPOINT=(window.OL_ASK_ENDPOINT||'').trim();
+    /* plain model text -> safe HTML: escape, light **bold**, [n] citations, paragraphs */
+    function fmtAI(s){
+      var out=esc(s);
+      out=out.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
+      /* normalise fancy citation brackets (【1】〔1〕〖1〗) the model sometimes emits to plain [1] */
+      out=out.replace(/[【〔〖]\s*(\d{1,2})\s*[】〕〗]/g,'[$1]');
+      out=out.replace(/\[(\d{1,2})\]/g,'<sup class="ol-ci">[$1]</sup>');
+      return out.split(/\n{2,}/).map(function(p){return '<p>'+p.replace(/\n/g,'<br>')+'</p>';}).join('');
+    }
+    var STOP={};'the a an and or but of to in on at for with as is are was were be been being do does did this that these those it its their them they we you i he she his her our your my me us not no yes can could would should will shall may might must have has had what why how who whom whose which when where does did about into from than then so such also more most very just only own same other any all both each few how into about'.split(/\s+/).forEach(function(w){STOP[w]=1;});
+    function toks(q){return (String(q).toLowerCase().match(/[a-z0-9]+/g)||[]).filter(function(w){return w.length>=3&&!STOP[w];});}
+
+    var C=null,cP=null;
+    function loadC(){if(cP)return cP;cP=fetch('ask-content.json').then(function(r){return r.json();}).then(function(d){C=d;return d;}).catch(function(){C={pages:[]};return C;});return cP;}
+
+    function reEsc(t){return t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}
+    function excerpt(x,tk){
+      if(!x)return '';
+      var lx=x.toLowerCase(),pos=-1,i,p;
+      for(i=0;i<tk.length;i++){p=lx.indexOf(tk[i]);if(p>=0&&(pos<0||p<pos))pos=p;}
+      if(pos<0)pos=0;
+      var start=Math.max(0,pos-65),end=Math.min(x.length,pos+165);
+      var frag=x.slice(start,end);
+      if(start>0)frag=frag.replace(/^\S*\s/,'');
+      if(end<x.length)frag=frag.replace(/\s\S*$/,'');
+      var out=esc(frag);
+      if(start>0)out='…'+out;
+      if(end<x.length)out=out+'…';
+      tk.forEach(function(t){if(t.length<3)return;try{out=out.replace(new RegExp('('+reEsc(t)+')','ig'),'<mark>$1</mark>');}catch(e){}});
+      return out;
+    }
+    /* whole-word matcher (with light plural/possessive tolerance) so that a query
+       for "christ" does NOT match inside "christian"/"christology", and vice-versa. */
+    function mkRx(t){return new RegExp('\\b'+reEsc(t)+"(?:'s|s)?\\b",'gi');}
+    function nWord(text,rx){if(!text)return 0;var m=String(text).match(rx);return m?m.length:0;}
+    function rank(q){
+      var tk=toks(q);if(!tk.length||!C||!C.pages)return {tk:tk,top:[],broad:false};
+      var rx=tk.map(mkRx);
+      /* pass 1 — how many sections each term appears in (for rarity weighting) */
+      var N=0,dfSec=tk.map(function(){return 0;});
+      C.pages.forEach(function(p){var pk=(p.t||'')+' '+((p.kw||[]).join(' '));(p.secs||[]).forEach(function(s){
+        N++;var blob=pk+' '+(s.h||'')+' '+(s.x||'');
+        tk.forEach(function(t,i){if(nWord(blob,rx[i]))dfSec[i]++;});
+      });});
+      /* rarer term => higher weight; ubiquitous terms (Christ, church…) => near-zero */
+      var idf=dfSec.map(function(df){return Math.log((N+1)/(df+1))+0.15;});
+      /* pass 2 — score every section, weighting each term by its rarity */
+      var hits=[];
+      C.pages.forEach(function(p){
+        var title=(p.t||''),kw=(p.kw||[]).join(' ');
+        (p.secs||[]).forEach(function(s){
+          var head=(s.h||''),body=(s.x||''),sc=0,covered=0;
+          tk.forEach(function(t,i){
+            var w=idf[i],any=false,r=rx[i];
+            if(nWord(head,r)){sc+=14*w;any=true;}
+            if(nWord(title,r)){sc+=8*w;any=true;}
+            if(nWord(kw,r)){sc+=7*w;any=true;}
+            var occ=nWord(body,r);if(occ){sc+=Math.min(occ,4)*4*w;any=true;}
+            if(any)covered++;
+          });
+          if(tk.length>1){if(covered===tk.length)sc+=14;sc+=covered*3;}
+          if(sc>0)hits.push({f:p.f,t:p.t,h:s.h,a:s.a,x:s.x,sc:sc,cov:covered});
+        });
+      });
+      hits.sort(function(a,b){return b.sc-a.sc;});
+      /* a single word that appears in a large share of the site is "broad" */
+      var broad=(tk.length===1&&N>0&&dfSec[0]>Math.max(40,N*0.18));
+      var per={},top=[],cap=broad?1:2,lim=broad?6:4;
+      for(var i=0;i<hits.length&&top.length<lim;i++){var f=hits[i].f;if((per[f]||0)>=cap)continue;per[f]=(per[f]||0)+1;top.push(hits[i]);}
+      return {tk:tk,top:top,broad:broad,term:tk[0]};
+    }
+
+    /* ---- UI ---- */
+    var fab=document.createElement('button');fab.className='ol-ask-fab';fab.type='button';
+    fab.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg><span>Ask the Lamp</span>';
+    document.body.appendChild(fab);
+
+    var wrap=document.createElement('div');wrap.className='ol-ask-wrap';wrap.setAttribute('role','dialog');wrap.setAttribute('aria-label','Ask the Lamp');
+    wrap.innerHTML='<div class="ol-ask-hd"><div class="ti"><b>Ask the Lamp</b><span>Search the whole site by question or verse</span></div><button class="ol-ask-x" type="button" aria-label="Close">×</button></div><div class="ol-ask-log" role="log" aria-live="polite"></div><div class="ol-ask-foot"><input type="text" placeholder="Ask a question or type a verse…" aria-label="Ask a question" autocomplete="off"><button class="send" type="button" aria-label="Send">➤</button></div><div class="ol-ask-note">Answers are drawn only from this site’s pages · not a live AI chat</div>';
+    document.body.appendChild(wrap);
+    var log=wrap.querySelector('.ol-ask-log'),inp=wrap.querySelector('.ol-ask-foot input'),sendB=wrap.querySelector('.send'),xB=wrap.querySelector('.ol-ask-x');
+    var LAMP_SVG="<svg viewBox='0 0 40 48' fill='none' xmlns='http://www.w3.org/2000/svg' aria-hidden='true'><defs><radialGradient id='olflame' cx='50%' cy='72%' r='62%'><stop offset='0%' stop-color='#ffe89c'/><stop offset='45%' stop-color='#f8ab3c'/><stop offset='100%' stop-color='#ee6f1e'/></radialGradient><radialGradient id='olfoot' cx='50%' cy='25%' r='85%'><stop offset='0%' stop-color='#c9a35a'/><stop offset='100%' stop-color='#8a6a26'/></radialGradient></defs><g class='lampg'><g class='rays' stroke='#f4a63a' stroke-width='1.6' stroke-linecap='round'><line x1='33' y1='25' x2='36.5' y2='25'/><line x1='7' y1='25' x2='3.5' y2='25'/><line x1='29.2' y1='14.4' x2='31.7' y2='11.6'/><line x1='10.8' y1='14.4' x2='8.3' y2='11.6'/><line x1='29.2' y1='35.6' x2='31.7' y2='38.4'/><line x1='10.8' y1='35.6' x2='8.3' y2='38.4'/><line x1='25' y1='11.1' x2='26.3' y2='7.4'/><line x1='15' y1='11.1' x2='13.7' y2='7.4'/></g><ellipse class='foot' cx='20' cy='44.4' rx='6' ry='1.7' fill='url(#olfoot)'/><rect class='wick' x='18.5' y='39.5' width='3' height='5.2' rx='1.4' fill='#5a4020'/><g class='fl'><path class='body' d='M20 10 C26 15.5 30.5 20.5 30 28 C29.5 35 25 40.5 20 41.5 C15 40.5 10.5 35 10 28 C9.5 20.5 14 15.5 20 10 Z' fill='url(#olflame)'/><path d='M20 18 C23.8 22.5 26 26.5 24.8 31.5 C23.9 35 22 37.2 20 37.6 C18 37.2 16.1 35 15.2 31.5 C14 26.5 16.2 22.5 20 18 Z' fill='#ffe488' opacity='.5'/><ellipse cx='15.6' cy='23' rx='1.6' ry='3' fill='#fff8df' opacity='.4'/></g><g class='eyes' fill='#5a3212'><ellipse cx='15.6' cy='27.5' rx='2.5' ry='3'/><ellipse cx='24.4' cy='27.5' rx='2.5' ry='3'/><circle cx='14.8' cy='26.5' r='.95' fill='#fff'/><circle cx='23.6' cy='26.5' r='.95' fill='#fff'/></g><g class='eyes-happy' stroke='#5a3212' stroke-width='1.7' stroke-linecap='round' fill='none'><path d='M13.1 27.9 Q15.6 24.7 18.1 27.9'/><path d='M21.9 27.9 Q24.4 24.7 26.9 27.9'/></g><path class='m-idle' d='M17.2 32.4 Q20 34.5 22.8 32.4' stroke='#5a3212' stroke-width='1.4' stroke-linecap='round' fill='none'/><path class='m-think' d='M18.5 32.6 Q20 33.4 21.5 32.6' stroke='#5a3212' stroke-width='1.4' stroke-linecap='round' fill='none'/><path class='m-happy' d='M16.4 32 Q20 35.9 23.6 32' stroke='#5a3212' stroke-width='1.6' stroke-linecap='round' fill='none'/></g></svg>";
+    function LAMP(s){return "<span class='ol-lamp st-"+s+"'>"+LAMP_SVG+"</span>";}
+    var lampAv=(function(){var hd=wrap.querySelector('.ol-ask-hd');if(!hd)return null;var a=document.createElement('span');a.className='ol-lamp ol-lamp-hd st-idle';a.innerHTML=LAMP_SVG;hd.insertBefore(a,hd.firstChild);return a;})();
+    function lampState(s){if(lampAv)lampAv.className='ol-lamp ol-lamp-hd st-'+s;}
+    var noteEl=wrap.querySelector('.ol-ask-note');
+    if(noteEl)noteEl.textContent=AI_ENDPOINT
+      ?'AI answers are generated only from this site’s pages, with sources shown — always verify against the cited pages.'
+      :'Answers are drawn only from this site’s pages · not a live AI chat';
+    var subEl=wrap.querySelector('.ol-ask-hd .ti span');
+    if(subEl&&AI_ENDPOINT)subEl.textContent='Grounded answers from the site, with sources';
+
+    function scrollDown(){log.scrollTop=log.scrollHeight;}
+    function addUser(t){var d=document.createElement('div');d.className='ol-ask-msg user';d.textContent=t;log.appendChild(d);scrollDown();}
+    function addBot(html){var d=document.createElement('div');d.className='ol-ask-msg bot';d.innerHTML=html;log.appendChild(d);scrollDown();return d;}
+
+    function pageRows(pages,limit){
+      return pages.slice(0,limit||5).map(function(r){
+        return '<a class="ol-ans" href="'+esc(r.f)+(r.a?'#'+esc(r.a):'')+'"><span class="a-t">'+esc(r.t)+'</span>'+(r.sub?'<span class="a-h">'+esc(r.sub)+'</span>':'')+'</a>';
+      }).join('');
+    }
+    function renderVerse(v){
+      var h='';
+      if(v.mode==='verse'){
+        h+='<div class="ol-vans"><span class="vr">'+esc(v.ref)+'</span>'+(v.kjv?'<span class="vt">'+esc(v.kjv)+'<em>KJV</em></span>':'<span class="vt">Not cited on the site yet.</span>')+'</div>';
+        if(v.pages.length){h+='<p class="lead">Cited on '+v.pages.length+' page'+(v.pages.length>1?'s':'')+':</p>'+pageRows(v.pages,6);}
+      }else{
+        h+='<div class="ol-vans"><span class="vr">'+esc(v.ref)+'</span><span class="vt">'+(v.vnums.length?'Verses cited here: '+v.vnums.join(', '):'No verses from this chapter are cited yet.')+'</span></div>';
+        if(v.pages.length){h+='<p class="lead">Pages citing this chapter:</p>'+pageRows(v.pages,6);}
+      }
+      addBot(h);
+    }
+    function cap1(s){return s?s.charAt(0).toUpperCase()+s.slice(1):s;}
+    function renderTopic(q){
+      var r=rank(q),tk=r.tk,top=r.top;
+      if(!tk.length){addBot('<p class="lead">Try a question like <em>why do you venerate icons?</em> or type a Bible reference such as <em>John 3:16</em>.</p>');return;}
+      if(!top.length){addBot('<p class="lead">I couldn’t find that on the site. Try different words, or browse from the menu.</p>');return;}
+      if(r.broad){
+        var h='<p class="lead">“'+esc(cap1(r.term))+'” runs through much of the site — that’s a broad topic. Here are the main places it’s covered; add a few more words to narrow things down:</p>';
+        h+=top.map(function(it){return '<a class="ol-ans" href="'+esc(it.f)+(it.a?'#'+esc(it.a):'')+'"><span class="a-t">'+esc(it.t)+'</span>'+(it.h?'<span class="a-h">'+esc(it.h)+'</span>':'')+'</a>';}).join('');
+        addBot(h);return;
+      }
+      var strong=(top[0].cov===tk.length);
+      var lead=strong?'Here’s where the site addresses that:':'This looks closest on the site:';
+      var body=top.map(function(it){
+        return '<a class="ol-ans" href="'+esc(it.f)+(it.a?'#'+esc(it.a):'')+'"><span class="a-t">'+esc(it.t)+'</span>'+(it.h?'<span class="a-h">'+esc(it.h)+'</span>':'')+'<span class="a-x">'+excerpt(it.x,tk)+'</span></a>';
+      }).join('');
+      addBot('<p class="lead">'+lead+'</p>'+body);
+    }
+
+    /* citation links under an AI answer, numbered to match [1]/[2] in the text */
+    function citeHTML(top){
+      return '<div class="ol-ai-cite"><p class="lead">Sources on the site</p>'+top.map(function(it,i){
+        return '<a class="ol-ans" href="'+esc(it.f)+(it.a?'#'+esc(it.a):'')+'"><span class="a-t"><span class="a-c">['+(i+1)+']</span>'+esc(it.t)+'</span>'+(it.h?'<span class="a-h">'+esc(it.h)+'</span>':'')+'</a>';
+      }).join('')+'</div>';
+    }
+    /* stream a grounded answer from the Worker; onErr triggers retrieval fallback */
+    function streamAI(q,passages,bubble,onDone,onErr){
+      var txt=document.createElement('div');txt.className='ol-ai-txt';
+      var acc='',started=false,gotErr=false,pinned=false;
+      function begin(){if(!started){started=true;bubble.innerHTML='';bubble.appendChild(txt);}}
+      /* keep the START of the answer at the top of the log so the reader begins at the beginning */
+      function pinStart(){if(pinned)return;pinned=true;var head=bubble.previousElementSibling||bubble;var lr=log.getBoundingClientRect(),er=head.getBoundingClientRect();log.scrollTop+=(er.top-lr.top)-10;}
+      /* gently type the answer in, word by word, with a blinking caret */
+      function typeReveal(full,done){
+        var parts=full.match(/\S+\s*/g)||[full];var i=0,n=parts.length,step=n>90?3:(n>45?2:1);
+        (function tick(){
+          i=Math.min(n,i+step);
+          txt.innerHTML=fmtAI(parts.slice(0,i).join(''))+(i<n?'<span class="ol-ai-caret"></span>':'');
+          if(i<n){setTimeout(tick,18);}else{txt.innerHTML=fmtAI(full||'—');done();}
+        })();
+      }
+      fetch(AI_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({q:q,passages:passages})}).then(function(res){
+        if(!res.ok||!res.body)throw new Error('bad response');
+        var reader=res.body.getReader(),dec=new TextDecoder(),buf='';
+        function finish(){begin();pinStart();typeReveal(acc,onDone);}
+        function pump(){
+          return reader.read().then(function(r){
+            if(r.done){finish();return;}
+            buf+=dec.decode(r.value,{stream:true});
+            var lines=buf.split('\n');buf=lines.pop()||'';
+            lines.forEach(function(line){
+              var t=line.trim();
+              if(t.indexOf('data:')!==0)return;
+              var p=t.slice(5).trim();
+              if(p==='[DONE]'||!p)return;
+              try{var tok=JSON.parse(p);if(typeof tok==='string'){acc+=tok;}}catch(e){}
+            });
+            return pump();
+          });
+        }
+        return pump();
+      }).catch(function(){if(!gotErr){gotErr=true;onErr();}});
+    }
+    function renderTopicAI(q){
+      var r=rank(q),tk=r.tk,top=r.top;
+      if(!tk.length){addBot('<p class="lead">Try a question like <em>why do you venerate icons?</em> or type a Bible reference such as <em>John 3:16</em>.</p>');busy=false;return;}
+      if(!top.length){addBot('<p class="lead">I couldn’t find that on the site. Try different words, or browse from the menu.</p>');busy=false;return;}
+      var passages=top.slice(0,6).map(function(it){return {t:it.t,h:it.h,x:it.x};});
+      lampState('think');
+      var bubble=addBot(''+LAMP('think')+'<span class="ol-ai-think">consulting the lamp…</span>');
+      streamAI(q,passages,bubble,function(){
+        var c=document.createElement('div');c.innerHTML=citeHTML(top);
+        bubble.appendChild(c.firstChild);busy=false;lampState('happy');setTimeout(function(){lampState('idle');},4200);
+      },function(){
+        bubble.parentNode&&bubble.parentNode.removeChild(bubble);
+        lampState('idle');renderTopic(q);busy=false;
+      });
+    }
+
+    var busy=false;
+    function handle(q){
+      q=(q||'').trim();if(!q||busy)return;
+      addUser(q);inp.value='';busy=true;
+      var topic=function(){loadC().then(function(){if(AI_ENDPOINT)renderTopicAI(q);else{renderTopic(q);busy=false;}});};
+      var vp=(window.__olVerseQuery?window.__olVerseQuery(q):Promise.resolve(null));
+      Promise.resolve(vp).then(function(v){
+        if(v){renderVerse(v);busy=false;return;}
+        topic();
+      }).catch(topic);
+    }
+
+    var greeted=false;
+    function greet(){
+      if(greeted)return;greeted=true;
+      var d=addBot('<p class="lead">'+LAMP('idle')+' Ask me anything about the Oriental Orthodox faith, other traditions, or type a Bible reference — I’ll point you to the answer on the site.</p><div class="ol-ask-chips"></div>');
+      var chips=['Why venerate icons?','Are we monophysite?','Purgatory','John 3:16'];
+      var cw=d.querySelector('.ol-ask-chips');
+      chips.forEach(function(c){var b=document.createElement('button');b.type='button';b.textContent=c;b.addEventListener('click',function(){handle(c);});cw.appendChild(b);});
+    }
+    function openAsk(){wrap.classList.add('open');fab.classList.add('hide');greet();lampState('idle');loadC();setTimeout(function(){inp.focus();},40);scrollDown();}
+    function closeAsk(){wrap.classList.remove('open');fab.classList.remove('hide');}
+    fab.addEventListener('click',openAsk);
+    xB.addEventListener('click',closeAsk);
+    sendB.addEventListener('click',function(){handle(inp.value);});
+    inp.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();handle(inp.value);}else if(e.key==='Escape'){closeAsk();}});
+    window.__olOpenAsk=openAsk;
+  }catch(e){}
+})();
+/* END-FEATURES4-JS */</script>
+<script>
+/* AUTO-FEATURES5-JS */
+(function(){
+  try{
+    /* ---- 1. print / save-as-PDF button in the sidebar ---- */
+    if(!document.querySelector('.ol-print-btn')){
+      var pb=document.createElement('button');pb.className='ol-print-btn';pb.type='button';
+      pb.setAttribute('aria-label','Print or save this page as PDF');
+      pb.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg><span>Print / Save as PDF</span>';
+      pb.addEventListener('click',function(){window.print();});
+      var sbtn=document.querySelector('.ol-search-btn');
+      if(sbtn&&sbtn.parentNode){sbtn.parentNode.insertBefore(pb,sbtn.nextSibling);}
+      else{var nav=document.querySelector('#sidebar nav,#sb nav,#sidebar,#sb');if(nav)nav.insertBefore(pb,nav.firstChild);}
+    }
+    /* ---- 2. offline / installable (PWA) service worker ---- */
+    if('serviceWorker' in navigator){
+      window.addEventListener('load',function(){
+        navigator.serviceWorker.register('sw.js').catch(function(){});
+      });
+    }
+  }catch(e){}
+})();
+/* END-FEATURES5-JS */</script>
+<button id="ol-sbt" onclick="olSb()" aria-label="Collapse or expand the contents sidebar" title="Hide or show contents"><span id="ol-sbi">&#8249;</span></button>
+<script>function olSb(){var c=document.documentElement.classList.toggle('sb-collapsed');try{localStorage.setItem('ol-sb',c?'1':'0')}catch(e){}olSbIcon()}function olSbIcon(){var i=document.getElementById('ol-sbi');if(i)i.innerHTML=document.documentElement.classList.contains('sb-collapsed')?'&#8250;':'&#8249;'}olSbIcon();</script>
+<script>/* AUTO-SHARECARDS-JS */
+(function(){
+try{
+  var SITE="The Orthodox Lamp";
+  var HOST="85z5yr9fyf-commits.github.io/the-orthodox-lamp";
+  /* ---- styles ---- */
+  if(!document.getElementById('ol-sc-style')){
+    var st=document.createElement('style');st.id='ol-sc-style';
+    st.textContent='.fc,.sv{position:relative}'+
+      '.ol-sc-btn{position:absolute;top:8px;right:8px;z-index:5;display:inline-flex;align-items:center;gap:5px;'+
+      'background:rgba(201,168,76,.12);border:1px solid var(--gd,#8a6a20);color:var(--gold,#c9a84c);'+
+      'border-radius:6px;padding:3px 8px;font:600 .7rem/1 Georgia,serif;cursor:pointer;opacity:0;'+
+      'transition:opacity .18s,background .18s}'+
+      '.fc:hover .ol-sc-btn,.sv:hover .ol-sc-btn,.ol-sc-btn:focus{opacity:.92}'+
+      '.ol-sc-btn:hover{background:rgba(201,168,76,.24)}'+
+      '.ol-sc-btn svg{width:12px;height:12px}'+
+      '@media(hover:none){.ol-sc-btn{opacity:.6}}'+
+      '@media print{.ol-sc-btn{display:none!important}}';
+    document.head.appendChild(st);
+  }
+  var ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"></line><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"></line></svg>';
+  function clean(s){return (s||'').replace(/\s+/g,' ').trim();}
+  function dequote(s){return s.replace(/^[“‘"']+/,'').replace(/[”’"']+$/,'').trim();}
+  function collect(el){
+    if(el.classList.contains('fc')){
+      var body=el.querySelector('.fc-body'), name=el.querySelector('.fc-name'), src=el.querySelector('.fc-src');
+      var srcTxt='';
+      if(src){var cl=src.cloneNode(true);var tg=cl.querySelector('.tag');if(tg)tg.remove();srcTxt=clean(cl.textContent);}
+      return {quote:dequote(clean(body?body.textContent:el.textContent)),
+              attr:name?clean(name.textContent):'', src:srcTxt};
+    }else{ /* .sv */
+      var cl=el.cloneNode(true), cite=cl.querySelector('cite'); var attr='';
+      var sb=cl.querySelector('.ol-sc-btn'); if(sb)sb.remove();
+      if(cite){attr=clean(cite.textContent);cite.remove();}
+      return {quote:dequote(clean(cl.textContent)), attr:attr, src:''};
+    }
+  }
+  function wrap(x,text,maxW){
+    var words=text.split(' '),lines=[],cur='';
+    for(var i=0;i<words.length;i++){
+      var t=cur?cur+' '+words[i]:words[i];
+      if(x.measureText(t).width>maxW&&cur){lines.push(cur);cur=words[i];}else{cur=t;}
+    }
+    if(cur)lines.push(cur);
+    return lines;
+  }
+  function draw(d){
+    var S=1080,c=document.createElement('canvas');c.width=S;c.height=S;
+    var x=c.getContext('2d');
+    var g=x.createLinearGradient(0,0,0,S);g.addColorStop(0,'#151515');g.addColorStop(1,'#0b0b0b');
+    x.fillStyle=g;x.fillRect(0,0,S,S);
+    x.strokeStyle='#c9a84c';x.lineWidth=3;x.strokeRect(46,46,S-92,S-92);
+    x.strokeStyle='#5a4a20';x.lineWidth=1;x.strokeRect(58,58,S-116,S-116);
+    x.textAlign='center';
+    /* label */
+    x.fillStyle='#a09880';x.font='600 22px Georgia,serif';
+    x.fillText('T H E   O R T H O D O X   L A M P',S/2,132);
+    /* lamp flame */
+    x.fillStyle='#e8c96a';x.beginPath();x.ellipse(S/2,182,11,17,0,0,Math.PI*2);x.fill();
+    x.fillStyle='#c9a84c';x.beginPath();x.moveTo(S/2,150);x.lineTo(S/2-11,180);x.lineTo(S/2+11,180);x.closePath();x.fill();
+    /* opening quote mark */
+    x.fillStyle='rgba(201,168,76,.35)';x.font='italic 150px Georgia,serif';
+    x.fillText('“',S/2,300);
+    /* quote text: size to fit */
+    var maxW=S-220, q=d.quote, size=46;
+    var lens=[[170,46],[300,40],[460,34],[680,29]], picked=25;
+    for(var i=0;i<lens.length;i++){if(q.length<=lens[i][0]){picked=lens[i][1];break;}}
+    size=picked;
+    x.fillStyle='#ece4d4';x.font='italic '+size+'px Georgia,serif';
+    var lines=wrap(x,q,maxW), lh=size*1.34;
+    if(lines.length>15){lines=lines.slice(0,15);lines[14]=lines[14].replace(/[.,;: ]+$/,'')+'…';}
+    var blockH=lines.length*lh, cy=560-blockH/2;
+    /* keep within frame */
+    if(cy<330)cy=330;
+    for(var j=0;j<lines.length;j++){x.fillText(lines[j],S/2,cy+j*lh);}
+    var y=cy+lines.length*lh+34;
+    /* divider */
+    x.strokeStyle='#5a4a20';x.lineWidth=1;x.beginPath();x.moveTo(S/2-46,y);x.lineTo(S/2+46,y);x.stroke();
+    y+=44;
+    /* attribution */
+    if(d.attr){x.fillStyle='#c9a84c';x.font='700 30px Georgia,serif';
+      var al=wrap(x,'— '+d.attr,maxW);for(var k=0;k<al.length;k++){x.fillText(al[k],S/2,y);y+=38;}}
+    /* source */
+    if(d.src){x.fillStyle='#9a9078';x.font='italic 22px Georgia,serif';
+      var sl=wrap(x,d.src,maxW);for(var m=0;m<sl.length;m++){x.fillText(sl[m],S/2,y);y+=28;}}
+    /* footer */
+    x.fillStyle='#8a8268';x.font='20px Georgia,serif';
+    x.fillText(HOST,S/2,S-70);
+    return c;
+  }
+  function share(d){
+    var c=draw(d);
+    c.toBlob(function(blob){
+      if(!blob)return;
+      var url=URL.createObjectURL(blob);
+      var a=document.createElement('a');
+      a.href=url;a.download='orthodox-lamp-quote.png';
+      document.body.appendChild(a);a.click();a.remove();
+      setTimeout(function(){URL.revokeObjectURL(url);},4000);
+    },'image/png');
+  }
+  var nodes=document.querySelectorAll('.fc, .sv');
+  nodes.forEach(function(el){
+    if(el.querySelector('.ol-sc-btn'))return;
+    var txt=clean(el.textContent);
+    if(txt.length<25)return;
+    var b=document.createElement('button');
+    b.type='button';b.className='ol-sc-btn';b.title='Download this quote as an image';
+    b.setAttribute('aria-label','Download this quote as a shareable image');
+    b.innerHTML=ICON+'<span>Share</span>';
+    b.addEventListener('click',function(ev){ev.stopPropagation();share(collect(el));});
+    el.appendChild(b);
+  });
+}catch(e){}
+})();
+/* END-SHARECARDS-JS */</script>
+</body>
+</html>
