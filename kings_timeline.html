@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Timeline of the Kings — Saul, David &amp; Solomon — The Orthodox Lamp</title>
+<style>
+:root{
+  --gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;
+  --bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--bg5:#3a2e10;
+  --tx:#e8e0d0;--mu:#b8ac82;--br:#2a2a2a;
+  --sidebar-w:270px;
+  --rc:#3a1a1a;--rcc:#d47070;
+  --oo:#1a2e1a;--ooc:#7dc87d;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.7;display:flex;min-height:100vh}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+mark{background:rgba(201,168,76,.28);color:var(--gl);border-radius:2px;padding:0 2px}
+#prog{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--gd),var(--gl));z-index:200;transition:width .1s}
+#sb{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:100;display:flex;flex-direction:column}
+#sb-brand{padding:18px 18px 10px;border-bottom:1px solid var(--br)}
+#sb-brand .lamp{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mu);margin-bottom:4px}
+#sb-brand h1{font-size:1rem;color:var(--gold);line-height:1.3}
+.sb-search{padding:10px 14px 4px}
+.sb-search input{width:100%;background:rgba(255,255,255,.06);border:1px solid var(--br);border-radius:6px;padding:8px 12px;font-size:.8rem;color:var(--tx);font-family:'Georgia',serif;outline:none;transition:border-color .2s}
+.sb-search input::placeholder{color:#666}
+.sb-search input:focus{border-color:var(--gd)}
+.sec.s-hidden{display:none}
+.no-match-msg{display:none;padding:14px 18px;font-size:.8rem;color:var(--mu);font-style:italic;text-align:center}
+.no-match-msg.show{display:block}
+#sb-nav{padding:10px 0 20px;flex:1}
+#sb-nav a{display:block;padding:6px 18px;font-size:.82rem;color:var(--mu);border-left:2px solid transparent;transition:all .15s;line-height:1.4}
+#sb-nav a:hover,#sb-nav a.active{color:var(--gold);border-left-color:var(--gold);background:rgba(201,168,76,.06);text-decoration:none}
+main{margin-left:var(--sidebar-w);flex:1;max-width:820px;padding:48px 48px 80px}
+.pg-title{margin-bottom:10px}
+.pg-title .lamp-label{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--mu);margin-bottom:6px}
+.pg-title h1{font-size:2rem;color:var(--gold);line-height:1.2}
+.pg-title .sub{font-size:1rem;color:var(--mu);margin-top:6px;font-style:italic}
+.pg-intro{max-width:660px;color:var(--mu);font-size:.95rem;margin:16px 0 36px;border-left:3px solid var(--gd);padding-left:14px}
+.sec{border:1px solid var(--br);border-radius:8px;margin-bottom:14px;overflow:hidden;background:var(--bg2)}
+.sec-h{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;cursor:pointer;user-select:none;gap:10px}
+.sec-h:hover{background:rgba(255,255,255,.03)}
+.sec-h h2{font-size:1rem;color:var(--tx);font-weight:600}
+.sec-h .arr{color:var(--mu);font-size:.8rem;transition:transform .2s;flex-shrink:0}
+.sec.open .arr{transform:rotate(90deg)}
+.sec-body{display:none;padding:18px 20px 20px;border-top:1px solid var(--br)}
+.sec.open .sec-body{display:block}
+.sec-body p{color:var(--mu);font-size:.92rem;margin-bottom:10px}
+.sec-body p:last-child{margin-bottom:0}
+.sv{background:var(--bg5);border:1px solid var(--gd);border-radius:6px;padding:12px 16px;margin:12px 0;font-style:italic;color:var(--gl);font-size:.92rem}
+.sv cite{display:block;text-align:right;font-size:.8rem;color:var(--gold);margin-top:6px;font-style:normal}
+.comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.comp-card{border-radius:8px;padding:14px 16px;border:1px solid}
+.comp-card.rc-card{background:var(--rc);border-color:var(--rcc)}
+.comp-card.oo-card{background:var(--oo);border-color:var(--ooc)}
+.comp-card .cc-label{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;font-weight:700}
+.comp-card.rc-card .cc-label{color:var(--rcc)}
+.comp-card.oo-card .cc-label{color:var(--ooc)}
+.comp-card ul{padding-left:16px;font-size:.88rem;line-height:1.75}
+.comp-card.rc-card ul{color:#e8c0c0}
+.comp-card.oo-card ul{color:#c8e8c8}
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin:14px 0}
+.fc{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:14px 16px}
+.fc-name{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.fc-body{font-size:.88rem;color:var(--mu);font-style:italic;line-height:1.6}
+.fc-src{font-size:.76rem;color:var(--gd);margin-top:6px}
+.fi{border:1px solid var(--br);border-radius:6px;margin-bottom:8px;overflow:hidden;background:var(--bg3)}
+.fi-h{display:flex;align-items:flex-start;padding:11px 14px;cursor:pointer;gap:8px;user-select:none}
+.fi-h:hover{background:rgba(255,255,255,.03)}
+.fi-q{font-size:.88rem;color:var(--tx);flex:1}
+.fi-arr{color:var(--mu);font-size:.75rem;transition:transform .2s;flex-shrink:0;margin-top:4px}
+.fi.open .fi-arr{transform:rotate(90deg)}
+.fi-body{display:none;padding:12px 14px 14px;border-top:1px solid var(--br);font-size:.88rem;color:var(--mu);line-height:1.65}
+.fi.open .fi-body{display:block}
+.gt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin:14px 0}
+.gt{background:var(--bg3);border:1px solid var(--br);border-radius:7px;padding:12px 14px}
+.gt-term{font-size:.8rem;font-weight:700;color:var(--gold);margin-bottom:4px}
+.gt-def{font-size:.84rem;color:var(--mu);line-height:1.55}
+/* Greek/Latin text box */
+.lang-box{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:14px 18px;margin:12px 0}
+.lb-label{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mu);margin-bottom:8px}
+.lb-row{display:flex;gap:16px;margin-bottom:8px;align-items:baseline;flex-wrap:wrap}
+.lb-lang{font-size:.72rem;color:var(--gold);min-width:60px;flex-shrink:0}
+.lb-text{font-size:.9rem;color:var(--tx);font-style:italic}
+.lb-note{font-size:.8rem;color:var(--mu);margin-top:4px}
+/* consequence vs guilt boxes */
+.distinction-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.dist-box{border-radius:8px;padding:14px 16px;border:1px solid}
+.dist-box.inherited{background:#1a1a2e;border-color:#7070d4}
+.dist-box.not-inherited{background:#2e1a1a;border-color:#d47070}
+.dist-box .db-label{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;font-weight:700}
+.dist-box.inherited .db-label{color:#a0a0e8}
+.dist-box.not-inherited .db-label{color:var(--rcc)}
+.dist-box ul{padding-left:16px;font-size:.88rem;line-height:1.75}
+.dist-box.inherited ul{color:#c8c8f0}
+.dist-box.not-inherited ul{color:#f0c8c8}
+@media(max-width:760px){#sb{transform:translateX(-100%)}main{margin-left:0;padding:24px 18px 60px}}
+
+.lampsvg{display:block;margin:0 auto 14px;height:auto}
+.lampsvg .lampflame{animation:lampflick 3.2s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes lampflick{0%,100%{transform:scaleY(1) scaleX(1);opacity:.95}25%{transform:scaleY(1.06) scaleX(.97);opacity:1}50%{transform:scaleY(.96) scaleX(1.03);opacity:.9}75%{transform:scaleY(1.04) scaleX(.98);opacity:1}}
+
+html.light{--gold:#8a6a20;--gl:#6f5413;--gd:#b08e3e;--bg:#f7f2e6;--bg2:#efe8d5;--bg3:#e7ddc7;--bg4:#ddd2b9;--bg5:#efe0b8;--tx:#2b2415;--mu:#6e6450;--br:#d2c7aa;--rc:#ead1d1;--rcc:#762323;--oo:#d5e7d5;--ooc:#2d6c2d}
+#ol-tt{position:fixed;right:16px;bottom:74px;z-index:9999;width:44px;height:44px;border-radius:50%;background:var(--bg3,var(--panel,#1a1a1a));color:var(--gold,#c9a84c);border:1px solid var(--gd,var(--gold-dark,var(--rule,#8a6a20)));font-size:1.1rem;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35);line-height:1}#ol-tt:hover{filter:brightness(1.15)}
+html.light .pl,html.light .labels .prot{background:#eed6d6;color:#8b2020}
+html.light .gl-tag,html.light .labels .oo{background:#d8e8d8;color:#1d5c1d}
+html.light .labels .ctx{background:#d8e3ee;color:#1d4a6b}
+html.light .obj{border-color:#dcc0c0}
+html.light .obj-bd{border-top-color:#dcc0c0}
+html.light .obj-h h3{color:#8b2020}
+html.light .comp-card.prot{border-top-color:#a83232}
+html.light .comp-card.prot .ct{color:#a83232}
+html.light .dist-box.inherited .db-label{color:#1d4a6b}
+html.light .dist-box.inherited ul{color:#1d4a6b}
+html.light .dist-box.not-inherited ul{color:#8b2020}
+html.light .dist-box.not-inherited{color:#8b2020}
+html.light .comp-card.rc-card ul{color:#8b2020}
+
+/* ol-aes-v1 */
+html.light #sb{background:linear-gradient(180deg,#f5edd5 0%,#ede4cb 100%)}
+
+html.light .sv{box-shadow:0 1px 4px rgba(100,70,15,.08)}
+html.light .fc{box-shadow:0 1px 4px rgba(100,70,15,.08)}
+html.light a{color:#6b4a10}
+html.light #sidenav a{color:var(--mu)}
+html.light #sidenav a.active,html.light #sidenav a:hover{color:var(--gold)}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* AUTO-LIGHTFIX */
+html.light .comp-card.oo-card ul{color:#206f20}
+/* END-LIGHTFIX */
+
+/* AUTO-ENHANCE */
+html.js-anim .sec{opacity:0;transform:translateY(14px);transition:opacity .55s cubic-bezier(.16,.7,.3,1),transform .55s cubic-bezier(.16,.7,.3,1)}
+html.js-anim .sec.in{opacity:1;transform:none}
+.sec.open .sec-body,.sec.open .sec-bd,.sec.open .sec-body2{animation:olSecOpen .4s cubic-bezier(.16,.7,.3,1)}
+.fi.open .fi-body,.fi.open .fi-bd{animation:olSecOpen .32s cubic-bezier(.16,.7,.3,1)}
+@keyframes olSecOpen{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.sec{margin-bottom:20px;transition:border-color .25s,box-shadow .25s}
+.sec-h:hover,.sec-hd:hover{box-shadow:inset 3px 0 0 var(--gd)}
+.sec-body,.sec-bd{line-height:1.75}
+.sec-body p,.sec-bd p{margin-bottom:12px}
+#ol-top{position:fixed;right:22px;bottom:24px;width:42px;height:42px;border-radius:50%;border:1px solid var(--br);background:var(--bg2);color:var(--gd);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .3s,transform .3s,background .2s;z-index:150;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+#ol-top.show{opacity:1;pointer-events:auto;transform:none}
+#ol-top:hover{background:var(--gd);color:#1a140a}
+.ol-readtime{display:inline-flex;align-items:center;gap:7px;font-size:.74rem;letter-spacing:.04em;color:var(--mu);border:1px solid var(--br);border-radius:20px;padding:4px 12px;margin-top:10px;text-transform:uppercase}
+.ol-readtime::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--gd)}
+@media(prefers-reduced-motion:reduce){html.js-anim .sec{opacity:1;transform:none}#ol-top{transition:none}}
+/* END-ENHANCE */
+
+/* AUTO-AESTHETIC2 */
+:root{--ol-acc:var(--gd,#c9a84c)}
+/* smooth anchor scrolling + sticky-header offset */
+html{scroll-behavior:smooth}
+:where(.sec,[id]){scroll-margin-top:88px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+/* theme cross-fade */
+body,main,.sec,.sec-h,.sec-hd,.sec-body,.sec-bd,#sb,#sb-nav a{transition:background-color .35s ease,color .35s ease,border-color .35s ease}
+/* typography polish */
+main .sec-body p,main .sec-bd p{line-height:1.8}
+.sec-h,.sec-hd{letter-spacing:.005em}
+p.ol-lead::first-letter{float:left;font-size:3.1em;line-height:.78;padding:6px 10px 0 0;color:var(--ol-acc);font-weight:700}
+/* card hover depth */
+[class*="-card"],[class*="-box"],.vbox{transition:transform .22s cubic-bezier(.16,.7,.3,1),box-shadow .22s ease,border-color .22s ease,background-color .35s ease,color .35s ease}
+[class*="-card"]:hover,[class*="-box"]:hover,.vbox:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.28)}
+html.light [class*="-card"]:hover,html.light [class*="-box"]:hover,html.light .vbox:hover{box-shadow:0 8px 22px rgba(40,30,10,.12)}
+/* section dividers (inserted by JS) */
+.ol-divider{text-align:center;color:var(--ol-acc);opacity:.45;font-size:1rem;margin:4px auto 26px;line-height:1;letter-spacing:0;user-select:none}
+/* sidebar active-dot fill */
+#sb-nav a{position:relative}
+#sb-nav a.active::before{content:"";position:absolute;left:-2px;top:50%;width:6px;height:6px;border-radius:50%;background:var(--ol-acc);box-shadow:0 0 7px var(--ol-acc);transform:translateY(-50%) scale(0);animation:olDot .3s cubic-bezier(.16,.7,.3,1) forwards}
+@keyframes olDot{to{transform:translateY(-50%) scale(1)}}
+/* bare blockquote uplift (does not touch styled quote-cards) */
+main blockquote{border-left:3px solid var(--ol-acc);padding:8px 0 8px 18px;margin:18px 0;font-style:italic}
+/* END-AESTHETIC2 */
+
+/* AUTO-FEATURES3 */
+/* copy-link buttons */
+.ol-copy{opacity:0;margin:0 8px;background:none;border:none;cursor:pointer;font-size:.8rem;color:var(--mu);transition:opacity .2s,color .2s;vertical-align:middle;padding:2px 5px;line-height:1;border-radius:5px}
+.ol-copy::before{content:"\1F517"}
+.sec-h:hover .ol-copy,.sec-hd:hover .ol-copy,.ol-copy:focus-visible{opacity:.65}
+.ol-copy:hover{opacity:1;color:var(--gd,#c9a84c)}
+.ol-copy.ok{opacity:1;color:#3fa34d}
+.ol-copy.ok::before{content:"\2713";margin-right:4px}
+.ol-copy.ok::after{content:"copied";font-size:.7rem;letter-spacing:.03em}
+/* related topics */
+.ol-related{margin:42px 0 8px;padding:22px 24px;border:1px solid var(--br);border-radius:12px;background:var(--bg2)}
+.ol-related h3{margin:0 0 14px;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gd,#c9a84c);font-weight:700}
+.ol-related-links{display:flex;flex-wrap:wrap;gap:10px}
+.ol-related-links a{display:inline-block;padding:8px 15px;border:1px solid var(--br);border-radius:22px;font-size:.9rem;color:var(--tx,#e7ddc8);text-decoration:none;background:var(--bg,#1a140a);transition:border-color .2s,color .2s,background .2s,transform .2s}
+.ol-related-links a:hover{border-color:var(--gd,#c9a84c);color:var(--gd,#c9a84c);transform:translateY(-1px)}
+/* search launcher */
+.ol-search-btn{display:flex;align-items:center;justify-content:space-between;width:100%;margin:10px 0 4px;padding:9px 13px;border:1px solid var(--br);border-radius:9px;background:var(--bg2);color:var(--mu);font:inherit;font-size:.86rem;cursor:pointer;transition:border-color .2s,color .2s}
+.ol-search-btn:hover{border-color:var(--gd,#c9a84c);color:var(--gd,#c9a84c)}
+.ol-search-btn span{border:1px solid var(--br);border-radius:5px;padding:1px 7px;font-size:.78rem;opacity:.8}
+/* search overlay */
+.ol-ov{position:fixed;inset:0;background:rgba(0,0,0,.62);backdrop-filter:blur(3px);z-index:1000;display:none;align-items:flex-start;justify-content:center;padding:11vh 16px 16px}
+.ol-ov.open{display:flex}
+.ol-modal{width:100%;max-width:620px;background:var(--bg2,#221a0e);border:1px solid var(--br);border-radius:14px;box-shadow:0 24px 70px rgba(0,0,0,.55);overflow:hidden;display:flex;flex-direction:column;max-height:74vh}
+html.light .ol-modal{box-shadow:0 24px 70px rgba(40,30,10,.22)}
+.ol-search-input{border:none;border-bottom:1px solid var(--br);background:none;color:var(--tx,#e7ddc8);font:inherit;font-size:1.12rem;padding:18px 22px;outline:none;width:100%}
+.ol-search-input::placeholder{color:var(--mu)}
+.ol-results{overflow-y:auto;padding:8px}
+.ol-r{display:block;padding:10px 14px;border-radius:9px;text-decoration:none;color:var(--tx,#e7ddc8);transition:background .12s}
+.ol-r .r-t{display:block;font-weight:600;font-size:.97rem}
+.ol-r .r-s{display:block;font-size:.83rem;color:var(--mu);margin-top:2px}
+.ol-r .r-s::before{content:"\2192  ";color:var(--gd,#c9a84c)}
+.ol-r.sel,.ol-r:hover{background:var(--bg,#1a140a)}
+.ol-r.sel{box-shadow:inset 3px 0 0 var(--gd,#c9a84c)}
+.ol-r mark{background:rgba(201,168,76,.32);color:inherit;border-radius:2px;padding:0 1px}
+.r-empty{padding:26px 18px;text-align:center;color:var(--mu);font-size:.92rem}
+.ol-hint{border-top:1px solid var(--br);padding:9px 18px;font-size:.74rem;color:var(--mu);letter-spacing:.03em}
+.ol-r .r-s.r-topic::before{content:"\2756  ";color:var(--gd,#c9a84c)}
+/* verse-mode card */
+.ol-vcard{margin:6px 6px 4px;padding:14px 16px;border:1px solid var(--br);border-radius:10px;background:var(--bg,#1a140a)}
+.ol-vcard .vref{font-weight:700;color:var(--gd,#c9a84c);font-size:1rem}
+.ol-vcard .vkjv{display:block;margin-top:7px;font-size:.93rem;line-height:1.6;color:var(--tx,#e7ddc8)}
+.ol-vcard .vkjv em{font-style:normal;font-size:.64rem;color:var(--mu);border:1px solid var(--br);border-radius:4px;padding:0 5px;margin-left:6px;letter-spacing:.06em;vertical-align:middle}
+.ol-vcard .vmeta{display:block;margin-top:8px;font-size:.76rem;color:var(--mu);line-height:1.5}
+/* scripture verse + tooltip */
+.ol-verse{border-bottom:1px dotted var(--gd,#c9a84c);cursor:help;text-decoration:none}
+.ol-tip{position:absolute;z-index:1100;max-width:330px;background:var(--bg2,#221a0e);color:var(--tx,#e7ddc8);border:1px solid var(--br);border-radius:10px;padding:12px 15px;font-size:.9rem;line-height:1.55;box-shadow:0 12px 34px rgba(0,0,0,.5);pointer-events:none}
+html.light .ol-tip{box-shadow:0 12px 34px rgba(40,30,10,.2)}
+.ol-tip b{color:var(--gd,#c9a84c);font-size:.84rem;letter-spacing:.02em}
+.ol-tip-kjv{font-size:.66rem;color:var(--mu);border:1px solid var(--br);border-radius:4px;padding:0 5px;margin-left:6px;letter-spacing:.05em}
+.ol-tip-load,.ol-tip-err{color:var(--mu);font-style:italic}
+/* print / pdf */
+@media print{
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #sidebar,#sb,#ham,#overlay,#prog,#ol-top,#ol-tt,.ol-search-btn,.ol-copy,.back-link,.ol-ov,.ol-tip,.ol-divider,.ol-related,.sb-search,nav,.arr{display:none!important}
+  html,body{background:#fff!important;color:#000!important}
+  main{margin:0!important;padding:0!important;max-width:100%!important;width:100%!important}
+  .sec-body,.sec-bd,.sec-body2,.fi-body,.fi-bd{display:block!important;max-height:none!important;opacity:1!important;transform:none!important;animation:none!important}
+  .sec{opacity:1!important;transform:none!important;page-break-inside:avoid;border:none!important;margin-bottom:14px!important}
+  .sec-h,.sec-hd{cursor:default}
+  .hero,.pg-title,.page-head,.pg-head,.hd{background:#fff!important;color:#000!important;border:none!important}
+  .ol-verse{border-bottom:none}
+  a{color:#000!important;text-decoration:none}
+  h1,h2,h3{color:#000!important}
+}
+/* END-FEATURES3 */
+
+/* AUTO-FEATURES4 */
+.ol-ask-fab{position:fixed;right:22px;bottom:24px;z-index:1200;display:flex;align-items:center;gap:9px;height:52px;padding:0 19px 0 15px;border:1px solid var(--br);border-radius:30px;background:var(--gd,#c9a84c);color:#1a140a;font:inherit;font-weight:600;font-size:.9rem;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.35);transition:transform .2s,box-shadow .2s}
+.ol-ask-fab:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(0,0,0,.45)}
+.ol-ask-fab svg{width:20px;height:20px;flex:none;display:block}
+.ol-ask-fab.hide{display:none}
+#ol-top{bottom:128px}
+.ol-ask-wrap{position:fixed;right:22px;bottom:24px;z-index:1201;width:380px;max-width:calc(100vw - 32px);height:560px;max-height:calc(100vh - 70px);background:var(--bg2,#221a0e);border:1px solid var(--br);border-radius:16px;box-shadow:0 24px 70px rgba(0,0,0,.55);display:none;flex-direction:column;overflow:hidden}
+.ol-ask-wrap.open{display:flex}
+html.light .ol-ask-wrap{box-shadow:0 24px 70px rgba(40,30,10,.22)}
+.ol-ask-hd{display:flex;align-items:center;gap:10px;padding:13px 15px;border-bottom:1px solid var(--br);background:var(--bg,#1a140a)}
+.ol-ask-hd .ti{flex:1;line-height:1.25}
+.ol-ask-hd .ti b{color:var(--gd,#c9a84c);font-size:.97rem}
+.ol-ask-hd .ti span{display:block;font-size:.7rem;color:var(--mu);font-weight:400;letter-spacing:.02em}
+.ol-ask-x{background:none;border:none;color:var(--mu);font-size:1.4rem;line-height:1;cursor:pointer;padding:0 6px;border-radius:6px}
+.ol-ask-x:hover{color:var(--tx,#e7ddc8)}
+.ol-ask-log{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:11px}
+.ol-ask-msg{max-width:92%;font-size:.9rem;line-height:1.55;word-wrap:break-word}
+.ol-ask-msg.user{align-self:flex-end;background:var(--gd,#c9a84c);color:#1a140a;padding:8px 13px;border-radius:14px 14px 4px 14px;font-weight:500}
+.ol-ask-msg.bot{align-self:flex-start;color:var(--tx,#e7ddc8);width:100%}
+.ol-ask-msg.bot .lead{margin:0 0 9px;color:var(--mu);font-size:.85rem}
+.ol-ans{display:block;text-decoration:none;color:var(--tx,#e7ddc8);border:1px solid var(--br);border-radius:10px;padding:9px 12px;margin-bottom:8px;background:var(--bg,#1a140a);transition:border-color .18s,transform .18s}
+.ol-ans:hover{border-color:var(--gd,#c9a84c);transform:translateY(-1px)}
+.ol-ans .a-t{display:block;font-weight:600;font-size:.88rem}
+.ol-ans .a-h{display:block;font-size:.78rem;color:var(--gd,#c9a84c);margin-top:1px}
+.ol-ans .a-x{display:block;font-size:.81rem;color:var(--mu);margin-top:5px;line-height:1.5}
+.ol-ans mark,.ol-ask-msg mark{background:rgba(201,168,76,.32);color:inherit;border-radius:2px;padding:0 1px}
+.ol-ai-txt{font-size:.9rem;line-height:1.6;color:var(--tx,#e7ddc8)}
+.ol-ai-txt p{margin:0 0 9px}.ol-ai-txt p:last-child{margin-bottom:0}
+.ol-ai-txt strong{color:var(--gl,#e8c96a);font-weight:600}
+.ol-ai-txt sup.ol-ci{color:var(--gd,#c9a84c);font-weight:600;font-size:.7em;padding:0 1px}
+.ol-ai-cite{margin-top:11px;padding-top:9px;border-top:1px solid var(--br)}
+.ol-ai-cite .lead{margin:0 0 7px;color:var(--mu);font-size:.78rem;text-transform:uppercase;letter-spacing:.04em}
+.ol-ans .a-c{display:inline-block;color:var(--gd,#c9a84c);font-weight:700;font-size:.78rem;margin-right:5px}
+.ol-ai-dots{display:inline-flex;gap:5px;padding:4px 0}
+.ol-ai-dots i{width:7px;height:7px;border-radius:50%;background:var(--gd,#c9a84c);opacity:.4;animation:olaiblink 1.2s infinite}
+.ol-ai-dots i:nth-child(2){animation-delay:.2s}.ol-ai-dots i:nth-child(3){animation-delay:.4s}
+@keyframes olaiblink{0%,60%,100%{opacity:.35}30%{opacity:1}}
+.ol-ai-lamp{display:inline-block;font-size:1.15em;line-height:1;transform-origin:50% 85%;animation:ollampflick 1.7s infinite ease-in-out}
+@keyframes ollampflick{0%,100%{opacity:.85;filter:drop-shadow(0 0 2px rgba(201,168,76,.45));transform:scale(1) rotate(0)}40%{opacity:1;filter:drop-shadow(0 0 8px rgba(201,168,76,.95));transform:scale(1.08) rotate(-2deg)}68%{opacity:.92;filter:drop-shadow(0 0 4px rgba(201,168,76,.7));transform:scale(1.02) rotate(1deg)}}
+.ol-ai-think{margin-left:7px;font-style:italic;font-size:.94em;opacity:.85}
+.ol-ask-msg{animation:olmsgin .4s cubic-bezier(.22,1,.36,1) both}
+@keyframes olmsgin{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
+.ol-ai-caret{display:inline-block;width:2px;height:1.05em;background:var(--gd,#c9a84c);margin-left:2px;vertical-align:-2px;border-radius:1px;animation:olcaret .8s step-end infinite}
+@keyframes olcaret{50%{opacity:0}}
+.ol-lamp{display:inline-block;line-height:0;vertical-align:-7px}.ol-lamp svg{width:24px;height:28px;overflow:visible}.ol-lamp-hd{vertical-align:middle;flex:0 0 auto}.ol-lamp-hd svg{width:34px;height:40px}.ol-lamp .eyes-happy,.ol-lamp .m-idle,.ol-lamp .m-think,.ol-lamp .m-happy{display:none}.ol-lamp.st-idle .m-idle{display:block}.ol-lamp.st-think .m-think{display:block}.ol-lamp.st-happy .m-happy{display:block}.ol-lamp.st-happy .eyes{display:none}.ol-lamp.st-happy .eyes-happy{display:block}.ol-lamp .eyes{transform-box:fill-box;transform-origin:center;animation:ollampblink 4.8s infinite}.ol-lamp.st-think .eyes{transform:translateY(-1px)}.ol-lamp .fl{transform-box:fill-box;transform-origin:50% 100%;animation:ollampfl 2.1s infinite ease-in-out}.ol-lamp.st-think .fl{animation-duration:1.1s}.ol-lamp.st-happy .fl{animation-duration:1.3s}.ol-lamp .rays{transform-box:fill-box;transform-origin:center;animation:olrays 2.6s infinite ease-in-out}.ol-lamp.st-think .rays{animation-duration:1.4s}.ol-lamp.st-happy .rays{animation-duration:1.6s}.ol-lamp.st-think .lampg{transform-box:fill-box;transform-origin:50% 100%;animation:ollampsway 2.6s infinite ease-in-out}.ol-lamp.st-happy .lampg{transform-box:fill-box;transform-origin:50% 100%;animation:ollamphop .6s ease}@keyframes ollampfl{0%,100%{transform:scaleY(1) scaleX(1)}30%{transform:scaleY(1.05) scaleX(.97)}60%{transform:scaleY(.98) scaleX(1.02)}}@keyframes olrays{0%,100%{transform:scale(1);opacity:.8}50%{transform:scale(1.08);opacity:1}}@keyframes ollampblink{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}@keyframes ollampsway{0%,100%{transform:rotate(-2.5deg)}50%{transform:rotate(2.5deg)}}@keyframes ollamphop{0%{transform:translateY(0)}40%{transform:translateY(-3px)}100%{transform:translateY(0)}}
+.ol-vans{border:1px solid var(--br);border-radius:10px;padding:11px 13px;margin-bottom:9px;background:var(--bg,#1a140a)}
+.ol-vans .vr{font-weight:700;color:var(--gd,#c9a84c)}
+.ol-vans .vt{display:block;margin-top:5px;font-size:.85rem;line-height:1.55;color:var(--tx,#e7ddc8)}
+.ol-vans .vt em{font-style:normal;font-size:.62rem;color:var(--mu);border:1px solid var(--br);border-radius:4px;padding:0 4px;margin-left:5px;letter-spacing:.05em;vertical-align:middle}
+.ol-ask-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+.ol-ask-chips button{font:inherit;font-size:.78rem;color:var(--tx,#e7ddc8);background:var(--bg,#1a140a);border:1px solid var(--br);border-radius:16px;padding:5px 11px;cursor:pointer;transition:border-color .18s,color .18s}
+.ol-ask-chips button:hover{border-color:var(--gd,#c9a84c);color:var(--gd,#c9a84c)}
+.ol-ask-foot{border-top:1px solid var(--br);padding:10px 10px 4px;display:flex;gap:8px;align-items:center}
+.ol-ask-foot input{flex:1;border:1px solid var(--br);background:var(--bg,#1a140a);color:var(--tx,#e7ddc8);font:inherit;font-size:.9rem;padding:9px 12px;border-radius:9px;outline:none}
+.ol-ask-foot input:focus{border-color:var(--gd,#c9a84c)}
+.ol-ask-foot button.send{flex:none;border:none;background:var(--gd,#c9a84c);color:#1a140a;width:38px;height:38px;border-radius:9px;cursor:pointer;font-size:1.15rem;line-height:1;display:flex;align-items:center;justify-content:center}
+.ol-ask-foot button.send:hover{filter:brightness(1.06)}
+.ol-ask-note{font-size:.66rem;color:var(--mu);text-align:center;padding:6px 12px 9px;line-height:1.4}
+@media(max-width:480px){.ol-ask-wrap{right:8px;bottom:8px;width:auto;left:8px;height:80vh;max-height:none}.ol-ask-fab{right:12px;bottom:14px}#ol-top{bottom:78px}}
+/* END-FEATURES4 */
+
+/* AUTO-FEATURES5 */
+.ol-print-btn{display:flex;align-items:center;gap:9px;width:100%;margin:4px 0 6px;padding:9px 13px;border:1px solid var(--br);border-radius:9px;background:var(--bg2);color:var(--mu);font:inherit;font-size:.86rem;cursor:pointer;transition:border-color .2s,color .2s}
+.ol-print-btn:hover{border-color:var(--gd,#c9a84c);color:var(--gd,#c9a84c)}
+.ol-print-btn svg{width:16px;height:16px;flex:none;display:block}
+@media print{.ol-print-btn{display:none!important}}
+/* END-FEATURES5 */
+</style>
+<script>try{if(localStorage.getItem('ol-theme')==='light')document.documentElement.classList.add('light')}catch(e){}</script>
+<script>try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('js-anim')}catch(e){}</script>
+<link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#141008"><link rel="apple-touch-icon" href="icon-192.png">
+<style id="ol-sb-css">
+main{transition:margin-left .3s ease}
+#ol-sbt{position:fixed;top:50%;transform:translateY(-50%);left:var(--sidebar-w);z-index:150;width:20px;height:52px;display:flex;align-items:center;justify-content:center;background:var(--bg3);color:var(--gold);border:1px solid var(--br);border-left:none;border-radius:0 8px 8px 0;cursor:pointer;font-size:.95rem;line-height:1;box-shadow:2px 0 8px rgba(0,0,0,.28);transition:left .3s ease,filter .2s;font-family:Georgia,serif}
+#ol-sbt:hover{filter:brightness(1.18)}
+html.sb-collapsed #sidebar,html.sb-collapsed #sb{transform:translateX(-100%)}
+html.sb-collapsed main{margin-left:0}
+html.sb-collapsed #ol-sbt{left:0}
+@media(max-width:768px){#ol-sbt{display:none}}
+@media print{#ol-sbt{display:none!important}}
+</style>
+<script>try{if(localStorage.getItem('ol-sb')==='1')document.documentElement.classList.add('sb-collapsed')}catch(e){}</script>
+<!-- SEO-META-START -->
+<meta name="description" content="An interactive, zoomable timeline of two thousand years of Oriental Orthodox Christian history — councils, saints, schisms, popes, heresies, wars and persecutions.">
+<link rel="canonical" href="https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/timeline.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="The Orthodox Lamp">
+<meta property="og:title" content="Timeline of the Church — The Orthodox Lamp">
+<meta property="og:description" content="An interactive, zoomable timeline of two thousand years of Oriental Orthodox Christian history — councils, saints, schisms, popes, heresies, wars and persecutions.">
+<meta property="og:url" content="https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/timeline.html">
+<meta property="og:image" content="https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Timeline of the Church — The Orthodox Lamp">
+<meta name="twitter:description" content="An interactive, zoomable timeline of two thousand years of Oriental Orthodox Christian history — councils, saints, schisms, popes, heresies, wars and persecutions.">
+<meta name="twitter:image" content="https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/og-cover.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Timeline of the Church — The Orthodox Lamp","description":"An interactive, zoomable timeline of two thousand years of Oriental Orthodox Christian history — councils, saints, schisms, popes, heresies, wars and persecutions.","url":"https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/timeline.html","isPartOf":{"@type":"WebSite","name":"The Orthodox Lamp","url":"https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/"},"inLanguage":"en"}</script>
+<!-- SEO-META-END -->
+<style>/* SVLK */.sv-lk{color:inherit;text-decoration:none;border-bottom:1px dotted currentColor;transition:opacity .15s}.sv-lk:hover{opacity:.72}</style>
+<style>
+
+main{max-width:none!important;margin-right:1.4rem;min-width:0}
+.htl-intro{font-size:1.02rem;line-height:1.7;opacity:.94;margin:0 0 1rem;max-width:820px}
+.htl-toolbar{position:sticky;top:0;z-index:60;padding:.8rem 0 .9rem;margin:0 0 .5rem;background:linear-gradient(180deg,var(--bg) 80%,transparent);backdrop-filter:blur(4px);display:flex;flex-wrap:wrap;gap:.85rem 1.3rem;align-items:center}
+.htl-chips{display:flex;flex-wrap:wrap;gap:.45rem}
+.htl-chip{display:inline-flex;align-items:center;gap:.42rem;font-family:var(--disp);font-size:.72rem;font-weight:600;letter-spacing:.03em;padding:.42rem .8rem;border-radius:999px;border:1px solid color-mix(in srgb,var(--gold) 26%,transparent);background:color-mix(in srgb,var(--gold) 5%,transparent);color:var(--txt);cursor:pointer;transition:all .16s ease;white-space:nowrap;opacity:.5}
+.htl-chip .sw{width:10px;height:10px;border-radius:50%;background:var(--cc);flex:none}
+.htl-chip.on{opacity:1;border-color:var(--cc);background:color-mix(in srgb,var(--cc) 16%,transparent)}
+.htl-zoom{display:flex;align-items:center;gap:.5rem;margin-left:auto}
+.htl-slider{-webkit-appearance:none;appearance:none;width:130px;height:5px;border-radius:6px;background:color-mix(in srgb,var(--gold) 26%,transparent);outline:none;cursor:pointer}
+.htl-slider::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--gold);cursor:pointer;box-shadow:0 1px 5px rgba(0,0,0,.4)}
+.htl-slider::-moz-range-thumb{width:16px;height:16px;border:none;border-radius:50%;background:var(--gold);cursor:pointer}
+.htl-zbtn{width:36px;height:36px;border-radius:9px;border:1px solid color-mix(in srgb,var(--gold) 30%,transparent);background:color-mix(in srgb,var(--gold) 8%,transparent);color:var(--txt);font-size:1.2rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .16s}
+.htl-zbtn:hover{border-color:var(--gold);background:color-mix(in srgb,var(--gold) 16%,transparent)}
+.htl-zbtn.fit{width:auto;padding:0 .85rem;font-size:.73rem;font-family:var(--disp);letter-spacing:.05em;text-transform:uppercase}
+.htl-hint{font-size:.8rem;opacity:.55;font-style:italic;margin:.1rem 0 .7rem}
+.htl-vp{position:relative;width:100%;overflow:hidden;touch-action:none;overscroll-behavior:none;overscroll-behavior-x:contain;border:1px solid color-mix(in srgb,var(--gold) 22%,transparent);border-radius:14px;background:radial-gradient(120% 100% at 50% 50%,color-mix(in srgb,var(--gold) 5%,transparent),transparent 70%);box-shadow:inset 0 0 40px color-mix(in srgb,#000 28%,transparent);cursor:grab;user-select:none}
+.htl-vp.drag{cursor:grabbing}
+.htl-vp::-webkit-scrollbar{display:none}
+.htl-track{position:relative}
+.htl-band{position:absolute;top:0;bottom:0;border-left:1px dashed color-mix(in srgb,var(--gold) 13%,transparent)}
+.htl-band .bl{position:sticky;top:0;display:inline-block;font-family:var(--disp);font-size:.64rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);opacity:.3;padding:.45rem .7rem;white-space:nowrap}
+.htl-spine{position:absolute;left:0;height:3px;border-radius:3px;background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--gold) 62%,transparent) 3%,color-mix(in srgb,var(--gold) 62%,transparent) 97%,transparent);z-index:2}
+.htl-tick{position:absolute;z-index:2;transform:translateX(-50%);font-family:var(--disp);font-size:.72rem;font-weight:700;color:var(--gold);opacity:.85;white-space:nowrap;pointer-events:none}
+.htl-tick::before{content:'';position:absolute;left:50%;top:-13px;width:1px;height:9px;background:color-mix(in srgb,var(--gold) 45%,transparent)}
+.htl-ev{position:absolute;z-index:4}
+.htl-dot{position:absolute;left:0;top:0;width:14px;height:14px;border-radius:50%;background:var(--bg);border:3px solid var(--cc);transform:translate(-50%,-50%);cursor:pointer;transition:transform .15s,box-shadow .15s;z-index:5}
+.htl-ev:hover .htl-dot{transform:translate(-50%,-50%) scale(1.3);box-shadow:0 0 0 5px color-mix(in srgb,var(--cc) 22%,transparent)}
+.htl-ev.sel .htl-dot{background:var(--cc);box-shadow:0 0 0 6px color-mix(in srgb,var(--cc) 30%,transparent)}
+.htl-stem{position:absolute;left:0;width:2px;background:color-mix(in srgb,var(--cc) 55%,transparent);transform:translateX(-50%)}
+.htl-card{position:absolute;left:0;box-sizing:border-box;max-width:230px;transform:translateX(-50%);background:color-mix(in srgb,var(--bg2,#161310) 96%,transparent);border:1px solid color-mix(in srgb,var(--cc) 45%,transparent);border-top:2.5px solid var(--cc);border-radius:9px;padding:.5rem .6rem;cursor:pointer;transition:border-color .15s,box-shadow .15s;box-shadow:0 6px 18px rgba(0,0,0,.28)}
+.htl-card:hover{box-shadow:0 8px 22px rgba(0,0,0,.4)}
+.htl-ev.sel .htl-card{box-shadow:0 0 0 2px var(--cc),0 8px 22px rgba(0,0,0,.4)}
+.htl-cd{font-family:var(--disp);font-size:.74rem;font-weight:700;color:var(--cc);margin:0 0 .12rem;letter-spacing:.02em}
+.htl-ct{font-size:.76rem;line-height:1.25;color:var(--txt);opacity:.95}
+.htl-ev.no-card .htl-stem,.htl-ev.no-card .htl-card{display:none}
+/* detail panel */
+.htl-detail{margin:1rem 0 0;min-height:92px;padding:1.15rem 1.35rem;border-radius:14px;border:1px solid color-mix(in srgb,var(--gold) 20%,transparent);border-left:4px solid var(--dc,var(--gold));background:color-mix(in srgb,var(--gold) 5%,transparent)}
+.htl-detail .dcat{font-family:var(--disp);font-size:.66rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--dc,var(--gold));margin:0 0 .35rem}
+.htl-detail .ddate{font-family:var(--disp);font-weight:700;font-size:1.4rem;color:var(--gold);margin:0 0 .1rem}
+.htl-detail .dtitle{font-family:var(--disp);font-size:1.15rem;font-weight:700;margin:0 0 .5rem;color:var(--txt)}
+.htl-detail .dbody{font-size:.96rem;line-height:1.65;opacity:.9;margin:0;max-width:760px}
+.htl-detail .dsrc{margin:.7rem 0 0;font-size:.78rem;opacity:.6;font-style:italic;letter-spacing:.01em}
+.htl-detail .dsrc b{font-style:normal;font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:.66rem;opacity:.85;margin-right:.4rem}
+.htl-detail .dhint{font-size:.9rem;opacity:.5;font-style:italic;margin:0}
+@media(max-width:640px){.htl-zoom{margin-left:0}.htl-slider{width:96px}.htl-detail .ddate{font-size:1.15rem}}
+
+
+/* OL-BREADCRUMB */
+.ol-bc{margin:0;padding:16px 24px 2px;font-size:.8rem;color:var(--mu);display:flex;flex-wrap:wrap;align-items:center;gap:.45rem;letter-spacing:.02em}
+.ol-bc a{color:var(--mu);text-decoration:none;transition:color .15s}
+.ol-bc a:hover{color:var(--gd,#c9a84c)}
+.ol-bc i{opacity:.45;font-style:normal;font-size:.9em}
+.ol-bc .cur{color:var(--gd,#c9a84c);font-weight:600}
+@media print{.ol-bc{display:none!important}}
+/* END-OL-BREADCRUMB */
+/* OL-FABALIGN */
+#ol-top,#ol-tt{right:22px;width:44px;height:44px}
+.ol-ask-fab{right:22px;bottom:24px}
+#ol-tt{bottom:90px}
+#ol-top{bottom:148px}
+@media(max-width:480px){.ol-ask-fab{right:14px;bottom:16px}#ol-tt{right:14px;bottom:82px;width:42px;height:42px}#ol-top{right:14px;bottom:138px;width:42px;height:42px}}
+/* END-OL-FABALIGN */
+
+
+
+
+
+/* OL-PGBAND */
+.oo-pgband{display:block;text-decoration:none;position:relative;margin:14px 0 6px;border-radius:10px;overflow:hidden;border:1px solid var(--br);box-shadow:0 4px 14px rgba(0,0,0,.3);cursor:pointer}
+.oo-pgband .im{height:106px;background-size:cover;filter:sepia(.5) saturate(.82) brightness(.86) contrast(.95);transition:filter .5s ease,transform .5s ease}
+.oo-pgband:hover .im,.oo-pgband:focus-visible .im{filter:sepia(.3) saturate(.95) brightness(.98) contrast(1);transform:scale(1.03)}
+.oo-pgband:focus-visible{outline:2px solid var(--gl);outline-offset:2px}
+.oo-pgband .cap{position:absolute;left:15px;bottom:9px;font:600 .68rem/1.3 var(--disp,Georgia),serif;letter-spacing:.11em;text-transform:uppercase;color:var(--gl);opacity:.92;text-shadow:0 1px 6px rgba(0,0,0,1)}
+.oo-pgband .cap b{display:block;font-size:.85rem;letter-spacing:.05em;opacity:1}
+.oo-pgband::after{content:"\2626";position:absolute;top:7px;right:13px;color:var(--gl);opacity:.62;font-size:1.02rem;line-height:1;text-shadow:0 1px 3px rgba(0,0,0,.9);transition:opacity .4s ease}
+.oo-pgband:hover::after,.oo-pgband:focus-visible::after{opacity:.96}
+@media(max-width:760px){.oo-pgband .im{height:86px}}
+@media print{.oo-pgband{display:none}}
+/* END-OL-PGBAND */
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<nav id="sb">
+  <div id="sb-brand">
+    <svg class="lampsvg" width="64" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><radialGradient id="lmpGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffb95e" stop-opacity=".55"/><stop offset="100%" stop-color="#ffb95e" stop-opacity="0"/></radialGradient><linearGradient id="lmpFlame" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#ff7a1f"/><stop offset="55%" stop-color="#ffb347"/><stop offset="100%" stop-color="#ffe9b0"/></linearGradient><linearGradient id="lmpBrass" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e3b860"/><stop offset="50%" stop-color="#a87b35"/><stop offset="100%" stop-color="#7a5523"/></linearGradient></defs><circle cx="60" cy="38" r="34" fill="url(#lmpGlow)"/><g class="lampflame"><path d="M60 16 C66 26 70 32 70 40 C70 48 65.5 53 60 53 C54.5 53 50 48 50 40 C50 32 54 26 60 16 Z" fill="url(#lmpFlame)"/><path d="M60 30 C63 35 64.5 38 64.5 42 C64.5 46.5 62.5 49 60 49 C57.5 49 55.5 46.5 55.5 42 C55.5 38 57 35 60 30 Z" fill="#fff3cf" opacity=".85"/></g><rect x="56" y="52" width="8" height="7" rx="2" fill="#8a6228"/><path d="M28 62 L92 62 C92 80 78 92 60 92 C42 92 28 80 28 62 Z" fill="url(#lmpBrass)"/><rect x="24" y="58" width="72" height="6" rx="3" fill="#caa14e"/><rect x="56" y="92" width="8" height="16" fill="url(#lmpBrass)"/><path d="M38 118 C38 110 47 108 60 108 C73 108 82 110 82 118 L82 122 L38 122 Z" fill="url(#lmpBrass)"/><rect x="32" y="122" width="56" height="6" rx="3" fill="#caa14e"/></svg>
+    <div class="lamp">The Orthodox Lamp</div>
+    <h1>Timeline of the Kings</h1>
+  </div>
+  <div class="sb-search">
+    <input type="search" placeholder="Search sections…" oninput="sidebarSearch(this.value)" aria-label="Search sections">
+  </div>
+  <div id="sb-nav">
+    <a href="#htl-top">The timeline</a>
+  </div>
+  <div class="no-match-msg" id="sb-no-match">No sections match.</div>
+</nav>
+<main>
+<nav class="ol-bc" aria-label="Breadcrumb"><a href="index.html">Home</a><i>›</i><a href="index.html#foundations">Foundations &amp; Method</a><i>›</i><span class="cur">Timeline of the Kings — Saul, David &amp; Solomon</span></nav>
+<!-- OL-PGBAND -->
+<a class="oo-pgband" href="https://upload.wikimedia.org/wikipedia/commons/3/3d/Kairo_Hanging_Church_BW_1.jpg" target="_blank" rel="noopener noreferrer" title="The Hanging Church — Coptic Orthodox · Cairo · view full photo (Wikimedia Commons)" aria-label="View the full photograph of The Hanging Church, Coptic Orthodox · Cairo — opens in a new tab"><div class="im" style="background-image:linear-gradient(180deg,rgba(12,12,12,.5) 0%,rgba(12,12,12,.86) 100%),url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Kairo_Hanging_Church_BW_1.jpg/960px-Kairo_Hanging_Church_BW_1.jpg');background-position:center 38%"></div><span class="cap"><b>The Hanging Church</b>Coptic Orthodox · Cairo</span></a>
+<!-- END-OL-PGBAND -->
+  <p class="htl-intro">The whole span of the united monarchy on one line &mdash; from the birth of Samuel, the prophet who anointed kings, through the tragic reign of Saul, the shepherd-kingship of David, and the golden age and fall of Solomon, to the day the kingdom tore in two at Shechem. Every event of 1&nbsp;&amp;&nbsp;2&nbsp;Samuel, 1&nbsp;Kings&nbsp;1&ndash;12 and 1&nbsp;Chronicles is here. Dates follow the traditional chronology (Saul c.&nbsp;1050&ndash;1010, David 1010&ndash;970, Solomon 970&ndash;931&nbsp;BC) and most are approximate &mdash; Scripture gives sequence more often than year.</p>
+
+  <div class="htl-toolbar" id="htl-top">
+    <div class="htl-chips" id="htlChips">
+      <button class="htl-chip on" data-cat="king" style="--cc:#e0b352"><span class="sw"></span>Kingship &amp; Succession</button>
+      <button class="htl-chip on" data-cat="battle" style="--cc:#cf5c5c"><span class="sw"></span>Battles &amp; Wars</button>
+      <button class="htl-chip on" data-cat="prophet" style="--cc:#a98bd0"><span class="sw"></span>Prophets &amp; Priests</button>
+      <button class="htl-chip on" data-cat="worship" style="--cc:#46a5a0"><span class="sw"></span>Ark, Temple &amp; Worship</button>
+      <button class="htl-chip on" data-cat="covenant" style="--cc:#7a86c9"><span class="sw"></span>Covenants &amp; Promises</button>
+      <button class="htl-chip on" data-cat="sin" style="--cc:#d98a4e"><span class="sw"></span>Sin &amp; Judgment</button>
+      <button class="htl-chip on" data-cat="family" style="--cc:#5e9bb5"><span class="sw"></span>Family &amp; Court</button>
+      <button class="htl-chip on" data-cat="kingdom" style="--cc:#7f9e5b"><span class="sw"></span>Kingdom &amp; Nations</button>
+      <button class="htl-chip on" data-cat="writings" style="--cc:#cf7fa0"><span class="sw"></span>Wisdom &amp; Writings</button>
+    </div>
+    <div class="htl-zoom">
+      <button class="htl-zbtn fit" id="htlFit">Fit all</button>
+      <button class="htl-zbtn" id="htlOut" aria-label="Zoom out">&minus;</button>
+      <input type="range" class="htl-slider" id="htlSlider" min="0" max="100" value="0" aria-label="Zoom">
+      <button class="htl-zbtn" id="htlIn" aria-label="Zoom in">+</button>
+    </div>
+  </div>
+  <p class="htl-hint">Scroll to zoom in &amp; out &middot; drag to pan &middot; pinch or use &minus; / + / the slider too &middot; click any event for detail</p>
+
+  <div class="htl-vp" id="htlVp"><div class="htl-track" id="htlTrack"></div></div>
+
+  <div class="htl-detail" id="htlDetail" style="--dc:var(--gold)">
+    <div class="dcat">The Three Kings</div>
+    <p class="dhint">Click any event on the line above to read about it here.</p>
+  </div>
+
+<script>
+(function(){
+  var EV = [{"y": -1105, "y2": null, "date": "c. 1105 BC", "t": "Birth of Samuel", "c": "prophet", "d": "Hannah, barren and grieved, pours out her soul before the LORD at Shiloh, vowing that if given a son she will give him back to God all the days of his life. Eli the high priest blesses her, and she bears Samuel — “asked of the LORD.” He will be the last judge, the first of the line of prophets after Moses, and the king-maker of Israel.", "src": "1 Samuel 1"}, {"y": -1102, "y2": null, "date": "c. 1102 BC", "t": "Samuel given to the Lord at Shiloh", "c": "worship", "d": "When the child is weaned, Hannah brings him to the house of the LORD at Shiloh and leaves him to minister before Eli, clothed in a little linen ephod. Her song of thanksgiving — “my heart rejoiceth in the LORD... he raiseth up the poor out of the dust” — is the seed of the Theotokos’ Magnificat. Meanwhile the sons of Eli, Hophni and Phinehas, profane the sacrifices.", "src": "1 Samuel 1:24–2:36"}, {"y": -1090, "y2": null, "date": "c. 1090 BC", "t": "The call of Samuel — “Speak, LORD”", "c": "prophet", "d": "In days when “the word of the LORD was precious” and vision rare, God calls the boy Samuel three times by night in the temple; Eli teaches him to answer, “Speak, LORD, for thy servant heareth.” The first word given him is judgment on Eli’s house for his sons’ blasphemy. Samuel grows, and all Israel from Dan to Beersheba knows he is established as a prophet of the LORD.", "src": "1 Samuel 3"}, {"y": -1070, "y2": null, "date": "c. 1070 BC", "t": "Battle of Aphek — the Ark captured", "c": "battle", "d": "Israel, defeated by the Philistines, carries the Ark of the Covenant into battle as a talisman — and loses 30,000 men. The Ark is captured, Hophni and Phinehas are slain, and old Eli falls dead at the news after judging Israel forty years. Phinehas’ dying wife names her son Ichabod: “the glory is departed from Israel.”", "src": "1 Samuel 4"}, {"y": -1069, "y2": null, "date": "c. 1069 BC", "t": "The Ark humbles Dagon and returns", "c": "worship", "d": "In Ashdod the idol Dagon falls twice on its face before the Ark, its head and hands broken off on the threshold; plagues strike every Philistine city that hosts it. After seven months the Philistines send it back on a new cart with golden trespass offerings. It comes to rest at Kiriath-jearim in the house of Abinadab, where it remains some twenty years.", "src": "1 Samuel 5–7:2"}, {"y": -1052, "y2": null, "date": "c. 1052 BC", "t": "Victory at Mizpah — the Ebenezer stone", "c": "battle", "d": "Samuel gathers Israel to Mizpah in fasting and repentance: “put away the strange gods... and serve him only.” As he offers a suckling lamb, the LORD thunders upon the attacking Philistines and they are routed. Samuel sets up a stone named Ebenezer — “hitherto hath the LORD helped us” — and the Philistines are subdued all his days as judge.", "src": "1 Samuel 7:3–17"}, {"y": -1050, "y2": null, "date": "c. 1050 BC", "t": "Israel demands a king", "c": "king", "d": "Samuel is old and his sons take bribes, so the elders come to Ramah: “make us a king to judge us like all the nations.” The LORD tells the grieved prophet, “they have not rejected thee, but they have rejected me, that I should not reign over them.” Samuel solemnly warns them of “the manner of the king” — conscription, taxation, servitude — but the people refuse to listen.", "src": "1 Samuel 8"}, {"y": -1050, "y2": null, "date": "c. 1050 BC", "t": "Saul anointed privately at Ramah", "c": "king", "d": "Saul, a Benjamite “from his shoulders and upward higher than any of the people,” comes to Samuel seeking his father’s lost donkeys. The LORD has already told Samuel, “to morrow I will send thee a man.” Samuel pours a flask of oil on his head, kisses him, and the Spirit of God comes upon Saul so that he prophesies and is “turned into another man.”", "src": "1 Samuel 9–10:16"}, {"y": -1050, "y2": null, "date": "c. 1050 BC", "t": "Saul proclaimed king at Mizpah", "c": "king", "d": "Chosen by lot before all the tribes, Saul is found hiding among the baggage. Standing head and shoulders above the people, he is acclaimed — “God save the king” — the first king of Israel. Samuel writes the manner of the kingdom in a book, though certain sons of Belial despise the new king.", "src": "1 Samuel 10:17–27"}, {"y": -1049, "y2": null, "date": "c. 1049 BC", "t": "Deliverance of Jabesh-gilead", "c": "battle", "d": "Nahash the Ammonite besieges Jabesh-gilead and offers terms of shame: every right eye put out. The Spirit of God comes upon Saul; he hews his oxen in pieces and summons all Israel, mustering a great host that shatters the Ammonites by morning. The kingdom is renewed with sacrifices and rejoicing at Gilgal.", "src": "1 Samuel 11"}, {"y": -1049, "y2": null, "date": "c. 1049 BC", "t": "Samuel's farewell address", "c": "prophet", "d": "Samuel calls Israel to witness his integrity — “whose ox have I taken?” — rehearses the LORD’s righteous acts, and calls down thunder and rain in wheat harvest as a sign of their sin in asking a king. Yet he comforts them: “God forbid that I should sin against the LORD in ceasing to pray for you.” He remains prophet and intercessor beside the throne.", "src": "1 Samuel 12"}, {"y": -1048, "y2": null, "date": "c. 1048 BC", "t": "War with Philistia — Geba struck", "c": "battle", "d": "Jonathan smites the Philistine garrison at Geba, and the Philistines gather an enormous host at Michmash — “as the sand on the sea shore.” Israel hides in caves, thickets, rocks and pits; there is no smith in all the land, so that only Saul and Jonathan carry sword and spear.", "src": "1 Samuel 13:1–7, 19–23"}, {"y": -1048, "y2": null, "date": "c. 1048 BC", "t": "Saul's unlawful sacrifice — first rejection", "c": "sin", "d": "Commanded to wait seven days at Gilgal for Samuel, Saul watches his army melt away and offers the burnt offering himself. Samuel arrives as he finishes: “Thou hast done foolishly... now thy kingdom shall not continue.” The LORD has sought “a man after his own heart” to be captain over His people — the first crack in Saul’s throne.", "src": "1 Samuel 13:8–14"}, {"y": -1047, "y2": null, "date": "c. 1047 BC", "t": "Battle of Michmash — Jonathan's exploit", "c": "battle", "d": "Jonathan and his armour-bearer climb the pass between Bozez and Seneh alone — “there is no restraint to the LORD to save by many or by few” — slay twenty men, and God sends an earthquake of panic through the Philistine camp. Israel routs the enemy, but Saul’s rash oath of fasting nearly costs Jonathan his life over a taste of honey; the people ransom him.", "src": "1 Samuel 14:1–46"}, {"y": -1045, "y2": null, "date": "c. 1045 BC", "t": "Saul's wars round about", "c": "kingdom", "d": "Saul fights valiantly on every side — against Moab, Ammon, Edom, the kings of Zobah, and the Philistines — and “whithersoever he turned himself, he vexed them.” He smites Amalek and delivers Israel from those who spoiled them. Abner son of Ner is captain of his host.", "src": "1 Samuel 14:47–52"}, {"y": -1040, "y2": null, "date": "c. 1040 BC", "t": "Birth of David at Bethlehem", "c": "king", "d": "David is born in Bethlehem of Judah, youngest of the eight sons of Jesse, grandson of Obed the son of Boaz and Ruth. A shepherd, harpist, and poet, he will be thirty years old when he comes to the throne. From his line, according to the flesh, comes Christ the Son of David, born in this same city.", "src": "Ruth 4:17–22; 2 Samuel 5:4; Matthew 1:1–6"}, {"y": -1028, "y2": null, "date": "c. 1028 BC", "t": "Amalek spared — final rejection of Saul", "c": "sin", "d": "Sent to utterly destroy Amalek for its ancient ambush of Israel, Saul spares king Agag and the best of the flocks “to sacrifice unto the LORD.” Samuel answers: “Behold, to obey is better than sacrifice... rebellion is as the sin of witchcraft.” The kingdom is rent from Saul; Samuel himself hews Agag in pieces and sees Saul no more until his death, though he mourns for him.", "src": "1 Samuel 15"}, {"y": -1025, "y2": null, "date": "c. 1025 BC", "t": "David anointed at Bethlehem", "c": "king", "d": "Sent to Jesse’s house with a horn of oil, Samuel passes over seven imposing sons — “man looketh on the outward appearance, but the LORD looketh on the heart” — until the youngest is fetched from the sheep. Samuel anoints David in the midst of his brethren, and the Spirit of the LORD comes upon him from that day forward, while it departs from Saul.", "src": "1 Samuel 16:1–13"}, {"y": -1024, "y2": null, "date": "c. 1024 BC", "t": "David the harpist at Saul's court", "c": "family", "d": "An evil spirit troubles the rejected king, and his servants seek out David of Bethlehem, “cunning in playing, and a mighty valiant man... and the LORD is with him.” When David plays, Saul is refreshed and the spirit departs. Saul loves him greatly and makes him his armour-bearer — not knowing he shelters his own successor.", "src": "1 Samuel 16:14–23"}, {"y": -1023, "y2": null, "date": "c. 1023 BC", "t": "David and Goliath in the Valley of Elah", "c": "battle", "d": "For forty days the giant of Gath, six cubits and a span, defies the armies of the living God. The shepherd boy refuses Saul’s armour and takes five smooth stones: “the battle is the LORD’s.” One stone sinks into the giant’s forehead; David beheads him with his own sword, and the Philistines flee. The Fathers read here a type of Christ felling Satan.", "src": "1 Samuel 17"}, {"y": -1022, "y2": null, "date": "c. 1022 BC", "t": "Covenant of Jonathan and David", "c": "covenant", "d": "The soul of Jonathan is “knit with the soul of David, and Jonathan loved him as his own soul.” The crown prince strips off his robe, armour, sword, bow and girdle and gives them to David — a wordless surrender of his own succession to the LORD’s anointed. Their covenant will hold beyond death.", "src": "1 Samuel 18:1–4"}, {"y": -1022, "y2": null, "date": "c. 1022 BC", "t": "“David his ten thousands” — Saul's jealousy", "c": "sin", "d": "The women sing, “Saul hath slain his thousands, and David his ten thousands,” and Saul eyes David from that day. Twice he hurls his javelin at the harpist; then he offers Michal his daughter for a bride-price of a hundred Philistine foreskins, hoping David will fall — David brings two hundred. Michal loves David, and Saul fears him the more.", "src": "1 Samuel 18:5–30"}, {"y": -1021, "y2": null, "date": "c. 1021 BC", "t": "David flees — Michal's ruse, Naioth", "c": "family", "d": "Jonathan pleads for David and Saul swears not to kill him — then hurls the spear again. Michal lets David down through a window and lays an idol with goats’ hair in his bed. David flees to Samuel at Naioth in Ramah, where the Spirit of God overwhelms three companies of Saul’s messengers, and Saul himself, so that he prophesies stripped all that day: “Is Saul also among the prophets?”", "src": "1 Samuel 19"}, {"y": -1020, "y2": null, "date": "c. 1020 BC", "t": "The arrow signal — parting from Jonathan", "c": "covenant", "d": "At the new moon feast Saul’s murderous intent is proven; he casts his javelin even at Jonathan. By the arranged sign of arrows in the field Jonathan warns David. The friends weep and kiss one another farewell: “The LORD be between me and thee, and between my seed and thy seed for ever.” David goes out a fugitive.", "src": "1 Samuel 20"}, {"y": -1020, "y2": null, "date": "c. 1020 BC", "t": "Nob — the showbread and Goliath's sword", "c": "worship", "d": "At the sanctuary of Nob, Ahimelech the priest gives David and his men the hallowed showbread and the sword of Goliath — “there is none like that.” Doeg the Edomite, Saul’s herdsman, watches. The Lord Christ Himself appeals to this event to teach that mercy outweighs ritual prescription.", "src": "1 Samuel 21:1–9; Mark 2:25–26"}, {"y": -1020, "y2": null, "date": "c. 1020 BC", "t": "David feigns madness at Gath", "c": "kingdom", "d": "Fleeing to Achish king of Gath with Goliath’s sword at his side, David is recognized — “is not this David, the king of the land?” — and in terror scrabbles on the gate doors and lets spittle run down his beard until Achish drives him out. From this deliverance come Psalms 34 and 56: “I sought the LORD, and he heard me, and delivered me from all my fears.”", "src": "1 Samuel 21:10–15; Psalms 34, 56"}, {"y": -1019, "y2": null, "date": "c. 1019 BC", "t": "The cave of Adullam", "c": "king", "d": "David escapes to the cave of Adullam, and his brethren and “every one that was in distress, and every one that was in debt, and every one that was discontented” gather to him — about four hundred men, the seed of his mighty army. He lodges his parents with the king of Moab, land of his great-grandmother Ruth, and at the word of the prophet Gad returns to Judah.", "src": "1 Samuel 22:1–5"}, {"y": -1019, "y2": null, "date": "c. 1019 BC", "t": "Massacre of the priests of Nob", "c": "sin", "d": "Betrayed by Doeg, Ahimelech answers Saul with dignity — and Saul orders the slaughter of the priests. When his footmen refuse, Doeg the Edomite kills eighty-five priests of the LORD and puts Nob to the sword, man, woman and child. Abiathar alone escapes to David with the ephod, fulfilling the doom pronounced on Eli’s house. Psalm 52 answers Doeg.", "src": "1 Samuel 22:6–23; Psalm 52"}, {"y": -1018, "y2": null, "date": "c. 1018 BC", "t": "Rescue of Keilah", "c": "battle", "d": "Though a hunted man, David inquires of the LORD and saves the town of Keilah from Philistine raiders robbing the threshing-floors. When the LORD reveals by the ephod that the men of Keilah would deliver him to Saul, David and his six hundred slip away into the wilderness.", "src": "1 Samuel 23:1–13"}, {"y": -1018, "y2": null, "date": "c. 1018 BC", "t": "Ziph — Jonathan strengthens David's hand", "c": "covenant", "d": "In the wilderness of Ziph, Saul seeks David every day, “but God delivered him not into his hand.” Jonathan comes to him in the wood and “strengthened his hand in God”: “thou shalt be king over Israel, and I shall be next unto thee.” The Ziphites betray David; at the Rock of Divisions only a Philistine invasion pulls Saul off the chase.", "src": "1 Samuel 23:14–29"}, {"y": -1017, "y2": null, "date": "c. 1017 BC", "t": "Saul spared at En-gedi", "c": "king", "d": "Saul enters the very cave where David and his men hide. Urged to strike, David only cuts off the corner of Saul’s robe — and his heart smites him even for that: “The LORD forbid... seeing he is the anointed of the LORD.” Confronted with the evidence, Saul weeps: “thou art more righteous than I,” and confesses David will surely be king.", "src": "1 Samuel 24"}, {"y": -1016, "y2": null, "date": "c. 1016 BC", "t": "Death of the prophet Samuel", "c": "prophet", "d": "Samuel dies and all Israel gathers to lament him; he is buried at his house in Ramah. Judge, prophet, priest by service, intercessor and anointer of the first two kings, he stands with Moses and Aaron among those who “called upon his name” (Psalm 99:6). The Church honors him as a righteous forefather.", "src": "1 Samuel 25:1"}, {"y": -1016, "y2": null, "date": "c. 1016 BC", "t": "Nabal and Abigail", "c": "family", "d": "Churlish Nabal repays David’s protection of his flocks with insult, and David straps on his sword to destroy his house. Abigail, wise and beautiful, rides to meet him with provisions and words that turn his wrath: “the soul of my lord shall be bound in the bundle of life with the LORD.” David blesses her for keeping him from bloodguilt; Nabal’s heart dies within him, and Abigail becomes David’s wife.", "src": "1 Samuel 25"}, {"y": -1015, "y2": null, "date": "c. 1015 BC", "t": "Saul spared a second time — Hachilah", "c": "king", "d": "Guided again by Ziphite informers, Saul camps on the hill of Hachilah. By night David and Abishai walk into the sleeping camp — “a deep sleep from the LORD was fallen upon them” — and take Saul’s spear and water jug from beside his head, but David restrains Abishai: “who can stretch forth his hand against the LORD’s anointed, and be guiltless?” Saul confesses, “I have sinned... I have played the fool.”", "src": "1 Samuel 26"}, {"y": -1012, "y2": null, "date": "c. 1012 BC", "t": "David at Ziklag under Achish", "c": "kingdom", "d": "Despairing of safety in Israel, David crosses to Achish of Gath, who gives him the border town of Ziklag; he dwells in Philistine country a year and four months. From there he raids the Geshurites and Amalekites — enemies of Judah — while letting Achish believe he raids his own people. Mighty men of Benjamin, Gad and Manasseh stream to him there.", "src": "1 Samuel 27; 1 Chronicles 12:1–22"}, {"y": -1010, "y2": null, "date": "c. 1010 BC", "t": "Saul and the medium of En-dor", "c": "sin", "d": "With the Philistines massed at Shunem, the LORD answers Saul “neither by dreams, nor by Urim, nor by prophets.” The king who once expelled the mediums now seeks one by night in disguise. The figure of Samuel pronounces the end: “to morrow shalt thou and thy sons be with me: the LORD also shall deliver the host of Israel into the hand of the Philistines.”", "src": "1 Samuel 28"}, {"y": -1010, "y2": null, "date": "c. 1010 BC", "t": "Ziklag burned — David recovers all", "c": "battle", "d": "The Philistine lords refuse to let David march with them against Israel, and he returns to find Ziklag burned and every wife and child carried off by Amalekites; his own men speak of stoning him. “But David encouraged himself in the LORD his God.” Guided by the ephod, he overtakes the raiders and recovers all, and decrees that they who guard the baggage share alike with those who fight.", "src": "1 Samuel 29–30"}, {"y": -1010, "y2": null, "date": "1010 BC", "t": "Battle of Mount Gilboa — death of Saul and Jonathan", "c": "battle", "d": "The Philistines break Israel on Gilboa. Jonathan, Abinadab and Malchishua fall; Saul, wounded by the archers, falls on his own sword rather than be abused. The Philistines fasten the bodies to the wall of Beth-shan, but the valiant men of Jabesh-gilead — the city Saul once saved — march all night to recover them and fast seven days. Saul reigned some forty years.", "src": "1 Samuel 31; Acts 13:21"}, {"y": -1010, "y2": null, "date": "1010 BC", "t": "The Song of the Bow — David's lament", "c": "family", "d": "An Amalekite brings Saul’s crown and claims the killing, expecting reward; David has him executed for destroying the LORD’s anointed. Then he teaches Judah his lament: “The beauty of Israel is slain upon thy high places: how are the mighty fallen!... Saul and Jonathan were lovely and pleasant in their lives... thy love to me was wonderful.”", "src": "2 Samuel 1"}, {"y": -1010, "y2": null, "date": "1010 BC", "t": "David anointed king of Judah at Hebron", "c": "king", "d": "At the LORD’s word David goes up to Hebron, and the men of Judah anoint him king over the house of Judah. He reigns there seven years and six months, and sends a blessing to the men of Jabesh-gilead for their kindness to Saul’s body.", "src": "2 Samuel 2:1–7"}, {"y": -1008, "y2": null, "date": "c. 1008 BC", "t": "Ish-bosheth set up as rival king", "c": "king", "d": "Abner, Saul’s general, takes Ish-bosheth, Saul’s surviving son, to Mahanaim beyond Jordan and makes him king over Israel. The house of Saul and the house of David enter a long civil war: “David waxed stronger and stronger, and the house of Saul waxed weaker and weaker.”", "src": "2 Samuel 2:8–11; 3:1"}, {"y": -1008, "y2": null, "date": "c. 1008 BC", "t": "Battle of Gibeon — Asahel slain", "c": "battle", "d": "Twelve champions of each side grapple and fall together at the pool of Gibeon, and a fierce battle follows in which Abner is beaten. Swift-footed Asahel, Joab’s brother, refuses to turn aside from pursuing Abner and dies on the butt of his spear — a death that will demand blood.", "src": "2 Samuel 2:12–32"}, {"y": -1006, "y2": null, "date": "c. 1006 BC", "t": "Abner's defection and murder", "c": "sin", "d": "Accused by Ish-bosheth over Saul’s concubine Rizpah, Abner swears to translate the kingdom to David and negotiates with the elders of Israel; Michal is restored to David. But Joab, avenging Asahel and fearing a rival, takes Abner aside in the gate of Hebron and kills him. David publicly mourns — “know ye not that there is a prince and a great man fallen this day in Israel?” — and disowns the deed.", "src": "2 Samuel 3"}, {"y": -1005, "y2": null, "date": "c. 1005 BC", "t": "Assassination of Ish-bosheth", "c": "sin", "d": "Two of his own captains, Rechab and Baanah, murder Ish-bosheth on his bed and carry his head to David expecting favor. David, who executed Saul’s claimed slayer, has them killed and hangs their bodies over the pool in Hebron; Ish-bosheth’s head is buried honorably in Abner’s tomb. The path to the throne remains unstained by David’s own hand.", "src": "2 Samuel 4"}, {"y": -1003, "y2": null, "date": "1003 BC", "t": "David king over all Israel", "c": "king", "d": "All the tribes come to Hebron — “we are thy bone and thy flesh” — and the elders anoint David king over all Israel, his third anointing. He is thirty when he begins to reign and reigns forty years. The Chronicler pictures the vast joyful muster: “there was joy in Israel.”", "src": "2 Samuel 5:1–5; 1 Chronicles 11–12"}, {"y": -1003, "y2": null, "date": "1003 BC", "t": "Capture of Jerusalem — the City of David", "c": "battle", "d": "David takes the Jebusite stronghold of Zion, thought impregnable — “the blind and the lame” could hold it, its defenders taunt — Joab going up first, by the water shaft. David dwells in the fort and calls it the City of David, building round about from the Millo. The city of Melchizedek becomes the royal city, and in God’s design, the city of the Temple and of the Cross.", "src": "2 Samuel 5:6–10; 1 Chronicles 11:4–9"}, {"y": -1002, "y2": null, "date": "c. 1002 BC", "t": "Hiram of Tyre builds David a house", "c": "kingdom", "d": "Hiram king of Tyre sends cedar trees, carpenters and masons, and they build David a palace. “And David perceived that the LORD had established him king over Israel, and that he had exalted his kingdom for his people Israel’s sake.”", "src": "2 Samuel 5:11–12"}, {"y": -1002, "y2": null, "date": "c. 1002 BC", "t": "Philistines crushed at Baal-perazim", "c": "battle", "d": "Hearing David is king, the Philistines spread through the valley of Rephaim. David inquires of the LORD and breaks them at Baal-perazim — “the LORD hath broken forth upon mine enemies... as the breach of waters” — and burns their abandoned idols. In a second battle he waits for the sound of marching in the tops of the mulberry trees, the sign that God goes out before him, and smites them from Geba to Gazer.", "src": "2 Samuel 5:17–25"}, {"y": -1001, "y2": null, "date": "c. 1001 BC", "t": "Uzzah and the Ark — Perez-uzzah", "c": "worship", "d": "David brings the Ark from Kiriath-jearim on a new cart — the Philistine way, not the Levites’ shoulders as the Law commands. When the oxen stumble Uzzah takes hold of the Ark and God strikes him dead. Afraid, David leaves the Ark three months in the house of Obed-edom the Gittite, and the LORD blesses all his household — a standing lesson that holy things are approached as God commands, not as man finds convenient.", "src": "2 Samuel 6:1–11; 1 Chronicles 13"}, {"y": -1000, "y2": null, "date": "c. 1000 BC", "t": "The Ark enters Zion — David dances", "c": "worship", "d": "This time the Levites bear the Ark on their shoulders “as Moses commanded,” with sacrifices at every six paces. David, girded in a linen ephod, dances before the LORD with all his might amid shouting and the trumpet; Michal despises him in her heart and remains childless. The Ark is set in the tent David pitched, with Asaph appointed to minister in psalms of thanksgiving. The Fathers see in the Ark a type of the Theotokos, who carried the Word in her womb.", "src": "2 Samuel 6:12–23; 1 Chronicles 15–16"}, {"y": -998, "y2": null, "date": "c. 998 BC", "t": "The Davidic covenant — a house for ever", "c": "covenant", "d": "David, at rest in his cedar house, longs to build a house for the Ark. Through Nathan the LORD answers: it is I who will make thee a house. “I will set up thy seed after thee... and I will stablish the throne of his kingdom for ever... I will be his father, and he shall be my son.” Solomon builds the Temple in the near term, but the everlasting throne belongs to Christ, the Son of David, as Gabriel announces to the Virgin.", "src": "2 Samuel 7; 1 Chronicles 17; Luke 1:32–33"}, {"y": -996, "y2": null, "date": "c. 996 BC", "t": "David's conquests — the empire established", "c": "kingdom", "d": "David subdues the Philistines and Moab; smites Hadadezer of Zobah and the Syrians of Damascus, garrisoning Damascus; takes shields of gold and much brass (later used for the Temple); Edom falls in the Valley of Salt and receives garrisons. Toi of Hamath sends tribute; David dedicates all the spoil to the LORD. His rule reaches from the Euphrates toward the border of Egypt, “and the LORD preserved David whithersoever he went; and David executed judgment and justice unto all his people.”", "src": "2 Samuel 8; 1 Chronicles 18"}, {"y": -995, "y2": null, "date": "c. 995 BC", "t": "Kindness to Mephibosheth", "c": "covenant", "d": "“Is there yet any that is left of the house of Saul, that I may shew him kindness for Jonathan’s sake?” Mephibosheth, Jonathan’s son, lame in both feet since the flight after Gilboa, is brought from Lo-debar; David restores Saul’s lands to him and seats him at the king’s table continually — covenant-love (hesed) kept beyond death.", "src": "2 Samuel 9"}, {"y": -994, "y2": null, "date": "c. 994 BC", "t": "The Ammonite war — Joab at Rabbah", "c": "battle", "d": "Hanun of Ammon shames David’s condolence envoys — half their beards shaved, garments cut off — and hires Aramean armies. Caught between two fronts, Joab and Abishai divide the host: “Be of good courage... and the LORD do that which seemeth him good.” The Arameans are broken, Shobach their commander falls at Helam, and the vassal kings make peace with Israel.", "src": "2 Samuel 10; 1 Chronicles 19"}, {"y": -993, "y2": null, "date": "c. 993 BC", "t": "David and Bathsheba — the murder of Uriah", "c": "sin", "d": "“At the time when kings go forth to battle,” David tarries in Jerusalem, sees Bathsheba washing from his rooftop, and takes her; she conceives. Her husband Uriah the Hittite, recalled from the siege, refuses the comforts of home while the Ark and Israel camp in the open field. David sends him back carrying his own death warrant: “set ye Uriah in the forefront of the hottest battle.” Uriah falls before Rabbah, David marries the widow — “but the thing that David had done displeased the LORD.”", "src": "2 Samuel 11"}, {"y": -992, "y2": null, "date": "c. 992 BC", "t": "“Thou art the man” — Nathan and Psalm 51", "c": "prophet", "d": "Nathan tells the king of a rich man who stole the poor man’s one ewe lamb; when David flares in judgment, the prophet answers: “Thou art the man.” The sword shall never depart from his house. David’s repentance is immediate and total — “I have sinned against the LORD” — and Psalm 51, the Miserere prayed at every Orthodox midnight office, pours out of it: “Create in me a clean heart, O God.” The child of the adultery dies despite David’s fasting.", "src": "2 Samuel 12:1–23; Psalm 51"}, {"y": -991, "y2": null, "date": "c. 991 BC", "t": "Birth of Solomon — Jedidiah", "c": "family", "d": "David comforts Bathsheba, and she bears Solomon — “and the LORD loved him,” sending word by Nathan to name him Jedidiah, “beloved of the LORD.” Out of the ashes of the great sin, God in His mercy raises the heir of the promise and ancestor of Christ.", "src": "2 Samuel 12:24–25; Matthew 1:6"}, {"y": -991, "y2": null, "date": "c. 991 BC", "t": "Fall of Rabbah of Ammon", "c": "battle", "d": "Joab reduces the royal city and summons David to take it, “lest I take the city, and it be called after my name.” David takes the crown of their king — a talent of gold with precious stones — and puts the Ammonites to forced labor. The long Ammonite war ends.", "src": "2 Samuel 12:26–31"}, {"y": -988, "y2": null, "date": "c. 988 BC", "t": "Amnon and Tamar", "c": "sin", "d": "Amnon, David’s firstborn, feigning sickness by the counsel of subtle Jonadab, violates his half-sister Tamar and then hates her with a hatred greater than his former love, casting her out desolate. David is very wroth — but does nothing. Absalom, Tamar’s full brother, says nothing to Amnon “either good or bad,” and waits. Nathan’s sword has entered the house.", "src": "2 Samuel 13:1–22"}, {"y": -986, "y2": null, "date": "c. 986 BC", "t": "Absalom's revenge — Amnon slain", "c": "sin", "d": "Two full years later, at sheep-shearing at Baal-hazor, Absalom’s servants strike Amnon down at his command when his heart is merry with wine. The king’s sons flee on their mules; Absalom escapes to his grandfather Talmai, king of Geshur, and remains three years while David mourns.", "src": "2 Samuel 13:23–39"}, {"y": -983, "y2": null, "date": "c. 983 BC", "t": "Absalom's return to Jerusalem", "c": "family", "d": "Joab, by the parable of the wise woman of Tekoa, moves the king to bring Absalom home — yet David will not see his face. After two more years Absalom sets Joab’s barley field on fire to force an audience, and at last the king kisses his son. In all Israel none is so praised for beauty: “from the sole of his foot even to the crown of his head there was no blemish in him.”", "src": "2 Samuel 14"}, {"y": -979, "y2": null, "date": "c. 979 BC", "t": "Absalom steals the hearts of Israel", "c": "family", "d": "Absalom gets him chariots and horses and fifty men to run before him, and rises early to stand beside the way of the gate, telling every man with a suit, “Oh that I were made judge in the land!” — kissing all who bow to him. “So Absalom stole the hearts of the men of Israel,” preparing his conspiracy over four years.", "src": "2 Samuel 15:1–6"}, {"y": -976, "y2": null, "date": "c. 976 BC", "t": "Absalom's rebellion — David flees Jerusalem", "c": "king", "d": "The trumpet sounds in Hebron: “Absalom reigneth.” David abandons Jerusalem to spare it, crossing the Kidron and weeping barefoot up the Mount of Olives — where a greater Son of David would one day weep. He sends the Ark back — “if I shall find favour... he will bring me again” — plants Hushai as counter-counselor, and receives the loyalty of Ittai the Gittite: “whither my lord the king shall be... even there also will thy servant be.” Psalm 3 is his morning prayer of these days.", "src": "2 Samuel 15; Psalm 3"}, {"y": -976, "y2": null, "date": "c. 976 BC", "t": "Shimei's curses; Ahithophel against Hushai", "c": "sin", "d": "Shimei of Saul’s house stones and curses the fleeing king — “let him curse; for the LORD hath bidden him,” David answers. In Jerusalem Absalom goes in to his father’s concubines on the roof, fulfilling Nathan’s word before all Israel. Ahithophel’s deadly counsel of immediate pursuit — counsel “as if a man had enquired at the oracle of God” — is defeated by Hushai’s delay, “for the LORD had appointed to defeat the good counsel of Ahithophel.” Ahithophel sets his house in order and hangs himself.", "src": "2 Samuel 16–17"}, {"y": -976, "y2": null, "date": "c. 976 BC", "t": "Forest of Ephraim — “O Absalom, my son”", "c": "battle", "d": "David’s veterans break the rebel host in the forest of Ephraim; twenty thousand fall, “and the wood devoured more people that day than the sword.” Absalom, caught by his head in the boughs of a great oak, hangs between heaven and earth; Joab, defying the king’s charge to “deal gently,” thrusts three darts through his heart. David’s grief shakes the ages: “O my son Absalom... would God I had died for thee, O Absalom, my son, my son!”", "src": "2 Samuel 18"}, {"y": -975, "y2": null, "date": "c. 975 BC", "t": "The king's return; Sheba's revolt", "c": "battle", "d": "Joab bluntly rouses David from grief to receive his people. Judah and Israel quarrel over bringing the king back, and Sheba son of Bichri blows the trumpet: “we have no part in David.” Amasa, appointed over the host, is treacherously slain by Joab, who then besieges Sheba in Abel of Beth-maachah until a wise woman has the rebel’s head thrown over the wall. Shimei is spared; Mephibosheth’s tale is heard; aged Barzillai is blessed.", "src": "2 Samuel 19–20"}, {"y": -974, "y2": null, "date": "c. 974 BC", "t": "Famine, the Gibeonites, and Rizpah's vigil", "c": "sin", "d": "Three years of famine expose Saul’s blood-guilt against the Gibeonites, whom Israel had sworn by covenant to spare. Seven of Saul’s descendants are given up and hanged; Mephibosheth is spared for Jonathan’s oath. Rizpah keeps vigil over the bodies from harvest until the rains, driving off bird and beast — and moved by her devotion, David gathers the bones of Saul and Jonathan from Jabesh-gilead and buries them in the sepulchre of Kish.", "src": "2 Samuel 21:1–14"}, {"y": -973, "y2": null, "date": "c. 973 BC", "t": "The giant wars — “the lamp of Israel”", "c": "battle", "d": "In the later Philistine wars David faints in battle, and Ishbi-benob of the giants’ brood nearly slays him; Abishai rescues him, and his men swear: “Thou shalt go no more out with us to battle, that thou quench not the lamp of Israel.” Four more of the giants of Gath — including a brother of Goliath and a six-fingered champion — fall by the hands of David’s servants.", "src": "2 Samuel 21:15–22; 1 Chronicles 20:4–8"}, {"y": -972, "y2": null, "date": "c. 972 BC", "t": "David's song, last words, and mighty men", "c": "writings", "d": "David’s great song of deliverance — “The LORD is my rock, and my fortress, and my deliverer” — is preserved twice in Scripture (2 Samuel 22 = Psalm 18). His last words confess the Spirit’s inspiration: “The Spirit of the LORD spake by me, and his word was in my tongue.” The roll of the mighty men is honored — the three who broke through the Philistine host to draw well-water of Bethlehem, which David would not drink but poured out to the LORD, for it was “the blood of the men that went in jeopardy of their lives.”", "src": "2 Samuel 22–23; Psalm 18"}, {"y": -972, "y2": null, "date": "c. 972 BC", "t": "The census, the plague, and Araunah's floor", "c": "sin", "d": "David numbers Israel in pride against Joab’s protest, and his heart smites him. Offered three judgments, he chooses to fall into the hand of the LORD, “for his mercies are great”: seventy thousand die of pestilence, and the destroying angel stays his hand at the threshing floor of Araunah the Jebusite. David buys the floor and oxen for a price — “neither will I offer burnt offerings unto the LORD my God of that which doth cost me nothing” — builds an altar, and the plague is stayed. This floor on Mount Moriah becomes the site of the Temple.", "src": "2 Samuel 24; 1 Chronicles 21; 2 Chronicles 3:1"}, {"y": -971, "y2": null, "date": "c. 971 BC", "t": "David prepares for the Temple", "c": "worship", "d": "Forbidden to build because he is a man of war who has shed blood, David prepares abundantly for his son “yet young and tender”: a hundred thousand talents of gold, a million of silver, brass and iron without weight, cedar, stone and skilled workmen. He organizes the twenty-four courses of priests, the Levites, the singers of Asaph, Heman and Jeduthun, the gatekeepers and treasurers — and delivers to Solomon the pattern of the house, “all this... the LORD made me understand in writing by his hand upon me.”", "src": "1 Chronicles 22–29"}, {"y": -971, "y2": null, "date": "971 BC", "t": "Adonijah's usurpation; Solomon anointed at Gihon", "c": "king", "d": "Adonijah, David’s eldest surviving son, exalts himself — “I will be king” — feasting his party at En-rogel with Joab and Abiathar. Nathan and Bathsheba rouse the aged David, who keeps his oath: Solomon rides the king’s own mule to Gihon, where Zadok the priest and Nathan the prophet anoint him, and the earth rends with the shout, “God save king Solomon!” Adonijah’s guests scatter; he clings to the horns of the altar and is spared on condition.", "src": "1 Kings 1"}, {"y": -970, "y2": null, "date": "970 BC", "t": "David's charge and death", "c": "king", "d": "David charges Solomon: “Be thou strong... and keep the charge of the LORD thy God, to walk in his ways... that thou mayest prosper in all that thou doest.” Having reigned seven years in Hebron and thirty-three in Jerusalem, he sleeps with his fathers and is buried in the City of David. Prophet and psalmist, ancestor of Christ, the Church numbers him among the holy forefathers; his psalter is her daily prayer book.", "src": "1 Kings 2:1–11; Acts 2:29–30; 13:22–36"}, {"y": -970, "y2": null, "date": "c. 970 BC", "t": "The throne established — judgments of Solomon", "c": "king", "d": "Adonijah asks for Abishag the Shunammite — a veiled claim on the throne — and dies for it. Abiathar is deposed from the priesthood, fulfilling the word spoken against the house of Eli at Shiloh; Zadok stands in his place. Joab, guilty of the blood of Abner and Amasa, is slain even at the altar by Benaiah; Shimei breaks his parole and follows. “And the kingdom was established in the hand of Solomon.”", "src": "1 Kings 2:12–46"}, {"y": -969, "y2": null, "date": "c. 969 BC", "t": "Marriage to Pharaoh's daughter", "c": "kingdom", "d": "Solomon makes affinity with Pharaoh king of Egypt and brings his daughter into the City of David until his own house and the Temple are built — a mark of Israel’s new standing among the nations, and the first thread of the foreign entanglements that will later snare his heart.", "src": "1 Kings 3:1"}, {"y": -969, "y2": null, "date": "c. 969 BC", "t": "The dream at Gibeon — wisdom granted", "c": "covenant", "d": "At the great high place of Gibeon the LORD appears to Solomon in a dream by night: “Ask what I shall give thee.” The young king asks not long life, riches, nor the life of his enemies, but “an understanding heart to judge thy people.” The speech pleases the Lord, who grants wisdom beyond all before or after him — and adds riches and honor besides.", "src": "1 Kings 3:5–15; 2 Chronicles 1"}, {"y": -968, "y2": null, "date": "c. 968 BC", "t": "Judgment of the two mothers", "c": "king", "d": "Two harlots claim one living child. Solomon calls for a sword: “Divide the living child in two.” The true mother’s bowels yearn — “give her the living child, and in no wise slay it” — and the king restores her son. “And all Israel... feared the king: for they saw that the wisdom of God was in him, to do judgment.”", "src": "1 Kings 3:16–28"}, {"y": -967, "y2": null, "date": "c. 967 BC", "t": "The kingdom in its glory — peace and plenty", "c": "kingdom", "d": "Twelve officers provision the court month by month; Solomon reigns over all kingdoms from the Euphrates to the border of Egypt, receiving tribute. “Judah and Israel were many, as the sand which is by the sea in multitude, eating and drinking, and making merry... and Judah and Israel dwelt safely, every man under his vine and under his fig tree... all the days of Solomon” — the Old Testament’s image of messianic peace.", "src": "1 Kings 4:1–28; Micah 4:4"}, {"y": -967, "y2": null, "date": "c. 967 BC", "t": "Solomon's wisdom renowned among the nations", "c": "writings", "d": "God gives Solomon “wisdom and understanding exceeding much, and largeness of heart, even as the sand that is on the sea shore” — wiser than Ethan, Heman, Chalcol and Darda. He speaks three thousand proverbs and a thousand and five songs, discoursing of trees from the cedar to the hyssop, of beasts, fowl, creeping things and fishes; and men come from all peoples and kings of the earth to hear him.", "src": "1 Kings 4:29–34"}, {"y": -966, "y2": null, "date": "c. 966 BC", "t": "Treaty with Hiram — cedars of Lebanon", "c": "kingdom", "d": "Hiram of Tyre, who loved David, covenants with Solomon: cedar and fir floated in rafts by sea in exchange for wheat and pure oil year by year. Solomon raises a levy of thirty thousand men to Lebanon by courses, with eighty thousand hewers in the mountains and seventy thousand bearers of burdens, and great costly stones are cut for the foundation of the house.", "src": "1 Kings 5"}, {"y": -966, "y2": null, "date": "966 BC", "t": "The Temple begun on Mount Moriah", "c": "worship", "d": "In the four hundred and eightieth year after the Exodus, in the fourth year of Solomon, in the month Zif, the house of the LORD is begun on Mount Moriah — where Abraham bound Isaac and where the angel stayed the plague at Araunah’s floor. The stone is made ready before it is brought, “so that there was neither hammer nor axe nor any tool of iron heard in the house, while it was in building” — a silence the Fathers love as a figure of the Church built without clamor.", "src": "1 Kings 6:1–7; 2 Chronicles 3:1"}, {"y": -959, "y2": null, "date": "959 BC", "t": "The Temple completed", "c": "worship", "d": "After seven years the house stands finished in all its parts: the oracle overlaid with pure gold, two cherubim of olive wood ten cubits high overshadowing the place of the Ark, walls carved with cherubim, palms and open flowers. Hiram of Tyre casts the two bronze pillars Jachin (“He shall establish”) and Boaz (“in it is strength”), the molten sea on twelve oxen, and all the vessels. To Solomon comes the word: obedience, not architecture, is the condition of God’s dwelling.", "src": "1 Kings 6:8–38; 7:13–51"}, {"y": -959, "y2": null, "date": "959 BC", "t": "Dedication — the glory fills the house", "c": "worship", "d": "At the feast of the seventh month the priests bring up the Ark into the oracle, and the cloud of glory fills the house so that the priests cannot stand to minister. Solomon’s great prayer confesses that “the heaven of heavens cannot contain thee; how much less this house,” and pleads that God hear from heaven toward this place — the stranger included. Fire descends on the sacrifices (2 Chronicles 7:1); twenty-two thousand oxen and a hundred and twenty thousand sheep are offered, and Israel keeps the feast fourteen days.", "src": "1 Kings 8; 2 Chronicles 5–7"}, {"y": -958, "y2": null, "date": "c. 958 BC", "t": "Second appearance of the LORD", "c": "covenant", "d": "The LORD appears to Solomon a second time, as at Gibeon: “I have hallowed this house... mine eyes and mine heart shall be there perpetually.” But the warning is equally solemn: if you or your children turn from Me to serve other gods, Israel will be cut off from the land, and this exalted house will become “a proverb and a byword among all people” — a word fulfilled in 586 BC.", "src": "1 Kings 9:1–9"}, {"y": -953, "y2": null, "date": "c. 953 BC", "t": "The palace complex; Cabul", "c": "kingdom", "d": "Thirteen years build Solomon’s own house: the House of the Forest of Lebanon with its rows of cedar pillars, the porch of pillars, the porch of the throne where he judges, and a house for Pharaoh’s daughter — twenty years of building in all. To Hiram, who supplied gold and timber, Solomon gives twenty cities in Galilee; Hiram is displeased and names them Cabul, “good-for-nothing.”", "src": "1 Kings 7:1–12; 9:10–14"}, {"y": -950, "y2": null, "date": "c. 950 BC", "t": "Fortresses and store cities", "c": "kingdom", "d": "With the levy Solomon builds the Millo and the wall of Jerusalem, and fortifies Hazor, Megiddo and Gezer — Gezer being Pharaoh’s burnt-and-given dowry to his daughter — with Beth-horon, Baalath, Tadmor, and cities for chariots and horsemen. The remnant of the Canaanite peoples he puts to bond-service, but of Israel he makes soldiers and officers, not slaves.", "src": "1 Kings 9:15–25"}, {"y": -948, "y2": null, "date": "c. 948 BC", "t": "The fleet at Ezion-geber — gold of Ophir", "c": "kingdom", "d": "Solomon builds a navy at Ezion-geber beside Eloth on the Red Sea, manned by Hiram’s seasoned sailors together with his own servants. From Ophir they bring four hundred and twenty talents of gold; the navy of Tarshish comes once in three years bearing gold, silver, ivory, apes and peacocks — Israel’s brief age as a maritime trading power.", "src": "1 Kings 9:26–28; 10:11, 22"}, {"y": -946, "y2": null, "date": "c. 946 BC", "t": "Visit of the Queen of Sheba", "c": "kingdom", "d": "The queen of Sheba comes from the ends of the earth with hard questions, and Solomon answers them all. Seeing his wisdom, the house, the table, and the ascent to the house of the LORD, “there was no more spirit in her”: “the half was not told me... Blessed be the LORD thy God, which delighted in thee.” She gives a hundred and twenty talents of gold and unmatched spices. Christ points to her as witness against an unbelieving generation: “behold, a greater than Solomon is here.”", "src": "1 Kings 10:1–13; Matthew 12:42"}, {"y": -945, "y2": null, "date": "c. 945 BC", "t": "The golden age — silver as stones", "c": "kingdom", "d": "Six hundred threescore and six talents of gold come to Solomon yearly, beside merchandise and the tribute of Arabia. He makes a great ivory throne overlaid with gold, six steps flanked by twelve lions; all his drinking vessels are gold, “none were of silver: it was nothing accounted of.” The king “made silver to be in Jerusalem as stones,” and horses and chariots are brought out of Egypt and Kue — though the Law had warned the king against multiplying horses, wives and gold.", "src": "1 Kings 10:14–29; Deuteronomy 17:16–17"}, {"y": -945, "y2": null, "date": "c. 945 BC", "t": "The wisdom books", "c": "writings", "d": "To Solomon the tradition ascribes the Song of Songs, Proverbs, and Ecclesiastes — read by the Fathers as a ladder: the Song’s pure love, the Proverbs’ discipline for the young, and Ecclesiastes’ verdict on all things under the sun, “vanity of vanities.” Psalms 72 (“Give the king thy judgments, O God”) and 127 (“Except the LORD build the house”) bear his name, and the Church of the first centuries also received the Wisdom of Solomon among her Scriptures.", "src": "1 Kings 4:32; Proverbs 1:1; Ecclesiastes 1:1; Song 1:1"}, {"y": -940, "y2": null, "date": "c. 940 BC", "t": "The heart turned — strange wives and idols", "c": "sin", "d": "Solomon loves many strange women — seven hundred wives, princesses, and three hundred concubines — of the very nations the LORD had forbidden, “and his wives turned away his heart.” In old age he goes after Ashtoreth of the Sidonians and Milcom of Ammon, and builds high places for Chemosh of Moab and Molech on the hill facing Jerusalem — incense rising to demons within sight of the Temple he built. “And his heart was not perfect with the LORD his God, as was the heart of David his father.”", "src": "1 Kings 11:1–8"}, {"y": -937, "y2": null, "date": "c. 937 BC", "t": "Judgment pronounced on Solomon", "c": "prophet", "d": "The LORD, who had appeared to him twice, is angry with Solomon and pronounces sentence: “I will surely rend the kingdom from thee, and will give it to thy servant.” Yet mercy tempers judgment — not in Solomon’s days, for David’s sake; and one tribe shall remain to his son, “for David my servant’s sake, and for Jerusalem’s sake which I have chosen.”", "src": "1 Kings 11:9–13"}, {"y": -935, "y2": null, "date": "c. 935 BC", "t": "Adversaries raised — Hadad and Rezon", "c": "kingdom", "d": "The LORD stirs up adversaries: Hadad the Edomite, a royal survivor of Joab’s slaughter who found refuge and marriage in Pharaoh’s house, returns to trouble Solomon from the south; Rezon son of Eliadah, escaped from Hadadezer of Zobah, seizes Damascus and reigns there, “an adversary to Israel all the days of Solomon” — the seed of the Aramean kingdom that will torment Israel for two centuries.", "src": "1 Kings 11:14–25"}, {"y": -933, "y2": null, "date": "c. 933 BC", "t": "Ahijah's torn cloak — Jeroboam", "c": "prophet", "d": "Jeroboam son of Nebat, an industrious Ephraimite whom Solomon set over the labor of the house of Joseph, is met on the road by Ahijah the Shilonite, who tears his own new garment into twelve pieces: “Take thee ten pieces: for thus saith the LORD... I will rend the kingdom out of the hand of Solomon.” To Jeroboam is offered a sure house — if he will walk as David walked. Solomon seeks to kill him, and he flees to Shishak king of Egypt until Solomon’s death.", "src": "1 Kings 11:26–40"}, {"y": -931, "y2": null, "date": "931 BC", "t": "Death of Solomon", "c": "king", "d": "After reigning forty years over all Israel in Jerusalem, Solomon sleeps with his fathers and is buried in the City of David; Rehoboam his son reigns in his stead. Scripture leaves his end in silence, though many Fathers hoped that Ecclesiastes — “Fear God, and keep his commandments: for this is the whole duty of man” — is the repentance of his old age.", "src": "1 Kings 11:41–43; Ecclesiastes 12:13"}, {"y": -931, "y2": null, "date": "931 BC", "t": "The kingdom divides at Shechem", "c": "king", "d": "At Shechem all Israel asks Rehoboam to lighten Solomon’s heavy yoke. Forsaking the old men’s counsel for his companions’ — “my little finger shall be thicker than my father’s loins” — he answers with scorpions, “for the cause was from the LORD,” that Ahijah’s word might stand. Israel cries, “To your tents, O Israel!” Ten tribes crown Jeroboam; Judah and Benjamin remain to David’s house. The united monarchy of Saul, David and Solomon — one hundred and twenty years — is ended, and the long road to exile begins.", "src": "1 Kings 12; 2 Chronicles 10"}], CATS = [["king", "Kingship & Succession", "#e0b352"], ["battle", "Battles & Wars", "#cf5c5c"], ["prophet", "Prophets & Priests", "#a98bd0"], ["worship", "Ark, Temple & Worship", "#46a5a0"], ["covenant", "Covenants & Promises", "#7a86c9"], ["sin", "Sin & Judgment", "#d98a4e"], ["family", "Family & Court", "#5e9bb5"], ["kingdom", "Kingdom & Nations", "#7f9e5b"], ["writings", "Wisdom & Writings", "#cf7fa0"]], BANDS = [[-1110, -1050, "Samuel & the Last Judges"], [-1050, -1010, "Reign of Saul"], [-1010, -970, "Reign of David"], [-970, -931, "Reign of Solomon"], [-931, -925, "Division"]];
+  var START = -1110, END = -925, SPAN = END - START, PAD = 80;
+  var H = 566, CY = 283, STEMS = [58, 128, 198], CARD_H = 56, GAP = 10, MAXPPY = 26;
+  var COL = {}, CNAME = {};
+  CATS.forEach(function(c){ COL[c[0]] = c[2]; CNAME[c[0]] = c[1]; });
+  var active = {}; CATS.forEach(function(c){ active[c[0]] = true; });
+
+  var vp = document.getElementById('htlVp');
+  var track = document.getElementById('htlTrack');
+  var detail = document.getElementById('htlDetail');
+  var slider = document.getElementById('htlSlider');
+  var ppy, minPPY, selIdx = -1, panX = 0;
+
+  function xOf(y){ return PAD + (y - START) * ppy; }
+  function clamp(v,a,b){ return v < a ? a : (v > b ? b : v); }
+  var fitPPY;
+  function computeMin(){ fitPPY = ((vp.clientWidth || 900) - PAD - 40) / SPAN; minPPY = fitPPY * 0.8; }
+  // pan offset: how many px the canvas is shifted left inside the frame.
+  // We move the track with a CSS transform instead of scrollLeft, because an
+  // overflow:hidden frame ignores scrollLeft (which was pinning zoom to the start).
+  function maxPan(){ return Math.max(0, (xOf(END) + PAD) - vp.clientWidth); }
+  function applyPan(){ panX = clamp(panX, 0, maxPan()); track.style.transform = 'translateX(' + (-panX) + 'px)'; }
+
+  function tickStep(){
+    var iv = [1000,500,250,100,50,25,10,5], step = 1000;
+    for(var i = iv.length-1; i>=0; i--){ if(iv[i]*ppy >= 74){ step = iv[i]; break; } }
+    return step;
+  }
+
+  // slots: side(-1 up / +1 down) x tier(0 near / 1 mid / 2 far)
+  var SLOTS = [ {s:-1,t:0}, {s:1,t:0}, {s:-1,t:1}, {s:1,t:1}, {s:-1,t:2}, {s:1,t:2} ];
+
+  // importance weighting: marquee events reserve label lanes before crowded neighbours
+  var IMPW = { king:5, battle:3, prophet:3, worship:4, covenant:5, sin:3, family:2, kingdom:2, writings:2 };
+  var BIGRE = /Goliath|Gilboa|Davidic covenant|Temple|anointed|divides|Jerusalem|Bathsheba|Absalom|demands a king|Dedication|dream at Gibeon|Ark/i;
+  // landmark events that should always claim a label lane at any zoom, even in dense clusters
+  var TOPRE = /Goliath|Davidic covenant|Dedication|Gilboa|kingdom divides|king over all Israel|demands a king|anointed at Bethlehem/i;
+  function imp(e){ var w = IMPW[e.c] || 2; if(BIGRE.test(e.t)) w += 6; if(TOPRE.test(e.t)) w += 8; return w; }
+  // width a card needs for its text (sized to the longer of the date/title line, clamped)
+  function cardW(e){
+    var longest = Math.max((e.date || '').length, (e.t || '').length);
+    return Math.max(96, Math.min(230, Math.round(longest * 6.5 + 22)));
+  }
+  // persistent lane assignment so an event keeps its position across zooms (cleared on chip toggle)
+  var laneOf = {};
+
+  function render(){
+    var trackW = xOf(END) + PAD;
+    track.style.width = trackW + 'px';
+    track.style.height = H + 'px';
+    vp.style.height = (H + 16) + 'px';
+
+    var html = '';
+    BANDS.forEach(function(b){
+      var l = xOf(b[0]), w = xOf(b[1]) - l;
+      html += '<div class="htl-band" style="left:'+l+'px;width:'+w+'px"><span class="bl">'+b[2]+'</span></div>';
+    });
+    html += '<div class="htl-spine" style="top:'+CY+'px;width:'+trackW+'px"></div>';
+    // axis ticks (below the spine)
+    var step = tickStep(), t0 = Math.ceil(START/step)*step;
+    for(var yr = t0; yr <= END; yr += step){
+      html += '<div class="htl-tick" style="left:'+xOf(yr)+'px;top:'+(CY+14)+'px">'+(-yr)+' BC</div>';
+    }
+    // events, only active categories
+    var vis = [];
+    EV.forEach(function(e,i){ if(active[e.c]) vis.push(i); });
+    // Pass 1 — assign lanes in importance-then-year order using interval scheduling,
+    // so marquee events (e.g. the 21 Martyrs) claim a label lane before crowded neighbours.
+    var occ = SLOTS.map(function(){ return []; }); // per-lane occupied [lo,hi] intervals
+    var lane = {}; // idx -> slot for this render (-1 = dot only)
+    function fits(sl, lo, hi){
+      var arr = occ[sl];
+      for(var q = 0; q < arr.length; q++){ if(lo <= arr[q][1] && hi >= arr[q][0]) return false; }
+      return true;
+    }
+    var order2 = vis.slice().sort(function(a,b){
+      var d = imp(EV[b]) - imp(EV[a]);
+      return d ? d : (EV[a].y - EV[b].y);
+    });
+    order2.forEach(function(i){
+      var e = EV[i], x = xOf(e.y), half = cardW(e) / 2 + GAP / 2, lo = x - half, hi = x + half;
+      // stable preference: last render's lane first (position persists across zoom),
+      // then parity-by-year (stable per event), filling near tiers before far ones.
+      var tryOrder = [];
+      if(laneOf[i] !== undefined) tryOrder.push(laneOf[i]);
+      var base = (e.y & 1) ? [1,0,3,2,5,4] : [0,1,2,3,4,5];
+      base.forEach(function(s){ if(tryOrder.indexOf(s) < 0) tryOrder.push(s); });
+      var placed = -1;
+      for(var k = 0; k < tryOrder.length; k++){
+        if(fits(tryOrder[k], lo, hi)){ placed = tryOrder[k]; break; }
+      }
+      if(placed >= 0){ occ[placed].push([lo, hi]); laneOf[i] = placed; }
+      lane[i] = placed;
+    });
+    // Pass 2 — emit in year order for stable DOM; every event gets a hover tooltip.
+    vis.sort(function(a,b){ return EV[a].y - EV[b].y; });
+    vis.forEach(function(i){
+      var e = EV[i], x = xOf(e.y), col = COL[e.c], placed = lane[i];
+      var tip = (e.date + ' — ' + e.t).replace(/"/g, '&quot;');
+      var cls = 'htl-ev' + (placed < 0 ? ' no-card' : '');
+      html += '<div class="'+cls+'" data-idx="'+i+'" title="'+tip+'" style="left:'+x+'px;top:'+CY+'px;--cc:'+col+'">';
+      html += '<span class="htl-dot"></span>';
+      if(placed >= 0){
+        var sd = SLOTS[placed], stem = STEMS[sd.t], cw = cardW(e);
+        if(sd.s < 0){
+          html += '<span class="htl-stem" style="top:'+(-stem)+'px;height:'+stem+'px"></span>';
+          html += '<div class="htl-card" style="bottom:'+stem+'px;width:'+cw+'px">'
+               +  '<div class="htl-cd">'+e.date+'</div><div class="htl-ct">'+e.t+'</div></div>';
+        } else {
+          html += '<span class="htl-stem" style="top:0;height:'+stem+'px"></span>';
+          html += '<div class="htl-card" style="top:'+stem+'px;width:'+cw+'px">'
+               +  '<div class="htl-cd">'+e.date+'</div><div class="htl-ct">'+e.t+'</div></div>';
+        }
+      }
+      html += '</div>';
+    });
+    track.innerHTML = html;
+    applyPan();
+    applySel();
+    if(slider){
+      slider.value = Math.round( Math.log(ppy/minPPY) / Math.log(MAXPPY/minPPY) * 100 );
+    }
+  }
+
+  function applySel(){
+    track.querySelectorAll('.htl-ev').forEach(function(n){
+      n.classList.toggle('sel', +n.getAttribute('data-idx') === selIdx);
+    });
+  }
+
+  function showDetail(i){
+    selIdx = i; var e = EV[i], col = COL[e.c];
+    detail.style.setProperty('--dc', col);
+    detail.innerHTML =
+      '<div class="dcat" style="color:'+col+'">'+CNAME[e.c]+'</div>'+
+      '<div class="ddate">'+e.date+'</div>'+
+      '<div class="dtitle">'+e.t+'</div>'+
+      '<p class="dbody">'+e.d+'</p>'+
+      (e.src ? '<p class="dsrc"><b>Source</b>'+e.src+'</p>' : '');
+    applySel();
+  }
+
+  function setPPY(newppy, anchorClientX){
+    computeMin();
+    newppy = clamp(newppy, minPPY, MAXPPY);
+    var rect = vp.getBoundingClientRect();
+    var cx = (anchorClientX != null ? anchorClientX : rect.left + rect.width/2) - rect.left;
+    var anchorYear = START + (panX + cx - PAD) / ppy;
+    ppy = newppy;
+    panX = PAD + (anchorYear - START) * ppy - cx;   // keep the year under the cursor fixed
+    render();
+  }
+
+  // click / select
+  track.addEventListener('click', function(ev){
+    if(justDragged) return;
+    var el = ev.target.closest('.htl-ev');
+    if(el) showDetail(+el.getAttribute('data-idx'));
+  });
+
+  // drag to pan
+  var dragging=false, sx=0, sl=0, justDragged=false;
+  vp.addEventListener('mousedown', function(e){
+    dragging=true; justDragged=false; sx=e.clientX; sl=panX; vp.classList.add('drag');
+  });
+  window.addEventListener('mousemove', function(e){
+    if(!dragging) return;
+    if(Math.abs(e.clientX - sx) > 3) justDragged=true;
+    panX = sl - (e.clientX - sx); applyPan();
+  });
+  window.addEventListener('mouseup', function(){
+    dragging=false; vp.classList.remove('drag');
+    setTimeout(function(){ justDragged=false; }, 30);
+  });
+
+  // ---- Unified zoom: one symmetric function, driven by gesture SIGN ----
+  // zoomBy(factor): factor>1 zooms in, factor<1 zooms out. Always anchored under the pointer.
+  function zoomBy(factor, clientX){ setPPY(ppy * factor, clientX); }
+
+  // ---- Google-Maps model: the frame is its own canvas. ----
+  // Scroll = zoom (BOTH ways, no modifier needed). exp() makes in/out exact inverses,
+  // so scrolling back out always undoes scrolling in -- it can never get stuck.
+  // Shift+scroll or a horizontal trackpad swipe = pan sideways.
+  vp.addEventListener('wheel', function(e){
+    e.preventDefault();
+    // horizontal intent -> pan
+    if(e.shiftKey || Math.abs(e.deltaX) > Math.abs(e.deltaY)){
+      panX += (e.shiftKey ? e.deltaY : e.deltaX); applyPan();
+      return;
+    }
+    // vertical intent -> zoom, anchored under the cursor
+    zoomBy(Math.exp(-e.deltaY * 0.0018), e.clientX);
+  }, {passive:false});
+
+  // Safari trackpad pinch: gesture* events carry a cumulative e.scale that starts at 1.
+  // Apply the RATIO since the last event so it stays symmetric and never drifts.
+  var lastScale = 1, gX = null;
+  vp.addEventListener('gesturestart', function(e){ e.preventDefault(); lastScale = 1; gX = e.clientX; }, {passive:false});
+  vp.addEventListener('gesturechange', function(e){
+    e.preventDefault();
+    if(e.scale && lastScale){ zoomBy(e.scale / lastScale, gX); lastScale = e.scale; }
+  }, {passive:false});
+  vp.addEventListener('gestureend', function(e){ e.preventDefault(); lastScale = 1; }, {passive:false});
+
+  // Touchscreen two-finger pinch: drive off the change in finger distance each move.
+  function tdist(t){ var dx=t[0].clientX-t[1].clientX, dy=t[0].clientY-t[1].clientY; return Math.sqrt(dx*dx+dy*dy); }
+  var tPrev = 0;
+  vp.addEventListener('touchstart', function(e){ if(e.touches.length === 2){ tPrev = tdist(e.touches); } }, {passive:false});
+  vp.addEventListener('touchmove', function(e){
+    if(e.touches.length === 2 && tPrev){
+      e.preventDefault();
+      var d = tdist(e.touches), midX = (e.touches[0].clientX + e.touches[1].clientX)/2;
+      if(d > 0){ zoomBy(d / tPrev, midX); tPrev = d; }   // spread(>1)=in, close(<1)=out
+    }
+  }, {passive:false});
+  vp.addEventListener('touchend', function(e){ if(e.touches.length < 2){ tPrev = 0; } }, {passive:false});
+
+  // double-click zoom in
+  vp.addEventListener('dblclick', function(e){ setPPY(ppy * 1.8, e.clientX); });
+
+  // buttons + slider
+  document.getElementById('htlIn').addEventListener('click', function(){ setPPY(ppy*1.5); });
+  document.getElementById('htlOut').addEventListener('click', function(){ setPPY(ppy/1.5); });
+  document.getElementById('htlFit').addEventListener('click', function(){ computeMin(); ppy=fitPPY; panX=0; render(); });
+  if(slider) slider.addEventListener('input', function(){
+    computeMin();
+    var p = minPPY * Math.pow(MAXPPY/minPPY, (+slider.value)/100);
+    setPPY(p);
+  });
+
+  // filters
+  document.getElementById('htlChips').addEventListener('click', function(ev){
+    var b = ev.target.closest('.htl-chip'); if(!b) return;
+    var k = b.getAttribute('data-cat');
+    var on = CATS.filter(function(c){ return active[c[0]]; }).length;
+    if(active[k] && on <= 1) return;
+    active[k] = !active[k];
+    b.classList.toggle('on', active[k]);
+    laneOf = {};   // rebalance lanes when the visible set changes
+    render();
+  });
+
+  var rt;
+  window.addEventListener('resize', function(){ clearTimeout(rt); rt=setTimeout(function(){ computeMin(); if(ppy<minPPY) ppy=minPPY; render(); }, 160); });
+
+  // Open zoomed-in so the timeline overflows the frame (google-maps feel):
+  // the earliest era fills the view and later centuries sit off-screen to the
+  // right, so side-to-side panning has range immediately.
+  computeMin(); ppy = fitPPY * 2; panX = 0; render();
+})();
+</script>
+
+</main>
+<script>
+window.addEventListener('scroll',()=>{const h=document.documentElement;document.getElementById('prog').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100+'%';});
+const navLinks=document.querySelectorAll('#sb-nav a[href^="#"]');
+const secs2=document.querySelectorAll('main .sec[id]');
+window.addEventListener('scroll',()=>{let cur='';secs2.forEach(s=>{if(s.getBoundingClientRect().top<=120)cur=s.id;});navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur);});},{passive:true});
+function ts(h){h.closest('.sec').classList.toggle('open');}
+function tf(h){h.closest('.fi').classList.toggle('open');}
+function sidebarSearch(q){
+  q=q.trim().toLowerCase();
+  const secs=document.querySelectorAll('main .sec');
+  let matched=0;
+  secs.forEach(sec=>{
+    if(!q){sec.classList.remove('s-hidden');const h2=sec.querySelector('.sec-h h2');if(h2._orig)h2.innerHTML=h2._orig;matched++;return;}
+    const h2=sec.querySelector('.sec-h h2');
+    const body=sec.querySelector('.sec-body');
+    const hit=(h2._orig||h2.textContent).toLowerCase().includes(q)||(body?body.textContent.toLowerCase():'').includes(q);
+    sec.classList.toggle('s-hidden',!hit);
+    if(hit){matched++;if(!h2._orig)h2._orig=h2.innerHTML;const re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');h2.innerHTML=h2._orig.replace(re,'<mark>$1</mark>');sec.classList.add('open');}
+  });
+  document.getElementById('sb-no-match').classList.toggle('show',!!q&&matched===0);
+}
+</script>
+<button id="ol-tt" onclick="olTheme()" aria-label="Toggle light or dark mode" title="Light/dark mode">☀</button><script>function olTheme(){var l=document.documentElement.classList.toggle('light');try{localStorage.setItem('ol-theme',l?'light':'dark')}catch(e){}olIcon()}function olIcon(){document.getElementById('ol-tt').textContent=document.documentElement.classList.contains('light')?'☾':'☀'}olIcon();</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+/* AUTO-ENHANCE-JS */
+(function(){
+  try{
+    // back-to-top
+    var bt=document.createElement('button');bt.id='ol-top';bt.setAttribute('aria-label','Back to top');bt.innerHTML='\u2191';
+    bt.onclick=function(){window.scrollTo({top:0,behavior:'smooth'});};
+    document.body.appendChild(bt);
+    window.addEventListener('scroll',function(){bt.classList.toggle('show',window.scrollY>420);},{passive:true});
+    // reading time
+    var main=document.querySelector('main');
+    if(main){
+      var txt=main.innerText||'';var words=txt.trim().split(/\s+/).length;
+      var mins=Math.max(1,Math.round(words/200));
+      var rt=document.createElement('div');rt.className='ol-readtime';rt.textContent=mins+' min read';
+      var anchor=main.querySelector('.pg-title,.page-head,.pg-head,.hd');
+      if(anchor)anchor.appendChild(rt);else main.insertBefore(rt,main.firstChild);
+    }
+    // scroll-reveal
+    var secs=document.querySelectorAll('.sec');
+    if('IntersectionObserver' in window && document.documentElement.classList.contains('js-anim')){
+      var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.01,rootMargin:'0px 0px 12% 0px'});
+      secs.forEach(function(s){io.observe(s);});
+    }else{secs.forEach(function(s){s.classList.add('in');});}
+    // ensure search reveals all
+    document.querySelectorAll('.sb-search input,input[oninput*=sidebarSearch]').forEach(function(i){i.addEventListener('input',function(){document.querySelectorAll('.sec').forEach(function(s){s.classList.add('in');});});});
+  }catch(e){document.querySelectorAll('.sec').forEach(function(s){s.classList.add('in');});}
+})();
+/* END-ENHANCE-JS */</script>
+<script>
+/* AUTO-AESTHETIC2-JS */
+(function(){
+  try{
+    // section dividers between sibling .sec elements
+    Array.prototype.slice.call(document.querySelectorAll('.sec')).forEach(function(s){
+      var prev=s.previousElementSibling;
+      if(prev&&prev.classList&&prev.classList.contains('sec')&&!prev.classList.contains('ol-divider')){
+        var d=document.createElement('div');d.className='ol-divider';d.setAttribute('aria-hidden','true');d.textContent='\u2629';
+        s.parentNode.insertBefore(d,s);
+      }
+    });
+    // drop-cap on the first section's opening paragraph (chapter-opener feel)
+    var lead=document.querySelector('main .sec .sec-body p, main .sec .sec-bd p');
+    if(lead && (lead.textContent||'').trim().length>40){ lead.classList.add('ol-lead'); }
+  }catch(e){}
+})();
+/* END-AESTHETIC2-JS */</script>
+<script>
+/* AUTO-FEATURES3-JS */
+(function(){
+  try{
+    var here=(location.pathname.split('/').pop()||'index.html');
+    var base=location.href.split('#')[0];
+    function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+    /* ---- 1. copy-link buttons ---- */
+    document.querySelectorAll('.sec[id]').forEach(function(sec){
+      var h=sec.querySelector('.sec-h,.sec-hd');
+      if(!h||h.querySelector('.ol-copy'))return;
+      var b=document.createElement('button');
+      b.className='ol-copy';b.type='button';b.setAttribute('aria-label','Copy link to this section');
+      b.addEventListener('click',function(ev){
+        ev.stopPropagation();ev.preventDefault();
+        var url=base+'#'+sec.id;
+        var ok=function(){b.classList.add('ok');setTimeout(function(){b.classList.remove('ok');},1500);};
+        if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(ok,ok);}
+        else{var t=document.createElement('textarea');t.value=url;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(t);ok();}
+      });
+      var arr=h.querySelector('.arr');
+      if(arr&&arr.parentNode===h)h.insertBefore(b,arr);else h.appendChild(b);
+    });
+
+    /* ---- shared index + bundled KJV ---- */
+    var IDX=null,idxP=null,SEC={};
+    function loadIndex(){if(idxP)return idxP;idxP=fetch('search-index.json').then(function(r){return r.json();}).then(function(d){IDX=d;(d.pages||[]).forEach(function(p){var m={};(p.secs||[]).forEach(function(s){m[s.a]=s.h;});SEC[p.f]=m;});return d;});return idxP;}
+    var VP=null,vpP=null;
+    function loadVP(){if(vpP)return vpP;vpP=fetch('verse-pages.json').then(function(r){return r.json();}).then(function(d){VP=d;return d;}).catch(function(){VP={};});return vpP;}
+    var VERSES=null;
+    fetch('verses.json').then(function(r){return r.json();}).then(function(d){VERSES=d;}).catch(function(){VERSES={};});
+
+    /* ---- 2. related topics ---- */
+    loadIndex().then(function(idx){
+      if(!idx||!idx.pages)return;
+      var page=null;idx.pages.forEach(function(p){if(p.f===here)page=p;});
+      if(!page||!page.rel||!page.rel.length)return;
+      var main=document.querySelector('main')||document.getElementById('main');if(!main)return;
+      var box=document.createElement('div');box.className='ol-related';
+      var hh=document.createElement('h3');hh.textContent='Related topics';box.appendChild(hh);
+      var wrap=document.createElement('div');wrap.className='ol-related-links';
+      page.rel.forEach(function(r){var a=document.createElement('a');a.href=r.f;a.textContent=r.t;wrap.appendChild(a);});
+      box.appendChild(wrap);main.appendChild(box);
+    }).catch(function(){});
+
+    /* ---- 3. site-wide search ---- */
+    var ov=document.createElement('div');ov.className='ol-ov';
+    ov.innerHTML='<div class="ol-modal" role="dialog" aria-label="Search topics and verses"><input class="ol-search-input" type="text" placeholder="Search topics or a Bible verse (e.g. John 3:16)…" aria-label="Search topics and Bible verses" autocomplete="off"><div class="ol-results" role="listbox"></div><div class="ol-hint">↑↓ navigate · ↵ open · esc close · type a reference like Rom 5 or 1 Cor 10:12</div></div>';
+    document.body.appendChild(ov);
+    var input=ov.querySelector('.ol-search-input');
+    var results=ov.querySelector('.ol-results');
+    var flat=[],sel=-1;
+    function hilite(text,q){if(!q)return esc(text);var i=text.toLowerCase().indexOf(q);if(i<0)return esc(text);return esc(text.slice(0,i))+'<mark>'+esc(text.slice(i,i+q.length))+'</mark>'+esc(text.slice(i+q.length));}
+
+    /* fuzzy / typo-tolerant scorer */
+    function lev(a,b){var m=a.length,n=b.length;if(!m)return n;if(!n)return m;var prev=[],cur=[],i,j;for(j=0;j<=n;j++)prev[j]=j;for(i=1;i<=m;i++){cur[0]=i;for(j=1;j<=n;j++){var c=a.charAt(i-1)===b.charAt(j-1)?0:1;cur[j]=Math.min(prev[j]+1,cur[j-1]+1,prev[j-1]+c);}for(j=0;j<=n;j++)prev[j]=cur[j];}return prev[n];}
+    function scoreText(hay,q){
+      if(!q)return 0.5;hay=String(hay).toLowerCase();
+      var idx=hay.indexOf(q);
+      if(idx===0)return 1000;
+      if(idx>0)return 800-idx;
+      var words=hay.split(/[^a-z0-9]+/),best=-1,w,word,d,thr;
+      for(w=0;w<words.length;w++){word=words[w];if(!word)continue;
+        if(word.indexOf(q)===0){best=Math.max(best,600);continue;}
+        if(q.length>=4){thr=q.length<=5?1:2;d=lev(word,q);if(d<=thr)best=Math.max(best,420-d*40);}
+      }
+      if(best>=0)return best;
+      var hi=0,qi=0;for(;hi<hay.length&&qi<q.length;hi++){if(hay.charAt(hi)===q.charAt(qi))qi++;}
+      if(qi===q.length)return 200;
+      return -1;
+    }
+
+    /* Bible-book resolver (abbreviations + full names) */
+    var BK={};
+    function reg(c,al){BK[c.toLowerCase().replace(/\s+/g,'')]=c;al.split(',').forEach(function(a){a=a.replace(/\s+/g,'');if(a)BK[a]=c;});}
+    reg('Genesis','gen,ge,gn');reg('Exodus','exo,ex,exod');reg('Leviticus','lev,le,lv');reg('Numbers','num,nu,nm,nb');
+    reg('Deuteronomy','deut,dt,deu');reg('Joshua','josh,jos,jsh');reg('Judges','judg,jdg,jg,jdgs');reg('Ruth','rut,ru,rth');
+    reg('1 Samuel','1sam,1sa,1s,1sm');reg('2 Samuel','2sam,2sa,2s,2sm');reg('1 Kings','1kings,1kgs,1ki,1kg');reg('2 Kings','2kings,2kgs,2ki,2kg');
+    reg('1 Chronicles','1chron,1chr,1ch');reg('2 Chronicles','2chron,2chr,2ch');reg('Ezra','ezr');reg('Nehemiah','neh,ne');
+    reg('Esther','est,esth,es');reg('Job','jb');reg('Psalms','ps,psa,psalm,pss,psm');reg('Proverbs','prov,pro,prv,pr');
+    reg('Ecclesiastes','eccl,ecc,ec,eccles,qoh');reg('Song of Solomon','song,sos,songofsongs,canticles,cant,ss');
+    reg('Isaiah','isa,is,isai');reg('Jeremiah','jer,jr');reg('Lamentations','lam,la');reg('Ezekiel','ezek,eze,ezk');
+    reg('Daniel','dan,da,dn');reg('Hosea','hos,ho');reg('Joel','joe,jl');reg('Amos','am,amo');reg('Obadiah','obad,ob,oba');
+    reg('Jonah','jon,jnh');reg('Micah','mic,mc');reg('Nahum','nah,na');reg('Habakkuk','hab');reg('Zephaniah','zeph,zep,zp');
+    reg('Haggai','hag,hg');reg('Zechariah','zech,zec,zc');reg('Malachi','mal,ml');reg('Matthew','matt,mt,mat');
+    reg('Mark','mk,mar,mrk');reg('Luke','lk,luk,lu');reg('John','jn,joh,jhn');reg('Acts','act,ac');reg('Romans','rom,ro,rm');
+    reg('1 Corinthians','1cor,1co,1c');reg('2 Corinthians','2cor,2co,2c');reg('Galatians','gal,ga');reg('Ephesians','eph,ephes');
+    reg('Philippians','phil,php,pp');reg('Colossians','col');reg('1 Thessalonians','1thess,1thes,1th');reg('2 Thessalonians','2thess,2thes,2th');
+    reg('1 Timothy','1tim,1ti,1tm');reg('2 Timothy','2tim,2ti,2tm');reg('Titus','tit,ti,tts');reg('Philemon','philem,phlm,phm,pm');
+    reg('Hebrews','heb,hebr');reg('James','jas,jm,jms');reg('1 Peter','1pet,1pe,1pt,1p');reg('2 Peter','2pet,2pe,2pt,2p');
+    reg('1 John','1john,1jn,1jo,1j');reg('2 John','2john,2jn,2jo,2j');reg('3 John','3john,3jn,3jo,3j');reg('Jude','jud,jd');
+    reg('Revelation','rev,re,rv,apocalypse,apoc');
+    function parseRef(raw){
+      if(!raw)return null;
+      var m=raw.match(/^\s*([1-3]?\s*[a-zA-Z][a-zA-Z\s]*?)\s*(\d{1,3})(?:\s*[:.\s]\s*(\d{1,3}))?\s*$/);
+      if(!m)return null;
+      var bk=m[1].toLowerCase().replace(/[\s.]+/g,'');var canon=BK[bk];
+      if(!canon)return null;
+      return {canon:canon,ch:parseInt(m[2],10),vs:m[3]?parseInt(m[3],10):null};
+    }
+    function uniqPages(entries){var seen={},out=[];entries.forEach(function(e){if(!seen[e[0]]){seen[e[0]]=1;out.push({f:e[0],t:e[1],a:e[2]});}});return out;}
+    /* exported verse engine — used by the FE4 "Ask the Lamp" assistant.
+       resolves to null if `raw` is not a bare Bible reference. */
+    window.__olVerseQuery=function(raw){
+      var vq=parseRef((raw||'').trim());
+      if(!vq)return Promise.resolve(null);
+      return Promise.all([loadVP(),loadIndex()]).then(function(){
+        function sub(f,a){return (SEC[f]&&SEC[f][a])||'';}
+        function pages(arr){return uniqPages(arr).map(function(r){return {f:r.f,t:r.t,a:r.a,sub:sub(r.f,r.a)};});}
+        if(vq.vs!=null){
+          var key=vq.canon+' '+vq.ch+':'+vq.vs,e=VP[key];
+          return {mode:'verse',ref:key,kjv:(e&&e.k)?e.k:null,pages:e?pages(e.r):[]};
+        }
+        var prefix=vq.canon+' '+vq.ch+':',vnums=[],agg=[];
+        Object.keys(VP).forEach(function(k){if(k.indexOf(prefix)===0){vnums.push(parseInt(k.slice(prefix.length),10));VP[k].r.forEach(function(r){agg.push(r);});}});
+        vnums.sort(function(a,b){return a-b;});
+        return {mode:'chapter',ref:vq.canon+' '+vq.ch,vnums:vnums,pages:pages(agg)};
+      }).catch(function(){return null;});
+    };
+    function rowsHTML(){
+      if(!flat.length)return '<div class="r-empty">No page cites this on the site yet.</div>';
+      return flat.map(function(r,i){return '<a class="ol-r'+(i===sel?' sel':'')+'" data-i="'+i+'" href="'+r.f+(r.a?'#'+r.a:'')+'"><span class="r-t">'+esc(r.t)+'</span>'+(r.sub?'<span class="r-s">'+esc(r.sub)+'</span>':'')+'</a>';}).join('');
+    }
+
+    function renderVerse(vq){
+      if(!VP){results.innerHTML='<div class="r-empty">Loading verse index…</div>';flat=[];sel=-1;return;}
+      var canon=vq.canon,ch=vq.ch,vs=vq.vs,card='',rows=[];
+      if(vs!=null){
+        var key=canon+' '+ch+':'+vs,e=VP[key];
+        card='<div class="ol-vcard"><span class="vref">'+esc(key)+'</span>'+(e&&e.k?'<span class="vkjv">'+esc(e.k)+'<em>KJV</em></span>':'')+(e?'':'<span class="vmeta">Not cited on the site yet.</span>')+'</div>';
+        if(e)rows=uniqPages(e.r);
+      }else{
+        var prefix=canon+' '+ch+':',vnums=[],agg=[];
+        Object.keys(VP).forEach(function(k){if(k.indexOf(prefix)===0){vnums.push(parseInt(k.slice(prefix.length),10));VP[k].r.forEach(function(r){agg.push(r);});}});
+        vnums.sort(function(a,b){return a-b;});
+        card='<div class="ol-vcard"><span class="vref">'+esc(canon+' '+ch)+'</span><span class="vmeta">'+(vnums.length?'Verses cited here: '+vnums.join(', '):'No verses from this chapter are cited yet.')+'</span></div>';
+        rows=uniqPages(agg);
+      }
+      flat=rows.map(function(r){return {f:r.f,t:r.t,a:r.a,sub:(SEC[r.f]&&SEC[r.f][r.a])?SEC[r.f][r.a]:''};});
+      sel=flat.length?0:-1;
+      results.innerHTML=card+rowsHTML();
+    }
+
+    function renderText(q){
+      flat=[];
+      if(IDX&&IDX.pages){
+        if(!q){
+          IDX.pages.slice().sort(function(a,b){return a.t.localeCompare(b.t);}).forEach(function(p){flat.push({f:p.f,t:p.t,sub:'',a:'',sc:0});});
+        }else{
+          IDX.pages.forEach(function(p){
+            var ts=scoreText(p.t,q),bs=null,bss=-1,kw=-1,kwn='';
+            if(p.secs)p.secs.forEach(function(s){var sc=scoreText(s.h,q)*0.85;if(sc>bss){bss=sc;bs=s;}});
+            if(p.kw)p.kw.forEach(function(k){var sc=scoreText(k,q)*0.7;if(sc>kw){kw=sc;kwn=k;}});
+            var best=Math.max(ts,bss,kw);if(best<=0)return;
+            var it={f:p.f,t:p.t,sc:best};
+            if(best===bss&&bs){it.sub=bs.h;it.a=bs.a;}
+            else if(best===kw&&kwn){it.sub='topic · '+kwn;it.topic=1;}
+            else it.sub='';
+            flat.push(it);
+          });
+          flat.sort(function(a,b){return b.sc-a.sc;});
+        }
+      }
+      flat=flat.slice(0,40);sel=flat.length?0:-1;
+      if(!flat.length){results.innerHTML='<div class="r-empty">'+(IDX?'No matches — try a topic or a Bible verse (e.g. John 3:16)':'Loading index…')+'</div>';return;}
+      results.innerHTML=flat.map(function(r,i){
+        return '<a class="ol-r'+(i===sel?' sel':'')+'" data-i="'+i+'" href="'+r.f+(r.a?'#'+r.a:'')+'"><span class="r-t">'+hilite(r.t,q)+'</span>'+(r.sub?'<span class="r-s'+(r.topic?' r-topic':'')+'">'+(r.topic?esc(r.sub):hilite(r.sub,q))+'</span>':'')+'</a>';
+      }).join('');
+    }
+
+    function render(){
+      var raw=(input.value||'').trim();
+      var vq=parseRef(raw);
+      if(vq){if(!VP)loadVP().then(function(){if(ov.classList.contains('open')&&parseRef((input.value||'').trim()))render();});renderVerse(vq);return;}
+      renderText(raw.toLowerCase());
+    }
+    function setSel(i){var a=results.querySelectorAll('.ol-r');if(!a.length)return;sel=(i+a.length)%a.length;a.forEach(function(el,j){el.classList.toggle('sel',j===sel);});a[sel].scrollIntoView({block:'nearest'});}
+    function go(){if(sel>=0&&flat[sel]){var r=flat[sel];location.href=r.f+(r.a?'#'+r.a:'');}}
+    function openS(seed){ov.classList.add('open');document.body.style.overflow='hidden';input.value=seed||'';render();loadIndex().then(function(){if(ov.classList.contains('open'))render();}).catch(function(){});loadVP().then(function(){if(ov.classList.contains('open'))render();}).catch(function(){});setTimeout(function(){input.focus();if(seed)input.select();},30);}
+    window.__olOpenSearch=openS;
+    function closeS(){ov.classList.remove('open');document.body.style.overflow='';}
+    input.addEventListener('input',render);
+    input.addEventListener('keydown',function(e){
+      if(e.key==='ArrowDown'){e.preventDefault();setSel(sel+1);}
+      else if(e.key==='ArrowUp'){e.preventDefault();setSel(sel-1);}
+      else if(e.key==='Enter'){e.preventDefault();go();}
+      else if(e.key==='Escape'){e.preventDefault();closeS();}
+    });
+    results.addEventListener('mousemove',function(e){var a=e.target.closest('.ol-r');if(a)setSel(+a.getAttribute('data-i'));});
+    ov.addEventListener('click',function(e){if(e.target===ov)closeS();});
+    document.addEventListener('keydown',function(e){
+      if(e.key==='/'&&!ov.classList.contains('open')){var t=document.activeElement;var tn=t?t.tagName:'';if(tn==='INPUT'||tn==='TEXTAREA'||(t&&t.isContentEditable))return;e.preventDefault();openS();}
+      else if(e.key==='Escape'&&ov.classList.contains('open')){closeS();}
+    });
+    var launcher=document.createElement('button');launcher.className='ol-search-btn';launcher.type='button';
+    launcher.innerHTML='Search topics &amp; verses <span>/</span>';launcher.addEventListener('click',function(){openS();});
+    var sbs=document.querySelector('.sb-search');
+    if(sbs&&sbs.parentNode)sbs.parentNode.insertBefore(launcher,sbs);
+    else{var nav=document.querySelector('#sidebar nav,#sb nav,#sidebar,#sb');if(nav)nav.insertBefore(launcher,nav.firstChild);}
+
+    /* ---- 4. scripture tooltips (KJV bundled locally in verses.json, public domain) ---- */
+    var BOOKS='Genesis|Exodus|Leviticus|Numbers|Deuteronomy|Joshua|Judges|Ruth|1 ?Samuel|2 ?Samuel|1 ?Kings|2 ?Kings|1 ?Chronicles|2 ?Chronicles|Ezra|Nehemiah|Esther|Job|Psalms|Psalm|Proverbs|Ecclesiastes|Song of Solomon|Song of Songs|Isaiah|Jeremiah|Lamentations|Ezekiel|Daniel|Hosea|Joel|Amos|Obadiah|Jonah|Micah|Nahum|Habakkuk|Zephaniah|Haggai|Zechariah|Malachi|Matthew|Mark|Luke|John|Acts|Romans|1 ?Corinthians|2 ?Corinthians|Galatians|Ephesians|Philippians|Colossians|1 ?Thessalonians|2 ?Thessalonians|1 ?Timothy|2 ?Timothy|Titus|Philemon|Hebrews|James|1 ?Peter|2 ?Peter|1 ?John|2 ?John|3 ?John|Jude|Revelation';
+    var VRE=new RegExp('\\b((?:'+BOOKS+')\\.?\\s+\\d{1,3}:\\d{1,3}(?:[-–]\\d{1,3})?(?:,\\s?\\d{1,3}(?:[-–]\\d{1,3})?)*)','g');
+    function wrap(root){
+      var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:function(n){
+        if(!n.nodeValue||n.nodeValue.indexOf(':')<0)return NodeFilter.FILTER_REJECT;
+        var p=n.parentNode;
+        while(p&&p!==root){var t=p.nodeName.toLowerCase();
+          if(t==='a'||t==='button'||t==='script'||t==='style'||(p.classList&&(p.classList.contains('ol-verse')||p.classList.contains('ol-copy'))))return NodeFilter.FILTER_REJECT;
+          p=p.parentNode;}
+        return NodeFilter.FILTER_ACCEPT;
+      }});
+      var nodes=[],n;while(n=w.nextNode())nodes.push(n);
+      nodes.forEach(function(node){
+        var txt=node.nodeValue;VRE.lastIndex=0;if(!VRE.test(txt))return;VRE.lastIndex=0;
+        var frag=document.createDocumentFragment(),last=0,m;
+        while(m=VRE.exec(txt)){
+          if(m.index>last)frag.appendChild(document.createTextNode(txt.slice(last,m.index)));
+          var sp=document.createElement('span');sp.className='ol-verse';sp.textContent=m[0];sp.setAttribute('data-ref',m[1]);
+          frag.appendChild(sp);last=m.index+m[0].length;
+        }
+        if(last<txt.length)frag.appendChild(document.createTextNode(txt.slice(last)));
+        node.parentNode.replaceChild(frag,node);
+      });
+    }
+    document.querySelectorAll('.sec-body,.sec-bd,.sec-body2').forEach(wrap);
+    var tip=document.createElement('div');tip.className='ol-tip';tip.style.display='none';document.body.appendChild(tip);
+    function place(el){var r=el.getBoundingClientRect();tip.style.display='block';var w=tip.offsetWidth||330;
+      var left=window.scrollX+r.left;var max=window.scrollX+document.documentElement.clientWidth-w-10;
+      tip.style.left=Math.max(8,Math.min(left,max))+'px';tip.style.top=(window.scrollY+r.bottom+8)+'px';}
+    function lookup(ref){var k=ref.replace(/\s+/g,' ').trim();if(VERSES&&VERSES[k])return VERSES[k];return null;}
+    function show(el){
+      var ref=el.getAttribute('data-ref');if(!ref)return;
+      var t=lookup(ref);
+      if(t){tip.innerHTML='<b>'+esc(ref)+'</b><span class="ol-tip-kjv">KJV</span><br>'+esc(t);}
+      else if(VERSES===null){tip.innerHTML='<b>'+esc(ref)+'</b><br><span class="ol-tip-load">Loading…</span>';}
+      else{tip.innerHTML='<b>'+esc(ref)+'</b><br><span class="ol-tip-err">Text unavailable</span>';}
+      place(el);
+    }
+    function hide(){tip.style.display='none';}
+    document.addEventListener('mouseover',function(e){var t=e.target;if(t.classList&&t.classList.contains('ol-verse'))show(t);});
+    document.addEventListener('mouseout',function(e){var t=e.target;if(t.classList&&t.classList.contains('ol-verse'))hide();});
+    document.addEventListener('focusin',function(e){var t=e.target;if(t.classList&&t.classList.contains('ol-verse'))show(t);});
+    document.addEventListener('focusout',function(e){var t=e.target;if(t.classList&&t.classList.contains('ol-verse'))hide();});
+    document.querySelectorAll('.ol-verse').forEach(function(v){v.setAttribute('tabindex','0');});
+  }catch(e){}
+})();
+/* END-FEATURES3-JS */</script>
+<script>
+/* Ask the Lamp — AI config. Paste your Cloudflare Worker URL between the
+   quotes to turn on grounded AI answers. Leave blank for site-search only.
+   See ask-lamp-SETUP.md for the 10-minute setup. */
+window.OL_ASK_ENDPOINT = "https://ask-the-lamp.sebazz7397.workers.dev";
+</script>
+<script>
+/* AUTO-FEATURES4-JS */
+(function(){
+  try{
+    function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+    /* Optional strict-RAG AI answers. Set window.OL_ASK_ENDPOINT to the
+       Cloudflare Worker URL to turn "Ask the Lamp" from a search box into a
+       grounded assistant. If blank or unreachable, it silently falls back to
+       the retrieval-only behaviour below. See ask-lamp-SETUP.md. */
+    var AI_ENDPOINT=(window.OL_ASK_ENDPOINT||'').trim();
+    /* plain model text -> safe HTML: escape, light **bold**, [n] citations, paragraphs */
+    function fmtAI(s){
+      var out=esc(s);
+      out=out.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
+      /* normalise fancy citation brackets (【1】〔1〕〖1〗) the model sometimes emits to plain [1] */
+      out=out.replace(/[【〔〖]\s*(\d{1,2})\s*[】〕〗]/g,'[$1]');
+      out=out.replace(/\[(\d{1,2})\]/g,'<sup class="ol-ci">[$1]</sup>');
+      return out.split(/\n{2,}/).map(function(p){return '<p>'+p.replace(/\n/g,'<br>')+'</p>';}).join('');
+    }
+    var STOP={};'the a an and or but of to in on at for with as is are was were be been being do does did this that these those it its their them they we you i he she his her our your my me us not no yes can could would should will shall may might must have has had what why how who whom whose which when where does did about into from than then so such also more most very just only own same other any all both each few how into about'.split(/\s+/).forEach(function(w){STOP[w]=1;});
+    function toks(q){return (String(q).toLowerCase().match(/[a-z0-9]+/g)||[]).filter(function(w){return w.length>=3&&!STOP[w];});}
+
+    var C=null,cP=null;
+    function loadC(){if(cP)return cP;cP=fetch('ask-content.json').then(function(r){return r.json();}).then(function(d){C=d;return d;}).catch(function(){C={pages:[]};return C;});return cP;}
+
+    function reEsc(t){return t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}
+    function excerpt(x,tk){
+      if(!x)return '';
+      var lx=x.toLowerCase(),pos=-1,i,p;
+      for(i=0;i<tk.length;i++){p=lx.indexOf(tk[i]);if(p>=0&&(pos<0||p<pos))pos=p;}
+      if(pos<0)pos=0;
+      var start=Math.max(0,pos-65),end=Math.min(x.length,pos+165);
+      var frag=x.slice(start,end);
+      if(start>0)frag=frag.replace(/^\S*\s/,'');
+      if(end<x.length)frag=frag.replace(/\s\S*$/,'');
+      var out=esc(frag);
+      if(start>0)out='…'+out;
+      if(end<x.length)out=out+'…';
+      tk.forEach(function(t){if(t.length<3)return;try{out=out.replace(new RegExp('('+reEsc(t)+')','ig'),'<mark>$1</mark>');}catch(e){}});
+      return out;
+    }
+    /* whole-word matcher (with light plural/possessive tolerance) so that a query
+       for "christ" does NOT match inside "christian"/"christology", and vice-versa. */
+    function mkRx(t){return new RegExp('\\b'+reEsc(t)+"(?:'s|s)?\\b",'gi');}
+    function nWord(text,rx){if(!text)return 0;var m=String(text).match(rx);return m?m.length:0;}
+    function rank(q){
+      var tk=toks(q);if(!tk.length||!C||!C.pages)return {tk:tk,top:[],broad:false};
+      var rx=tk.map(mkRx);
+      /* pass 1 — how many sections each term appears in (for rarity weighting) */
+      var N=0,dfSec=tk.map(function(){return 0;});
+      C.pages.forEach(function(p){var pk=(p.t||'')+' '+((p.kw||[]).join(' '));(p.secs||[]).forEach(function(s){
+        N++;var blob=pk+' '+(s.h||'')+' '+(s.x||'');
+        tk.forEach(function(t,i){if(nWord(blob,rx[i]))dfSec[i]++;});
+      });});
+      /* rarer term => higher weight; ubiquitous terms (Christ, church…) => near-zero */
+      var idf=dfSec.map(function(df){return Math.log((N+1)/(df+1))+0.15;});
+      /* pass 2 — score every section, weighting each term by its rarity */
+      var hits=[];
+      C.pages.forEach(function(p){
+        var title=(p.t||''),kw=(p.kw||[]).join(' ');
+        (p.secs||[]).forEach(function(s){
+          var head=(s.h||''),body=(s.x||''),sc=0,covered=0;
+          tk.forEach(function(t,i){
+            var w=idf[i],any=false,r=rx[i];
+            if(nWord(head,r)){sc+=14*w;any=true;}
+            if(nWord(title,r)){sc+=8*w;any=true;}
+            if(nWord(kw,r)){sc+=7*w;any=true;}
+            var occ=nWord(body,r);if(occ){sc+=Math.min(occ,4)*4*w;any=true;}
+            if(any)covered++;
+          });
+          if(tk.length>1){if(covered===tk.length)sc+=14;sc+=covered*3;}
+          if(sc>0)hits.push({f:p.f,t:p.t,h:s.h,a:s.a,x:s.x,sc:sc,cov:covered});
+        });
+      });
+      hits.sort(function(a,b){return b.sc-a.sc;});
+      /* a single word that appears in a large share of the site is "broad" */
+      var broad=(tk.length===1&&N>0&&dfSec[0]>Math.max(40,N*0.18));
+      var per={},top=[],cap=broad?1:2,lim=broad?6:4;
+      for(var i=0;i<hits.length&&top.length<lim;i++){var f=hits[i].f;if((per[f]||0)>=cap)continue;per[f]=(per[f]||0)+1;top.push(hits[i]);}
+      return {tk:tk,top:top,broad:broad,term:tk[0]};
+    }
+
+    /* ---- UI ---- */
+    var fab=document.createElement('button');fab.className='ol-ask-fab';fab.type='button';
+    fab.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg><span>Ask the Lamp</span>';
+    document.body.appendChild(fab);
+
+    var wrap=document.createElement('div');wrap.className='ol-ask-wrap';wrap.setAttribute('role','dialog');wrap.setAttribute('aria-label','Ask the Lamp');
+    wrap.innerHTML='<div class="ol-ask-hd"><div class="ti"><b>Ask the Lamp</b><span>Search the whole site by question or verse</span></div><button class="ol-ask-x" type="button" aria-label="Close">×</button></div><div class="ol-ask-log" role="log" aria-live="polite"></div><div class="ol-ask-foot"><input type="text" placeholder="Ask a question or type a verse…" aria-label="Ask a question" autocomplete="off"><button class="send" type="button" aria-label="Send">➤</button></div><div class="ol-ask-note">Answers are drawn only from this site’s pages · not a live AI chat</div>';
+    document.body.appendChild(wrap);
+    var log=wrap.querySelector('.ol-ask-log'),inp=wrap.querySelector('.ol-ask-foot input'),sendB=wrap.querySelector('.send'),xB=wrap.querySelector('.ol-ask-x');
+    var LAMP_SVG="<svg viewBox='0 0 40 48' fill='none' xmlns='http://www.w3.org/2000/svg' aria-hidden='true'><defs><radialGradient id='olflame' cx='50%' cy='72%' r='62%'><stop offset='0%' stop-color='#ffe89c'/><stop offset='45%' stop-color='#f8ab3c'/><stop offset='100%' stop-color='#ee6f1e'/></radialGradient><radialGradient id='olfoot' cx='50%' cy='25%' r='85%'><stop offset='0%' stop-color='#c9a35a'/><stop offset='100%' stop-color='#8a6a26'/></radialGradient></defs><g class='lampg'><g class='rays' stroke='#f4a63a' stroke-width='1.6' stroke-linecap='round'><line x1='33' y1='25' x2='36.5' y2='25'/><line x1='7' y1='25' x2='3.5' y2='25'/><line x1='29.2' y1='14.4' x2='31.7' y2='11.6'/><line x1='10.8' y1='14.4' x2='8.3' y2='11.6'/><line x1='29.2' y1='35.6' x2='31.7' y2='38.4'/><line x1='10.8' y1='35.6' x2='8.3' y2='38.4'/><line x1='25' y1='11.1' x2='26.3' y2='7.4'/><line x1='15' y1='11.1' x2='13.7' y2='7.4'/></g><ellipse class='foot' cx='20' cy='44.4' rx='6' ry='1.7' fill='url(#olfoot)'/><rect class='wick' x='18.5' y='39.5' width='3' height='5.2' rx='1.4' fill='#5a4020'/><g class='fl'><path class='body' d='M20 10 C26 15.5 30.5 20.5 30 28 C29.5 35 25 40.5 20 41.5 C15 40.5 10.5 35 10 28 C9.5 20.5 14 15.5 20 10 Z' fill='url(#olflame)'/><path d='M20 18 C23.8 22.5 26 26.5 24.8 31.5 C23.9 35 22 37.2 20 37.6 C18 37.2 16.1 35 15.2 31.5 C14 26.5 16.2 22.5 20 18 Z' fill='#ffe488' opacity='.5'/><ellipse cx='15.6' cy='23' rx='1.6' ry='3' fill='#fff8df' opacity='.4'/></g><g class='eyes' fill='#5a3212'><ellipse cx='15.6' cy='27.5' rx='2.5' ry='3'/><ellipse cx='24.4' cy='27.5' rx='2.5' ry='3'/><circle cx='14.8' cy='26.5' r='.95' fill='#fff'/><circle cx='23.6' cy='26.5' r='.95' fill='#fff'/></g><g class='eyes-happy' stroke='#5a3212' stroke-width='1.7' stroke-linecap='round' fill='none'><path d='M13.1 27.9 Q15.6 24.7 18.1 27.9'/><path d='M21.9 27.9 Q24.4 24.7 26.9 27.9'/></g><path class='m-idle' d='M17.2 32.4 Q20 34.5 22.8 32.4' stroke='#5a3212' stroke-width='1.4' stroke-linecap='round' fill='none'/><path class='m-think' d='M18.5 32.6 Q20 33.4 21.5 32.6' stroke='#5a3212' stroke-width='1.4' stroke-linecap='round' fill='none'/><path class='m-happy' d='M16.4 32 Q20 35.9 23.6 32' stroke='#5a3212' stroke-width='1.6' stroke-linecap='round' fill='none'/></g></svg>";
+    function LAMP(s){return "<span class='ol-lamp st-"+s+"'>"+LAMP_SVG+"</span>";}
+    var lampAv=(function(){var hd=wrap.querySelector('.ol-ask-hd');if(!hd)return null;var a=document.createElement('span');a.className='ol-lamp ol-lamp-hd st-idle';a.innerHTML=LAMP_SVG;hd.insertBefore(a,hd.firstChild);return a;})();
+    function lampState(s){if(lampAv)lampAv.className='ol-lamp ol-lamp-hd st-'+s;}
+    var noteEl=wrap.querySelector('.ol-ask-note');
+    if(noteEl)noteEl.textContent=AI_ENDPOINT
+      ?'AI answers are generated only from this site’s pages, with sources shown — always verify against the cited pages.'
+      :'Answers are drawn only from this site’s pages · not a live AI chat';
+    var subEl=wrap.querySelector('.ol-ask-hd .ti span');
+    if(subEl&&AI_ENDPOINT)subEl.textContent='Grounded answers from the site, with sources';
+
+    function scrollDown(){log.scrollTop=log.scrollHeight;}
+    function addUser(t){var d=document.createElement('div');d.className='ol-ask-msg user';d.textContent=t;log.appendChild(d);scrollDown();}
+    function addBot(html){var d=document.createElement('div');d.className='ol-ask-msg bot';d.innerHTML=html;log.appendChild(d);scrollDown();return d;}
+
+    function pageRows(pages,limit){
+      return pages.slice(0,limit||5).map(function(r){
+        return '<a class="ol-ans" href="'+esc(r.f)+(r.a?'#'+esc(r.a):'')+'"><span class="a-t">'+esc(r.t)+'</span>'+(r.sub?'<span class="a-h">'+esc(r.sub)+'</span>':'')+'</a>';
+      }).join('');
+    }
+    function renderVerse(v){
+      var h='';
+      if(v.mode==='verse'){
+        h+='<div class="ol-vans"><span class="vr">'+esc(v.ref)+'</span>'+(v.kjv?'<span class="vt">'+esc(v.kjv)+'<em>KJV</em></span>':'<span class="vt">Not cited on the site yet.</span>')+'</div>';
+        if(v.pages.length){h+='<p class="lead">Cited on '+v.pages.length+' page'+(v.pages.length>1?'s':'')+':</p>'+pageRows(v.pages,6);}
+      }else{
+        h+='<div class="ol-vans"><span class="vr">'+esc(v.ref)+'</span><span class="vt">'+(v.vnums.length?'Verses cited here: '+v.vnums.join(', '):'No verses from this chapter are cited yet.')+'</span></div>';
+        if(v.pages.length){h+='<p class="lead">Pages citing this chapter:</p>'+pageRows(v.pages,6);}
+      }
+      addBot(h);
+    }
+    function cap1(s){return s?s.charAt(0).toUpperCase()+s.slice(1):s;}
+    function renderTopic(q){
+      var r=rank(q),tk=r.tk,top=r.top;
+      if(!tk.length){addBot('<p class="lead">Try a question like <em>why do you venerate icons?</em> or type a Bible reference such as <em>John 3:16</em>.</p>');return;}
+      if(!top.length){addBot('<p class="lead">I couldn’t find that on the site. Try different words, or browse from the menu.</p>');return;}
+      if(r.broad){
+        var h='<p class="lead">“'+esc(cap1(r.term))+'” runs through much of the site — that’s a broad topic. Here are the main places it’s covered; add a few more words to narrow things down:</p>';
+        h+=top.map(function(it){return '<a class="ol-ans" href="'+esc(it.f)+(it.a?'#'+esc(it.a):'')+'"><span class="a-t">'+esc(it.t)+'</span>'+(it.h?'<span class="a-h">'+esc(it.h)+'</span>':'')+'</a>';}).join('');
+        addBot(h);return;
+      }
+      var strong=(top[0].cov===tk.length);
+      var lead=strong?'Here’s where the site addresses that:':'This looks closest on the site:';
+      var body=top.map(function(it){
+        return '<a class="ol-ans" href="'+esc(it.f)+(it.a?'#'+esc(it.a):'')+'"><span class="a-t">'+esc(it.t)+'</span>'+(it.h?'<span class="a-h">'+esc(it.h)+'</span>':'')+'<span class="a-x">'+excerpt(it.x,tk)+'</span></a>';
+      }).join('');
+      addBot('<p class="lead">'+lead+'</p>'+body);
+    }
+
+    /* citation links under an AI answer, numbered to match [1]/[2] in the text */
+    function citeHTML(top){
+      return '<div class="ol-ai-cite"><p class="lead">Sources on the site</p>'+top.map(function(it,i){
+        return '<a class="ol-ans" href="'+esc(it.f)+(it.a?'#'+esc(it.a):'')+'"><span class="a-t"><span class="a-c">['+(i+1)+']</span>'+esc(it.t)+'</span>'+(it.h?'<span class="a-h">'+esc(it.h)+'</span>':'')+'</a>';
+      }).join('')+'</div>';
+    }
+    /* stream a grounded answer from the Worker; onErr triggers retrieval fallback */
+    function streamAI(q,passages,bubble,onDone,onErr){
+      var txt=document.createElement('div');txt.className='ol-ai-txt';
+      var acc='',started=false,gotErr=false,pinned=false;
+      function begin(){if(!started){started=true;bubble.innerHTML='';bubble.appendChild(txt);}}
+      /* keep the START of the answer at the top of the log so the reader begins at the beginning */
+      function pinStart(){if(pinned)return;pinned=true;var head=bubble.previousElementSibling||bubble;var lr=log.getBoundingClientRect(),er=head.getBoundingClientRect();log.scrollTop+=(er.top-lr.top)-10;}
+      /* gently type the answer in, word by word, with a blinking caret */
+      function typeReveal(full,done){
+        var parts=full.match(/\S+\s*/g)||[full];var i=0,n=parts.length,step=n>90?3:(n>45?2:1);
+        (function tick(){
+          i=Math.min(n,i+step);
+          txt.innerHTML=fmtAI(parts.slice(0,i).join(''))+(i<n?'<span class="ol-ai-caret"></span>':'');
+          if(i<n){setTimeout(tick,18);}else{txt.innerHTML=fmtAI(full||'—');done();}
+        })();
+      }
+      fetch(AI_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({q:q,passages:passages})}).then(function(res){
+        if(!res.ok||!res.body)throw new Error('bad response');
+        var reader=res.body.getReader(),dec=new TextDecoder(),buf='';
+        function finish(){begin();pinStart();typeReveal(acc,onDone);}
+        function pump(){
+          return reader.read().then(function(r){
+            if(r.done){finish();return;}
+            buf+=dec.decode(r.value,{stream:true});
+            var lines=buf.split('\n');buf=lines.pop()||'';
+            lines.forEach(function(line){
+              var t=line.trim();
+              if(t.indexOf('data:')!==0)return;
+              var p=t.slice(5).trim();
+              if(p==='[DONE]'||!p)return;
+              try{var tok=JSON.parse(p);if(typeof tok==='string'){acc+=tok;}}catch(e){}
+            });
+            return pump();
+          });
+        }
+        return pump();
+      }).catch(function(){if(!gotErr){gotErr=true;onErr();}});
+    }
+    function renderTopicAI(q){
+      var r=rank(q),tk=r.tk,top=r.top;
+      if(!tk.length){addBot('<p class="lead">Try a question like <em>why do you venerate icons?</em> or type a Bible reference such as <em>John 3:16</em>.</p>');busy=false;return;}
+      if(!top.length){addBot('<p class="lead">I couldn’t find that on the site. Try different words, or browse from the menu.</p>');busy=false;return;}
+      var passages=top.slice(0,6).map(function(it){return {t:it.t,h:it.h,x:it.x};});
+      lampState('think');
+      var bubble=addBot(''+LAMP('think')+'<span class="ol-ai-think">consulting the lamp…</span>');
+      streamAI(q,passages,bubble,function(){
+        var c=document.createElement('div');c.innerHTML=citeHTML(top);
+        bubble.appendChild(c.firstChild);busy=false;lampState('happy');setTimeout(function(){lampState('idle');},4200);
+      },function(){
+        bubble.parentNode&&bubble.parentNode.removeChild(bubble);
+        lampState('idle');renderTopic(q);busy=false;
+      });
+    }
+
+    var busy=false;
+    function handle(q){
+      q=(q||'').trim();if(!q||busy)return;
+      addUser(q);inp.value='';busy=true;
+      var topic=function(){loadC().then(function(){if(AI_ENDPOINT)renderTopicAI(q);else{renderTopic(q);busy=false;}});};
+      var vp=(window.__olVerseQuery?window.__olVerseQuery(q):Promise.resolve(null));
+      Promise.resolve(vp).then(function(v){
+        if(v){renderVerse(v);busy=false;return;}
+        topic();
+      }).catch(topic);
+    }
+
+    var greeted=false;
+    function greet(){
+      if(greeted)return;greeted=true;
+      var d=addBot('<p class="lead">'+LAMP('idle')+' Ask me anything about the Oriental Orthodox faith, other traditions, or type a Bible reference — I’ll point you to the answer on the site.</p><div class="ol-ask-chips"></div>');
+      var chips=['Why venerate icons?','Are we monophysite?','Purgatory','John 3:16'];
+      var cw=d.querySelector('.ol-ask-chips');
+      chips.forEach(function(c){var b=document.createElement('button');b.type='button';b.textContent=c;b.addEventListener('click',function(){handle(c);});cw.appendChild(b);});
+    }
+    function openAsk(){wrap.classList.add('open');fab.classList.add('hide');greet();lampState('idle');loadC();setTimeout(function(){inp.focus();},40);scrollDown();}
+    function closeAsk(){wrap.classList.remove('open');fab.classList.remove('hide');}
+    fab.addEventListener('click',openAsk);
+    xB.addEventListener('click',closeAsk);
+    sendB.addEventListener('click',function(){handle(inp.value);});
+    inp.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();handle(inp.value);}else if(e.key==='Escape'){closeAsk();}});
+    window.__olOpenAsk=openAsk;
+  }catch(e){}
+})();
+/* END-FEATURES4-JS */</script>
+<script>
+/* AUTO-FEATURES5-JS */
+(function(){
+  try{
+    /* ---- 1. print / save-as-PDF button in the sidebar ---- */
+    if(!document.querySelector('.ol-print-btn')){
+      var pb=document.createElement('button');pb.className='ol-print-btn';pb.type='button';
+      pb.setAttribute('aria-label','Print or save this page as PDF');
+      pb.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg><span>Print / Save as PDF</span>';
+      pb.addEventListener('click',function(){window.print();});
+      var sbtn=document.querySelector('.ol-search-btn');
+      if(sbtn&&sbtn.parentNode){sbtn.parentNode.insertBefore(pb,sbtn.nextSibling);}
+      else{var nav=document.querySelector('#sidebar nav,#sb nav,#sidebar,#sb');if(nav)nav.insertBefore(pb,nav.firstChild);}
+    }
+    /* ---- 2. offline / installable (PWA) service worker ---- */
+    if('serviceWorker' in navigator){
+      window.addEventListener('load',function(){
+        navigator.serviceWorker.register('sw.js').catch(function(){});
+      });
+    }
+  }catch(e){}
+})();
+/* END-FEATURES5-JS */</script>
+<button id="ol-sbt" onclick="olSb()" aria-label="Collapse or expand the contents sidebar" title="Hide or show contents"><span id="ol-sbi">&#8249;</span></button>
+<script>function olSb(){var c=document.documentElement.classList.toggle('sb-collapsed');try{localStorage.setItem('ol-sb',c?'1':'0')}catch(e){}olSbIcon()}function olSbIcon(){var i=document.getElementById('ol-sbi');if(i)i.innerHTML=document.documentElement.classList.contains('sb-collapsed')?'&#8250;':'&#8249;'}olSbIcon();</script>
+<script>/* AUTO-SHARECARDS-JS */
+(function(){
+try{
+  var SITE="The Orthodox Lamp";
+  var HOST="85z5yr9fyf-commits.github.io/the-orthodox-lamp";
+  /* ---- styles ---- */
+  if(!document.getElementById('ol-sc-style')){
+    var st=document.createElement('style');st.id='ol-sc-style';
+    st.textContent='.fc,.sv{position:relative}'+
+      '.ol-sc-btn{position:absolute;top:8px;right:8px;z-index:5;display:inline-flex;align-items:center;gap:5px;'+
+      'background:rgba(201,168,76,.12);border:1px solid var(--gd,#8a6a20);color:var(--gold,#c9a84c);'+
+      'border-radius:6px;padding:3px 8px;font:600 .7rem/1 Georgia,serif;cursor:pointer;opacity:0;'+
+      'transition:opacity .18s,background .18s}'+
+      '.fc:hover .ol-sc-btn,.sv:hover .ol-sc-btn,.ol-sc-btn:focus{opacity:.92}'+
+      '.ol-sc-btn:hover{background:rgba(201,168,76,.24)}'+
+      '.ol-sc-btn svg{width:12px;height:12px}'+
+      '@media(hover:none){.ol-sc-btn{opacity:.6}}'+
+      '@media print{.ol-sc-btn{display:none!important}}';
+    document.head.appendChild(st);
+  }
+  var ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"></line><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"></line></svg>';
+  function clean(s){return (s||'').replace(/\s+/g,' ').trim();}
+  function dequote(s){return s.replace(/^[“‘"']+/,'').replace(/[”’"']+$/,'').trim();}
+  function collect(el){
+    if(el.classList.contains('fc')){
+      var body=el.querySelector('.fc-body'), name=el.querySelector('.fc-name'), src=el.querySelector('.fc-src');
+      var srcTxt='';
+      if(src){var cl=src.cloneNode(true);var tg=cl.querySelector('.tag');if(tg)tg.remove();srcTxt=clean(cl.textContent);}
+      return {quote:dequote(clean(body?body.textContent:el.textContent)),
+              attr:name?clean(name.textContent):'', src:srcTxt};
+    }else{ /* .sv */
+      var cl=el.cloneNode(true), cite=cl.querySelector('cite'); var attr='';
+      var sb=cl.querySelector('.ol-sc-btn'); if(sb)sb.remove();
+      if(cite){attr=clean(cite.textContent);cite.remove();}
+      return {quote:dequote(clean(cl.textContent)), attr:attr, src:''};
+    }
+  }
+  function wrap(x,text,maxW){
+    var words=text.split(' '),lines=[],cur='';
+    for(var i=0;i<words.length;i++){
+      var t=cur?cur+' '+words[i]:words[i];
+      if(x.measureText(t).width>maxW&&cur){lines.push(cur);cur=words[i];}else{cur=t;}
+    }
+    if(cur)lines.push(cur);
+    return lines;
+  }
+  function draw(d){
+    var S=1080,c=document.createElement('canvas');c.width=S;c.height=S;
+    var x=c.getContext('2d');
+    var g=x.createLinearGradient(0,0,0,S);g.addColorStop(0,'#151515');g.addColorStop(1,'#0b0b0b');
+    x.fillStyle=g;x.fillRect(0,0,S,S);
+    x.strokeStyle='#c9a84c';x.lineWidth=3;x.strokeRect(46,46,S-92,S-92);
+    x.strokeStyle='#5a4a20';x.lineWidth=1;x.strokeRect(58,58,S-116,S-116);
+    x.textAlign='center';
+    /* label */
+    x.fillStyle='#a09880';x.font='600 22px Georgia,serif';
+    x.fillText('T H E   O R T H O D O X   L A M P',S/2,132);
+    /* lamp flame */
+    x.fillStyle='#e8c96a';x.beginPath();x.ellipse(S/2,182,11,17,0,0,Math.PI*2);x.fill();
+    x.fillStyle='#c9a84c';x.beginPath();x.moveTo(S/2,150);x.lineTo(S/2-11,180);x.lineTo(S/2+11,180);x.closePath();x.fill();
+    /* opening quote mark */
+    x.fillStyle='rgba(201,168,76,.35)';x.font='italic 150px Georgia,serif';
+    x.fillText('“',S/2,300);
+    /* quote text: size to fit */
+    var maxW=S-220, q=d.quote, size=46;
+    var lens=[[170,46],[300,40],[460,34],[680,29]], picked=25;
+    for(var i=0;i<lens.length;i++){if(q.length<=lens[i][0]){picked=lens[i][1];break;}}
+    size=picked;
+    x.fillStyle='#ece4d4';x.font='italic '+size+'px Georgia,serif';
+    var lines=wrap(x,q,maxW), lh=size*1.34;
+    if(lines.length>15){lines=lines.slice(0,15);lines[14]=lines[14].replace(/[.,;: ]+$/,'')+'…';}
+    var blockH=lines.length*lh, cy=560-blockH/2;
+    /* keep within frame */
+    if(cy<330)cy=330;
+    for(var j=0;j<lines.length;j++){x.fillText(lines[j],S/2,cy+j*lh);}
+    var y=cy+lines.length*lh+34;
+    /* divider */
+    x.strokeStyle='#5a4a20';x.lineWidth=1;x.beginPath();x.moveTo(S/2-46,y);x.lineTo(S/2+46,y);x.stroke();
+    y+=44;
+    /* attribution */
+    if(d.attr){x.fillStyle='#c9a84c';x.font='700 30px Georgia,serif';
+      var al=wrap(x,'— '+d.attr,maxW);for(var k=0;k<al.length;k++){x.fillText(al[k],S/2,y);y+=38;}}
+    /* source */
+    if(d.src){x.fillStyle='#9a9078';x.font='italic 22px Georgia,serif';
+      var sl=wrap(x,d.src,maxW);for(var m=0;m<sl.length;m++){x.fillText(sl[m],S/2,y);y+=28;}}
+    /* footer */
+    x.fillStyle='#8a8268';x.font='20px Georgia,serif';
+    x.fillText(HOST,S/2,S-70);
+    return c;
+  }
+  function share(d){
+    var c=draw(d);
+    c.toBlob(function(blob){
+      if(!blob)return;
+      var url=URL.createObjectURL(blob);
+      var a=document.createElement('a');
+      a.href=url;a.download='orthodox-lamp-quote.png';
+      document.body.appendChild(a);a.click();a.remove();
+      setTimeout(function(){URL.revokeObjectURL(url);},4000);
+    },'image/png');
+  }
+  var nodes=document.querySelectorAll('.fc, .sv');
+  nodes.forEach(function(el){
+    if(el.querySelector('.ol-sc-btn'))return;
+    var txt=clean(el.textContent);
+    if(txt.length<25)return;
+    var b=document.createElement('button');
+    b.type='button';b.className='ol-sc-btn';b.title='Download this quote as an image';
+    b.setAttribute('aria-label','Download this quote as a shareable image');
+    b.innerHTML=ICON+'<span>Share</span>';
+    b.addEventListener('click',function(ev){ev.stopPropagation();share(collect(el));});
+    el.appendChild(b);
+  });
+}catch(e){}
+})();
+/* END-SHARECARDS-JS */</script>
+</body>
+</html>
