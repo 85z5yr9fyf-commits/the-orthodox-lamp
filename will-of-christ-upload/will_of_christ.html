@@ -1,0 +1,2125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>One Will or Two? The Will of Christ — The Orthodox Lamp</title>
+<style>
+:root{--gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;--bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--tx:#e8e0d0;--mu:#b8ac82;--red:#8b2020;--br:#2a2a2a;--bg5:#3a2e10;--sidebar-w:270px;--mia:#1a3060;--mia-b:#3060c0;--dyo:#2a1a40;--dyo-b:#8060c0;--nes:#1a2510;--nes-b:#4a7030;--eut:#3a1515;--eut-b:#a03030}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.7;display:flex;flex-direction:column;min-height:100vh}
+a{color:var(--gold);text-decoration:none}
+a:hover{color:var(--gl)}
+
+#prog{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--gd),var(--gold),var(--gl));z-index:9999;transition:width .1s}
+
+#sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:100;display:flex;flex-direction:column;transition:transform .3s}
+#sidebar header{padding:1.4rem 1.2rem 1rem;border-bottom:1px solid var(--br)}
+.sb-cross{font-size:1.3rem;color:var(--gold);display:block;text-align:center;margin-bottom:.3rem}
+.sb-title{font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gl);text-align:center;line-height:1.3}
+.sb-sub{font-size:.62rem;color:var(--mu);text-align:center;margin-top:.25rem;font-style:italic}
+nav{padding:.8rem 0;flex:1}
+nav a{display:block;padding:.42rem 1.2rem;font-size:.78rem;color:var(--mu);transition:color .15s,background .15s;border-left:2px solid transparent;line-height:1.4}
+nav a:hover{color:var(--tx);background:var(--bg3)}
+nav a.active{color:var(--gl);border-left-color:var(--gold);background:var(--bg5)}
+.sb-search{padding:.8rem 1rem;border-top:1px solid var(--br)}
+.sb-search input{width:100%;background:var(--bg3);border:1px solid var(--br);border-radius:5px;padding:.4rem .7rem;color:var(--tx);font-size:.78rem;outline:none}
+.sb-search input:focus{border-color:var(--gd)}
+
+#main{margin-left:var(--sidebar-w);flex:1;display:flex;flex-direction:column}
+#mob-bar{display:none;position:fixed;top:0;left:0;right:0;height:48px;background:var(--bg2);border-bottom:1px solid var(--br);align-items:center;padding:0 1rem;z-index:99}
+#mob-bar .mb-title{font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gl);flex:1;text-align:center}
+#ham{background:none;border:none;color:var(--gold);font-size:1.4rem;cursor:pointer;padding:.3rem}
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:99}
+#overlay.show{display:block}
+
+.hero{text-align:center;padding:4.5rem 1.5rem 3rem;background:linear-gradient(180deg,var(--bg2) 0%,var(--bg) 100%);border-bottom:1px solid var(--br);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(201,168,76,.07) 0%,transparent 70%);pointer-events:none}
+.si{font-size:2rem;color:var(--gold);display:block;margin-bottom:.5rem}
+.st{font-size:clamp(1.5rem,4vw,2.4rem);font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--tx);line-height:1.2}
+.st span{color:var(--gold)}
+.ss{font-size:1rem;color:var(--gl);margin:.6rem 0 .3rem;font-weight:700;letter-spacing:.04em}
+.tg{font-size:.85rem;color:var(--mu);font-style:italic;margin-top:.4rem}
+.orn{color:var(--gold);font-size:.9rem;letter-spacing:.4em;margin-top:1rem;opacity:.7}
+
+.content{max-width:860px;margin:0 auto;padding:3rem 2rem 5rem;flex:1}
+
+.sec{border:1px solid var(--br);border-radius:8px;margin-bottom:1.2rem;overflow:hidden;background:var(--bg2)}
+.sec-h{width:100%;background:none;border:none;padding:1.1rem 1.4rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--tx);font-family:'Georgia',serif;font-size:1rem;font-weight:700;text-align:left;transition:background .2s}
+.sec-h:hover{background:var(--bg3)}
+.sec-h .sec-num{color:var(--gold);font-size:.8rem;font-weight:700;letter-spacing:.1em;margin-right:.7rem;min-width:2.2rem}
+.sec-h .arr{color:var(--gold);transition:transform .3s;font-size:.9rem}
+.sec.open .arr{transform:rotate(180deg)}
+.sec-b{display:none;padding:1.4rem;border-top:1px solid var(--br)}
+.sec.open .sec-b{display:block}
+
+h3{font-size:1rem;color:var(--gl);margin:1.4rem 0 .6rem;letter-spacing:.03em}
+h3:first-child{margin-top:0}
+p{margin-bottom:.9rem;font-size:.92rem}
+ul,ol{margin:.6rem 0 .9rem 1.4rem;font-size:.92rem}
+li{margin-bottom:.3rem}
+blockquote{border-left:3px solid var(--gold);padding:.6rem 1rem;background:var(--bg3);border-radius:0 5px 5px 0;margin:.8rem 0;font-style:italic;font-size:.9rem;color:var(--gl)}
+
+/* Glossary terms */
+.gt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.8rem;margin:.8rem 0}
+.gt{background:var(--bg3);border:1px solid var(--br);border-radius:7px;padding:.9rem 1rem}
+.gt-term{font-size:.82rem;font-weight:700;color:var(--gold);letter-spacing:.06em;margin-bottom:.2rem}
+.gt-grk{font-size:.75rem;color:var(--mu);font-style:italic;margin-bottom:.4rem}
+.gt-def{font-size:.82rem;color:var(--tx);line-height:1.5}
+
+/* Comparison grid */
+.comp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin:1rem 0}
+.comp-card{border-radius:8px;padding:1rem 1.1rem;border:1px solid var(--br)}
+.comp-card.mia{background:var(--mia);border-color:var(--mia-b)}
+.comp-card.dyo{background:var(--dyo);border-color:var(--dyo-b)}
+.comp-card.nes{background:var(--nes);border-color:var(--nes-b)}
+.comp-card.eut{background:var(--eut);border-color:var(--eut-b)}
+.comp-card h4{font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem}
+.comp-card.mia h4{color:#8ab0ff}
+.comp-card.dyo h4{color:#b090ff}
+.comp-card.nes h4{color:#80b060}
+.comp-card.eut h4{color:#e07070}
+.comp-card p{font-size:.82rem;line-height:1.5}
+
+/* Scripture cards with dual interpretation */
+.sv{background:var(--bg3);border:1px solid var(--br);border-radius:7px;padding:1rem 1.2rem;margin:.7rem 0}
+.sv .ref{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+.sv .txt{font-size:.9rem;font-style:italic;line-height:1.6;margin-bottom:.5rem}
+.sv .mia-note{background:var(--mia);border:1px solid var(--mia-b);border-radius:5px;padding:.5rem .7rem;font-size:.8rem;margin:.4rem 0}
+.sv .dyo-note{background:var(--dyo);border:1px solid var(--dyo-b);border-radius:5px;padding:.5rem .7rem;font-size:.8rem;margin:.4rem 0}
+.labels{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.4rem}
+.labels span{font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.15rem .5rem;border-radius:3px}
+.labels .mia{background:var(--mia);color:#8ab0ff;border:1px solid var(--mia-b)}
+.labels .dyo{background:var(--dyo);color:#b090ff;border:1px solid var(--dyo-b)}
+.labels .ctx{background:#1a1a3a;color:#8a8adf;border:1px solid #2a2a6a}
+.labels .pl{background:#3a2e10;color:#c9a84c;border:1px solid #5a4a20}
+
+/* Anathema cards */
+.ana{background:var(--eut);border:1px solid var(--eut-b);border-radius:7px;padding:.9rem 1.1rem;margin:.6rem 0}
+.ana-num{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#e07070;margin-bottom:.3rem}
+.ana-txt{font-size:.88rem;font-style:italic;line-height:1.6}
+
+/* Father cards */
+.fc{background:var(--bg3);border-left:3px solid var(--gold);border-radius:0 7px 7px 0;padding:1rem 1.2rem;margin:.7rem 0}
+.fc .fn{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.2rem}
+.fc .fw{font-size:.78rem;color:var(--mu);margin-bottom:.4rem;font-style:italic}
+.fc .fq{font-size:.9rem;font-style:italic;line-height:1.6;margin-bottom:.3rem}
+
+/* Objection accordion */
+.obj{border:1px solid var(--br);border-radius:7px;margin:.7rem 0;overflow:hidden;background:var(--bg3)}
+.obj-h{width:100%;background:none;border:none;padding:.8rem 1.1rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--gl);font-family:'Georgia',serif;font-size:.88rem;font-weight:700;text-align:left}
+.obj-h:hover{background:var(--bg4)}
+.obj-h .arr{transition:transform .3s;font-size:.8rem;color:var(--gold)}
+.obj.open .arr{transform:rotate(180deg)}
+.obj-b{display:none;padding:1rem 1.1rem;border-top:1px solid var(--br);font-size:.88rem}
+.obj.open .obj-b{display:block}
+
+/* FAQ */
+.fi{border:1px solid var(--br);border-radius:7px;margin:.6rem 0;overflow:hidden}
+.fi-h{width:100%;background:var(--bg2);border:none;padding:.8rem 1.1rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--tx);font-family:'Georgia',serif;font-size:.88rem;font-weight:700;text-align:left}
+.fi-h:hover{background:var(--bg3)}
+.fi-h .arr{transition:transform .3s;font-size:.8rem;color:var(--gold)}
+.fi.open .arr{transform:rotate(180deg)}
+.fi-b{display:none;padding:1rem 1.1rem;border-top:1px solid var(--br);background:var(--bg2);font-size:.88rem}
+.fi.open .fi-b{display:block}
+
+/* Timeline */
+.timeline{border-left:2px solid var(--gd);padding-left:1.4rem;margin:1rem 0}
+.tl-item{position:relative;margin-bottom:1.2rem}
+.tl-item::before{content:'';position:absolute;left:-1.8rem;top:.45rem;width:.7rem;height:.7rem;background:var(--gold);border-radius:50%}
+.tl-date{font-size:.72rem;font-weight:700;letter-spacing:.1em;color:var(--gold);text-transform:uppercase}
+.tl-text{font-size:.88rem;color:var(--tx);margin-top:.2rem}
+
+/* Sources */
+.src-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.8rem;margin-top:.8rem}
+.src-card{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:.9rem 1rem}
+.src-card h4{font-size:.78rem;font-weight:700;color:var(--gold);margin-bottom:.4rem;letter-spacing:.06em;text-transform:uppercase}
+.src-card p,.src-card li{font-size:.8rem;color:var(--mu)}
+.src-card ul{margin-left:1rem}
+
+#btt{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--bg3);border:1px solid var(--gd);border-radius:50%;width:2.4rem;height:2.4rem;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1rem;cursor:pointer;opacity:0;transition:opacity .3s;z-index:50}
+#btt.show{opacity:1}
+
+@media(max-width:768px){
+  #sidebar{transform:translateX(-100%)}
+  #sidebar.open{transform:translateX(0)}
+  #main{margin-left:0;padding-top:48px}
+  #mob-bar{display:flex}
+}
+
+.lampsvg{display:block;margin:0 auto 14px;height:auto}
+.lampsvg .lampflame{animation:lampflick 3.2s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes lampflick{0%,100%{transform:scaleY(1) scaleX(1);opacity:.95}25%{transform:scaleY(1.06) scaleX(.97);opacity:1}50%{transform:scaleY(.96) scaleX(1.03);opacity:.9}75%{transform:scaleY(1.04) scaleX(.98);opacity:1}}
+
+html.light{--gold:#8a6a20;--gl:#6f5413;--gd:#b08e3e;--bg:#f7f2e6;--bg2:#efe8d5;--bg3:#e7ddc7;--bg4:#ddd2b9;--tx:#2b2415;--mu:#6e6450;--br:#d2c7aa;--bg5:#efe0b8;--mia:#cfd8ed;--dyo:#dcd0ec;--dyo-b:#412b6e;--nes:#ddebd1;--eut:#edcfcf}
+#ol-tt{position:fixed;right:16px;bottom:74px;z-index:9999;width:44px;height:44px;border-radius:50%;background:var(--bg3,var(--panel,#1a1a1a));color:var(--gold,#c9a84c);border:1px solid var(--gd,var(--gold-dark,var(--rule,#8a6a20)));font-size:1.1rem;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35);line-height:1}#ol-tt:hover{filter:brightness(1.15)}
+html.light .pl,html.light .labels .prot{background:#eed6d6;color:#8b2020}
+html.light .gl-tag,html.light .labels .oo{background:#d8e8d8;color:#1d5c1d}
+html.light .labels .ctx{background:#d8e3ee;color:#1d4a6b}
+html.light .obj{border-color:#dcc0c0}
+html.light .obj-bd{border-top-color:#dcc0c0}
+html.light .obj-hd h3{color:#8b2020}
+html.light .comp-card.prot{border-top-color:#a83232}
+html.light .comp-card.prot .ct{color:#a83232}
+html.light .labels .mia{color:#112d68}
+html.light .labels .dyo{color:#2a1168}
+html.light .labels .pl{color:#5c4916}
+html.light .ana-num{color:#651010}
+/* ol-aes-v1 */
+html.light #sidebar{background:linear-gradient(180deg,#f5edd5 0%,#ede4cb 100%)}
+html.light .sec{box-shadow:0 1px 6px rgba(100,70,15,.09)}
+html.light .sv{box-shadow:0 1px 4px rgba(100,70,15,.08)}
+html.light .fc{box-shadow:0 1px 4px rgba(100,70,15,.08)}
+html.light a{color:#6b4a10}
+html.light #sidenav a{color:var(--mu)}
+html.light #sidenav a.active,html.light #sidenav a:hover{color:var(--gold)}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* AUTO-ENHANCE */
+html.js-anim .sec{opacity:0;transform:translateY(14px);transition:opacity .55s cubic-bezier(.16,.7,.3,1),transform .55s cubic-bezier(.16,.7,.3,1)}
+html.js-anim .sec.in{opacity:1;transform:none}
+.sec.open .sec-body,.sec.open .sec-bd,.sec.open .sec-body2{animation:olSecOpen .4s cubic-bezier(.16,.7,.3,1)}
+.fi.open .fi-body,.fi.open .fi-bd{animation:olSecOpen .32s cubic-bezier(.16,.7,.3,1)}
+@keyframes olSecOpen{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.sec{margin-bottom:20px;transition:border-color .25s,box-shadow .25s}
+.sec-h:hover,.sec-hd:hover{box-shadow:inset 3px 0 0 var(--gd)}
+.sec-body,.sec-bd{line-height:1.75}
+.sec-body p,.sec-bd p{margin-bottom:12px}
+#ol-top{position:fixed;right:22px;bottom:24px;width:42px;height:42px;border-radius:50%;border:1px solid var(--br);background:var(--bg2);color:var(--gd);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .3s,transform .3s,background .2s;z-index:150;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+#ol-top.show{opacity:1;pointer-events:auto;transform:none}
+#ol-top:hover{background:var(--gd);color:#1a140a}
+.ol-readtime{display:inline-flex;align-items:center;gap:7px;font-size:.74rem;letter-spacing:.04em;color:var(--mu);border:1px solid var(--br);border-radius:20px;padding:4px 12px;margin-top:10px;text-transform:uppercase}
+.ol-readtime::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--gd)}
+@media(prefers-reduced-motion:reduce){html.js-anim .sec{opacity:1;transform:none}#ol-top{transition:none}}
+/* END-ENHANCE */
+
+/* AUTO-AESTHETIC2 */
+:root{--ol-acc:var(--gd,#c9a84c)}
+/* smooth anchor scrolling + sticky-header offset */
+html{scroll-behavior:smooth}
+:where(.sec,[id]){scroll-margin-top:88px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+/* theme cross-fade */
+body,main,.sec,.sec-h,.sec-hd,.sec-body,.sec-bd,#sb,#sb-nav a{transition:background-color .35s ease,color .35s ease,border-color .35s ease}
+/* typography polish */
+main .sec-body p,main .sec-bd p{line-height:1.8}
+.sec-h,.sec-hd{letter-spacing:.005em}
+p.ol-lead::first-letter{float:left;font-size:3.1em;line-height:.78;padding:6px 10px 0 0;color:var(--ol-acc);font-weight:700}
+/* card hover depth */
+[class*="-card"],[class*="-box"],.vbox{transition:transform .22s cubic-bezier(.16,.7,.3,1),box-shadow .22s ease,border-color .22s ease,background-color .35s ease,color .35s ease}
+[class*="-card"]:hover,[class*="-box"]:hover,.vbox:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.28)}
+html.light [class*="-card"]:hover,html.light [class*="-box"]:hover,html.light .vbox:hover{box-shadow:0 8px 22px rgba(40,30,10,.12)}
+/* section dividers (inserted by JS) */
+.ol-divider{text-align:center;color:var(--ol-acc);opacity:.45;font-size:1rem;margin:4px auto 26px;line-height:1;letter-spacing:0;user-select:none}
+/* sidebar active-dot fill */
+#sb-nav a{position:relative}
+#sb-nav a.active::before{content:"";position:absolute;left:-2px;top:50%;width:6px;height:6px;border-radius:50%;background:var(--ol-acc);box-shadow:0 0 7px var(--ol-acc);transform:translateY(-50%) scale(0);animation:olDot .3s cubic-bezier(.16,.7,.3,1) forwards}
+@keyframes olDot{to{transform:translateY(-50%) scale(1)}}
+/* bare blockquote uplift (does not touch styled quote-cards) */
+main blockquote{border-left:3px solid var(--ol-acc);padding:8px 0 8px 18px;margin:18px 0;font-style:italic}
+/* END-AESTHETIC2 */
+
+/* AUTO-FEATURES3 */
+/* copy-link buttons */
+.ol-copy{opacity:0;margin:0 8px;background:none;border:none;cursor:pointer;font-size:.8rem;color:var(--mu);transition:opacity .2s,color .2s;vertical-align:middle;padding:2px 5px;line-height:1;border-radius:5px}
+.ol-copy::before{content:"\1F517"}
+.sec-h:hover .ol-copy,.sec-hd:hover .ol-copy,.ol-copy:focus-visible{opacity:.65}
+.ol-copy:hover{opacity:1;color:var(--gd,#c9a84c)}
+.ol-copy.ok{opacity:1;color:#3fa34d}
+.ol-copy.ok::before{content:"\2713";margin-right:4px}
+.ol-copy.ok::after{content:"copied";font-size:.7rem;letter-spacing:.03em}
+/* related topics */
+.ol-related{margin:42px 0 8px;padding:22px 24px;border:1px solid var(--br);border-radius:12px;background:var(--bg2)}
+.ol-related h3{margin:0 0 14px;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gd,#c9a84c);font-weight:700}
+.ol-related-links{display:flex;flex-wrap:wrap;gap:10px}
+.ol-related-links a{display:inline-block;padding:8px 15px;border:1px solid var(--br);border-radius:22px;font-size:.9rem;color:var(--tx,#e7ddc8);text-decoration:none;background:var(--bg,#1a140a);transition:border-color .2s,color .2s,background .2s,transform .2s}
+.ol-related-links a:hover{border-color:var(--gd,#c9a84c);color:var(--gd,#c9a84c);transform:translateY(-1px)}
+/* search launcher */
+.ol-search-btn{display:flex;align-items:center;justify-content:space-between;width:100%;margin:10px 0 4px;padding:9px 13px;border:1px solid var(--br);border-radius:9px;background:var(--bg2);color:var(--mu);font:inherit;font-size:.86rem;cursor:pointer;transition:border-color .2s,color .2s}
+.ol-search-btn:hover{border-color:var(--gd,#c9a84c);color:var(--gd,#c9a84c)}
+.ol-search-btn span{border:1px solid var(--br);border-radius:5px;padding:1px 7px;font-size:.78rem;opacity:.8}
+/* search overlay */
+.ol-ov{position:fixed;inset:0;background:rgba(0,0,0,.62);backdrop-filter:blur(3px);z-index:1000;display:none;align-items:flex-start;justify-content:center;padding:11vh 16px 16px}
+.ol-ov.open{display:flex}
+.ol-modal{width:100%;max-width:620px;background:var(--bg2,#221a0e);border:1px solid var(--br);border-radius:14px;box-shadow:0 24px 70px rgba(0,0,0,.55);overflow:hidden;display:flex;flex-direction:column;max-height:74vh}
+html.light .ol-modal{box-shadow:0 24px 70px rgba(40,30,10,.22)}
+.ol-search-input{border:none;border-bottom:1px solid var(--br);background:none;color:var(--tx,#e7ddc8);font:inherit;font-size:1.12rem;padding:18px 22px;outline:none;width:100%}
+.ol-search-input::placeholder{color:var(--mu)}
+.ol-results{overflow-y:auto;padding:8px}
+.ol-r{display:block;padding:10px 14px;border-radius:9px;text-decoration:none;color:var(--tx,#e7ddc8);transition:background .12s}
+.ol-r .r-t{display:block;font-weight:600;font-size:.97rem}
+.ol-r .r-s{display:block;font-size:.83rem;color:var(--mu);margin-top:2px}
+.ol-r .r-s::before{content:"\2192  ";color:var(--gd,#c9a84c)}
+.ol-r.sel,.ol-r:hover{background:var(--bg,#1a140a)}
+.ol-r.sel{box-shadow:inset 3px 0 0 var(--gd,#c9a84c)}
+.ol-r mark{background:rgba(201,168,76,.32);color:inherit;border-radius:2px;padding:0 1px}
+.r-empty{padding:26px 18px;text-align:center;color:var(--mu);font-size:.92rem}
+.ol-hint{border-top:1px solid var(--br);padding:9px 18px;font-size:.74rem;color:var(--mu);letter-spacing:.03em}
+.ol-r .r-s.r-topic::before{content:"\2756  ";color:var(--gd,#c9a84c)}
+/* verse-mode card */
+.ol-vcard{margin:6px 6px 4px;padding:14px 16px;border:1px solid var(--br);border-radius:10px;background:var(--bg,#1a140a)}
+.ol-vcard .vref{font-weight:700;color:var(--gd,#c9a84c);font-size:1rem}
+.ol-vcard .vkjv{display:block;margin-top:7px;font-size:.93rem;line-height:1.6;color:var(--tx,#e7ddc8)}
+.ol-vcard .vkjv em{font-style:normal;font-size:.64rem;color:var(--mu);border:1px solid var(--br);border-radius:4px;padding:0 5px;margin-left:6px;letter-spacing:.06em;vertical-align:middle}
+.ol-vcard .vmeta{display:block;margin-top:8px;font-size:.76rem;color:var(--mu);line-height:1.5}
+/* scripture verse + tooltip */
+.ol-verse{border-bottom:1px dotted var(--gd,#c9a84c);cursor:help;text-decoration:none}
+.ol-tip{position:absolute;z-index:1100;max-width:330px;background:var(--bg2,#221a0e);color:var(--tx,#e7ddc8);border:1px solid var(--br);border-radius:10px;padding:12px 15px;font-size:.9rem;line-height:1.55;box-shadow:0 12px 34px rgba(0,0,0,.5);pointer-events:none}
+html.light .ol-tip{box-shadow:0 12px 34px rgba(40,30,10,.2)}
+.ol-tip b{color:var(--gd,#c9a84c);font-size:.84rem;letter-spacing:.02em}
+.ol-tip-kjv{font-size:.66rem;color:var(--mu);border:1px solid var(--br);border-radius:4px;padding:0 5px;margin-left:6px;letter-spacing:.05em}
+.ol-tip-load,.ol-tip-err{color:var(--mu);font-style:italic}
+/* print / pdf */
+@media print{
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #sidebar,#sb,#ham,#overlay,#prog,#ol-top,#ol-tt,.ol-search-btn,.ol-copy,.back-link,.ol-ov,.ol-tip,.ol-divider,.ol-related,.sb-search,nav,.arr{display:none!important}
+  html,body{background:#fff!important;color:#000!important}
+  main{margin:0!important;padding:0!important;max-width:100%!important;width:100%!important}
+  .sec-body,.sec-bd,.sec-body2,.fi-body,.fi-bd{display:block!important;max-height:none!important;opacity:1!important;transform:none!important;animation:none!important}
+  .sec{opacity:1!important;transform:none!important;page-break-inside:avoid;border:none!important;margin-bottom:14px!important}
+  .sec-h,.sec-hd{cursor:default}
+  .hero,.pg-title,.page-head,.pg-head,.hd{background:#fff!important;color:#000!important;border:none!important}
+  .ol-verse{border-bottom:none}
+  a{color:#000!important;text-decoration:none}
+  h1,h2,h3{color:#000!important}
+}
+/* END-FEATURES3 */
+
+/* AUTO-FEATURES4 */
+.ol-ask-fab{position:fixed;right:22px;bottom:24px;z-index:1200;display:flex;align-items:center;gap:9px;height:52px;padding:0 19px 0 15px;border:1px solid var(--br);border-radius:30px;background:var(--gd,#c9a84c);color:#1a140a;font:inherit;font-weight:600;font-size:.9rem;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.35);transition:transform .2s,box-shadow .2s}
+.ol-ask-fab:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(0,0,0,.45)}
+.ol-ask-fab svg{width:20px;height:20px;flex:none;display:block}
+.ol-ask-fab.hide{display:none}
+#ol-top{bottom:128px}
+.ol-ask-wrap{position:fixed;right:22px;bottom:24px;z-index:1201;width:380px;max-width:calc(100vw - 32px);height:560px;max-height:calc(100vh - 70px);background:var(--bg2,#221a0e);border:1px solid var(--br);border-radius:16px;box-shadow:0 24px 70px rgba(0,0,0,.55);display:none;flex-direction:column;overflow:hidden}
+.ol-ask-wrap.open{display:flex}
+html.light .ol-ask-wrap{box-shadow:0 24px 70px rgba(40,30,10,.22)}
+.ol-ask-hd{display:flex;align-items:center;gap:10px;padding:13px 15px;border-bottom:1px solid var(--br);background:var(--bg,#1a140a)}
+.ol-ask-hd .ti{flex:1;line-height:1.25}
+.ol-ask-hd .ti b{color:var(--gd,#c9a84c);font-size:.97rem}
+.ol-ask-hd .ti span{display:block;font-size:.7rem;color:var(--mu);font-weight:400;letter-spacing:.02em}
+.ol-ask-x{background:none;border:none;color:var(--mu);font-size:1.4rem;line-height:1;cursor:pointer;padding:0 6px;border-radius:6px}
+.ol-ask-x:hover{color:var(--tx,#e7ddc8)}
+.ol-ask-log{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:11px}
+.ol-ask-msg{max-width:92%;font-size:.9rem;line-height:1.55;word-wrap:break-word}
+.ol-ask-msg.user{align-self:flex-end;background:var(--gd,#c9a84c);color:#1a140a;padding:8px 13px;border-radius:14px 14px 4px 14px;font-weight:500}
+.ol-ask-msg.bot{align-self:flex-start;color:var(--tx,#e7ddc8);width:100%}
+.ol-ask-msg.bot .lead{margin:0 0 9px;color:var(--mu);font-size:.85rem}
+.ol-ans{display:block;text-decoration:none;color:var(--tx,#e7ddc8);border:1px solid var(--br);border-radius:10px;padding:9px 12px;margin-bottom:8px;background:var(--bg,#1a140a);transition:border-color .18s,transform .18s}
+.ol-ans:hover{border-color:var(--gd,#c9a84c);transform:translateY(-1px)}
+.ol-ans .a-t{display:block;font-weight:600;font-size:.88rem}
+.ol-ans .a-h{display:block;font-size:.78rem;color:var(--gd,#c9a84c);margin-top:1px}
+.ol-ans .a-x{display:block;font-size:.81rem;color:var(--mu);margin-top:5px;line-height:1.5}
+.ol-ans mark,.ol-ask-msg mark{background:rgba(201,168,76,.32);color:inherit;border-radius:2px;padding:0 1px}
+.ol-ai-txt{font-size:.9rem;line-height:1.6;color:var(--tx,#e7ddc8)}
+.ol-ai-txt p{margin:0 0 9px}.ol-ai-txt p:last-child{margin-bottom:0}
+.ol-ai-txt strong{color:var(--gl,#e8c96a);font-weight:600}
+.ol-ai-txt sup.ol-ci{color:var(--gd,#c9a84c);font-weight:600;font-size:.7em;padding:0 1px}
+.ol-ai-cite{margin-top:11px;padding-top:9px;border-top:1px solid var(--br)}
+.ol-ai-cite .lead{margin:0 0 7px;color:var(--mu);font-size:.78rem;text-transform:uppercase;letter-spacing:.04em}
+.ol-ans .a-c{display:inline-block;color:var(--gd,#c9a84c);font-weight:700;font-size:.78rem;margin-right:5px}
+.ol-ai-dots{display:inline-flex;gap:5px;padding:4px 0}
+.ol-ai-dots i{width:7px;height:7px;border-radius:50%;background:var(--gd,#c9a84c);opacity:.4;animation:olaiblink 1.2s infinite}
+.ol-ai-dots i:nth-child(2){animation-delay:.2s}.ol-ai-dots i:nth-child(3){animation-delay:.4s}
+@keyframes olaiblink{0%,60%,100%{opacity:.35}30%{opacity:1}}
+.ol-ai-lamp{display:inline-block;font-size:1.15em;line-height:1;transform-origin:50% 85%;animation:ollampflick 1.7s infinite ease-in-out}
+@keyframes ollampflick{0%,100%{opacity:.85;filter:drop-shadow(0 0 2px rgba(201,168,76,.45));transform:scale(1) rotate(0)}40%{opacity:1;filter:drop-shadow(0 0 8px rgba(201,168,76,.95));transform:scale(1.08) rotate(-2deg)}68%{opacity:.92;filter:drop-shadow(0 0 4px rgba(201,168,76,.7));transform:scale(1.02) rotate(1deg)}}
+.ol-ai-think{margin-left:7px;font-style:italic;font-size:.94em;opacity:.85}
+.ol-ask-msg{animation:olmsgin .4s cubic-bezier(.22,1,.36,1) both}
+@keyframes olmsgin{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
+.ol-ai-caret{display:inline-block;width:2px;height:1.05em;background:var(--gd,#c9a84c);margin-left:2px;vertical-align:-2px;border-radius:1px;animation:olcaret .8s step-end infinite}
+@keyframes olcaret{50%{opacity:0}}
+.ol-lamp{display:inline-block;line-height:0;vertical-align:-7px}.ol-lamp svg{width:24px;height:28px;overflow:visible}.ol-lamp-hd{vertical-align:middle;flex:0 0 auto}.ol-lamp-hd svg{width:34px;height:40px}.ol-lamp .eyes-happy,.ol-lamp .m-idle,.ol-lamp .m-think,.ol-lamp .m-happy{display:none}.ol-lamp.st-idle .m-idle{display:block}.ol-lamp.st-think .m-think{display:block}.ol-lamp.st-happy .m-happy{display:block}.ol-lamp.st-happy .eyes{display:none}.ol-lamp.st-happy .eyes-happy{display:block}.ol-lamp .eyes{transform-box:fill-box;transform-origin:center;animation:ollampblink 4.8s infinite}.ol-lamp.st-think .eyes{transform:translateY(-1px)}.ol-lamp .fl{transform-box:fill-box;transform-origin:50% 100%;animation:ollampfl 2.1s infinite ease-in-out}.ol-lamp.st-think .fl{animation-duration:1.1s}.ol-lamp.st-happy .fl{animation-duration:1.3s}.ol-lamp .rays{transform-box:fill-box;transform-origin:center;animation:olrays 2.6s infinite ease-in-out}.ol-lamp.st-think .rays{animation-duration:1.4s}.ol-lamp.st-happy .rays{animation-duration:1.6s}.ol-lamp.st-think .lampg{transform-box:fill-box;transform-origin:50% 100%;animation:ollampsway 2.6s infinite ease-in-out}.ol-lamp.st-happy .lampg{transform-box:fill-box;transform-origin:50% 100%;animation:ollamphop .6s ease}@keyframes ollampfl{0%,100%{transform:scaleY(1) scaleX(1)}30%{transform:scaleY(1.05) scaleX(.97)}60%{transform:scaleY(.98) scaleX(1.02)}}@keyframes olrays{0%,100%{transform:scale(1);opacity:.8}50%{transform:scale(1.08);opacity:1}}@keyframes ollampblink{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}@keyframes ollampsway{0%,100%{transform:rotate(-2.5deg)}50%{transform:rotate(2.5deg)}}@keyframes ollamphop{0%{transform:translateY(0)}40%{transform:translateY(-3px)}100%{transform:translateY(0)}}
+.ol-vans{border:1px solid var(--br);border-radius:10px;padding:11px 13px;margin-bottom:9px;background:var(--bg,#1a140a)}
+.ol-vans .vr{font-weight:700;color:var(--gd,#c9a84c)}
+.ol-vans .vt{display:block;margin-top:5px;font-size:.85rem;line-height:1.55;color:var(--tx,#e7ddc8)}
+.ol-vans .vt em{font-style:normal;font-size:.62rem;color:var(--mu);border:1px solid var(--br);border-radius:4px;padding:0 4px;margin-left:5px;letter-spacing:.05em;vertical-align:middle}
+.ol-ask-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+.ol-ask-chips button{font:inherit;font-size:.78rem;color:var(--tx,#e7ddc8);background:var(--bg,#1a140a);border:1px solid var(--br);border-radius:16px;padding:5px 11px;cursor:pointer;transition:border-color .18s,color .18s}
+.ol-ask-chips button:hover{border-color:var(--gd,#c9a84c);color:var(--gd,#c9a84c)}
+.ol-ask-foot{border-top:1px solid var(--br);padding:10px 10px 4px;display:flex;gap:8px;align-items:center}
+.ol-ask-foot input{flex:1;border:1px solid var(--br);background:var(--bg,#1a140a);color:var(--tx,#e7ddc8);font:inherit;font-size:.9rem;padding:9px 12px;border-radius:9px;outline:none}
+.ol-ask-foot input:focus{border-color:var(--gd,#c9a84c)}
+.ol-ask-foot button.send{flex:none;border:none;background:var(--gd,#c9a84c);color:#1a140a;width:38px;height:38px;border-radius:9px;cursor:pointer;font-size:1.15rem;line-height:1;display:flex;align-items:center;justify-content:center}
+.ol-ask-foot button.send:hover{filter:brightness(1.06)}
+.ol-ask-note{font-size:.66rem;color:var(--mu);text-align:center;padding:6px 12px 9px;line-height:1.4}
+@media(max-width:480px){.ol-ask-wrap{right:8px;bottom:8px;width:auto;left:8px;height:80vh;max-height:none}.ol-ask-fab{right:12px;bottom:14px}#ol-top{bottom:78px}}
+/* END-FEATURES4 */
+
+/* AUTO-FEATURES5 */
+.ol-print-btn{display:flex;align-items:center;gap:9px;width:100%;margin:4px 0 6px;padding:9px 13px;border:1px solid var(--br);border-radius:9px;background:var(--bg2);color:var(--mu);font:inherit;font-size:.86rem;cursor:pointer;transition:border-color .2s,color .2s}
+.ol-print-btn:hover{border-color:var(--gd,#c9a84c);color:var(--gd,#c9a84c)}
+.ol-print-btn svg{width:16px;height:16px;flex:none;display:block}
+@media print{.ol-print-btn{display:none!important}}
+/* END-FEATURES5 */
+</style>
+<script>try{if(localStorage.getItem('ol-theme')==='light')document.documentElement.classList.add('light')}catch(e){}</script>
+<script>try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('js-anim')}catch(e){}</script>
+<link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#141008"><link rel="apple-touch-icon" href="icon-192.png">
+<style id="ol-sb-css">
+main{transition:margin-left .3s ease}
+#ol-sbt{position:fixed;top:50%;transform:translateY(-50%);left:var(--sidebar-w);z-index:150;width:20px;height:52px;display:flex;align-items:center;justify-content:center;background:var(--bg3);color:var(--gold);border:1px solid var(--br);border-left:none;border-radius:0 8px 8px 0;cursor:pointer;font-size:.95rem;line-height:1;box-shadow:2px 0 8px rgba(0,0,0,.28);transition:left .3s ease,filter .2s;font-family:Georgia,serif}
+#ol-sbt:hover{filter:brightness(1.18)}
+html.sb-collapsed #sidebar,html.sb-collapsed #sb{transform:translateX(-100%)}
+html.sb-collapsed main{margin-left:0}
+html.sb-collapsed #ol-sbt{left:0}
+@media(max-width:768px){#ol-sbt{display:none}}
+@media print{#ol-sbt{display:none!important}}
+</style>
+<script>try{if(localStorage.getItem('ol-sb')==='1')document.documentElement.classList.add('sb-collapsed')}catch(e){}</script>
+<!-- SEO-META-START -->
+<meta name="description" content="Do the Oriental Orthodox deny that Christ has a human will? A patristic examination of the one composite will of the incarnate Word, Gethsemane, and the seventh century.">
+<link rel="canonical" href="https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/will_of_christ.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="The Orthodox Lamp">
+<meta property="og:title" content="One Will or Two? The Will of Christ — The Orthodox Lamp">
+<meta property="og:description" content="Do the Oriental Orthodox deny that Christ has a human will? A patristic examination of the one composite will of the incarnate Word, Gethsemane, and the seventh century.">
+<meta property="og:url" content="https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/will_of_christ.html">
+<meta property="og:image" content="https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="One Will or Two? The Will of Christ — The Orthodox Lamp">
+<meta name="twitter:description" content="Do the Oriental Orthodox deny that Christ has a human will? A patristic examination of the one composite will of the incarnate Word, Gethsemane, and the seventh century.">
+<meta name="twitter:image" content="https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/og-cover.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "name": "One Will or Two? The Will of Christ — The Orthodox Lamp", "description": "Do the Oriental Orthodox deny that Christ has a human will? A patristic examination of the one composite will of the incarnate Word, Gethsemane, and the seventh century.", "url": "https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/will_of_christ.html", "isPartOf": {"@type": "WebSite", "name": "The Orthodox Lamp", "url": "https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/"}, "inLanguage": "en"}]}</script>
+<!-- SEO-META-END -->
+<style>/* SVLK */.sv-lk{color:inherit;text-decoration:none;border-bottom:1px dotted currentColor;transition:opacity .15s}.sv-lk:hover{opacity:.72}
+/* OL-BREADCRUMB */
+.ol-bc{margin:0;padding:16px 24px 2px;font-size:.8rem;color:var(--mu);display:flex;flex-wrap:wrap;align-items:center;gap:.45rem;letter-spacing:.02em}
+.ol-bc a{color:var(--mu);text-decoration:none;transition:color .15s}
+.ol-bc a:hover{color:var(--gd,#c9a84c)}
+.ol-bc i{opacity:.45;font-style:normal;font-size:.9em}
+.ol-bc .cur{color:var(--gd,#c9a84c);font-weight:600}
+@media print{.ol-bc{display:none!important}}
+/* END-OL-BREADCRUMB */
+/* OL-FABALIGN */
+#ol-top,#ol-tt{right:22px;width:44px;height:44px}
+.ol-ask-fab{right:22px;bottom:24px}
+#ol-tt{bottom:90px}
+#ol-top{bottom:148px}
+@media(max-width:480px){.ol-ask-fab{right:14px;bottom:16px}#ol-tt{right:14px;bottom:82px;width:42px;height:42px}#ol-top{right:14px;bottom:138px;width:42px;height:42px}}
+/* END-OL-FABALIGN */
+
+
+
+
+
+/* OL-PGBAND */
+.oo-pgband{display:block;text-decoration:none;position:relative;margin:14px 0 6px;border-radius:10px;overflow:hidden;border:1px solid var(--br);box-shadow:0 4px 14px rgba(0,0,0,.3);cursor:pointer}
+.oo-pgband .im{height:106px;background-size:cover;filter:sepia(.5) saturate(.82) brightness(.86) contrast(.95);transition:filter .5s ease,transform .5s ease}
+.oo-pgband:hover .im,.oo-pgband:focus-visible .im{filter:sepia(.3) saturate(.95) brightness(.98) contrast(1);transform:scale(1.03)}
+.oo-pgband:focus-visible{outline:2px solid var(--gl);outline-offset:2px}
+.oo-pgband .cap{position:absolute;left:15px;bottom:9px;font:600 .68rem/1.3 var(--disp,Georgia),serif;letter-spacing:.11em;text-transform:uppercase;color:var(--gl);opacity:.92;text-shadow:0 1px 6px rgba(0,0,0,1)}
+.oo-pgband .cap b{display:block;font-size:.85rem;letter-spacing:.05em;opacity:1}
+.oo-pgband::after{content:"\2626";position:absolute;top:7px;right:13px;color:var(--gl);opacity:.62;font-size:1.02rem;line-height:1;text-shadow:0 1px 3px rgba(0,0,0,.9);transition:opacity .4s ease}
+.oo-pgband:hover::after,.oo-pgband:focus-visible::after{opacity:.96}
+@media(max-width:760px){.oo-pgband .im{height:86px}}
+@media print{.oo-pgband{display:none}}
+/* END-OL-PGBAND */
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<div id="overlay" onclick="closeMobile()"></div>
+
+<aside id="sidebar">
+  <header>
+  <svg class="lampsvg" width="92" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><radialGradient id="lmpGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffb95e" stop-opacity=".55"/><stop offset="100%" stop-color="#ffb95e" stop-opacity="0"/></radialGradient><linearGradient id="lmpFlame" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#ff7a1f"/><stop offset="55%" stop-color="#ffb347"/><stop offset="100%" stop-color="#ffe9b0"/></linearGradient><linearGradient id="lmpBrass" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e3b860"/><stop offset="50%" stop-color="#a87b35"/><stop offset="100%" stop-color="#7a5523"/></linearGradient></defs><circle cx="60" cy="38" r="34" fill="url(#lmpGlow)"/><g class="lampflame"><path d="M60 16 C66 26 70 32 70 40 C70 48 65.5 53 60 53 C54.5 53 50 48 50 40 C50 32 54 26 60 16 Z" fill="url(#lmpFlame)"/><path d="M60 30 C63 35 64.5 38 64.5 42 C64.5 46.5 62.5 49 60 49 C57.5 49 55.5 46.5 55.5 42 C55.5 38 57 35 60 30 Z" fill="#fff3cf" opacity=".85"/></g><rect x="56" y="52" width="8" height="7" rx="2" fill="#8a6228"/><path d="M28 62 L92 62 C92 80 78 92 60 92 C42 92 28 80 28 62 Z" fill="url(#lmpBrass)"/><rect x="24" y="58" width="72" height="6" rx="3" fill="#caa14e"/><rect x="56" y="92" width="8" height="16" fill="url(#lmpBrass)"/><path d="M38 118 C38 110 47 108 60 108 C73 108 82 110 82 118 L82 122 L38 122 Z" fill="url(#lmpBrass)"/><rect x="32" y="122" width="56" height="6" rx="3" fill="#caa14e"/></svg>
+    <span class="sb-cross">☩</span>
+    <div class="sb-title">The Orthodox Lamp</div>
+    <div class="sb-sub">The Will of Christ</div>
+  </header>
+  <nav id="nav">
+    <a href="#s1">I. Introduction</a>
+    <a href="#s2">II. Glossary of Terms</a>
+    <a href="#s3">III. Three Misconceptions</a>
+    <a href="#s4">IV. What the OO Confess</a>
+    <a href="#s5">V. Who Wills? Nature &amp; Person</a>
+    <a href="#s6">VI. Movement &amp; Choice</a>
+    <a href="#s7">VII. Gethsemane</a>
+    <a href="#s8">VIII. The Fathers on the Key Texts</a>
+    <a href="#s9">IX. The Witness of the Fathers</a>
+    <a href="#s10">X. One Theandric Energy</a>
+    <a href="#s11">XI. Severus of Antioch</a>
+    <a href="#s12">XII. The Seventh Century</a>
+    <a href="#s13">XIII. Maximus &amp; the Sixth Council</a>
+    <a href="#s14">XIV. The Agreed Statements</a>
+    <a href="#s15">XV. Objections Answered</a>
+    <a href="#s16">XVI. FAQ</a>
+    <a href="#s17">XVII. Sources</a>
+  </nav>
+  <div class="sb-search">
+    <input type="text" id="srch" placeholder="Search this page…" oninput="doSearch(this.value)">
+  </div>
+</aside>
+
+<div id="main">
+  <div id="mob-bar">
+    <button id="ham" onclick="toggleSidebar()">☰</button>
+    <span class="mb-title">The Orthodox Lamp</span>
+  </div>
+
+  <div class="hero">
+    <span class="si">☩</span>
+    <h1 class="st">THE <span>ORTHODOX</span> LAMP</h1>
+    <p class="ss">One Will or Two? The Will of the Incarnate Word</p>
+    <p class="tg">"Not as I will, but as You will." Matthew 26:39</p>
+    <div class="orn">✦ ✦ ✦</div>
+  </div>
+
+  <div class="content">
+<nav class="ol-bc" aria-label="Breadcrumb"><a href="index.html">Home</a><i>›</i><a href="index.html#oriental">Oriental Orthodoxy</a><i>›</i><span class="cur">The Will of Christ</span></nav>
+<!-- OL-PGBAND -->
+<a class="oo-pgband" href="https://upload.wikimedia.org/wikipedia/commons/3/30/Deyrul_Zafaran_-_Ancient_Syriac_Monastery_-_Outside_Mardin_-_Turkey_-_02_%285789013289%29.jpg" target="_blank" rel="noopener noreferrer" title="Deyrul Zafaran — Syriac Orthodox · Mardin · view full photo (Wikimedia Commons)" aria-label="View the full photograph of Deyrul Zafaran, Syriac Orthodox · Mardin — opens in a new tab"><div class="im" style="background-image:linear-gradient(180deg,rgba(12,12,12,.5) 0%,rgba(12,12,12,.86) 100%),url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Deyrul_Zafaran_-_Ancient_Syriac_Monastery_-_Outside_Mardin_-_Turkey_-_02_%285789013289%29.jpg/960px-Deyrul_Zafaran_-_Ancient_Syriac_Monastery_-_Outside_Mardin_-_Turkey_-_02_%285789013289%29.jpg');background-position:center 54%"></div><span class="cap"><b>Deyrul Zafaran</b>Syriac Orthodox · Mardin</span></a>
+<!-- END-OL-PGBAND -->
+
+
+    <div class="sec open" id="s1">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">I.</span>Introduction: The Question Behind the Question</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>Ask an Eastern Orthodox, Roman Catholic or Reformed Christian what the Oriental Orthodox believe about the will of Christ and the answer is usually the same: they are monothelites, they deny that Christ had a human will, and the Sixth Council condemned them for it. The first two claims are simply mistaken. The third is half true and badly misread: the Sixth Council did name Severus, but every man it condemned for monothelitism was a Chalcedonian.</p>
+        <p>The Oriental Orthodox Church does not deny that the incarnate Word has a true and complete human will. What she refuses to do is to <em>count</em> His willing as two, because the one who wills is one, God made man. She confesses one will of the incarnate Word, composite and theandric, in which the natural divine will and the natural human will are united without mixture, confusion, separation or division. That is the same grammar by which she confesses one incarnate nature of the Word, and it stands or falls with St. Cyril.</p>
+        <p>This page sets out what is actually confessed, examines the central texts (Gethsemane above all), tells the seventh century story accurately, and answers the standard objections. It draws on the case made by Oriental Orthodox apologists, including Agen of Apostolic Orthodoxy and Fr. Peter Farrington, and on the joint statements in which both Orthodox families have already said much of what follows together.</p>
+        <blockquote>"O My Father, if it is possible, let this cup pass from Me; nevertheless, not as I will, but as You will." Matthew 26:39</blockquote>
+        <h3>A Note on Quotations</h3>
+        <p>Patristic and conciliar texts are given from public domain translations where possible and marked <span class="pl">VERBATIM</span>. Where a Father's documented teaching is summarised rather than reproduced, the card is marked <span class="pl">PARAPHRASE</span>. Where the only available translation is modern and copyrighted, as for much of Severus and all of Maximus, the text is paraphrased with the source named, so that the reader can go to it. Severus' Letter I and Dionysius' Letter IV are quoted from public domain translations of 1915 and 1897.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s2">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">II.</span>Glossary of Terms</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <div class="gt-grid">
+          <div class="gt">
+            <div class="gt-term">Thelema / Thelesis</div>
+            <div class="gt-grk">θέλημα, θέλησις: "will, willing"</div>
+            <div class="gt-def">Both the faculty of willing and the act of willing. Much of the dispute dissolves once it is asked which of the two is being counted.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Energeia</div>
+            <div class="gt-grk">ἐνέργεια: "activity, operation"</div>
+            <div class="gt-def">The activity proper to a nature. The seventh century controversy began over energy (monoenergism) before it moved to will (monothelitism).</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Natural Will</div>
+            <div class="gt-grk">θέλημα φυσικόν</div>
+            <div class="gt-def">The faculty of willing that belongs to a nature as such. Every rational nature has one. The Oriental Orthodox affirm that Christ's humanity possesses it fully.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Gnomic Will</div>
+            <div class="gt-grk">γνώμη: "opinion, deliberation"</div>
+            <div class="gt-def">In St. Maximus, the deliberating mode of willing in which a human person weighs alternatives without certain knowledge of the good. Both families deny it of Christ, who never wavers.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Theandric</div>
+            <div class="gt-grk">θεανδρικός: "divine-human"</div>
+            <div class="gt-def">From St. Dionysius: the new divine-human activity of God made man. The Oriental Orthodox apply it to the one will and energy of the incarnate Word.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Composite</div>
+            <div class="gt-grk">σύνθετος: "put together"</div>
+            <div class="gt-def">Describes a union in which the united elements remain what they are. The Fifth Council calls the union synthetic; both families in 1990 called the hypostasis of the Logos composite.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Monothelitism</div>
+            <div class="gt-grk">μόνος + θέλημα: "one will only"</div>
+            <div class="gt-def">The seventh century Chalcedonian imperial doctrine of one will in Christ, which in its opponents' judgment left His human nature without its own natural motion. Condemned in 681, and rejected by the Oriental Orthodox also.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Dyothelitism</div>
+            <div class="gt-grk">δύο θελήματα: "two wills"</div>
+            <div class="gt-def">The teaching of the Sixth Council that there are two natural wills in Christ, the human following and subject to the divine.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Hypostasis</div>
+            <div class="gt-grk">ὑπόστασις: "subsistence, person"</div>
+            <div class="gt-def">The concrete one who exists and acts. Both families agree that in Christ the one who wills is always the one hypostasis of the Logos incarnate.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Blameless Passion</div>
+            <div class="gt-grk">ἀδιάβλητα πάθη</div>
+            <div class="gt-def">Natural human affections that are not sinful: hunger, thirst, weariness, grief, the shrinking from death. Christ took all of them as His own.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s3">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">III.</span>Three Misconceptions</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>Three errors travel together and need separating, because each of them is believed by people who have never read a line of Severus.</p>
+        <h3>1. "The Oriental Orthodox deny that Christ has a human will"</h3>
+        <p>They do not, and never have. A humanity without a will would be an animated body moved from outside, which is Apollinarianism, and the Oriental Orthodox Fathers condemned Apollinarius by name. Severus insists repeatedly that the Word united to Himself flesh endowed with a rational and intelligent soul, and the rational soul is precisely the seat of willing. What is not assumed is not healed; the Oriental Orthodox have always said so.</p>
+        <h3>2. "Monothelitism was the Oriental Orthodox position"</h3>
+        <p>Monothelitism was a Chalcedonian invention. It was drafted in Constantinople, promoted by a Byzantine emperor, and condemned at the Sixth Council in the persons of Chalcedonian patriarchs and a pope of Rome. Its purpose was to win back the non-Chalcedonians by offering one will on top of two natures. The Oriental Orthodox Churches were never party to it, sent no one to the council that condemned it, and do not recognise its formula as their faith. The council did liken the heresy to the teaching of Severus; Section XII tells the story and shows why the comparison does not hold.</p>
+        <h3>3. "Gethsemane proves two wills struggling inside Christ"</h3>
+        <p>No Orthodox theologian on either side teaches that. The Sixth Council itself says the two wills are not contrary to one another and that the human will follows without resisting or reluctance. If anyone imagines two parties in Christ negotiating, he has left both Orthodox families and arrived at Nestorius.</p>
+        <h3>So Where Is the Real Disagreement?</h3>
+        <p>Once the misconceptions are cleared away, the real question is narrow: whether the will of the incarnate Word should be <em>counted</em>. The Chalcedonian tradition counts according to the natures and says two. The Oriental Orthodox tradition speaks according to the union and says one, because the one Son wills, and to count His willing is to risk dividing the one who wills. Both affirm the full divine and human faculty. The difference is about where the number belongs.</p>
+        <div class="comp-grid">
+          <div class="comp-card mia">
+            <h4>Oriental Orthodox</h4>
+            <p>One composite, theandric will of the incarnate Word. The natural human will is fully present and active, united to the divine without confusion or division. The one who wills is always the one Son.</p>
+          </div>
+          <div class="comp-card dyo">
+            <h4>Chalcedonian (Dyothelite)</h4>
+            <p>Two natural wills, divine and human, in the one hypostasis. Not contrary; the human follows and is subject to the divine. Defined at Constantinople III (681).</p>
+          </div>
+          <div class="comp-card eut">
+            <h4>Monothelitism (Condemned)</h4>
+            <p>Two natures but one will, a formula its opponents judged to leave the humanity without its own natural motion. A Byzantine compromise, condemned in 681 and rejected by both Orthodox families.</p>
+          </div>
+          <div class="comp-card nes">
+            <h4>Nestorianism (Condemned)</h4>
+            <p>Two willing subjects, the Word and the man Jesus, united by agreement of purpose. The error that both families are trying to avoid when they speak of the will of Christ.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s4">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">IV.</span>What the Oriental Orthodox Actually Confess</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>The Oriental Orthodox confession about the will of Christ can be stated in five propositions. Each one is drawn from Severus, from St. Cyril whom he follows, or from the agreed statements to which the Oriental Orthodox Churches have put their names.</p>
+        <h3>The Five Propositions</h3>
+        <p><strong>First,</strong> the divine nature of the Word has its natural will, which He shares with the Father and the Holy Spirit. There is one will in the Holy Trinity because there is one divine nature.</p>
+        <p><strong>Second,</strong> the humanity the Word took from the Theotokos is complete, with a rational soul, and therefore with a natural human will. That will is not vestigial and not idle. It is the faculty in which the Word, as man, chooses the good and obeys the Father.</p>
+        <p><strong>Third,</strong> the human will never acts independently, as if it marked the presence of another subject. It is the Word's own human will, exactly as the flesh is the Word's own flesh.</p>
+        <p><strong>Fourth,</strong> the union is natural and hypostatic, so the divine and human wills are united without mixture, confusion, separation or division. They are distinguished in contemplation, and they remain what they are by nature.</p>
+        <p><strong>Fifth,</strong> therefore the incarnate Word wills as one, in a composite and theandric way, and the Church speaks of one will of the incarnate Word in the same sense in which she speaks, with St. Cyril, of one incarnate nature of God the Word.</p>
+        <h3>Why the Human Will Matters to Us</h3>
+        <p>Severus does not merely concede a human will. He makes it the battlefield of salvation. Adam was defeated in his will; the second Adam must win in His. Commenting on the prophecy that Emmanuel would refuse the evil and choose the good, Severus argues that God as God has no need to choose the good, and that the Word took a soul endowed with will precisely so that our wills, bent toward evil, might be turned back toward choosing what is right. A Christ without a working human will could not undo Adam's fall, and Severus knew it.</p>
+        <div class="fc">
+          <div class="fn">St. Severus of Antioch</div>
+          <div class="fw">On the prophecy of Emmanuel (Isaiah 7:15), as cited by Fr. Peter Farrington</div>
+          <div class="fq">From the time He lay in swaddling clothes, before any age of discernment, the Emmanuel spurned the evil and chose the good. These words show that the Word united to Himself not flesh only but a soul endowed with will and understanding, so that our souls might lean toward choosing good. God as God does not need to choose the good; it was for our sake that He assumed this.</div>
+          <div class="labels"><span class="mia">Oriental Orthodox Saint</span><span class="pl">PARAPHRASE</span></div>
+        </div>
+        <p>This is the decisive point against the charge of monothelitism. The monothelite formula of the seventh century was condemned for leaving the humanity of Christ without its own motion. Severus, a century earlier, made the human will's own motion toward the good the very mechanism of our redemption.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s5">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">V.</span>Who Wills? Nature, Person and the Act of Willing</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>The strongest argument for two wills runs like this. In the Holy Trinity there are three persons and one will, so will cannot belong to the person; it must belong to the nature. Christ has two natures, so Christ has two wills. The argument is old, it is serious, and it deserves a careful answer rather than a dismissal.</p>
+        <h3>What the Argument Gets Right</h3>
+        <p>The faculty of willing is natural. Every rational nature has one, and the Father, Son and Holy Spirit have one will because they have one nature. The Oriental Orthodox do not dispute this. It is exactly why they insist that Christ's humanity has its own natural will: being human, it must.</p>
+        <h3>What the Argument Skips</h3>
+        <p>There is a difference between the faculty by which someone wills and the one who wills. Natures do not will. Persons will, by means of the faculties their nature gives them. A man does not have a will that wills; he wills, with his will. The faculty is natural; the act of willing belongs to the hypostasis who exercises it.</p>
+        <p>Now apply that to the incarnate Word. He has the divine faculty, and He has the human faculty. But in every act He is one willer, and nothing He wills as man is ever willed apart from His divinity. His healing of the leper is willed divinely and humanly at once: one "I am willing," one touch of a human hand, one cleansing by divine power. The act is one, and the one who acts is one. That is what the Oriental Orthodox mean by one will: not one faculty, but one composite willing of the one incarnate Son.</p>
+        <h3>Why the Trinity Analogy Cuts Both Ways</h3>
+        <p>In the Trinity the rule is: one nature, one will, three persons. Notice that the rule there protects unity. It forbids three wills in God because three wills would mean three gods. The same instinct, applied to Christ, should make us cautious about multiplying the will of the one Son. If a second will in the Trinity would imply a second god, a second will in Christ, counted as a separate act, invites the suspicion of a second Son. The Oriental Orthodox simply refuse to give the suspicion any room.</p>
+        <p>This is not a denial of the human faculty. It is a refusal to let the numbering of faculties become the numbering of willers, which is where every Nestorian Christology finally ends up.</p>
+        <div class="ana">
+          <div class="ana-num">Both Families, 1990 · Paragraph 5</div>
+          <div class="ana-txt">"He Who wills and acts is always the one Hypostasis of the Logos incarnate."</div>
+        </div>
+        <p>That sentence, signed by Eastern and Oriental Orthodox theologians together, is the whole Oriental Orthodox case in fourteen words. Section XIV returns to it.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s6">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">VI.</span>Movement and Choice: The Distinction That Settles Gethsemane</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>Fr. Peter Farrington, an Oriental Orthodox priest and writer in the United Kingdom, draws a distinction that does more than any other to clear up the controversy. It is the difference between a <em>movement</em> of the faculty of will and a <em>choice</em> made by the one who wills.</p>
+        <p>A man fasting is hungry. His faculty of will is genuinely moved toward food; the movement is natural, involuntary and blameless. He nevertheless chooses not to eat. There were two movements in him, the pull toward food and the resolve to keep the fast, but there was only one choice, and it was his. Nobody would say he had two wills in conflict. He had one will, moved in more than one way, and he decided.</p>
+        <p>So it is with the Lord. In Gethsemane His human faculty of will is truly moved by the blameless and natural shrinking of human nature from death. That movement is real; if it were not, He would not be truly man and the agony would be theatre. But the movement is not a choice. The choice is <em>"not as I will, but as You will,"</em> and it is the one choice of the one Son, made humanly, in perfect accord with the will He shares with the Father.</p>
+        <h3>Why This Matters</h3>
+        <p>If every movement of the faculty counted as a separate will, then every hungry fasting monk would have two wills, and every martyr who feared the sword and went to it anyway would have two wills at war. Counting movements as wills proves too much. What the Fathers protect is the reality of the human movement and the unity of the one who chooses. The Oriental Orthodox protect both, and they put the number on the chooser.</p>
+        <div class="fc">
+          <div class="fn">St. Cyril of Alexandria</div>
+          <div class="fw">On the Lord's fast in the wilderness, as summarised by Fr. Peter Farrington</div>
+          <div class="fq">The Word allowed His own flesh to feel hunger only when He willed it, at the end of the forty days, permitting the natural human desire for food to move Him when the time was right.</div>
+          <div class="labels"><span class="ctx">Honoured by Both</span><span class="pl">PARAPHRASE</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St. Cyril of Alexandria</div>
+          <div class="fw">Defence of the Tenth Anathema against Theodoret, as quoted by Severus in Letter I</div>
+          <div class="fq">"He wept in human fashion, that he might take away your weeping. He feared by dispensation, inasmuch as he sometimes permitted his flesh to undergo the passions proper to it, that he might make us valiant."</div>
+          <div class="labels"><span class="ctx">Honoured by Both</span><span class="pl">VERBATIM · BROOKS TRANSLATION (1915)</span></div>
+        </div>
+        <p>Cyril's point is that the natural movements of the Lord's humanity were truly His and arose as and when He willed within the economy. The humanity is fully human, and it is fully His, which is exactly the Oriental Orthodox claim.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s7">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">VII.</span>Gethsemane and the Scriptural Witness</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>Every online debate about the will of Christ, as Fr. Peter observes, ends up in the garden counting wills. It is worth going there carefully, because both families read the passage more closely than the debates suggest.</p>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Matthew%2026%3A39&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Matthew 26:39</a></div>
+          <div class="txt">"O My Father, if it is possible, let this cup pass from Me; nevertheless, not as I will, but as You will."</div>
+          <div class="mia-note">🔵 Miaphysite reading: The one Son speaks to His Father. The shrinking from the cup is the real, blameless movement of the human faculty, which He made His own; "as You will" is His one choice, made as man, identical in content with the will He shares eternally with the Father.</div>
+          <div class="dyo-note">🟣 Dyophysite reading: "As I will" refers to Christ's natural human will, which shrinks from death; "as You will" refers to the divine will, which the Son shares with the Father. The verse shows two natural wills in perfect concord.</div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=John%206%3A38&amp;version=NKJV" target="_blank" rel="noopener noreferrer">John 6:38</a></div>
+          <div class="txt">"For I have come down from heaven, not to do My own will, but the will of Him who sent Me."</div>
+          <div class="mia-note">🔵 Miaphysite reading: The one who came down from heaven is the subject who speaks. The Sixth Council itself reads "My own will" here as the will of His flesh, called His own because the flesh is His own. Even while counting two wills, the council insists that the human will is His own, which is a confession of the one willer.</div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Matthew%208%3A3&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Matthew 8:3</a></div>
+          <div class="txt">"Then Jesus put out His hand and touched him, saying, 'I am willing; be cleansed.'"</div>
+          <div class="mia-note">🔵 Miaphysite reading: The clearest image of the one theandric act. A human hand, a human voice, a divine cleansing, and a single "I am willing."</div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Hebrews%205%3A7-8&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Hebrews 5:7-8</a></div>
+          <div class="txt">"... who, in the days of His flesh, when He had offered up prayers and supplications, with vehement cries and tears... though He was a Son, yet He learned obedience by the things which He suffered."</div>
+          <div class="mia-note">🔵 Miaphysite reading: Obedience learned in suffering requires a real human will, and the Oriental Orthodox affirm it gladly. But the subject is "a Son": the one who obeys is the eternal Son in the days of His flesh.</div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Philippians%202%3A8&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Philippians 2:8</a></div>
+          <div class="txt">"He humbled Himself and became obedient to the point of death, even the death of the cross."</div>
+          <div class="mia-note">🔵 Miaphysite reading: The one who "humbled Himself" is the one who was in the form of God. The humbling and the obedience are acts of the same subject, which is why the Church may say that the Word Himself obeyed unto death in His own humanity.</div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Hebrews%2010%3A7&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Hebrews 10:7</a></div>
+          <div class="txt">"Then I said, 'Behold, I have come ... to do Your will, O God.'"</div>
+          <div class="mia-note">🔵 Miaphysite reading: The Son's coming is itself an act of His will. The incarnation does not introduce a second willer into His life; it gives His one willing a human voice and a human body in which to be carried out.</div>
+        </div>
+        <h3>The Point Both Sides Concede</h3>
+        <p>Neither family reads Gethsemane as a conflict. Maximus himself presents it as a perfect concurrence, the human will wholly deified in its agreement with the divine. The Oriental Orthodox agree entirely. The only question left is whether to describe that perfect concurrence as two wills agreeing or as one will of the incarnate Word, humanly and divinely exercised. Given that the subject is one and the agreement is total, the Oriental Orthodox description is at least as faithful to the text, and it carries no risk of a second subject.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s8">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">VIII.</span>The Fathers on the Key Texts: Patristic Exegesis</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>The Fathers did not read Gethsemane in a vacuum. They read it under a rule, and the rule was laid down by St. Cyril at Ephesus. Before looking at what each Father says about each text, it is worth seeing the rule they were all, in one way or another, trying to keep.</p>
+        <div class="fc">
+          <div class="fn">St. Cyril of Alexandria</div>
+          <div class="fw">Third Letter to Nestorius, Anathema IV (AD 430), received at Ephesus</div>
+          <div class="fq">"If anyone shall divide between two persons or subsistences those expressions which are contained in the Evangelical and Apostolical writings, or which have been said concerning Christ by the Saints, or by himself, and shall apply some to him as to a man separate from the Word of God, and shall apply others to the only Word of God the Father, on the ground that they are fit to be applied to God: let him be anathema."</div>
+          <div class="labels"><span class="ctx">Honoured by Both</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>This is the exegetical key. The Fathers freely say that some sayings of Christ show His divinity and others His humanity; that is distinction, and it is permitted. What Cyril forbids is distributing the sayings between two <em>subjects</em>. Every word in the Gospels is spoken by the one incarnate Word. Hold that rule in mind through each text below: the question is never whether Gethsemane is spoken humanly (it plainly is) but whether it is spoken by someone other than the Word (it is not).</p>
+
+        <h3>Matthew 26:39 · "Let this cup pass from Me"</h3>
+        <div class="fc">
+          <div class="fn">St. Athanasius the Apostolic</div>
+          <div class="fw">Against the Arians III.57 (c. AD 356)</div>
+          <div class="fq">"For He willed what He deprecated, for therefore had He come; but His was the willing (for for it He came), but the terror belonged to the flesh. Wherefore as man He utters this speech also, and yet both were said by the Same, to show that He was God, willing in Himself, but when He had become man, having a flesh that was in terror. For the sake of this flesh He combined His own will with human weakness, that destroying this affection He might in turn make man undaunted in face of death."</div>
+          <div class="labels"><span class="ctx">Honoured by Both</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>Athanasius gives two things the Oriental Orthodox hold together: both sayings in the garden "were said by the Same," and the Lord "combined His own will with human weakness." He places the willing in the Word and the terror in the flesh, and refuses to give either to anyone but the one Lord.</p>
+
+        <div class="fc">
+          <div class="fn">St. John Chrysostom</div>
+          <div class="fw">Homilies on Matthew, Homily 83 (c. AD 390)</div>
+          <div class="fq">"By saying then, If it be possible, let it pass from me, He showed His humanity; but by saying, Nevertheless not as I will, but as You will, He showed His virtue and self-command, teaching us even when nature pulls us back, to follow God."</div>
+          <div class="labels"><span class="ctx">Honoured by Both</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St. Cyril of Alexandria</div>
+          <div class="fw">Commentary on Luke, Sermon 146 (on Luke 22:39&ndash;46)</div>
+          <div class="fq">Grief and distress cannot belong to the divine and impassible nature of the Word, which transcends all passion; but the incarnate Word willed to submit Himself to the measure of human nature. As He is said to have hungered and been weary though He is Life and the Lord of powers, so He is said to have been grieved, for it would not have befitted Him who emptied Himself to seem unwilling to endure human things.</div>
+          <div class="labels"><span class="ctx">Honoured by Both</span><span class="pl">PARAPHRASE</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St. Ambrose of Milan</div>
+          <div class="fw">On the Christian Faith II.7.53 (AD 378)</div>
+          <div class="fq">"My will, therefore, He took to Himself, my grief. In confidence I call it grief, because I preach His Cross. Mine is the will which He called His own, for as man He bore my grief, as man He spoke, and therefore said, Not as I will, but as You will."</div>
+          <div class="labels"><span class="ctx">Honoured by Both</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>Ambrose is the clearest Latin witness for the human will in Gethsemane, and he says just before this that "the will of God is one, and the human will another." The Oriental Orthodox have no quarrel with the distinction. Note that Ambrose's whole point is that this human will is the one <em>He called His own</em>.</p>
+
+        <p><strong>What the witnesses show.</strong> Every one of these Fathers attributes the shrinking from death to the humanity, and every one attributes it to the one Lord. Ambrose and Chrysostom distinguish the human and divine sharply, and the Oriental Orthodox need not deny that the two can be distinguished in the verse. What none of them does is place a second subject in the garden. Athanasius and Cyril, the two Fathers the Oriental Orthodox follow most closely, both read the scene as the one Word allowing His own humanity to feel what is natural to it, and then triumphing in it.</p>
+
+        <h3>John 6:38 · "Not to do My own will"</h3>
+        <div class="fc">
+          <div class="fn">St. Gregory the Theologian</div>
+          <div class="fw">Oration 30 (Fourth Theological Oration), §12 (AD 380)</div>
+          <div class="fq">Had this not been said by the very one who came down, we might take it as spoken from the human nature, for in the Saviour the human will cannot oppose God, being altogether taken into God, though in us it often resists. But since it is He who came down who says it, the meaning is that the Son has no will of His own apart from the will common to Him and the Father, as They have one Godhead.</div>
+          <div class="labels"><span class="ctx">Honoured by Both</span><span class="pl">PARAPHRASE</span></div>
+        </div>
+        <p>The Sixth Council quotes this very passage. Note what Gregory does. He grants that the human will in Christ is real and wholly taken into God, but he refuses to read the saying as the voice of the human nature on its own, because the speaker is <em>the one who came down from heaven</em>. The subject determines the reading. That is the Oriental Orthodox emphasis exactly.</p>
+
+        <h3>John 12:27 · "Now My soul is troubled"</h3>
+        <div class="fc">
+          <div class="fn">St. Cyril of Alexandria</div>
+          <div class="fw">Commentary on John, Book VIII (on John 12:27)</div>
+          <div class="fq">"Profitably were the human feelings troubled in Christ: not that the emotions should prevail and go forward, as in us; but that, having begun, they might be cut short by the power of the Word, nature in Christ first being transelemented into some better and Diviner condition. For in this way and no other was it that the process of the healing passed over even unto us."</div>
+          <div class="labels"><span class="ctx">Honoured by Both</span><span class="pl">VERBATIM · LFC TRANSLATION (1874)</span></div>
+        </div>
+        <p>Cyril adds in the same place that the trouble shows "He indeed had a rational soul." The fear is natural, sinless and truly His; it begins, and it is cut short by the power of the Word, and our nature is healed in His.</p>
+
+        <p>This is Cyril's characteristic pattern, and it is the patristic root of the movement and choice distinction in Section VI. The faculty is truly moved; the Word does not let the movement become the deciding act. One subject, real passion, one victory.</p>
+
+        <h3>Luke 22:43&ndash;44 · The Agony and the Bloody Sweat</h3>
+        <div class="fc">
+          <div class="fn">St. Justin Martyr</div>
+          <div class="fw">Dialogue with Trypho 99 and 103 (c. AD 155)</div>
+          <div class="fq">"He prayed in these words: 'Father, if it be possible, let this cup pass from me.' And again He prayed: 'Not as I will, but as You will.' showing by this that He had become truly a suffering man."</div>
+          <div class="labels"><span class="ctx">Honoured by Both</span><span class="pl">VERBATIM · ANF TRANSLATION</span></div>
+        </div>
+        <p>In chapter 103 Justin adds, from the apostles' memoirs, that "His sweat fell down like drops of blood while He was praying," and that this happened "in order that we may perceive that the Father wished His Son really to undergo such sufferings for our sakes." One of the earliest Christian writers on the garden reads it as proof that the Son truly suffered as man.</p>
+        <div class="fc">
+          <div class="fn">St. Irenaeus of Lyons</div>
+          <div class="fw">Against Heresies III.22.2 (c. AD 180)</div>
+          <div class="fq">If He had not truly taken flesh from Mary, He would not have hungered, nor wearied, nor wept over Lazarus, nor sweated great drops of blood, nor said that His soul was sorrowful. These are the tokens of the flesh He took from the earth, which He took up into Himself, bringing salvation to His own handiwork.</div>
+          <div class="labels"><span class="ctx">Honoured by Both</span><span class="pl">PARAPHRASE</span></div>
+        </div>
+        <p>Irenaeus, writing against the Gnostics, uses the agony to prove that Christ's humanity was real. Together with Justin Martyr before him, this is among the earliest uses of Gethsemane in Christian theology, and it is the use the Oriental Orthodox have always made of it: proof of a true and complete humanity, not proof of a second person.</p>
+
+        <h3>Hebrews 5:7&ndash;8 · "He learned obedience"</h3>
+        <div class="fc">
+          <div class="fn">St. Cyril of Alexandria</div>
+          <div class="fw">That the Christ is One (On the Unity of Christ)</div>
+          <div class="fq">"Hence the Word of God no longer bare and imparticipate in the measures of the emptying but in the days of His flesh has been made a pattern to us; in that then without any blame He could use the measures of the human nature and prolong His prayer and shed the tear and seem now both to need a Saviour and to learn obedience, albeit Son."</div>
+          <div class="labels"><span class="ctx">Honoured by Both</span><span class="pl">VERBATIM · PUSEY TRANSLATION (1881)</span></div>
+        </div>
+        <p>Cyril reads Hebrews 5 as the Word Himself, now no longer "bare" of our condition, using "the measures of the human nature" to become a pattern for us in prayer, tears and obedience. The one who learns obedience is the Son, "albeit Son."</p>
+
+        <h3>Mark 13:32 · "Of that day and hour no one knows"</h3>
+        <div class="fc">
+          <div class="fn">St. Athanasius the Apostolic</div>
+          <div class="fw">Against the Arians III.42&ndash;46</div>
+          <div class="fq">The Son says He knows not the day as man, for ignorance belongs to the flesh; but the same Son, through whom all times and seasons were made, knows the day as the Word. Athanasius does not assign the ignorance to another subject but to the one Lord according to His humanity.</div>
+          <div class="labels"><span class="ctx">Honoured by Both</span><span class="pl">PARAPHRASE</span></div>
+        </div>
+        <p>The passage is not about will, but it shows the method. The same pattern governs knowledge, suffering and willing: distinguish what belongs to the humanity, never divide the one to whom it belongs.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s9">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">IX.</span>The Witness of the Fathers</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>The Fathers below are arranged in order of time. The first group wrote before Chalcedon and belongs to both Orthodox families equally. The second group are the Oriental Orthodox Fathers after 451. The third group, for fairness, are the Chalcedonian Fathers on whom the doctrine of two wills was built. Each card is labelled with the tradition that venerates the writer.</p>
+
+        <h3>Before Chalcedon: The Common Fathers</h3>
+        <div class="fc">
+          <div class="fn">St. Ignatius of Antioch</div>
+          <div class="fw">Letter to the Ephesians 7 (c. AD 107)</div>
+          <div class="fq">"There is one Physician who is possessed both of flesh and spirit; both made and not made; God existing in flesh; true life in death; both of Mary and of God; first passible and then impassible, even Jesus Christ our Lord."</div>
+          <div class="labels"><span class="ctx">Honoured by Both</span><span class="pl">VERBATIM · ANF TRANSLATION</span></div>
+        </div>
+        <p>Early in the second century, Ignatius piles up the paradoxes on a single subject: <em>one</em> Physician, both passible and impassible. The Oriental Orthodox insistence on the one who wills grows from this root.</p>
+        <div class="fc">
+          <div class="fn">St. Irenaeus of Lyons</div>
+          <div class="fw">Against Heresies III.19.3 (c. AD 180)</div>
+          <div class="fq">As He became man to undergo temptation, so He was the Word that He might be glorified. The Word remained quiescent so that He could be tempted, dishonoured, crucified and suffer death, while the human nature was swallowed up in the divine when it conquered, endured, rose and was taken up.</div>
+          <div class="labels"><span class="ctx">Honoured by Both</span><span class="pl">PARAPHRASE</span></div>
+        </div>
+        <p>Irenaeus distinguishes the human and divine aspects of a single career. Notice that he does not need two wills to do it. He needs one Word who holds back His power so that His own humanity can be tempted and suffer, and in whom that humanity then conquers. The subject of the temptation and the subject of the victory are the same.</p>
+        <div class="fc">
+          <div class="fn">St. Hippolytus of Rome</div>
+          <div class="fw">Against the Heresy of Noetus 18 (c. AD 200)</div>
+          <div class="fq">"He hungers and toils and thirsts in weariness, and flees in fear, and prays in trouble. And He who as God has a sleepless nature, slumbers on a pillow. And He who for this end came into the world, begs off from the cup of suffering. And in an agony He sweats blood, and is strengthened by an angel, who Himself strengthens those who believe in Him."</div>
+          <div class="labels"><span class="ctx">Honoured by Both</span><span class="pl">VERBATIM · ANF TRANSLATION</span></div>
+        </div>
+        <p>Hippolytus, around AD 200, already reads the cup, the bloody sweat and the angel as the acts of the one "who for this end came into the world." The same subject begs off the cup and came to drink it, and the one strengthened by the angel is the one who strengthens believers.</p>
+
+        <div class="fc">
+          <div class="fn">St. Athanasius the Apostolic</div>
+          <div class="fw">On the Incarnation 18 (c. AD 318)</div>
+          <div class="fq">"But these things are said of Him, because the actual body which ate, was born, and suffered, belonged to none other but to the Lord: and because, having become man, it was proper for these things to be predicated of Him as man, to show Him to have a body in truth, and not in seeming."</div>
+          <div class="labels"><span class="ctx">Honoured by Both</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>In the chapter before, Athanasius insists that the Word was not circumscribed by the body and never ceased ordering the universe. Here he adds the other half: what the body did and suffered belonged "to none other but to the Lord." The 20th Pope of Alexandria gives the model the Oriental Orthodox apply to the will. There is no separate agent in the flesh.</p>
+        <div class="fc">
+          <div class="fn">St. Basil the Great</div>
+          <div class="fw">Letter 261 (c. AD 377)</div>
+          <div class="fq">There are natural affections and there are affections that come from wickedness. The Lord took the natural ones, such as weariness, pain, hunger, thirst, grief and anxiety, to show that His incarnation was real and not an appearance; but He did not take those that defile, for He was without sin.</div>
+          <div class="labels"><span class="ctx">Honoured by Both</span><span class="pl">PARAPHRASE</span></div>
+        </div>
+        <p>Basil supplies the vocabulary of blameless passion that the Oriental Orthodox use for Gethsemane. The shrinking from death in Gethsemane belongs in Basil's first category: natural, sinless, and truly taken. It is a movement of His humanity, not a rival choice.</p>
+        <div class="fc">
+          <div class="fn">St. Gregory the Theologian</div>
+          <div class="fw">Letter 101, to Cledonius (c. AD 382)</div>
+          <div class="fq">"For that which He has not assumed He has not healed; but that which is united to His Godhead is also saved."</div>
+          <div class="labels"><span class="ctx">Honoured by Both</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>This line is often thrown at the Oriental Orthodox as if it proved two wills. It proves a complete humanity, mind and will included, which the Oriental Orthodox confess without reservation. And note its second half: what is healed is what is <em>united</em> to the Godhead. Gregory's emphasis falls on union.</p>
+        <div class="fc">
+          <div class="fn">St. Gregory of Nyssa</div>
+          <div class="fw">Catechetical Oration 9&ndash;10 (c. AD 385)</div>
+          <div class="fq">Nothing in human nature degrades God except evil, so the incarnation is not unworthy of Him. Nor was the infinite enclosed in the flesh as in a vessel: the divine is united to the human as a flame clings to the wick, truly present and active in it without being contained by it.</div>
+          <div class="labels"><span class="ctx">Honoured by Both</span><span class="pl">PARAPHRASE</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St. Ephrem the Syrian</div>
+          <div class="fw">Hymns on the Nativity (4th c.)</div>
+          <div class="fq">Ephrem's hymns marvel again and again that the one who fills all things dwelt in the womb, that the one who feeds creation was nursed as an infant. The Syriac poet does not tire of saying that it is the same one who does the divine and the human things.</div>
+          <div class="labels"><span class="ctx">Honoured by Both</span><span class="pl">PARAPHRASE</span></div>
+        </div>
+        <p>Ephrem is the Syriac Fathers' father. His hymns run on exactly the logic of Cyril's fourth anathema, two generations before it was written: one subject, whose humble acts and glorious acts are both His own.</p>
+        <div class="fc">
+          <div class="fn">St. John Chrysostom</div>
+          <div class="fw">Homilies on John, Homily 11 (on John 1:14)</div>
+          <div class="fq">"For by an Union and Conjoining God the Word and the Flesh are One, not by any confusion or obliteration of substances, but by a certain union ineffable, and past understanding."</div>
+          <div class="labels"><span class="ctx">Honoured by Both</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St. Cyril of Alexandria</div>
+          <div class="fw">Third Letter to Nestorius, Anathema XII (AD 430)</div>
+          <div class="fq">"Whosoever shall not recognize that the Word of God suffered in the flesh, that he was crucified in the flesh, and that likewise in that same flesh he tasted death and that he has become the first-begotten of the dead, for, as he is God, he is the life and it is he that gives life: let him be anathema."</div>
+          <div class="labels"><span class="ctx">Honoured by Both</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>If the Word Himself suffered in the flesh, the Word Himself also willed in the flesh. The suffering in Gethsemane and the submission that accepts it belong to the same subject, and Ephesus has already said so.</p>
+        <div class="fc">
+          <div class="fn">St. Cyril of Alexandria</div>
+          <div class="fw">First Letter to Succensus 6&ndash;7 (c. AD 433)</div>
+          <div class="fq">After the union we do not divide the natures from one another, nor sever the one and indivisible into two sons, but we say one Son and, as the Fathers have said, one incarnate nature of the Word. The things from which He is are distinguished in contemplation only.</div>
+          <div class="labels"><span class="ctx">Honoured by Both</span><span class="pl">PARAPHRASE</span></div>
+        </div>
+
+        <h3>After Chalcedon: The Oriental Orthodox Fathers</h3>
+        <div class="fc">
+          <div class="fn">St. Dioscorus of Alexandria</div>
+          <div class="fw">Statements reported in the Syriac tradition (AD 451&ndash;454)</div>
+          <div class="fq">Dioscorus anathematised those who assign two properties and two activities to Christ, which he took to be the teaching of Leo's Tome, and insisted that the divinity of his Lord was not separated from the humanity for a single moment, not even in death.</div>
+          <div class="labels"><span class="mia">Oriental Orthodox Saint</span><span class="pl">PARAPHRASE</span></div>
+        </div>
+        <p>The 25th Pope of Alexandria died in exile for refusing Chalcedon. His concern, from the first, was division, and every Oriental Orthodox statement on the will inherits it.</p>
+        <div class="fc">
+          <div class="fn">St. Timothy II of Alexandria</div>
+          <div class="fw">Letters from exile and writings against Chalcedon (c. AD 460&ndash;475)</div>
+          <div class="fq">Timothy, called Aelurus, condemns Eutyches by name for denying that Christ's flesh is consubstantial with ours, while also rejecting the Tome of Leo for appearing to give each nature its own acts as if they were two agents. He holds both lines at once: no confusion, no division.</div>
+          <div class="labels"><span class="mia">Oriental Orthodox Saint</span><span class="pl">PARAPHRASE</span></div>
+        </div>
+        <p>Timothy matters here because he shows that the Oriental Orthodox fought on two fronts from the start. Those who deny Christ a real human nature, and with it a real human will, were condemned by the Oriental Orthodox themselves.</p>
+        <div class="fc">
+          <div class="fn">St. Philoxenus of Mabbug</div>
+          <div class="fw">Discourses and Letters (c. AD 485&ndash;523)</div>
+          <div class="fq">Philoxenus is the great defender of the confession that one of the Holy Trinity became man without change and was crucified for us. Everything Christ did and suffered, he insists, must be confessed of that one, the eternal Son, and not shared out between God and a man.</div>
+          <div class="labels"><span class="mia">Oriental Orthodox Saint</span><span class="pl">PARAPHRASE</span></div>
+        </div>
+        <p>This is the Oriental Orthodox answer to the passage in Leo's Tome which assigns weeping over a dead friend to one form and raising him with a word of command to the other. The one who wept at the tomb is the one who called Lazarus out of it.</p>
+        <div class="fc">
+          <div class="fn">St. Severus of Antioch</div>
+          <div class="fw">Letters to Sergius the Grammarian (early 6th century)</div>
+          <div class="fq">Against Sergius, who wanted to speak of a single property of Christ after the union and so blurred the difference between Godhead and flesh, Severus insists that the natures from which Christ is remain each in its own natural quality after the union, without change. The flesh remains flesh and the soul remains a rational soul. Composition does not abolish what is composed.</div>
+          <div class="labels"><span class="mia">Oriental Orthodox Saint</span><span class="pl">PARAPHRASE</span></div>
+        </div>
+        <p>This exchange is the clearest proof that the Oriental Orthodox never held the confusion of natures their opponents attributed to them. Sergius the Grammarian argued for one property that blurred divinity and humanity, and Severus, the greatest Oriental Orthodox theologian, wrote at length to refute him.</p>
+        <div class="fc">
+          <div class="fn">St. Jacob of Serugh</div>
+          <div class="fw">Homilies (Memre) on the Passion (c. AD 500&ndash;521)</div>
+          <div class="fq">Jacob's homilies on the Passion set the Creator and the Crucified side by side in line after line, insisting that it was the Son of God Himself, and no other, who thirsted, was mocked and died. The humble act and the divine identity are always bound together in one subject.</div>
+          <div class="labels"><span class="mia">Oriental Orthodox Saint</span><span class="pl">PARAPHRASE</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St. Dionysius the Areopagite</div>
+          <div class="fw">Letter IV, to Gaius (c. AD 500)</div>
+          <div class="fq">"He was not man, not as not being man, but as being from men was beyond men, and was above man, having truly been born man."</div>
+          <div class="labels"><span class="ctx">Honoured by Both</span><span class="pl">VERBATIM · PARKER TRANSLATION (1897)</span></div>
+        </div>
+        <p>The same letter ends with the "new God-incarnate energy" discussed in Section X. Here Dionysius holds both sides together: Christ is truly man, and yet as man He is beyond men.</p>
+
+        <div class="fc">
+          <div class="fn">St. Nerses IV Shnorhali</div>
+          <div class="fw">Letters to the Emperor Manuel Comnenus (c. 1165&ndash;1173)</div>
+          <div class="fq">In his correspondence with the Byzantine court, the Armenian Catholicos argued that since both Churches received the Council of Ephesus and the teaching of St. Cyril, there was no clear reason for them to remain divided, and he worked patiently for a union that would respect each Church's way of speaking.</div>
+          <div class="labels"><span class="mia">Oriental Orthodox Saint</span><span class="pl">PARAPHRASE</span></div>
+        </div>
+        <p>Eight centuries before the modern dialogues, an Oriental Orthodox Catholicos was already treating the Christological divide as a matter for patient reconciliation on the common ground of Cyril.</p>
+
+        <h3>The Chalcedonian Fathers, Stated Fairly</h3>
+        <p>An honest page gives the other side in its own best form. These are the Fathers on whom the doctrine of two wills was built.</p>
+        <div class="fc">
+          <div class="fn">Pope Leo I of Rome</div>
+          <div class="fw">The Tome, to Flavian (AD 449)</div>
+          <div class="fq">"For each form does what is proper to it with the co-operation of the other; that is the Word performing what appertains to the Word, and the flesh carrying out what appertains to the flesh."</div>
+          <div class="labels"><span class="dyo">Chalcedonian</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>This is the sentence the Oriental Orthodox objected to from the start. Read charitably, "with the co-operation of the other" protects the unity. Read as Dioscorus and Timothy read it, "each form does" sounds like two agents. Every later argument about the will is an argument about how to read this sentence.</p>
+        <div class="fc">
+          <div class="fn">St. Sophronius of Jerusalem</div>
+          <div class="fw">Synodical Letter (AD 634)</div>
+          <div class="fq">The one and the same Christ works both the divine and the human things, each nature acting with the communion of the other, so that He does not do divine things divinely apart from the flesh, nor human things humanly apart from the divinity.</div>
+          <div class="labels"><span class="dyo">Chalcedonian</span><span class="pl">PARAPHRASE</span></div>
+        </div>
+        <p>Sophronius, the first great opponent of monoenergism, insists as firmly as any Oriental Orthodox writer that one and the same Christ does both the divine and the human things. On that point the Oriental Orthodox can read him with real sympathy.</p>
+        <div class="fc">
+          <div class="fn">St. Maximus the Confessor</div>
+          <div class="fw">Opuscule 6, on the Gethsemane prayer (c. AD 640s)</div>
+          <div class="fq">In the agony the Lord shows that He has a natural human will, which shrinks from death, and shows that this will is wholly in agreement with the divine will He shares with the Father, giving us the pattern of setting aside our own will to fulfil God's.</div>
+          <div class="labels"><span class="dyo">Chalcedonian</span><span class="pl">PARAPHRASE</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St. John of Damascus</div>
+          <div class="fw">Exact Exposition of the Orthodox Faith III.18 (c. AD 740)</div>
+          <div class="fq">"So that the soul of the Lord being moved of its own free-will willed, but willed of its free-will those things which His divine will willed it to will... But He Himself, Who was one and yet both God and man, willed according to both His divine and His human will."</div>
+          <div class="labels"><span class="dyo">Chalcedonian</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>Notice the Damascene's subject: <em>He Himself, Who was one</em>. That is the 1990 agreed statement's paragraph 5, written in the eighth century by the great systematiser of Chalcedonian theology. In fairness it must be added that in III.14 he argues directly against speaking of one compound will, as Maximus did. The Oriental Orthodox put the emphasis on the one who wills and decline to count; the Damascene puts it on the two natures and counts.</p>
+
+        <h3>A Modern Witness</h3>
+        <div class="fc">
+          <div class="fn">Pope Shenouda III of Alexandria</div>
+          <div class="fw">The Nature of Christ (Coptic Orthodox Patriarchate)</div>
+          <div class="fq">Because after the union there is one nature of the incarnate Word, the Coptic Church also confesses one will and one act. Yet what the divine nature wills is the same as what the human nature wills, since there is no contradiction or conflict whatever between them.</div>
+          <div class="labels"><span class="mia">Coptic Patriarch</span><span class="pl">PARAPHRASE</span></div>
+        </div>
+        <p>The 117th Pope of Alexandria states the position for Coptic catechesis in the twentieth century. Note that he speaks of what the human nature wills: the human will is presupposed even in the most compact statement of the one will.</p>
+
+        <h3>What the Fathers Add Up To</h3>
+        <p>From Ignatius to Shenouda, three things hold constant. Christ's humanity is complete, with its own natural affections and its own will. Everything He does, humanly and divinely, is done by the one Word. And the human and divine are distinguished without being divided. The Chalcedonian Fathers add a fourth, that the natural wills are to be counted as two. The Oriental Orthodox Fathers decline that fourth step, not because they deny what is counted, but because they will not let counting suggest a second Son.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s10">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">X.</span>One Theandric Energy</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>The controversy began with energy before it reached will, and the Oriental Orthodox vocabulary here is not new. It comes from a Father both families honour.</p>
+        <div class="fc">
+          <div class="fn">St. Dionysius the Areopagite</div>
+          <div class="fw">Letter IV, to Gaius (c. AD 500)</div>
+          <div class="fq">"Not having done things Divine as God, nor things human as man, but exercising for us a certain new God-incarnate energy of God having become man."</div>
+          <div class="labels"><span class="ctx">Honoured by Both</span><span class="pl">VERBATIM · PARKER TRANSLATION (1897)</span></div>
+        </div>
+        <p>The Greek word Parker renders "God-incarnate" is <em>theandrikē</em>, divine-human. Dionysius speaks of <em>an</em> energy, singular, and calls it new. Severus seized on the phrase, and with good reason: it describes exactly what the Oriental Orthodox mean. Not a third energy that is neither divine nor human, and not the divine energy alone overriding the human, but the one composite activity of the incarnate Word in which both remain what they are.</p>
+        <div class="fc">
+          <div class="fn">St. Cyril of Alexandria</div>
+          <div class="fw">Commentary on John, Book IV (on John 6:53)</div>
+          <div class="fq">"When He was raising the little daughter of the chief of the Synagogue saying, Maid, arise, He laid hold of her hand, as it is written, giving life, as God, by His All-Powerful command, and again, giving life through the touch of His Holy Flesh, He shews that there was one kindred operation through both."</div>
+          <div class="labels"><span class="ctx">Honoured by Both</span><span class="pl">VERBATIM · LFC TRANSLATION (1874)</span></div>
+        </div>
+        <p>Cyril chooses the raising of Jairus' daughter and the widow's son at Nain: a divine command and a human touch, and the life that results. The energy is one through both. Maximus quotes this passage and argues that Cyril called the energy one by reason of the union, not as one natural energy. Perhaps so. But if Cyril may say one energy without confusing the natures, so may Severus, and so may the Oriental Orthodox. The same charity should be extended to all three.</p>
+        <div class="fc">
+          <div class="fn">St. Severus of Antioch</div>
+          <div class="fw">Letter I, to Oecumenius the Count, on Properties and Operations (c. AD 508&ndash;512)</div>
+          <div class="fq">"Some of them are acts befitting the divinity, while others are human. For example, to walk and travel in bodily form upon the earth is without contention human; but to bestow on those who are maimed in the feet and cannot walk upon the ground at all the power of walking like sound persons is God-befitting. Yet the one Word incarnate performed the latter and the former, and the one nature did not perform the one, and the other the other."</div>
+          <div class="labels"><span class="mia">Oriental Orthodox Saint</span><span class="pl">VERBATIM · BROOKS TRANSLATION (1915)</span></div>
+        </div>
+        <p>Here is the Oriental Orthodox doctrine of operation in Severus' own words. The acts are distinguished, human and divine, and Severus insists on the difference. But the agent is one: "the one Word incarnate performed the latter and the former." In the same letter he quotes the Tome's sentence that each form "effects in partnership with the other that which belongs to itself," and rejects it for this reason.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s11">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XI.</span>St. Severus of Antioch on the Will</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>Severus (died 538) wrote a full century before the monothelite controversy, so he never addresses its questions directly. What he does say is more interesting than either side usually admits, and an honest page must report all of it.</p>
+        <h3>Severus Speaks of Two Wills</h3>
+        <p>In one passage Severus says that the one Christ, one from two and one incarnate nature of the Word, <em>"also displays two wills in salvific suffering,"</em> the one that requests and the one that is prepared, the one human and the other divine. This is sometimes quoted by Chalcedonians to embarrass the Oriental Orthodox. It should instead be quoted by the Oriental Orthodox, because it shows that the distinction of divine and human willing was never foreign to their greatest theologian.</p>
+        <div class="fc">
+          <div class="fn">St. Severus of Antioch</div>
+          <div class="fw">Letter I, to Oecumenius the Count (c. AD 508&ndash;512)</div>
+          <div class="fq">"Flesh does not renounce its existence as flesh, even if it has become God's flesh, nor has the Word departed from his nature, even if he has been hypostatically united to flesh which possesses a rational and intelligent soul: but the difference also is preserved... they recognise the difference only, not admitting a division: for the principle of union does not admit of division."</div>
+          <div class="labels"><span class="mia">Oriental Orthodox Saint</span><span class="pl">VERBATIM · BROOKS TRANSLATION (1915)</span></div>
+        </div>
+        <p>Written before he became patriarch, this letter shows what Severus meant: a flesh with "a rational and intelligent soul," and therefore with a human will, whose difference from the Godhead "is preserved." What he refuses is division, never difference.</p>
+        <h3>Severus Refuses to Divide Them</h3>
+        <p>Elsewhere, in a passage cited by Cyril Hovorun in <em>Will, Action and Freedom</em>, Severus reads St. Athanasius on the Lord's prayer to be spared suffering. He says that Athanasius rightly calls the request a will, which shows that the fear and trembling were taken on by Christ voluntarily: a will was truly present, and the suffering was not involuntary. But he adds that Athanasius does not divide into two wills what belongs to one and the same incarnate God, since the one who suffers in weakness lives by the power of God.</p>
+        <p>Put the two passages side by side and the Oriental Orthodox position appears exactly. Severus distinguishes divine and human willing in contemplation, in the way that the human request and the divine readiness can be told apart in Gethsemane. He refuses to separate them in reality, because both belong to the one incarnate Word. Distinction without division: that is Severus on the natures, and it is Severus on the will.</p>
+        <div class="fc">
+          <div class="fn">St. Severus of Antioch</div>
+          <div class="fw">As cited by Fr. Peter Farrington, "The Orthodox Understanding of the Will of Christ" (2017)</div>
+          <div class="fq">The one Christ is from two, from divinity and humanity, one person and hypostasis, the one incarnate nature of the Word become perfect man. For this reason He also displays two wills in salvific suffering: the one which requests and the other which is prepared, the one human and the other divine.</div>
+          <div class="labels"><span class="mia">Oriental Orthodox Saint</span><span class="pl">PARAPHRASE</span></div>
+        </div>
+        <p>Note Severus' reasoning: it is <em>because</em> Christ is one from two that He displays both wills. The two wills are a consequence of the composition, not a rival to it.</p>
+
+        <h3>On St. Dioscorus</h3>
+        <p>Grillmeier and others cite St. Dioscorus anathematising those who assume two properties and two activities in Christ. Read in context, Dioscorus is attacking the Tome of Leo as he understood it, a Tome he believed separated the acts of Christ between two subjects. He is condemning division, not affirming that Christ lacks human activity. The same Dioscorus insisted that the divinity was not separated from the humanity even for a moment, which presupposes a real and complete humanity to be united.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s12">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XII.</span>The Seventh Century: Whose Doctrine Was Monothelitism?</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>This is the section that most needs correcting, because the popular version has the parties reversed. Monothelitism was not an Oriental Orthodox doctrine that a council rejected. It was a Chalcedonian doctrine, devised by Chalcedonians, to bring the Oriental Orthodox back into communion with the imperial Church.</p>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-date">AD 538</div>
+            <div class="tl-text">Death of St. Severus of Antioch in Egypt. He leaves no teaching on the later monothelite questions, which no one has yet asked.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">AD 610</div>
+            <div class="tl-text">Heraclius becomes emperor. In the Persian wars that follow, Syria and Egypt are lost and then recovered, making reconciliation with the non-Chalcedonian majority there an urgent political need.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">c. 616–622</div>
+            <div class="tl-text">Sergius, Chalcedonian Patriarch of Constantinople, begins promoting the formula of one energy in two natures as a bridge to the non-Chalcedonians.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">AD 633</div>
+            <div class="tl-text">Cyrus, the imperially appointed Chalcedonian patriarch of Alexandria, agrees a Pact of Union with some non-Chalcedonian clergy on the basis of one theandric energy. The Coptic Pope Benjamin I, in hiding from Cyrus' persecution, takes no part.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">AD 634</div>
+            <div class="tl-text">St. Sophronius of Jerusalem, a Chalcedonian, protests against the formula. The quarrel is now inside the Chalcedonian Church.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">AD 638</div>
+            <div class="tl-text">The Ekthesis of Heraclius, drafted by Sergius, forbids talk of energies and proclaims one will in Christ.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">AD 639–642</div>
+            <div class="tl-text">The Arab conquest of Egypt ends imperial pressure on the Copts. Pope Benjamin returns in 644. The union collapses.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">AD 648</div>
+            <div class="tl-text">The Typos of Constans II forbids discussion of one or two wills altogether.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">AD 649</div>
+            <div class="tl-text">The Lateran Synod under Pope Martin I condemns monothelitism. Martin is later arrested and dies in exile.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">AD 662</div>
+            <div class="tl-text">St. Maximus the Confessor dies in exile after his tongue and right hand are cut off for refusing the imperial doctrine.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">AD 680–681</div>
+            <div class="tl-text">Constantinople III condemns Theodore of Pharan, Sergius, Pyrrhus, Paul and Peter of Constantinople, Cyrus of Alexandria, Pope Honorius of Rome, Macarius of Antioch and his disciple Stephen. Every one of them is a Chalcedonian.</div>
+          </div>
+        </div>
+        <h3>What the History Shows</h3>
+        <p>The people condemned in 681 were not Copts, Syriacs, Armenians or Ethiopians. They were the bishops of Constantinople, Alexandria, Antioch and Rome in communion with Chalcedon. The doctrine they were condemned for was two natures with one will, a formula the Oriental Orthodox never held, since they did not accept the two natures formula on which it was built.</p>
+        <p>The Sixth Council did not ignore the Oriental Orthodox. Its definition recalls Chalcedon's judgment against "Eutyches and Dioscorus," and it describes monothelitism as a heresy similar to "the mad and wicked doctrine of the impious Apollinaris, Severus, and Themistius." The council regarded the Oriental Orthodox as already outside the Church, and it believed their teaching resembled the heresy it was condemning.</p>
+        <p>But notice what this does and does not say. The council did not condemn the Oriental Orthodox for monothelitism: they were not present, were not party to the dispute, and every one of the men anathematised for the doctrine was a Chalcedonian. What it did was draw a comparison, and the comparison rests on an assumption, namely that Severus denied the human will its own natural motion. Severus' own writings contradict it. He made the human choice of the good the very means of our healing (Section IV), he insisted that Christ's flesh has "a rational and intelligent soul" whose difference from the Godhead is preserved (Section XI), and he wrote at length against Sergius the Grammarian for confusing the natures (Section IX). The comparison was polemic, made nearly a century and a half after Severus' death.</p>
+        <p>None of this is to dishonour St. Maximus or St. Sophronius, whose courage was real. Maximus suffered for refusing an emperor's theology, and the Copts know what that costs. It is to insist that the heresy he fought was not ours.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s13">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XIII.</span>St. Maximus and the Sixth Council: Agreement and Disagreement</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>Fr. Peter Farrington, having read Maximus in Fr. Andrew Louth's translation, concludes that much of what Maximus says is immediately acceptable to an Oriental Orthodox Christology, and that his real objection is to the way Maximus characterises his opponents rather than to the substance of his teaching. That is worth taking seriously, because it means the gap is narrower than either side's polemicists suppose.</p>
+        <h3>Where Maximus Is Right</h3>
+        <p>Maximus insists that a rational soul necessarily has a natural will; that Christ has no gnomic, wavering will; that there is no contrariety between the human and divine in Him; and that the human will is divine by union and not by nature. The Oriental Orthodox affirm all four without reservation.</p>
+        <div class="fc">
+          <div class="fn">St. Maximus the Confessor</div>
+          <div class="fw">Opuscule 7, in Andrew Louth, Maximus the Confessor (Routledge, 1996)</div>
+          <div class="fq">The human will is wholly deified in its agreement with the divine will, being eternally moved and shaped by it. It can properly be called truly divine in virtue of the union, though not by nature.</div>
+          <div class="labels"><span class="dyo">Chalcedonian</span><span class="pl">PARAPHRASE</span></div>
+        </div>
+        <h3>Where Maximus Misreads Us</h3>
+        <p>Maximus argues that a composite will would be something foreign to both the Father and to us, since neither the Father nor we have a composite will. But this attacks a position no Oriental Orthodox Father held. The composite will is not a third kind of will produced by melting two into one. It names the union in which the divine will, consubstantial with the Father, and the human will, consubstantial with us, are both fully present as the will of the one Word. Maximus allows Dionysius to speak of one theandric energy and Cyril to speak of one energy through both, explaining each charitably. The same charity was owed to Severus.</p>
+        <h3>The Sixth Council's Own Words</h3>
+        <p>The definition of 681 is closer to the Oriental Orthodox position than most people realise. Read it slowly.</p>
+        <div class="fc">
+          <div class="fn">Third Council of Constantinople</div>
+          <div class="fw">Definition of Faith (AD 681)</div>
+          <div class="fq">"His human will follows and that not as resisting and reluctant, but rather as subject to his divine and omnipotent will... For as his flesh is called and is the flesh of God the Word, so also the natural will of his flesh is called and is the proper will of God the Word."</div>
+          <div class="labels"><span class="dyo">Chalcedonian</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>The human will is the proper will of God the Word. It is His own, just as His flesh is His own. It follows, it does not resist, it is subject. Almost everything the Oriental Orthodox mean by one composite will is contained in that sentence except the decision to count. The council counts two because it starts from the natures; the Oriental Orthodox say one because they start from the Word whose will it is. In the words of the 1990 statement, both families have kept the same Orthodox faith while using Christological terms in different ways.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s14">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XIV.</span>The Agreed Statements of 1989 and 1990</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>The Joint Commission of the Theological Dialogue between the Orthodox Church and the Oriental Orthodox Churches met at the Monastery of St. Bishoy in Egypt in 1989 and at Chambésy in Switzerland in 1990. The Second Agreed Statement addresses the will of Christ directly, and its wording is worth knowing well.</p>
+        <div class="ana">
+          <div class="ana-num">1990 · Paragraph 3</div>
+          <div class="ana-txt">Both families agree that the Hypostasis of the Logos became composite by uniting to His divine uncreated nature, with its natural will and energy shared with the Father and the Spirit, a created human nature with its own natural will and energy, which He assumed and made His own. (Paraphrased)</div>
+        </div>
+        <div class="ana">
+          <div class="ana-num">1990 · Paragraph 4</div>
+          <div class="ana-txt">Both families agree that the natures, with their proper energies and wills, are united hypostatically and naturally, without confusion, change, division or separation, and distinguished in thought alone. (Paraphrased)</div>
+        </div>
+        <div class="ana">
+          <div class="ana-num">1990 · Paragraph 5</div>
+          <div class="ana-txt">"He Who wills and acts is always the one Hypostasis of the Logos incarnate."</div>
+        </div>
+        <h3>Why These Paragraphs Matter</h3>
+        <p>Three things follow. First, both sides affirmed that the hypostasis of the Logos became <em>composite</em>. Chalcedonian theology already speaks this way, in the Fifth Council's language of synthetic union and in writers such as Maximus and John of Damascus; what Maximus rejected was a composite <em>will</em>, and the agreed language of composition shows how close that question lies to common ground. Second, the Oriental Orthodox signatories agreed that each nature has its proper will and energy, which disposes of the charge that they deny a human will. Third, both agreed that the one who wills is always one. Read together, the paragraphs say what the Oriental Orthodox have always meant by one will of the incarnate Word, and what the Chalcedonians have always meant by two natural wills in one hypostasis.</p>
+        <p>The statements have not been formally received by every Church on either side, and they do not settle every question of terminology. But they show that the charge of monothelitism against the Oriental Orthodox cannot be maintained by anyone who has read them.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s15">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XV.</span>Objections Answered</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>The objections below are stated as their strongest defenders would state them.</p>
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>⚡ "If Christ has one will, He lacks a human will, and what is not assumed is not healed."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> The objection assumes that one will means one faculty, and that the one faculty is divine. The Oriental Orthodox mean neither. The human faculty of will is fully assumed, and Severus makes its free choice of the good the very means by which our wills are healed. St. Gregory the Theologian's principle is affirmed in full: the Word assumed a complete human will, and that is exactly why it is healed.</p><p>What is denied is not the human faculty but a second willer. The principle that what is not assumed is not healed was written against Apollinarius, who took the human mind away from Christ. It was never written against those who confess one Christ whose human mind and will are His own.</p>
+          </div>
+        </div>
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Will belongs to nature. The Trinity has one will because it has one nature. Christ has two natures, so He has two wills."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> The faculty of will belongs to nature; the Oriental Orthodox agree, which is why they affirm both faculties in Christ. But the act of willing belongs to the one who wills, and in Christ the one who wills is the one Son. Paragraph 5 of the 1990 statement, signed by both families, says exactly this.</p><p>Note also what the Trinitarian rule actually protects. One will in God guards against three gods. Applied to Christ, the same concern for unity should make us slow to multiply the willing of the one Son. The Oriental Orthodox do not deny two natural faculties; they decline to count the willing of the incarnate Word as two acts, because the willer is one.</p>
+          </div>
+        </div>
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Gethsemane plainly shows two wills: 'not as I will, but as You will.'"</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> Gethsemane shows the real human shrinking from death and the perfect human submission to the Father. The Oriental Orthodox affirm both. What it does not show is two willers in Christ, and no Orthodox reading on either side finds them there.</p><p>The shrinking is a movement of the human faculty; the submission is the one choice of the one Son. A fasting man who is hungry and keeps the fast is not said to have two wills, and neither is the Lord. The passage is a dialogue between the Son and the Father, not between two parts of the Son.</p>
+          </div>
+        </div>
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>⚡ "The Sixth Ecumenical Council condemned your position."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> The Sixth Council anathematised Sergius, Pyrrhus, Paul, Peter, Theodore of Pharan, Cyrus, Macarius, Stephen and Pope Honorius, every one a Chalcedonian, for teaching one will on top of two natures, which the council judged to leave the humanity without its own motion. The Oriental Orthodox were not present, were not party to the dispute, and also reject the denial of the human will's natural motion.</p><p>It is true that the definition likens the heresy to the doctrine of Severus, and an honest answer must say so. But a comparison is not a demonstration. It assumes that Severus denied the human will its natural motion, and his writings show the opposite: the infant Emmanuel choosing the good in His own human soul, the long refutation of Sergius the Grammarian, the two wills he says Christ displays in His saving suffering.</p><p>Meanwhile the council's positive teaching, that the natural will of His flesh is the proper will of God the Word and follows without resistance, is something the Oriental Orthodox can affirm word for word. What remains is the question of counting, which the council settled in its own terms and the Oriental Orthodox answer in theirs.</p>
+          </div>
+        </div>
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>⚡ "A 'composite' or 'theandric' will is a third, hybrid will, neither divine nor human."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> This was Maximus' criticism, and it rests on reading composition as fusion. The Fifth Council uses the same word, synthetic, for the union of natures and says it preserves the natures unconfused. The 1990 statement, signed by Chalcedonian theologians, calls the hypostasis of the Logos composite.</p><p>A composite will no more creates a third kind of will than one incarnate nature creates a third kind of nature. Both terms describe the union of two things that remain themselves. If Dionysius may speak of a new theandric energy without producing a hybrid, so may Severus.</p>
+          </div>
+        </div>
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>⚡ "If you will not count two wills, you cannot explain real human obedience."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> Real human obedience requires a real human faculty of will freely choosing the Father's will, and the Oriental Orthodox affirm it. Severus' whole account of salvation depends on it. What real obedience does not require is a second person doing the obeying. The one who obeys unto death is the Son who was in the form of God, as Philippians 2 insists.</p><p>In fact the Oriental Orthodox account makes the obedience more profound, not less. It is not a man who obeys God on the Son's behalf. It is God the Word Himself who obeys, humanly, in His own human will.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s16">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XVI.</span>Frequently Asked Questions</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>Do the Oriental Orthodox believe Christ has a human will?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>Yes, completely. His humanity has a rational soul and therefore a natural human will, which is His own and which freely chooses the good. What the Oriental Orthodox decline to do is count His willing as two separate acts, because He who wills is always one.</p>
+          </div>
+        </div>
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>So are the Oriental Orthodox monothelites?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>No. Monothelitism was a seventh century Chalcedonian formula, judged to deny the humanity its own natural motion, and it was condemned in 681 in the persons of Chalcedonian patriarchs and a pope. The Oriental Orthodox reject the denial of the human will's natural motion just as firmly.</p>
+          </div>
+        </div>
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>Is the difference only about words?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>Largely, though words matter in theology. Fr. Peter Farrington, after careful study of Maximus, concluded that he saw no substantive difference between the two families on the will of Christ, while still preferring the Oriental Orthodox terminology. The 1990 agreed statement supports that view. The real difference is whether to number according to the natures or according to the union.</p>
+          </div>
+        </div>
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>Do the Oriental Orthodox venerate St. Maximus the Confessor?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>He is not commemorated in the Oriental Orthodox calendars; he was a leading opponent of the Christology of Severus, whom the Oriental Orthodox venerate as a saint. Many Oriental Orthodox writers nonetheless respect his spiritual teaching and his suffering for the faith, and find much of his Christology acceptable in substance.</p>
+          </div>
+        </div>
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>Could Christ have sinned?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>No. Both families agree that the incarnate Word had no gnomic or wavering will and could not sin. His human will always chose the good, not by external compulsion but freely, as the human will of God the Word. Severus applies this even to the infant Christ, who chose the good before any age of discernment.</p>
+          </div>
+        </div>
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>What is the best short answer when someone says 'you deny two wills'?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>Say that you affirm Christ's full human will and full divine will, united without confusion or division, and that you speak of one will because the One who wills is one. Then point them to paragraph 5 of the 1990 agreed statement, which both families signed: He who wills and acts is always the one hypostasis of the Logos incarnate.</p>
+          </div>
+        </div>
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>Where can I hear this argued?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>Agen of the Apostolic Orthodoxy channel argues against dyothelitism in his video "There Are NOT Two Wills in Christ." Fr. Peter Farrington's essay "The Orthodox Understanding of the Will of Christ" is the most careful written treatment, especially for its reading of Maximus.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s17">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XVII.</span>Sources &amp; Further Reading</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <div class="src-grid">
+          <div class="src-card">
+            <h4>Primary Sources</h4>
+            <ul>
+              <li>Severus of Antioch, Letter I to Oecumenius, in A Collection of Letters (Brooks, 1915); Letters to Sergius the Grammarian</li>
+              <li>Cyril of Alexandria, Commentary on John, Bks. IV and VIII (LFC, 1874/1885)</li>
+              <li>Dionysius the Areopagite, Letter IV (Parker, 1897)</li>
+              <li>Third Council of Constantinople, Definition (681), NPNF 2nd ser. vol. 14</li>
+              <li>Gregory the Theologian, Letter 101 to Cledonius; Oration 30</li>
+              <li>Ignatius of Antioch, Letter to the Ephesians (ANF 1)</li>
+              <li>Justin Martyr, Dialogue with Trypho 99, 103 (ANF 1)</li>
+              <li>Irenaeus, Against Heresies III (ANF 1)</li>
+              <li>Hippolytus, Against Noetus 18 (ANF 5)</li>
+              <li>Athanasius, On the Incarnation 17&ndash;18; Against the Arians III (NPNF 2.4)</li>
+              <li>Basil the Great, Letter 261 (NPNF 2.8)</li>
+              <li>Gregory of Nyssa, Catechetical Oration (NPNF 2.5)</li>
+              <li>Ephrem the Syrian, Hymns on the Nativity</li>
+              <li>Ambrose, On the Christian Faith II.7 (NPNF 2.10)</li>
+              <li>John Chrysostom, Homilies on Matthew 83; Homilies on John 11 (NPNF 1.10, 1.14)</li>
+              <li>Cyril of Alexandria, Third Letter to Nestorius (NPNF 2.14); Letters to Succensus; That the Christ is One (Pusey, 1881); Commentary on Luke, Sermon 146 (Payne Smith, 1859)</li>
+              <li>Timothy II, Philoxenus of Mabbug, Jacob of Serugh</li>
+              <li>Nerses IV Shnorhali, Letters to Manuel Comnenus</li>
+              <li>Leo I, Tome (NPNF 2.12); Sophronius, Synodical Letter</li>
+              <li>Maximus, Opuscula 6 and 7; John of Damascus, Exact Exposition III.14, III.18 (NPNF 2.9)</li>
+            </ul>
+          </div>
+          <div class="src-card">
+            <h4>Dialogue Documents</h4>
+            <ul>
+              <li><a href="https://www.ecupatria.org/?p=226" target="_blank" rel="noopener noreferrer">First Agreed Statement, Anba Bishoy (1989)</a></li>
+              <li><a href="https://dss-syriacpatriarchate.org/second-agreed-statement-1990/?lang=en" target="_blank" rel="noopener noreferrer">Second Agreed Statement, Chambésy (1990)</a></li>
+              <li>Proposals for Lifting of Anathemas (1993)</li>
+            </ul>
+          </div>
+          <div class="src-card">
+            <h4>Oriental Orthodox Voices</h4>
+            <ul>
+              <li><a href="https://www.fatherpeterfarrington.com/orthodox-understanding-will-christ/" target="_blank" rel="noopener noreferrer">Fr. Peter Farrington, "The Orthodox Understanding of the Will of Christ" (2017)</a></li>
+              <li><a href="https://www.youtube.com/@ApostolicOrthodoxy" target="_blank" rel="noopener noreferrer">Agen, Apostolic Orthodoxy: "There Are NOT Two Wills in Christ"</a></li>
+              <li>V.C. Samuel, The Council of Chalcedon Re-examined</li>
+            </ul>
+          </div>
+          <div class="src-card">
+            <h4>Chalcedonian Scholarship</h4>
+            <ul>
+              <li>Andrew Louth, Maximus the Confessor (Routledge, 1996)</li>
+              <li>Cyril Hovorun, Will, Action and Freedom (Brill, 2008)</li>
+              <li>Demetrios Bathrellos, The Byzantine Christ (OUP, 2004)</li>
+              <li>Aloys Grillmeier, Christ in Christian Tradition, vol. 2</li>
+            </ul>
+          </div>
+          <div class="src-card">
+            <h4>Related Pages</h4>
+            <ul>
+              <li><a href="miaphysite_christology.html">Miaphysite Christology</a></li>
+              <li><a href="christology.html">Miaphysitism vs Dyophysitism</a></li>
+              <li><a href="chalcedon_schism.html">Chalcedon: Schism &amp; Councils</a></li>
+              <li><a href="oo_history.html">History of the Oriental Orthodox Church</a></li>
+              <li><a href="fathers.html">Church Fathers Index</a></li>
+            </ul>
+          </div>
+        </div>
+        <p style="margin-top:.8rem;font-size:.85rem;color:var(--mu);font-style:italic;">Where only modern, copyrighted translations exist, as for much of Severus and all of Maximus, the text is paraphrased with the source named. Numbering of letters and opuscula varies between editions. This page was made with Claude AI and can contain faults; please verify with an Abouna.</p>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+
+  <footer style="text-align:center;padding:2rem 1rem;border-top:1px solid var(--br);font-size:.8rem;color:var(--mu)">
+    <p>THE <span style="color:var(--gold)">ORTHODOX LAMP</span> &nbsp;·&nbsp; Biblical, Historical &amp; Patristic Apologetics</p>
+    <p style="margin-top:.5rem;font-size:.72rem;opacity:.6;">☩ &nbsp; In the name of the Father, and of the Son, and of the Holy Spirit &nbsp; ☩</p>
+  </footer>
+</div><!-- /main -->
+
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+function ts(h){h.closest('.sec').classList.toggle('open')}
+function tobj(h){h.closest('.obj').classList.toggle('open')}
+function tf(h){h.closest('.fi').classList.toggle('open')}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').classList.toggle('show')}
+function closeMobile(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
+
+window.addEventListener('scroll',()=>{
+  const s=document.documentElement,b=document.body;
+  const pct=(s.scrollTop||b.scrollTop)/((s.scrollHeight||b.scrollHeight)-s.clientHeight)*100;
+  document.getElementById('prog').style.width=pct+'%';
+  document.getElementById('btt').classList.toggle('show',(s.scrollTop||b.scrollTop)>300);
+});
+
+const secs=[...document.querySelectorAll('.sec')];
+const links=[...document.querySelectorAll('#nav a')];
+window.addEventListener('scroll',()=>{
+  let cur='';
+  secs.forEach(s=>{if(s.getBoundingClientRect().top<120)cur=s.id});
+  links.forEach(l=>{l.classList.toggle('active',l.getAttribute('href')==='#'+cur)});
+},{ passive:true });
+
+function doSearch(q){
+  document.querySelectorAll('.hl').forEach(e=>{
+    const p=e.parentNode;p.replaceChild(document.createTextNode(e.textContent),e);p.normalize();
+  });
+  if(!q.trim())return;
+  const re=new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi');
+  const walker=document.createTreeWalker(document.querySelector('.content'),NodeFilter.SHOW_TEXT);
+  const nodes=[];let n;
+  while((n=walker.nextNode()))nodes.push(n);
+  nodes.forEach(node=>{
+    if(!re.test(node.textContent))return;
+    re.lastIndex=0;
+    const frag=document.createDocumentFragment();
+    let last=0,m;
+    while((m=re.exec(node.textContent))!==null){
+      frag.appendChild(document.createTextNode(node.textContent.slice(last,m.index)));
+      const mark=document.createElement('mark');
+      mark.className='hl';mark.style.cssText='background:#8a6a20;color:#fff;border-radius:2px;padding:0 2px';
+      mark.textContent=m[0];frag.appendChild(mark);last=m.index+m[0].length;
+    }
+    frag.appendChild(document.createTextNode(node.textContent.slice(last)));
+    node.parentNode.replaceChild(frag,node);
+  });
+  const first=document.querySelector('.hl');if(first)first.scrollIntoView({block:'center',behavior:'smooth'});
+}
+</script>
+<button id="ol-tt" onclick="olTheme()" aria-label="Toggle light or dark mode" title="Light/dark mode">☀</button><script>function olTheme(){var l=document.documentElement.classList.toggle('light');try{localStorage.setItem('ol-theme',l?'light':'dark')}catch(e){}olIcon()}function olIcon(){document.getElementById('ol-tt').textContent=document.documentElement.classList.contains('light')?'☾':'☀'}olIcon();</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+/* AUTO-ENHANCE-JS */
+(function(){
+  try{
+    // back-to-top
+    var bt=document.createElement('button');bt.id='ol-top';bt.setAttribute('aria-label','Back to top');bt.innerHTML='\u2191';
+    bt.onclick=function(){window.scrollTo({top:0,behavior:'smooth'});};
+    document.body.appendChild(bt);
+    window.addEventListener('scroll',function(){bt.classList.toggle('show',window.scrollY>420);},{passive:true});
+    // reading time
+    var main=document.querySelector('main');
+    if(main){
+      var txt=main.innerText||'';var words=txt.trim().split(/\s+/).length;
+      var mins=Math.max(1,Math.round(words/200));
+      var rt=document.createElement('div');rt.className='ol-readtime';rt.textContent=mins+' min read';
+      var anchor=main.querySelector('.pg-title,.page-head,.pg-head,.hd');
+      if(anchor)anchor.appendChild(rt);else main.insertBefore(rt,main.firstChild);
+    }
+    // scroll-reveal
+    var secs=document.querySelectorAll('.sec');
+    if('IntersectionObserver' in window && document.documentElement.classList.contains('js-anim')){
+      var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.01,rootMargin:'0px 0px 12% 0px'});
+      secs.forEach(function(s){io.observe(s);});
+    }else{secs.forEach(function(s){s.classList.add('in');});}
+    // ensure search reveals all
+    document.querySelectorAll('.sb-search input,input[oninput*=sidebarSearch]').forEach(function(i){i.addEventListener('input',function(){document.querySelectorAll('.sec').forEach(function(s){s.classList.add('in');});});});
+  }catch(e){document.querySelectorAll('.sec').forEach(function(s){s.classList.add('in');});}
+})();
+/* END-ENHANCE-JS */</script>
+<script>
+/* AUTO-AESTHETIC2-JS */
+(function(){
+  try{
+    // section dividers between sibling .sec elements
+    Array.prototype.slice.call(document.querySelectorAll('.sec')).forEach(function(s){
+      var prev=s.previousElementSibling;
+      if(prev&&prev.classList&&prev.classList.contains('sec')&&!prev.classList.contains('ol-divider')){
+        var d=document.createElement('div');d.className='ol-divider';d.setAttribute('aria-hidden','true');d.textContent='\u2629';
+        s.parentNode.insertBefore(d,s);
+      }
+    });
+    // drop-cap on the first section's opening paragraph (chapter-opener feel)
+    var lead=document.querySelector('main .sec .sec-body p, main .sec .sec-bd p');
+    if(lead && (lead.textContent||'').trim().length>40){ lead.classList.add('ol-lead'); }
+  }catch(e){}
+})();
+/* END-AESTHETIC2-JS */</script>
+<script>
+/* AUTO-FEATURES3-JS */
+(function(){
+  try{
+    var here=(location.pathname.split('/').pop()||'index.html');
+    var base=location.href.split('#')[0];
+    function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+    /* ---- 1. copy-link buttons ---- */
+    document.querySelectorAll('.sec[id]').forEach(function(sec){
+      var h=sec.querySelector('.sec-h,.sec-hd');
+      if(!h||h.querySelector('.ol-copy'))return;
+      var b=document.createElement('button');
+      b.className='ol-copy';b.type='button';b.setAttribute('aria-label','Copy link to this section');
+      b.addEventListener('click',function(ev){
+        ev.stopPropagation();ev.preventDefault();
+        var url=base+'#'+sec.id;
+        var ok=function(){b.classList.add('ok');setTimeout(function(){b.classList.remove('ok');},1500);};
+        if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(ok,ok);}
+        else{var t=document.createElement('textarea');t.value=url;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(t);ok();}
+      });
+      var arr=h.querySelector('.arr');
+      if(arr&&arr.parentNode===h)h.insertBefore(b,arr);else h.appendChild(b);
+    });
+
+    /* ---- shared index + bundled KJV ---- */
+    var IDX=null,idxP=null,SEC={};
+    function loadIndex(){if(idxP)return idxP;idxP=fetch('search-index.json').then(function(r){return r.json();}).then(function(d){IDX=d;(d.pages||[]).forEach(function(p){var m={};(p.secs||[]).forEach(function(s){m[s.a]=s.h;});SEC[p.f]=m;});return d;});return idxP;}
+    var VP=null,vpP=null;
+    function loadVP(){if(vpP)return vpP;vpP=fetch('verse-pages.json').then(function(r){return r.json();}).then(function(d){VP=d;return d;}).catch(function(){VP={};});return vpP;}
+    var VERSES=null;
+    fetch('verses.json').then(function(r){return r.json();}).then(function(d){VERSES=d;}).catch(function(){VERSES={};});
+
+    /* ---- 2. related topics ---- */
+    loadIndex().then(function(idx){
+      if(!idx||!idx.pages)return;
+      var page=null;idx.pages.forEach(function(p){if(p.f===here)page=p;});
+      if(!page||!page.rel||!page.rel.length)return;
+      var main=document.querySelector('main')||document.getElementById('main');if(!main)return;
+      var box=document.createElement('div');box.className='ol-related';
+      var hh=document.createElement('h3');hh.textContent='Related topics';box.appendChild(hh);
+      var wrap=document.createElement('div');wrap.className='ol-related-links';
+      page.rel.forEach(function(r){var a=document.createElement('a');a.href=r.f;a.textContent=r.t;wrap.appendChild(a);});
+      box.appendChild(wrap);main.appendChild(box);
+    }).catch(function(){});
+
+    /* ---- 3. site-wide search ---- */
+    var ov=document.createElement('div');ov.className='ol-ov';
+    ov.innerHTML='<div class="ol-modal" role="dialog" aria-label="Search topics and verses"><input class="ol-search-input" type="text" placeholder="Search topics or a Bible verse (e.g. John 3:16)…" aria-label="Search topics and Bible verses" autocomplete="off"><div class="ol-results" role="listbox"></div><div class="ol-hint">↑↓ navigate · ↵ open · esc close · type a reference like Rom 5 or 1 Cor 10:12</div></div>';
+    document.body.appendChild(ov);
+    var input=ov.querySelector('.ol-search-input');
+    var results=ov.querySelector('.ol-results');
+    var flat=[],sel=-1;
+    function hilite(text,q){if(!q)return esc(text);var i=text.toLowerCase().indexOf(q);if(i<0)return esc(text);return esc(text.slice(0,i))+'<mark>'+esc(text.slice(i,i+q.length))+'</mark>'+esc(text.slice(i+q.length));}
+
+    /* fuzzy / typo-tolerant scorer */
+    function lev(a,b){var m=a.length,n=b.length;if(!m)return n;if(!n)return m;var prev=[],cur=[],i,j;for(j=0;j<=n;j++)prev[j]=j;for(i=1;i<=m;i++){cur[0]=i;for(j=1;j<=n;j++){var c=a.charAt(i-1)===b.charAt(j-1)?0:1;cur[j]=Math.min(prev[j]+1,cur[j-1]+1,prev[j-1]+c);}for(j=0;j<=n;j++)prev[j]=cur[j];}return prev[n];}
+    function scoreText(hay,q){
+      if(!q)return 0.5;hay=String(hay).toLowerCase();
+      var idx=hay.indexOf(q);
+      if(idx===0)return 1000;
+      if(idx>0)return 800-idx;
+      var words=hay.split(/[^a-z0-9]+/),best=-1,w,word,d,thr;
+      for(w=0;w<words.length;w++){word=words[w];if(!word)continue;
+        if(word.indexOf(q)===0){best=Math.max(best,600);continue;}
+        if(q.length>=4){thr=q.length<=5?1:2;d=lev(word,q);if(d<=thr)best=Math.max(best,420-d*40);}
+      }
+      if(best>=0)return best;
+      var hi=0,qi=0;for(;hi<hay.length&&qi<q.length;hi++){if(hay.charAt(hi)===q.charAt(qi))qi++;}
+      if(qi===q.length)return 200;
+      return -1;
+    }
+
+    /* Bible-book resolver (abbreviations + full names) */
+    var BK={};
+    function reg(c,al){BK[c.toLowerCase().replace(/\s+/g,'')]=c;al.split(',').forEach(function(a){a=a.replace(/\s+/g,'');if(a)BK[a]=c;});}
+    reg('Genesis','gen,ge,gn');reg('Exodus','exo,ex,exod');reg('Leviticus','lev,le,lv');reg('Numbers','num,nu,nm,nb');
+    reg('Deuteronomy','deut,dt,deu');reg('Joshua','josh,jos,jsh');reg('Judges','judg,jdg,jg,jdgs');reg('Ruth','rut,ru,rth');
+    reg('1 Samuel','1sam,1sa,1s,1sm');reg('2 Samuel','2sam,2sa,2s,2sm');reg('1 Kings','1kings,1kgs,1ki,1kg');reg('2 Kings','2kings,2kgs,2ki,2kg');
+    reg('1 Chronicles','1chron,1chr,1ch');reg('2 Chronicles','2chron,2chr,2ch');reg('Ezra','ezr');reg('Nehemiah','neh,ne');
+    reg('Esther','est,esth,es');reg('Job','jb');reg('Psalms','ps,psa,psalm,pss,psm');reg('Proverbs','prov,pro,prv,pr');
+    reg('Ecclesiastes','eccl,ecc,ec,eccles,qoh');reg('Song of Solomon','song,sos,songofsongs,canticles,cant,ss');
+    reg('Isaiah','isa,is,isai');reg('Jeremiah','jer,jr');reg('Lamentations','lam,la');reg('Ezekiel','ezek,eze,ezk');
+    reg('Daniel','dan,da,dn');reg('Hosea','hos,ho');reg('Joel','joe,jl');reg('Amos','am,amo');reg('Obadiah','obad,ob,oba');
+    reg('Jonah','jon,jnh');reg('Micah','mic,mc');reg('Nahum','nah,na');reg('Habakkuk','hab');reg('Zephaniah','zeph,zep,zp');
+    reg('Haggai','hag,hg');reg('Zechariah','zech,zec,zc');reg('Malachi','mal,ml');reg('Matthew','matt,mt,mat');
+    reg('Mark','mk,mar,mrk');reg('Luke','lk,luk,lu');reg('John','jn,joh,jhn');reg('Acts','act,ac');reg('Romans','rom,ro,rm');
+    reg('1 Corinthians','1cor,1co,1c');reg('2 Corinthians','2cor,2co,2c');reg('Galatians','gal,ga');reg('Ephesians','eph,ephes');
+    reg('Philippians','phil,php,pp');reg('Colossians','col');reg('1 Thessalonians','1thess,1thes,1th');reg('2 Thessalonians','2thess,2thes,2th');
+    reg('1 Timothy','1tim,1ti,1tm');reg('2 Timothy','2tim,2ti,2tm');reg('Titus','tit,ti,tts');reg('Philemon','philem,phlm,phm,pm');
+    reg('Hebrews','heb,hebr');reg('James','jas,jm,jms');reg('1 Peter','1pet,1pe,1pt,1p');reg('2 Peter','2pet,2pe,2pt,2p');
+    reg('1 John','1john,1jn,1jo,1j');reg('2 John','2john,2jn,2jo,2j');reg('3 John','3john,3jn,3jo,3j');reg('Jude','jud,jd');
+    reg('Revelation','rev,re,rv,apocalypse,apoc');
+    function parseRef(raw){
+      if(!raw)return null;
+      var m=raw.match(/^\s*([1-3]?\s*[a-zA-Z][a-zA-Z\s]*?)\s*(\d{1,3})(?:\s*[:.\s]\s*(\d{1,3}))?\s*$/);
+      if(!m)return null;
+      var bk=m[1].toLowerCase().replace(/[\s.]+/g,'');var canon=BK[bk];
+      if(!canon)return null;
+      return {canon:canon,ch:parseInt(m[2],10),vs:m[3]?parseInt(m[3],10):null};
+    }
+    function uniqPages(entries){var seen={},out=[];entries.forEach(function(e){if(!seen[e[0]]){seen[e[0]]=1;out.push({f:e[0],t:e[1],a:e[2]});}});return out;}
+    /* exported verse engine — used by the FE4 "Ask the Lamp" assistant.
+       resolves to null if `raw` is not a bare Bible reference. */
+    window.__olVerseQuery=function(raw){
+      var vq=parseRef((raw||'').trim());
+      if(!vq)return Promise.resolve(null);
+      return Promise.all([loadVP(),loadIndex()]).then(function(){
+        function sub(f,a){return (SEC[f]&&SEC[f][a])||'';}
+        function pages(arr){return uniqPages(arr).map(function(r){return {f:r.f,t:r.t,a:r.a,sub:sub(r.f,r.a)};});}
+        if(vq.vs!=null){
+          var key=vq.canon+' '+vq.ch+':'+vq.vs,e=VP[key];
+          return {mode:'verse',ref:key,kjv:(e&&e.k)?e.k:null,pages:e?pages(e.r):[]};
+        }
+        var prefix=vq.canon+' '+vq.ch+':',vnums=[],agg=[];
+        Object.keys(VP).forEach(function(k){if(k.indexOf(prefix)===0){vnums.push(parseInt(k.slice(prefix.length),10));VP[k].r.forEach(function(r){agg.push(r);});}});
+        vnums.sort(function(a,b){return a-b;});
+        return {mode:'chapter',ref:vq.canon+' '+vq.ch,vnums:vnums,pages:pages(agg)};
+      }).catch(function(){return null;});
+    };
+    function rowsHTML(){
+      if(!flat.length)return '<div class="r-empty">No page cites this on the site yet.</div>';
+      return flat.map(function(r,i){return '<a class="ol-r'+(i===sel?' sel':'')+'" data-i="'+i+'" href="'+r.f+(r.a?'#'+r.a:'')+'"><span class="r-t">'+esc(r.t)+'</span>'+(r.sub?'<span class="r-s">'+esc(r.sub)+'</span>':'')+'</a>';}).join('');
+    }
+
+    function renderVerse(vq){
+      if(!VP){results.innerHTML='<div class="r-empty">Loading verse index…</div>';flat=[];sel=-1;return;}
+      var canon=vq.canon,ch=vq.ch,vs=vq.vs,card='',rows=[];
+      if(vs!=null){
+        var key=canon+' '+ch+':'+vs,e=VP[key];
+        card='<div class="ol-vcard"><span class="vref">'+esc(key)+'</span>'+(e&&e.k?'<span class="vkjv">'+esc(e.k)+'<em>KJV</em></span>':'')+(e?'':'<span class="vmeta">Not cited on the site yet.</span>')+'</div>';
+        if(e)rows=uniqPages(e.r);
+      }else{
+        var prefix=canon+' '+ch+':',vnums=[],agg=[];
+        Object.keys(VP).forEach(function(k){if(k.indexOf(prefix)===0){vnums.push(parseInt(k.slice(prefix.length),10));VP[k].r.forEach(function(r){agg.push(r);});}});
+        vnums.sort(function(a,b){return a-b;});
+        card='<div class="ol-vcard"><span class="vref">'+esc(canon+' '+ch)+'</span><span class="vmeta">'+(vnums.length?'Verses cited here: '+vnums.join(', '):'No verses from this chapter are cited yet.')+'</span></div>';
+        rows=uniqPages(agg);
+      }
+      flat=rows.map(function(r){return {f:r.f,t:r.t,a:r.a,sub:(SEC[r.f]&&SEC[r.f][r.a])?SEC[r.f][r.a]:''};});
+      sel=flat.length?0:-1;
+      results.innerHTML=card+rowsHTML();
+    }
+
+    function renderText(q){
+      flat=[];
+      if(IDX&&IDX.pages){
+        if(!q){
+          IDX.pages.slice().sort(function(a,b){return a.t.localeCompare(b.t);}).forEach(function(p){flat.push({f:p.f,t:p.t,sub:'',a:'',sc:0});});
+        }else{
+          IDX.pages.forEach(function(p){
+            var ts=scoreText(p.t,q),bs=null,bss=-1,kw=-1,kwn='';
+            if(p.secs)p.secs.forEach(function(s){var sc=scoreText(s.h,q)*0.85;if(sc>bss){bss=sc;bs=s;}});
+            if(p.kw)p.kw.forEach(function(k){var sc=scoreText(k,q)*0.7;if(sc>kw){kw=sc;kwn=k;}});
+            var best=Math.max(ts,bss,kw);if(best<=0)return;
+            var it={f:p.f,t:p.t,sc:best};
+            if(best===bss&&bs){it.sub=bs.h;it.a=bs.a;}
+            else if(best===kw&&kwn){it.sub='topic · '+kwn;it.topic=1;}
+            else it.sub='';
+            flat.push(it);
+          });
+          flat.sort(function(a,b){return b.sc-a.sc;});
+        }
+      }
+      flat=flat.slice(0,40);sel=flat.length?0:-1;
+      if(!flat.length){results.innerHTML='<div class="r-empty">'+(IDX?'No matches — try a topic or a Bible verse (e.g. John 3:16)':'Loading index…')+'</div>';return;}
+      results.innerHTML=flat.map(function(r,i){
+        return '<a class="ol-r'+(i===sel?' sel':'')+'" data-i="'+i+'" href="'+r.f+(r.a?'#'+r.a:'')+'"><span class="r-t">'+hilite(r.t,q)+'</span>'+(r.sub?'<span class="r-s'+(r.topic?' r-topic':'')+'">'+(r.topic?esc(r.sub):hilite(r.sub,q))+'</span>':'')+'</a>';
+      }).join('');
+    }
+
+    function render(){
+      var raw=(input.value||'').trim();
+      var vq=parseRef(raw);
+      if(vq){if(!VP)loadVP().then(function(){if(ov.classList.contains('open')&&parseRef((input.value||'').trim()))render();});renderVerse(vq);return;}
+      renderText(raw.toLowerCase());
+    }
+    function setSel(i){var a=results.querySelectorAll('.ol-r');if(!a.length)return;sel=(i+a.length)%a.length;a.forEach(function(el,j){el.classList.toggle('sel',j===sel);});a[sel].scrollIntoView({block:'nearest'});}
+    function go(){if(sel>=0&&flat[sel]){var r=flat[sel];location.href=r.f+(r.a?'#'+r.a:'');}}
+    function openS(seed){ov.classList.add('open');document.body.style.overflow='hidden';input.value=seed||'';render();loadIndex().then(function(){if(ov.classList.contains('open'))render();}).catch(function(){});loadVP().then(function(){if(ov.classList.contains('open'))render();}).catch(function(){});setTimeout(function(){input.focus();if(seed)input.select();},30);}
+    window.__olOpenSearch=openS;
+    function closeS(){ov.classList.remove('open');document.body.style.overflow='';}
+    input.addEventListener('input',render);
+    input.addEventListener('keydown',function(e){
+      if(e.key==='ArrowDown'){e.preventDefault();setSel(sel+1);}
+      else if(e.key==='ArrowUp'){e.preventDefault();setSel(sel-1);}
+      else if(e.key==='Enter'){e.preventDefault();go();}
+      else if(e.key==='Escape'){e.preventDefault();closeS();}
+    });
+    results.addEventListener('mousemove',function(e){var a=e.target.closest('.ol-r');if(a)setSel(+a.getAttribute('data-i'));});
+    ov.addEventListener('click',function(e){if(e.target===ov)closeS();});
+    document.addEventListener('keydown',function(e){
+      if(e.key==='/'&&!ov.classList.contains('open')){var t=document.activeElement;var tn=t?t.tagName:'';if(tn==='INPUT'||tn==='TEXTAREA'||(t&&t.isContentEditable))return;e.preventDefault();openS();}
+      else if(e.key==='Escape'&&ov.classList.contains('open')){closeS();}
+    });
+    var launcher=document.createElement('button');launcher.className='ol-search-btn';launcher.type='button';
+    launcher.innerHTML='Search topics &amp; verses <span>/</span>';launcher.addEventListener('click',function(){openS();});
+    var sbs=document.querySelector('.sb-search');
+    if(sbs&&sbs.parentNode)sbs.parentNode.insertBefore(launcher,sbs);
+    else{var nav=document.querySelector('#sidebar nav,#sb nav,#sidebar,#sb');if(nav)nav.insertBefore(launcher,nav.firstChild);}
+
+    /* ---- 4. scripture tooltips (KJV bundled locally in verses.json, public domain) ---- */
+    var BOOKS='Genesis|Exodus|Leviticus|Numbers|Deuteronomy|Joshua|Judges|Ruth|1 ?Samuel|2 ?Samuel|1 ?Kings|2 ?Kings|1 ?Chronicles|2 ?Chronicles|Ezra|Nehemiah|Esther|Job|Psalms|Psalm|Proverbs|Ecclesiastes|Song of Solomon|Song of Songs|Isaiah|Jeremiah|Lamentations|Ezekiel|Daniel|Hosea|Joel|Amos|Obadiah|Jonah|Micah|Nahum|Habakkuk|Zephaniah|Haggai|Zechariah|Malachi|Matthew|Mark|Luke|John|Acts|Romans|1 ?Corinthians|2 ?Corinthians|Galatians|Ephesians|Philippians|Colossians|1 ?Thessalonians|2 ?Thessalonians|1 ?Timothy|2 ?Timothy|Titus|Philemon|Hebrews|James|1 ?Peter|2 ?Peter|1 ?John|2 ?John|3 ?John|Jude|Revelation';
+    var VRE=new RegExp('\\b((?:'+BOOKS+')\\.?\\s+\\d{1,3}:\\d{1,3}(?:[-–]\\d{1,3})?(?:,\\s?\\d{1,3}(?:[-–]\\d{1,3})?)*)','g');
+    function wrap(root){
+      var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:function(n){
+        if(!n.nodeValue||n.nodeValue.indexOf(':')<0)return NodeFilter.FILTER_REJECT;
+        var p=n.parentNode;
+        while(p&&p!==root){var t=p.nodeName.toLowerCase();
+          if(t==='a'||t==='button'||t==='script'||t==='style'||(p.classList&&(p.classList.contains('ol-verse')||p.classList.contains('ol-copy'))))return NodeFilter.FILTER_REJECT;
+          p=p.parentNode;}
+        return NodeFilter.FILTER_ACCEPT;
+      }});
+      var nodes=[],n;while(n=w.nextNode())nodes.push(n);
+      nodes.forEach(function(node){
+        var txt=node.nodeValue;VRE.lastIndex=0;if(!VRE.test(txt))return;VRE.lastIndex=0;
+        var frag=document.createDocumentFragment(),last=0,m;
+        while(m=VRE.exec(txt)){
+          if(m.index>last)frag.appendChild(document.createTextNode(txt.slice(last,m.index)));
+          var sp=document.createElement('span');sp.className='ol-verse';sp.textContent=m[0];sp.setAttribute('data-ref',m[1]);
+          frag.appendChild(sp);last=m.index+m[0].length;
+        }
+        if(last<txt.length)frag.appendChild(document.createTextNode(txt.slice(last)));
+        node.parentNode.replaceChild(frag,node);
+      });
+    }
+    document.querySelectorAll('.sec-body,.sec-bd,.sec-body2').forEach(wrap);
+    var tip=document.createElement('div');tip.className='ol-tip';tip.style.display='none';document.body.appendChild(tip);
+    function place(el){var r=el.getBoundingClientRect();tip.style.display='block';var w=tip.offsetWidth||330;
+      var left=window.scrollX+r.left;var max=window.scrollX+document.documentElement.clientWidth-w-10;
+      tip.style.left=Math.max(8,Math.min(left,max))+'px';tip.style.top=(window.scrollY+r.bottom+8)+'px';}
+    function lookup(ref){var k=ref.replace(/\s+/g,' ').trim();if(VERSES&&VERSES[k])return VERSES[k];return null;}
+    function show(el){
+      var ref=el.getAttribute('data-ref');if(!ref)return;
+      var t=lookup(ref);
+      if(t){tip.innerHTML='<b>'+esc(ref)+'</b><span class="ol-tip-kjv">KJV</span><br>'+esc(t);}
+      else if(VERSES===null){tip.innerHTML='<b>'+esc(ref)+'</b><br><span class="ol-tip-load">Loading…</span>';}
+      else{tip.innerHTML='<b>'+esc(ref)+'</b><br><span class="ol-tip-err">Text unavailable</span>';}
+      place(el);
+    }
+    function hide(){tip.style.display='none';}
+    document.addEventListener('mouseover',function(e){var t=e.target;if(t.classList&&t.classList.contains('ol-verse'))show(t);});
+    document.addEventListener('mouseout',function(e){var t=e.target;if(t.classList&&t.classList.contains('ol-verse'))hide();});
+    document.addEventListener('focusin',function(e){var t=e.target;if(t.classList&&t.classList.contains('ol-verse'))show(t);});
+    document.addEventListener('focusout',function(e){var t=e.target;if(t.classList&&t.classList.contains('ol-verse'))hide();});
+    document.querySelectorAll('.ol-verse').forEach(function(v){v.setAttribute('tabindex','0');});
+  }catch(e){}
+})();
+/* END-FEATURES3-JS */</script>
+<script>
+/* Ask the Lamp — AI config. Paste your Cloudflare Worker URL between the
+   quotes to turn on grounded AI answers. Leave blank for site-search only.
+   See ask-lamp-SETUP.md for the 10-minute setup. */
+window.OL_ASK_ENDPOINT = "https://ask-the-lamp.sebazz7397.workers.dev";
+</script>
+<script>
+/* AUTO-FEATURES4-JS */
+(function(){
+  try{
+    function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+    /* Optional strict-RAG AI answers. Set window.OL_ASK_ENDPOINT to the
+       Cloudflare Worker URL to turn "Ask the Lamp" from a search box into a
+       grounded assistant. If blank or unreachable, it silently falls back to
+       the retrieval-only behaviour below. See ask-lamp-SETUP.md. */
+    var AI_ENDPOINT=(window.OL_ASK_ENDPOINT||'').trim();
+    /* plain model text -> safe HTML: escape, light **bold**, [n] citations, paragraphs */
+    function fmtAI(s){
+      var out=esc(s);
+      out=out.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
+      /* normalise fancy citation brackets (【1】〔1〕〖1〗) the model sometimes emits to plain [1] */
+      out=out.replace(/[【〔〖]\s*(\d{1,2})\s*[】〕〗]/g,'[$1]');
+      out=out.replace(/\[(\d{1,2})\]/g,'<sup class="ol-ci">[$1]</sup>');
+      return out.split(/\n{2,}/).map(function(p){return '<p>'+p.replace(/\n/g,'<br>')+'</p>';}).join('');
+    }
+    var STOP={};'the a an and or but of to in on at for with as is are was were be been being do does did this that these those it its their them they we you i he she his her our your my me us not no yes can could would should will shall may might must have has had what why how who whom whose which when where does did about into from than then so such also more most very just only own same other any all both each few how into about'.split(/\s+/).forEach(function(w){STOP[w]=1;});
+    function toks(q){return (String(q).toLowerCase().match(/[a-z0-9]+/g)||[]).filter(function(w){return w.length>=3&&!STOP[w];});}
+
+    var C=null,cP=null;
+    function loadC(){if(cP)return cP;cP=fetch('ask-content.json').then(function(r){return r.json();}).then(function(d){C=d;return d;}).catch(function(){C={pages:[]};return C;});return cP;}
+
+    function reEsc(t){return t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}
+    function excerpt(x,tk){
+      if(!x)return '';
+      var lx=x.toLowerCase(),pos=-1,i,p;
+      for(i=0;i<tk.length;i++){p=lx.indexOf(tk[i]);if(p>=0&&(pos<0||p<pos))pos=p;}
+      if(pos<0)pos=0;
+      var start=Math.max(0,pos-65),end=Math.min(x.length,pos+165);
+      var frag=x.slice(start,end);
+      if(start>0)frag=frag.replace(/^\S*\s/,'');
+      if(end<x.length)frag=frag.replace(/\s\S*$/,'');
+      var out=esc(frag);
+      if(start>0)out='…'+out;
+      if(end<x.length)out=out+'…';
+      tk.forEach(function(t){if(t.length<3)return;try{out=out.replace(new RegExp('('+reEsc(t)+')','ig'),'<mark>$1</mark>');}catch(e){}});
+      return out;
+    }
+    /* whole-word matcher (with light plural/possessive tolerance) so that a query
+       for "christ" does NOT match inside "christian"/"christology", and vice-versa. */
+    function mkRx(t){return new RegExp('\\b'+reEsc(t)+"(?:'s|s)?\\b",'gi');}
+    function nWord(text,rx){if(!text)return 0;var m=String(text).match(rx);return m?m.length:0;}
+    function rank(q){
+      var tk=toks(q);if(!tk.length||!C||!C.pages)return {tk:tk,top:[],broad:false};
+      var rx=tk.map(mkRx);
+      /* pass 1 — how many sections each term appears in (for rarity weighting) */
+      var N=0,dfSec=tk.map(function(){return 0;});
+      C.pages.forEach(function(p){var pk=(p.t||'')+' '+((p.kw||[]).join(' '));(p.secs||[]).forEach(function(s){
+        N++;var blob=pk+' '+(s.h||'')+' '+(s.x||'');
+        tk.forEach(function(t,i){if(nWord(blob,rx[i]))dfSec[i]++;});
+      });});
+      /* rarer term => higher weight; ubiquitous terms (Christ, church…) => near-zero */
+      var idf=dfSec.map(function(df){return Math.log((N+1)/(df+1))+0.15;});
+      /* pass 2 — score every section, weighting each term by its rarity */
+      var hits=[];
+      C.pages.forEach(function(p){
+        var title=(p.t||''),kw=(p.kw||[]).join(' ');
+        (p.secs||[]).forEach(function(s){
+          var head=(s.h||''),body=(s.x||''),sc=0,covered=0;
+          tk.forEach(function(t,i){
+            var w=idf[i],any=false,r=rx[i];
+            if(nWord(head,r)){sc+=14*w;any=true;}
+            if(nWord(title,r)){sc+=8*w;any=true;}
+            if(nWord(kw,r)){sc+=7*w;any=true;}
+            var occ=nWord(body,r);if(occ){sc+=Math.min(occ,4)*4*w;any=true;}
+            if(any)covered++;
+          });
+          if(tk.length>1){if(covered===tk.length)sc+=14;sc+=covered*3;}
+          if(sc>0)hits.push({f:p.f,t:p.t,h:s.h,a:s.a,x:s.x,sc:sc,cov:covered});
+        });
+      });
+      hits.sort(function(a,b){return b.sc-a.sc;});
+      /* a single word that appears in a large share of the site is "broad" */
+      var broad=(tk.length===1&&N>0&&dfSec[0]>Math.max(40,N*0.18));
+      var per={},top=[],cap=broad?1:2,lim=broad?6:4;
+      for(var i=0;i<hits.length&&top.length<lim;i++){var f=hits[i].f;if((per[f]||0)>=cap)continue;per[f]=(per[f]||0)+1;top.push(hits[i]);}
+      return {tk:tk,top:top,broad:broad,term:tk[0]};
+    }
+
+    /* ---- UI ---- */
+    var fab=document.createElement('button');fab.className='ol-ask-fab';fab.type='button';
+    fab.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg><span>Ask the Lamp</span>';
+    document.body.appendChild(fab);
+
+    var wrap=document.createElement('div');wrap.className='ol-ask-wrap';wrap.setAttribute('role','dialog');wrap.setAttribute('aria-label','Ask the Lamp');
+    wrap.innerHTML='<div class="ol-ask-hd"><div class="ti"><b>Ask the Lamp</b><span>Search the whole site by question or verse</span></div><button class="ol-ask-x" type="button" aria-label="Close">×</button></div><div class="ol-ask-log" role="log" aria-live="polite"></div><div class="ol-ask-foot"><input type="text" placeholder="Ask a question or type a verse…" aria-label="Ask a question" autocomplete="off"><button class="send" type="button" aria-label="Send">➤</button></div><div class="ol-ask-note">Answers are drawn only from this site’s pages · not a live AI chat</div>';
+    document.body.appendChild(wrap);
+    var log=wrap.querySelector('.ol-ask-log'),inp=wrap.querySelector('.ol-ask-foot input'),sendB=wrap.querySelector('.send'),xB=wrap.querySelector('.ol-ask-x');
+    var LAMP_SVG="<svg viewBox='0 0 40 48' fill='none' xmlns='http://www.w3.org/2000/svg' aria-hidden='true'><defs><radialGradient id='olflame' cx='50%' cy='72%' r='62%'><stop offset='0%' stop-color='#ffe89c'/><stop offset='45%' stop-color='#f8ab3c'/><stop offset='100%' stop-color='#ee6f1e'/></radialGradient><radialGradient id='olfoot' cx='50%' cy='25%' r='85%'><stop offset='0%' stop-color='#c9a35a'/><stop offset='100%' stop-color='#8a6a26'/></radialGradient></defs><g class='lampg'><g class='rays' stroke='#f4a63a' stroke-width='1.6' stroke-linecap='round'><line x1='33' y1='25' x2='36.5' y2='25'/><line x1='7' y1='25' x2='3.5' y2='25'/><line x1='29.2' y1='14.4' x2='31.7' y2='11.6'/><line x1='10.8' y1='14.4' x2='8.3' y2='11.6'/><line x1='29.2' y1='35.6' x2='31.7' y2='38.4'/><line x1='10.8' y1='35.6' x2='8.3' y2='38.4'/><line x1='25' y1='11.1' x2='26.3' y2='7.4'/><line x1='15' y1='11.1' x2='13.7' y2='7.4'/></g><ellipse class='foot' cx='20' cy='44.4' rx='6' ry='1.7' fill='url(#olfoot)'/><rect class='wick' x='18.5' y='39.5' width='3' height='5.2' rx='1.4' fill='#5a4020'/><g class='fl'><path class='body' d='M20 10 C26 15.5 30.5 20.5 30 28 C29.5 35 25 40.5 20 41.5 C15 40.5 10.5 35 10 28 C9.5 20.5 14 15.5 20 10 Z' fill='url(#olflame)'/><path d='M20 18 C23.8 22.5 26 26.5 24.8 31.5 C23.9 35 22 37.2 20 37.6 C18 37.2 16.1 35 15.2 31.5 C14 26.5 16.2 22.5 20 18 Z' fill='#ffe488' opacity='.5'/><ellipse cx='15.6' cy='23' rx='1.6' ry='3' fill='#fff8df' opacity='.4'/></g><g class='eyes' fill='#5a3212'><ellipse cx='15.6' cy='27.5' rx='2.5' ry='3'/><ellipse cx='24.4' cy='27.5' rx='2.5' ry='3'/><circle cx='14.8' cy='26.5' r='.95' fill='#fff'/><circle cx='23.6' cy='26.5' r='.95' fill='#fff'/></g><g class='eyes-happy' stroke='#5a3212' stroke-width='1.7' stroke-linecap='round' fill='none'><path d='M13.1 27.9 Q15.6 24.7 18.1 27.9'/><path d='M21.9 27.9 Q24.4 24.7 26.9 27.9'/></g><path class='m-idle' d='M17.2 32.4 Q20 34.5 22.8 32.4' stroke='#5a3212' stroke-width='1.4' stroke-linecap='round' fill='none'/><path class='m-think' d='M18.5 32.6 Q20 33.4 21.5 32.6' stroke='#5a3212' stroke-width='1.4' stroke-linecap='round' fill='none'/><path class='m-happy' d='M16.4 32 Q20 35.9 23.6 32' stroke='#5a3212' stroke-width='1.6' stroke-linecap='round' fill='none'/></g></svg>";
+    function LAMP(s){return "<span class='ol-lamp st-"+s+"'>"+LAMP_SVG+"</span>";}
+    var lampAv=(function(){var hd=wrap.querySelector('.ol-ask-hd');if(!hd)return null;var a=document.createElement('span');a.className='ol-lamp ol-lamp-hd st-idle';a.innerHTML=LAMP_SVG;hd.insertBefore(a,hd.firstChild);return a;})();
+    function lampState(s){if(lampAv)lampAv.className='ol-lamp ol-lamp-hd st-'+s;}
+    var noteEl=wrap.querySelector('.ol-ask-note');
+    if(noteEl)noteEl.textContent=AI_ENDPOINT
+      ?'AI answers are generated only from this site’s pages, with sources shown — always verify against the cited pages.'
+      :'Answers are drawn only from this site’s pages · not a live AI chat';
+    var subEl=wrap.querySelector('.ol-ask-hd .ti span');
+    if(subEl&&AI_ENDPOINT)subEl.textContent='Grounded answers from the site, with sources';
+
+    function scrollDown(){log.scrollTop=log.scrollHeight;}
+    function addUser(t){var d=document.createElement('div');d.className='ol-ask-msg user';d.textContent=t;log.appendChild(d);scrollDown();}
+    function addBot(html){var d=document.createElement('div');d.className='ol-ask-msg bot';d.innerHTML=html;log.appendChild(d);scrollDown();return d;}
+
+    function pageRows(pages,limit){
+      return pages.slice(0,limit||5).map(function(r){
+        return '<a class="ol-ans" href="'+esc(r.f)+(r.a?'#'+esc(r.a):'')+'"><span class="a-t">'+esc(r.t)+'</span>'+(r.sub?'<span class="a-h">'+esc(r.sub)+'</span>':'')+'</a>';
+      }).join('');
+    }
+    function renderVerse(v){
+      var h='';
+      if(v.mode==='verse'){
+        h+='<div class="ol-vans"><span class="vr">'+esc(v.ref)+'</span>'+(v.kjv?'<span class="vt">'+esc(v.kjv)+'<em>KJV</em></span>':'<span class="vt">Not cited on the site yet.</span>')+'</div>';
+        if(v.pages.length){h+='<p class="lead">Cited on '+v.pages.length+' page'+(v.pages.length>1?'s':'')+':</p>'+pageRows(v.pages,6);}
+      }else{
+        h+='<div class="ol-vans"><span class="vr">'+esc(v.ref)+'</span><span class="vt">'+(v.vnums.length?'Verses cited here: '+v.vnums.join(', '):'No verses from this chapter are cited yet.')+'</span></div>';
+        if(v.pages.length){h+='<p class="lead">Pages citing this chapter:</p>'+pageRows(v.pages,6);}
+      }
+      addBot(h);
+    }
+    function cap1(s){return s?s.charAt(0).toUpperCase()+s.slice(1):s;}
+    function renderTopic(q){
+      var r=rank(q),tk=r.tk,top=r.top;
+      if(!tk.length){addBot('<p class="lead">Try a question like <em>why do you venerate icons?</em> or type a Bible reference such as <em>John 3:16</em>.</p>');return;}
+      if(!top.length){addBot('<p class="lead">I couldn’t find that on the site. Try different words, or browse from the menu.</p>');return;}
+      if(r.broad){
+        var h='<p class="lead">“'+esc(cap1(r.term))+'” runs through much of the site — that’s a broad topic. Here are the main places it’s covered; add a few more words to narrow things down:</p>';
+        h+=top.map(function(it){return '<a class="ol-ans" href="'+esc(it.f)+(it.a?'#'+esc(it.a):'')+'"><span class="a-t">'+esc(it.t)+'</span>'+(it.h?'<span class="a-h">'+esc(it.h)+'</span>':'')+'</a>';}).join('');
+        addBot(h);return;
+      }
+      var strong=(top[0].cov===tk.length);
+      var lead=strong?'Here’s where the site addresses that:':'This looks closest on the site:';
+      var body=top.map(function(it){
+        return '<a class="ol-ans" href="'+esc(it.f)+(it.a?'#'+esc(it.a):'')+'"><span class="a-t">'+esc(it.t)+'</span>'+(it.h?'<span class="a-h">'+esc(it.h)+'</span>':'')+'<span class="a-x">'+excerpt(it.x,tk)+'</span></a>';
+      }).join('');
+      addBot('<p class="lead">'+lead+'</p>'+body);
+    }
+
+    /* citation links under an AI answer, numbered to match [1]/[2] in the text */
+    function citeHTML(top){
+      return '<div class="ol-ai-cite"><p class="lead">Sources on the site</p>'+top.map(function(it,i){
+        return '<a class="ol-ans" href="'+esc(it.f)+(it.a?'#'+esc(it.a):'')+'"><span class="a-t"><span class="a-c">['+(i+1)+']</span>'+esc(it.t)+'</span>'+(it.h?'<span class="a-h">'+esc(it.h)+'</span>':'')+'</a>';
+      }).join('')+'</div>';
+    }
+    /* stream a grounded answer from the Worker; onErr triggers retrieval fallback */
+    function streamAI(q,passages,bubble,onDone,onErr){
+      var txt=document.createElement('div');txt.className='ol-ai-txt';
+      var acc='',started=false,gotErr=false,pinned=false;
+      function begin(){if(!started){started=true;bubble.innerHTML='';bubble.appendChild(txt);}}
+      /* keep the START of the answer at the top of the log so the reader begins at the beginning */
+      function pinStart(){if(pinned)return;pinned=true;var head=bubble.previousElementSibling||bubble;var lr=log.getBoundingClientRect(),er=head.getBoundingClientRect();log.scrollTop+=(er.top-lr.top)-10;}
+      /* gently type the answer in, word by word, with a blinking caret */
+      function typeReveal(full,done){
+        var parts=full.match(/\S+\s*/g)||[full];var i=0,n=parts.length,step=n>90?3:(n>45?2:1);
+        (function tick(){
+          i=Math.min(n,i+step);
+          txt.innerHTML=fmtAI(parts.slice(0,i).join(''))+(i<n?'<span class="ol-ai-caret"></span>':'');
+          if(i<n){setTimeout(tick,18);}else{txt.innerHTML=fmtAI(full||'—');done();}
+        })();
+      }
+      fetch(AI_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({q:q,passages:passages})}).then(function(res){
+        if(!res.ok||!res.body)throw new Error('bad response');
+        var reader=res.body.getReader(),dec=new TextDecoder(),buf='';
+        function finish(){begin();pinStart();typeReveal(acc,onDone);}
+        function pump(){
+          return reader.read().then(function(r){
+            if(r.done){finish();return;}
+            buf+=dec.decode(r.value,{stream:true});
+            var lines=buf.split('\n');buf=lines.pop()||'';
+            lines.forEach(function(line){
+              var t=line.trim();
+              if(t.indexOf('data:')!==0)return;
+              var p=t.slice(5).trim();
+              if(p==='[DONE]'||!p)return;
+              try{var tok=JSON.parse(p);if(typeof tok==='string'){acc+=tok;}}catch(e){}
+            });
+            return pump();
+          });
+        }
+        return pump();
+      }).catch(function(){if(!gotErr){gotErr=true;onErr();}});
+    }
+    function renderTopicAI(q){
+      var r=rank(q),tk=r.tk,top=r.top;
+      if(!tk.length){addBot('<p class="lead">Try a question like <em>why do you venerate icons?</em> or type a Bible reference such as <em>John 3:16</em>.</p>');busy=false;return;}
+      if(!top.length){addBot('<p class="lead">I couldn’t find that on the site. Try different words, or browse from the menu.</p>');busy=false;return;}
+      var passages=top.slice(0,6).map(function(it){return {t:it.t,h:it.h,x:it.x};});
+      lampState('think');
+      var bubble=addBot(''+LAMP('think')+'<span class="ol-ai-think">consulting the lamp…</span>');
+      streamAI(q,passages,bubble,function(){
+        var c=document.createElement('div');c.innerHTML=citeHTML(top);
+        bubble.appendChild(c.firstChild);busy=false;lampState('happy');setTimeout(function(){lampState('idle');},4200);
+      },function(){
+        bubble.parentNode&&bubble.parentNode.removeChild(bubble);
+        lampState('idle');renderTopic(q);busy=false;
+      });
+    }
+
+    var busy=false;
+    function handle(q){
+      q=(q||'').trim();if(!q||busy)return;
+      addUser(q);inp.value='';busy=true;
+      var topic=function(){loadC().then(function(){if(AI_ENDPOINT)renderTopicAI(q);else{renderTopic(q);busy=false;}});};
+      var vp=(window.__olVerseQuery?window.__olVerseQuery(q):Promise.resolve(null));
+      Promise.resolve(vp).then(function(v){
+        if(v){renderVerse(v);busy=false;return;}
+        topic();
+      }).catch(topic);
+    }
+
+    var greeted=false;
+    function greet(){
+      if(greeted)return;greeted=true;
+      var d=addBot('<p class="lead">'+LAMP('idle')+' Ask me anything about the Oriental Orthodox faith, other traditions, or type a Bible reference — I’ll point you to the answer on the site.</p><div class="ol-ask-chips"></div>');
+      var chips=['Why venerate icons?','Are we monophysite?','Purgatory','John 3:16'];
+      var cw=d.querySelector('.ol-ask-chips');
+      chips.forEach(function(c){var b=document.createElement('button');b.type='button';b.textContent=c;b.addEventListener('click',function(){handle(c);});cw.appendChild(b);});
+    }
+    function openAsk(){wrap.classList.add('open');fab.classList.add('hide');greet();lampState('idle');loadC();setTimeout(function(){inp.focus();},40);scrollDown();}
+    function closeAsk(){wrap.classList.remove('open');fab.classList.remove('hide');}
+    fab.addEventListener('click',openAsk);
+    xB.addEventListener('click',closeAsk);
+    sendB.addEventListener('click',function(){handle(inp.value);});
+    inp.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();handle(inp.value);}else if(e.key==='Escape'){closeAsk();}});
+    window.__olOpenAsk=openAsk;
+  }catch(e){}
+})();
+/* END-FEATURES4-JS */</script>
+<script>
+/* AUTO-FEATURES5-JS */
+(function(){
+  try{
+    /* ---- 1. print / save-as-PDF button in the sidebar ---- */
+    if(!document.querySelector('.ol-print-btn')){
+      var pb=document.createElement('button');pb.className='ol-print-btn';pb.type='button';
+      pb.setAttribute('aria-label','Print or save this page as PDF');
+      pb.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg><span>Print / Save as PDF</span>';
+      pb.addEventListener('click',function(){window.print();});
+      var sbtn=document.querySelector('.ol-search-btn');
+      if(sbtn&&sbtn.parentNode){sbtn.parentNode.insertBefore(pb,sbtn.nextSibling);}
+      else{var nav=document.querySelector('#sidebar nav,#sb nav,#sidebar,#sb');if(nav)nav.insertBefore(pb,nav.firstChild);}
+    }
+    /* ---- 2. offline / installable (PWA) service worker ---- */
+    if('serviceWorker' in navigator){
+      window.addEventListener('load',function(){
+        navigator.serviceWorker.register('sw.js').catch(function(){});
+      });
+    }
+  }catch(e){}
+})();
+/* END-FEATURES5-JS */</script>
+<button id="ol-sbt" onclick="olSb()" aria-label="Collapse or expand the contents sidebar" title="Hide or show contents"><span id="ol-sbi">&#8249;</span></button>
+<script>function olSb(){var c=document.documentElement.classList.toggle('sb-collapsed');try{localStorage.setItem('ol-sb',c?'1':'0')}catch(e){}olSbIcon()}function olSbIcon(){var i=document.getElementById('ol-sbi');if(i)i.innerHTML=document.documentElement.classList.contains('sb-collapsed')?'&#8250;':'&#8249;'}olSbIcon();</script>
+<script>/* AUTO-SHARECARDS-JS */
+(function(){
+try{
+  var SITE="The Orthodox Lamp";
+  var HOST="85z5yr9fyf-commits.github.io/the-orthodox-lamp";
+  /* ---- styles ---- */
+  if(!document.getElementById('ol-sc-style')){
+    var st=document.createElement('style');st.id='ol-sc-style';
+    st.textContent='.fc,.sv{position:relative}'+
+      '.ol-sc-btn{position:absolute;top:8px;right:8px;z-index:5;display:inline-flex;align-items:center;gap:5px;'+
+      'background:rgba(201,168,76,.12);border:1px solid var(--gd,#8a6a20);color:var(--gold,#c9a84c);'+
+      'border-radius:6px;padding:3px 8px;font:600 .7rem/1 Georgia,serif;cursor:pointer;opacity:0;'+
+      'transition:opacity .18s,background .18s}'+
+      '.fc:hover .ol-sc-btn,.sv:hover .ol-sc-btn,.ol-sc-btn:focus{opacity:.92}'+
+      '.ol-sc-btn:hover{background:rgba(201,168,76,.24)}'+
+      '.ol-sc-btn svg{width:12px;height:12px}'+
+      '@media(hover:none){.ol-sc-btn{opacity:.6}}'+
+      '@media print{.ol-sc-btn{display:none!important}}';
+    document.head.appendChild(st);
+  }
+  var ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"></line><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"></line></svg>';
+  function clean(s){return (s||'').replace(/\s+/g,' ').trim();}
+  function dequote(s){return s.replace(/^[“‘"']+/,'').replace(/[”’"']+$/,'').trim();}
+  function collect(el){
+    if(el.classList.contains('fc')){
+      var body=el.querySelector('.fc-body'), name=el.querySelector('.fc-name'), src=el.querySelector('.fc-src');
+      var srcTxt='';
+      if(src){var cl=src.cloneNode(true);var tg=cl.querySelector('.tag');if(tg)tg.remove();srcTxt=clean(cl.textContent);}
+      return {quote:dequote(clean(body?body.textContent:el.textContent)),
+              attr:name?clean(name.textContent):'', src:srcTxt};
+    }else{ /* .sv */
+      var cl=el.cloneNode(true), cite=cl.querySelector('cite'); var attr='';
+      var sb=cl.querySelector('.ol-sc-btn'); if(sb)sb.remove();
+      if(cite){attr=clean(cite.textContent);cite.remove();}
+      return {quote:dequote(clean(cl.textContent)), attr:attr, src:''};
+    }
+  }
+  function wrap(x,text,maxW){
+    var words=text.split(' '),lines=[],cur='';
+    for(var i=0;i<words.length;i++){
+      var t=cur?cur+' '+words[i]:words[i];
+      if(x.measureText(t).width>maxW&&cur){lines.push(cur);cur=words[i];}else{cur=t;}
+    }
+    if(cur)lines.push(cur);
+    return lines;
+  }
+  function draw(d){
+    var S=1080,c=document.createElement('canvas');c.width=S;c.height=S;
+    var x=c.getContext('2d');
+    var g=x.createLinearGradient(0,0,0,S);g.addColorStop(0,'#151515');g.addColorStop(1,'#0b0b0b');
+    x.fillStyle=g;x.fillRect(0,0,S,S);
+    x.strokeStyle='#c9a84c';x.lineWidth=3;x.strokeRect(46,46,S-92,S-92);
+    x.strokeStyle='#5a4a20';x.lineWidth=1;x.strokeRect(58,58,S-116,S-116);
+    x.textAlign='center';
+    /* label */
+    x.fillStyle='#a09880';x.font='600 22px Georgia,serif';
+    x.fillText('T H E   O R T H O D O X   L A M P',S/2,132);
+    /* lamp flame */
+    x.fillStyle='#e8c96a';x.beginPath();x.ellipse(S/2,182,11,17,0,0,Math.PI*2);x.fill();
+    x.fillStyle='#c9a84c';x.beginPath();x.moveTo(S/2,150);x.lineTo(S/2-11,180);x.lineTo(S/2+11,180);x.closePath();x.fill();
+    /* opening quote mark */
+    x.fillStyle='rgba(201,168,76,.35)';x.font='italic 150px Georgia,serif';
+    x.fillText('“',S/2,300);
+    /* quote text: size to fit */
+    var maxW=S-220, q=d.quote, size=46;
+    var lens=[[170,46],[300,40],[460,34],[680,29]], picked=25;
+    for(var i=0;i<lens.length;i++){if(q.length<=lens[i][0]){picked=lens[i][1];break;}}
+    size=picked;
+    x.fillStyle='#ece4d4';x.font='italic '+size+'px Georgia,serif';
+    var lines=wrap(x,q,maxW), lh=size*1.34;
+    if(lines.length>15){lines=lines.slice(0,15);lines[14]=lines[14].replace(/[.,;: ]+$/,'')+'…';}
+    var blockH=lines.length*lh, cy=560-blockH/2;
+    /* keep within frame */
+    if(cy<330)cy=330;
+    for(var j=0;j<lines.length;j++){x.fillText(lines[j],S/2,cy+j*lh);}
+    var y=cy+lines.length*lh+34;
+    /* divider */
+    x.strokeStyle='#5a4a20';x.lineWidth=1;x.beginPath();x.moveTo(S/2-46,y);x.lineTo(S/2+46,y);x.stroke();
+    y+=44;
+    /* attribution */
+    if(d.attr){x.fillStyle='#c9a84c';x.font='700 30px Georgia,serif';
+      var al=wrap(x,'— '+d.attr,maxW);for(var k=0;k<al.length;k++){x.fillText(al[k],S/2,y);y+=38;}}
+    /* source */
+    if(d.src){x.fillStyle='#9a9078';x.font='italic 22px Georgia,serif';
+      var sl=wrap(x,d.src,maxW);for(var m=0;m<sl.length;m++){x.fillText(sl[m],S/2,y);y+=28;}}
+    /* footer */
+    x.fillStyle='#8a8268';x.font='20px Georgia,serif';
+    x.fillText(HOST,S/2,S-70);
+    return c;
+  }
+  function share(d){
+    var c=draw(d);
+    c.toBlob(function(blob){
+      if(!blob)return;
+      var url=URL.createObjectURL(blob);
+      var a=document.createElement('a');
+      a.href=url;a.download='orthodox-lamp-quote.png';
+      document.body.appendChild(a);a.click();a.remove();
+      setTimeout(function(){URL.revokeObjectURL(url);},4000);
+    },'image/png');
+  }
+  var nodes=document.querySelectorAll('.fc, .sv');
+  nodes.forEach(function(el){
+    if(el.querySelector('.ol-sc-btn'))return;
+    var txt=clean(el.textContent);
+    if(txt.length<25)return;
+    var b=document.createElement('button');
+    b.type='button';b.className='ol-sc-btn';b.title='Download this quote as an image';
+    b.setAttribute('aria-label','Download this quote as a shareable image');
+    b.innerHTML=ICON+'<span>Share</span>';
+    b.addEventListener('click',function(ev){ev.stopPropagation();share(collect(el));});
+    el.appendChild(b);
+  });
+}catch(e){}
+})();
+/* END-SHARECARDS-JS */</script>
+</body>
+</html>
