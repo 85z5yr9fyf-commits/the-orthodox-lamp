@@ -1,0 +1,1929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>St Athanasius the Apostolic — The Orthodox Lamp</title>
+<style>
+:root{--gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;--bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--tx:#e8e0d0;--mu:#b8ac82;--red:#8b2020;--br:#2a2a2a;--bg5:#3a2e10;--sidebar-w:270px;--mia:#1a3060;--mia-b:#3060c0;--dyo:#2a1a40;--dyo-b:#8060c0;--nes:#1a2510;--nes-b:#4a7030;--eut:#3a1515;--eut-b:#a03030}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.7;display:flex;flex-direction:column;min-height:100vh}
+a{color:var(--gold);text-decoration:none}
+a:hover{color:var(--gl)}
+
+#prog{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--gd),var(--gold),var(--gl));z-index:9999;transition:width .1s}
+
+#sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:100;display:flex;flex-direction:column;transition:transform .3s}
+#sidebar header{padding:1.4rem 1.2rem 1rem;border-bottom:1px solid var(--br)}
+.sb-cross{font-size:1.3rem;color:var(--gold);display:block;text-align:center;margin-bottom:.3rem}
+.sb-title{font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gl);text-align:center;line-height:1.3}
+.sb-sub{font-size:.62rem;color:var(--mu);text-align:center;margin-top:.25rem;font-style:italic}
+nav{padding:.8rem 0;flex:1}
+nav a{display:block;padding:.42rem 1.2rem;font-size:.78rem;color:var(--mu);transition:color .15s,background .15s;border-left:2px solid transparent;line-height:1.4}
+nav a:hover{color:var(--tx);background:var(--bg3)}
+nav a.active{color:var(--gl);border-left-color:var(--gold);background:var(--bg5)}
+.sb-search{padding:.8rem 1rem;border-top:1px solid var(--br)}
+.sb-search input{width:100%;background:var(--bg3);border:1px solid var(--br);border-radius:5px;padding:.4rem .7rem;color:var(--tx);font-size:.78rem;outline:none}
+.sb-search input:focus{border-color:var(--gd)}
+
+#main{margin-left:var(--sidebar-w);flex:1;display:flex;flex-direction:column}
+#mob-bar{display:none;position:fixed;top:0;left:0;right:0;height:48px;background:var(--bg2);border-bottom:1px solid var(--br);align-items:center;padding:0 1rem;z-index:99}
+#mob-bar .mb-title{font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gl);flex:1;text-align:center}
+#ham{background:none;border:none;color:var(--gold);font-size:1.4rem;cursor:pointer;padding:.3rem}
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:99}
+#overlay.show{display:block}
+
+.hero{text-align:center;padding:4.5rem 1.5rem 3rem;background:linear-gradient(180deg,var(--bg2) 0%,var(--bg) 100%);border-bottom:1px solid var(--br);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(201,168,76,.07) 0%,transparent 70%);pointer-events:none}
+.si{font-size:2rem;color:var(--gold);display:block;margin-bottom:.5rem}
+.st{font-size:clamp(1.5rem,4vw,2.4rem);font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--tx);line-height:1.2}
+.st span{color:var(--gold)}
+.ss{font-size:1rem;color:var(--gl);margin:.6rem 0 .3rem;font-weight:700;letter-spacing:.04em}
+.tg{font-size:.85rem;color:var(--mu);font-style:italic;margin-top:.4rem}
+.orn{color:var(--gold);font-size:.9rem;letter-spacing:.4em;margin-top:1rem;opacity:.7}
+
+.content{max-width:860px;margin:0 auto;padding:3rem 2rem 5rem;flex:1}
+
+.sec{border:1px solid var(--br);border-radius:8px;margin-bottom:1.2rem;overflow:hidden;background:var(--bg2)}
+.sec-h{width:100%;background:none;border:none;padding:1.1rem 1.4rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--tx);font-family:'Georgia',serif;font-size:1rem;font-weight:700;text-align:left;transition:background .2s}
+.sec-h:hover{background:var(--bg3)}
+.sec-h .sec-num{color:var(--gold);font-size:.8rem;font-weight:700;letter-spacing:.1em;margin-right:.7rem;min-width:2.2rem}
+.sec-h .arr{color:var(--gold);transition:transform .3s;font-size:.9rem}
+.sec.open .arr{transform:rotate(180deg)}
+.sec-b{display:none;padding:1.4rem;border-top:1px solid var(--br)}
+.sec.open .sec-b{display:block}
+
+h3{font-size:1rem;color:var(--gl);margin:1.4rem 0 .6rem;letter-spacing:.03em}
+h3:first-child{margin-top:0}
+p{margin-bottom:.9rem;font-size:.92rem}
+ul,ol{margin:.6rem 0 .9rem 1.4rem;font-size:.92rem}
+li{margin-bottom:.3rem}
+blockquote{border-left:3px solid var(--gold);padding:.6rem 1rem;background:var(--bg3);border-radius:0 5px 5px 0;margin:.8rem 0;font-style:italic;font-size:.9rem;color:var(--gl)}
+
+/* Glossary terms */
+.gt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.8rem;margin:.8rem 0}
+.gt{background:var(--bg3);border:1px solid var(--br);border-radius:7px;padding:.9rem 1rem}
+.gt-term{font-size:.82rem;font-weight:700;color:var(--gold);letter-spacing:.06em;margin-bottom:.2rem}
+.gt-grk{font-size:.75rem;color:var(--mu);font-style:italic;margin-bottom:.4rem}
+.gt-def{font-size:.82rem;color:var(--tx);line-height:1.5}
+
+/* Comparison grid */
+.comp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin:1rem 0}
+.comp-card{border-radius:8px;padding:1rem 1.1rem;border:1px solid var(--br)}
+.comp-card.mia{background:var(--mia);border-color:var(--mia-b)}
+.comp-card.dyo{background:var(--dyo);border-color:var(--dyo-b)}
+.comp-card.nes{background:var(--nes);border-color:var(--nes-b)}
+.comp-card.eut{background:var(--eut);border-color:var(--eut-b)}
+.comp-card h4{font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem}
+.comp-card.mia h4{color:#8ab0ff}
+.comp-card.dyo h4{color:#b090ff}
+.comp-card.nes h4{color:#80b060}
+.comp-card.eut h4{color:#e07070}
+.comp-card p{font-size:.82rem;line-height:1.5}
+
+/* Scripture cards with dual interpretation */
+.sv{background:var(--bg3);border:1px solid var(--br);border-radius:7px;padding:1rem 1.2rem;margin:.7rem 0}
+.sv .ref{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+.sv .txt{font-size:.9rem;font-style:italic;line-height:1.6;margin-bottom:.5rem}
+.sv .mia-note{background:var(--mia);border:1px solid var(--mia-b);border-radius:5px;padding:.5rem .7rem;font-size:.8rem;margin:.4rem 0}
+.sv .dyo-note{background:var(--dyo);border:1px solid var(--dyo-b);border-radius:5px;padding:.5rem .7rem;font-size:.8rem;margin:.4rem 0}
+.labels{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.4rem}
+.labels span{font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.15rem .5rem;border-radius:3px}
+.labels .mia{background:var(--mia);color:#8ab0ff;border:1px solid var(--mia-b)}
+.labels .dyo{background:var(--dyo);color:#b090ff;border:1px solid var(--dyo-b)}
+.labels .ctx{background:#1a1a3a;color:#8a8adf;border:1px solid #2a2a6a}
+.labels .pl{background:#3a2e10;color:#c9a84c;border:1px solid #5a4a20}
+
+/* Anathema cards */
+.ana{background:var(--eut);border:1px solid var(--eut-b);border-radius:7px;padding:.9rem 1.1rem;margin:.6rem 0}
+.ana-num{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#e07070;margin-bottom:.3rem}
+.ana-txt{font-size:.88rem;font-style:italic;line-height:1.6}
+
+/* Father cards */
+.fc{background:var(--bg3);border-left:3px solid var(--gold);border-radius:0 7px 7px 0;padding:1rem 1.2rem;margin:.7rem 0}
+.fc .fn{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.2rem}
+.fc .fw{font-size:.78rem;color:var(--mu);margin-bottom:.4rem;font-style:italic}
+.fc .fq{font-size:.9rem;font-style:italic;line-height:1.6;margin-bottom:.3rem}
+
+/* Objection accordion */
+.obj{border:1px solid var(--br);border-radius:7px;margin:.7rem 0;overflow:hidden;background:var(--bg3)}
+.obj-h{width:100%;background:none;border:none;padding:.8rem 1.1rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--gl);font-family:'Georgia',serif;font-size:.88rem;font-weight:700;text-align:left}
+.obj-h:hover{background:var(--bg4)}
+.obj-h .arr{transition:transform .3s;font-size:.8rem;color:var(--gold)}
+.obj.open .arr{transform:rotate(180deg)}
+.obj-b{display:none;padding:1rem 1.1rem;border-top:1px solid var(--br);font-size:.88rem}
+.obj.open .obj-b{display:block}
+
+/* FAQ */
+.fi{border:1px solid var(--br);border-radius:7px;margin:.6rem 0;overflow:hidden}
+.fi-h{width:100%;background:var(--bg2);border:none;padding:.8rem 1.1rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--tx);font-family:'Georgia',serif;font-size:.88rem;font-weight:700;text-align:left}
+.fi-h:hover{background:var(--bg3)}
+.fi-h .arr{transition:transform .3s;font-size:.8rem;color:var(--gold)}
+.fi.open .arr{transform:rotate(180deg)}
+.fi-b{display:none;padding:1rem 1.1rem;border-top:1px solid var(--br);background:var(--bg2);font-size:.88rem}
+.fi.open .fi-b{display:block}
+
+/* Timeline */
+.timeline{border-left:2px solid var(--gd);padding-left:1.4rem;margin:1rem 0}
+.tl-item{position:relative;margin-bottom:1.2rem}
+.tl-item::before{content:'';position:absolute;left:-1.8rem;top:.45rem;width:.7rem;height:.7rem;background:var(--gold);border-radius:50%}
+.tl-date{font-size:.72rem;font-weight:700;letter-spacing:.1em;color:var(--gold);text-transform:uppercase}
+.tl-text{font-size:.88rem;color:var(--tx);margin-top:.2rem}
+
+/* Sources */
+.src-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.8rem;margin-top:.8rem}
+.src-card{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:.9rem 1rem}
+.src-card h4{font-size:.78rem;font-weight:700;color:var(--gold);margin-bottom:.4rem;letter-spacing:.06em;text-transform:uppercase}
+.src-card p,.src-card li{font-size:.8rem;color:var(--mu)}
+.src-card ul{margin-left:1rem}
+
+#btt{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--bg3);border:1px solid var(--gd);border-radius:50%;width:2.4rem;height:2.4rem;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1rem;cursor:pointer;opacity:0;transition:opacity .3s;z-index:50}
+#btt.show{opacity:1}
+
+@media(max-width:768px){
+  #sidebar{transform:translateX(-100%)}
+  #sidebar.open{transform:translateX(0)}
+  #main{margin-left:0;padding-top:48px}
+  #mob-bar{display:flex}
+}
+
+.lampsvg{display:block;margin:0 auto 14px;height:auto}
+.lampsvg .lampflame{animation:lampflick 3.2s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes lampflick{0%,100%{transform:scaleY(1) scaleX(1);opacity:.95}25%{transform:scaleY(1.06) scaleX(.97);opacity:1}50%{transform:scaleY(.96) scaleX(1.03);opacity:.9}75%{transform:scaleY(1.04) scaleX(.98);opacity:1}}
+
+html.light{--gold:#8a6a20;--gl:#6f5413;--gd:#b08e3e;--bg:#f7f2e6;--bg2:#efe8d5;--bg3:#e7ddc7;--bg4:#ddd2b9;--tx:#2b2415;--mu:#6e6450;--br:#d2c7aa;--bg5:#efe0b8;--mia:#cfd8ed;--dyo:#dcd0ec;--dyo-b:#412b6e;--nes:#ddebd1;--eut:#edcfcf}
+#ol-tt{position:fixed;right:16px;bottom:74px;z-index:9999;width:44px;height:44px;border-radius:50%;background:var(--bg3,var(--panel,#1a1a1a));color:var(--gold,#c9a84c);border:1px solid var(--gd,var(--gold-dark,var(--rule,#8a6a20)));font-size:1.1rem;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35);line-height:1}#ol-tt:hover{filter:brightness(1.15)}
+html.light .pl,html.light .labels .prot{background:#eed6d6;color:#8b2020}
+html.light .gl-tag,html.light .labels .oo{background:#d8e8d8;color:#1d5c1d}
+html.light .labels .ctx{background:#d8e3ee;color:#1d4a6b}
+html.light .obj{border-color:#dcc0c0}
+html.light .obj-bd{border-top-color:#dcc0c0}
+html.light .obj-hd h3{color:#8b2020}
+html.light .comp-card.prot{border-top-color:#a83232}
+html.light .comp-card.prot .ct{color:#a83232}
+html.light .labels .mia{color:#112d68}
+html.light .labels .dyo{color:#2a1168}
+html.light .labels .pl{color:#5c4916}
+html.light .ana-num{color:#651010}
+/* ol-aes-v1 */
+html.light #sidebar{background:linear-gradient(180deg,#f5edd5 0%,#ede4cb 100%)}
+html.light .sec{box-shadow:0 1px 6px rgba(100,70,15,.09)}
+html.light .sv{box-shadow:0 1px 4px rgba(100,70,15,.08)}
+html.light .fc{box-shadow:0 1px 4px rgba(100,70,15,.08)}
+html.light a{color:#6b4a10}
+html.light #sidenav a{color:var(--mu)}
+html.light #sidenav a.active,html.light #sidenav a:hover{color:var(--gold)}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* AUTO-ENHANCE */
+html.js-anim .sec{opacity:0;transform:translateY(14px);transition:opacity .55s cubic-bezier(.16,.7,.3,1),transform .55s cubic-bezier(.16,.7,.3,1)}
+html.js-anim .sec.in{opacity:1;transform:none}
+.sec.open .sec-body,.sec.open .sec-bd,.sec.open .sec-body2{animation:olSecOpen .4s cubic-bezier(.16,.7,.3,1)}
+.fi.open .fi-body,.fi.open .fi-bd{animation:olSecOpen .32s cubic-bezier(.16,.7,.3,1)}
+@keyframes olSecOpen{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.sec{margin-bottom:20px;transition:border-color .25s,box-shadow .25s}
+.sec-h:hover,.sec-hd:hover{box-shadow:inset 3px 0 0 var(--gd)}
+.sec-body,.sec-bd{line-height:1.75}
+.sec-body p,.sec-bd p{margin-bottom:12px}
+#ol-top{position:fixed;right:22px;bottom:24px;width:42px;height:42px;border-radius:50%;border:1px solid var(--br);background:var(--bg2);color:var(--gd);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .3s,transform .3s,background .2s;z-index:150;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+#ol-top.show{opacity:1;pointer-events:auto;transform:none}
+#ol-top:hover{background:var(--gd);color:#1a140a}
+.ol-readtime{display:inline-flex;align-items:center;gap:7px;font-size:.74rem;letter-spacing:.04em;color:var(--mu);border:1px solid var(--br);border-radius:20px;padding:4px 12px;margin-top:10px;text-transform:uppercase}
+.ol-readtime::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--gd)}
+@media(prefers-reduced-motion:reduce){html.js-anim .sec{opacity:1;transform:none}#ol-top{transition:none}}
+/* END-ENHANCE */
+
+/* AUTO-AESTHETIC2 */
+:root{--ol-acc:var(--gd,#c9a84c)}
+/* smooth anchor scrolling + sticky-header offset */
+html{scroll-behavior:smooth}
+:where(.sec,[id]){scroll-margin-top:88px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+/* theme cross-fade */
+body,main,.sec,.sec-h,.sec-hd,.sec-body,.sec-bd,#sb,#sb-nav a{transition:background-color .35s ease,color .35s ease,border-color .35s ease}
+/* typography polish */
+main .sec-body p,main .sec-bd p{line-height:1.8}
+.sec-h,.sec-hd{letter-spacing:.005em}
+p.ol-lead::first-letter{float:left;font-size:3.1em;line-height:.78;padding:6px 10px 0 0;color:var(--ol-acc);font-weight:700}
+/* card hover depth */
+[class*="-card"],[class*="-box"],.vbox{transition:transform .22s cubic-bezier(.16,.7,.3,1),box-shadow .22s ease,border-color .22s ease,background-color .35s ease,color .35s ease}
+[class*="-card"]:hover,[class*="-box"]:hover,.vbox:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.28)}
+html.light [class*="-card"]:hover,html.light [class*="-box"]:hover,html.light .vbox:hover{box-shadow:0 8px 22px rgba(40,30,10,.12)}
+/* section dividers (inserted by JS) */
+.ol-divider{text-align:center;color:var(--ol-acc);opacity:.45;font-size:1rem;margin:4px auto 26px;line-height:1;letter-spacing:0;user-select:none}
+/* sidebar active-dot fill */
+#sb-nav a{position:relative}
+#sb-nav a.active::before{content:"";position:absolute;left:-2px;top:50%;width:6px;height:6px;border-radius:50%;background:var(--ol-acc);box-shadow:0 0 7px var(--ol-acc);transform:translateY(-50%) scale(0);animation:olDot .3s cubic-bezier(.16,.7,.3,1) forwards}
+@keyframes olDot{to{transform:translateY(-50%) scale(1)}}
+/* bare blockquote uplift (does not touch styled quote-cards) */
+main blockquote{border-left:3px solid var(--ol-acc);padding:8px 0 8px 18px;margin:18px 0;font-style:italic}
+/* END-AESTHETIC2 */
+
+/* AUTO-FEATURES3 */
+/* copy-link buttons */
+.ol-copy{opacity:0;margin:0 8px;background:none;border:none;cursor:pointer;font-size:.8rem;color:var(--mu);transition:opacity .2s,color .2s;vertical-align:middle;padding:2px 5px;line-height:1;border-radius:5px}
+.ol-copy::before{content:"\1F517"}
+.sec-h:hover .ol-copy,.sec-hd:hover .ol-copy,.ol-copy:focus-visible{opacity:.65}
+.ol-copy:hover{opacity:1;color:var(--gd,#c9a84c)}
+.ol-copy.ok{opacity:1;color:#3fa34d}
+.ol-copy.ok::before{content:"\2713";margin-right:4px}
+.ol-copy.ok::after{content:"copied";font-size:.7rem;letter-spacing:.03em}
+/* related topics */
+.ol-related{margin:42px 0 8px;padding:22px 24px;border:1px solid var(--br);border-radius:12px;background:var(--bg2)}
+.ol-related h3{margin:0 0 14px;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gd,#c9a84c);font-weight:700}
+.ol-related-links{display:flex;flex-wrap:wrap;gap:10px}
+.ol-related-links a{display:inline-block;padding:8px 15px;border:1px solid var(--br);border-radius:22px;font-size:.9rem;color:var(--tx,#e7ddc8);text-decoration:none;background:var(--bg,#1a140a);transition:border-color .2s,color .2s,background .2s,transform .2s}
+.ol-related-links a:hover{border-color:var(--gd,#c9a84c);color:var(--gd,#c9a84c);transform:translateY(-1px)}
+/* search launcher */
+.ol-search-btn{display:flex;align-items:center;justify-content:space-between;width:100%;margin:10px 0 4px;padding:9px 13px;border:1px solid var(--br);border-radius:9px;background:var(--bg2);color:var(--mu);font:inherit;font-size:.86rem;cursor:pointer;transition:border-color .2s,color .2s}
+.ol-search-btn:hover{border-color:var(--gd,#c9a84c);color:var(--gd,#c9a84c)}
+.ol-search-btn span{border:1px solid var(--br);border-radius:5px;padding:1px 7px;font-size:.78rem;opacity:.8}
+/* search overlay */
+.ol-ov{position:fixed;inset:0;background:rgba(0,0,0,.62);backdrop-filter:blur(3px);z-index:1000;display:none;align-items:flex-start;justify-content:center;padding:11vh 16px 16px}
+.ol-ov.open{display:flex}
+.ol-modal{width:100%;max-width:620px;background:var(--bg2,#221a0e);border:1px solid var(--br);border-radius:14px;box-shadow:0 24px 70px rgba(0,0,0,.55);overflow:hidden;display:flex;flex-direction:column;max-height:74vh}
+html.light .ol-modal{box-shadow:0 24px 70px rgba(40,30,10,.22)}
+.ol-search-input{border:none;border-bottom:1px solid var(--br);background:none;color:var(--tx,#e7ddc8);font:inherit;font-size:1.12rem;padding:18px 22px;outline:none;width:100%}
+.ol-search-input::placeholder{color:var(--mu)}
+.ol-results{overflow-y:auto;padding:8px}
+.ol-r{display:block;padding:10px 14px;border-radius:9px;text-decoration:none;color:var(--tx,#e7ddc8);transition:background .12s}
+.ol-r .r-t{display:block;font-weight:600;font-size:.97rem}
+.ol-r .r-s{display:block;font-size:.83rem;color:var(--mu);margin-top:2px}
+.ol-r .r-s::before{content:"\2192  ";color:var(--gd,#c9a84c)}
+.ol-r.sel,.ol-r:hover{background:var(--bg,#1a140a)}
+.ol-r.sel{box-shadow:inset 3px 0 0 var(--gd,#c9a84c)}
+.ol-r mark{background:rgba(201,168,76,.32);color:inherit;border-radius:2px;padding:0 1px}
+.r-empty{padding:26px 18px;text-align:center;color:var(--mu);font-size:.92rem}
+.ol-hint{border-top:1px solid var(--br);padding:9px 18px;font-size:.74rem;color:var(--mu);letter-spacing:.03em}
+.ol-r .r-s.r-topic::before{content:"\2756  ";color:var(--gd,#c9a84c)}
+/* verse-mode card */
+.ol-vcard{margin:6px 6px 4px;padding:14px 16px;border:1px solid var(--br);border-radius:10px;background:var(--bg,#1a140a)}
+.ol-vcard .vref{font-weight:700;color:var(--gd,#c9a84c);font-size:1rem}
+.ol-vcard .vkjv{display:block;margin-top:7px;font-size:.93rem;line-height:1.6;color:var(--tx,#e7ddc8)}
+.ol-vcard .vkjv em{font-style:normal;font-size:.64rem;color:var(--mu);border:1px solid var(--br);border-radius:4px;padding:0 5px;margin-left:6px;letter-spacing:.06em;vertical-align:middle}
+.ol-vcard .vmeta{display:block;margin-top:8px;font-size:.76rem;color:var(--mu);line-height:1.5}
+/* scripture verse + tooltip */
+.ol-verse{border-bottom:1px dotted var(--gd,#c9a84c);cursor:help;text-decoration:none}
+.ol-tip{position:absolute;z-index:1100;max-width:330px;background:var(--bg2,#221a0e);color:var(--tx,#e7ddc8);border:1px solid var(--br);border-radius:10px;padding:12px 15px;font-size:.9rem;line-height:1.55;box-shadow:0 12px 34px rgba(0,0,0,.5);pointer-events:none}
+html.light .ol-tip{box-shadow:0 12px 34px rgba(40,30,10,.2)}
+.ol-tip b{color:var(--gd,#c9a84c);font-size:.84rem;letter-spacing:.02em}
+.ol-tip-kjv{font-size:.66rem;color:var(--mu);border:1px solid var(--br);border-radius:4px;padding:0 5px;margin-left:6px;letter-spacing:.05em}
+.ol-tip-load,.ol-tip-err{color:var(--mu);font-style:italic}
+/* print / pdf */
+@media print{
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #sidebar,#sb,#ham,#overlay,#prog,#ol-top,#ol-tt,.ol-search-btn,.ol-copy,.back-link,.ol-ov,.ol-tip,.ol-divider,.ol-related,.sb-search,nav,.arr{display:none!important}
+  html,body{background:#fff!important;color:#000!important}
+  main{margin:0!important;padding:0!important;max-width:100%!important;width:100%!important}
+  .sec-body,.sec-bd,.sec-body2,.fi-body,.fi-bd{display:block!important;max-height:none!important;opacity:1!important;transform:none!important;animation:none!important}
+  .sec{opacity:1!important;transform:none!important;page-break-inside:avoid;border:none!important;margin-bottom:14px!important}
+  .sec-h,.sec-hd{cursor:default}
+  .hero,.pg-title,.page-head,.pg-head,.hd{background:#fff!important;color:#000!important;border:none!important}
+  .ol-verse{border-bottom:none}
+  a{color:#000!important;text-decoration:none}
+  h1,h2,h3{color:#000!important}
+}
+/* END-FEATURES3 */
+
+/* AUTO-FEATURES4 */
+.ol-ask-fab{position:fixed;right:22px;bottom:24px;z-index:1200;display:flex;align-items:center;gap:9px;height:52px;padding:0 19px 0 15px;border:1px solid var(--br);border-radius:30px;background:var(--gd,#c9a84c);color:#1a140a;font:inherit;font-weight:600;font-size:.9rem;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.35);transition:transform .2s,box-shadow .2s}
+.ol-ask-fab:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(0,0,0,.45)}
+.ol-ask-fab svg{width:20px;height:20px;flex:none;display:block}
+.ol-ask-fab.hide{display:none}
+#ol-top{bottom:128px}
+.ol-ask-wrap{position:fixed;right:22px;bottom:24px;z-index:1201;width:380px;max-width:calc(100vw - 32px);height:560px;max-height:calc(100vh - 70px);background:var(--bg2,#221a0e);border:1px solid var(--br);border-radius:16px;box-shadow:0 24px 70px rgba(0,0,0,.55);display:none;flex-direction:column;overflow:hidden}
+.ol-ask-wrap.open{display:flex}
+html.light .ol-ask-wrap{box-shadow:0 24px 70px rgba(40,30,10,.22)}
+.ol-ask-hd{display:flex;align-items:center;gap:10px;padding:13px 15px;border-bottom:1px solid var(--br);background:var(--bg,#1a140a)}
+.ol-ask-hd .ti{flex:1;line-height:1.25}
+.ol-ask-hd .ti b{color:var(--gd,#c9a84c);font-size:.97rem}
+.ol-ask-hd .ti span{display:block;font-size:.7rem;color:var(--mu);font-weight:400;letter-spacing:.02em}
+.ol-ask-x{background:none;border:none;color:var(--mu);font-size:1.4rem;line-height:1;cursor:pointer;padding:0 6px;border-radius:6px}
+.ol-ask-x:hover{color:var(--tx,#e7ddc8)}
+.ol-ask-log{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:11px}
+.ol-ask-msg{max-width:92%;font-size:.9rem;line-height:1.55;word-wrap:break-word}
+.ol-ask-msg.user{align-self:flex-end;background:var(--gd,#c9a84c);color:#1a140a;padding:8px 13px;border-radius:14px 14px 4px 14px;font-weight:500}
+.ol-ask-msg.bot{align-self:flex-start;color:var(--tx,#e7ddc8);width:100%}
+.ol-ask-msg.bot .lead{margin:0 0 9px;color:var(--mu);font-size:.85rem}
+.ol-ans{display:block;text-decoration:none;color:var(--tx,#e7ddc8);border:1px solid var(--br);border-radius:10px;padding:9px 12px;margin-bottom:8px;background:var(--bg,#1a140a);transition:border-color .18s,transform .18s}
+.ol-ans:hover{border-color:var(--gd,#c9a84c);transform:translateY(-1px)}
+.ol-ans .a-t{display:block;font-weight:600;font-size:.88rem}
+.ol-ans .a-h{display:block;font-size:.78rem;color:var(--gd,#c9a84c);margin-top:1px}
+.ol-ans .a-x{display:block;font-size:.81rem;color:var(--mu);margin-top:5px;line-height:1.5}
+.ol-ans mark,.ol-ask-msg mark{background:rgba(201,168,76,.32);color:inherit;border-radius:2px;padding:0 1px}
+.ol-ai-txt{font-size:.9rem;line-height:1.6;color:var(--tx,#e7ddc8)}
+.ol-ai-txt p{margin:0 0 9px}.ol-ai-txt p:last-child{margin-bottom:0}
+.ol-ai-txt strong{color:var(--gl,#e8c96a);font-weight:600}
+.ol-ai-txt sup.ol-ci{color:var(--gd,#c9a84c);font-weight:600;font-size:.7em;padding:0 1px}
+.ol-ai-cite{margin-top:11px;padding-top:9px;border-top:1px solid var(--br)}
+.ol-ai-cite .lead{margin:0 0 7px;color:var(--mu);font-size:.78rem;text-transform:uppercase;letter-spacing:.04em}
+.ol-ans .a-c{display:inline-block;color:var(--gd,#c9a84c);font-weight:700;font-size:.78rem;margin-right:5px}
+.ol-ai-dots{display:inline-flex;gap:5px;padding:4px 0}
+.ol-ai-dots i{width:7px;height:7px;border-radius:50%;background:var(--gd,#c9a84c);opacity:.4;animation:olaiblink 1.2s infinite}
+.ol-ai-dots i:nth-child(2){animation-delay:.2s}.ol-ai-dots i:nth-child(3){animation-delay:.4s}
+@keyframes olaiblink{0%,60%,100%{opacity:.35}30%{opacity:1}}
+.ol-ai-lamp{display:inline-block;font-size:1.15em;line-height:1;transform-origin:50% 85%;animation:ollampflick 1.7s infinite ease-in-out}
+@keyframes ollampflick{0%,100%{opacity:.85;filter:drop-shadow(0 0 2px rgba(201,168,76,.45));transform:scale(1) rotate(0)}40%{opacity:1;filter:drop-shadow(0 0 8px rgba(201,168,76,.95));transform:scale(1.08) rotate(-2deg)}68%{opacity:.92;filter:drop-shadow(0 0 4px rgba(201,168,76,.7));transform:scale(1.02) rotate(1deg)}}
+.ol-ai-think{margin-left:7px;font-style:italic;font-size:.94em;opacity:.85}
+.ol-ask-msg{animation:olmsgin .4s cubic-bezier(.22,1,.36,1) both}
+@keyframes olmsgin{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
+.ol-ai-caret{display:inline-block;width:2px;height:1.05em;background:var(--gd,#c9a84c);margin-left:2px;vertical-align:-2px;border-radius:1px;animation:olcaret .8s step-end infinite}
+@keyframes olcaret{50%{opacity:0}}
+.ol-lamp{display:inline-block;line-height:0;vertical-align:-7px}.ol-lamp svg{width:24px;height:28px;overflow:visible}.ol-lamp-hd{vertical-align:middle;flex:0 0 auto}.ol-lamp-hd svg{width:34px;height:40px}.ol-lamp .eyes-happy,.ol-lamp .m-idle,.ol-lamp .m-think,.ol-lamp .m-happy{display:none}.ol-lamp.st-idle .m-idle{display:block}.ol-lamp.st-think .m-think{display:block}.ol-lamp.st-happy .m-happy{display:block}.ol-lamp.st-happy .eyes{display:none}.ol-lamp.st-happy .eyes-happy{display:block}.ol-lamp .eyes{transform-box:fill-box;transform-origin:center;animation:ollampblink 4.8s infinite}.ol-lamp.st-think .eyes{transform:translateY(-1px)}.ol-lamp .fl{transform-box:fill-box;transform-origin:50% 100%;animation:ollampfl 2.1s infinite ease-in-out}.ol-lamp.st-think .fl{animation-duration:1.1s}.ol-lamp.st-happy .fl{animation-duration:1.3s}.ol-lamp .rays{transform-box:fill-box;transform-origin:center;animation:olrays 2.6s infinite ease-in-out}.ol-lamp.st-think .rays{animation-duration:1.4s}.ol-lamp.st-happy .rays{animation-duration:1.6s}.ol-lamp.st-think .lampg{transform-box:fill-box;transform-origin:50% 100%;animation:ollampsway 2.6s infinite ease-in-out}.ol-lamp.st-happy .lampg{transform-box:fill-box;transform-origin:50% 100%;animation:ollamphop .6s ease}@keyframes ollampfl{0%,100%{transform:scaleY(1) scaleX(1)}30%{transform:scaleY(1.05) scaleX(.97)}60%{transform:scaleY(.98) scaleX(1.02)}}@keyframes olrays{0%,100%{transform:scale(1);opacity:.8}50%{transform:scale(1.08);opacity:1}}@keyframes ollampblink{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}@keyframes ollampsway{0%,100%{transform:rotate(-2.5deg)}50%{transform:rotate(2.5deg)}}@keyframes ollamphop{0%{transform:translateY(0)}40%{transform:translateY(-3px)}100%{transform:translateY(0)}}
+.ol-vans{border:1px solid var(--br);border-radius:10px;padding:11px 13px;margin-bottom:9px;background:var(--bg,#1a140a)}
+.ol-vans .vr{font-weight:700;color:var(--gd,#c9a84c)}
+.ol-vans .vt{display:block;margin-top:5px;font-size:.85rem;line-height:1.55;color:var(--tx,#e7ddc8)}
+.ol-vans .vt em{font-style:normal;font-size:.62rem;color:var(--mu);border:1px solid var(--br);border-radius:4px;padding:0 4px;margin-left:5px;letter-spacing:.05em;vertical-align:middle}
+.ol-ask-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+.ol-ask-chips button{font:inherit;font-size:.78rem;color:var(--tx,#e7ddc8);background:var(--bg,#1a140a);border:1px solid var(--br);border-radius:16px;padding:5px 11px;cursor:pointer;transition:border-color .18s,color .18s}
+.ol-ask-chips button:hover{border-color:var(--gd,#c9a84c);color:var(--gd,#c9a84c)}
+.ol-ask-foot{border-top:1px solid var(--br);padding:10px 10px 4px;display:flex;gap:8px;align-items:center}
+.ol-ask-foot input{flex:1;border:1px solid var(--br);background:var(--bg,#1a140a);color:var(--tx,#e7ddc8);font:inherit;font-size:.9rem;padding:9px 12px;border-radius:9px;outline:none}
+.ol-ask-foot input:focus{border-color:var(--gd,#c9a84c)}
+.ol-ask-foot button.send{flex:none;border:none;background:var(--gd,#c9a84c);color:#1a140a;width:38px;height:38px;border-radius:9px;cursor:pointer;font-size:1.15rem;line-height:1;display:flex;align-items:center;justify-content:center}
+.ol-ask-foot button.send:hover{filter:brightness(1.06)}
+.ol-ask-note{font-size:.66rem;color:var(--mu);text-align:center;padding:6px 12px 9px;line-height:1.4}
+@media(max-width:480px){.ol-ask-wrap{right:8px;bottom:8px;width:auto;left:8px;height:80vh;max-height:none}.ol-ask-fab{right:12px;bottom:14px}#ol-top{bottom:78px}}
+/* END-FEATURES4 */
+
+/* AUTO-FEATURES5 */
+.ol-print-btn{display:flex;align-items:center;gap:9px;width:100%;margin:4px 0 6px;padding:9px 13px;border:1px solid var(--br);border-radius:9px;background:var(--bg2);color:var(--mu);font:inherit;font-size:.86rem;cursor:pointer;transition:border-color .2s,color .2s}
+.ol-print-btn:hover{border-color:var(--gd,#c9a84c);color:var(--gd,#c9a84c)}
+.ol-print-btn svg{width:16px;height:16px;flex:none;display:block}
+@media print{.ol-print-btn{display:none!important}}
+/* END-FEATURES5 */
+</style>
+<script>try{if(localStorage.getItem('ol-theme')==='light')document.documentElement.classList.add('light')}catch(e){}</script>
+<script>try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('js-anim')}catch(e){}</script>
+<link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#141008"><link rel="apple-touch-icon" href="icon-192.png">
+<style id="ol-sb-css">
+main{transition:margin-left .3s ease}
+#ol-sbt{position:fixed;top:50%;transform:translateY(-50%);left:var(--sidebar-w);z-index:150;width:20px;height:52px;display:flex;align-items:center;justify-content:center;background:var(--bg3);color:var(--gold);border:1px solid var(--br);border-left:none;border-radius:0 8px 8px 0;cursor:pointer;font-size:.95rem;line-height:1;box-shadow:2px 0 8px rgba(0,0,0,.28);transition:left .3s ease,filter .2s;font-family:Georgia,serif}
+#ol-sbt:hover{filter:brightness(1.18)}
+html.sb-collapsed #sidebar,html.sb-collapsed #sb{transform:translateX(-100%)}
+html.sb-collapsed main{margin-left:0}
+html.sb-collapsed #ol-sbt{left:0}
+@media(max-width:768px){#ol-sbt{display:none}}
+@media print{#ol-sbt{display:none!important}}
+</style>
+<script>try{if(localStorage.getItem('ol-sb')==='1')document.documentElement.classList.add('sb-collapsed')}catch(e){}</script>
+<!-- SEO-META-START -->
+<meta name="description" content="St Athanasius, twentieth Pope of Alexandria and the first of the Oriental pillars: his life and five exiles, On the Incarnation, his defence of Nicaea against Arius, the Holy Spirit, the one Christ, the canon of Scripture, and what he gave the Coptic and Ethiopian Churches, in his own words.">
+<link rel="canonical" href="https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/athanasius.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="The Orthodox Lamp">
+<meta property="og:title" content="St Athanasius the Apostolic — The Orthodox Lamp">
+<meta property="og:description" content="St Athanasius, twentieth Pope of Alexandria and the first of the Oriental pillars: his life and five exiles, On the Incarnation, his defence of Nicaea against Arius, the Holy Spirit, the one Christ, the canon of Scripture, and what he gave the Coptic and Ethiopian Churches, in his own words.">
+<meta property="og:url" content="https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/athanasius.html">
+<meta property="og:image" content="https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="St Athanasius the Apostolic — The Orthodox Lamp">
+<meta name="twitter:description" content="St Athanasius, twentieth Pope of Alexandria and the first of the Oriental pillars: his life and five exiles, On the Incarnation, his defence of Nicaea against Arius, the Holy Spirit, the one Christ, the canon of Scripture, and what he gave the Coptic and Ethiopian Churches, in his own words.">
+<meta name="twitter:image" content="https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/og-cover.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "name": "St Athanasius the Apostolic — The Orthodox Lamp", "description": "St Athanasius, twentieth Pope of Alexandria and the first of the Oriental pillars: his life and five exiles, On the Incarnation, his defence of Nicaea against Arius, the Holy Spirit, the one Christ, the canon of Scripture, and what he gave the Coptic and Ethiopian Churches, in his own words.", "url": "https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/athanasius.html", "isPartOf": {"@type": "WebSite", "name": "The Orthodox Lamp", "url": "https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/"}, "inLanguage": "en"}]}</script>
+<!-- SEO-META-END -->
+<style>/* SVLK */.sv-lk{color:inherit;text-decoration:none;border-bottom:1px dotted currentColor;transition:opacity .15s}.sv-lk:hover{opacity:.72}
+/* OL-BREADCRUMB */
+.ol-bc{margin:0;padding:16px 24px 2px;font-size:.8rem;color:var(--mu);display:flex;flex-wrap:wrap;align-items:center;gap:.45rem;letter-spacing:.02em}
+.ol-bc a{color:var(--mu);text-decoration:none;transition:color .15s}
+.ol-bc a:hover{color:var(--gd,#c9a84c)}
+.ol-bc i{opacity:.45;font-style:normal;font-size:.9em}
+.ol-bc .cur{color:var(--gd,#c9a84c);font-weight:600}
+@media print{.ol-bc{display:none!important}}
+/* END-OL-BREADCRUMB */
+/* OL-FABALIGN */
+#ol-top,#ol-tt{right:22px;width:44px;height:44px}
+.ol-ask-fab{right:22px;bottom:24px}
+#ol-tt{bottom:90px}
+#ol-top{bottom:148px}
+@media(max-width:480px){.ol-ask-fab{right:14px;bottom:16px}#ol-tt{right:14px;bottom:82px;width:42px;height:42px}#ol-top{right:14px;bottom:138px;width:42px;height:42px}}
+/* END-OL-FABALIGN */
+
+
+
+
+
+/* OL-PGBAND */
+.oo-pgband{display:block;text-decoration:none;position:relative;margin:14px 0 6px;border-radius:10px;overflow:hidden;border:1px solid var(--br);box-shadow:0 4px 14px rgba(0,0,0,.3);cursor:pointer}
+.oo-pgband .im{height:106px;background-size:cover;filter:sepia(.5) saturate(.82) brightness(.86) contrast(.95);transition:filter .5s ease,transform .5s ease}
+.oo-pgband:hover .im,.oo-pgband:focus-visible .im{filter:sepia(.3) saturate(.95) brightness(.98) contrast(1);transform:scale(1.03)}
+.oo-pgband:focus-visible{outline:2px solid var(--gl);outline-offset:2px}
+.oo-pgband .cap{position:absolute;left:15px;bottom:9px;font:600 .68rem/1.3 var(--disp,Georgia),serif;letter-spacing:.11em;text-transform:uppercase;color:var(--gl);opacity:.92;text-shadow:0 1px 6px rgba(0,0,0,1)}
+.oo-pgband .cap b{display:block;font-size:.85rem;letter-spacing:.05em;opacity:1}
+.oo-pgband::after{content:"\2626";position:absolute;top:7px;right:13px;color:var(--gl);opacity:.62;font-size:1.02rem;line-height:1;text-shadow:0 1px 3px rgba(0,0,0,.9);transition:opacity .4s ease}
+.oo-pgband:hover::after,.oo-pgband:focus-visible::after{opacity:.96}
+@media(max-width:760px){.oo-pgband .im{height:86px}}
+@media print{.oo-pgband{display:none}}
+/* END-OL-PGBAND */
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<div id="overlay" onclick="closeMobile()"></div>
+
+<aside id="sidebar">
+  <header>
+  <svg class="lampsvg" width="92" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><radialGradient id="lmpGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffb95e" stop-opacity=".55"/><stop offset="100%" stop-color="#ffb95e" stop-opacity="0"/></radialGradient><linearGradient id="lmpFlame" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#ff7a1f"/><stop offset="55%" stop-color="#ffb347"/><stop offset="100%" stop-color="#ffe9b0"/></linearGradient><linearGradient id="lmpBrass" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e3b860"/><stop offset="50%" stop-color="#a87b35"/><stop offset="100%" stop-color="#7a5523"/></linearGradient></defs><circle cx="60" cy="38" r="34" fill="url(#lmpGlow)"/><g class="lampflame"><path d="M60 16 C66 26 70 32 70 40 C70 48 65.5 53 60 53 C54.5 53 50 48 50 40 C50 32 54 26 60 16 Z" fill="url(#lmpFlame)"/><path d="M60 30 C63 35 64.5 38 64.5 42 C64.5 46.5 62.5 49 60 49 C57.5 49 55.5 46.5 55.5 42 C55.5 38 57 35 60 30 Z" fill="#fff3cf" opacity=".85"/></g><rect x="56" y="52" width="8" height="7" rx="2" fill="#8a6228"/><path d="M28 62 L92 62 C92 80 78 92 60 92 C42 92 28 80 28 62 Z" fill="url(#lmpBrass)"/><rect x="24" y="58" width="72" height="6" rx="3" fill="#caa14e"/><rect x="56" y="92" width="8" height="16" fill="url(#lmpBrass)"/><path d="M38 118 C38 110 47 108 60 108 C73 108 82 110 82 118 L82 122 L38 122 Z" fill="url(#lmpBrass)"/><rect x="32" y="122" width="56" height="6" rx="3" fill="#caa14e"/></svg>
+    <span class="sb-cross">☩</span>
+    <div class="sb-title">The Orthodox Lamp</div>
+    <div class="sb-sub">St Athanasius</div>
+  </header>
+  <nav id="nav">
+    <a href="#s1">I. Introduction</a>
+    <a href="#s2">II. Glossary of Terms</a>
+    <a href="#s3">III. His Life</a>
+    <a href="#s4">IV. On the Incarnation</a>
+    <a href="#s5">V. Against Arius</a>
+    <a href="#s6">VI. Nicaea and "One in Essence"</a>
+    <a href="#s7">VII. Words and Meaning</a>
+    <a href="#s8">VIII. The Holy Spirit</a>
+    <a href="#s9">IX. The One Christ</a>
+    <a href="#s10">X. Scripture and the Canon</a>
+    <a href="#s11">XI. Athanasius and the Desert</a>
+    <a href="#s12">XII. Exile and Endurance</a>
+    <a href="#s13">XIII. Athanasius and the Oriental Orthodox</a>
+    <a href="#s14">XIV. Objections Answered</a>
+    <a href="#s15">XV. FAQ</a>
+    <a href="#s16">XVI. Sources</a>
+  </nav>
+  <div class="sb-search">
+    <input type="text" id="srch" placeholder="Search this page…" oninput="doSearch(this.value)">
+  </div>
+</aside>
+
+<div id="main">
+  <div id="mob-bar">
+    <button id="ham" onclick="toggleSidebar()">☰</button>
+    <span class="mb-title">The Orthodox Lamp</span>
+  </div>
+
+  <div class="hero">
+    <span class="si">☩</span>
+    <h1 class="st">THE <span>ORTHODOX</span> LAMP</h1>
+    <p class="ss">St Athanasius the Apostolic</p>
+    <p class="tg">"For He was made man that we might be made God." On the Incarnation 54</p>
+    <div class="orn">✦ ✦ ✦</div>
+  </div>
+
+  <div class="content">
+<nav class="ol-bc" aria-label="Breadcrumb"><a href="index.html">Home</a><i>›</i><a href="index.html#oriental">Oriental Orthodoxy</a><i>›</i><span class="cur">St Athanasius</span></nav>
+<!-- OL-PGBAND -->
+<a class="oo-pgband" href="https://upload.wikimedia.org/wikipedia/commons/5/58/Coptic_Orthodox_Cathedral%2C_Abbasyia%2C_Cairo.JPG" target="_blank" rel="noopener noreferrer" title="St Mark's Cathedral — Coptic Orthodox · Cairo · view full photo (Wikimedia Commons)" aria-label="View the full photograph of St Mark's Cathedral, Coptic Orthodox · Cairo — opens in a new tab"><div class="im" style="background-image:linear-gradient(180deg,rgba(12,12,12,.5) 0%,rgba(12,12,12,.86) 100%),url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Coptic_Orthodox_Cathedral%2C_Abbasyia%2C_Cairo.JPG/960px-Coptic_Orthodox_Cathedral%2C_Abbasyia%2C_Cairo.JPG');background-position:center 54%"></div><span class="cap"><b>St Mark's Cathedral</b>Coptic Orthodox &middot; Cairo</span></a>
+<!-- END-OL-PGBAND -->
+
+
+    <div class="sec open" id="s1">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">I.</span>Introduction: The Apostolic</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>The Coptic Church calls him <em>Athanasius the Apostolic</em>. He was the twentieth Pope of Alexandria, and for forty-five years he was the chief defender of the faith confessed at Nicaea, that the Son of God is "of one essence with the Father." He was driven from his see five times by four emperors, and spent about seventeen of those years in exile.</p>
+        <p>This page is the first in a series on the Oriental pillars: Athanasius, Basil and Cyril, the Fathers whose teaching shaped the councils the Oriental Orthodox receive. Athanasius comes first because the others build on him. Basil defended the Holy Spirit along lines Athanasius had drawn. Cyril of Alexandria, his successor two generations later, built his defence of the one Christ on Athanasius' writings.</p>
+        <p>The page lets Athanasius speak for himself: on why God became man, against Arius, on Nicaea, on the Holy Spirit and on the one Christ, on the canon of Scripture, and in his own record of the slanders and exiles he endured.</p>
+        <blockquote>"For He was made man that we might be made God." St Athanasius, On the Incarnation 54</blockquote>
+        <h3>A Note on Quotations</h3>
+        <p>Every quotation marked <span class="pl">VERBATIM</span> has been checked word for word against the public domain translation in the Nicene and Post-Nicene Fathers, second series, volume 4 (Athanasius) and volume 7 (Gregory the Theologian). Where a work has no public domain English translation, such as Athanasius' Letters to Serapion, the teaching is summarised and marked <span class="pl">PARAPHRASE</span>. Scripture follows the NKJV.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s2">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">II.</span>Glossary of Terms</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <div class="gt-grid">
+          <div class="gt">
+            <div class="gt-term">Homoousios</div>
+            <div class="gt-grk">ὁμοούσιος: "of one essence"</div>
+            <div class="gt-def">The word of Nicaea: the Son is of the same essence as the Father. Athanasius was its great defender.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Ousia</div>
+            <div class="gt-grk">οὐσία: "essence, being"</div>
+            <div class="gt-def">What God is. Father, Son and Holy Spirit share one ousia.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Hypostasis</div>
+            <div class="gt-grk">ὑπόστασις: "subsistence"</div>
+            <div class="gt-def">In Athanasius' day the word could mean either essence or person, which caused real confusion. Later it came to mean the three Persons.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Logos</div>
+            <div class="gt-grk">λόγος: "Word"</div>
+            <div class="gt-def">The eternal Son, through whom all things were made (John 1:1-3), who became flesh.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Arianism</div>
+            <div class="gt-grk">after Arius, a presbyter of Alexandria</div>
+            <div class="gt-def">The teaching that the Son was the first and greatest creature, made from nothing, and that "once He was not."</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Homoiousios</div>
+            <div class="gt-grk">ὁμοιούσιος: "of like essence"</div>
+            <div class="gt-def">A middle position of the 350s: the Son is like the Father in essence. Athanasius treated those who held it as brothers who were close to the truth.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Theosis</div>
+            <div class="gt-grk">θέωσις: "deification"</div>
+            <div class="gt-def">Our sharing in the divine life by grace (2 Peter 1:4). For Athanasius it is the purpose of the Incarnation.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Festal Letter</div>
+            <div class="gt-grk">ἑορταστικὴ ἐπιστολή</div>
+            <div class="gt-def">The yearly letter in which the Pope of Alexandria announced the date of Pascha. Athanasius used his thirty-ninth to list the books of Scripture.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Meletians</div>
+            <div class="gt-grk">after Meletius of Lycopolis</div>
+            <div class="gt-def">A schismatic party in Egypt that allied with the Arians against Athanasius.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Pope</div>
+            <div class="gt-grk">πάπας: "father"</div>
+            <div class="gt-def">The ancient title of the Archbishop of Alexandria. A letter preserved by Athanasius addresses him as "the Blessed pope Athanasius."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s3">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">III.</span>His Life</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>Athanasius was born in Egypt around 296 to 298 and was raised in the Church of Alexandria under Bishop Alexander, who made him a deacon and his secretary. His life cannot be separated from the Arian controversy, which began in Alexandria when he was a young man and outlasted him.</p>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-date">c. 296–298</div>
+            <div class="tl-text">Born in Egypt, probably in or near Alexandria.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">c. 318</div>
+            <div class="tl-text">Arius, a presbyter of Alexandria, begins teaching that the Son is a creature. Bishop Alexander condemns him.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">AD 325</div>
+            <div class="tl-text">The Council of Nicaea. Athanasius attends as Alexander's deacon. Gregory the Theologian later writes that, though not yet a bishop, "he held the first rank among the members of the Council."</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">AD 328</div>
+            <div class="tl-text">Elected Pope of Alexandria after Alexander's death, at about thirty years of age.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">AD 335</div>
+            <div class="tl-text">The Synod of Tyre, packed with his enemies, accuses him of murdering a bishop named Arsenius. Arsenius is found alive. Constantine nonetheless exiles Athanasius to Trier in Gaul. <strong>First exile, 335–337.</strong></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">AD 336</div>
+            <div class="tl-text">Arius dies suddenly in Constantinople on the eve of his planned readmission to communion.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">AD 339–346</div>
+            <div class="tl-text">Driven out again, he takes refuge in Rome with Pope Julius, who receives him as a lawful bishop. <strong>Second exile.</strong></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">AD 356–362</div>
+            <div class="tl-text">The general Syrianus surrounds his church during a night vigil with thousands of soldiers. He escapes and hides among the monks of the Egyptian desert for six years, writing many of his major works. <strong>Third exile.</strong></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">c. AD 357</div>
+            <div class="tl-text">Writes the Life of St Antony, after the great hermit's death.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">AD 362</div>
+            <div class="tl-text">Returns under Julian and holds the Council of Alexandria, whose Tome to the Antiochenes reconciles parties divided by words.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">AD 362–363</div>
+            <div class="tl-text">Exiled again by Julian the Apostate, who was trying to revive paganism. <strong>Fourth exile.</strong></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">AD 365–366</div>
+            <div class="tl-text">Exiled under Valens. Coptic tradition says he hid in his father's tomb. <strong>Fifth exile.</strong></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">AD 367</div>
+            <div class="tl-text">His thirty-ninth Festal Letter lists the twenty-seven books of the New Testament.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">AD 373</div>
+            <div class="tl-text">Departs on 2 May, aged about seventy-five. The Coptic Church keeps his feast on 7 Pashons.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">AD 1973</div>
+            <div class="tl-text">Portions of his relics are brought to Cairo on his feast day after Pope Shenouda III's visit to Rome, and are kept at St Mark's Cathedral.</div>
+          </div>
+        </div>
+        <div class="fc">
+          <div class="fn">St Gregory the Theologian</div>
+          <div class="fw">Oration 21, On the Great Athanasius, 14 (c. AD 380)</div>
+          <div class="fq">"And therefore, first in the holy Synod of Nicæa, the gathering of the three hundred and eighteen chosen men, united by the Holy Ghost, as far as in him lay, he stayed the disease. Though not yet ranked among the Bishops, he held the first rank among the members of the Council, for preference was given to virtue just as much as to office."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s4">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">IV.</span>On the Incarnation: Why God Became Man</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p><em>On the Incarnation</em> is Athanasius' most famous work and one of his earliest. It asks why the eternal Word took a body, and answers that only the Creator could re-create. Mankind, made by the Word and sharing in Him, had turned away and was sliding back into corruption and death. God could neither let His work perish nor simply set aside the sentence of death.</p>
+        <div class="fc">
+          <div class="fn">St Athanasius</div>
+          <div class="fw">On the Incarnation 6 (c. AD 318–335)</div>
+          <div class="fq">"For it were not worthy of God's goodness that the things He had made should waste away, because of the deceit practised on men by the devil. ... So, as the rational creatures were wasting and such works in course of ruin, what was God in His goodness to do? Suffer corruption to prevail against them and death to hold them fast? And where were the profit of their having been made, to begin with?"</div>
+          <div class="labels"><span class="mia">Coptic Pope &amp; Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St Athanasius</div>
+          <div class="fw">On the Incarnation 8</div>
+          <div class="fq">"But He takes a body of our kind, and not merely so, but from a spotless and stainless virgin, knowing not a man, a body clean and in very truth pure from intercourse of men. For being Himself mighty, and Artificer of everything, He prepares the body in the Virgin as a temple unto Himself, and makes it His very own as an instrument, in it manifested, and in it dwelling."</div>
+          <div class="labels"><span class="mia">Coptic Pope &amp; Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Hebrews%202%3A14&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Hebrews 2:14</a></div>
+          <div class="txt">"Inasmuch then as the children have partaken of flesh and blood, He Himself likewise shared in the same, that through death He might destroy him who had the power of death, that is, the devil,"</div>
+          <div class="mia-note">🔵 Shared reading: The Word shares our flesh in order to die in it, and by dying to undo death. This is the heart of On the Incarnation.</div>
+        </div>
+        <div class="fc">
+          <div class="fn">St Athanasius</div>
+          <div class="fw">On the Incarnation 54</div>
+          <div class="fq">"For He was made man that we might be made God; and He manifested Himself by a body that we might receive the idea of the unseen Father; and He endured the insolence of men that we might inherit immortality."</div>
+          <div class="labels"><span class="mia">Coptic Pope &amp; Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=2%20Peter%201%3A4&amp;version=NKJV" target="_blank" rel="noopener noreferrer">2 Peter 1:4</a></div>
+          <div class="txt">"by which have been given to us exceedingly great and precious promises, that through these you may be partakers of the divine nature, having escaped the corruption that is in the world through lust."</div>
+          <div class="mia-note">🔵 Orthodox reading: "Made God" means this: not that we become God by nature, but that by grace we become "partakers of the divine nature." Athanasius' sentence is the classic summary of theosis.</div>
+          <div class="dyo-note">🟣 Protestant reading: Many Protestants read this verse as moral renewal rather than participation in God's life.</div>
+        </div>
+        <p>Notice what the argument requires. If the one who became man were a creature, as Arius taught, He could not give us a share in the divine life, because He would not have it to give. Athanasius' whole doctrine of salvation depends on the Son being fully God. That is why he fought Arianism for half a century. See <a href="theosis.html">Theosis &amp; Deification</a>.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s5">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">V.</span>Against Arius</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>Arius set out his teaching in a popular poem called the <em>Thalia</em>. Athanasius quotes it so that readers can see what was really being taught.</p>
+        <div class="fc">
+          <div class="fn">Arius, quoted by St Athanasius</div>
+          <div class="fw">Discourse I Against the Arians 5 (c. AD 340)</div>
+          <div class="fq">"'God was not always a Father.' but 'once God was alone, and not yet a Father, but afterwards He became a Father.' 'The Son was not always;' for, whereas all things were made out of nothing, and all existing creatures and works were made, so the Word of God Himself was 'made out of nothing,' and 'once He was not,' and 'He was not before His origination,'..."</div>
+          <div class="labels"><span class="nes">Condemned Teaching</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <h3>"Once He Was Not"</h3>
+        <p>Athanasius' first answer is that Arius' little word "once" gives the game away. "Once" means a time before the Son. But the Son is the Word through whom time and all things were made.</p>
+        <div class="fc">
+          <div class="fn">St Athanasius</div>
+          <div class="fw">Discourse I Against the Arians 11</div>
+          <div class="fq">"Say then what was once when the Son was not, O slanderous and irreligious men? If you say the Father, your blasphemy is but greater; for it is impious to say that He was 'once,' or to signify Him by the word 'once.' ... And your other, 'The Son was not before His generation,' is equivalent to saying, 'There was once when He was not,' for both the one and the other signify that there is a time before the Word."</div>
+          <div class="labels"><span class="mia">Coptic Pope &amp; Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=John%201%3A1-3&amp;version=NKJV" target="_blank" rel="noopener noreferrer">John 1:1-3</a></div>
+          <div class="txt">"In the beginning was the Word, and the Word was with God, and the Word was God. He was in the beginning with God. All things were made through Him, and without Him nothing was made that was made."</div>
+          <div class="mia-note">🔵 Orthodox reading: "In the beginning was the Word." There was no "once" before the Word, because all things, time included, were made through Him.</div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Hebrews%201%3A3&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Hebrews 1:3</a></div>
+          <div class="txt">"who being the brightness of His glory and the express image of His person, and upholding all things by the word of His power, when He had by Himself purged our sins, sat down at the right hand of the Majesty on high,"</div>
+          <div class="mia-note">🔵 Orthodox reading: Athanasius' favourite image: the Son is the radiance of the Father's glory. A light is never without its radiance, so the Father was never without the Son.</div>
+        </div>
+        <h3>"The Lord Created Me"</h3>
+        <p>The Arians' chief proof text was Proverbs 8:22, which in the Greek Bible reads, "The Lord created me a beginning of His ways for His works." Wisdom is speaking, and Wisdom is Christ (1 Corinthians 1:24). So, they said, Christ was created.</p>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Proverbs%208%3A22&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Proverbs 8:22</a></div>
+          <div class="txt">"'The Lord possessed me at the beginning of His way, Before His works of old."</div>
+          <div class="mia-note">🔵 Orthodox reading: The Hebrew is usually rendered "possessed" (NKJV), but the Greek Bible the Fathers used read "created." Athanasius accepted the Greek and answered the argument on its own ground.</div>
+          <div class="dyo-note">🟣 Protestant reading: Many modern Protestants read the passage as poetry about God's wisdom, not a direct statement about the Son.</div>
+        </div>
+        <div class="fc">
+          <div class="fn">St Athanasius</div>
+          <div class="fw">Discourse II Against the Arians 44–45</div>
+          <div class="fq">"...and by Solomon Wisdom says of Itself with cautious exactness, not 'I am a creature,' but only 'The Lord created me a beginning of His ways for His works,' yet not 'created me that I might have being,' nor 'because I have a creature's beginning and origin.' For in this passage, not as signifying the Essence of His Godhead, nor His own everlasting and genuine generation from the Father, has the Word spoken by Solomon, but on the other hand His manhood and Economy towards us."</div>
+          <div class="labels"><span class="mia">Coptic Pope &amp; Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>"Created" refers to the Word's becoming man, His "manhood and Economy," not to His divine being. The same rule, that some things are said of Christ as God and some of Him as man, runs through all of Athanasius' reading of Scripture, and it is the rule Cyril would later use (Section IX).</p>
+        <h3>We Do Not Worship a Creature</h3>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=John%205%3A23&amp;version=NKJV" target="_blank" rel="noopener noreferrer">John 5:23</a></div>
+          <div class="txt">"that all should honor the Son just as they honor the Father. He who does not honor the Son does not honor the Father who sent Him."</div>
+          <div class="mia-note">🔵 Orthodox reading: The Son receives the same honour as the Father. If He were a creature, worshipping Him would be idolatry.</div>
+        </div>
+        <div class="fc">
+          <div class="fn">St Athanasius</div>
+          <div class="fw">Letter 60, to Adelphius, 3 (c. AD 370)</div>
+          <div class="fq">"We do not worship a creature. Far be the thought. For such an error belongs to heathens and Arians. But we worship the Lord of Creation, Incarnate, the Word of God."</div>
+          <div class="labels"><span class="mia">Coptic Pope &amp; Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>The Arians worshipped Christ too. Athanasius pressed the point: either they were worshipping a creature, which is paganism, or Christ is not a creature. For the full scriptural case see <a href="divinity_of_christ.html">The Divinity of Christ</a> and <a href="trinity.html">The Holy Trinity</a>.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s6">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">VI.</span>Nicaea and "One in Essence"</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>Why did Nicaea use a word that is not in Scripture? Athanasius was in the room, and he tells us. The bishops first tried to use Scripture's own words. The Arians found ways to agree with every one of them.</p>
+        <div class="fc">
+          <div class="fn">St Athanasius</div>
+          <div class="fw">De Decretis (Defence of the Nicene Definition) 19 (c. AD 350s)</div>
+          <div class="fq">"The Council wishing to do away with the irreligious phrases of the Arians, and to use instead the acknowledged words of the Scriptures, that the Son is not from nothing but 'from God,' and is 'Word' and 'Wisdom,' and not creature or work, but a proper offspring from the Father, Eusebius and his fellows, led by their inveterate heterodoxy, understood the phrase 'from God?' as belonging to us, as if in respect to it the Word of God differed nothing from us..."</div>
+          <div class="labels"><span class="mia">Coptic Pope &amp; Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St Athanasius</div>
+          <div class="fw">De Decretis 20</div>
+          <div class="fq">"...were again compelled on their part to collect the sense of the Scriptures, and to re-say and re-write what they had said before, more distinctly still, namely, that the Son is 'one in essence' with the Father: by way of signifying, that the Son was from the Father, and not merely like, but the same in likeness..."</div>
+          <div class="labels"><span class="mia">Coptic Pope &amp; Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>"From God" was not enough, because Christians too are "from God" (1 Corinthians 8:6). So the bishops wrote "from the essence of God" and "one in essence." The new word did not add to Scripture; it shut the door on a false reading of it. See <a href="nicene_creed.html">Understanding the Nicene Creed</a>.</p>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=John%2010%3A30&amp;version=NKJV" target="_blank" rel="noopener noreferrer">John 10:30</a></div>
+          <div class="txt">"I and My Father are one.'"</div>
+          <div class="mia-note">🔵 Orthodox reading: "One" is neuter in Greek: not one person, but one thing. The Father and the Son are distinct, yet one in what they are.</div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=John%2014%3A9&amp;version=NKJV" target="_blank" rel="noopener noreferrer">John 14:9</a></div>
+          <div class="txt">"Jesus said to him, 'Have I been with you so long, and yet you have not known Me, Philip? He who has seen Me has seen the Father; so how can you say, 'Show us the Father'?"</div>
+          <div class="mia-note">🔵 Orthodox reading: To see the Son is to see the Father, because the Son is the Father's own image and radiance, not a likeness made from outside.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s7">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">VII.</span>Words and Meaning</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>Athanasius is remembered as unbending, and on the substance of the faith he was. But he was also careful not to divide Christians who meant the same thing with different words. This side of him matters greatly for the Oriental Orthodox today.</p>
+        <h3>Brothers Who Mean What We Mean</h3>
+        <p>In the 350s a large party of bishops would not say "one in essence" but would say "like in essence." Athanasius did not lump them with the Arians.</p>
+        <div class="fc">
+          <div class="fn">St Athanasius</div>
+          <div class="fw">De Synodis (On the Councils) 41 (c. AD 359)</div>
+          <div class="fq">"...those, however, who accept everything else that was defined at Nicæa, and doubt only about the Coessential, must not be treated as enemies; nor do we here attack them as Ario-maniacs, nor as opponents of the Fathers, but we discuss the matter with them as brothers with brothers, who mean what we mean, and dispute only about the word."</div>
+          <div class="labels"><span class="mia">Coptic Pope &amp; Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <h3>One Hypostasis or Three?</h3>
+        <p>In 362 the Church at Antioch was split. One party spoke of three <em>hypostases</em> in God, the other of one, and each suspected the other of heresy. Athanasius' council at Alexandria questioned both.</p>
+        <div class="fc">
+          <div class="fn">The Council of Alexandria under St Athanasius</div>
+          <div class="fw">Tome to the Antiochenes 5–6 (AD 362)</div>
+          <div class="fq">"...they replied, Because they believed in a Holy Trinity, not a trinity in name only, but existing and subsisting in truth, ... and that the Son is coessential with the Father, as the fathers said; while the Holy Spirit is not a creature, nor external, but proper to and inseparable from the Essence of the Father and the Son. ... But they in their turn assured us that they neither meant this nor had ever held it, but 'we use the word Subsistence thinking it the same thing to say Subsistence or Essence;'"</div>
+          <div class="labels"><span class="mia">Coptic Pope &amp; Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">The Council of Alexandria under St Athanasius</div>
+          <div class="fw">Tome to the Antiochenes 8 (AD 362)</div>
+          <div class="fq">"...counsel the others also who explain and hold aright, not to enquire further into each other's opinions, nor to fight about words to no useful purpose, nor to go on contending with the above phrases, but to agree in the mind of piety."</div>
+          <div class="labels"><span class="mia">Coptic Pope &amp; Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St Gregory the Theologian</div>
+          <div class="fw">Oration 21, On the Great Athanasius, 35 (c. AD 380)</div>
+          <div class="fq">"He conferred in his gentle and sympathetic way with both parties, and after he had carefully weighed the meaning of their expressions, and found that they had the same sense, and were in nowise different in doctrine, by permitting each party to use its own terms, he bound them together in unity of action."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>Athanasius' test was simple: ask what the words mean, and if the meaning is orthodox, do not fight over the words. The Oriental Orthodox have always made the same appeal about Christ. When they confess "one incarnate nature of God the Word," they mean one Christ, God and man, without mixture or change, not a nature in which the humanity is swallowed up. The theological dialogues between the Oriental and Eastern Orthodox in 1989 and 1990 rested on exactly this Athanasian principle. See <a href="eo_oo_differences.html">Eastern &amp; Oriental Orthodoxy</a> and <a href="miaphysite_christology.html">Miaphysite Christology</a>.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s8">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">VIII.</span>The Holy Spirit</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>Nicaea in 325 said only "And in the Holy Ghost." In the 350s a group in Egypt, whom Athanasius called the <em>Tropici</em>, began teaching that the Son was God but the Spirit was a creature, a kind of higher angel. Bishop Serapion of Thmuis wrote to Athanasius for help.</p>
+        <div class="fc">
+          <div class="fn">St Athanasius</div>
+          <div class="fw">Letters to Serapion on the Holy Spirit (c. AD 358–359)</div>
+          <div class="fq">Athanasius answers that the Spirit cannot be a creature, because He sanctifies, gives life and makes us partakers of God, which no creature can do. The Trinity is one and indivisible: whatever the Father does, He does through the Son in the Spirit. To call the Spirit a creature is to break the Trinity apart and to bring a creature into the God in whose Name we are baptized.</div>
+          <div class="labels"><span class="mia">Coptic Pope &amp; Church Father</span><span class="pl">PARAPHRASE</span></div>
+        </div>
+        <p>In 362 his council at Alexandria put the point plainly: the Holy Spirit "is not a creature, nor external, but proper to and inseparable from the Essence of the Father and the Son" (Tome to the Antiochenes 5, quoted in Section VII). Athanasius died in 373, before the Council of Constantinople. But the line he drew, that whoever sanctifies and gives life must be God, is the line St Basil took up in <em>On the Holy Spirit</em>, and the line the Creed of 381 confessed when it called the Spirit "the Lord and Giver-of-Life," who "with the Father and the Son together is worshipped and glorified."</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s9">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">IX.</span>The One Christ</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>Athanasius did not live to see the controversies of Ephesus and Chalcedon. But the way he speaks of Christ is the way Cyril of Alexandria and the Oriental Orthodox speak of Him: one subject, the Word Himself, who does divine things and suffers human things in His own flesh.</p>
+        <div class="fc">
+          <div class="fn">St Athanasius</div>
+          <div class="fw">Discourse III Against the Arians 30</div>
+          <div class="fq">"And He became man, and did not come into man; for this it is necessary to know, lest perchance these irreligious men fall into this notion also, and beguile any into thinking, that, as in former times the Word was used to come into each of the Saints, so now He sojourned in a man, hallowing him also, and manifesting Himself as in the others."</div>
+          <div class="labels"><span class="mia">Coptic Pope &amp; Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St Athanasius</div>
+          <div class="fw">Discourse III Against the Arians 31</div>
+          <div class="fq">"And on account of this, the properties of the flesh are said to be His, since He was in it, such as to hunger, to thirst, to suffer, to weary, and the like, of which the flesh is capable; while on the other hand the works proper to the Word Himself, such as to raise the dead, to restore sight to the blind, and to cure the woman with an issue of blood, He did through His own body. And the Word bore the infirmities of the flesh, as His own, for His was the flesh; and the flesh ministered to the works of the Godhead, because the Godhead was in it, for the body was God's."</div>
+          <div class="labels"><span class="mia">Coptic Pope &amp; Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">The Council of Alexandria under St Athanasius</div>
+          <div class="fw">Tome to the Antiochenes 7 (AD 362)</div>
+          <div class="fq">"Wherefore neither was there one Son of God before Abraham, another after Abraham: nor was there one that raised up Lazarus, another that asked concerning him; but the same it was that said as man, 'Where does Lazarus lie;' and as God raised him up: the same that as man and in the body spat, but divinely as Son of God opened the eyes of the man blind from his birth..."</div>
+          <div class="labels"><span class="mia">Coptic Pope &amp; Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>"Not one... another... but the same." This is the single subject that Nestorius would later deny and Cyril would defend. The same Tome insists that "the Saviour had not a body without a soul," against those who would make His humanity incomplete.</p>
+        <div class="fc">
+          <div class="fn">St Athanasius</div>
+          <div class="fw">Letter 59, to Epictetus, 2 (c. AD 371)</div>
+          <div class="fq">"What lower region has vomited the statement that the Body born of Mary is coessential with the Godhead of the Word? Or that the Word has been changed into flesh, bones, hair, and the whole body, and altered from its own nature?"</div>
+          <div class="labels"><span class="mia">Coptic Pope &amp; Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>Athanasius is just as firm against confusing the two. The Word was not changed into flesh, and His body is not of the same essence as His Godhead. One Christ, without division and without change: this is the faith Cyril received from him and the Oriental Orthodox confess. In the same Discourses he calls the Virgin "Mary Bearer of God" (Discourse III 29). See <a href="marian_theology.html">Mary: Theotokos &amp; Perpetual Virginity</a>.</p>
+        <div class="fc">
+          <div class="fn">St Athanasius</div>
+          <div class="fw">Letter 60, to Adelphius, 3 (c. AD 370)</div>
+          <div class="fq">"And we neither divide the body, being such, from the Word, and worship it by itself, nor when we wish to worship the Word do we set Him far apart from the Flesh, but knowing, as we said above, that 'the Word was made flesh,' we recognise Him as God also, after having come in the flesh."</div>
+          <div class="labels"><span class="mia">Coptic Pope &amp; Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s10">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">X.</span>Scripture and the Canon</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>Each year the Pope of Alexandria wrote a Festal Letter announcing the date of Pascha. In his thirty-ninth, in 367, Athanasius listed the books of Scripture. It is the earliest surviving list of exactly the twenty-seven books of the New Testament.</p>
+        <div class="fc">
+          <div class="fn">St Athanasius</div>
+          <div class="fw">Festal Letter 39, 5–6 (AD 367)</div>
+          <div class="fq">"Again it is not tedious to speak of the [books] of the New Testament. These are, the four Gospels, according to Matthew, Mark, Luke, and John. Afterwards, the Acts of the Apostles and Epistles (called Catholic), seven, viz. of James, one; of Peter, two; of John, three; after these, one of Jude. In addition, there are fourteen Epistles of Paul... And besides, the Revelation of John. These are fountains of salvation, that they who thirst may be satisfied with the living words they contain. In these alone is proclaimed the doctrine of godliness. Let no man add to these, neither let him take ought from these."</div>
+          <div class="labels"><span class="mia">Coptic Pope &amp; Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St Athanasius</div>
+          <div class="fw">Festal Letter 39, 7 (AD 367)</div>
+          <div class="fq">"But for greater exactness I add this also, writing of necessity; that there are other books besides these not indeed included in the Canon, but appointed by the Fathers to be read by those who newly join us, and who wish for instruction in the word of godliness. The Wisdom of Solomon, and the Wisdom of Sirach, and Esther, and Judith, and Tobit, and that which is called the Teaching of the Apostles, and the Shepherd."</div>
+          <div class="labels"><span class="mia">Coptic Pope &amp; Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>Two honest notes. First, Athanasius' Old Testament list is not identical to any modern one. He includes Baruch and the Letter of Jeremiah with Jeremiah, sets Esther among the books to be read, and places Wisdom, Sirach, Judith and Tobit in that second group too. The Coptic Church reads these books in her services, and the Oriental Churches' canons are fuller than Athanasius' list. Second, notice who decides. The canonical books are those "handed down, and accredited as Divine," and even the books for reading were "appointed by the Fathers." Athanasius does not compile the canon by his own judgement; he records what the Church had received. See <a href="biblical_canon.html">The Biblical Canon</a>.</p>
+        <div class="fc">
+          <div class="fn">St Athanasius</div>
+          <div class="fw">Against the Heathen 1 (c. AD 318–335)</div>
+          <div class="fq">"For although the sacred and inspired Scriptures are sufficient to declare the truth, while there are other works of our blessed teachers compiled for this purpose, if he meet with which a man will gain some knowledge of the interpretation of the Scriptures, and be able to learn what he wishes to know..."</div>
+          <div class="labels"><span class="mia">Coptic Pope &amp; Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>Protestant writers often quote the first half of this sentence. The second half matters as much: the Scriptures are sufficient, and the Church's teachers are given to interpret them. Athanasius' whole defence of Nicaea was a contest over how to read Scripture, which he won by appeal to "the sense of the Scriptures" as the Fathers had received it. See <a href="sola_scriptura.html">Scripture and Tradition</a>.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s11">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XI.</span>Athanasius and the Desert</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>Athanasius was the first great friend of Egyptian monasticism. During his third exile the monks hid him for six years, and soon after St Antony's death he wrote the <em>Life of Antony</em>, which carried the monastic ideal across the Roman world. Coptic tradition adds that he was the first Pope to wear the monastic habit.</p>
+        <div class="fc">
+          <div class="fn">St Athanasius</div>
+          <div class="fw">Life of St Antony 69 (c. AD 357)</div>
+          <div class="fq">"And once also the Arians having lyingly asserted that Antony's opinions were the same as theirs, he was displeased and angry against them. Then being summoned by the bishops and all the brethren, he descended from the mountain, and having entered Alexandria, he denounced the Arians, saying that their heresy was the last of all and a forerunner of Antichrist."</div>
+          <div class="labels"><span class="mia">Coptic Pope &amp; Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St Antony the Great, in the Life</div>
+          <div class="fw">Life of St Antony 91</div>
+          <div class="fq">"And divide my garments. To Athanasius the bishop give one sheepskin and the garment whereon I am laid, which he himself gave me new, but which with me has grown old."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>The father of monks left his sheepskin to the defender of Nicaea. The desert and the throne of St Mark stood together against Arius, and that bond between monastery and patriarch has marked the Coptic Church ever since. See <a href="monasticism.html">Monasticism &amp; the Desert Fathers</a>.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s12">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XII.</span>Exile and Endurance</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <h3>The Murdered Bishop Who Was Alive</h3>
+        <p>At the Synod of Tyre in 335 Athanasius' enemies accused him of murdering a Meletian bishop named Arsenius, and carried about a severed hand as evidence. Athanasius records the plot himself.</p>
+        <div class="fc">
+          <div class="fn">St Athanasius</div>
+          <div class="fw">Apology Against the Arians 63 (c. AD 357)</div>
+          <div class="fq">"...and at last that calumny is invented by them, that Macarius had broken a cup, and that a certain Bishop named Arsenius had been murdered by me. Arsenius they placed in concealment, in order that he might seem made away with, when he did not make his appearance; and they carried about a hand, pretending that he had been cut to pieces."</div>
+          <div class="labels"><span class="mia">Coptic Pope &amp; Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>Arsenius was found alive, and the same Apology preserves letters from bishops who confirmed it. Athanasius was exiled anyway. The charges against him were political, and the emperors who exiled him were, for the most part, the patrons of the Arian party.</p>
+        <h3>Why He Fled</h3>
+                <div class="fc">
+          <div class="fn">St Athanasius</div>
+          <div class="fw">Defence of His Flight 24 (c. AD 357)</div>
+          <div class="fq">"It was now night, and some of the people were keeping a vigil preparatory to a communion on the morrow, when the General Syrianus suddenly came upon us with more than five thousand soldiers, having arms and drawn swords, bows, spears, and clubs... Now I considered that it would be unreasonable in me to desert the people during such a disturbance, and not to endanger myself in their behalf; therefore I sat down upon my throne, and desired the Deacon to read a Psalm, and the people to answer, 'For His mercy endures for ever'"</div>
+          <div class="labels"><span class="mia">Coptic Pope &amp; Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>His enemies called him a coward for hiding. In his <em>Defence of His Flight</em> he answers from Scripture: Jacob fled from Esau, Moses withdrew into Midian for fear of Pharaoh, David fled from Saul, and the Lord Himself "hid Himself, and went out of the temple" when the Jews took up stones (John 8:59).</p>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Matthew%2010%3A23&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Matthew 10:23</a></div>
+          <div class="txt">"When they persecute you in this city, flee to another. For assuredly, I say to you, you will not have gone through the cities of Israel before the Son of Man comes."</div>
+          <div class="mia-note">🔵 Orthodox reading: Athanasius cites this command. Flight was not cowardice but obedience, and it kept the shepherd alive for the flock.</div>
+        </div>
+        <h3>The Pillar of the Church</h3>
+        <div class="fc">
+          <div class="fn">St Gregory the Theologian</div>
+          <div class="fw">Oration 21, On the Great Athanasius, 26 (c. AD 380)</div>
+          <div class="fq">"Such was Athanasius to us, when present, the pillar of the Church; and such, even when he retired before the insults of the wicked."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St Gregory the Theologian</div>
+          <div class="fw">Oration 21, On the Great Athanasius, 1 (c. AD 380)</div>
+          <div class="fq">"In praising Athanasius, I shall be praising virtue. To speak of him and to praise virtue are identical, because he had, or, to speak more truly, has embraced virtue in its entirety."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s13">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XIII.</span>Athanasius and the Oriental Orthodox</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <h3>The Twentieth Pope of Alexandria</h3>
+        <p>The Coptic Church counts Athanasius as the twentieth successor of St Mark. The title "pope" was used of the Archbishop of Alexandria long before it became usual in Rome, and Athanasius' own Apology preserves a letter from a repentant priest addressed "To the Blessed pope Athanasius" (Apology Against the Arians 64). The Coptic Synaxarium remembers him on 7 Pashons as the Pope who stood before the whole world for the faith of Nicaea.</p>
+        <h3>The Father of the Ethiopian Church</h3>
+        <p>Athanasius consecrated Frumentius, known in Ethiopia as Abba Salama, as the first bishop of Axum. From that time the Ethiopian Church received its archbishops from Alexandria, until it became autocephalous in the twentieth century. The clearest evidence for the consecration comes from Athanasius' enemy, the Emperor Constantius, who wrote to the kings of Axum demanding that Frumentius be sent to Egypt to be examined by the Arian bishop George.</p>
+        <div class="fc">
+          <div class="fn">Emperor Constantius II</div>
+          <div class="fw">Letter to Ezana and Sazana of Axum, in Athanasius, Apology to Constantius 31 (c. AD 356)</div>
+          <div class="fq">"For of course you know and remember (unless you alone pretend to be ignorant of that which all men are well aware of) that this Frumentius was advanced to his present rank by Athanasius, a man who is guilty of ten thousand crimes..."</div>
+          <div class="labels"><span class="ctx">Imperial Letter</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>Ezana is the king remembered in Ethiopia as the first Christian ruler of Axum. The letter shows the Arian emperor trying to pull the young Ethiopian Church away from Athanasius. There is no sign that it succeeded. See <a href="oo_history.html">History of the Oriental Orthodox Church</a>.</p>
+        <h3>The Teacher of St Cyril</h3>
+        <p>Cyril of Alexandria, the twenty-fourth Pope, is the theologian of the Oriental Orthodox Christology. His writings appeal again and again to Athanasius as a father of the faith, and his single-subject Christology is Athanasius' own: the Word made flesh is the one who acts and suffers (Section IX). The line from Athanasius to Cyril to Dioscorus and Severus is the spine of the Oriental Orthodox tradition.</p>
+        <h3>In Coptic Worship</h3>
+        <p>Athanasius is commemorated in the Coptic liturgy among the great teachers of the Church, and his feast falls on 7 Pashons. In 1973, on that feast day, portions of his relics were brought to Cairo, where they rest at St Mark's Cathedral.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s14">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XIV.</span>Objections Answered</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>The objections below come from Jehovah's Witnesses, sceptics and some Protestants.</p>
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Constantine and Nicaea invented the deity of Christ."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> Arius himself is the evidence against this. He was condemned by his own bishop, Alexander, years before Constantine called the council, because Alexander saw that Arius' teaching was new. Athanasius says the bishops at Nicaea first tried to use Scripture's own words and only adopted "one in essence" when the Arians twisted every one of them (Section VI).</p><p>And Constantine did not hold the line. Within ten years he had recalled Arius and exiled Athanasius. Most of Athanasius' exiles were ordered by emperors who favoured the Arians. If Nicene faith had been imposed by imperial power, it would not have survived the emperors.</p>
+          </div>
+        </div>
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Athanasius was a violent political operator who won by force."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> The charges against him at the time are known, and the most famous of them collapsed: the bishop he was accused of murdering turned up alive (Section XII). Some accusations of rough treatment by his supporters may have had substance, and historians still debate them. But Athanasius spent seventeen years of his episcopate in exile, hunted by soldiers. Those with the power to use force were his enemies.</p>
+          </div>
+        </div>
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Athanasius taught sola scriptura."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> He taught that the Scriptures "are sufficient to declare the truth," and in the same sentence he commends "other works of our blessed teachers" for interpreting them (Section X). His whole defence of Nicaea appeals to "the sense of the Scriptures" as the Church had received it, against Arians who also quoted Scripture. He receives the canon from "the Fathers." That is Scripture read within the Church, which is the Orthodox position. See <a href="sola_scriptura.html">Scripture and Tradition</a>.</p>
+          </div>
+        </div>
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Proverbs 8:22 says Wisdom was created, so the Son is a creature."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> Athanasius answered this at length. The verse is a proverb and must be read as one. Wisdom does not say "I am a creature," but "The Lord created me a beginning of His ways," and this refers, he says, to "His manhood and Economy towards us," not "the Essence of His Godhead" (Section V). The Word who made all things cannot be one of the things He made (John 1:3).</p>
+          </div>
+        </div>
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>⚡ "The majority of bishops were Arian in the 350s, so Nicene orthodoxy was just the side that won."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> Truth is not decided by numbers, and Athanasius never thought it was. Many bishops signed Arian-leaning creeds under imperial pressure, and many, like the "like in essence" party, were much nearer to Nicaea than to Arius (Section VII). When the pressure lifted, the Church returned to the faith of Nicaea and confessed it again at Constantinople in 381.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s15">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XV.</span>Frequently Asked Questions</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>Did Athanasius write the Athanasian Creed?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>No. The creed that begins "Whoever wishes to be saved" (the <em>Quicunque</em>) was written in Latin in the West, probably in the fifth or sixth century, and was later attached to his name. It is used in some Western churches. It is not used in the Oriental Orthodox Churches, and it contains the Western teaching that the Spirit proceeds from the Father and the Son.</p>
+          </div>
+        </div>
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>What does "Athanasius against the world" mean?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p><em>Athanasius contra mundum</em> is a later Latin phrase, not his own words. It sums up the years when he seemed to stand almost alone against emperors and councils. It is a fair summary of his courage, but he was never really alone: the monks of Egypt, Pope Julius of Rome and the faithful of Alexandria stood with him.</p>
+          </div>
+        </div>
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>Why is he called "the Apostolic"?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>Because he defended the apostolic faith when much of the Church's leadership had wavered, and because his teaching was received as a faithful handing on of what the apostles taught. The title is used in the Coptic Church and elsewhere.</p>
+          </div>
+        </div>
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>Did Athanasius use the formula "one incarnate nature of God the Word"?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>St Cyril believed he did, and quoted the phrase as Athanasius'. Modern scholars agree that the text Cyril had was written by Apollinaris of Laodicea and circulated under Athanasius' name. This does not affect Cyril's meaning, which he defined carefully: one Christ, with a complete human nature and a rational soul, without mixture or change. That meaning rests on Athanasius' genuine teaching, quoted in Section IX. See <a href="miaphysite_christology.html">Miaphysite Christology</a>.</p>
+          </div>
+        </div>
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>Did Athanasius call Mary Theotokos?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>Yes. In his third Discourse Against the Arians he speaks of the Son who "took flesh of a Virgin, Mary Bearer of God," and in the second he calls her "Mary Ever-Virgin."</p>
+          </div>
+        </div>
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>How did Arius die?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>According to a report Athanasius received from a priest in Constantinople, Arius died suddenly in 336, on the eve of the day he was to be received back into communion, in a manner that recalled the death of Judas (Acts 1:18). Athanasius tells the story in his Letter 54 to Serapion, adding that the Church gave thanks "not as exulting in his death (God forbid!)."</p>
+          </div>
+        </div>
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>Where should I start reading Athanasius?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p><em>On the Incarnation</em>. It is short, clear and still one of the best books ever written on why God became man. Then the <em>Life of Antony</em>. Both are freely available in the Nicene and Post-Nicene Fathers, volume 4.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s16">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XVI.</span>Sources &amp; Further Reading</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <div class="src-grid">
+          <div class="src-card">
+            <h4>Works of St Athanasius (NPNF 2.4)</h4>
+            <ul>
+              <li>Against the Heathen 1</li>
+              <li>On the Incarnation 6, 8, 54</li>
+              <li>Discourses Against the Arians I.5, I.11; II.44–45; III.29–31</li>
+              <li>De Decretis 19–20</li>
+              <li>De Synodis 41</li>
+              <li>Tome to the Antiochenes 5–8</li>
+              <li>Apology Against the Arians 63–64</li>
+              <li>Apology to Constantius 31</li>
+              <li>Defence of His Flight</li>
+              <li>Life of St Antony 69, 91</li>
+              <li>Festal Letter 39</li>
+              <li>Letters 54, 59 (to Epictetus), 60 (to Adelphius)</li>
+              <li>Letters to Serapion on the Holy Spirit (no NPNF translation)</li>
+            </ul>
+          </div>
+          <div class="src-card">
+            <h4>Other Ancient Sources</h4>
+            <ul>
+              <li>Gregory the Theologian, Oration 21, On the Great Athanasius (NPNF 2.7)</li>
+              <li>Socrates and Sozomen, Church Histories (NPNF 2.2)</li>
+              <li>Rufinus, Church History (on Frumentius)</li>
+              <li><a href="https://copticchurch.net/synaxarium/9_7.html" target="_blank" rel="noopener noreferrer">Coptic Synaxarium, 7 Pashons</a></li>
+            </ul>
+          </div>
+          <div class="src-card">
+            <h4>Modern Studies</h4>
+            <ul>
+              <li>Khaled Anatolios, <em>Athanasius</em> (2004)</li>
+              <li>David Brakke, <em>Athanasius and the Politics of Asceticism</em> (1995)</li>
+              <li>Lewis Ayres, <em>Nicaea and Its Legacy</em> (2004)</li>
+              <li>John Behr, <em>The Nicene Faith</em> (2004)</li>
+              <li>On the Incarnation, trans. a Religious of C.S.M.V., introduction by C. S. Lewis (1944)</li>
+            </ul>
+          </div>
+          <div class="src-card">
+            <h4>Related Pages</h4>
+            <ul>
+              <li><a href="nicene_creed.html">Understanding the Nicene Creed</a></li>
+              <li><a href="trinity.html">The Holy Trinity</a></li>
+              <li><a href="divinity_of_christ.html">The Divinity of Christ</a></li>
+              <li><a href="miaphysite_christology.html">Miaphysite Christology</a></li>
+              <li><a href="theosis.html">Theosis &amp; Deification</a></li>
+              <li><a href="biblical_canon.html">The Biblical Canon</a></li>
+              <li><a href="monasticism.html">Monasticism &amp; the Desert Fathers</a></li>
+              <li><a href="jehovahs_witnesses.html">Answering Jehovah's Witnesses</a></li>
+              <li><a href="fathers.html">Church Fathers Index</a></li>
+            </ul>
+          </div>
+        </div>
+        <p style="margin-top:.8rem;font-size:.85rem;color:var(--mu);font-style:italic;">Translations are from the Nicene and Post-Nicene Fathers, second series. This page was made with Claude AI and can contain faults; please verify with an Abouna.</p>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+
+  <footer style="text-align:center;padding:2rem 1rem;border-top:1px solid var(--br);font-size:.8rem;color:var(--mu)">
+    <p>THE <span style="color:var(--gold)">ORTHODOX LAMP</span> &nbsp;·&nbsp; Biblical, Historical &amp; Patristic Apologetics</p>
+    <p style="margin-top:.5rem;font-size:.72rem;opacity:.6;">☩ &nbsp; In the name of the Father, and of the Son, and of the Holy Spirit &nbsp; ☩</p>
+  </footer>
+</div><!-- /main -->
+
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+function ts(h){h.closest('.sec').classList.toggle('open')}
+function tobj(h){h.closest('.obj').classList.toggle('open')}
+function tf(h){h.closest('.fi').classList.toggle('open')}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').classList.toggle('show')}
+function closeMobile(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
+
+window.addEventListener('scroll',()=>{
+  const s=document.documentElement,b=document.body;
+  const pct=(s.scrollTop||b.scrollTop)/((s.scrollHeight||b.scrollHeight)-s.clientHeight)*100;
+  document.getElementById('prog').style.width=pct+'%';
+  document.getElementById('btt').classList.toggle('show',(s.scrollTop||b.scrollTop)>300);
+});
+
+const secs=[...document.querySelectorAll('.sec')];
+const links=[...document.querySelectorAll('#nav a')];
+window.addEventListener('scroll',()=>{
+  let cur='';
+  secs.forEach(s=>{if(s.getBoundingClientRect().top<120)cur=s.id});
+  links.forEach(l=>{l.classList.toggle('active',l.getAttribute('href')==='#'+cur)});
+},{ passive:true });
+
+function doSearch(q){
+  document.querySelectorAll('.hl').forEach(e=>{
+    const p=e.parentNode;p.replaceChild(document.createTextNode(e.textContent),e);p.normalize();
+  });
+  if(!q.trim())return;
+  const re=new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi');
+  const walker=document.createTreeWalker(document.querySelector('.content'),NodeFilter.SHOW_TEXT);
+  const nodes=[];let n;
+  while((n=walker.nextNode()))nodes.push(n);
+  nodes.forEach(node=>{
+    if(!re.test(node.textContent))return;
+    re.lastIndex=0;
+    const frag=document.createDocumentFragment();
+    let last=0,m;
+    while((m=re.exec(node.textContent))!==null){
+      frag.appendChild(document.createTextNode(node.textContent.slice(last,m.index)));
+      const mark=document.createElement('mark');
+      mark.className='hl';mark.style.cssText='background:#8a6a20;color:#fff;border-radius:2px;padding:0 2px';
+      mark.textContent=m[0];frag.appendChild(mark);last=m.index+m[0].length;
+    }
+    frag.appendChild(document.createTextNode(node.textContent.slice(last)));
+    node.parentNode.replaceChild(frag,node);
+  });
+  const first=document.querySelector('.hl');if(first)first.scrollIntoView({block:'center',behavior:'smooth'});
+}
+</script>
+<button id="ol-tt" onclick="olTheme()" aria-label="Toggle light or dark mode" title="Light/dark mode">☀</button><script>function olTheme(){var l=document.documentElement.classList.toggle('light');try{localStorage.setItem('ol-theme',l?'light':'dark')}catch(e){}olIcon()}function olIcon(){document.getElementById('ol-tt').textContent=document.documentElement.classList.contains('light')?'☾':'☀'}olIcon();</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+/* AUTO-ENHANCE-JS */
+(function(){
+  try{
+    // back-to-top
+    var bt=document.createElement('button');bt.id='ol-top';bt.setAttribute('aria-label','Back to top');bt.innerHTML='\u2191';
+    bt.onclick=function(){window.scrollTo({top:0,behavior:'smooth'});};
+    document.body.appendChild(bt);
+    window.addEventListener('scroll',function(){bt.classList.toggle('show',window.scrollY>420);},{passive:true});
+    // reading time
+    var main=document.querySelector('main');
+    if(main){
+      var txt=main.innerText||'';var words=txt.trim().split(/\s+/).length;
+      var mins=Math.max(1,Math.round(words/200));
+      var rt=document.createElement('div');rt.className='ol-readtime';rt.textContent=mins+' min read';
+      var anchor=main.querySelector('.pg-title,.page-head,.pg-head,.hd');
+      if(anchor)anchor.appendChild(rt);else main.insertBefore(rt,main.firstChild);
+    }
+    // scroll-reveal
+    var secs=document.querySelectorAll('.sec');
+    if('IntersectionObserver' in window && document.documentElement.classList.contains('js-anim')){
+      var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.01,rootMargin:'0px 0px 12% 0px'});
+      secs.forEach(function(s){io.observe(s);});
+    }else{secs.forEach(function(s){s.classList.add('in');});}
+    // ensure search reveals all
+    document.querySelectorAll('.sb-search input,input[oninput*=sidebarSearch]').forEach(function(i){i.addEventListener('input',function(){document.querySelectorAll('.sec').forEach(function(s){s.classList.add('in');});});});
+  }catch(e){document.querySelectorAll('.sec').forEach(function(s){s.classList.add('in');});}
+})();
+/* END-ENHANCE-JS */</script>
+<script>
+/* AUTO-AESTHETIC2-JS */
+(function(){
+  try{
+    // section dividers between sibling .sec elements
+    Array.prototype.slice.call(document.querySelectorAll('.sec')).forEach(function(s){
+      var prev=s.previousElementSibling;
+      if(prev&&prev.classList&&prev.classList.contains('sec')&&!prev.classList.contains('ol-divider')){
+        var d=document.createElement('div');d.className='ol-divider';d.setAttribute('aria-hidden','true');d.textContent='\u2629';
+        s.parentNode.insertBefore(d,s);
+      }
+    });
+    // drop-cap on the first section's opening paragraph (chapter-opener feel)
+    var lead=document.querySelector('main .sec .sec-body p, main .sec .sec-bd p');
+    if(lead && (lead.textContent||'').trim().length>40){ lead.classList.add('ol-lead'); }
+  }catch(e){}
+})();
+/* END-AESTHETIC2-JS */</script>
+<script>
+/* AUTO-FEATURES3-JS */
+(function(){
+  try{
+    var here=(location.pathname.split('/').pop()||'index.html');
+    var base=location.href.split('#')[0];
+    function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+    /* ---- 1. copy-link buttons ---- */
+    document.querySelectorAll('.sec[id]').forEach(function(sec){
+      var h=sec.querySelector('.sec-h,.sec-hd');
+      if(!h||h.querySelector('.ol-copy'))return;
+      var b=document.createElement('button');
+      b.className='ol-copy';b.type='button';b.setAttribute('aria-label','Copy link to this section');
+      b.addEventListener('click',function(ev){
+        ev.stopPropagation();ev.preventDefault();
+        var url=base+'#'+sec.id;
+        var ok=function(){b.classList.add('ok');setTimeout(function(){b.classList.remove('ok');},1500);};
+        if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(ok,ok);}
+        else{var t=document.createElement('textarea');t.value=url;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(t);ok();}
+      });
+      var arr=h.querySelector('.arr');
+      if(arr&&arr.parentNode===h)h.insertBefore(b,arr);else h.appendChild(b);
+    });
+
+    /* ---- shared index + bundled KJV ---- */
+    var IDX=null,idxP=null,SEC={};
+    function loadIndex(){if(idxP)return idxP;idxP=fetch('search-index.json').then(function(r){return r.json();}).then(function(d){IDX=d;(d.pages||[]).forEach(function(p){var m={};(p.secs||[]).forEach(function(s){m[s.a]=s.h;});SEC[p.f]=m;});return d;});return idxP;}
+    var VP=null,vpP=null;
+    function loadVP(){if(vpP)return vpP;vpP=fetch('verse-pages.json').then(function(r){return r.json();}).then(function(d){VP=d;return d;}).catch(function(){VP={};});return vpP;}
+    var VERSES=null;
+    fetch('verses.json').then(function(r){return r.json();}).then(function(d){VERSES=d;}).catch(function(){VERSES={};});
+
+    /* ---- 2. related topics ---- */
+    loadIndex().then(function(idx){
+      if(!idx||!idx.pages)return;
+      var page=null;idx.pages.forEach(function(p){if(p.f===here)page=p;});
+      if(!page||!page.rel||!page.rel.length)return;
+      var main=document.querySelector('main')||document.getElementById('main');if(!main)return;
+      var box=document.createElement('div');box.className='ol-related';
+      var hh=document.createElement('h3');hh.textContent='Related topics';box.appendChild(hh);
+      var wrap=document.createElement('div');wrap.className='ol-related-links';
+      page.rel.forEach(function(r){var a=document.createElement('a');a.href=r.f;a.textContent=r.t;wrap.appendChild(a);});
+      box.appendChild(wrap);main.appendChild(box);
+    }).catch(function(){});
+
+    /* ---- 3. site-wide search ---- */
+    var ov=document.createElement('div');ov.className='ol-ov';
+    ov.innerHTML='<div class="ol-modal" role="dialog" aria-label="Search topics and verses"><input class="ol-search-input" type="text" placeholder="Search topics or a Bible verse (e.g. John 3:16)…" aria-label="Search topics and Bible verses" autocomplete="off"><div class="ol-results" role="listbox"></div><div class="ol-hint">↑↓ navigate · ↵ open · esc close · type a reference like Rom 5 or 1 Cor 10:12</div></div>';
+    document.body.appendChild(ov);
+    var input=ov.querySelector('.ol-search-input');
+    var results=ov.querySelector('.ol-results');
+    var flat=[],sel=-1;
+    function hilite(text,q){if(!q)return esc(text);var i=text.toLowerCase().indexOf(q);if(i<0)return esc(text);return esc(text.slice(0,i))+'<mark>'+esc(text.slice(i,i+q.length))+'</mark>'+esc(text.slice(i+q.length));}
+
+    /* fuzzy / typo-tolerant scorer */
+    function lev(a,b){var m=a.length,n=b.length;if(!m)return n;if(!n)return m;var prev=[],cur=[],i,j;for(j=0;j<=n;j++)prev[j]=j;for(i=1;i<=m;i++){cur[0]=i;for(j=1;j<=n;j++){var c=a.charAt(i-1)===b.charAt(j-1)?0:1;cur[j]=Math.min(prev[j]+1,cur[j-1]+1,prev[j-1]+c);}for(j=0;j<=n;j++)prev[j]=cur[j];}return prev[n];}
+    function scoreText(hay,q){
+      if(!q)return 0.5;hay=String(hay).toLowerCase();
+      var idx=hay.indexOf(q);
+      if(idx===0)return 1000;
+      if(idx>0)return 800-idx;
+      var words=hay.split(/[^a-z0-9]+/),best=-1,w,word,d,thr;
+      for(w=0;w<words.length;w++){word=words[w];if(!word)continue;
+        if(word.indexOf(q)===0){best=Math.max(best,600);continue;}
+        if(q.length>=4){thr=q.length<=5?1:2;d=lev(word,q);if(d<=thr)best=Math.max(best,420-d*40);}
+      }
+      if(best>=0)return best;
+      var hi=0,qi=0;for(;hi<hay.length&&qi<q.length;hi++){if(hay.charAt(hi)===q.charAt(qi))qi++;}
+      if(qi===q.length)return 200;
+      return -1;
+    }
+
+    /* Bible-book resolver (abbreviations + full names) */
+    var BK={};
+    function reg(c,al){BK[c.toLowerCase().replace(/\s+/g,'')]=c;al.split(',').forEach(function(a){a=a.replace(/\s+/g,'');if(a)BK[a]=c;});}
+    reg('Genesis','gen,ge,gn');reg('Exodus','exo,ex,exod');reg('Leviticus','lev,le,lv');reg('Numbers','num,nu,nm,nb');
+    reg('Deuteronomy','deut,dt,deu');reg('Joshua','josh,jos,jsh');reg('Judges','judg,jdg,jg,jdgs');reg('Ruth','rut,ru,rth');
+    reg('1 Samuel','1sam,1sa,1s,1sm');reg('2 Samuel','2sam,2sa,2s,2sm');reg('1 Kings','1kings,1kgs,1ki,1kg');reg('2 Kings','2kings,2kgs,2ki,2kg');
+    reg('1 Chronicles','1chron,1chr,1ch');reg('2 Chronicles','2chron,2chr,2ch');reg('Ezra','ezr');reg('Nehemiah','neh,ne');
+    reg('Esther','est,esth,es');reg('Job','jb');reg('Psalms','ps,psa,psalm,pss,psm');reg('Proverbs','prov,pro,prv,pr');
+    reg('Ecclesiastes','eccl,ecc,ec,eccles,qoh');reg('Song of Solomon','song,sos,songofsongs,canticles,cant,ss');
+    reg('Isaiah','isa,is,isai');reg('Jeremiah','jer,jr');reg('Lamentations','lam,la');reg('Ezekiel','ezek,eze,ezk');
+    reg('Daniel','dan,da,dn');reg('Hosea','hos,ho');reg('Joel','joe,jl');reg('Amos','am,amo');reg('Obadiah','obad,ob,oba');
+    reg('Jonah','jon,jnh');reg('Micah','mic,mc');reg('Nahum','nah,na');reg('Habakkuk','hab');reg('Zephaniah','zeph,zep,zp');
+    reg('Haggai','hag,hg');reg('Zechariah','zech,zec,zc');reg('Malachi','mal,ml');reg('Matthew','matt,mt,mat');
+    reg('Mark','mk,mar,mrk');reg('Luke','lk,luk,lu');reg('John','jn,joh,jhn');reg('Acts','act,ac');reg('Romans','rom,ro,rm');
+    reg('1 Corinthians','1cor,1co,1c');reg('2 Corinthians','2cor,2co,2c');reg('Galatians','gal,ga');reg('Ephesians','eph,ephes');
+    reg('Philippians','phil,php,pp');reg('Colossians','col');reg('1 Thessalonians','1thess,1thes,1th');reg('2 Thessalonians','2thess,2thes,2th');
+    reg('1 Timothy','1tim,1ti,1tm');reg('2 Timothy','2tim,2ti,2tm');reg('Titus','tit,ti,tts');reg('Philemon','philem,phlm,phm,pm');
+    reg('Hebrews','heb,hebr');reg('James','jas,jm,jms');reg('1 Peter','1pet,1pe,1pt,1p');reg('2 Peter','2pet,2pe,2pt,2p');
+    reg('1 John','1john,1jn,1jo,1j');reg('2 John','2john,2jn,2jo,2j');reg('3 John','3john,3jn,3jo,3j');reg('Jude','jud,jd');
+    reg('Revelation','rev,re,rv,apocalypse,apoc');
+    function parseRef(raw){
+      if(!raw)return null;
+      var m=raw.match(/^\s*([1-3]?\s*[a-zA-Z][a-zA-Z\s]*?)\s*(\d{1,3})(?:\s*[:.\s]\s*(\d{1,3}))?\s*$/);
+      if(!m)return null;
+      var bk=m[1].toLowerCase().replace(/[\s.]+/g,'');var canon=BK[bk];
+      if(!canon)return null;
+      return {canon:canon,ch:parseInt(m[2],10),vs:m[3]?parseInt(m[3],10):null};
+    }
+    function uniqPages(entries){var seen={},out=[];entries.forEach(function(e){if(!seen[e[0]]){seen[e[0]]=1;out.push({f:e[0],t:e[1],a:e[2]});}});return out;}
+    /* exported verse engine — used by the FE4 "Ask the Lamp" assistant.
+       resolves to null if `raw` is not a bare Bible reference. */
+    window.__olVerseQuery=function(raw){
+      var vq=parseRef((raw||'').trim());
+      if(!vq)return Promise.resolve(null);
+      return Promise.all([loadVP(),loadIndex()]).then(function(){
+        function sub(f,a){return (SEC[f]&&SEC[f][a])||'';}
+        function pages(arr){return uniqPages(arr).map(function(r){return {f:r.f,t:r.t,a:r.a,sub:sub(r.f,r.a)};});}
+        if(vq.vs!=null){
+          var key=vq.canon+' '+vq.ch+':'+vq.vs,e=VP[key];
+          return {mode:'verse',ref:key,kjv:(e&&e.k)?e.k:null,pages:e?pages(e.r):[]};
+        }
+        var prefix=vq.canon+' '+vq.ch+':',vnums=[],agg=[];
+        Object.keys(VP).forEach(function(k){if(k.indexOf(prefix)===0){vnums.push(parseInt(k.slice(prefix.length),10));VP[k].r.forEach(function(r){agg.push(r);});}});
+        vnums.sort(function(a,b){return a-b;});
+        return {mode:'chapter',ref:vq.canon+' '+vq.ch,vnums:vnums,pages:pages(agg)};
+      }).catch(function(){return null;});
+    };
+    function rowsHTML(){
+      if(!flat.length)return '<div class="r-empty">No page cites this on the site yet.</div>';
+      return flat.map(function(r,i){return '<a class="ol-r'+(i===sel?' sel':'')+'" data-i="'+i+'" href="'+r.f+(r.a?'#'+r.a:'')+'"><span class="r-t">'+esc(r.t)+'</span>'+(r.sub?'<span class="r-s">'+esc(r.sub)+'</span>':'')+'</a>';}).join('');
+    }
+
+    function renderVerse(vq){
+      if(!VP){results.innerHTML='<div class="r-empty">Loading verse index…</div>';flat=[];sel=-1;return;}
+      var canon=vq.canon,ch=vq.ch,vs=vq.vs,card='',rows=[];
+      if(vs!=null){
+        var key=canon+' '+ch+':'+vs,e=VP[key];
+        card='<div class="ol-vcard"><span class="vref">'+esc(key)+'</span>'+(e&&e.k?'<span class="vkjv">'+esc(e.k)+'<em>KJV</em></span>':'')+(e?'':'<span class="vmeta">Not cited on the site yet.</span>')+'</div>';
+        if(e)rows=uniqPages(e.r);
+      }else{
+        var prefix=canon+' '+ch+':',vnums=[],agg=[];
+        Object.keys(VP).forEach(function(k){if(k.indexOf(prefix)===0){vnums.push(parseInt(k.slice(prefix.length),10));VP[k].r.forEach(function(r){agg.push(r);});}});
+        vnums.sort(function(a,b){return a-b;});
+        card='<div class="ol-vcard"><span class="vref">'+esc(canon+' '+ch)+'</span><span class="vmeta">'+(vnums.length?'Verses cited here: '+vnums.join(', '):'No verses from this chapter are cited yet.')+'</span></div>';
+        rows=uniqPages(agg);
+      }
+      flat=rows.map(function(r){return {f:r.f,t:r.t,a:r.a,sub:(SEC[r.f]&&SEC[r.f][r.a])?SEC[r.f][r.a]:''};});
+      sel=flat.length?0:-1;
+      results.innerHTML=card+rowsHTML();
+    }
+
+    function renderText(q){
+      flat=[];
+      if(IDX&&IDX.pages){
+        if(!q){
+          IDX.pages.slice().sort(function(a,b){return a.t.localeCompare(b.t);}).forEach(function(p){flat.push({f:p.f,t:p.t,sub:'',a:'',sc:0});});
+        }else{
+          IDX.pages.forEach(function(p){
+            var ts=scoreText(p.t,q),bs=null,bss=-1,kw=-1,kwn='';
+            if(p.secs)p.secs.forEach(function(s){var sc=scoreText(s.h,q)*0.85;if(sc>bss){bss=sc;bs=s;}});
+            if(p.kw)p.kw.forEach(function(k){var sc=scoreText(k,q)*0.7;if(sc>kw){kw=sc;kwn=k;}});
+            var best=Math.max(ts,bss,kw);if(best<=0)return;
+            var it={f:p.f,t:p.t,sc:best};
+            if(best===bss&&bs){it.sub=bs.h;it.a=bs.a;}
+            else if(best===kw&&kwn){it.sub='topic · '+kwn;it.topic=1;}
+            else it.sub='';
+            flat.push(it);
+          });
+          flat.sort(function(a,b){return b.sc-a.sc;});
+        }
+      }
+      flat=flat.slice(0,40);sel=flat.length?0:-1;
+      if(!flat.length){results.innerHTML='<div class="r-empty">'+(IDX?'No matches — try a topic or a Bible verse (e.g. John 3:16)':'Loading index…')+'</div>';return;}
+      results.innerHTML=flat.map(function(r,i){
+        return '<a class="ol-r'+(i===sel?' sel':'')+'" data-i="'+i+'" href="'+r.f+(r.a?'#'+r.a:'')+'"><span class="r-t">'+hilite(r.t,q)+'</span>'+(r.sub?'<span class="r-s'+(r.topic?' r-topic':'')+'">'+(r.topic?esc(r.sub):hilite(r.sub,q))+'</span>':'')+'</a>';
+      }).join('');
+    }
+
+    function render(){
+      var raw=(input.value||'').trim();
+      var vq=parseRef(raw);
+      if(vq){if(!VP)loadVP().then(function(){if(ov.classList.contains('open')&&parseRef((input.value||'').trim()))render();});renderVerse(vq);return;}
+      renderText(raw.toLowerCase());
+    }
+    function setSel(i){var a=results.querySelectorAll('.ol-r');if(!a.length)return;sel=(i+a.length)%a.length;a.forEach(function(el,j){el.classList.toggle('sel',j===sel);});a[sel].scrollIntoView({block:'nearest'});}
+    function go(){if(sel>=0&&flat[sel]){var r=flat[sel];location.href=r.f+(r.a?'#'+r.a:'');}}
+    function openS(seed){ov.classList.add('open');document.body.style.overflow='hidden';input.value=seed||'';render();loadIndex().then(function(){if(ov.classList.contains('open'))render();}).catch(function(){});loadVP().then(function(){if(ov.classList.contains('open'))render();}).catch(function(){});setTimeout(function(){input.focus();if(seed)input.select();},30);}
+    window.__olOpenSearch=openS;
+    function closeS(){ov.classList.remove('open');document.body.style.overflow='';}
+    input.addEventListener('input',render);
+    input.addEventListener('keydown',function(e){
+      if(e.key==='ArrowDown'){e.preventDefault();setSel(sel+1);}
+      else if(e.key==='ArrowUp'){e.preventDefault();setSel(sel-1);}
+      else if(e.key==='Enter'){e.preventDefault();go();}
+      else if(e.key==='Escape'){e.preventDefault();closeS();}
+    });
+    results.addEventListener('mousemove',function(e){var a=e.target.closest('.ol-r');if(a)setSel(+a.getAttribute('data-i'));});
+    ov.addEventListener('click',function(e){if(e.target===ov)closeS();});
+    document.addEventListener('keydown',function(e){
+      if(e.key==='/'&&!ov.classList.contains('open')){var t=document.activeElement;var tn=t?t.tagName:'';if(tn==='INPUT'||tn==='TEXTAREA'||(t&&t.isContentEditable))return;e.preventDefault();openS();}
+      else if(e.key==='Escape'&&ov.classList.contains('open')){closeS();}
+    });
+    var launcher=document.createElement('button');launcher.className='ol-search-btn';launcher.type='button';
+    launcher.innerHTML='Search topics &amp; verses <span>/</span>';launcher.addEventListener('click',function(){openS();});
+    var sbs=document.querySelector('.sb-search');
+    if(sbs&&sbs.parentNode)sbs.parentNode.insertBefore(launcher,sbs);
+    else{var nav=document.querySelector('#sidebar nav,#sb nav,#sidebar,#sb');if(nav)nav.insertBefore(launcher,nav.firstChild);}
+
+    /* ---- 4. scripture tooltips (KJV bundled locally in verses.json, public domain) ---- */
+    var BOOKS='Genesis|Exodus|Leviticus|Numbers|Deuteronomy|Joshua|Judges|Ruth|1 ?Samuel|2 ?Samuel|1 ?Kings|2 ?Kings|1 ?Chronicles|2 ?Chronicles|Ezra|Nehemiah|Esther|Job|Psalms|Psalm|Proverbs|Ecclesiastes|Song of Solomon|Song of Songs|Isaiah|Jeremiah|Lamentations|Ezekiel|Daniel|Hosea|Joel|Amos|Obadiah|Jonah|Micah|Nahum|Habakkuk|Zephaniah|Haggai|Zechariah|Malachi|Matthew|Mark|Luke|John|Acts|Romans|1 ?Corinthians|2 ?Corinthians|Galatians|Ephesians|Philippians|Colossians|1 ?Thessalonians|2 ?Thessalonians|1 ?Timothy|2 ?Timothy|Titus|Philemon|Hebrews|James|1 ?Peter|2 ?Peter|1 ?John|2 ?John|3 ?John|Jude|Revelation';
+    var VRE=new RegExp('\\b((?:'+BOOKS+')\\.?\\s+\\d{1,3}:\\d{1,3}(?:[-–]\\d{1,3})?(?:,\\s?\\d{1,3}(?:[-–]\\d{1,3})?)*)','g');
+    function wrap(root){
+      var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:function(n){
+        if(!n.nodeValue||n.nodeValue.indexOf(':')<0)return NodeFilter.FILTER_REJECT;
+        var p=n.parentNode;
+        while(p&&p!==root){var t=p.nodeName.toLowerCase();
+          if(t==='a'||t==='button'||t==='script'||t==='style'||(p.classList&&(p.classList.contains('ol-verse')||p.classList.contains('ol-copy'))))return NodeFilter.FILTER_REJECT;
+          p=p.parentNode;}
+        return NodeFilter.FILTER_ACCEPT;
+      }});
+      var nodes=[],n;while(n=w.nextNode())nodes.push(n);
+      nodes.forEach(function(node){
+        var txt=node.nodeValue;VRE.lastIndex=0;if(!VRE.test(txt))return;VRE.lastIndex=0;
+        var frag=document.createDocumentFragment(),last=0,m;
+        while(m=VRE.exec(txt)){
+          if(m.index>last)frag.appendChild(document.createTextNode(txt.slice(last,m.index)));
+          var sp=document.createElement('span');sp.className='ol-verse';sp.textContent=m[0];sp.setAttribute('data-ref',m[1]);
+          frag.appendChild(sp);last=m.index+m[0].length;
+        }
+        if(last<txt.length)frag.appendChild(document.createTextNode(txt.slice(last)));
+        node.parentNode.replaceChild(frag,node);
+      });
+    }
+    document.querySelectorAll('.sec-body,.sec-bd,.sec-body2').forEach(wrap);
+    var tip=document.createElement('div');tip.className='ol-tip';tip.style.display='none';document.body.appendChild(tip);
+    function place(el){var r=el.getBoundingClientRect();tip.style.display='block';var w=tip.offsetWidth||330;
+      var left=window.scrollX+r.left;var max=window.scrollX+document.documentElement.clientWidth-w-10;
+      tip.style.left=Math.max(8,Math.min(left,max))+'px';tip.style.top=(window.scrollY+r.bottom+8)+'px';}
+    function lookup(ref){var k=ref.replace(/\s+/g,' ').trim();if(VERSES&&VERSES[k])return VERSES[k];return null;}
+    function show(el){
+      var ref=el.getAttribute('data-ref');if(!ref)return;
+      var t=lookup(ref);
+      if(t){tip.innerHTML='<b>'+esc(ref)+'</b><span class="ol-tip-kjv">KJV</span><br>'+esc(t);}
+      else if(VERSES===null){tip.innerHTML='<b>'+esc(ref)+'</b><br><span class="ol-tip-load">Loading…</span>';}
+      else{tip.innerHTML='<b>'+esc(ref)+'</b><br><span class="ol-tip-err">Text unavailable</span>';}
+      place(el);
+    }
+    function hide(){tip.style.display='none';}
+    document.addEventListener('mouseover',function(e){var t=e.target;if(t.classList&&t.classList.contains('ol-verse'))show(t);});
+    document.addEventListener('mouseout',function(e){var t=e.target;if(t.classList&&t.classList.contains('ol-verse'))hide();});
+    document.addEventListener('focusin',function(e){var t=e.target;if(t.classList&&t.classList.contains('ol-verse'))show(t);});
+    document.addEventListener('focusout',function(e){var t=e.target;if(t.classList&&t.classList.contains('ol-verse'))hide();});
+    document.querySelectorAll('.ol-verse').forEach(function(v){v.setAttribute('tabindex','0');});
+  }catch(e){}
+})();
+/* END-FEATURES3-JS */</script>
+<script>
+/* Ask the Lamp — AI config. Paste your Cloudflare Worker URL between the
+   quotes to turn on grounded AI answers. Leave blank for site-search only.
+   See ask-lamp-SETUP.md for the 10-minute setup. */
+window.OL_ASK_ENDPOINT = "https://ask-the-lamp.sebazz7397.workers.dev";
+</script>
+<script>
+/* AUTO-FEATURES4-JS */
+(function(){
+  try{
+    function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+    /* Optional strict-RAG AI answers. Set window.OL_ASK_ENDPOINT to the
+       Cloudflare Worker URL to turn "Ask the Lamp" from a search box into a
+       grounded assistant. If blank or unreachable, it silently falls back to
+       the retrieval-only behaviour below. See ask-lamp-SETUP.md. */
+    var AI_ENDPOINT=(window.OL_ASK_ENDPOINT||'').trim();
+    /* plain model text -> safe HTML: escape, light **bold**, [n] citations, paragraphs */
+    function fmtAI(s){
+      var out=esc(s);
+      out=out.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
+      /* normalise fancy citation brackets (【1】〔1〕〖1〗) the model sometimes emits to plain [1] */
+      out=out.replace(/[【〔〖]\s*(\d{1,2})\s*[】〕〗]/g,'[$1]');
+      out=out.replace(/\[(\d{1,2})\]/g,'<sup class="ol-ci">[$1]</sup>');
+      return out.split(/\n{2,}/).map(function(p){return '<p>'+p.replace(/\n/g,'<br>')+'</p>';}).join('');
+    }
+    var STOP={};'the a an and or but of to in on at for with as is are was were be been being do does did this that these those it its their them they we you i he she his her our your my me us not no yes can could would should will shall may might must have has had what why how who whom whose which when where does did about into from than then so such also more most very just only own same other any all both each few how into about'.split(/\s+/).forEach(function(w){STOP[w]=1;});
+    function toks(q){return (String(q).toLowerCase().match(/[a-z0-9]+/g)||[]).filter(function(w){return w.length>=3&&!STOP[w];});}
+
+    var C=null,cP=null;
+    function loadC(){if(cP)return cP;cP=fetch('ask-content.json').then(function(r){return r.json();}).then(function(d){C=d;return d;}).catch(function(){C={pages:[]};return C;});return cP;}
+
+    function reEsc(t){return t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}
+    function excerpt(x,tk){
+      if(!x)return '';
+      var lx=x.toLowerCase(),pos=-1,i,p;
+      for(i=0;i<tk.length;i++){p=lx.indexOf(tk[i]);if(p>=0&&(pos<0||p<pos))pos=p;}
+      if(pos<0)pos=0;
+      var start=Math.max(0,pos-65),end=Math.min(x.length,pos+165);
+      var frag=x.slice(start,end);
+      if(start>0)frag=frag.replace(/^\S*\s/,'');
+      if(end<x.length)frag=frag.replace(/\s\S*$/,'');
+      var out=esc(frag);
+      if(start>0)out='…'+out;
+      if(end<x.length)out=out+'…';
+      tk.forEach(function(t){if(t.length<3)return;try{out=out.replace(new RegExp('('+reEsc(t)+')','ig'),'<mark>$1</mark>');}catch(e){}});
+      return out;
+    }
+    /* whole-word matcher (with light plural/possessive tolerance) so that a query
+       for "christ" does NOT match inside "christian"/"christology", and vice-versa. */
+    function mkRx(t){return new RegExp('\\b'+reEsc(t)+"(?:'s|s)?\\b",'gi');}
+    function nWord(text,rx){if(!text)return 0;var m=String(text).match(rx);return m?m.length:0;}
+    function rank(q){
+      var tk=toks(q);if(!tk.length||!C||!C.pages)return {tk:tk,top:[],broad:false};
+      var rx=tk.map(mkRx);
+      /* pass 1 — how many sections each term appears in (for rarity weighting) */
+      var N=0,dfSec=tk.map(function(){return 0;});
+      C.pages.forEach(function(p){var pk=(p.t||'')+' '+((p.kw||[]).join(' '));(p.secs||[]).forEach(function(s){
+        N++;var blob=pk+' '+(s.h||'')+' '+(s.x||'');
+        tk.forEach(function(t,i){if(nWord(blob,rx[i]))dfSec[i]++;});
+      });});
+      /* rarer term => higher weight; ubiquitous terms (Christ, church…) => near-zero */
+      var idf=dfSec.map(function(df){return Math.log((N+1)/(df+1))+0.15;});
+      /* pass 2 — score every section, weighting each term by its rarity */
+      var hits=[];
+      C.pages.forEach(function(p){
+        var title=(p.t||''),kw=(p.kw||[]).join(' ');
+        (p.secs||[]).forEach(function(s){
+          var head=(s.h||''),body=(s.x||''),sc=0,covered=0;
+          tk.forEach(function(t,i){
+            var w=idf[i],any=false,r=rx[i];
+            if(nWord(head,r)){sc+=14*w;any=true;}
+            if(nWord(title,r)){sc+=8*w;any=true;}
+            if(nWord(kw,r)){sc+=7*w;any=true;}
+            var occ=nWord(body,r);if(occ){sc+=Math.min(occ,4)*4*w;any=true;}
+            if(any)covered++;
+          });
+          if(tk.length>1){if(covered===tk.length)sc+=14;sc+=covered*3;}
+          if(sc>0)hits.push({f:p.f,t:p.t,h:s.h,a:s.a,x:s.x,sc:sc,cov:covered});
+        });
+      });
+      hits.sort(function(a,b){return b.sc-a.sc;});
+      /* a single word that appears in a large share of the site is "broad" */
+      var broad=(tk.length===1&&N>0&&dfSec[0]>Math.max(40,N*0.18));
+      var per={},top=[],cap=broad?1:2,lim=broad?6:4;
+      for(var i=0;i<hits.length&&top.length<lim;i++){var f=hits[i].f;if((per[f]||0)>=cap)continue;per[f]=(per[f]||0)+1;top.push(hits[i]);}
+      return {tk:tk,top:top,broad:broad,term:tk[0]};
+    }
+
+    /* ---- UI ---- */
+    var fab=document.createElement('button');fab.className='ol-ask-fab';fab.type='button';
+    fab.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg><span>Ask the Lamp</span>';
+    document.body.appendChild(fab);
+
+    var wrap=document.createElement('div');wrap.className='ol-ask-wrap';wrap.setAttribute('role','dialog');wrap.setAttribute('aria-label','Ask the Lamp');
+    wrap.innerHTML='<div class="ol-ask-hd"><div class="ti"><b>Ask the Lamp</b><span>Search the whole site by question or verse</span></div><button class="ol-ask-x" type="button" aria-label="Close">×</button></div><div class="ol-ask-log" role="log" aria-live="polite"></div><div class="ol-ask-foot"><input type="text" placeholder="Ask a question or type a verse…" aria-label="Ask a question" autocomplete="off"><button class="send" type="button" aria-label="Send">➤</button></div><div class="ol-ask-note">Answers are drawn only from this site’s pages · not a live AI chat</div>';
+    document.body.appendChild(wrap);
+    var log=wrap.querySelector('.ol-ask-log'),inp=wrap.querySelector('.ol-ask-foot input'),sendB=wrap.querySelector('.send'),xB=wrap.querySelector('.ol-ask-x');
+    var LAMP_SVG="<svg viewBox='0 0 40 48' fill='none' xmlns='http://www.w3.org/2000/svg' aria-hidden='true'><defs><radialGradient id='olflame' cx='50%' cy='72%' r='62%'><stop offset='0%' stop-color='#ffe89c'/><stop offset='45%' stop-color='#f8ab3c'/><stop offset='100%' stop-color='#ee6f1e'/></radialGradient><radialGradient id='olfoot' cx='50%' cy='25%' r='85%'><stop offset='0%' stop-color='#c9a35a'/><stop offset='100%' stop-color='#8a6a26'/></radialGradient></defs><g class='lampg'><g class='rays' stroke='#f4a63a' stroke-width='1.6' stroke-linecap='round'><line x1='33' y1='25' x2='36.5' y2='25'/><line x1='7' y1='25' x2='3.5' y2='25'/><line x1='29.2' y1='14.4' x2='31.7' y2='11.6'/><line x1='10.8' y1='14.4' x2='8.3' y2='11.6'/><line x1='29.2' y1='35.6' x2='31.7' y2='38.4'/><line x1='10.8' y1='35.6' x2='8.3' y2='38.4'/><line x1='25' y1='11.1' x2='26.3' y2='7.4'/><line x1='15' y1='11.1' x2='13.7' y2='7.4'/></g><ellipse class='foot' cx='20' cy='44.4' rx='6' ry='1.7' fill='url(#olfoot)'/><rect class='wick' x='18.5' y='39.5' width='3' height='5.2' rx='1.4' fill='#5a4020'/><g class='fl'><path class='body' d='M20 10 C26 15.5 30.5 20.5 30 28 C29.5 35 25 40.5 20 41.5 C15 40.5 10.5 35 10 28 C9.5 20.5 14 15.5 20 10 Z' fill='url(#olflame)'/><path d='M20 18 C23.8 22.5 26 26.5 24.8 31.5 C23.9 35 22 37.2 20 37.6 C18 37.2 16.1 35 15.2 31.5 C14 26.5 16.2 22.5 20 18 Z' fill='#ffe488' opacity='.5'/><ellipse cx='15.6' cy='23' rx='1.6' ry='3' fill='#fff8df' opacity='.4'/></g><g class='eyes' fill='#5a3212'><ellipse cx='15.6' cy='27.5' rx='2.5' ry='3'/><ellipse cx='24.4' cy='27.5' rx='2.5' ry='3'/><circle cx='14.8' cy='26.5' r='.95' fill='#fff'/><circle cx='23.6' cy='26.5' r='.95' fill='#fff'/></g><g class='eyes-happy' stroke='#5a3212' stroke-width='1.7' stroke-linecap='round' fill='none'><path d='M13.1 27.9 Q15.6 24.7 18.1 27.9'/><path d='M21.9 27.9 Q24.4 24.7 26.9 27.9'/></g><path class='m-idle' d='M17.2 32.4 Q20 34.5 22.8 32.4' stroke='#5a3212' stroke-width='1.4' stroke-linecap='round' fill='none'/><path class='m-think' d='M18.5 32.6 Q20 33.4 21.5 32.6' stroke='#5a3212' stroke-width='1.4' stroke-linecap='round' fill='none'/><path class='m-happy' d='M16.4 32 Q20 35.9 23.6 32' stroke='#5a3212' stroke-width='1.6' stroke-linecap='round' fill='none'/></g></svg>";
+    function LAMP(s){return "<span class='ol-lamp st-"+s+"'>"+LAMP_SVG+"</span>";}
+    var lampAv=(function(){var hd=wrap.querySelector('.ol-ask-hd');if(!hd)return null;var a=document.createElement('span');a.className='ol-lamp ol-lamp-hd st-idle';a.innerHTML=LAMP_SVG;hd.insertBefore(a,hd.firstChild);return a;})();
+    function lampState(s){if(lampAv)lampAv.className='ol-lamp ol-lamp-hd st-'+s;}
+    var noteEl=wrap.querySelector('.ol-ask-note');
+    if(noteEl)noteEl.textContent=AI_ENDPOINT
+      ?'AI answers are generated only from this site’s pages, with sources shown — always verify against the cited pages.'
+      :'Answers are drawn only from this site’s pages · not a live AI chat';
+    var subEl=wrap.querySelector('.ol-ask-hd .ti span');
+    if(subEl&&AI_ENDPOINT)subEl.textContent='Grounded answers from the site, with sources';
+
+    function scrollDown(){log.scrollTop=log.scrollHeight;}
+    function addUser(t){var d=document.createElement('div');d.className='ol-ask-msg user';d.textContent=t;log.appendChild(d);scrollDown();}
+    function addBot(html){var d=document.createElement('div');d.className='ol-ask-msg bot';d.innerHTML=html;log.appendChild(d);scrollDown();return d;}
+
+    function pageRows(pages,limit){
+      return pages.slice(0,limit||5).map(function(r){
+        return '<a class="ol-ans" href="'+esc(r.f)+(r.a?'#'+esc(r.a):'')+'"><span class="a-t">'+esc(r.t)+'</span>'+(r.sub?'<span class="a-h">'+esc(r.sub)+'</span>':'')+'</a>';
+      }).join('');
+    }
+    function renderVerse(v){
+      var h='';
+      if(v.mode==='verse'){
+        h+='<div class="ol-vans"><span class="vr">'+esc(v.ref)+'</span>'+(v.kjv?'<span class="vt">'+esc(v.kjv)+'<em>KJV</em></span>':'<span class="vt">Not cited on the site yet.</span>')+'</div>';
+        if(v.pages.length){h+='<p class="lead">Cited on '+v.pages.length+' page'+(v.pages.length>1?'s':'')+':</p>'+pageRows(v.pages,6);}
+      }else{
+        h+='<div class="ol-vans"><span class="vr">'+esc(v.ref)+'</span><span class="vt">'+(v.vnums.length?'Verses cited here: '+v.vnums.join(', '):'No verses from this chapter are cited yet.')+'</span></div>';
+        if(v.pages.length){h+='<p class="lead">Pages citing this chapter:</p>'+pageRows(v.pages,6);}
+      }
+      addBot(h);
+    }
+    function cap1(s){return s?s.charAt(0).toUpperCase()+s.slice(1):s;}
+    function renderTopic(q){
+      var r=rank(q),tk=r.tk,top=r.top;
+      if(!tk.length){addBot('<p class="lead">Try a question like <em>why do you venerate icons?</em> or type a Bible reference such as <em>John 3:16</em>.</p>');return;}
+      if(!top.length){addBot('<p class="lead">I couldn’t find that on the site. Try different words, or browse from the menu.</p>');return;}
+      if(r.broad){
+        var h='<p class="lead">“'+esc(cap1(r.term))+'” runs through much of the site — that’s a broad topic. Here are the main places it’s covered; add a few more words to narrow things down:</p>';
+        h+=top.map(function(it){return '<a class="ol-ans" href="'+esc(it.f)+(it.a?'#'+esc(it.a):'')+'"><span class="a-t">'+esc(it.t)+'</span>'+(it.h?'<span class="a-h">'+esc(it.h)+'</span>':'')+'</a>';}).join('');
+        addBot(h);return;
+      }
+      var strong=(top[0].cov===tk.length);
+      var lead=strong?'Here’s where the site addresses that:':'This looks closest on the site:';
+      var body=top.map(function(it){
+        return '<a class="ol-ans" href="'+esc(it.f)+(it.a?'#'+esc(it.a):'')+'"><span class="a-t">'+esc(it.t)+'</span>'+(it.h?'<span class="a-h">'+esc(it.h)+'</span>':'')+'<span class="a-x">'+excerpt(it.x,tk)+'</span></a>';
+      }).join('');
+      addBot('<p class="lead">'+lead+'</p>'+body);
+    }
+
+    /* citation links under an AI answer, numbered to match [1]/[2] in the text */
+    function citeHTML(top){
+      return '<div class="ol-ai-cite"><p class="lead">Sources on the site</p>'+top.map(function(it,i){
+        return '<a class="ol-ans" href="'+esc(it.f)+(it.a?'#'+esc(it.a):'')+'"><span class="a-t"><span class="a-c">['+(i+1)+']</span>'+esc(it.t)+'</span>'+(it.h?'<span class="a-h">'+esc(it.h)+'</span>':'')+'</a>';
+      }).join('')+'</div>';
+    }
+    /* stream a grounded answer from the Worker; onErr triggers retrieval fallback */
+    function streamAI(q,passages,bubble,onDone,onErr){
+      var txt=document.createElement('div');txt.className='ol-ai-txt';
+      var acc='',started=false,gotErr=false,pinned=false;
+      function begin(){if(!started){started=true;bubble.innerHTML='';bubble.appendChild(txt);}}
+      /* keep the START of the answer at the top of the log so the reader begins at the beginning */
+      function pinStart(){if(pinned)return;pinned=true;var head=bubble.previousElementSibling||bubble;var lr=log.getBoundingClientRect(),er=head.getBoundingClientRect();log.scrollTop+=(er.top-lr.top)-10;}
+      /* gently type the answer in, word by word, with a blinking caret */
+      function typeReveal(full,done){
+        var parts=full.match(/\S+\s*/g)||[full];var i=0,n=parts.length,step=n>90?3:(n>45?2:1);
+        (function tick(){
+          i=Math.min(n,i+step);
+          txt.innerHTML=fmtAI(parts.slice(0,i).join(''))+(i<n?'<span class="ol-ai-caret"></span>':'');
+          if(i<n){setTimeout(tick,18);}else{txt.innerHTML=fmtAI(full||'—');done();}
+        })();
+      }
+      fetch(AI_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({q:q,passages:passages})}).then(function(res){
+        if(!res.ok||!res.body)throw new Error('bad response');
+        var reader=res.body.getReader(),dec=new TextDecoder(),buf='';
+        function finish(){begin();pinStart();typeReveal(acc,onDone);}
+        function pump(){
+          return reader.read().then(function(r){
+            if(r.done){finish();return;}
+            buf+=dec.decode(r.value,{stream:true});
+            var lines=buf.split('\n');buf=lines.pop()||'';
+            lines.forEach(function(line){
+              var t=line.trim();
+              if(t.indexOf('data:')!==0)return;
+              var p=t.slice(5).trim();
+              if(p==='[DONE]'||!p)return;
+              try{var tok=JSON.parse(p);if(typeof tok==='string'){acc+=tok;}}catch(e){}
+            });
+            return pump();
+          });
+        }
+        return pump();
+      }).catch(function(){if(!gotErr){gotErr=true;onErr();}});
+    }
+    function renderTopicAI(q){
+      var r=rank(q),tk=r.tk,top=r.top;
+      if(!tk.length){addBot('<p class="lead">Try a question like <em>why do you venerate icons?</em> or type a Bible reference such as <em>John 3:16</em>.</p>');busy=false;return;}
+      if(!top.length){addBot('<p class="lead">I couldn’t find that on the site. Try different words, or browse from the menu.</p>');busy=false;return;}
+      var passages=top.slice(0,6).map(function(it){return {t:it.t,h:it.h,x:it.x};});
+      lampState('think');
+      var bubble=addBot(''+LAMP('think')+'<span class="ol-ai-think">consulting the lamp…</span>');
+      streamAI(q,passages,bubble,function(){
+        var c=document.createElement('div');c.innerHTML=citeHTML(top);
+        bubble.appendChild(c.firstChild);busy=false;lampState('happy');setTimeout(function(){lampState('idle');},4200);
+      },function(){
+        bubble.parentNode&&bubble.parentNode.removeChild(bubble);
+        lampState('idle');renderTopic(q);busy=false;
+      });
+    }
+
+    var busy=false;
+    function handle(q){
+      q=(q||'').trim();if(!q||busy)return;
+      addUser(q);inp.value='';busy=true;
+      var topic=function(){loadC().then(function(){if(AI_ENDPOINT)renderTopicAI(q);else{renderTopic(q);busy=false;}});};
+      var vp=(window.__olVerseQuery?window.__olVerseQuery(q):Promise.resolve(null));
+      Promise.resolve(vp).then(function(v){
+        if(v){renderVerse(v);busy=false;return;}
+        topic();
+      }).catch(topic);
+    }
+
+    var greeted=false;
+    function greet(){
+      if(greeted)return;greeted=true;
+      var d=addBot('<p class="lead">'+LAMP('idle')+' Ask me anything about the Oriental Orthodox faith, other traditions, or type a Bible reference — I’ll point you to the answer on the site.</p><div class="ol-ask-chips"></div>');
+      var chips=['Why venerate icons?','Are we monophysite?','Purgatory','John 3:16'];
+      var cw=d.querySelector('.ol-ask-chips');
+      chips.forEach(function(c){var b=document.createElement('button');b.type='button';b.textContent=c;b.addEventListener('click',function(){handle(c);});cw.appendChild(b);});
+    }
+    function openAsk(){wrap.classList.add('open');fab.classList.add('hide');greet();lampState('idle');loadC();setTimeout(function(){inp.focus();},40);scrollDown();}
+    function closeAsk(){wrap.classList.remove('open');fab.classList.remove('hide');}
+    fab.addEventListener('click',openAsk);
+    xB.addEventListener('click',closeAsk);
+    sendB.addEventListener('click',function(){handle(inp.value);});
+    inp.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();handle(inp.value);}else if(e.key==='Escape'){closeAsk();}});
+    window.__olOpenAsk=openAsk;
+  }catch(e){}
+})();
+/* END-FEATURES4-JS */</script>
+<script>
+/* AUTO-FEATURES5-JS */
+(function(){
+  try{
+    /* ---- 1. print / save-as-PDF button in the sidebar ---- */
+    if(!document.querySelector('.ol-print-btn')){
+      var pb=document.createElement('button');pb.className='ol-print-btn';pb.type='button';
+      pb.setAttribute('aria-label','Print or save this page as PDF');
+      pb.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg><span>Print / Save as PDF</span>';
+      pb.addEventListener('click',function(){window.print();});
+      var sbtn=document.querySelector('.ol-search-btn');
+      if(sbtn&&sbtn.parentNode){sbtn.parentNode.insertBefore(pb,sbtn.nextSibling);}
+      else{var nav=document.querySelector('#sidebar nav,#sb nav,#sidebar,#sb');if(nav)nav.insertBefore(pb,nav.firstChild);}
+    }
+    /* ---- 2. offline / installable (PWA) service worker ---- */
+    if('serviceWorker' in navigator){
+      window.addEventListener('load',function(){
+        navigator.serviceWorker.register('sw.js').catch(function(){});
+      });
+    }
+  }catch(e){}
+})();
+/* END-FEATURES5-JS */</script>
+<button id="ol-sbt" onclick="olSb()" aria-label="Collapse or expand the contents sidebar" title="Hide or show contents"><span id="ol-sbi">&#8249;</span></button>
+<script>function olSb(){var c=document.documentElement.classList.toggle('sb-collapsed');try{localStorage.setItem('ol-sb',c?'1':'0')}catch(e){}olSbIcon()}function olSbIcon(){var i=document.getElementById('ol-sbi');if(i)i.innerHTML=document.documentElement.classList.contains('sb-collapsed')?'&#8250;':'&#8249;'}olSbIcon();</script>
+<script>/* AUTO-SHARECARDS-JS */
+(function(){
+try{
+  var SITE="The Orthodox Lamp";
+  var HOST="85z5yr9fyf-commits.github.io/the-orthodox-lamp";
+  /* ---- styles ---- */
+  if(!document.getElementById('ol-sc-style')){
+    var st=document.createElement('style');st.id='ol-sc-style';
+    st.textContent='.fc,.sv{position:relative}'+
+      '.ol-sc-btn{position:absolute;top:8px;right:8px;z-index:5;display:inline-flex;align-items:center;gap:5px;'+
+      'background:rgba(201,168,76,.12);border:1px solid var(--gd,#8a6a20);color:var(--gold,#c9a84c);'+
+      'border-radius:6px;padding:3px 8px;font:600 .7rem/1 Georgia,serif;cursor:pointer;opacity:0;'+
+      'transition:opacity .18s,background .18s}'+
+      '.fc:hover .ol-sc-btn,.sv:hover .ol-sc-btn,.ol-sc-btn:focus{opacity:.92}'+
+      '.ol-sc-btn:hover{background:rgba(201,168,76,.24)}'+
+      '.ol-sc-btn svg{width:12px;height:12px}'+
+      '@media(hover:none){.ol-sc-btn{opacity:.6}}'+
+      '@media print{.ol-sc-btn{display:none!important}}';
+    document.head.appendChild(st);
+  }
+  var ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"></line><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"></line></svg>';
+  function clean(s){return (s||'').replace(/\s+/g,' ').trim();}
+  function dequote(s){return s.replace(/^[“‘"']+/,'').replace(/[”’"']+$/,'').trim();}
+  function collect(el){
+    if(el.classList.contains('fc')){
+      var body=el.querySelector('.fc-body'), name=el.querySelector('.fc-name'), src=el.querySelector('.fc-src');
+      var srcTxt='';
+      if(src){var cl=src.cloneNode(true);var tg=cl.querySelector('.tag');if(tg)tg.remove();srcTxt=clean(cl.textContent);}
+      return {quote:dequote(clean(body?body.textContent:el.textContent)),
+              attr:name?clean(name.textContent):'', src:srcTxt};
+    }else{ /* .sv */
+      var cl=el.cloneNode(true), cite=cl.querySelector('cite'); var attr='';
+      var sb=cl.querySelector('.ol-sc-btn'); if(sb)sb.remove();
+      if(cite){attr=clean(cite.textContent);cite.remove();}
+      return {quote:dequote(clean(cl.textContent)), attr:attr, src:''};
+    }
+  }
+  function wrap(x,text,maxW){
+    var words=text.split(' '),lines=[],cur='';
+    for(var i=0;i<words.length;i++){
+      var t=cur?cur+' '+words[i]:words[i];
+      if(x.measureText(t).width>maxW&&cur){lines.push(cur);cur=words[i];}else{cur=t;}
+    }
+    if(cur)lines.push(cur);
+    return lines;
+  }
+  function draw(d){
+    var S=1080,c=document.createElement('canvas');c.width=S;c.height=S;
+    var x=c.getContext('2d');
+    var g=x.createLinearGradient(0,0,0,S);g.addColorStop(0,'#151515');g.addColorStop(1,'#0b0b0b');
+    x.fillStyle=g;x.fillRect(0,0,S,S);
+    x.strokeStyle='#c9a84c';x.lineWidth=3;x.strokeRect(46,46,S-92,S-92);
+    x.strokeStyle='#5a4a20';x.lineWidth=1;x.strokeRect(58,58,S-116,S-116);
+    x.textAlign='center';
+    /* label */
+    x.fillStyle='#a09880';x.font='600 22px Georgia,serif';
+    x.fillText('T H E   O R T H O D O X   L A M P',S/2,132);
+    /* lamp flame */
+    x.fillStyle='#e8c96a';x.beginPath();x.ellipse(S/2,182,11,17,0,0,Math.PI*2);x.fill();
+    x.fillStyle='#c9a84c';x.beginPath();x.moveTo(S/2,150);x.lineTo(S/2-11,180);x.lineTo(S/2+11,180);x.closePath();x.fill();
+    /* opening quote mark */
+    x.fillStyle='rgba(201,168,76,.35)';x.font='italic 150px Georgia,serif';
+    x.fillText('“',S/2,300);
+    /* quote text: size to fit */
+    var maxW=S-220, q=d.quote, size=46;
+    var lens=[[170,46],[300,40],[460,34],[680,29]], picked=25;
+    for(var i=0;i<lens.length;i++){if(q.length<=lens[i][0]){picked=lens[i][1];break;}}
+    size=picked;
+    x.fillStyle='#ece4d4';x.font='italic '+size+'px Georgia,serif';
+    var lines=wrap(x,q,maxW), lh=size*1.34;
+    if(lines.length>15){lines=lines.slice(0,15);lines[14]=lines[14].replace(/[.,;: ]+$/,'')+'…';}
+    var blockH=lines.length*lh, cy=560-blockH/2;
+    /* keep within frame */
+    if(cy<330)cy=330;
+    for(var j=0;j<lines.length;j++){x.fillText(lines[j],S/2,cy+j*lh);}
+    var y=cy+lines.length*lh+34;
+    /* divider */
+    x.strokeStyle='#5a4a20';x.lineWidth=1;x.beginPath();x.moveTo(S/2-46,y);x.lineTo(S/2+46,y);x.stroke();
+    y+=44;
+    /* attribution */
+    if(d.attr){x.fillStyle='#c9a84c';x.font='700 30px Georgia,serif';
+      var al=wrap(x,'— '+d.attr,maxW);for(var k=0;k<al.length;k++){x.fillText(al[k],S/2,y);y+=38;}}
+    /* source */
+    if(d.src){x.fillStyle='#9a9078';x.font='italic 22px Georgia,serif';
+      var sl=wrap(x,d.src,maxW);for(var m=0;m<sl.length;m++){x.fillText(sl[m],S/2,y);y+=28;}}
+    /* footer */
+    x.fillStyle='#8a8268';x.font='20px Georgia,serif';
+    x.fillText(HOST,S/2,S-70);
+    return c;
+  }
+  function share(d){
+    var c=draw(d);
+    c.toBlob(function(blob){
+      if(!blob)return;
+      var url=URL.createObjectURL(blob);
+      var a=document.createElement('a');
+      a.href=url;a.download='orthodox-lamp-quote.png';
+      document.body.appendChild(a);a.click();a.remove();
+      setTimeout(function(){URL.revokeObjectURL(url);},4000);
+    },'image/png');
+  }
+  var nodes=document.querySelectorAll('.fc, .sv');
+  nodes.forEach(function(el){
+    if(el.querySelector('.ol-sc-btn'))return;
+    var txt=clean(el.textContent);
+    if(txt.length<25)return;
+    var b=document.createElement('button');
+    b.type='button';b.className='ol-sc-btn';b.title='Download this quote as an image';
+    b.setAttribute('aria-label','Download this quote as a shareable image');
+    b.innerHTML=ICON+'<span>Share</span>';
+    b.addEventListener('click',function(ev){ev.stopPropagation();share(collect(el));});
+    el.appendChild(b);
+  });
+}catch(e){}
+})();
+/* END-SHARECARDS-JS */</script>
+</body>
+</html>
