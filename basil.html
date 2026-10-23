@@ -1,0 +1,1876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>St Basil the Great — The Orthodox Lamp</title>
+<style>
+:root{--gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;--bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--tx:#e8e0d0;--mu:#b8ac82;--red:#8b2020;--br:#2a2a2a;--bg5:#3a2e10;--sidebar-w:270px;--mia:#1a3060;--mia-b:#3060c0;--dyo:#2a1a40;--dyo-b:#8060c0;--nes:#1a2510;--nes-b:#4a7030;--eut:#3a1515;--eut-b:#a03030}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.7;display:flex;flex-direction:column;min-height:100vh}
+a{color:var(--gold);text-decoration:none}
+a:hover{color:var(--gl)}
+
+#prog{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--gd),var(--gold),var(--gl));z-index:9999;transition:width .1s}
+
+#sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:100;display:flex;flex-direction:column;transition:transform .3s}
+#sidebar header{padding:1.4rem 1.2rem 1rem;border-bottom:1px solid var(--br)}
+.sb-cross{font-size:1.3rem;color:var(--gold);display:block;text-align:center;margin-bottom:.3rem}
+.sb-title{font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gl);text-align:center;line-height:1.3}
+.sb-sub{font-size:.62rem;color:var(--mu);text-align:center;margin-top:.25rem;font-style:italic}
+nav{padding:.8rem 0;flex:1}
+nav a{display:block;padding:.42rem 1.2rem;font-size:.78rem;color:var(--mu);transition:color .15s,background .15s;border-left:2px solid transparent;line-height:1.4}
+nav a:hover{color:var(--tx);background:var(--bg3)}
+nav a.active{color:var(--gl);border-left-color:var(--gold);background:var(--bg5)}
+.sb-search{padding:.8rem 1rem;border-top:1px solid var(--br)}
+.sb-search input{width:100%;background:var(--bg3);border:1px solid var(--br);border-radius:5px;padding:.4rem .7rem;color:var(--tx);font-size:.78rem;outline:none}
+.sb-search input:focus{border-color:var(--gd)}
+
+#main{margin-left:var(--sidebar-w);flex:1;display:flex;flex-direction:column}
+#mob-bar{display:none;position:fixed;top:0;left:0;right:0;height:48px;background:var(--bg2);border-bottom:1px solid var(--br);align-items:center;padding:0 1rem;z-index:99}
+#mob-bar .mb-title{font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gl);flex:1;text-align:center}
+#ham{background:none;border:none;color:var(--gold);font-size:1.4rem;cursor:pointer;padding:.3rem}
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:99}
+#overlay.show{display:block}
+
+.hero{text-align:center;padding:4.5rem 1.5rem 3rem;background:linear-gradient(180deg,var(--bg2) 0%,var(--bg) 100%);border-bottom:1px solid var(--br);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(201,168,76,.07) 0%,transparent 70%);pointer-events:none}
+.si{font-size:2rem;color:var(--gold);display:block;margin-bottom:.5rem}
+.st{font-size:clamp(1.5rem,4vw,2.4rem);font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--tx);line-height:1.2}
+.st span{color:var(--gold)}
+.ss{font-size:1rem;color:var(--gl);margin:.6rem 0 .3rem;font-weight:700;letter-spacing:.04em}
+.tg{font-size:.85rem;color:var(--mu);font-style:italic;margin-top:.4rem}
+.orn{color:var(--gold);font-size:.9rem;letter-spacing:.4em;margin-top:1rem;opacity:.7}
+
+.content{max-width:860px;margin:0 auto;padding:3rem 2rem 5rem;flex:1}
+
+.sec{border:1px solid var(--br);border-radius:8px;margin-bottom:1.2rem;overflow:hidden;background:var(--bg2)}
+.sec-h{width:100%;background:none;border:none;padding:1.1rem 1.4rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--tx);font-family:'Georgia',serif;font-size:1rem;font-weight:700;text-align:left;transition:background .2s}
+.sec-h:hover{background:var(--bg3)}
+.sec-h .sec-num{color:var(--gold);font-size:.8rem;font-weight:700;letter-spacing:.1em;margin-right:.7rem;min-width:2.2rem}
+.sec-h .arr{color:var(--gold);transition:transform .3s;font-size:.9rem}
+.sec.open .arr{transform:rotate(180deg)}
+.sec-b{display:none;padding:1.4rem;border-top:1px solid var(--br)}
+.sec.open .sec-b{display:block}
+
+h3{font-size:1rem;color:var(--gl);margin:1.4rem 0 .6rem;letter-spacing:.03em}
+h3:first-child{margin-top:0}
+p{margin-bottom:.9rem;font-size:.92rem}
+ul,ol{margin:.6rem 0 .9rem 1.4rem;font-size:.92rem}
+li{margin-bottom:.3rem}
+blockquote{border-left:3px solid var(--gold);padding:.6rem 1rem;background:var(--bg3);border-radius:0 5px 5px 0;margin:.8rem 0;font-style:italic;font-size:.9rem;color:var(--gl)}
+
+/* Glossary terms */
+.gt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.8rem;margin:.8rem 0}
+.gt{background:var(--bg3);border:1px solid var(--br);border-radius:7px;padding:.9rem 1rem}
+.gt-term{font-size:.82rem;font-weight:700;color:var(--gold);letter-spacing:.06em;margin-bottom:.2rem}
+.gt-grk{font-size:.75rem;color:var(--mu);font-style:italic;margin-bottom:.4rem}
+.gt-def{font-size:.82rem;color:var(--tx);line-height:1.5}
+
+/* Comparison grid */
+.comp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin:1rem 0}
+.comp-card{border-radius:8px;padding:1rem 1.1rem;border:1px solid var(--br)}
+.comp-card.mia{background:var(--mia);border-color:var(--mia-b)}
+.comp-card.dyo{background:var(--dyo);border-color:var(--dyo-b)}
+.comp-card.nes{background:var(--nes);border-color:var(--nes-b)}
+.comp-card.eut{background:var(--eut);border-color:var(--eut-b)}
+.comp-card h4{font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem}
+.comp-card.mia h4{color:#8ab0ff}
+.comp-card.dyo h4{color:#b090ff}
+.comp-card.nes h4{color:#80b060}
+.comp-card.eut h4{color:#e07070}
+.comp-card p{font-size:.82rem;line-height:1.5}
+
+/* Scripture cards with dual interpretation */
+.sv{background:var(--bg3);border:1px solid var(--br);border-radius:7px;padding:1rem 1.2rem;margin:.7rem 0}
+.sv .ref{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+.sv .txt{font-size:.9rem;font-style:italic;line-height:1.6;margin-bottom:.5rem}
+.sv .mia-note{background:var(--mia);border:1px solid var(--mia-b);border-radius:5px;padding:.5rem .7rem;font-size:.8rem;margin:.4rem 0}
+.sv .dyo-note{background:var(--dyo);border:1px solid var(--dyo-b);border-radius:5px;padding:.5rem .7rem;font-size:.8rem;margin:.4rem 0}
+.labels{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.4rem}
+.labels span{font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.15rem .5rem;border-radius:3px}
+.labels .mia{background:var(--mia);color:#8ab0ff;border:1px solid var(--mia-b)}
+.labels .dyo{background:var(--dyo);color:#b090ff;border:1px solid var(--dyo-b)}
+.labels .ctx{background:#1a1a3a;color:#8a8adf;border:1px solid #2a2a6a}
+.labels .pl{background:#3a2e10;color:#c9a84c;border:1px solid #5a4a20}
+
+/* Anathema cards */
+.ana{background:var(--eut);border:1px solid var(--eut-b);border-radius:7px;padding:.9rem 1.1rem;margin:.6rem 0}
+.ana-num{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#e07070;margin-bottom:.3rem}
+.ana-txt{font-size:.88rem;font-style:italic;line-height:1.6}
+
+/* Father cards */
+.fc{background:var(--bg3);border-left:3px solid var(--gold);border-radius:0 7px 7px 0;padding:1rem 1.2rem;margin:.7rem 0}
+.fc .fn{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.2rem}
+.fc .fw{font-size:.78rem;color:var(--mu);margin-bottom:.4rem;font-style:italic}
+.fc .fq{font-size:.9rem;font-style:italic;line-height:1.6;margin-bottom:.3rem}
+
+/* Objection accordion */
+.obj{border:1px solid var(--br);border-radius:7px;margin:.7rem 0;overflow:hidden;background:var(--bg3)}
+.obj-h{width:100%;background:none;border:none;padding:.8rem 1.1rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--gl);font-family:'Georgia',serif;font-size:.88rem;font-weight:700;text-align:left}
+.obj-h:hover{background:var(--bg4)}
+.obj-h .arr{transition:transform .3s;font-size:.8rem;color:var(--gold)}
+.obj.open .arr{transform:rotate(180deg)}
+.obj-b{display:none;padding:1rem 1.1rem;border-top:1px solid var(--br);font-size:.88rem}
+.obj.open .obj-b{display:block}
+
+/* FAQ */
+.fi{border:1px solid var(--br);border-radius:7px;margin:.6rem 0;overflow:hidden}
+.fi-h{width:100%;background:var(--bg2);border:none;padding:.8rem 1.1rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--tx);font-family:'Georgia',serif;font-size:.88rem;font-weight:700;text-align:left}
+.fi-h:hover{background:var(--bg3)}
+.fi-h .arr{transition:transform .3s;font-size:.8rem;color:var(--gold)}
+.fi.open .arr{transform:rotate(180deg)}
+.fi-b{display:none;padding:1rem 1.1rem;border-top:1px solid var(--br);background:var(--bg2);font-size:.88rem}
+.fi.open .fi-b{display:block}
+
+/* Timeline */
+.timeline{border-left:2px solid var(--gd);padding-left:1.4rem;margin:1rem 0}
+.tl-item{position:relative;margin-bottom:1.2rem}
+.tl-item::before{content:'';position:absolute;left:-1.8rem;top:.45rem;width:.7rem;height:.7rem;background:var(--gold);border-radius:50%}
+.tl-date{font-size:.72rem;font-weight:700;letter-spacing:.1em;color:var(--gold);text-transform:uppercase}
+.tl-text{font-size:.88rem;color:var(--tx);margin-top:.2rem}
+
+/* Sources */
+.src-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.8rem;margin-top:.8rem}
+.src-card{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:.9rem 1rem}
+.src-card h4{font-size:.78rem;font-weight:700;color:var(--gold);margin-bottom:.4rem;letter-spacing:.06em;text-transform:uppercase}
+.src-card p,.src-card li{font-size:.8rem;color:var(--mu)}
+.src-card ul{margin-left:1rem}
+
+#btt{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--bg3);border:1px solid var(--gd);border-radius:50%;width:2.4rem;height:2.4rem;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1rem;cursor:pointer;opacity:0;transition:opacity .3s;z-index:50}
+#btt.show{opacity:1}
+
+@media(max-width:768px){
+  #sidebar{transform:translateX(-100%)}
+  #sidebar.open{transform:translateX(0)}
+  #main{margin-left:0;padding-top:48px}
+  #mob-bar{display:flex}
+}
+
+.lampsvg{display:block;margin:0 auto 14px;height:auto}
+.lampsvg .lampflame{animation:lampflick 3.2s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes lampflick{0%,100%{transform:scaleY(1) scaleX(1);opacity:.95}25%{transform:scaleY(1.06) scaleX(.97);opacity:1}50%{transform:scaleY(.96) scaleX(1.03);opacity:.9}75%{transform:scaleY(1.04) scaleX(.98);opacity:1}}
+
+html.light{--gold:#8a6a20;--gl:#6f5413;--gd:#b08e3e;--bg:#f7f2e6;--bg2:#efe8d5;--bg3:#e7ddc7;--bg4:#ddd2b9;--tx:#2b2415;--mu:#6e6450;--br:#d2c7aa;--bg5:#efe0b8;--mia:#cfd8ed;--dyo:#dcd0ec;--dyo-b:#412b6e;--nes:#ddebd1;--eut:#edcfcf}
+#ol-tt{position:fixed;right:16px;bottom:74px;z-index:9999;width:44px;height:44px;border-radius:50%;background:var(--bg3,var(--panel,#1a1a1a));color:var(--gold,#c9a84c);border:1px solid var(--gd,var(--gold-dark,var(--rule,#8a6a20)));font-size:1.1rem;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35);line-height:1}#ol-tt:hover{filter:brightness(1.15)}
+html.light .pl,html.light .labels .prot{background:#eed6d6;color:#8b2020}
+html.light .gl-tag,html.light .labels .oo{background:#d8e8d8;color:#1d5c1d}
+html.light .labels .ctx{background:#d8e3ee;color:#1d4a6b}
+html.light .obj{border-color:#dcc0c0}
+html.light .obj-bd{border-top-color:#dcc0c0}
+html.light .obj-hd h3{color:#8b2020}
+html.light .comp-card.prot{border-top-color:#a83232}
+html.light .comp-card.prot .ct{color:#a83232}
+html.light .labels .mia{color:#112d68}
+html.light .labels .dyo{color:#2a1168}
+html.light .labels .pl{color:#5c4916}
+html.light .ana-num{color:#651010}
+/* ol-aes-v1 */
+html.light #sidebar{background:linear-gradient(180deg,#f5edd5 0%,#ede4cb 100%)}
+html.light .sec{box-shadow:0 1px 6px rgba(100,70,15,.09)}
+html.light .sv{box-shadow:0 1px 4px rgba(100,70,15,.08)}
+html.light .fc{box-shadow:0 1px 4px rgba(100,70,15,.08)}
+html.light a{color:#6b4a10}
+html.light #sidenav a{color:var(--mu)}
+html.light #sidenav a.active,html.light #sidenav a:hover{color:var(--gold)}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* AUTO-ENHANCE */
+html.js-anim .sec{opacity:0;transform:translateY(14px);transition:opacity .55s cubic-bezier(.16,.7,.3,1),transform .55s cubic-bezier(.16,.7,.3,1)}
+html.js-anim .sec.in{opacity:1;transform:none}
+.sec.open .sec-body,.sec.open .sec-bd,.sec.open .sec-body2{animation:olSecOpen .4s cubic-bezier(.16,.7,.3,1)}
+.fi.open .fi-body,.fi.open .fi-bd{animation:olSecOpen .32s cubic-bezier(.16,.7,.3,1)}
+@keyframes olSecOpen{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.sec{margin-bottom:20px;transition:border-color .25s,box-shadow .25s}
+.sec-h:hover,.sec-hd:hover{box-shadow:inset 3px 0 0 var(--gd)}
+.sec-body,.sec-bd{line-height:1.75}
+.sec-body p,.sec-bd p{margin-bottom:12px}
+#ol-top{position:fixed;right:22px;bottom:24px;width:42px;height:42px;border-radius:50%;border:1px solid var(--br);background:var(--bg2);color:var(--gd);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .3s,transform .3s,background .2s;z-index:150;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+#ol-top.show{opacity:1;pointer-events:auto;transform:none}
+#ol-top:hover{background:var(--gd);color:#1a140a}
+.ol-readtime{display:inline-flex;align-items:center;gap:7px;font-size:.74rem;letter-spacing:.04em;color:var(--mu);border:1px solid var(--br);border-radius:20px;padding:4px 12px;margin-top:10px;text-transform:uppercase}
+.ol-readtime::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--gd)}
+@media(prefers-reduced-motion:reduce){html.js-anim .sec{opacity:1;transform:none}#ol-top{transition:none}}
+/* END-ENHANCE */
+
+/* AUTO-AESTHETIC2 */
+:root{--ol-acc:var(--gd,#c9a84c)}
+/* smooth anchor scrolling + sticky-header offset */
+html{scroll-behavior:smooth}
+:where(.sec,[id]){scroll-margin-top:88px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+/* theme cross-fade */
+body,main,.sec,.sec-h,.sec-hd,.sec-body,.sec-bd,#sb,#sb-nav a{transition:background-color .35s ease,color .35s ease,border-color .35s ease}
+/* typography polish */
+main .sec-body p,main .sec-bd p{line-height:1.8}
+.sec-h,.sec-hd{letter-spacing:.005em}
+p.ol-lead::first-letter{float:left;font-size:3.1em;line-height:.78;padding:6px 10px 0 0;color:var(--ol-acc);font-weight:700}
+/* card hover depth */
+[class*="-card"],[class*="-box"],.vbox{transition:transform .22s cubic-bezier(.16,.7,.3,1),box-shadow .22s ease,border-color .22s ease,background-color .35s ease,color .35s ease}
+[class*="-card"]:hover,[class*="-box"]:hover,.vbox:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.28)}
+html.light [class*="-card"]:hover,html.light [class*="-box"]:hover,html.light .vbox:hover{box-shadow:0 8px 22px rgba(40,30,10,.12)}
+/* section dividers (inserted by JS) */
+.ol-divider{text-align:center;color:var(--ol-acc);opacity:.45;font-size:1rem;margin:4px auto 26px;line-height:1;letter-spacing:0;user-select:none}
+/* sidebar active-dot fill */
+#sb-nav a{position:relative}
+#sb-nav a.active::before{content:"";position:absolute;left:-2px;top:50%;width:6px;height:6px;border-radius:50%;background:var(--ol-acc);box-shadow:0 0 7px var(--ol-acc);transform:translateY(-50%) scale(0);animation:olDot .3s cubic-bezier(.16,.7,.3,1) forwards}
+@keyframes olDot{to{transform:translateY(-50%) scale(1)}}
+/* bare blockquote uplift (does not touch styled quote-cards) */
+main blockquote{border-left:3px solid var(--ol-acc);padding:8px 0 8px 18px;margin:18px 0;font-style:italic}
+/* END-AESTHETIC2 */
+
+/* AUTO-FEATURES3 */
+/* copy-link buttons */
+.ol-copy{opacity:0;margin:0 8px;background:none;border:none;cursor:pointer;font-size:.8rem;color:var(--mu);transition:opacity .2s,color .2s;vertical-align:middle;padding:2px 5px;line-height:1;border-radius:5px}
+.ol-copy::before{content:"\1F517"}
+.sec-h:hover .ol-copy,.sec-hd:hover .ol-copy,.ol-copy:focus-visible{opacity:.65}
+.ol-copy:hover{opacity:1;color:var(--gd,#c9a84c)}
+.ol-copy.ok{opacity:1;color:#3fa34d}
+.ol-copy.ok::before{content:"\2713";margin-right:4px}
+.ol-copy.ok::after{content:"copied";font-size:.7rem;letter-spacing:.03em}
+/* related topics */
+.ol-related{margin:42px 0 8px;padding:22px 24px;border:1px solid var(--br);border-radius:12px;background:var(--bg2)}
+.ol-related h3{margin:0 0 14px;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gd,#c9a84c);font-weight:700}
+.ol-related-links{display:flex;flex-wrap:wrap;gap:10px}
+.ol-related-links a{display:inline-block;padding:8px 15px;border:1px solid var(--br);border-radius:22px;font-size:.9rem;color:var(--tx,#e7ddc8);text-decoration:none;background:var(--bg,#1a140a);transition:border-color .2s,color .2s,background .2s,transform .2s}
+.ol-related-links a:hover{border-color:var(--gd,#c9a84c);color:var(--gd,#c9a84c);transform:translateY(-1px)}
+/* search launcher */
+.ol-search-btn{display:flex;align-items:center;justify-content:space-between;width:100%;margin:10px 0 4px;padding:9px 13px;border:1px solid var(--br);border-radius:9px;background:var(--bg2);color:var(--mu);font:inherit;font-size:.86rem;cursor:pointer;transition:border-color .2s,color .2s}
+.ol-search-btn:hover{border-color:var(--gd,#c9a84c);color:var(--gd,#c9a84c)}
+.ol-search-btn span{border:1px solid var(--br);border-radius:5px;padding:1px 7px;font-size:.78rem;opacity:.8}
+/* search overlay */
+.ol-ov{position:fixed;inset:0;background:rgba(0,0,0,.62);backdrop-filter:blur(3px);z-index:1000;display:none;align-items:flex-start;justify-content:center;padding:11vh 16px 16px}
+.ol-ov.open{display:flex}
+.ol-modal{width:100%;max-width:620px;background:var(--bg2,#221a0e);border:1px solid var(--br);border-radius:14px;box-shadow:0 24px 70px rgba(0,0,0,.55);overflow:hidden;display:flex;flex-direction:column;max-height:74vh}
+html.light .ol-modal{box-shadow:0 24px 70px rgba(40,30,10,.22)}
+.ol-search-input{border:none;border-bottom:1px solid var(--br);background:none;color:var(--tx,#e7ddc8);font:inherit;font-size:1.12rem;padding:18px 22px;outline:none;width:100%}
+.ol-search-input::placeholder{color:var(--mu)}
+.ol-results{overflow-y:auto;padding:8px}
+.ol-r{display:block;padding:10px 14px;border-radius:9px;text-decoration:none;color:var(--tx,#e7ddc8);transition:background .12s}
+.ol-r .r-t{display:block;font-weight:600;font-size:.97rem}
+.ol-r .r-s{display:block;font-size:.83rem;color:var(--mu);margin-top:2px}
+.ol-r .r-s::before{content:"\2192  ";color:var(--gd,#c9a84c)}
+.ol-r.sel,.ol-r:hover{background:var(--bg,#1a140a)}
+.ol-r.sel{box-shadow:inset 3px 0 0 var(--gd,#c9a84c)}
+.ol-r mark{background:rgba(201,168,76,.32);color:inherit;border-radius:2px;padding:0 1px}
+.r-empty{padding:26px 18px;text-align:center;color:var(--mu);font-size:.92rem}
+.ol-hint{border-top:1px solid var(--br);padding:9px 18px;font-size:.74rem;color:var(--mu);letter-spacing:.03em}
+.ol-r .r-s.r-topic::before{content:"\2756  ";color:var(--gd,#c9a84c)}
+/* verse-mode card */
+.ol-vcard{margin:6px 6px 4px;padding:14px 16px;border:1px solid var(--br);border-radius:10px;background:var(--bg,#1a140a)}
+.ol-vcard .vref{font-weight:700;color:var(--gd,#c9a84c);font-size:1rem}
+.ol-vcard .vkjv{display:block;margin-top:7px;font-size:.93rem;line-height:1.6;color:var(--tx,#e7ddc8)}
+.ol-vcard .vkjv em{font-style:normal;font-size:.64rem;color:var(--mu);border:1px solid var(--br);border-radius:4px;padding:0 5px;margin-left:6px;letter-spacing:.06em;vertical-align:middle}
+.ol-vcard .vmeta{display:block;margin-top:8px;font-size:.76rem;color:var(--mu);line-height:1.5}
+/* scripture verse + tooltip */
+.ol-verse{border-bottom:1px dotted var(--gd,#c9a84c);cursor:help;text-decoration:none}
+.ol-tip{position:absolute;z-index:1100;max-width:330px;background:var(--bg2,#221a0e);color:var(--tx,#e7ddc8);border:1px solid var(--br);border-radius:10px;padding:12px 15px;font-size:.9rem;line-height:1.55;box-shadow:0 12px 34px rgba(0,0,0,.5);pointer-events:none}
+html.light .ol-tip{box-shadow:0 12px 34px rgba(40,30,10,.2)}
+.ol-tip b{color:var(--gd,#c9a84c);font-size:.84rem;letter-spacing:.02em}
+.ol-tip-kjv{font-size:.66rem;color:var(--mu);border:1px solid var(--br);border-radius:4px;padding:0 5px;margin-left:6px;letter-spacing:.05em}
+.ol-tip-load,.ol-tip-err{color:var(--mu);font-style:italic}
+/* print / pdf */
+@media print{
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #sidebar,#sb,#ham,#overlay,#prog,#ol-top,#ol-tt,.ol-search-btn,.ol-copy,.back-link,.ol-ov,.ol-tip,.ol-divider,.ol-related,.sb-search,nav,.arr{display:none!important}
+  html,body{background:#fff!important;color:#000!important}
+  main{margin:0!important;padding:0!important;max-width:100%!important;width:100%!important}
+  .sec-body,.sec-bd,.sec-body2,.fi-body,.fi-bd{display:block!important;max-height:none!important;opacity:1!important;transform:none!important;animation:none!important}
+  .sec{opacity:1!important;transform:none!important;page-break-inside:avoid;border:none!important;margin-bottom:14px!important}
+  .sec-h,.sec-hd{cursor:default}
+  .hero,.pg-title,.page-head,.pg-head,.hd{background:#fff!important;color:#000!important;border:none!important}
+  .ol-verse{border-bottom:none}
+  a{color:#000!important;text-decoration:none}
+  h1,h2,h3{color:#000!important}
+}
+/* END-FEATURES3 */
+
+/* AUTO-FEATURES4 */
+.ol-ask-fab{position:fixed;right:22px;bottom:24px;z-index:1200;display:flex;align-items:center;gap:9px;height:52px;padding:0 19px 0 15px;border:1px solid var(--br);border-radius:30px;background:var(--gd,#c9a84c);color:#1a140a;font:inherit;font-weight:600;font-size:.9rem;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.35);transition:transform .2s,box-shadow .2s}
+.ol-ask-fab:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(0,0,0,.45)}
+.ol-ask-fab svg{width:20px;height:20px;flex:none;display:block}
+.ol-ask-fab.hide{display:none}
+#ol-top{bottom:128px}
+.ol-ask-wrap{position:fixed;right:22px;bottom:24px;z-index:1201;width:380px;max-width:calc(100vw - 32px);height:560px;max-height:calc(100vh - 70px);background:var(--bg2,#221a0e);border:1px solid var(--br);border-radius:16px;box-shadow:0 24px 70px rgba(0,0,0,.55);display:none;flex-direction:column;overflow:hidden}
+.ol-ask-wrap.open{display:flex}
+html.light .ol-ask-wrap{box-shadow:0 24px 70px rgba(40,30,10,.22)}
+.ol-ask-hd{display:flex;align-items:center;gap:10px;padding:13px 15px;border-bottom:1px solid var(--br);background:var(--bg,#1a140a)}
+.ol-ask-hd .ti{flex:1;line-height:1.25}
+.ol-ask-hd .ti b{color:var(--gd,#c9a84c);font-size:.97rem}
+.ol-ask-hd .ti span{display:block;font-size:.7rem;color:var(--mu);font-weight:400;letter-spacing:.02em}
+.ol-ask-x{background:none;border:none;color:var(--mu);font-size:1.4rem;line-height:1;cursor:pointer;padding:0 6px;border-radius:6px}
+.ol-ask-x:hover{color:var(--tx,#e7ddc8)}
+.ol-ask-log{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:11px}
+.ol-ask-msg{max-width:92%;font-size:.9rem;line-height:1.55;word-wrap:break-word}
+.ol-ask-msg.user{align-self:flex-end;background:var(--gd,#c9a84c);color:#1a140a;padding:8px 13px;border-radius:14px 14px 4px 14px;font-weight:500}
+.ol-ask-msg.bot{align-self:flex-start;color:var(--tx,#e7ddc8);width:100%}
+.ol-ask-msg.bot .lead{margin:0 0 9px;color:var(--mu);font-size:.85rem}
+.ol-ans{display:block;text-decoration:none;color:var(--tx,#e7ddc8);border:1px solid var(--br);border-radius:10px;padding:9px 12px;margin-bottom:8px;background:var(--bg,#1a140a);transition:border-color .18s,transform .18s}
+.ol-ans:hover{border-color:var(--gd,#c9a84c);transform:translateY(-1px)}
+.ol-ans .a-t{display:block;font-weight:600;font-size:.88rem}
+.ol-ans .a-h{display:block;font-size:.78rem;color:var(--gd,#c9a84c);margin-top:1px}
+.ol-ans .a-x{display:block;font-size:.81rem;color:var(--mu);margin-top:5px;line-height:1.5}
+.ol-ans mark,.ol-ask-msg mark{background:rgba(201,168,76,.32);color:inherit;border-radius:2px;padding:0 1px}
+.ol-ai-txt{font-size:.9rem;line-height:1.6;color:var(--tx,#e7ddc8)}
+.ol-ai-txt p{margin:0 0 9px}.ol-ai-txt p:last-child{margin-bottom:0}
+.ol-ai-txt strong{color:var(--gl,#e8c96a);font-weight:600}
+.ol-ai-txt sup.ol-ci{color:var(--gd,#c9a84c);font-weight:600;font-size:.7em;padding:0 1px}
+.ol-ai-cite{margin-top:11px;padding-top:9px;border-top:1px solid var(--br)}
+.ol-ai-cite .lead{margin:0 0 7px;color:var(--mu);font-size:.78rem;text-transform:uppercase;letter-spacing:.04em}
+.ol-ans .a-c{display:inline-block;color:var(--gd,#c9a84c);font-weight:700;font-size:.78rem;margin-right:5px}
+.ol-ai-dots{display:inline-flex;gap:5px;padding:4px 0}
+.ol-ai-dots i{width:7px;height:7px;border-radius:50%;background:var(--gd,#c9a84c);opacity:.4;animation:olaiblink 1.2s infinite}
+.ol-ai-dots i:nth-child(2){animation-delay:.2s}.ol-ai-dots i:nth-child(3){animation-delay:.4s}
+@keyframes olaiblink{0%,60%,100%{opacity:.35}30%{opacity:1}}
+.ol-ai-lamp{display:inline-block;font-size:1.15em;line-height:1;transform-origin:50% 85%;animation:ollampflick 1.7s infinite ease-in-out}
+@keyframes ollampflick{0%,100%{opacity:.85;filter:drop-shadow(0 0 2px rgba(201,168,76,.45));transform:scale(1) rotate(0)}40%{opacity:1;filter:drop-shadow(0 0 8px rgba(201,168,76,.95));transform:scale(1.08) rotate(-2deg)}68%{opacity:.92;filter:drop-shadow(0 0 4px rgba(201,168,76,.7));transform:scale(1.02) rotate(1deg)}}
+.ol-ai-think{margin-left:7px;font-style:italic;font-size:.94em;opacity:.85}
+.ol-ask-msg{animation:olmsgin .4s cubic-bezier(.22,1,.36,1) both}
+@keyframes olmsgin{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
+.ol-ai-caret{display:inline-block;width:2px;height:1.05em;background:var(--gd,#c9a84c);margin-left:2px;vertical-align:-2px;border-radius:1px;animation:olcaret .8s step-end infinite}
+@keyframes olcaret{50%{opacity:0}}
+.ol-lamp{display:inline-block;line-height:0;vertical-align:-7px}.ol-lamp svg{width:24px;height:28px;overflow:visible}.ol-lamp-hd{vertical-align:middle;flex:0 0 auto}.ol-lamp-hd svg{width:34px;height:40px}.ol-lamp .eyes-happy,.ol-lamp .m-idle,.ol-lamp .m-think,.ol-lamp .m-happy{display:none}.ol-lamp.st-idle .m-idle{display:block}.ol-lamp.st-think .m-think{display:block}.ol-lamp.st-happy .m-happy{display:block}.ol-lamp.st-happy .eyes{display:none}.ol-lamp.st-happy .eyes-happy{display:block}.ol-lamp .eyes{transform-box:fill-box;transform-origin:center;animation:ollampblink 4.8s infinite}.ol-lamp.st-think .eyes{transform:translateY(-1px)}.ol-lamp .fl{transform-box:fill-box;transform-origin:50% 100%;animation:ollampfl 2.1s infinite ease-in-out}.ol-lamp.st-think .fl{animation-duration:1.1s}.ol-lamp.st-happy .fl{animation-duration:1.3s}.ol-lamp .rays{transform-box:fill-box;transform-origin:center;animation:olrays 2.6s infinite ease-in-out}.ol-lamp.st-think .rays{animation-duration:1.4s}.ol-lamp.st-happy .rays{animation-duration:1.6s}.ol-lamp.st-think .lampg{transform-box:fill-box;transform-origin:50% 100%;animation:ollampsway 2.6s infinite ease-in-out}.ol-lamp.st-happy .lampg{transform-box:fill-box;transform-origin:50% 100%;animation:ollamphop .6s ease}@keyframes ollampfl{0%,100%{transform:scaleY(1) scaleX(1)}30%{transform:scaleY(1.05) scaleX(.97)}60%{transform:scaleY(.98) scaleX(1.02)}}@keyframes olrays{0%,100%{transform:scale(1);opacity:.8}50%{transform:scale(1.08);opacity:1}}@keyframes ollampblink{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}@keyframes ollampsway{0%,100%{transform:rotate(-2.5deg)}50%{transform:rotate(2.5deg)}}@keyframes ollamphop{0%{transform:translateY(0)}40%{transform:translateY(-3px)}100%{transform:translateY(0)}}
+.ol-vans{border:1px solid var(--br);border-radius:10px;padding:11px 13px;margin-bottom:9px;background:var(--bg,#1a140a)}
+.ol-vans .vr{font-weight:700;color:var(--gd,#c9a84c)}
+.ol-vans .vt{display:block;margin-top:5px;font-size:.85rem;line-height:1.55;color:var(--tx,#e7ddc8)}
+.ol-vans .vt em{font-style:normal;font-size:.62rem;color:var(--mu);border:1px solid var(--br);border-radius:4px;padding:0 4px;margin-left:5px;letter-spacing:.05em;vertical-align:middle}
+.ol-ask-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+.ol-ask-chips button{font:inherit;font-size:.78rem;color:var(--tx,#e7ddc8);background:var(--bg,#1a140a);border:1px solid var(--br);border-radius:16px;padding:5px 11px;cursor:pointer;transition:border-color .18s,color .18s}
+.ol-ask-chips button:hover{border-color:var(--gd,#c9a84c);color:var(--gd,#c9a84c)}
+.ol-ask-foot{border-top:1px solid var(--br);padding:10px 10px 4px;display:flex;gap:8px;align-items:center}
+.ol-ask-foot input{flex:1;border:1px solid var(--br);background:var(--bg,#1a140a);color:var(--tx,#e7ddc8);font:inherit;font-size:.9rem;padding:9px 12px;border-radius:9px;outline:none}
+.ol-ask-foot input:focus{border-color:var(--gd,#c9a84c)}
+.ol-ask-foot button.send{flex:none;border:none;background:var(--gd,#c9a84c);color:#1a140a;width:38px;height:38px;border-radius:9px;cursor:pointer;font-size:1.15rem;line-height:1;display:flex;align-items:center;justify-content:center}
+.ol-ask-foot button.send:hover{filter:brightness(1.06)}
+.ol-ask-note{font-size:.66rem;color:var(--mu);text-align:center;padding:6px 12px 9px;line-height:1.4}
+@media(max-width:480px){.ol-ask-wrap{right:8px;bottom:8px;width:auto;left:8px;height:80vh;max-height:none}.ol-ask-fab{right:12px;bottom:14px}#ol-top{bottom:78px}}
+/* END-FEATURES4 */
+
+/* AUTO-FEATURES5 */
+.ol-print-btn{display:flex;align-items:center;gap:9px;width:100%;margin:4px 0 6px;padding:9px 13px;border:1px solid var(--br);border-radius:9px;background:var(--bg2);color:var(--mu);font:inherit;font-size:.86rem;cursor:pointer;transition:border-color .2s,color .2s}
+.ol-print-btn:hover{border-color:var(--gd,#c9a84c);color:var(--gd,#c9a84c)}
+.ol-print-btn svg{width:16px;height:16px;flex:none;display:block}
+@media print{.ol-print-btn{display:none!important}}
+/* END-FEATURES5 */
+</style>
+<script>try{if(localStorage.getItem('ol-theme')==='light')document.documentElement.classList.add('light')}catch(e){}</script>
+<script>try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('js-anim')}catch(e){}</script>
+<link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#141008"><link rel="apple-touch-icon" href="icon-192.png">
+<style id="ol-sb-css">
+main{transition:margin-left .3s ease}
+#ol-sbt{position:fixed;top:50%;transform:translateY(-50%);left:var(--sidebar-w);z-index:150;width:20px;height:52px;display:flex;align-items:center;justify-content:center;background:var(--bg3);color:var(--gold);border:1px solid var(--br);border-left:none;border-radius:0 8px 8px 0;cursor:pointer;font-size:.95rem;line-height:1;box-shadow:2px 0 8px rgba(0,0,0,.28);transition:left .3s ease,filter .2s;font-family:Georgia,serif}
+#ol-sbt:hover{filter:brightness(1.18)}
+html.sb-collapsed #sidebar,html.sb-collapsed #sb{transform:translateX(-100%)}
+html.sb-collapsed main{margin-left:0}
+html.sb-collapsed #ol-sbt{left:0}
+@media(max-width:768px){#ol-sbt{display:none}}
+@media print{#ol-sbt{display:none!important}}
+</style>
+<script>try{if(localStorage.getItem('ol-sb')==='1')document.documentElement.classList.add('sb-collapsed')}catch(e){}</script>
+<!-- SEO-META-START -->
+<meta name="description" content="St Basil of Caesarea, the second of the Oriental pillars: his defence of the Holy Spirit, one essence and three hypostases, written and unwritten tradition, monastic life, his care for the poor, his stand against the emperor, and the Liturgy of St Basil prayed in the Coptic Church.">
+<link rel="canonical" href="https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/basil.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="The Orthodox Lamp">
+<meta property="og:title" content="St Basil the Great — The Orthodox Lamp">
+<meta property="og:description" content="St Basil of Caesarea, the second of the Oriental pillars: his defence of the Holy Spirit, one essence and three hypostases, written and unwritten tradition, monastic life, his care for the poor, his stand against the emperor, and the Liturgy of St Basil prayed in the Coptic Church.">
+<meta property="og:url" content="https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/basil.html">
+<meta property="og:image" content="https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="St Basil the Great — The Orthodox Lamp">
+<meta name="twitter:description" content="St Basil of Caesarea, the second of the Oriental pillars: his defence of the Holy Spirit, one essence and three hypostases, written and unwritten tradition, monastic life, his care for the poor, his stand against the emperor, and the Liturgy of St Basil prayed in the Coptic Church.">
+<meta name="twitter:image" content="https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/og-cover.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "name": "St Basil the Great — The Orthodox Lamp", "description": "St Basil of Caesarea, the second of the Oriental pillars: his defence of the Holy Spirit, one essence and three hypostases, written and unwritten tradition, monastic life, his care for the poor, his stand against the emperor, and the Liturgy of St Basil prayed in the Coptic Church.", "url": "https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/basil.html", "isPartOf": {"@type": "WebSite", "name": "The Orthodox Lamp", "url": "https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/"}, "inLanguage": "en"}]}</script>
+<!-- SEO-META-END -->
+<style>/* SVLK */.sv-lk{color:inherit;text-decoration:none;border-bottom:1px dotted currentColor;transition:opacity .15s}.sv-lk:hover{opacity:.72}
+/* OL-BREADCRUMB */
+.ol-bc{margin:0;padding:16px 24px 2px;font-size:.8rem;color:var(--mu);display:flex;flex-wrap:wrap;align-items:center;gap:.45rem;letter-spacing:.02em}
+.ol-bc a{color:var(--mu);text-decoration:none;transition:color .15s}
+.ol-bc a:hover{color:var(--gd,#c9a84c)}
+.ol-bc i{opacity:.45;font-style:normal;font-size:.9em}
+.ol-bc .cur{color:var(--gd,#c9a84c);font-weight:600}
+@media print{.ol-bc{display:none!important}}
+/* END-OL-BREADCRUMB */
+/* OL-FABALIGN */
+#ol-top,#ol-tt{right:22px;width:44px;height:44px}
+.ol-ask-fab{right:22px;bottom:24px}
+#ol-tt{bottom:90px}
+#ol-top{bottom:148px}
+@media(max-width:480px){.ol-ask-fab{right:14px;bottom:16px}#ol-tt{right:14px;bottom:82px;width:42px;height:42px}#ol-top{right:14px;bottom:138px;width:42px;height:42px}}
+/* END-OL-FABALIGN */
+
+
+
+
+
+/* OL-PGBAND */
+.oo-pgband{display:block;text-decoration:none;position:relative;margin:14px 0 6px;border-radius:10px;overflow:hidden;border:1px solid var(--br);box-shadow:0 4px 14px rgba(0,0,0,.3);cursor:pointer}
+.oo-pgband .im{height:106px;background-size:cover;filter:sepia(.5) saturate(.82) brightness(.86) contrast(.95);transition:filter .5s ease,transform .5s ease}
+.oo-pgband:hover .im,.oo-pgband:focus-visible .im{filter:sepia(.3) saturate(.95) brightness(.98) contrast(1);transform:scale(1.03)}
+.oo-pgband:focus-visible{outline:2px solid var(--gl);outline-offset:2px}
+.oo-pgband .cap{position:absolute;left:15px;bottom:9px;font:600 .68rem/1.3 var(--disp,Georgia),serif;letter-spacing:.11em;text-transform:uppercase;color:var(--gl);opacity:.92;text-shadow:0 1px 6px rgba(0,0,0,1)}
+.oo-pgband .cap b{display:block;font-size:.85rem;letter-spacing:.05em;opacity:1}
+.oo-pgband::after{content:"\2626";position:absolute;top:7px;right:13px;color:var(--gl);opacity:.62;font-size:1.02rem;line-height:1;text-shadow:0 1px 3px rgba(0,0,0,.9);transition:opacity .4s ease}
+.oo-pgband:hover::after,.oo-pgband:focus-visible::after{opacity:.96}
+@media(max-width:760px){.oo-pgband .im{height:86px}}
+@media print{.oo-pgband{display:none}}
+/* END-OL-PGBAND */
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<div id="overlay" onclick="closeMobile()"></div>
+
+<aside id="sidebar">
+  <header>
+  <svg class="lampsvg" width="92" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><radialGradient id="lmpGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffb95e" stop-opacity=".55"/><stop offset="100%" stop-color="#ffb95e" stop-opacity="0"/></radialGradient><linearGradient id="lmpFlame" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#ff7a1f"/><stop offset="55%" stop-color="#ffb347"/><stop offset="100%" stop-color="#ffe9b0"/></linearGradient><linearGradient id="lmpBrass" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e3b860"/><stop offset="50%" stop-color="#a87b35"/><stop offset="100%" stop-color="#7a5523"/></linearGradient></defs><circle cx="60" cy="38" r="34" fill="url(#lmpGlow)"/><g class="lampflame"><path d="M60 16 C66 26 70 32 70 40 C70 48 65.5 53 60 53 C54.5 53 50 48 50 40 C50 32 54 26 60 16 Z" fill="url(#lmpFlame)"/><path d="M60 30 C63 35 64.5 38 64.5 42 C64.5 46.5 62.5 49 60 49 C57.5 49 55.5 46.5 55.5 42 C55.5 38 57 35 60 30 Z" fill="#fff3cf" opacity=".85"/></g><rect x="56" y="52" width="8" height="7" rx="2" fill="#8a6228"/><path d="M28 62 L92 62 C92 80 78 92 60 92 C42 92 28 80 28 62 Z" fill="url(#lmpBrass)"/><rect x="24" y="58" width="72" height="6" rx="3" fill="#caa14e"/><rect x="56" y="92" width="8" height="16" fill="url(#lmpBrass)"/><path d="M38 118 C38 110 47 108 60 108 C73 108 82 110 82 118 L82 122 L38 122 Z" fill="url(#lmpBrass)"/><rect x="32" y="122" width="56" height="6" rx="3" fill="#caa14e"/></svg>
+    <span class="sb-cross">☩</span>
+    <div class="sb-title">The Orthodox Lamp</div>
+    <div class="sb-sub">St Basil the Great</div>
+  </header>
+  <nav id="nav">
+    <a href="#s1">I. Introduction</a>
+    <a href="#s2">II. Glossary of Terms</a>
+    <a href="#s3">III. His Life</a>
+    <a href="#s4">IV. Knowing God: Against Eunomius</a>
+    <a href="#s5">V. One Essence, Three Hypostases</a>
+    <a href="#s6">VI. On the Holy Spirit</a>
+    <a href="#s7">VII. The Reserve of a Shepherd</a>
+    <a href="#s8">VIII. Written and Unwritten Tradition</a>
+    <a href="#s9">IX. Baptism and the Eucharist</a>
+    <a href="#s10">X. The Monk and the Community</a>
+    <a href="#s11">XI. The New City: Basil and the Poor</a>
+    <a href="#s12">XII. Bishop Before the Emperor</a>
+    <a href="#s13">XIII. Basil and the Oriental Orthodox</a>
+    <a href="#s14">XIV. Objections Answered</a>
+    <a href="#s15">XV. FAQ</a>
+    <a href="#s16">XVI. Sources</a>
+  </nav>
+  <div class="sb-search">
+    <input type="text" id="srch" placeholder="Search this page…" oninput="doSearch(this.value)">
+  </div>
+</aside>
+
+<div id="main">
+  <div id="mob-bar">
+    <button id="ham" onclick="toggleSidebar()">☰</button>
+    <span class="mb-title">The Orthodox Lamp</span>
+  </div>
+
+  <div class="hero">
+    <span class="si">☩</span>
+    <h1 class="st">THE <span>ORTHODOX</span> LAMP</h1>
+    <p class="ss">St Basil the Great</p>
+    <p class="tg">"...the honour paid to the image passes on to the prototype." On the Holy Spirit 18.45</p>
+    <div class="orn">✦ ✦ ✦</div>
+  </div>
+
+  <div class="content">
+<nav class="ol-bc" aria-label="Breadcrumb"><a href="index.html">Home</a><i>›</i><a href="index.html#oriental">Oriental Orthodoxy</a><i>›</i><span class="cur">St Basil the Great</span></nav>
+<!-- OL-PGBAND -->
+<a class="oo-pgband" href="https://upload.wikimedia.org/wikipedia/commons/8/8e/021_Echmiadzin_%281541465058%29.jpg" target="_blank" rel="noopener noreferrer" title="Etchmiadzin Cathedral — Armenian Apostolic · Vagharshapat · view full photo (Wikimedia Commons)" aria-label="View the full photograph of Etchmiadzin Cathedral, Armenian Apostolic · Vagharshapat — opens in a new tab"><div class="im" style="background-image:linear-gradient(180deg,rgba(12,12,12,.5) 0%,rgba(12,12,12,.86) 100%),url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/021_Echmiadzin_%281541465058%29.jpg/960px-021_Echmiadzin_%281541465058%29.jpg');background-position:center 50%"></div><span class="cap"><b>Etchmiadzin Cathedral</b>Armenian Apostolic · Vagharshapat</span></a>
+<!-- END-OL-PGBAND -->
+
+
+    <div class="sec open" id="s1">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">I.</span>Introduction: Basil the Great</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>St Basil, Archbishop of Caesarea in Cappadocia, died on the first day of 379, aged about fifty. In those few years he defended the divinity of the Holy Spirit when even many who accepted Nicaea hesitated, gave the Church the clear distinction between one essence and three hypostases in God, shaped the monastic life of the Christian East, built a whole quarter of his city to care for the sick and the poor, and faced down an emperor. Two years after his death the Council of Constantinople confessed the Holy Spirit "the Lord and Giver-of-Life," who "with the Father and the Son together is worshipped and glorified," in words that echo his.</p>
+        <p>For the Coptic faithful, Basil is above all a name heard every Sunday. The Divine Liturgy most often prayed in the Coptic Church is the Liturgy of St Basil.</p>
+        <p>This is the second page in the series on the Oriental pillars. Athanasius, the first, defended the Son against Arius; Basil, who wrote to him as the Church's "physician," carried the same defence over to the Holy Spirit. Cyril of Alexandria, the third, will follow.</p>
+        <blockquote>"...the honour paid to the image passes on to the prototype." St Basil, On the Holy Spirit 18.45</blockquote>
+        <h3>A Note on Quotations</h3>
+        <p>Every quotation marked <span class="pl">VERBATIM</span> has been checked word for word against the public domain translation in the Nicene and Post-Nicene Fathers, second series, volume 8 (Basil) and volume 7 (Gregory the Theologian). Several of Basil's most famous works, including <em>Against Eunomius</em>, the monastic Rules and the sermons on wealth, have no public domain English translation. Their teaching is summarised and marked <span class="pl">PARAPHRASE</span>. Scripture follows the NKJV.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s2">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">II.</span>Glossary of Terms</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <div class="gt-grid">
+          <div class="gt">
+            <div class="gt-term">Ousia</div>
+            <div class="gt-grk">οὐσία: "essence"</div>
+            <div class="gt-def">What God is: the one Godhead common to Father, Son and Holy Spirit.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Hypostasis</div>
+            <div class="gt-grk">ὑπόστασις: "subsistence, person"</div>
+            <div class="gt-def">Each of the Three in their distinct reality: Father, Son, Holy Spirit. Basil fixed the distinction between ousia and hypostasis for later theology.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Eunomius</div>
+            <div class="gt-grk">Anomoean, d. c. 393</div>
+            <div class="gt-def">A radical Arian who taught that the Son is "unlike" (anomoios) the Father and that God's essence can be fully known as "unbegotten." Basil wrote three books against him.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Pneumatomachi</div>
+            <div class="gt-grk">"fighters against the Spirit"</div>
+            <div class="gt-def">Those who accepted that the Son is God but denied that the Holy Spirit is. Basil's <em>On the Holy Spirit</em> answers them.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Doxology</div>
+            <div class="gt-grk">δοξολογία: "word of glory"</div>
+            <div class="gt-def">The prayer of praise. Basil was attacked for saying "Glory to the Father with the Son together with the Holy Spirit."</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Economy</div>
+            <div class="gt-grk">οἰκονομία: "management, wise handling"</div>
+            <div class="gt-def">Pastoral prudence: Gregory the Theologian uses it of Basil's care in how he spoke of the Spirit in public.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Agrapha</div>
+            <div class="gt-grk">ἄγραφα: "unwritten things"</div>
+            <div class="gt-def">Teachings and practices received from the apostles through the Church's life rather than in writing.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Hexaemeron</div>
+            <div class="gt-grk">"the six days"</div>
+            <div class="gt-def">Basil's nine homilies on the creation account in Genesis 1.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Basiliad</div>
+            <div class="gt-grk">"the new city"</div>
+            <div class="gt-def">The complex of hospital, hostel and poorhouse Basil built outside Caesarea.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Cappadocian Fathers</div>
+            <div class="gt-grk">Basil, Gregory the Theologian, Gregory of Nyssa</div>
+            <div class="gt-def">Basil, his close friend Gregory of Nazianzus, and his younger brother Gregory of Nyssa, whose teaching shaped the Council of 381.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s3">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">III.</span>His Life</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>Basil was born around 329 or 330 into a family of saints. His grandmother, Macrina the Elder, had treasured the teaching of St Gregory the Wonderworker; his sister Macrina the Younger and his brothers Gregory of Nyssa and Peter of Sebaste are all venerated as saints.</p>
+        <div class="fc">
+          <div class="fn">St Basil</div>
+          <div class="fw">Letter 204, to the people of Neocaesarea, 6 (c. AD 375)</div>
+          <div class="fq">"What clearer evidence can there be of my faith, than that I was brought up by my grandmother, blessed woman, who came from you? I mean the celebrated Macrina who taught me the words of the blessed Gregory; which, as far as memory had preserved down to her day, she cherished herself, while she fashioned and formed me, while yet a child, upon the doctrines of piety."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-date">c. AD 329–330</div>
+            <div class="tl-text">Born in Caesarea in Cappadocia, in what is now central Turkey.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">c. AD 350–355</div>
+            <div class="tl-text">Studies in Constantinople and Athens, where he forms a lifelong friendship with Gregory of Nazianzus.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">c. AD 356–357</div>
+            <div class="tl-text">Returns home as a rhetorician. His sister Macrina, Gregory of Nyssa records, draws him from worldly ambition to the ascetic life. He is baptized and travels to see the monks of Egypt, Palestine, Syria and Mesopotamia.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">c. AD 358</div>
+            <div class="tl-text">Withdraws to the family estate at Annisi in Pontus, where Gregory joins him. They compile the <em>Philokalia</em>, a selection from Origen.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">AD 362–364</div>
+            <div class="tl-text">Ordained priest in Caesarea.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">AD 368–369</div>
+            <div class="tl-text">During a great famine he spends his own means and organises the feeding of the hungry.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">AD 370</div>
+            <div class="tl-text">Elected Archbishop of Caesarea, with authority over the churches of Cappadocia.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">c. AD 371–372</div>
+            <div class="tl-text">Confronts the prefect Modestus, sent by the Arian emperor Valens, and refuses to submit. Valens attends his liturgy at Epiphany.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">c. AD 372</div>
+            <div class="tl-text">Builds the "new city" outside Caesarea: hospital, hostel and poorhouse.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">c. AD 375</div>
+            <div class="tl-text">Writes <em>On the Holy Spirit</em>.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">AD 379</div>
+            <div class="tl-text">Departs, by the traditional dating, on 1 January. The Coptic Church keeps his feast on 6 Tobi.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">AD 381</div>
+            <div class="tl-text">The Council of Constantinople confirms the faith of Nicaea and confesses the divinity of the Holy Spirit.</div>
+          </div>
+        </div>
+        <div class="fc">
+          <div class="fn">St Gregory the Theologian</div>
+          <div class="fw">Oration 43, Funeral Oration on St Basil, 21 (c. AD 381)</div>
+          <div class="fq">"Two ways were known to us, the first of greater value, the second of smaller consequence: the one leading to our sacred buildings and the teachers there, the other to secular instructors. All others we left to those who would pursue them, to feasts, theatres, meetings, banquets."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s4">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">IV.</span>Knowing God: Against Eunomius</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>By the 360s the most radical Arians, led by Aetius and Eunomius, taught that God's whole essence is captured in the word "unbegotten." Since the Son is begotten, they said, He is of a different essence: "unlike" the Father. Their claim rested on a bold idea, that the human mind can know exactly what God is.</p>
+        <div class="fc">
+          <div class="fn">St Basil</div>
+          <div class="fw">Against Eunomius I–III (c. AD 364)</div>
+          <div class="fq">Basil answers that the names we give God, such as "unbegotten," "good" or "eternal," are true, but none of them defines His essence. We form them from His works, by reasoning about what He has done. "Unbegotten" tells us that the Father has no source, not what the Father is. To claim to know God's essence is not a higher theology but pride. And "Father" and "Son" are names of relation: they show that the Son is from the Father and of the same nature, not that He is unlike Him.</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">PARAPHRASE</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St Basil</div>
+          <div class="fw">Letter 234, to Amphilochius, 1–2 (c. AD 376)</div>
+          <div class="fq">"The operations are various, and the essence simple, but we say that we know our God from His operations, but do not undertake to approach near to His essence. His operations come down to us, but His essence remains beyond our reach. But, it is replied, if you are ignorant of the essence, you are ignorant of Himself. Retort, If you say that you know His essence, you are ignorant of Himself."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=1%20Corinthians%202%3A10-11&amp;version=NKJV" target="_blank" rel="noopener noreferrer">1 Corinthians 2:10-11</a></div>
+          <div class="txt">"But God has revealed them to us through His Spirit. For the Spirit searches all things, yes, the deep things of God. For what man knows the things of a man except the spirit of the man which is in him? Even so no one knows the things of God except the Spirit of God."</div>
+          <div class="mia-note">🔵 Shared reading: Only the Spirit of God knows the things of God. We know God truly, because He reveals Himself; we do not comprehend Him.</div>
+        </div>
+        <p>Basil's humility before the mystery of God is not vagueness. He is precise about what can be said and honest about what cannot. This is the spirit of every Orthodox liturgy, where God is praised as beyond all understanding and yet truly known.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s5">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">V.</span>One Essence, Three Hypostases</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>Athanasius had shown, at the council of 362, that some who said "one hypostasis" and some who said "three hypostases" meant the same faith. Basil gave the Church a settled vocabulary so that the confusion would not return: one <em>ousia</em>, the Godhead the Three share; three <em>hypostases</em>, the Father, the Son and the Holy Spirit in their distinct reality.</p>
+        <div class="fc">
+          <div class="fn">St Basil</div>
+          <div class="fw">Letter 236, to Amphilochius, 6 (c. AD 376)</div>
+          <div class="fq">"The distinction between οὐσία and ὑπόστασις is the same as that between the general and the particular; as, for instance, between the animal and the particular man. Wherefore, in the case of the Godhead, we confess one essence or substance so as not to give a variant definition of existence, but we confess a particular hypostasis, in order that our conception of Father, Son and Holy Spirit may be without confusion and clear."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>Basil's analogy has limits, and he knew it: three men are three separate beings, but the Three in God are one God, never separated in will or action. The analogy shows only how the two words differ. What it secures is that we neither merge the Persons into one, as Sabellius did, nor divide the Godhead into three, as tritheism would.</p>
+        <div class="fc">
+          <div class="fn">St Basil</div>
+          <div class="fw">Letter 52, to the Canonicae, 1 (c. AD 370)</div>
+          <div class="fq">"...as being heirs of the same Fathers who once at Nicæa promulgated their great decree concerning the faith. Of this, some portions are universally accepted without cavil, but the homoousion, ill received in certain quarters, is still rejected by some. These objectors we may very properly blame, and yet on the contrary deem them deserving of pardon. To refuse to follow the Fathers, not holding their declaration of more authority than one's own opinion, is conduct worthy of blame, as being brimful of self-sufficiency."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>Here are Athanasius' two instincts together: firmness on the faith of Nicaea, and patience with those who struggled over a word because others had misused it. A note for readers of the Christology pages: in the doctrine of the Trinity the Oriental Orthodox use Basil's vocabulary exactly. In speaking of Christ, St Cyril used the word <em>physis</em>, nature, in a related but distinct sense, which is why "one incarnate nature" does not mean what a later reader might assume. See <a href="miaphysite_christology.html">Miaphysite Christology</a>.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s6">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">VI.</span>On the Holy Spirit</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>Basil's great treatise began with an argument over a single word. At prayer he sometimes said "Glory to the Father through the Son in the Holy Spirit," and sometimes "Glory to the Father with the Son together with the Holy Spirit." Some objected that the second form was new and ranked the Spirit with God.</p>
+        <div class="fc">
+          <div class="fn">St Basil</div>
+          <div class="fw">On the Holy Spirit 1.3 (c. AD 375)</div>
+          <div class="fq">"Lately when praying with the people, and using the full doxology to God the Father in both forms, at one time with the Son together with the Holy Ghost, and at another through the Son in the Holy Ghost, I was attacked by some of those present on the ground that I was introducing novel and at the same time mutually contradictory terms."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <h3>Ranked with the Father and the Son</h3>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Matthew%2028%3A19&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Matthew 28:19</a></div>
+          <div class="txt">"Go therefore and make disciples of all the nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit,"</div>
+          <div class="mia-note">🔵 Orthodox reading: One of Basil's decisive arguments. The Lord Himself joined the Spirit to the Father and the Son in the one Name of baptism. To rank Him with creatures is to break the Name in which we were baptized.</div>
+        </div>
+        <div class="fc">
+          <div class="fn">St Basil</div>
+          <div class="fw">On the Holy Spirit 27.68 (c. AD 375)</div>
+          <div class="fq">"They must now instruct us either not to baptize as we have received, or not to believe as we were baptized, or not to ascribe glory as we have believed. Let any man prove if he can that the relation of sequence in these acts is not necessary and unbroken; or let any man deny if he can that innovation here must mean ruin everywhere."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>Baptism, faith and praise belong together. We are baptized into the Father, the Son and the Holy Spirit; therefore we believe in all three; therefore we glorify all three together. The doxology is not a liturgical accident. It is the creed sung.</p>
+        <h3>The Work of the Spirit</h3>
+        <div class="fc">
+          <div class="fn">St Basil</div>
+          <div class="fw">On the Holy Spirit 16.38</div>
+          <div class="fq">"And in the creation bethink you first, I pray you, of the original cause of all things that are made, the Father; of the creative cause, the Son; of the perfecting cause, the Spirit; so that the ministering spirits subsist by the will of the Father, are brought into being by the operation of the Son, and perfected by the presence of the Spirit. ... For the first principle of existing things is One, creating through the Son and perfecting through the Spirit."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Psalm%2033%3A6&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Psalm 33:6</a></div>
+          <div class="txt">"By the word of the Lord the heavens were made, And all the host of them by the breath of His mouth."</div>
+          <div class="mia-note">🔵 Orthodox reading: The Word and the Breath (Spirit) of the Lord together make the heavens. Basil reads the Spirit's perfecting work in creation in verses like this.</div>
+        </div>
+        <div class="fc">
+          <div class="fn">St Basil</div>
+          <div class="fw">On the Holy Spirit 9.23</div>
+          <div class="fq">"Hence comes foreknowledge of the future, understanding of mysteries, apprehension of what is hidden, distribution of good gifts, the heavenly citizenship, a place in the chorus of angels, joy without end, abiding in God, the being made like to God, and, highest of all, the being made God."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>This is Athanasius' argument carried over to the Spirit. Only God can make us partakers of God. If the Spirit makes us "like to God" and, "highest of all," makes us god by grace, He cannot be a creature. See <a href="theosis.html">Theosis &amp; Deification</a>.</p>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Acts%205%3A3-4&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Acts 5:3-4</a></div>
+          <div class="txt">"But Peter said, 'Ananias, why has Satan filled your heart to lie to the Holy Spirit and keep back part of the price of the land for yourself? While it remained, was it not your own? And after it was sold, was it not in your own control? Why have you conceived this thing in your heart? You have not lied to men but to God.'"</div>
+          <div class="mia-note">🔵 Orthodox reading: To lie to the Holy Spirit is to lie to God. The apostle speaks of the Spirit as God without needing to argue it.</div>
+        </div>
+        <h3>One Worship, Not Three</h3>
+        <div class="fc">
+          <div class="fn">St Basil</div>
+          <div class="fw">On the Holy Spirit 18.45</div>
+          <div class="fq">"Because we speak of a king, and of the king's image, and not of two kings. The majesty is not cloven in two, nor the glory divided. The sovereignty and authority over us is one, and so the doxology ascribed by us is not plural but one; because the honour paid to the image passes on to the prototype. Now what in the one case the image is by reason of imitation, that in the other case the Son is by nature..."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>Basil's sentence about the image and the prototype is about the Son, the perfect image of the Father, and it shows why worshipping the Son is not worshipping a second God. Four centuries later the defenders of icons took the same sentence as the key to their case: honour shown to an icon passes to the one it depicts. See <a href="icon_veneration.html">Icon Veneration</a>.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s7">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">VII.</span>The Reserve of a Shepherd</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>There is a striking fact about Basil. In <em>On the Holy Spirit</em> he gives the Spirit every honour that belongs to God, but he does not, in so many words, write "the Spirit is God." Some of his own friends were troubled by this, and his enemies accused him of heresy or cowardice. Gregory the Theologian wrote to tell him so.</p>
+        <div class="fc">
+          <div class="fn">St Gregory the Theologian</div>
+          <div class="fw">Letter 58, to Basil (c. AD 372)</div>
+          <div class="fq">"Many people have condemned us as not firm in our faith; those, I mean, who think and think rightly that we thoroughly agree. Some openly charge us with heresy, others with cowardice; with heresy, those who believe that our language is not sound; with cowardice, they who blame our reserve."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>After Basil's death Gregory explained the reason. Basil was not uncertain. He was guarding his see, and with it the orthodox teaching of a whole region, from an Arian emperor waiting for a pretext to remove him.</p>
+        <div class="fc">
+          <div class="fn">St Gregory the Theologian</div>
+          <div class="fw">Oration 43, Funeral Oration on St Basil, 68 (c. AD 381)</div>
+          <div class="fq">"The enemy were on the watch for the unqualified statement the Spirit is God; which, although it is true, they and the wicked patron of their impiety imagined to be impious; so that they might banish him and his power of theological instruction from the city... Accordingly, by the use of other terms, and by statements which unmistakably had the same meaning, and by arguments necessarily leading to this conclusion, he so overpowered his antagonists, that they were left without reply..."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>"Statements which unmistakably had the same meaning." Once again a Father puts meaning above a particular word, as Athanasius did with the "like in essence" party and with the Antiochenes. The Church judged him by what he taught, not by whether he used one formula. Two years after his death, the Creed of 381 also confessed the Spirit's divinity without the bare words "the Spirit is God," by calling Him Lord, Giver of Life, and worshipped and glorified with the Father and the Son.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s8">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">VIII.</span>Written and Unwritten Tradition</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>The Pneumatomachi demanded a Bible verse for the doxology "with the Spirit." Basil answered that much of what all Christians do and believe is received through the Church's life rather than written down, and he gave examples his opponents practised themselves.</p>
+        <div class="fc">
+          <div class="fn">St Basil</div>
+          <div class="fw">On the Holy Spirit 27.66 (c. AD 375)</div>
+          <div class="fq">"Of the beliefs and practices whether generally accepted or publicly enjoined which are preserved in the Church some we possess derived from written teaching; others we have received delivered to us in a mystery by the tradition of the apostles; and both of these in relation to true religion have the same force. ... For instance, to take the first and most general example, who is thence who has taught us in writing to sign with the sign of the cross those who have trusted in the name of our Lord Jesus Christ? What writing has taught us to turn to the East at the prayer? Which of the saints has left us in writing the words of the invocation at the displaying of the bread of the Eucharist and the cup of blessing?"</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=2%20Thessalonians%202%3A15&amp;version=NKJV" target="_blank" rel="noopener noreferrer">2 Thessalonians 2:15</a></div>
+          <div class="txt">"Therefore, brethren, stand fast and hold the traditions which you were taught, whether by word or our epistle."</div>
+          <div class="mia-note">🔵 Orthodox reading: Paul himself names two channels of tradition, "by word" and "by our epistle," and asks for both to be held. Basil's distinction is Paul's.</div>
+          <div class="dyo-note">🟣 Protestant reading: Paul's oral teaching was later written in Scripture, so Scripture alone now carries the apostolic tradition.</div>
+        </div>
+        <p>Every one of Basil's examples is still part of Coptic worship: the sign of the cross, prayer facing east, and the words of the invocation of the Holy Spirit over the bread and cup. Note also what Basil does not say. He does not set unwritten tradition against Scripture. Both carry "the same force" because both come from the apostles, and he spends most of his treatise proving the Spirit's divinity from Scripture. See <a href="sola_scriptura.html">Scripture and Tradition</a>.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s9">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">IX.</span>Baptism and the Eucharist</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <div class="fc">
+          <div class="fn">St Basil</div>
+          <div class="fw">On the Holy Spirit 12.28 (c. AD 375)</div>
+          <div class="fq">"Faith and baptism are two kindred and inseparable ways of salvation: faith is perfected through baptism, baptism is established through faith, and both are completed by the same names. For as we believe in the Father and the Son and the Holy Ghost, so are we also baptized in the name of the Father and of the Son and of the Holy Ghost..."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>See <a href="nicene_creed.html">Understanding the Nicene Creed</a> for how this passage illuminates "one baptism for the remission of sins."</p>
+        <div class="fc">
+          <div class="fn">St Basil</div>
+          <div class="fw">Letter 93, to the Patrician Caesaria, on Communion (c. AD 372)</div>
+          <div class="fq">"It is good and beneficial to communicate every day, and to partake of the holy body and blood of Christ. For He distinctly says, He that eats my flesh and drinks my blood has eternal life. And who doubts that to share frequently in life, is the same thing as to have manifold life. I, indeed, communicate four times a week, on the Lord's day, on Wednesday, on Friday, and on the Sabbath, and on the other days if there is a commemoration of any Saint."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=John%206%3A54&amp;version=NKJV" target="_blank" rel="noopener noreferrer">John 6:54</a></div>
+          <div class="txt">"Whoever eats My flesh and drinks My blood has eternal life, and I will raise him up at the last day."</div>
+          <div class="mia-note">🔵 Orthodox reading: Basil quotes this verse as the reason for frequent communion. The Eucharist is "the holy body and blood of Christ," and to receive it is to share in life.</div>
+          <div class="dyo-note">🟣 Protestant reading: Many Protestants read the discourse as a call to believe in Christ, with eating and drinking as images of faith.</div>
+        </div>
+        <p>The same letter records that in Alexandria and Egypt "each one of the laity, for the most part, keeps the communion, at his own house," a practice from times of persecution and from the desert. Basil writes of it as an accepted custom. The Church later regulated it closely, but his letter is a precious glimpse of how highly the Egyptian Church of his day prized the holy Mysteries. See <a href="mysteries_of_christ.html">The Seven Mysteries of Christ</a>.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s10">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">X.</span>The Monk and the Community</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>Basil learned the monastic life in Egypt before he taught it in Asia Minor.</p>
+        <div class="fc">
+          <div class="fn">St Basil</div>
+          <div class="fw">Letter 223, against Eustathius of Sebaste, 2 (c. AD 375)</div>
+          <div class="fq">"And many did I find in Alexandria, and many in the rest of Egypt, and others in Palestine, and in Cœle Syria, and in Mesopotamia. I admired their continence in living, and their endurance in toil; I was amazed at their persistency in prayer, and at their triumphing over sleep..."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St Basil</div>
+          <div class="fw">Letter 2, to Gregory, 2 (c. AD 358)</div>
+          <div class="fq">"We must strive after a quiet mind. As well might the eye ascertain an object put before it while it is wandering restless up and down and sideways, without fixing a steady gaze upon it, as a mind, distracted by a thousand worldly cares, be able clearly to apprehend the truth."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St Basil</div>
+          <div class="fw">The Longer Rules 7 (c. AD 370s)</div>
+          <div class="fq">Basil prefers the common life to the life of the solitary. Alone, a man cannot practise the commandments of love: he has no one to serve, no one to correct him, and no one with whom to share the gifts of the Spirit. He asks the hermit, in effect, whose feet he will wash, since the Lord who washed His disciples' feet commanded us to do the same.</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">PARAPHRASE</span></div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=John%2013%3A14&amp;version=NKJV" target="_blank" rel="noopener noreferrer">John 13:14</a></div>
+          <div class="txt">"If I then, your Lord and Teacher, have washed your feet, you also ought to wash one another's feet."</div>
+          <div class="mia-note">🔵 Shared reading: Basil's question to the solitary rests on this command. Love needs a neighbour.</div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Acts%204%3A32&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Acts 4:32</a></div>
+          <div class="txt">"Now the multitude of those who believed were of one heart and one soul; neither did anyone say that any of the things he possessed was his own, but they had all things in common."</div>
+          <div class="mia-note">🔵 Shared reading: Basil took the Jerusalem church as the model for his communities: one heart, one soul, and goods held in common.</div>
+        </div>
+        <p>Basil did not invent community monasticism; St Pachomius had founded communities in Upper Egypt a generation earlier. What Basil did was to write the principles of the common life with such clarity that his Rules became a foundation for monastic life across the Christian East. The Egyptian desert and the Cappadocian monastery speak with one voice. See <a href="monasticism.html">Monasticism &amp; the Desert Fathers</a>.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s11">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XI.</span>The New City: Basil and the Poor</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>During the famine of 368, before he became archbishop, Basil used his own means and fed the hungry himself.</p>
+        <div class="fc">
+          <div class="fn">St Gregory the Theologian</div>
+          <div class="fw">Oration 43, Funeral Oration on St Basil, 35 (c. AD 381)</div>
+          <div class="fq">"He gathered together the victims of the famine with some who were but slightly recovering from it, men and women, infants, old men, every age which was in distress, and obtaining contributions of all sorts of food which can relieve famine, set before them basins of soup and such meat as was found preserved among us, on which the poor live. Then, imitating the ministry of Christ, Who, girded with a towel, did not disdain to wash the disciples' feet, using for this purpose the aid of his own servants, and also of his fellow servants, he attended to the bodies and souls of those who needed it..."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St Gregory the Theologian</div>
+          <div class="fw">Oration 43, Funeral Oration on St Basil, 63 (c. AD 381)</div>
+          <div class="fq">"Go forth a little way from the city, and behold the new city, the storehouse of piety, the common treasury of the wealthy, in which the superfluities of their wealth, aye, and even their necessaries, are stored, in consequence of his exhortations... where disease is regarded in a religious light, and disaster is thought a blessing, and sympathy is put to the test."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>The "new city" was a hospital, hostel and poorhouse, with care for lepers, whom others would not touch. It is often called one of the first public hospitals of the Christian world.</p>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Luke%2012%3A18-20&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Luke 12:18-20</a></div>
+          <div class="txt">"So he said, 'I will do this: I will pull down my barns and build greater, and there I will store all my crops and my goods. And I will say to my soul, 'Soul, you have many goods laid up for many years; take your ease; eat, drink, and be merry.'' But God said to him, 'Fool! This night your soul will be required of you; then whose will those things be which you have provided?'"</div>
+          <div class="mia-note">🔵 Orthodox reading: Basil preached a famous sermon on this parable.</div>
+        </div>
+        <div class="fc">
+          <div class="fn">St Basil</div>
+          <div class="fw">Homily 6, on "I will pull down my barns" (4th century)</div>
+          <div class="fq">Basil tells the rich that what they store beyond their need is not theirs to keep. The bread held back belongs to the hungry, the unused coat to the naked, the shoes rotting in the cupboard to the barefoot, and the hoarded money to those in need.</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">PARAPHRASE</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s12">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XII.</span>Bishop Before the Emperor</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>The emperor Valens was an Arian, and he set out to bring the Church of Cappadocia into line. His prefect Modestus summoned Basil and threatened him.</p>
+        <div class="fc">
+          <div class="fn">St Gregory the Theologian</div>
+          <div class="fw">Oration 43, Funeral Oration on St Basil, 49 (c. AD 381)</div>
+          <div class="fq">"What are these? said Basil, pray, inform me. Confiscation, banishment, torture, death. Have you no other threat? said he, for none of these can reach me. How indeed is that? said the prefect. Because, he replied, a man who has nothing, is beyond the reach of confiscation; unless you demand my tattered rags, and the few books, which are my only possessions. Banishment is impossible for me, who am confined by no limit of place... As for tortures, what hold can they have upon one whose body has ceased to be? ... Death is my benefactor, for it will send me the sooner to God..."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St Gregory the Theologian</div>
+          <div class="fw">Oration 43, Funeral Oration on St Basil, 50 (c. AD 381)</div>
+          <div class="fq">"Amazed at this language, the prefect said, No one has ever yet spoken thus, and with such boldness, to Modestus. Why, perhaps, said Basil, you have not met with a Bishop, or in his defense of such interests he would have used precisely the same language."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>Valens himself then came to Caesarea and attended the liturgy at Epiphany. Gregory describes the emperor overwhelmed by the singing of the psalms and the calm of the archbishop at the altar, so shaken that he staggered as he brought his offering (Oration 43, 52). Basil was not exiled. The emperor left him in his see, and Cappadocia remained Nicene.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s13">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XIII.</span>Basil and the Oriental Orthodox</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <h3>The Liturgy of St Basil</h3>
+        <p>The Coptic Church prays three anaphoras: those of St Basil, St Gregory and St Cyril. The Liturgy of St Basil is by far the most used, prayed at most Sunday and weekday liturgies throughout the year. Its anaphora gives thanks for creation, the fall, the prophets and the whole saving work of Christ, and calls down the Holy Spirit on the gifts.</p>
+        <p>How much of this anaphora Basil himself wrote is debated. The Coptic form belongs to an Egyptian family of texts that is shorter and simpler than the Byzantine Liturgy of St Basil, and an early Sahidic Coptic manuscript preserves an older stage of it. There is no clear evidence that Basil wrote the Egyptian form. Many scholars think it is older, and that Basil may have known it, perhaps from his visit to Egypt, and expanded it into the longer Byzantine form. The Coptic Synaxarium honours him as the one who "wrote the liturgy that bears his name." Either way, Coptic Christians who pray it are praying a text bound up with Basil's name and with Egypt, the land he visited to learn holiness.</p>
+        <h3>His Feast and His Canons</h3>
+        <p>The Coptic Church remembers his departure on 6 Tobi. The Synaxarium recalls him as the one who "set down canons that believers still follow": his canonical letters on penance and church discipline (Letters 188, 199 and 217) became part of the Church's canon law in the East.</p>
+        <h3>Basil and Athanasius</h3>
+        <p>Basil wrote several letters to Athanasius in the last years of the older bishop's life, seeking his help to heal the divisions of the Eastern churches. They show how the second of the pillars looked to the first.</p>
+        <div class="fc">
+          <div class="fn">St Basil</div>
+          <div class="fw">Letter 82, to Athanasius, Bishop of Alexandria (c. AD 372)</div>
+          <div class="fq">"When I turn my gaze upon the world, and perceive the difficulties by which every effort after good is obstructed, like those of a man walking in fetters, I am brought to despair of myself. But then I direct my gaze in the direction of your reverence; I remember that our Lord has appointed you to be physician of the diseases in the Churches; and I recover my spirits, and rise from the depression of despair to the hope of better things."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <h3>Armenia and Cappadocia</h3>
+        <p>Caesarea, Basil's see, was where St Gregory the Illuminator was consecrated as the first bishop of the Armenians early in the fourth century, and Armenian bishops long continued to look to Caesarea. Basil is held in great honour in the Armenian Apostolic Church, which has also preserved an anaphora under his name.</p>
+        <h3>The Road to 381</h3>
+        <p>The Oriental Orthodox receive the Council of Constantinople of 381 as the second ecumenical council. Basil died two years before it met, but his brother Gregory of Nyssa and his friend Gregory the Theologian were among its leading figures, and the clauses on the Holy Spirit in the Creed carry his thought. See <a href="nicene_creed.html">Understanding the Nicene Creed</a>.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s14">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XIV.</span>Objections Answered</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Basil never calls the Holy Spirit God, so the deity of the Spirit is a later idea."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> Basil gives the Spirit everything that belongs to God: He is ranked with the Father and the Son in baptism, He perfects creation, He makes us god by grace, and He receives the same glory. Gregory the Theologian, who knew Basil better than anyone, explains that Basil held back the bare phrase for a time to protect his church from an Arian emperor, while teaching "by statements which unmistakably had the same meaning" (Section VII). Gregory himself said it plainly, and the Council of 381 confessed it.</p><p>The Spirit's deity is also not a fourth-century invention. Peter tells Ananias that lying to the Spirit is lying to God (Acts 5:3-4), and the Lord places the Spirit in the one Name of baptism (Matthew 28:19).</p>
+          </div>
+        </div>
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Basil's appeal to unwritten tradition opens the door to anything the Church wants to add."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> Basil's examples are modest and verifiable: the sign of the cross, facing east to pray, the words of the Eucharistic invocation, the blessing of baptismal water. These were practised by every church of his day, including by his opponents. He gives them weight because they are universal and apostolic, not because a bishop invented them.</p><p>And Basil does not use tradition to avoid Scripture. Most of On the Holy Spirit is careful exegesis. His point is that Christians have always received the faith through both channels Paul names in 2 Thessalonians 2:15.</p>
+          </div>
+        </div>
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Basil's "three hypostases" amounts to three gods."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> Basil rejected this charge directly. The three hypostases share one essence, one will, one operation and one glory: "the sovereignty and authority over us is one, and so the doxology ascribed by us is not plural but one" (On the Holy Spirit 18.45). The Father creates through the Son and perfects through the Spirit; "the first principle of existing things is One."</p>
+          </div>
+        </div>
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>⚡ "The Cappadocians turned the simple faith of the Bible into Greek philosophy."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> Basil used the best language of his education to protect the faith, as Paul used the Greek of his day. But the content of his argument is biblical: the baptismal Name, the work of the Spirit in Scripture, the worship of the Church. It was Eunomius, not Basil, who claimed that the human mind could define God's essence. Basil's answer, that we know God from His works but cannot grasp what He is, is a confession of the limits of philosophy, not a surrender to it.</p>
+          </div>
+        </div>
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Letter 93 shows laypeople giving themselves communion, so the priest is unnecessary."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> Basil describes the custom of keeping the consecrated gifts at home, which arose in persecution and in the desert, and he is careful to say that the gifts were first offered and given by the priest: "when once the priest has completed the offering, and given it, the recipient... is bound to believe that he properly takes and receives it from the giver." The Eucharist still comes from the Church's priesthood. The letter shows how precious the Mysteries were, not that they could be made without a priest.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s15">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XV.</span>Frequently Asked Questions</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>Did St Basil write the Coptic Liturgy of St Basil?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>The Coptic tradition attributes it to him, and the Synaxarium says he "wrote the liturgy that bears his name." Scholars debate how much he composed and how much he received and expanded, especially since the Egyptian form differs from the Byzantine one. What is certain is that it has carried his name in Egypt for many centuries and remains the Coptic Church's main liturgy (Section XIII).</p>
+          </div>
+        </div>
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>Why is he called "the Great"?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>For the greatness of his work as theologian, bishop, monastic founder and servant of the poor. The title was given to him soon after his death and is used in East and West.</p>
+          </div>
+        </div>
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>Who are the Cappadocian Fathers?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>Basil, his friend Gregory of Nazianzus (Gregory the Theologian) and his brother Gregory of Nyssa. Their writings shaped the doctrine of the Trinity confessed at the Council of Constantinople in 381. The Coptic Church prays the Liturgy of St Gregory, attributed to Gregory the Theologian, on major feasts.</p>
+          </div>
+        </div>
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>Did Basil believe in icons?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>The icon controversy came four centuries after him, so he did not write about it directly. But his sentence "the honour paid to the image passes on to the prototype," written about the Son as the image of the Father, became the foundation of the Church's defence of icons. See <a href="icon_veneration.html">Icon Veneration</a>.</p>
+          </div>
+        </div>
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>Did Basil know St Athanasius?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>They never met, as far as we know, but Basil wrote to him several times between 371 and 373, seeking his help for the troubled churches of the East and calling him the "physician of the diseases in the Churches" (Letter 82).</p>
+          </div>
+        </div>
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>Was Basil's sister really his teacher?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>Gregory of Nyssa's <em>Life of Macrina</em> says that when Basil came home proud of his learning, their sister Macrina drew him to the life of prayer and poverty. Basil himself credits his grandmother Macrina the Elder with his first teaching in the faith (Letter 204).</p>
+          </div>
+        </div>
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>Where should I start reading Basil?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p><em>On the Holy Spirit</em>, especially chapters 9, 16, 18 and 27. Then the <em>Hexaemeron</em>, his homilies on creation, and Gregory the Theologian's <em>Oration 43</em>, the funeral oration on Basil. All are in the Nicene and Post-Nicene Fathers, volumes 7 and 8.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s16">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XVI.</span>Sources &amp; Further Reading</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <div class="src-grid">
+          <div class="src-card">
+            <h4>Works of St Basil (NPNF 2.8)</h4>
+            <ul>
+              <li>On the Holy Spirit 1.3, 9.23, 12.28, 16.38, 18.45, 27.66, 27.68</li>
+              <li>Letters 2, 52, 82, 93, 204, 223, 234, 236</li>
+              <li>Hexaemeron</li>
+              <li>Against Eunomius (no NPNF translation)</li>
+              <li>The Longer Rules (no NPNF translation)</li>
+              <li>Homily 6, I will pull down my barns (no NPNF translation)</li>
+            </ul>
+          </div>
+          <div class="src-card">
+            <h4>Gregory the Theologian (NPNF 2.7)</h4>
+            <ul>
+              <li>Oration 43, Funeral Oration on St Basil 21, 35, 49–50, 52, 63, 68</li>
+              <li>Letter 58, to Basil</li>
+            </ul>
+          </div>
+          <div class="src-card">
+            <h4>Coptic Sources</h4>
+            <ul>
+              <li><a href="https://copticchurch.net/synaxarium/5_6.html" target="_blank" rel="noopener noreferrer">Coptic Synaxarium, 6 Tobi</a></li>
+              <li>The Coptic Liturgy of St Basil</li>
+              <li>Gregory of Nyssa, Life of Macrina</li>
+            </ul>
+          </div>
+          <div class="src-card">
+            <h4>Modern Studies</h4>
+            <ul>
+              <li>Philip Rousseau, <em>Basil of Caesarea</em> (1994)</li>
+              <li>Stephen Hildebrand, <em>Basil of Caesarea</em> (2014)</li>
+              <li>Mark DelCogliano and Andrew Radde-Gallwitz, trans., <em>Against Eunomius</em> (2011)</li>
+              <li>Susan Holman, <em>The Hungry Are Dying</em> (2001)</li>
+            </ul>
+          </div>
+          <div class="src-card">
+            <h4>Related Pages</h4>
+            <ul>
+              <li><a href="athanasius.html">St Athanasius the Apostolic</a></li>
+              <li><a href="nicene_creed.html">Understanding the Nicene Creed</a></li>
+              <li><a href="trinity.html">The Holy Trinity</a></li>
+              <li><a href="sola_scriptura.html">Scripture and Tradition</a></li>
+              <li><a href="icon_veneration.html">Icon Veneration</a></li>
+              <li><a href="monasticism.html">Monasticism &amp; the Desert Fathers</a></li>
+              <li><a href="liturgy.html">The Sacred Liturgy of the Early Church</a></li>
+              <li><a href="fathers.html">Church Fathers Index</a></li>
+            </ul>
+          </div>
+        </div>
+        <p style="margin-top:.8rem;font-size:.85rem;color:var(--mu);font-style:italic;">Translations are from the Nicene and Post-Nicene Fathers, second series. This page was made with Claude AI and can contain faults; please verify with an Abouna.</p>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+
+  <footer style="text-align:center;padding:2rem 1rem;border-top:1px solid var(--br);font-size:.8rem;color:var(--mu)">
+    <p>THE <span style="color:var(--gold)">ORTHODOX LAMP</span> &nbsp;·&nbsp; Biblical, Historical &amp; Patristic Apologetics</p>
+    <p style="margin-top:.5rem;font-size:.72rem;opacity:.6;">☩ &nbsp; In the name of the Father, and of the Son, and of the Holy Spirit &nbsp; ☩</p>
+  </footer>
+</div><!-- /main -->
+
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+function ts(h){h.closest('.sec').classList.toggle('open')}
+function tobj(h){h.closest('.obj').classList.toggle('open')}
+function tf(h){h.closest('.fi').classList.toggle('open')}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').classList.toggle('show')}
+function closeMobile(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
+
+window.addEventListener('scroll',()=>{
+  const s=document.documentElement,b=document.body;
+  const pct=(s.scrollTop||b.scrollTop)/((s.scrollHeight||b.scrollHeight)-s.clientHeight)*100;
+  document.getElementById('prog').style.width=pct+'%';
+  document.getElementById('btt').classList.toggle('show',(s.scrollTop||b.scrollTop)>300);
+});
+
+const secs=[...document.querySelectorAll('.sec')];
+const links=[...document.querySelectorAll('#nav a')];
+window.addEventListener('scroll',()=>{
+  let cur='';
+  secs.forEach(s=>{if(s.getBoundingClientRect().top<120)cur=s.id});
+  links.forEach(l=>{l.classList.toggle('active',l.getAttribute('href')==='#'+cur)});
+},{ passive:true });
+
+function doSearch(q){
+  document.querySelectorAll('.hl').forEach(e=>{
+    const p=e.parentNode;p.replaceChild(document.createTextNode(e.textContent),e);p.normalize();
+  });
+  if(!q.trim())return;
+  const re=new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi');
+  const walker=document.createTreeWalker(document.querySelector('.content'),NodeFilter.SHOW_TEXT);
+  const nodes=[];let n;
+  while((n=walker.nextNode()))nodes.push(n);
+  nodes.forEach(node=>{
+    if(!re.test(node.textContent))return;
+    re.lastIndex=0;
+    const frag=document.createDocumentFragment();
+    let last=0,m;
+    while((m=re.exec(node.textContent))!==null){
+      frag.appendChild(document.createTextNode(node.textContent.slice(last,m.index)));
+      const mark=document.createElement('mark');
+      mark.className='hl';mark.style.cssText='background:#8a6a20;color:#fff;border-radius:2px;padding:0 2px';
+      mark.textContent=m[0];frag.appendChild(mark);last=m.index+m[0].length;
+    }
+    frag.appendChild(document.createTextNode(node.textContent.slice(last)));
+    node.parentNode.replaceChild(frag,node);
+  });
+  const first=document.querySelector('.hl');if(first)first.scrollIntoView({block:'center',behavior:'smooth'});
+}
+</script>
+<button id="ol-tt" onclick="olTheme()" aria-label="Toggle light or dark mode" title="Light/dark mode">☀</button><script>function olTheme(){var l=document.documentElement.classList.toggle('light');try{localStorage.setItem('ol-theme',l?'light':'dark')}catch(e){}olIcon()}function olIcon(){document.getElementById('ol-tt').textContent=document.documentElement.classList.contains('light')?'☾':'☀'}olIcon();</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+/* AUTO-ENHANCE-JS */
+(function(){
+  try{
+    // back-to-top
+    var bt=document.createElement('button');bt.id='ol-top';bt.setAttribute('aria-label','Back to top');bt.innerHTML='\u2191';
+    bt.onclick=function(){window.scrollTo({top:0,behavior:'smooth'});};
+    document.body.appendChild(bt);
+    window.addEventListener('scroll',function(){bt.classList.toggle('show',window.scrollY>420);},{passive:true});
+    // reading time
+    var main=document.querySelector('main');
+    if(main){
+      var txt=main.innerText||'';var words=txt.trim().split(/\s+/).length;
+      var mins=Math.max(1,Math.round(words/200));
+      var rt=document.createElement('div');rt.className='ol-readtime';rt.textContent=mins+' min read';
+      var anchor=main.querySelector('.pg-title,.page-head,.pg-head,.hd');
+      if(anchor)anchor.appendChild(rt);else main.insertBefore(rt,main.firstChild);
+    }
+    // scroll-reveal
+    var secs=document.querySelectorAll('.sec');
+    if('IntersectionObserver' in window && document.documentElement.classList.contains('js-anim')){
+      var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.01,rootMargin:'0px 0px 12% 0px'});
+      secs.forEach(function(s){io.observe(s);});
+    }else{secs.forEach(function(s){s.classList.add('in');});}
+    // ensure search reveals all
+    document.querySelectorAll('.sb-search input,input[oninput*=sidebarSearch]').forEach(function(i){i.addEventListener('input',function(){document.querySelectorAll('.sec').forEach(function(s){s.classList.add('in');});});});
+  }catch(e){document.querySelectorAll('.sec').forEach(function(s){s.classList.add('in');});}
+})();
+/* END-ENHANCE-JS */</script>
+<script>
+/* AUTO-AESTHETIC2-JS */
+(function(){
+  try{
+    // section dividers between sibling .sec elements
+    Array.prototype.slice.call(document.querySelectorAll('.sec')).forEach(function(s){
+      var prev=s.previousElementSibling;
+      if(prev&&prev.classList&&prev.classList.contains('sec')&&!prev.classList.contains('ol-divider')){
+        var d=document.createElement('div');d.className='ol-divider';d.setAttribute('aria-hidden','true');d.textContent='\u2629';
+        s.parentNode.insertBefore(d,s);
+      }
+    });
+    // drop-cap on the first section's opening paragraph (chapter-opener feel)
+    var lead=document.querySelector('main .sec .sec-body p, main .sec .sec-bd p');
+    if(lead && (lead.textContent||'').trim().length>40){ lead.classList.add('ol-lead'); }
+  }catch(e){}
+})();
+/* END-AESTHETIC2-JS */</script>
+<script>
+/* AUTO-FEATURES3-JS */
+(function(){
+  try{
+    var here=(location.pathname.split('/').pop()||'index.html');
+    var base=location.href.split('#')[0];
+    function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+    /* ---- 1. copy-link buttons ---- */
+    document.querySelectorAll('.sec[id]').forEach(function(sec){
+      var h=sec.querySelector('.sec-h,.sec-hd');
+      if(!h||h.querySelector('.ol-copy'))return;
+      var b=document.createElement('button');
+      b.className='ol-copy';b.type='button';b.setAttribute('aria-label','Copy link to this section');
+      b.addEventListener('click',function(ev){
+        ev.stopPropagation();ev.preventDefault();
+        var url=base+'#'+sec.id;
+        var ok=function(){b.classList.add('ok');setTimeout(function(){b.classList.remove('ok');},1500);};
+        if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(ok,ok);}
+        else{var t=document.createElement('textarea');t.value=url;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(t);ok();}
+      });
+      var arr=h.querySelector('.arr');
+      if(arr&&arr.parentNode===h)h.insertBefore(b,arr);else h.appendChild(b);
+    });
+
+    /* ---- shared index + bundled KJV ---- */
+    var IDX=null,idxP=null,SEC={};
+    function loadIndex(){if(idxP)return idxP;idxP=fetch('search-index.json').then(function(r){return r.json();}).then(function(d){IDX=d;(d.pages||[]).forEach(function(p){var m={};(p.secs||[]).forEach(function(s){m[s.a]=s.h;});SEC[p.f]=m;});return d;});return idxP;}
+    var VP=null,vpP=null;
+    function loadVP(){if(vpP)return vpP;vpP=fetch('verse-pages.json').then(function(r){return r.json();}).then(function(d){VP=d;return d;}).catch(function(){VP={};});return vpP;}
+    var VERSES=null;
+    fetch('verses.json').then(function(r){return r.json();}).then(function(d){VERSES=d;}).catch(function(){VERSES={};});
+
+    /* ---- 2. related topics ---- */
+    loadIndex().then(function(idx){
+      if(!idx||!idx.pages)return;
+      var page=null;idx.pages.forEach(function(p){if(p.f===here)page=p;});
+      if(!page||!page.rel||!page.rel.length)return;
+      var main=document.querySelector('main')||document.getElementById('main');if(!main)return;
+      var box=document.createElement('div');box.className='ol-related';
+      var hh=document.createElement('h3');hh.textContent='Related topics';box.appendChild(hh);
+      var wrap=document.createElement('div');wrap.className='ol-related-links';
+      page.rel.forEach(function(r){var a=document.createElement('a');a.href=r.f;a.textContent=r.t;wrap.appendChild(a);});
+      box.appendChild(wrap);main.appendChild(box);
+    }).catch(function(){});
+
+    /* ---- 3. site-wide search ---- */
+    var ov=document.createElement('div');ov.className='ol-ov';
+    ov.innerHTML='<div class="ol-modal" role="dialog" aria-label="Search topics and verses"><input class="ol-search-input" type="text" placeholder="Search topics or a Bible verse (e.g. John 3:16)…" aria-label="Search topics and Bible verses" autocomplete="off"><div class="ol-results" role="listbox"></div><div class="ol-hint">↑↓ navigate · ↵ open · esc close · type a reference like Rom 5 or 1 Cor 10:12</div></div>';
+    document.body.appendChild(ov);
+    var input=ov.querySelector('.ol-search-input');
+    var results=ov.querySelector('.ol-results');
+    var flat=[],sel=-1;
+    function hilite(text,q){if(!q)return esc(text);var i=text.toLowerCase().indexOf(q);if(i<0)return esc(text);return esc(text.slice(0,i))+'<mark>'+esc(text.slice(i,i+q.length))+'</mark>'+esc(text.slice(i+q.length));}
+
+    /* fuzzy / typo-tolerant scorer */
+    function lev(a,b){var m=a.length,n=b.length;if(!m)return n;if(!n)return m;var prev=[],cur=[],i,j;for(j=0;j<=n;j++)prev[j]=j;for(i=1;i<=m;i++){cur[0]=i;for(j=1;j<=n;j++){var c=a.charAt(i-1)===b.charAt(j-1)?0:1;cur[j]=Math.min(prev[j]+1,cur[j-1]+1,prev[j-1]+c);}for(j=0;j<=n;j++)prev[j]=cur[j];}return prev[n];}
+    function scoreText(hay,q){
+      if(!q)return 0.5;hay=String(hay).toLowerCase();
+      var idx=hay.indexOf(q);
+      if(idx===0)return 1000;
+      if(idx>0)return 800-idx;
+      var words=hay.split(/[^a-z0-9]+/),best=-1,w,word,d,thr;
+      for(w=0;w<words.length;w++){word=words[w];if(!word)continue;
+        if(word.indexOf(q)===0){best=Math.max(best,600);continue;}
+        if(q.length>=4){thr=q.length<=5?1:2;d=lev(word,q);if(d<=thr)best=Math.max(best,420-d*40);}
+      }
+      if(best>=0)return best;
+      var hi=0,qi=0;for(;hi<hay.length&&qi<q.length;hi++){if(hay.charAt(hi)===q.charAt(qi))qi++;}
+      if(qi===q.length)return 200;
+      return -1;
+    }
+
+    /* Bible-book resolver (abbreviations + full names) */
+    var BK={};
+    function reg(c,al){BK[c.toLowerCase().replace(/\s+/g,'')]=c;al.split(',').forEach(function(a){a=a.replace(/\s+/g,'');if(a)BK[a]=c;});}
+    reg('Genesis','gen,ge,gn');reg('Exodus','exo,ex,exod');reg('Leviticus','lev,le,lv');reg('Numbers','num,nu,nm,nb');
+    reg('Deuteronomy','deut,dt,deu');reg('Joshua','josh,jos,jsh');reg('Judges','judg,jdg,jg,jdgs');reg('Ruth','rut,ru,rth');
+    reg('1 Samuel','1sam,1sa,1s,1sm');reg('2 Samuel','2sam,2sa,2s,2sm');reg('1 Kings','1kings,1kgs,1ki,1kg');reg('2 Kings','2kings,2kgs,2ki,2kg');
+    reg('1 Chronicles','1chron,1chr,1ch');reg('2 Chronicles','2chron,2chr,2ch');reg('Ezra','ezr');reg('Nehemiah','neh,ne');
+    reg('Esther','est,esth,es');reg('Job','jb');reg('Psalms','ps,psa,psalm,pss,psm');reg('Proverbs','prov,pro,prv,pr');
+    reg('Ecclesiastes','eccl,ecc,ec,eccles,qoh');reg('Song of Solomon','song,sos,songofsongs,canticles,cant,ss');
+    reg('Isaiah','isa,is,isai');reg('Jeremiah','jer,jr');reg('Lamentations','lam,la');reg('Ezekiel','ezek,eze,ezk');
+    reg('Daniel','dan,da,dn');reg('Hosea','hos,ho');reg('Joel','joe,jl');reg('Amos','am,amo');reg('Obadiah','obad,ob,oba');
+    reg('Jonah','jon,jnh');reg('Micah','mic,mc');reg('Nahum','nah,na');reg('Habakkuk','hab');reg('Zephaniah','zeph,zep,zp');
+    reg('Haggai','hag,hg');reg('Zechariah','zech,zec,zc');reg('Malachi','mal,ml');reg('Matthew','matt,mt,mat');
+    reg('Mark','mk,mar,mrk');reg('Luke','lk,luk,lu');reg('John','jn,joh,jhn');reg('Acts','act,ac');reg('Romans','rom,ro,rm');
+    reg('1 Corinthians','1cor,1co,1c');reg('2 Corinthians','2cor,2co,2c');reg('Galatians','gal,ga');reg('Ephesians','eph,ephes');
+    reg('Philippians','phil,php,pp');reg('Colossians','col');reg('1 Thessalonians','1thess,1thes,1th');reg('2 Thessalonians','2thess,2thes,2th');
+    reg('1 Timothy','1tim,1ti,1tm');reg('2 Timothy','2tim,2ti,2tm');reg('Titus','tit,ti,tts');reg('Philemon','philem,phlm,phm,pm');
+    reg('Hebrews','heb,hebr');reg('James','jas,jm,jms');reg('1 Peter','1pet,1pe,1pt,1p');reg('2 Peter','2pet,2pe,2pt,2p');
+    reg('1 John','1john,1jn,1jo,1j');reg('2 John','2john,2jn,2jo,2j');reg('3 John','3john,3jn,3jo,3j');reg('Jude','jud,jd');
+    reg('Revelation','rev,re,rv,apocalypse,apoc');
+    function parseRef(raw){
+      if(!raw)return null;
+      var m=raw.match(/^\s*([1-3]?\s*[a-zA-Z][a-zA-Z\s]*?)\s*(\d{1,3})(?:\s*[:.\s]\s*(\d{1,3}))?\s*$/);
+      if(!m)return null;
+      var bk=m[1].toLowerCase().replace(/[\s.]+/g,'');var canon=BK[bk];
+      if(!canon)return null;
+      return {canon:canon,ch:parseInt(m[2],10),vs:m[3]?parseInt(m[3],10):null};
+    }
+    function uniqPages(entries){var seen={},out=[];entries.forEach(function(e){if(!seen[e[0]]){seen[e[0]]=1;out.push({f:e[0],t:e[1],a:e[2]});}});return out;}
+    /* exported verse engine — used by the FE4 "Ask the Lamp" assistant.
+       resolves to null if `raw` is not a bare Bible reference. */
+    window.__olVerseQuery=function(raw){
+      var vq=parseRef((raw||'').trim());
+      if(!vq)return Promise.resolve(null);
+      return Promise.all([loadVP(),loadIndex()]).then(function(){
+        function sub(f,a){return (SEC[f]&&SEC[f][a])||'';}
+        function pages(arr){return uniqPages(arr).map(function(r){return {f:r.f,t:r.t,a:r.a,sub:sub(r.f,r.a)};});}
+        if(vq.vs!=null){
+          var key=vq.canon+' '+vq.ch+':'+vq.vs,e=VP[key];
+          return {mode:'verse',ref:key,kjv:(e&&e.k)?e.k:null,pages:e?pages(e.r):[]};
+        }
+        var prefix=vq.canon+' '+vq.ch+':',vnums=[],agg=[];
+        Object.keys(VP).forEach(function(k){if(k.indexOf(prefix)===0){vnums.push(parseInt(k.slice(prefix.length),10));VP[k].r.forEach(function(r){agg.push(r);});}});
+        vnums.sort(function(a,b){return a-b;});
+        return {mode:'chapter',ref:vq.canon+' '+vq.ch,vnums:vnums,pages:pages(agg)};
+      }).catch(function(){return null;});
+    };
+    function rowsHTML(){
+      if(!flat.length)return '<div class="r-empty">No page cites this on the site yet.</div>';
+      return flat.map(function(r,i){return '<a class="ol-r'+(i===sel?' sel':'')+'" data-i="'+i+'" href="'+r.f+(r.a?'#'+r.a:'')+'"><span class="r-t">'+esc(r.t)+'</span>'+(r.sub?'<span class="r-s">'+esc(r.sub)+'</span>':'')+'</a>';}).join('');
+    }
+
+    function renderVerse(vq){
+      if(!VP){results.innerHTML='<div class="r-empty">Loading verse index…</div>';flat=[];sel=-1;return;}
+      var canon=vq.canon,ch=vq.ch,vs=vq.vs,card='',rows=[];
+      if(vs!=null){
+        var key=canon+' '+ch+':'+vs,e=VP[key];
+        card='<div class="ol-vcard"><span class="vref">'+esc(key)+'</span>'+(e&&e.k?'<span class="vkjv">'+esc(e.k)+'<em>KJV</em></span>':'')+(e?'':'<span class="vmeta">Not cited on the site yet.</span>')+'</div>';
+        if(e)rows=uniqPages(e.r);
+      }else{
+        var prefix=canon+' '+ch+':',vnums=[],agg=[];
+        Object.keys(VP).forEach(function(k){if(k.indexOf(prefix)===0){vnums.push(parseInt(k.slice(prefix.length),10));VP[k].r.forEach(function(r){agg.push(r);});}});
+        vnums.sort(function(a,b){return a-b;});
+        card='<div class="ol-vcard"><span class="vref">'+esc(canon+' '+ch)+'</span><span class="vmeta">'+(vnums.length?'Verses cited here: '+vnums.join(', '):'No verses from this chapter are cited yet.')+'</span></div>';
+        rows=uniqPages(agg);
+      }
+      flat=rows.map(function(r){return {f:r.f,t:r.t,a:r.a,sub:(SEC[r.f]&&SEC[r.f][r.a])?SEC[r.f][r.a]:''};});
+      sel=flat.length?0:-1;
+      results.innerHTML=card+rowsHTML();
+    }
+
+    function renderText(q){
+      flat=[];
+      if(IDX&&IDX.pages){
+        if(!q){
+          IDX.pages.slice().sort(function(a,b){return a.t.localeCompare(b.t);}).forEach(function(p){flat.push({f:p.f,t:p.t,sub:'',a:'',sc:0});});
+        }else{
+          IDX.pages.forEach(function(p){
+            var ts=scoreText(p.t,q),bs=null,bss=-1,kw=-1,kwn='';
+            if(p.secs)p.secs.forEach(function(s){var sc=scoreText(s.h,q)*0.85;if(sc>bss){bss=sc;bs=s;}});
+            if(p.kw)p.kw.forEach(function(k){var sc=scoreText(k,q)*0.7;if(sc>kw){kw=sc;kwn=k;}});
+            var best=Math.max(ts,bss,kw);if(best<=0)return;
+            var it={f:p.f,t:p.t,sc:best};
+            if(best===bss&&bs){it.sub=bs.h;it.a=bs.a;}
+            else if(best===kw&&kwn){it.sub='topic · '+kwn;it.topic=1;}
+            else it.sub='';
+            flat.push(it);
+          });
+          flat.sort(function(a,b){return b.sc-a.sc;});
+        }
+      }
+      flat=flat.slice(0,40);sel=flat.length?0:-1;
+      if(!flat.length){results.innerHTML='<div class="r-empty">'+(IDX?'No matches — try a topic or a Bible verse (e.g. John 3:16)':'Loading index…')+'</div>';return;}
+      results.innerHTML=flat.map(function(r,i){
+        return '<a class="ol-r'+(i===sel?' sel':'')+'" data-i="'+i+'" href="'+r.f+(r.a?'#'+r.a:'')+'"><span class="r-t">'+hilite(r.t,q)+'</span>'+(r.sub?'<span class="r-s'+(r.topic?' r-topic':'')+'">'+(r.topic?esc(r.sub):hilite(r.sub,q))+'</span>':'')+'</a>';
+      }).join('');
+    }
+
+    function render(){
+      var raw=(input.value||'').trim();
+      var vq=parseRef(raw);
+      if(vq){if(!VP)loadVP().then(function(){if(ov.classList.contains('open')&&parseRef((input.value||'').trim()))render();});renderVerse(vq);return;}
+      renderText(raw.toLowerCase());
+    }
+    function setSel(i){var a=results.querySelectorAll('.ol-r');if(!a.length)return;sel=(i+a.length)%a.length;a.forEach(function(el,j){el.classList.toggle('sel',j===sel);});a[sel].scrollIntoView({block:'nearest'});}
+    function go(){if(sel>=0&&flat[sel]){var r=flat[sel];location.href=r.f+(r.a?'#'+r.a:'');}}
+    function openS(seed){ov.classList.add('open');document.body.style.overflow='hidden';input.value=seed||'';render();loadIndex().then(function(){if(ov.classList.contains('open'))render();}).catch(function(){});loadVP().then(function(){if(ov.classList.contains('open'))render();}).catch(function(){});setTimeout(function(){input.focus();if(seed)input.select();},30);}
+    window.__olOpenSearch=openS;
+    function closeS(){ov.classList.remove('open');document.body.style.overflow='';}
+    input.addEventListener('input',render);
+    input.addEventListener('keydown',function(e){
+      if(e.key==='ArrowDown'){e.preventDefault();setSel(sel+1);}
+      else if(e.key==='ArrowUp'){e.preventDefault();setSel(sel-1);}
+      else if(e.key==='Enter'){e.preventDefault();go();}
+      else if(e.key==='Escape'){e.preventDefault();closeS();}
+    });
+    results.addEventListener('mousemove',function(e){var a=e.target.closest('.ol-r');if(a)setSel(+a.getAttribute('data-i'));});
+    ov.addEventListener('click',function(e){if(e.target===ov)closeS();});
+    document.addEventListener('keydown',function(e){
+      if(e.key==='/'&&!ov.classList.contains('open')){var t=document.activeElement;var tn=t?t.tagName:'';if(tn==='INPUT'||tn==='TEXTAREA'||(t&&t.isContentEditable))return;e.preventDefault();openS();}
+      else if(e.key==='Escape'&&ov.classList.contains('open')){closeS();}
+    });
+    var launcher=document.createElement('button');launcher.className='ol-search-btn';launcher.type='button';
+    launcher.innerHTML='Search topics &amp; verses <span>/</span>';launcher.addEventListener('click',function(){openS();});
+    var sbs=document.querySelector('.sb-search');
+    if(sbs&&sbs.parentNode)sbs.parentNode.insertBefore(launcher,sbs);
+    else{var nav=document.querySelector('#sidebar nav,#sb nav,#sidebar,#sb');if(nav)nav.insertBefore(launcher,nav.firstChild);}
+
+    /* ---- 4. scripture tooltips (KJV bundled locally in verses.json, public domain) ---- */
+    var BOOKS='Genesis|Exodus|Leviticus|Numbers|Deuteronomy|Joshua|Judges|Ruth|1 ?Samuel|2 ?Samuel|1 ?Kings|2 ?Kings|1 ?Chronicles|2 ?Chronicles|Ezra|Nehemiah|Esther|Job|Psalms|Psalm|Proverbs|Ecclesiastes|Song of Solomon|Song of Songs|Isaiah|Jeremiah|Lamentations|Ezekiel|Daniel|Hosea|Joel|Amos|Obadiah|Jonah|Micah|Nahum|Habakkuk|Zephaniah|Haggai|Zechariah|Malachi|Matthew|Mark|Luke|John|Acts|Romans|1 ?Corinthians|2 ?Corinthians|Galatians|Ephesians|Philippians|Colossians|1 ?Thessalonians|2 ?Thessalonians|1 ?Timothy|2 ?Timothy|Titus|Philemon|Hebrews|James|1 ?Peter|2 ?Peter|1 ?John|2 ?John|3 ?John|Jude|Revelation';
+    var VRE=new RegExp('\\b((?:'+BOOKS+')\\.?\\s+\\d{1,3}:\\d{1,3}(?:[-–]\\d{1,3})?(?:,\\s?\\d{1,3}(?:[-–]\\d{1,3})?)*)','g');
+    function wrap(root){
+      var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:function(n){
+        if(!n.nodeValue||n.nodeValue.indexOf(':')<0)return NodeFilter.FILTER_REJECT;
+        var p=n.parentNode;
+        while(p&&p!==root){var t=p.nodeName.toLowerCase();
+          if(t==='a'||t==='button'||t==='script'||t==='style'||(p.classList&&(p.classList.contains('ol-verse')||p.classList.contains('ol-copy'))))return NodeFilter.FILTER_REJECT;
+          p=p.parentNode;}
+        return NodeFilter.FILTER_ACCEPT;
+      }});
+      var nodes=[],n;while(n=w.nextNode())nodes.push(n);
+      nodes.forEach(function(node){
+        var txt=node.nodeValue;VRE.lastIndex=0;if(!VRE.test(txt))return;VRE.lastIndex=0;
+        var frag=document.createDocumentFragment(),last=0,m;
+        while(m=VRE.exec(txt)){
+          if(m.index>last)frag.appendChild(document.createTextNode(txt.slice(last,m.index)));
+          var sp=document.createElement('span');sp.className='ol-verse';sp.textContent=m[0];sp.setAttribute('data-ref',m[1]);
+          frag.appendChild(sp);last=m.index+m[0].length;
+        }
+        if(last<txt.length)frag.appendChild(document.createTextNode(txt.slice(last)));
+        node.parentNode.replaceChild(frag,node);
+      });
+    }
+    document.querySelectorAll('.sec-body,.sec-bd,.sec-body2').forEach(wrap);
+    var tip=document.createElement('div');tip.className='ol-tip';tip.style.display='none';document.body.appendChild(tip);
+    function place(el){var r=el.getBoundingClientRect();tip.style.display='block';var w=tip.offsetWidth||330;
+      var left=window.scrollX+r.left;var max=window.scrollX+document.documentElement.clientWidth-w-10;
+      tip.style.left=Math.max(8,Math.min(left,max))+'px';tip.style.top=(window.scrollY+r.bottom+8)+'px';}
+    function lookup(ref){var k=ref.replace(/\s+/g,' ').trim();if(VERSES&&VERSES[k])return VERSES[k];return null;}
+    function show(el){
+      var ref=el.getAttribute('data-ref');if(!ref)return;
+      var t=lookup(ref);
+      if(t){tip.innerHTML='<b>'+esc(ref)+'</b><span class="ol-tip-kjv">KJV</span><br>'+esc(t);}
+      else if(VERSES===null){tip.innerHTML='<b>'+esc(ref)+'</b><br><span class="ol-tip-load">Loading…</span>';}
+      else{tip.innerHTML='<b>'+esc(ref)+'</b><br><span class="ol-tip-err">Text unavailable</span>';}
+      place(el);
+    }
+    function hide(){tip.style.display='none';}
+    document.addEventListener('mouseover',function(e){var t=e.target;if(t.classList&&t.classList.contains('ol-verse'))show(t);});
+    document.addEventListener('mouseout',function(e){var t=e.target;if(t.classList&&t.classList.contains('ol-verse'))hide();});
+    document.addEventListener('focusin',function(e){var t=e.target;if(t.classList&&t.classList.contains('ol-verse'))show(t);});
+    document.addEventListener('focusout',function(e){var t=e.target;if(t.classList&&t.classList.contains('ol-verse'))hide();});
+    document.querySelectorAll('.ol-verse').forEach(function(v){v.setAttribute('tabindex','0');});
+  }catch(e){}
+})();
+/* END-FEATURES3-JS */</script>
+<script>
+/* Ask the Lamp — AI config. Paste your Cloudflare Worker URL between the
+   quotes to turn on grounded AI answers. Leave blank for site-search only.
+   See ask-lamp-SETUP.md for the 10-minute setup. */
+window.OL_ASK_ENDPOINT = "https://ask-the-lamp.sebazz7397.workers.dev";
+</script>
+<script>
+/* AUTO-FEATURES4-JS */
+(function(){
+  try{
+    function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+    /* Optional strict-RAG AI answers. Set window.OL_ASK_ENDPOINT to the
+       Cloudflare Worker URL to turn "Ask the Lamp" from a search box into a
+       grounded assistant. If blank or unreachable, it silently falls back to
+       the retrieval-only behaviour below. See ask-lamp-SETUP.md. */
+    var AI_ENDPOINT=(window.OL_ASK_ENDPOINT||'').trim();
+    /* plain model text -> safe HTML: escape, light **bold**, [n] citations, paragraphs */
+    function fmtAI(s){
+      var out=esc(s);
+      out=out.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
+      /* normalise fancy citation brackets (【1】〔1〕〖1〗) the model sometimes emits to plain [1] */
+      out=out.replace(/[【〔〖]\s*(\d{1,2})\s*[】〕〗]/g,'[$1]');
+      out=out.replace(/\[(\d{1,2})\]/g,'<sup class="ol-ci">[$1]</sup>');
+      return out.split(/\n{2,}/).map(function(p){return '<p>'+p.replace(/\n/g,'<br>')+'</p>';}).join('');
+    }
+    var STOP={};'the a an and or but of to in on at for with as is are was were be been being do does did this that these those it its their them they we you i he she his her our your my me us not no yes can could would should will shall may might must have has had what why how who whom whose which when where does did about into from than then so such also more most very just only own same other any all both each few how into about'.split(/\s+/).forEach(function(w){STOP[w]=1;});
+    function toks(q){return (String(q).toLowerCase().match(/[a-z0-9]+/g)||[]).filter(function(w){return w.length>=3&&!STOP[w];});}
+
+    var C=null,cP=null;
+    function loadC(){if(cP)return cP;cP=fetch('ask-content.json').then(function(r){return r.json();}).then(function(d){C=d;return d;}).catch(function(){C={pages:[]};return C;});return cP;}
+
+    function reEsc(t){return t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}
+    function excerpt(x,tk){
+      if(!x)return '';
+      var lx=x.toLowerCase(),pos=-1,i,p;
+      for(i=0;i<tk.length;i++){p=lx.indexOf(tk[i]);if(p>=0&&(pos<0||p<pos))pos=p;}
+      if(pos<0)pos=0;
+      var start=Math.max(0,pos-65),end=Math.min(x.length,pos+165);
+      var frag=x.slice(start,end);
+      if(start>0)frag=frag.replace(/^\S*\s/,'');
+      if(end<x.length)frag=frag.replace(/\s\S*$/,'');
+      var out=esc(frag);
+      if(start>0)out='…'+out;
+      if(end<x.length)out=out+'…';
+      tk.forEach(function(t){if(t.length<3)return;try{out=out.replace(new RegExp('('+reEsc(t)+')','ig'),'<mark>$1</mark>');}catch(e){}});
+      return out;
+    }
+    /* whole-word matcher (with light plural/possessive tolerance) so that a query
+       for "christ" does NOT match inside "christian"/"christology", and vice-versa. */
+    function mkRx(t){return new RegExp('\\b'+reEsc(t)+"(?:'s|s)?\\b",'gi');}
+    function nWord(text,rx){if(!text)return 0;var m=String(text).match(rx);return m?m.length:0;}
+    function rank(q){
+      var tk=toks(q);if(!tk.length||!C||!C.pages)return {tk:tk,top:[],broad:false};
+      var rx=tk.map(mkRx);
+      /* pass 1 — how many sections each term appears in (for rarity weighting) */
+      var N=0,dfSec=tk.map(function(){return 0;});
+      C.pages.forEach(function(p){var pk=(p.t||'')+' '+((p.kw||[]).join(' '));(p.secs||[]).forEach(function(s){
+        N++;var blob=pk+' '+(s.h||'')+' '+(s.x||'');
+        tk.forEach(function(t,i){if(nWord(blob,rx[i]))dfSec[i]++;});
+      });});
+      /* rarer term => higher weight; ubiquitous terms (Christ, church…) => near-zero */
+      var idf=dfSec.map(function(df){return Math.log((N+1)/(df+1))+0.15;});
+      /* pass 2 — score every section, weighting each term by its rarity */
+      var hits=[];
+      C.pages.forEach(function(p){
+        var title=(p.t||''),kw=(p.kw||[]).join(' ');
+        (p.secs||[]).forEach(function(s){
+          var head=(s.h||''),body=(s.x||''),sc=0,covered=0;
+          tk.forEach(function(t,i){
+            var w=idf[i],any=false,r=rx[i];
+            if(nWord(head,r)){sc+=14*w;any=true;}
+            if(nWord(title,r)){sc+=8*w;any=true;}
+            if(nWord(kw,r)){sc+=7*w;any=true;}
+            var occ=nWord(body,r);if(occ){sc+=Math.min(occ,4)*4*w;any=true;}
+            if(any)covered++;
+          });
+          if(tk.length>1){if(covered===tk.length)sc+=14;sc+=covered*3;}
+          if(sc>0)hits.push({f:p.f,t:p.t,h:s.h,a:s.a,x:s.x,sc:sc,cov:covered});
+        });
+      });
+      hits.sort(function(a,b){return b.sc-a.sc;});
+      /* a single word that appears in a large share of the site is "broad" */
+      var broad=(tk.length===1&&N>0&&dfSec[0]>Math.max(40,N*0.18));
+      var per={},top=[],cap=broad?1:2,lim=broad?6:4;
+      for(var i=0;i<hits.length&&top.length<lim;i++){var f=hits[i].f;if((per[f]||0)>=cap)continue;per[f]=(per[f]||0)+1;top.push(hits[i]);}
+      return {tk:tk,top:top,broad:broad,term:tk[0]};
+    }
+
+    /* ---- UI ---- */
+    var fab=document.createElement('button');fab.className='ol-ask-fab';fab.type='button';
+    fab.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg><span>Ask the Lamp</span>';
+    document.body.appendChild(fab);
+
+    var wrap=document.createElement('div');wrap.className='ol-ask-wrap';wrap.setAttribute('role','dialog');wrap.setAttribute('aria-label','Ask the Lamp');
+    wrap.innerHTML='<div class="ol-ask-hd"><div class="ti"><b>Ask the Lamp</b><span>Search the whole site by question or verse</span></div><button class="ol-ask-x" type="button" aria-label="Close">×</button></div><div class="ol-ask-log" role="log" aria-live="polite"></div><div class="ol-ask-foot"><input type="text" placeholder="Ask a question or type a verse…" aria-label="Ask a question" autocomplete="off"><button class="send" type="button" aria-label="Send">➤</button></div><div class="ol-ask-note">Answers are drawn only from this site’s pages · not a live AI chat</div>';
+    document.body.appendChild(wrap);
+    var log=wrap.querySelector('.ol-ask-log'),inp=wrap.querySelector('.ol-ask-foot input'),sendB=wrap.querySelector('.send'),xB=wrap.querySelector('.ol-ask-x');
+    var LAMP_SVG="<svg viewBox='0 0 40 48' fill='none' xmlns='http://www.w3.org/2000/svg' aria-hidden='true'><defs><radialGradient id='olflame' cx='50%' cy='72%' r='62%'><stop offset='0%' stop-color='#ffe89c'/><stop offset='45%' stop-color='#f8ab3c'/><stop offset='100%' stop-color='#ee6f1e'/></radialGradient><radialGradient id='olfoot' cx='50%' cy='25%' r='85%'><stop offset='0%' stop-color='#c9a35a'/><stop offset='100%' stop-color='#8a6a26'/></radialGradient></defs><g class='lampg'><g class='rays' stroke='#f4a63a' stroke-width='1.6' stroke-linecap='round'><line x1='33' y1='25' x2='36.5' y2='25'/><line x1='7' y1='25' x2='3.5' y2='25'/><line x1='29.2' y1='14.4' x2='31.7' y2='11.6'/><line x1='10.8' y1='14.4' x2='8.3' y2='11.6'/><line x1='29.2' y1='35.6' x2='31.7' y2='38.4'/><line x1='10.8' y1='35.6' x2='8.3' y2='38.4'/><line x1='25' y1='11.1' x2='26.3' y2='7.4'/><line x1='15' y1='11.1' x2='13.7' y2='7.4'/></g><ellipse class='foot' cx='20' cy='44.4' rx='6' ry='1.7' fill='url(#olfoot)'/><rect class='wick' x='18.5' y='39.5' width='3' height='5.2' rx='1.4' fill='#5a4020'/><g class='fl'><path class='body' d='M20 10 C26 15.5 30.5 20.5 30 28 C29.5 35 25 40.5 20 41.5 C15 40.5 10.5 35 10 28 C9.5 20.5 14 15.5 20 10 Z' fill='url(#olflame)'/><path d='M20 18 C23.8 22.5 26 26.5 24.8 31.5 C23.9 35 22 37.2 20 37.6 C18 37.2 16.1 35 15.2 31.5 C14 26.5 16.2 22.5 20 18 Z' fill='#ffe488' opacity='.5'/><ellipse cx='15.6' cy='23' rx='1.6' ry='3' fill='#fff8df' opacity='.4'/></g><g class='eyes' fill='#5a3212'><ellipse cx='15.6' cy='27.5' rx='2.5' ry='3'/><ellipse cx='24.4' cy='27.5' rx='2.5' ry='3'/><circle cx='14.8' cy='26.5' r='.95' fill='#fff'/><circle cx='23.6' cy='26.5' r='.95' fill='#fff'/></g><g class='eyes-happy' stroke='#5a3212' stroke-width='1.7' stroke-linecap='round' fill='none'><path d='M13.1 27.9 Q15.6 24.7 18.1 27.9'/><path d='M21.9 27.9 Q24.4 24.7 26.9 27.9'/></g><path class='m-idle' d='M17.2 32.4 Q20 34.5 22.8 32.4' stroke='#5a3212' stroke-width='1.4' stroke-linecap='round' fill='none'/><path class='m-think' d='M18.5 32.6 Q20 33.4 21.5 32.6' stroke='#5a3212' stroke-width='1.4' stroke-linecap='round' fill='none'/><path class='m-happy' d='M16.4 32 Q20 35.9 23.6 32' stroke='#5a3212' stroke-width='1.6' stroke-linecap='round' fill='none'/></g></svg>";
+    function LAMP(s){return "<span class='ol-lamp st-"+s+"'>"+LAMP_SVG+"</span>";}
+    var lampAv=(function(){var hd=wrap.querySelector('.ol-ask-hd');if(!hd)return null;var a=document.createElement('span');a.className='ol-lamp ol-lamp-hd st-idle';a.innerHTML=LAMP_SVG;hd.insertBefore(a,hd.firstChild);return a;})();
+    function lampState(s){if(lampAv)lampAv.className='ol-lamp ol-lamp-hd st-'+s;}
+    var noteEl=wrap.querySelector('.ol-ask-note');
+    if(noteEl)noteEl.textContent=AI_ENDPOINT
+      ?'AI answers are generated only from this site’s pages, with sources shown — always verify against the cited pages.'
+      :'Answers are drawn only from this site’s pages · not a live AI chat';
+    var subEl=wrap.querySelector('.ol-ask-hd .ti span');
+    if(subEl&&AI_ENDPOINT)subEl.textContent='Grounded answers from the site, with sources';
+
+    function scrollDown(){log.scrollTop=log.scrollHeight;}
+    function addUser(t){var d=document.createElement('div');d.className='ol-ask-msg user';d.textContent=t;log.appendChild(d);scrollDown();}
+    function addBot(html){var d=document.createElement('div');d.className='ol-ask-msg bot';d.innerHTML=html;log.appendChild(d);scrollDown();return d;}
+
+    function pageRows(pages,limit){
+      return pages.slice(0,limit||5).map(function(r){
+        return '<a class="ol-ans" href="'+esc(r.f)+(r.a?'#'+esc(r.a):'')+'"><span class="a-t">'+esc(r.t)+'</span>'+(r.sub?'<span class="a-h">'+esc(r.sub)+'</span>':'')+'</a>';
+      }).join('');
+    }
+    function renderVerse(v){
+      var h='';
+      if(v.mode==='verse'){
+        h+='<div class="ol-vans"><span class="vr">'+esc(v.ref)+'</span>'+(v.kjv?'<span class="vt">'+esc(v.kjv)+'<em>KJV</em></span>':'<span class="vt">Not cited on the site yet.</span>')+'</div>';
+        if(v.pages.length){h+='<p class="lead">Cited on '+v.pages.length+' page'+(v.pages.length>1?'s':'')+':</p>'+pageRows(v.pages,6);}
+      }else{
+        h+='<div class="ol-vans"><span class="vr">'+esc(v.ref)+'</span><span class="vt">'+(v.vnums.length?'Verses cited here: '+v.vnums.join(', '):'No verses from this chapter are cited yet.')+'</span></div>';
+        if(v.pages.length){h+='<p class="lead">Pages citing this chapter:</p>'+pageRows(v.pages,6);}
+      }
+      addBot(h);
+    }
+    function cap1(s){return s?s.charAt(0).toUpperCase()+s.slice(1):s;}
+    function renderTopic(q){
+      var r=rank(q),tk=r.tk,top=r.top;
+      if(!tk.length){addBot('<p class="lead">Try a question like <em>why do you venerate icons?</em> or type a Bible reference such as <em>John 3:16</em>.</p>');return;}
+      if(!top.length){addBot('<p class="lead">I couldn’t find that on the site. Try different words, or browse from the menu.</p>');return;}
+      if(r.broad){
+        var h='<p class="lead">“'+esc(cap1(r.term))+'” runs through much of the site — that’s a broad topic. Here are the main places it’s covered; add a few more words to narrow things down:</p>';
+        h+=top.map(function(it){return '<a class="ol-ans" href="'+esc(it.f)+(it.a?'#'+esc(it.a):'')+'"><span class="a-t">'+esc(it.t)+'</span>'+(it.h?'<span class="a-h">'+esc(it.h)+'</span>':'')+'</a>';}).join('');
+        addBot(h);return;
+      }
+      var strong=(top[0].cov===tk.length);
+      var lead=strong?'Here’s where the site addresses that:':'This looks closest on the site:';
+      var body=top.map(function(it){
+        return '<a class="ol-ans" href="'+esc(it.f)+(it.a?'#'+esc(it.a):'')+'"><span class="a-t">'+esc(it.t)+'</span>'+(it.h?'<span class="a-h">'+esc(it.h)+'</span>':'')+'<span class="a-x">'+excerpt(it.x,tk)+'</span></a>';
+      }).join('');
+      addBot('<p class="lead">'+lead+'</p>'+body);
+    }
+
+    /* citation links under an AI answer, numbered to match [1]/[2] in the text */
+    function citeHTML(top){
+      return '<div class="ol-ai-cite"><p class="lead">Sources on the site</p>'+top.map(function(it,i){
+        return '<a class="ol-ans" href="'+esc(it.f)+(it.a?'#'+esc(it.a):'')+'"><span class="a-t"><span class="a-c">['+(i+1)+']</span>'+esc(it.t)+'</span>'+(it.h?'<span class="a-h">'+esc(it.h)+'</span>':'')+'</a>';
+      }).join('')+'</div>';
+    }
+    /* stream a grounded answer from the Worker; onErr triggers retrieval fallback */
+    function streamAI(q,passages,bubble,onDone,onErr){
+      var txt=document.createElement('div');txt.className='ol-ai-txt';
+      var acc='',started=false,gotErr=false,pinned=false;
+      function begin(){if(!started){started=true;bubble.innerHTML='';bubble.appendChild(txt);}}
+      /* keep the START of the answer at the top of the log so the reader begins at the beginning */
+      function pinStart(){if(pinned)return;pinned=true;var head=bubble.previousElementSibling||bubble;var lr=log.getBoundingClientRect(),er=head.getBoundingClientRect();log.scrollTop+=(er.top-lr.top)-10;}
+      /* gently type the answer in, word by word, with a blinking caret */
+      function typeReveal(full,done){
+        var parts=full.match(/\S+\s*/g)||[full];var i=0,n=parts.length,step=n>90?3:(n>45?2:1);
+        (function tick(){
+          i=Math.min(n,i+step);
+          txt.innerHTML=fmtAI(parts.slice(0,i).join(''))+(i<n?'<span class="ol-ai-caret"></span>':'');
+          if(i<n){setTimeout(tick,18);}else{txt.innerHTML=fmtAI(full||'—');done();}
+        })();
+      }
+      fetch(AI_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({q:q,passages:passages})}).then(function(res){
+        if(!res.ok||!res.body)throw new Error('bad response');
+        var reader=res.body.getReader(),dec=new TextDecoder(),buf='';
+        function finish(){begin();pinStart();typeReveal(acc,onDone);}
+        function pump(){
+          return reader.read().then(function(r){
+            if(r.done){finish();return;}
+            buf+=dec.decode(r.value,{stream:true});
+            var lines=buf.split('\n');buf=lines.pop()||'';
+            lines.forEach(function(line){
+              var t=line.trim();
+              if(t.indexOf('data:')!==0)return;
+              var p=t.slice(5).trim();
+              if(p==='[DONE]'||!p)return;
+              try{var tok=JSON.parse(p);if(typeof tok==='string'){acc+=tok;}}catch(e){}
+            });
+            return pump();
+          });
+        }
+        return pump();
+      }).catch(function(){if(!gotErr){gotErr=true;onErr();}});
+    }
+    function renderTopicAI(q){
+      var r=rank(q),tk=r.tk,top=r.top;
+      if(!tk.length){addBot('<p class="lead">Try a question like <em>why do you venerate icons?</em> or type a Bible reference such as <em>John 3:16</em>.</p>');busy=false;return;}
+      if(!top.length){addBot('<p class="lead">I couldn’t find that on the site. Try different words, or browse from the menu.</p>');busy=false;return;}
+      var passages=top.slice(0,6).map(function(it){return {t:it.t,h:it.h,x:it.x};});
+      lampState('think');
+      var bubble=addBot(''+LAMP('think')+'<span class="ol-ai-think">consulting the lamp…</span>');
+      streamAI(q,passages,bubble,function(){
+        var c=document.createElement('div');c.innerHTML=citeHTML(top);
+        bubble.appendChild(c.firstChild);busy=false;lampState('happy');setTimeout(function(){lampState('idle');},4200);
+      },function(){
+        bubble.parentNode&&bubble.parentNode.removeChild(bubble);
+        lampState('idle');renderTopic(q);busy=false;
+      });
+    }
+
+    var busy=false;
+    function handle(q){
+      q=(q||'').trim();if(!q||busy)return;
+      addUser(q);inp.value='';busy=true;
+      var topic=function(){loadC().then(function(){if(AI_ENDPOINT)renderTopicAI(q);else{renderTopic(q);busy=false;}});};
+      var vp=(window.__olVerseQuery?window.__olVerseQuery(q):Promise.resolve(null));
+      Promise.resolve(vp).then(function(v){
+        if(v){renderVerse(v);busy=false;return;}
+        topic();
+      }).catch(topic);
+    }
+
+    var greeted=false;
+    function greet(){
+      if(greeted)return;greeted=true;
+      var d=addBot('<p class="lead">'+LAMP('idle')+' Ask me anything about the Oriental Orthodox faith, other traditions, or type a Bible reference — I’ll point you to the answer on the site.</p><div class="ol-ask-chips"></div>');
+      var chips=['Why venerate icons?','Are we monophysite?','Purgatory','John 3:16'];
+      var cw=d.querySelector('.ol-ask-chips');
+      chips.forEach(function(c){var b=document.createElement('button');b.type='button';b.textContent=c;b.addEventListener('click',function(){handle(c);});cw.appendChild(b);});
+    }
+    function openAsk(){wrap.classList.add('open');fab.classList.add('hide');greet();lampState('idle');loadC();setTimeout(function(){inp.focus();},40);scrollDown();}
+    function closeAsk(){wrap.classList.remove('open');fab.classList.remove('hide');}
+    fab.addEventListener('click',openAsk);
+    xB.addEventListener('click',closeAsk);
+    sendB.addEventListener('click',function(){handle(inp.value);});
+    inp.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();handle(inp.value);}else if(e.key==='Escape'){closeAsk();}});
+    window.__olOpenAsk=openAsk;
+  }catch(e){}
+})();
+/* END-FEATURES4-JS */</script>
+<script>
+/* AUTO-FEATURES5-JS */
+(function(){
+  try{
+    /* ---- 1. print / save-as-PDF button in the sidebar ---- */
+    if(!document.querySelector('.ol-print-btn')){
+      var pb=document.createElement('button');pb.className='ol-print-btn';pb.type='button';
+      pb.setAttribute('aria-label','Print or save this page as PDF');
+      pb.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg><span>Print / Save as PDF</span>';
+      pb.addEventListener('click',function(){window.print();});
+      var sbtn=document.querySelector('.ol-search-btn');
+      if(sbtn&&sbtn.parentNode){sbtn.parentNode.insertBefore(pb,sbtn.nextSibling);}
+      else{var nav=document.querySelector('#sidebar nav,#sb nav,#sidebar,#sb');if(nav)nav.insertBefore(pb,nav.firstChild);}
+    }
+    /* ---- 2. offline / installable (PWA) service worker ---- */
+    if('serviceWorker' in navigator){
+      window.addEventListener('load',function(){
+        navigator.serviceWorker.register('sw.js').catch(function(){});
+      });
+    }
+  }catch(e){}
+})();
+/* END-FEATURES5-JS */</script>
+<button id="ol-sbt" onclick="olSb()" aria-label="Collapse or expand the contents sidebar" title="Hide or show contents"><span id="ol-sbi">&#8249;</span></button>
+<script>function olSb(){var c=document.documentElement.classList.toggle('sb-collapsed');try{localStorage.setItem('ol-sb',c?'1':'0')}catch(e){}olSbIcon()}function olSbIcon(){var i=document.getElementById('ol-sbi');if(i)i.innerHTML=document.documentElement.classList.contains('sb-collapsed')?'&#8250;':'&#8249;'}olSbIcon();</script>
+<script>/* AUTO-SHARECARDS-JS */
+(function(){
+try{
+  var SITE="The Orthodox Lamp";
+  var HOST="85z5yr9fyf-commits.github.io/the-orthodox-lamp";
+  /* ---- styles ---- */
+  if(!document.getElementById('ol-sc-style')){
+    var st=document.createElement('style');st.id='ol-sc-style';
+    st.textContent='.fc,.sv{position:relative}'+
+      '.ol-sc-btn{position:absolute;top:8px;right:8px;z-index:5;display:inline-flex;align-items:center;gap:5px;'+
+      'background:rgba(201,168,76,.12);border:1px solid var(--gd,#8a6a20);color:var(--gold,#c9a84c);'+
+      'border-radius:6px;padding:3px 8px;font:600 .7rem/1 Georgia,serif;cursor:pointer;opacity:0;'+
+      'transition:opacity .18s,background .18s}'+
+      '.fc:hover .ol-sc-btn,.sv:hover .ol-sc-btn,.ol-sc-btn:focus{opacity:.92}'+
+      '.ol-sc-btn:hover{background:rgba(201,168,76,.24)}'+
+      '.ol-sc-btn svg{width:12px;height:12px}'+
+      '@media(hover:none){.ol-sc-btn{opacity:.6}}'+
+      '@media print{.ol-sc-btn{display:none!important}}';
+    document.head.appendChild(st);
+  }
+  var ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"></line><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"></line></svg>';
+  function clean(s){return (s||'').replace(/\s+/g,' ').trim();}
+  function dequote(s){return s.replace(/^[“‘"']+/,'').replace(/[”’"']+$/,'').trim();}
+  function collect(el){
+    if(el.classList.contains('fc')){
+      var body=el.querySelector('.fc-body'), name=el.querySelector('.fc-name'), src=el.querySelector('.fc-src');
+      var srcTxt='';
+      if(src){var cl=src.cloneNode(true);var tg=cl.querySelector('.tag');if(tg)tg.remove();srcTxt=clean(cl.textContent);}
+      return {quote:dequote(clean(body?body.textContent:el.textContent)),
+              attr:name?clean(name.textContent):'', src:srcTxt};
+    }else{ /* .sv */
+      var cl=el.cloneNode(true), cite=cl.querySelector('cite'); var attr='';
+      var sb=cl.querySelector('.ol-sc-btn'); if(sb)sb.remove();
+      if(cite){attr=clean(cite.textContent);cite.remove();}
+      return {quote:dequote(clean(cl.textContent)), attr:attr, src:''};
+    }
+  }
+  function wrap(x,text,maxW){
+    var words=text.split(' '),lines=[],cur='';
+    for(var i=0;i<words.length;i++){
+      var t=cur?cur+' '+words[i]:words[i];
+      if(x.measureText(t).width>maxW&&cur){lines.push(cur);cur=words[i];}else{cur=t;}
+    }
+    if(cur)lines.push(cur);
+    return lines;
+  }
+  function draw(d){
+    var S=1080,c=document.createElement('canvas');c.width=S;c.height=S;
+    var x=c.getContext('2d');
+    var g=x.createLinearGradient(0,0,0,S);g.addColorStop(0,'#151515');g.addColorStop(1,'#0b0b0b');
+    x.fillStyle=g;x.fillRect(0,0,S,S);
+    x.strokeStyle='#c9a84c';x.lineWidth=3;x.strokeRect(46,46,S-92,S-92);
+    x.strokeStyle='#5a4a20';x.lineWidth=1;x.strokeRect(58,58,S-116,S-116);
+    x.textAlign='center';
+    /* label */
+    x.fillStyle='#a09880';x.font='600 22px Georgia,serif';
+    x.fillText('T H E   O R T H O D O X   L A M P',S/2,132);
+    /* lamp flame */
+    x.fillStyle='#e8c96a';x.beginPath();x.ellipse(S/2,182,11,17,0,0,Math.PI*2);x.fill();
+    x.fillStyle='#c9a84c';x.beginPath();x.moveTo(S/2,150);x.lineTo(S/2-11,180);x.lineTo(S/2+11,180);x.closePath();x.fill();
+    /* opening quote mark */
+    x.fillStyle='rgba(201,168,76,.35)';x.font='italic 150px Georgia,serif';
+    x.fillText('“',S/2,300);
+    /* quote text: size to fit */
+    var maxW=S-220, q=d.quote, size=46;
+    var lens=[[170,46],[300,40],[460,34],[680,29]], picked=25;
+    for(var i=0;i<lens.length;i++){if(q.length<=lens[i][0]){picked=lens[i][1];break;}}
+    size=picked;
+    x.fillStyle='#ece4d4';x.font='italic '+size+'px Georgia,serif';
+    var lines=wrap(x,q,maxW), lh=size*1.34;
+    if(lines.length>15){lines=lines.slice(0,15);lines[14]=lines[14].replace(/[.,;: ]+$/,'')+'…';}
+    var blockH=lines.length*lh, cy=560-blockH/2;
+    /* keep within frame */
+    if(cy<330)cy=330;
+    for(var j=0;j<lines.length;j++){x.fillText(lines[j],S/2,cy+j*lh);}
+    var y=cy+lines.length*lh+34;
+    /* divider */
+    x.strokeStyle='#5a4a20';x.lineWidth=1;x.beginPath();x.moveTo(S/2-46,y);x.lineTo(S/2+46,y);x.stroke();
+    y+=44;
+    /* attribution */
+    if(d.attr){x.fillStyle='#c9a84c';x.font='700 30px Georgia,serif';
+      var al=wrap(x,'— '+d.attr,maxW);for(var k=0;k<al.length;k++){x.fillText(al[k],S/2,y);y+=38;}}
+    /* source */
+    if(d.src){x.fillStyle='#9a9078';x.font='italic 22px Georgia,serif';
+      var sl=wrap(x,d.src,maxW);for(var m=0;m<sl.length;m++){x.fillText(sl[m],S/2,y);y+=28;}}
+    /* footer */
+    x.fillStyle='#8a8268';x.font='20px Georgia,serif';
+    x.fillText(HOST,S/2,S-70);
+    return c;
+  }
+  function share(d){
+    var c=draw(d);
+    c.toBlob(function(blob){
+      if(!blob)return;
+      var url=URL.createObjectURL(blob);
+      var a=document.createElement('a');
+      a.href=url;a.download='orthodox-lamp-quote.png';
+      document.body.appendChild(a);a.click();a.remove();
+      setTimeout(function(){URL.revokeObjectURL(url);},4000);
+    },'image/png');
+  }
+  var nodes=document.querySelectorAll('.fc, .sv');
+  nodes.forEach(function(el){
+    if(el.querySelector('.ol-sc-btn'))return;
+    var txt=clean(el.textContent);
+    if(txt.length<25)return;
+    var b=document.createElement('button');
+    b.type='button';b.className='ol-sc-btn';b.title='Download this quote as an image';
+    b.setAttribute('aria-label','Download this quote as a shareable image');
+    b.innerHTML=ICON+'<span>Share</span>';
+    b.addEventListener('click',function(ev){ev.stopPropagation();share(collect(el));});
+    el.appendChild(b);
+  });
+}catch(e){}
+})();
+/* END-SHARECARDS-JS */</script>
+</body>
+</html>
