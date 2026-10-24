@@ -1,0 +1,1990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Romans 9: Election &amp; the Potter — The Orthodox Lamp</title>
+<style>
+:root{--gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;--bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--tx:#e8e0d0;--mu:#b8ac82;--red:#8b2020;--br:#2a2a2a;--bg5:#3a2e10;--sidebar-w:270px;--mia:#1a3060;--mia-b:#3060c0;--dyo:#2a1a40;--dyo-b:#8060c0;--nes:#1a2510;--nes-b:#4a7030;--eut:#3a1515;--eut-b:#a03030}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.7;display:flex;flex-direction:column;min-height:100vh}
+a{color:var(--gold);text-decoration:none}
+a:hover{color:var(--gl)}
+
+#prog{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--gd),var(--gold),var(--gl));z-index:9999;transition:width .1s}
+
+#sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:100;display:flex;flex-direction:column;transition:transform .3s}
+#sidebar header{padding:1.4rem 1.2rem 1rem;border-bottom:1px solid var(--br)}
+.sb-cross{font-size:1.3rem;color:var(--gold);display:block;text-align:center;margin-bottom:.3rem}
+.sb-title{font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gl);text-align:center;line-height:1.3}
+.sb-sub{font-size:.62rem;color:var(--mu);text-align:center;margin-top:.25rem;font-style:italic}
+nav{padding:.8rem 0;flex:1}
+nav a{display:block;padding:.42rem 1.2rem;font-size:.78rem;color:var(--mu);transition:color .15s,background .15s;border-left:2px solid transparent;line-height:1.4}
+nav a:hover{color:var(--tx);background:var(--bg3)}
+nav a.active{color:var(--gl);border-left-color:var(--gold);background:var(--bg5)}
+.sb-search{padding:.8rem 1rem;border-top:1px solid var(--br)}
+.sb-search input{width:100%;background:var(--bg3);border:1px solid var(--br);border-radius:5px;padding:.4rem .7rem;color:var(--tx);font-size:.78rem;outline:none}
+.sb-search input:focus{border-color:var(--gd)}
+
+#main{margin-left:var(--sidebar-w);flex:1;display:flex;flex-direction:column}
+#mob-bar{display:none;position:fixed;top:0;left:0;right:0;height:48px;background:var(--bg2);border-bottom:1px solid var(--br);align-items:center;padding:0 1rem;z-index:99}
+#mob-bar .mb-title{font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gl);flex:1;text-align:center}
+#ham{background:none;border:none;color:var(--gold);font-size:1.4rem;cursor:pointer;padding:.3rem}
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:99}
+#overlay.show{display:block}
+
+.hero{text-align:center;padding:4.5rem 1.5rem 3rem;background:linear-gradient(180deg,var(--bg2) 0%,var(--bg) 100%);border-bottom:1px solid var(--br);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(201,168,76,.07) 0%,transparent 70%);pointer-events:none}
+.si{font-size:2rem;color:var(--gold);display:block;margin-bottom:.5rem}
+.st{font-size:clamp(1.5rem,4vw,2.4rem);font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--tx);line-height:1.2}
+.st span{color:var(--gold)}
+.ss{font-size:1rem;color:var(--gl);margin:.6rem 0 .3rem;font-weight:700;letter-spacing:.04em}
+.tg{font-size:.85rem;color:var(--mu);font-style:italic;margin-top:.4rem}
+.orn{color:var(--gold);font-size:.9rem;letter-spacing:.4em;margin-top:1rem;opacity:.7}
+
+.content{max-width:860px;margin:0 auto;padding:3rem 2rem 5rem;flex:1}
+
+.sec{border:1px solid var(--br);border-radius:8px;margin-bottom:1.2rem;overflow:hidden;background:var(--bg2)}
+.sec-h{width:100%;background:none;border:none;padding:1.1rem 1.4rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--tx);font-family:'Georgia',serif;font-size:1rem;font-weight:700;text-align:left;transition:background .2s}
+.sec-h:hover{background:var(--bg3)}
+.sec-h .sec-num{color:var(--gold);font-size:.8rem;font-weight:700;letter-spacing:.1em;margin-right:.7rem;min-width:2.2rem}
+.sec-h .arr{color:var(--gold);transition:transform .3s;font-size:.9rem}
+.sec.open .arr{transform:rotate(180deg)}
+.sec-b{display:none;padding:1.4rem;border-top:1px solid var(--br)}
+.sec.open .sec-b{display:block}
+
+h3{font-size:1rem;color:var(--gl);margin:1.4rem 0 .6rem;letter-spacing:.03em}
+h3:first-child{margin-top:0}
+p{margin-bottom:.9rem;font-size:.92rem}
+ul,ol{margin:.6rem 0 .9rem 1.4rem;font-size:.92rem}
+li{margin-bottom:.3rem}
+blockquote{border-left:3px solid var(--gold);padding:.6rem 1rem;background:var(--bg3);border-radius:0 5px 5px 0;margin:.8rem 0;font-style:italic;font-size:.9rem;color:var(--gl)}
+
+/* Glossary terms */
+.gt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.8rem;margin:.8rem 0}
+.gt{background:var(--bg3);border:1px solid var(--br);border-radius:7px;padding:.9rem 1rem}
+.gt-term{font-size:.82rem;font-weight:700;color:var(--gold);letter-spacing:.06em;margin-bottom:.2rem}
+.gt-grk{font-size:.75rem;color:var(--mu);font-style:italic;margin-bottom:.4rem}
+.gt-def{font-size:.82rem;color:var(--tx);line-height:1.5}
+
+/* Comparison grid */
+.comp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin:1rem 0}
+.comp-card{border-radius:8px;padding:1rem 1.1rem;border:1px solid var(--br)}
+.comp-card.mia{background:var(--mia);border-color:var(--mia-b)}
+.comp-card.dyo{background:var(--dyo);border-color:var(--dyo-b)}
+.comp-card.nes{background:var(--nes);border-color:var(--nes-b)}
+.comp-card.eut{background:var(--eut);border-color:var(--eut-b)}
+.comp-card h4{font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem}
+.comp-card.mia h4{color:#8ab0ff}
+.comp-card.dyo h4{color:#b090ff}
+.comp-card.nes h4{color:#80b060}
+.comp-card.eut h4{color:#e07070}
+.comp-card p{font-size:.82rem;line-height:1.5}
+
+/* Scripture cards with dual interpretation */
+.sv{background:var(--bg3);border:1px solid var(--br);border-radius:7px;padding:1rem 1.2rem;margin:.7rem 0}
+.sv .ref{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+.sv .txt{font-size:.9rem;font-style:italic;line-height:1.6;margin-bottom:.5rem}
+.sv .mia-note{background:var(--mia);border:1px solid var(--mia-b);border-radius:5px;padding:.5rem .7rem;font-size:.8rem;margin:.4rem 0}
+.sv .dyo-note{background:var(--dyo);border:1px solid var(--dyo-b);border-radius:5px;padding:.5rem .7rem;font-size:.8rem;margin:.4rem 0}
+.labels{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.4rem}
+.labels span{font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.15rem .5rem;border-radius:3px}
+.labels .mia{background:var(--mia);color:#8ab0ff;border:1px solid var(--mia-b)}
+.labels .dyo{background:var(--dyo);color:#b090ff;border:1px solid var(--dyo-b)}
+.labels .ctx{background:#1a1a3a;color:#8a8adf;border:1px solid #2a2a6a}
+.labels .pl{background:#3a2e10;color:#c9a84c;border:1px solid #5a4a20}
+
+/* Anathema cards */
+.ana{background:var(--eut);border:1px solid var(--eut-b);border-radius:7px;padding:.9rem 1.1rem;margin:.6rem 0}
+.ana-num{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#e07070;margin-bottom:.3rem}
+.ana-txt{font-size:.88rem;font-style:italic;line-height:1.6}
+
+/* Father cards */
+.fc{background:var(--bg3);border-left:3px solid var(--gold);border-radius:0 7px 7px 0;padding:1rem 1.2rem;margin:.7rem 0}
+.fc .fn{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.2rem}
+.fc .fw{font-size:.78rem;color:var(--mu);margin-bottom:.4rem;font-style:italic}
+.fc .fq{font-size:.9rem;font-style:italic;line-height:1.6;margin-bottom:.3rem}
+
+/* Objection accordion */
+.obj{border:1px solid var(--br);border-radius:7px;margin:.7rem 0;overflow:hidden;background:var(--bg3)}
+.obj-h{width:100%;background:none;border:none;padding:.8rem 1.1rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--gl);font-family:'Georgia',serif;font-size:.88rem;font-weight:700;text-align:left}
+.obj-h:hover{background:var(--bg4)}
+.obj-h .arr{transition:transform .3s;font-size:.8rem;color:var(--gold)}
+.obj.open .arr{transform:rotate(180deg)}
+.obj-b{display:none;padding:1rem 1.1rem;border-top:1px solid var(--br);font-size:.88rem}
+.obj.open .obj-b{display:block}
+
+/* FAQ */
+.fi{border:1px solid var(--br);border-radius:7px;margin:.6rem 0;overflow:hidden}
+.fi-h{width:100%;background:var(--bg2);border:none;padding:.8rem 1.1rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--tx);font-family:'Georgia',serif;font-size:.88rem;font-weight:700;text-align:left}
+.fi-h:hover{background:var(--bg3)}
+.fi-h .arr{transition:transform .3s;font-size:.8rem;color:var(--gold)}
+.fi.open .arr{transform:rotate(180deg)}
+.fi-b{display:none;padding:1rem 1.1rem;border-top:1px solid var(--br);background:var(--bg2);font-size:.88rem}
+.fi.open .fi-b{display:block}
+
+/* Timeline */
+.timeline{border-left:2px solid var(--gd);padding-left:1.4rem;margin:1rem 0}
+.tl-item{position:relative;margin-bottom:1.2rem}
+.tl-item::before{content:'';position:absolute;left:-1.8rem;top:.45rem;width:.7rem;height:.7rem;background:var(--gold);border-radius:50%}
+.tl-date{font-size:.72rem;font-weight:700;letter-spacing:.1em;color:var(--gold);text-transform:uppercase}
+.tl-text{font-size:.88rem;color:var(--tx);margin-top:.2rem}
+
+/* Sources */
+.src-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.8rem;margin-top:.8rem}
+.src-card{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:.9rem 1rem}
+.src-card h4{font-size:.78rem;font-weight:700;color:var(--gold);margin-bottom:.4rem;letter-spacing:.06em;text-transform:uppercase}
+.src-card p,.src-card li{font-size:.8rem;color:var(--mu)}
+.src-card ul{margin-left:1rem}
+
+#btt{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--bg3);border:1px solid var(--gd);border-radius:50%;width:2.4rem;height:2.4rem;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1rem;cursor:pointer;opacity:0;transition:opacity .3s;z-index:50}
+#btt.show{opacity:1}
+
+@media(max-width:768px){
+  #sidebar{transform:translateX(-100%)}
+  #sidebar.open{transform:translateX(0)}
+  #main{margin-left:0;padding-top:48px}
+  #mob-bar{display:flex}
+}
+
+.lampsvg{display:block;margin:0 auto 14px;height:auto}
+.lampsvg .lampflame{animation:lampflick 3.2s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes lampflick{0%,100%{transform:scaleY(1) scaleX(1);opacity:.95}25%{transform:scaleY(1.06) scaleX(.97);opacity:1}50%{transform:scaleY(.96) scaleX(1.03);opacity:.9}75%{transform:scaleY(1.04) scaleX(.98);opacity:1}}
+
+html.light{--gold:#8a6a20;--gl:#6f5413;--gd:#b08e3e;--bg:#f7f2e6;--bg2:#efe8d5;--bg3:#e7ddc7;--bg4:#ddd2b9;--tx:#2b2415;--mu:#6e6450;--br:#d2c7aa;--bg5:#efe0b8;--mia:#cfd8ed;--dyo:#dcd0ec;--dyo-b:#412b6e;--nes:#ddebd1;--eut:#edcfcf}
+#ol-tt{position:fixed;right:16px;bottom:74px;z-index:9999;width:44px;height:44px;border-radius:50%;background:var(--bg3,var(--panel,#1a1a1a));color:var(--gold,#c9a84c);border:1px solid var(--gd,var(--gold-dark,var(--rule,#8a6a20)));font-size:1.1rem;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35);line-height:1}#ol-tt:hover{filter:brightness(1.15)}
+html.light .pl,html.light .labels .prot{background:#eed6d6;color:#8b2020}
+html.light .gl-tag,html.light .labels .oo{background:#d8e8d8;color:#1d5c1d}
+html.light .labels .ctx{background:#d8e3ee;color:#1d4a6b}
+html.light .obj{border-color:#dcc0c0}
+html.light .obj-bd{border-top-color:#dcc0c0}
+html.light .obj-hd h3{color:#8b2020}
+html.light .comp-card.prot{border-top-color:#a83232}
+html.light .comp-card.prot .ct{color:#a83232}
+html.light .labels .mia{color:#112d68}
+html.light .labels .dyo{color:#2a1168}
+html.light .labels .pl{color:#5c4916}
+html.light .ana-num{color:#651010}
+/* ol-aes-v1 */
+html.light #sidebar{background:linear-gradient(180deg,#f5edd5 0%,#ede4cb 100%)}
+html.light .sec{box-shadow:0 1px 6px rgba(100,70,15,.09)}
+html.light .sv{box-shadow:0 1px 4px rgba(100,70,15,.08)}
+html.light .fc{box-shadow:0 1px 4px rgba(100,70,15,.08)}
+html.light a{color:#6b4a10}
+html.light #sidenav a{color:var(--mu)}
+html.light #sidenav a.active,html.light #sidenav a:hover{color:var(--gold)}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* AUTO-ENHANCE */
+html.js-anim .sec{opacity:0;transform:translateY(14px);transition:opacity .55s cubic-bezier(.16,.7,.3,1),transform .55s cubic-bezier(.16,.7,.3,1)}
+html.js-anim .sec.in{opacity:1;transform:none}
+.sec.open .sec-body,.sec.open .sec-bd,.sec.open .sec-body2{animation:olSecOpen .4s cubic-bezier(.16,.7,.3,1)}
+.fi.open .fi-body,.fi.open .fi-bd{animation:olSecOpen .32s cubic-bezier(.16,.7,.3,1)}
+@keyframes olSecOpen{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.sec{margin-bottom:20px;transition:border-color .25s,box-shadow .25s}
+.sec-h:hover,.sec-hd:hover{box-shadow:inset 3px 0 0 var(--gd)}
+.sec-body,.sec-bd{line-height:1.75}
+.sec-body p,.sec-bd p{margin-bottom:12px}
+#ol-top{position:fixed;right:22px;bottom:24px;width:42px;height:42px;border-radius:50%;border:1px solid var(--br);background:var(--bg2);color:var(--gd);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .3s,transform .3s,background .2s;z-index:150;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+#ol-top.show{opacity:1;pointer-events:auto;transform:none}
+#ol-top:hover{background:var(--gd);color:#1a140a}
+.ol-readtime{display:inline-flex;align-items:center;gap:7px;font-size:.74rem;letter-spacing:.04em;color:var(--mu);border:1px solid var(--br);border-radius:20px;padding:4px 12px;margin-top:10px;text-transform:uppercase}
+.ol-readtime::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--gd)}
+@media(prefers-reduced-motion:reduce){html.js-anim .sec{opacity:1;transform:none}#ol-top{transition:none}}
+/* END-ENHANCE */
+
+/* AUTO-AESTHETIC2 */
+:root{--ol-acc:var(--gd,#c9a84c)}
+/* smooth anchor scrolling + sticky-header offset */
+html{scroll-behavior:smooth}
+:where(.sec,[id]){scroll-margin-top:88px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+/* theme cross-fade */
+body,main,.sec,.sec-h,.sec-hd,.sec-body,.sec-bd,#sb,#sb-nav a{transition:background-color .35s ease,color .35s ease,border-color .35s ease}
+/* typography polish */
+main .sec-body p,main .sec-bd p{line-height:1.8}
+.sec-h,.sec-hd{letter-spacing:.005em}
+p.ol-lead::first-letter{float:left;font-size:3.1em;line-height:.78;padding:6px 10px 0 0;color:var(--ol-acc);font-weight:700}
+/* card hover depth */
+[class*="-card"],[class*="-box"],.vbox{transition:transform .22s cubic-bezier(.16,.7,.3,1),box-shadow .22s ease,border-color .22s ease,background-color .35s ease,color .35s ease}
+[class*="-card"]:hover,[class*="-box"]:hover,.vbox:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.28)}
+html.light [class*="-card"]:hover,html.light [class*="-box"]:hover,html.light .vbox:hover{box-shadow:0 8px 22px rgba(40,30,10,.12)}
+/* section dividers (inserted by JS) */
+.ol-divider{text-align:center;color:var(--ol-acc);opacity:.45;font-size:1rem;margin:4px auto 26px;line-height:1;letter-spacing:0;user-select:none}
+/* sidebar active-dot fill */
+#sb-nav a{position:relative}
+#sb-nav a.active::before{content:"";position:absolute;left:-2px;top:50%;width:6px;height:6px;border-radius:50%;background:var(--ol-acc);box-shadow:0 0 7px var(--ol-acc);transform:translateY(-50%) scale(0);animation:olDot .3s cubic-bezier(.16,.7,.3,1) forwards}
+@keyframes olDot{to{transform:translateY(-50%) scale(1)}}
+/* bare blockquote uplift (does not touch styled quote-cards) */
+main blockquote{border-left:3px solid var(--ol-acc);padding:8px 0 8px 18px;margin:18px 0;font-style:italic}
+/* END-AESTHETIC2 */
+
+/* AUTO-FEATURES3 */
+/* copy-link buttons */
+.ol-copy{opacity:0;margin:0 8px;background:none;border:none;cursor:pointer;font-size:.8rem;color:var(--mu);transition:opacity .2s,color .2s;vertical-align:middle;padding:2px 5px;line-height:1;border-radius:5px}
+.ol-copy::before{content:"\1F517"}
+.sec-h:hover .ol-copy,.sec-hd:hover .ol-copy,.ol-copy:focus-visible{opacity:.65}
+.ol-copy:hover{opacity:1;color:var(--gd,#c9a84c)}
+.ol-copy.ok{opacity:1;color:#3fa34d}
+.ol-copy.ok::before{content:"\2713";margin-right:4px}
+.ol-copy.ok::after{content:"copied";font-size:.7rem;letter-spacing:.03em}
+/* related topics */
+.ol-related{margin:42px 0 8px;padding:22px 24px;border:1px solid var(--br);border-radius:12px;background:var(--bg2)}
+.ol-related h3{margin:0 0 14px;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gd,#c9a84c);font-weight:700}
+.ol-related-links{display:flex;flex-wrap:wrap;gap:10px}
+.ol-related-links a{display:inline-block;padding:8px 15px;border:1px solid var(--br);border-radius:22px;font-size:.9rem;color:var(--tx,#e7ddc8);text-decoration:none;background:var(--bg,#1a140a);transition:border-color .2s,color .2s,background .2s,transform .2s}
+.ol-related-links a:hover{border-color:var(--gd,#c9a84c);color:var(--gd,#c9a84c);transform:translateY(-1px)}
+/* search launcher */
+.ol-search-btn{display:flex;align-items:center;justify-content:space-between;width:100%;margin:10px 0 4px;padding:9px 13px;border:1px solid var(--br);border-radius:9px;background:var(--bg2);color:var(--mu);font:inherit;font-size:.86rem;cursor:pointer;transition:border-color .2s,color .2s}
+.ol-search-btn:hover{border-color:var(--gd,#c9a84c);color:var(--gd,#c9a84c)}
+.ol-search-btn span{border:1px solid var(--br);border-radius:5px;padding:1px 7px;font-size:.78rem;opacity:.8}
+/* search overlay */
+.ol-ov{position:fixed;inset:0;background:rgba(0,0,0,.62);backdrop-filter:blur(3px);z-index:1000;display:none;align-items:flex-start;justify-content:center;padding:11vh 16px 16px}
+.ol-ov.open{display:flex}
+.ol-modal{width:100%;max-width:620px;background:var(--bg2,#221a0e);border:1px solid var(--br);border-radius:14px;box-shadow:0 24px 70px rgba(0,0,0,.55);overflow:hidden;display:flex;flex-direction:column;max-height:74vh}
+html.light .ol-modal{box-shadow:0 24px 70px rgba(40,30,10,.22)}
+.ol-search-input{border:none;border-bottom:1px solid var(--br);background:none;color:var(--tx,#e7ddc8);font:inherit;font-size:1.12rem;padding:18px 22px;outline:none;width:100%}
+.ol-search-input::placeholder{color:var(--mu)}
+.ol-results{overflow-y:auto;padding:8px}
+.ol-r{display:block;padding:10px 14px;border-radius:9px;text-decoration:none;color:var(--tx,#e7ddc8);transition:background .12s}
+.ol-r .r-t{display:block;font-weight:600;font-size:.97rem}
+.ol-r .r-s{display:block;font-size:.83rem;color:var(--mu);margin-top:2px}
+.ol-r .r-s::before{content:"\2192  ";color:var(--gd,#c9a84c)}
+.ol-r.sel,.ol-r:hover{background:var(--bg,#1a140a)}
+.ol-r.sel{box-shadow:inset 3px 0 0 var(--gd,#c9a84c)}
+.ol-r mark{background:rgba(201,168,76,.32);color:inherit;border-radius:2px;padding:0 1px}
+.r-empty{padding:26px 18px;text-align:center;color:var(--mu);font-size:.92rem}
+.ol-hint{border-top:1px solid var(--br);padding:9px 18px;font-size:.74rem;color:var(--mu);letter-spacing:.03em}
+.ol-r .r-s.r-topic::before{content:"\2756  ";color:var(--gd,#c9a84c)}
+/* verse-mode card */
+.ol-vcard{margin:6px 6px 4px;padding:14px 16px;border:1px solid var(--br);border-radius:10px;background:var(--bg,#1a140a)}
+.ol-vcard .vref{font-weight:700;color:var(--gd,#c9a84c);font-size:1rem}
+.ol-vcard .vkjv{display:block;margin-top:7px;font-size:.93rem;line-height:1.6;color:var(--tx,#e7ddc8)}
+.ol-vcard .vkjv em{font-style:normal;font-size:.64rem;color:var(--mu);border:1px solid var(--br);border-radius:4px;padding:0 5px;margin-left:6px;letter-spacing:.06em;vertical-align:middle}
+.ol-vcard .vmeta{display:block;margin-top:8px;font-size:.76rem;color:var(--mu);line-height:1.5}
+/* scripture verse + tooltip */
+.ol-verse{border-bottom:1px dotted var(--gd,#c9a84c);cursor:help;text-decoration:none}
+.ol-tip{position:absolute;z-index:1100;max-width:330px;background:var(--bg2,#221a0e);color:var(--tx,#e7ddc8);border:1px solid var(--br);border-radius:10px;padding:12px 15px;font-size:.9rem;line-height:1.55;box-shadow:0 12px 34px rgba(0,0,0,.5);pointer-events:none}
+html.light .ol-tip{box-shadow:0 12px 34px rgba(40,30,10,.2)}
+.ol-tip b{color:var(--gd,#c9a84c);font-size:.84rem;letter-spacing:.02em}
+.ol-tip-kjv{font-size:.66rem;color:var(--mu);border:1px solid var(--br);border-radius:4px;padding:0 5px;margin-left:6px;letter-spacing:.05em}
+.ol-tip-load,.ol-tip-err{color:var(--mu);font-style:italic}
+/* print / pdf */
+@media print{
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #sidebar,#sb,#ham,#overlay,#prog,#ol-top,#ol-tt,.ol-search-btn,.ol-copy,.back-link,.ol-ov,.ol-tip,.ol-divider,.ol-related,.sb-search,nav,.arr{display:none!important}
+  html,body{background:#fff!important;color:#000!important}
+  main{margin:0!important;padding:0!important;max-width:100%!important;width:100%!important}
+  .sec-body,.sec-bd,.sec-body2,.fi-body,.fi-bd{display:block!important;max-height:none!important;opacity:1!important;transform:none!important;animation:none!important}
+  .sec{opacity:1!important;transform:none!important;page-break-inside:avoid;border:none!important;margin-bottom:14px!important}
+  .sec-h,.sec-hd{cursor:default}
+  .hero,.pg-title,.page-head,.pg-head,.hd{background:#fff!important;color:#000!important;border:none!important}
+  .ol-verse{border-bottom:none}
+  a{color:#000!important;text-decoration:none}
+  h1,h2,h3{color:#000!important}
+}
+/* END-FEATURES3 */
+
+/* AUTO-FEATURES4 */
+.ol-ask-fab{position:fixed;right:22px;bottom:24px;z-index:1200;display:flex;align-items:center;gap:9px;height:52px;padding:0 19px 0 15px;border:1px solid var(--br);border-radius:30px;background:var(--gd,#c9a84c);color:#1a140a;font:inherit;font-weight:600;font-size:.9rem;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.35);transition:transform .2s,box-shadow .2s}
+.ol-ask-fab:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(0,0,0,.45)}
+.ol-ask-fab svg{width:20px;height:20px;flex:none;display:block}
+.ol-ask-fab.hide{display:none}
+#ol-top{bottom:128px}
+.ol-ask-wrap{position:fixed;right:22px;bottom:24px;z-index:1201;width:380px;max-width:calc(100vw - 32px);height:560px;max-height:calc(100vh - 70px);background:var(--bg2,#221a0e);border:1px solid var(--br);border-radius:16px;box-shadow:0 24px 70px rgba(0,0,0,.55);display:none;flex-direction:column;overflow:hidden}
+.ol-ask-wrap.open{display:flex}
+html.light .ol-ask-wrap{box-shadow:0 24px 70px rgba(40,30,10,.22)}
+.ol-ask-hd{display:flex;align-items:center;gap:10px;padding:13px 15px;border-bottom:1px solid var(--br);background:var(--bg,#1a140a)}
+.ol-ask-hd .ti{flex:1;line-height:1.25}
+.ol-ask-hd .ti b{color:var(--gd,#c9a84c);font-size:.97rem}
+.ol-ask-hd .ti span{display:block;font-size:.7rem;color:var(--mu);font-weight:400;letter-spacing:.02em}
+.ol-ask-x{background:none;border:none;color:var(--mu);font-size:1.4rem;line-height:1;cursor:pointer;padding:0 6px;border-radius:6px}
+.ol-ask-x:hover{color:var(--tx,#e7ddc8)}
+.ol-ask-log{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:11px}
+.ol-ask-msg{max-width:92%;font-size:.9rem;line-height:1.55;word-wrap:break-word}
+.ol-ask-msg.user{align-self:flex-end;background:var(--gd,#c9a84c);color:#1a140a;padding:8px 13px;border-radius:14px 14px 4px 14px;font-weight:500}
+.ol-ask-msg.bot{align-self:flex-start;color:var(--tx,#e7ddc8);width:100%}
+.ol-ask-msg.bot .lead{margin:0 0 9px;color:var(--mu);font-size:.85rem}
+.ol-ans{display:block;text-decoration:none;color:var(--tx,#e7ddc8);border:1px solid var(--br);border-radius:10px;padding:9px 12px;margin-bottom:8px;background:var(--bg,#1a140a);transition:border-color .18s,transform .18s}
+.ol-ans:hover{border-color:var(--gd,#c9a84c);transform:translateY(-1px)}
+.ol-ans .a-t{display:block;font-weight:600;font-size:.88rem}
+.ol-ans .a-h{display:block;font-size:.78rem;color:var(--gd,#c9a84c);margin-top:1px}
+.ol-ans .a-x{display:block;font-size:.81rem;color:var(--mu);margin-top:5px;line-height:1.5}
+.ol-ans mark,.ol-ask-msg mark{background:rgba(201,168,76,.32);color:inherit;border-radius:2px;padding:0 1px}
+.ol-ai-txt{font-size:.9rem;line-height:1.6;color:var(--tx,#e7ddc8)}
+.ol-ai-txt p{margin:0 0 9px}.ol-ai-txt p:last-child{margin-bottom:0}
+.ol-ai-txt strong{color:var(--gl,#e8c96a);font-weight:600}
+.ol-ai-txt sup.ol-ci{color:var(--gd,#c9a84c);font-weight:600;font-size:.7em;padding:0 1px}
+.ol-ai-cite{margin-top:11px;padding-top:9px;border-top:1px solid var(--br)}
+.ol-ai-cite .lead{margin:0 0 7px;color:var(--mu);font-size:.78rem;text-transform:uppercase;letter-spacing:.04em}
+.ol-ans .a-c{display:inline-block;color:var(--gd,#c9a84c);font-weight:700;font-size:.78rem;margin-right:5px}
+.ol-ai-dots{display:inline-flex;gap:5px;padding:4px 0}
+.ol-ai-dots i{width:7px;height:7px;border-radius:50%;background:var(--gd,#c9a84c);opacity:.4;animation:olaiblink 1.2s infinite}
+.ol-ai-dots i:nth-child(2){animation-delay:.2s}.ol-ai-dots i:nth-child(3){animation-delay:.4s}
+@keyframes olaiblink{0%,60%,100%{opacity:.35}30%{opacity:1}}
+.ol-ai-lamp{display:inline-block;font-size:1.15em;line-height:1;transform-origin:50% 85%;animation:ollampflick 1.7s infinite ease-in-out}
+@keyframes ollampflick{0%,100%{opacity:.85;filter:drop-shadow(0 0 2px rgba(201,168,76,.45));transform:scale(1) rotate(0)}40%{opacity:1;filter:drop-shadow(0 0 8px rgba(201,168,76,.95));transform:scale(1.08) rotate(-2deg)}68%{opacity:.92;filter:drop-shadow(0 0 4px rgba(201,168,76,.7));transform:scale(1.02) rotate(1deg)}}
+.ol-ai-think{margin-left:7px;font-style:italic;font-size:.94em;opacity:.85}
+.ol-ask-msg{animation:olmsgin .4s cubic-bezier(.22,1,.36,1) both}
+@keyframes olmsgin{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
+.ol-ai-caret{display:inline-block;width:2px;height:1.05em;background:var(--gd,#c9a84c);margin-left:2px;vertical-align:-2px;border-radius:1px;animation:olcaret .8s step-end infinite}
+@keyframes olcaret{50%{opacity:0}}
+.ol-lamp{display:inline-block;line-height:0;vertical-align:-7px}.ol-lamp svg{width:24px;height:28px;overflow:visible}.ol-lamp-hd{vertical-align:middle;flex:0 0 auto}.ol-lamp-hd svg{width:34px;height:40px}.ol-lamp .eyes-happy,.ol-lamp .m-idle,.ol-lamp .m-think,.ol-lamp .m-happy{display:none}.ol-lamp.st-idle .m-idle{display:block}.ol-lamp.st-think .m-think{display:block}.ol-lamp.st-happy .m-happy{display:block}.ol-lamp.st-happy .eyes{display:none}.ol-lamp.st-happy .eyes-happy{display:block}.ol-lamp .eyes{transform-box:fill-box;transform-origin:center;animation:ollampblink 4.8s infinite}.ol-lamp.st-think .eyes{transform:translateY(-1px)}.ol-lamp .fl{transform-box:fill-box;transform-origin:50% 100%;animation:ollampfl 2.1s infinite ease-in-out}.ol-lamp.st-think .fl{animation-duration:1.1s}.ol-lamp.st-happy .fl{animation-duration:1.3s}.ol-lamp .rays{transform-box:fill-box;transform-origin:center;animation:olrays 2.6s infinite ease-in-out}.ol-lamp.st-think .rays{animation-duration:1.4s}.ol-lamp.st-happy .rays{animation-duration:1.6s}.ol-lamp.st-think .lampg{transform-box:fill-box;transform-origin:50% 100%;animation:ollampsway 2.6s infinite ease-in-out}.ol-lamp.st-happy .lampg{transform-box:fill-box;transform-origin:50% 100%;animation:ollamphop .6s ease}@keyframes ollampfl{0%,100%{transform:scaleY(1) scaleX(1)}30%{transform:scaleY(1.05) scaleX(.97)}60%{transform:scaleY(.98) scaleX(1.02)}}@keyframes olrays{0%,100%{transform:scale(1);opacity:.8}50%{transform:scale(1.08);opacity:1}}@keyframes ollampblink{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}@keyframes ollampsway{0%,100%{transform:rotate(-2.5deg)}50%{transform:rotate(2.5deg)}}@keyframes ollamphop{0%{transform:translateY(0)}40%{transform:translateY(-3px)}100%{transform:translateY(0)}}
+.ol-vans{border:1px solid var(--br);border-radius:10px;padding:11px 13px;margin-bottom:9px;background:var(--bg,#1a140a)}
+.ol-vans .vr{font-weight:700;color:var(--gd,#c9a84c)}
+.ol-vans .vt{display:block;margin-top:5px;font-size:.85rem;line-height:1.55;color:var(--tx,#e7ddc8)}
+.ol-vans .vt em{font-style:normal;font-size:.62rem;color:var(--mu);border:1px solid var(--br);border-radius:4px;padding:0 4px;margin-left:5px;letter-spacing:.05em;vertical-align:middle}
+.ol-ask-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+.ol-ask-chips button{font:inherit;font-size:.78rem;color:var(--tx,#e7ddc8);background:var(--bg,#1a140a);border:1px solid var(--br);border-radius:16px;padding:5px 11px;cursor:pointer;transition:border-color .18s,color .18s}
+.ol-ask-chips button:hover{border-color:var(--gd,#c9a84c);color:var(--gd,#c9a84c)}
+.ol-ask-foot{border-top:1px solid var(--br);padding:10px 10px 4px;display:flex;gap:8px;align-items:center}
+.ol-ask-foot input{flex:1;border:1px solid var(--br);background:var(--bg,#1a140a);color:var(--tx,#e7ddc8);font:inherit;font-size:.9rem;padding:9px 12px;border-radius:9px;outline:none}
+.ol-ask-foot input:focus{border-color:var(--gd,#c9a84c)}
+.ol-ask-foot button.send{flex:none;border:none;background:var(--gd,#c9a84c);color:#1a140a;width:38px;height:38px;border-radius:9px;cursor:pointer;font-size:1.15rem;line-height:1;display:flex;align-items:center;justify-content:center}
+.ol-ask-foot button.send:hover{filter:brightness(1.06)}
+.ol-ask-note{font-size:.66rem;color:var(--mu);text-align:center;padding:6px 12px 9px;line-height:1.4}
+@media(max-width:480px){.ol-ask-wrap{right:8px;bottom:8px;width:auto;left:8px;height:80vh;max-height:none}.ol-ask-fab{right:12px;bottom:14px}#ol-top{bottom:78px}}
+/* END-FEATURES4 */
+
+/* AUTO-FEATURES5 */
+.ol-print-btn{display:flex;align-items:center;gap:9px;width:100%;margin:4px 0 6px;padding:9px 13px;border:1px solid var(--br);border-radius:9px;background:var(--bg2);color:var(--mu);font:inherit;font-size:.86rem;cursor:pointer;transition:border-color .2s,color .2s}
+.ol-print-btn:hover{border-color:var(--gd,#c9a84c);color:var(--gd,#c9a84c)}
+.ol-print-btn svg{width:16px;height:16px;flex:none;display:block}
+@media print{.ol-print-btn{display:none!important}}
+/* END-FEATURES5 */
+</style>
+<script>try{if(localStorage.getItem('ol-theme')==='light')document.documentElement.classList.add('light')}catch(e){}</script>
+<script>try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('js-anim')}catch(e){}</script>
+<link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#141008"><link rel="apple-touch-icon" href="icon-192.png">
+<style id="ol-sb-css">
+main{transition:margin-left .3s ease}
+#ol-sbt{position:fixed;top:50%;transform:translateY(-50%);left:var(--sidebar-w);z-index:150;width:20px;height:52px;display:flex;align-items:center;justify-content:center;background:var(--bg3);color:var(--gold);border:1px solid var(--br);border-left:none;border-radius:0 8px 8px 0;cursor:pointer;font-size:.95rem;line-height:1;box-shadow:2px 0 8px rgba(0,0,0,.28);transition:left .3s ease,filter .2s;font-family:Georgia,serif}
+#ol-sbt:hover{filter:brightness(1.18)}
+html.sb-collapsed #sidebar,html.sb-collapsed #sb{transform:translateX(-100%)}
+html.sb-collapsed main{margin-left:0}
+html.sb-collapsed #ol-sbt{left:0}
+@media(max-width:768px){#ol-sbt{display:none}}
+@media print{#ol-sbt{display:none!important}}
+</style>
+<script>try{if(localStorage.getItem('ol-sb')==='1')document.documentElement.classList.add('sb-collapsed')}catch(e){}</script>
+<!-- SEO-META-START -->
+<meta name="description" content="Romans 9 read with St John Chrysostom, St Gregory, St John of Damascus and Jeremiah's potter beside Augustine, Calvin, Dort and Westminster: Jacob and Esau, Pharaoh's heart, the potter and the clay, Jeremiah 18, vessels that change, and why Israel stumbled.">
+<link rel="canonical" href="https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/romans_9.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="The Orthodox Lamp">
+<meta property="og:title" content="Romans 9: Election &amp; the Potter — The Orthodox Lamp">
+<meta property="og:description" content="Romans 9 read with St John Chrysostom, St Gregory, St John of Damascus and Jeremiah's potter beside Augustine, Calvin, Dort and Westminster: Jacob and Esau, Pharaoh's heart, the potter and the clay, Jeremiah 18, vessels that change, and why Israel stumbled.">
+<meta property="og:url" content="https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/romans_9.html">
+<meta property="og:image" content="https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Romans 9: Election &amp; the Potter — The Orthodox Lamp">
+<meta name="twitter:description" content="Romans 9 read with St John Chrysostom, St Gregory, St John of Damascus and Jeremiah's potter beside Augustine, Calvin, Dort and Westminster: Jacob and Esau, Pharaoh's heart, the potter and the clay, Jeremiah 18, vessels that change, and why Israel stumbled.">
+<meta name="twitter:image" content="https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/og-cover.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "name": "Romans 9: Election and the Potter — The Orthodox Lamp", "description": "Romans 9 read with St John Chrysostom, St Gregory, St John of Damascus and Jeremiah's potter beside Augustine, Calvin, Dort and Westminster: Jacob and Esau, Pharaoh's heart, the potter and the clay, Jeremiah 18, vessels that change, and why Israel stumbled.", "url": "https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/romans_9.html", "isPartOf": {"@type": "WebSite", "name": "The Orthodox Lamp", "url": "https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/"}, "inLanguage": "en"}]}</script>
+<!-- SEO-META-END -->
+<style>/* SVLK */.sv-lk{color:inherit;text-decoration:none;border-bottom:1px dotted currentColor;transition:opacity .15s}.sv-lk:hover{opacity:.72}
+/* OL-BREADCRUMB */
+.ol-bc{margin:0;padding:16px 24px 2px;font-size:.8rem;color:var(--mu);display:flex;flex-wrap:wrap;align-items:center;gap:.45rem;letter-spacing:.02em}
+.ol-bc a{color:var(--mu);text-decoration:none;transition:color .15s}
+.ol-bc a:hover{color:var(--gd,#c9a84c)}
+.ol-bc i{opacity:.45;font-style:normal;font-size:.9em}
+.ol-bc .cur{color:var(--gd,#c9a84c);font-weight:600}
+@media print{.ol-bc{display:none!important}}
+/* END-OL-BREADCRUMB */
+/* OL-FABALIGN */
+#ol-top,#ol-tt{right:22px;width:44px;height:44px}
+.ol-ask-fab{right:22px;bottom:24px}
+#ol-tt{bottom:90px}
+#ol-top{bottom:148px}
+@media(max-width:480px){.ol-ask-fab{right:14px;bottom:16px}#ol-tt{right:14px;bottom:82px;width:42px;height:42px}#ol-top{right:14px;bottom:138px;width:42px;height:42px}}
+/* END-OL-FABALIGN */
+
+
+
+
+
+/* OL-PGBAND */
+.oo-pgband{display:block;text-decoration:none;position:relative;margin:14px 0 6px;border-radius:10px;overflow:hidden;border:1px solid var(--br);box-shadow:0 4px 14px rgba(0,0,0,.3);cursor:pointer}
+.oo-pgband .im{height:106px;background-size:cover;filter:sepia(.5) saturate(.82) brightness(.86) contrast(.95);transition:filter .5s ease,transform .5s ease}
+.oo-pgband:hover .im,.oo-pgband:focus-visible .im{filter:sepia(.3) saturate(.95) brightness(.98) contrast(1);transform:scale(1.03)}
+.oo-pgband:focus-visible{outline:2px solid var(--gl);outline-offset:2px}
+.oo-pgband .cap{position:absolute;left:15px;bottom:9px;font:600 .68rem/1.3 var(--disp,Georgia),serif;letter-spacing:.11em;text-transform:uppercase;color:var(--gl);opacity:.92;text-shadow:0 1px 6px rgba(0,0,0,1)}
+.oo-pgband .cap b{display:block;font-size:.85rem;letter-spacing:.05em;opacity:1}
+.oo-pgband::after{content:"\2626";position:absolute;top:7px;right:13px;color:var(--gl);opacity:.62;font-size:1.02rem;line-height:1;text-shadow:0 1px 3px rgba(0,0,0,.9);transition:opacity .4s ease}
+.oo-pgband:hover::after,.oo-pgband:focus-visible::after{opacity:.96}
+@media(max-width:760px){.oo-pgband .im{height:86px}}
+@media print{.oo-pgband{display:none}}
+/* END-OL-PGBAND */
+</style>
+<style>/* Romans with the Fathers series bar */
+.rm-bar{margin:12px 24px 6px;border:1px solid var(--br);border-radius:10px;background:var(--bg2);padding:10px 12px 8px}
+.rm-t{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin:0 0 8px 2px;font-weight:700}
+.rm-bar .rm-t a{color:inherit;text-decoration:none;padding:0;margin:0;display:inline;background:none;border:0}
+.rm-row{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;width:0;min-width:100%;scrollbar-width:thin}
+.rm-row a,.rm-row span{flex:0 0 auto;display:flex;flex-direction:column;gap:1px;padding:7px 11px;border-radius:7px;border:1px solid var(--br);text-decoration:none;color:var(--tx);font-size:.78rem;line-height:1.25;background:var(--bg3);white-space:nowrap}
+.rm-row b{font-size:.7rem;color:var(--gold);letter-spacing:.06em;text-transform:uppercase}
+.rm-row a:hover{border-color:var(--gold)}
+.rm-row .on{background:var(--gold);border-color:var(--gold);color:#141414}
+.rm-row .on b{color:#141414}
+.rm-row .soon{opacity:.45;cursor:default}
+.rm-pn{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0 6px}
+.rm-pn a{display:block;padding:12px 14px;border:1px solid var(--br);border-radius:8px;background:var(--bg2);text-decoration:none;color:var(--tx);font-size:.85rem;line-height:1.35}
+.rm-pn a:hover{border-color:var(--gold)}
+.rm-pn small{display:block;color:var(--gold);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:3px}
+.rm-pn .nx{text-align:right;grid-column:2}
+@media (max-width:640px){.rm-bar{margin:10px 12px 6px}}
+@media print{.rm-bar,.rm-pn{display:none!important}}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<div id="overlay" onclick="closeMobile()"></div>
+
+<aside id="sidebar">
+  <header>
+  <svg class="lampsvg" width="92" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><radialGradient id="lmpGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffb95e" stop-opacity=".55"/><stop offset="100%" stop-color="#ffb95e" stop-opacity="0"/></radialGradient><linearGradient id="lmpFlame" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#ff7a1f"/><stop offset="55%" stop-color="#ffb347"/><stop offset="100%" stop-color="#ffe9b0"/></linearGradient><linearGradient id="lmpBrass" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e3b860"/><stop offset="50%" stop-color="#a87b35"/><stop offset="100%" stop-color="#7a5523"/></linearGradient></defs><circle cx="60" cy="38" r="34" fill="url(#lmpGlow)"/><g class="lampflame"><path d="M60 16 C66 26 70 32 70 40 C70 48 65.5 53 60 53 C54.5 53 50 48 50 40 C50 32 54 26 60 16 Z" fill="url(#lmpFlame)"/><path d="M60 30 C63 35 64.5 38 64.5 42 C64.5 46.5 62.5 49 60 49 C57.5 49 55.5 46.5 55.5 42 C55.5 38 57 35 60 30 Z" fill="#fff3cf" opacity=".85"/></g><rect x="56" y="52" width="8" height="7" rx="2" fill="#8a6228"/><path d="M28 62 L92 62 C92 80 78 92 60 92 C42 92 28 80 28 62 Z" fill="url(#lmpBrass)"/><rect x="24" y="58" width="72" height="6" rx="3" fill="#caa14e"/><rect x="56" y="92" width="8" height="16" fill="url(#lmpBrass)"/><path d="M38 118 C38 110 47 108 60 108 C73 108 82 110 82 118 L82 122 L38 122 Z" fill="url(#lmpBrass)"/><rect x="32" y="122" width="56" height="6" rx="3" fill="#caa14e"/></svg>
+    <span class="sb-cross">☩</span>
+    <div class="sb-title">The Orthodox Lamp</div>
+    <div class="sb-sub">Romans 9</div>
+  </header>
+  <nav id="nav">
+    <a href="#s1">I. Introduction</a>
+    <a href="#s2">II. Glossary of Terms</a>
+    <a href="#s3">III. Paul's Grief and Paul's Question</a>
+    <a href="#s4">IV. Jacob and Esau</a>
+    <a href="#s5">V. Mercy and Pharaoh's Heart</a>
+    <a href="#s6">VI. The Potter and the Clay</a>
+    <a href="#s7">VII. The Potter's House: Jeremiah 18</a>
+    <a href="#s8">VIII. Vessels That Change</a>
+    <a href="#s9">IX. The Reformed Reading in Its Own Words</a>
+    <a href="#s10">X. Protestants Divided</a>
+    <a href="#s11">XI. Why Israel Stumbled</a>
+    <a href="#s12">XII. How Strong Is the Potter Argument?</a>
+    <a href="#s13">XIII. Objections Answered</a>
+    <a href="#s14">XIV. FAQ</a>
+    <a href="#s15">XV. Sources</a>
+  </nav>
+  <div class="sb-search">
+    <input type="text" id="srch" placeholder="Search this page…" oninput="doSearch(this.value)">
+  </div>
+</aside>
+
+<div id="main">
+  <div id="mob-bar">
+    <button id="ham" onclick="toggleSidebar()">☰</button>
+    <span class="mb-title">The Orthodox Lamp</span>
+  </div>
+
+  <div class="hero">
+    <span class="si">☩</span>
+    <h1 class="st">THE <span>ORTHODOX</span> LAMP</h1>
+    <p class="ss">Romans 9: Election &amp; the Potter</p>
+    <p class="tg">"As then Pharaoh became a vessel of wrath by his own lawlessness, so did these become vessels of mercy by their own readiness to obey." St John Chrysostom, Homily 16 on Romans</p>
+    <div class="orn">✦ ✦ ✦</div>
+  </div>
+
+  <div class="content">
+<nav class="ol-bc" aria-label="Breadcrumb"><a href="index.html">Home</a><i>›</i><a href="index.html#oriental">Oriental Orthodoxy</a><i>›</i><a href="romans_1_2.html">Romans with the Fathers</a><i>›</i><span class="cur">Romans 9</span></nav>
+<nav class="rm-bar" aria-label="Romans with the Fathers"><div class="rm-t"><a href="romans_1_2.html">Romans with the Fathers</a></div><div class="rm-row"><a href="romans_1_2.html"><b>Romans 1–2</b>Creation &amp; Judgement</a><a href="romans_3_4.html"><b>Romans 3–4</b>Justification &amp; Faith</a><a href="romans_5.html"><b>Romans 5</b>Adam &amp; Ancestral Sin</a><a href="romans_6.html"><b>Romans 6</b>Baptism</a><a href="romans_7.html"><b>Romans 7</b>The Law &amp; the Divided Self</a><a href="romans_8.html"><b>Romans 8</b>Life in the Spirit</a><a class="on" href="romans_9.html" aria-current="page"><b>Romans 9</b>Election &amp; the Potter</a><span class="soon" title="Coming soon"><b>Romans 10–11</b>Israel &amp; the Nations</span><span class="soon" title="Coming soon"><b>Romans 12–16</b>The Christian Life</span></div></nav>
+
+<!-- OL-PGBAND -->
+<a class="oo-pgband" href="https://upload.wikimedia.org/wikipedia/commons/6/67/Ura_Kidane_Mehret_Church_01.jpg" target="_blank" rel="noopener noreferrer" title="Ura Kidane Mehret — Ethiopian Orthodox · Lake Tana · view full photo (Wikimedia Commons)" aria-label="View the full photograph of Ura Kidane Mehret, Ethiopian Orthodox · Lake Tana — opens in a new tab"><div class="im" style="background-image:linear-gradient(180deg,rgba(12,12,12,.5) 0%,rgba(12,12,12,.86) 100%),url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Ura_Kidane_Mehret_Church_01.jpg/960px-Ura_Kidane_Mehret_Church_01.jpg');background-position:center 48%"></div><span class="cap"><b>Ura Kidane Mehret</b>Ethiopian Orthodox · Lake Tana</span></a>
+<!-- END-OL-PGBAND -->
+
+
+    <div class="sec" id="s1">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">I.</span>Introduction: The Most Misread Chapter</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>Few chapters of the Bible have been read with more fear than Romans 9. "Jacob I have loved, but Esau I have hated." "He has mercy on whom He wills, and whom He wills He hardens." "Does not the potter have power over the clay?" From these verses St Augustine in his later years, and after him John Calvin and the Synod of Dort, drew the doctrine that God, before the world began, chose some people for eternal life and passed over the rest, without regard to anything He foresaw in them. Many sincere Christians have read Romans 9 and concluded that their eternal destiny was fixed before they were born.</p>
+        <p>The Orthodox Church reads the chapter differently, and so did the Church before Augustine. That reading does not make God smaller. It takes seriously that Romans 9 is the first part of a single argument running to the end of chapter 11, that it is about God's dealings with Israel and the nations, that Paul himself says why Israel stumbled, and that the image of the potter has a history in Scripture. The most important part of that history is the prophet Jeremiah's visit to the potter's house, where God explained the image Himself.</p>
+        <p>This page sets out both readings in full, gives the Reformed position in the words of Calvin, Westminster and Dort, shows that Protestants themselves have never agreed on it, and then makes the case from Jeremiah 18, St Paul's own words in 2 Timothy, and the Fathers. It also says honestly where the case is strong and where it needs care.</p>
+        <blockquote>"As then Pharaoh became a vessel of wrath by his own lawlessness, so did these become vessels of mercy by their own readiness to obey." St John Chrysostom, Homily 16 on Romans</blockquote>
+        <p>This page is part of <strong>Romans with the Fathers</strong>, a series of nine pages that read St Paul's letter to the Romans section by section with the Church Fathers, setting their reading beside the main Protestant readings. Use the bar at the top of the page to move between the sections of the letter.</p>
+        <h3>A Note on Quotations</h3>
+        <p>Every quotation marked <span class="pl">VERBATIM</span> has been checked word for word against a public domain translation: St John Chrysostom's thirty-two Homilies on Romans and the other Fathers in the Ante-Nicene and Nicene and Post-Nicene Fathers series, John Calvin's Commentary on Romans in John Owen's translation (1849), and the Reformation confessions in Philip Schaff's <em>Creeds of Christendom</em>. Chrysostom's homilies follow J. B. Morris's translation as revised by W. H. Simcox, in the Nicene and Post-Nicene Fathers, First Series, volume 11. Wisdom 15:7, which is not in the NKJV, is quoted from the Douay-Rheims. Where a work has no public domain English translation, its teaching is summarised and marked <span class="pl">PARAPHRASE</span>. Scripture follows the NKJV.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s2">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">II.</span>Glossary of Terms</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <div class="gt-grid">
+          <div class="gt">
+            <div class="gt-term">Election</div>
+            <div class="gt-grk">ἐκλογή · eklogē</div>
+            <div class="gt-def">Choosing. In Romans 9:11, God's choice of Jacob's line over Esau's.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Purpose</div>
+            <div class="gt-grk">πρόθεσις · prothesis</div>
+            <div class="gt-def">A plan set forth beforehand (9:11; 8:28).</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Hated</div>
+            <div class="gt-grk">ἐμίσησα · emisēsa</div>
+            <div class="gt-def">"I hated" (9:13, quoting Malachi 1:3). In Hebrew idiom, to love one and "hate" another often means to choose or prefer one over the other (Genesis 29:30&ndash;31; Luke 14:26).</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Harden</div>
+            <div class="gt-grk">σκληρύνω · sklērynō</div>
+            <div class="gt-def">To make hard or stubborn (9:18). Used of Pharaoh, who is also said to have hardened his own heart.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Potter</div>
+            <div class="gt-grk">κεραμεύς · kerameus</div>
+            <div class="gt-def">The craftsman who shapes clay (9:21). The image comes from Isaiah, Jeremiah and Wisdom.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Lump</div>
+            <div class="gt-grk">φύραμα · phyrama</div>
+            <div class="gt-def">A batch of kneaded clay or dough (9:21; 11:16).</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Vessel</div>
+            <div class="gt-grk">σκεῦος · skeuos</div>
+            <div class="gt-def">A pot or container, and by extension a person as God's instrument (9:21&ndash;23; 2 Timothy 2:20&ndash;21; Acts 9:15).</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Prepared, fitted</div>
+            <div class="gt-grk">κατηρτισμένα · katērtismena</div>
+            <div class="gt-def">"Vessels of wrath prepared for destruction" (9:22). A perfect participle with no stated agent: Paul does not say who fitted them.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Prepared beforehand</div>
+            <div class="gt-grk">προητοίμασεν · proētoimasen</div>
+            <div class="gt-def">"Vessels of mercy, which He had prepared beforehand for glory" (9:23). Here God is the stated subject. The difference from 9:22 is noticed by many commentators.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Longsuffering</div>
+            <div class="gt-grk">μακροθυμία · makrothymia</div>
+            <div class="gt-def">Patience that holds back anger. God "endured with much longsuffering the vessels of wrath" (9:22), the same patience that leads to repentance (2:4).</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s3">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">III.</span>Paul's Grief and Paul's Question (9:1&ndash;9)</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%209%3A1-3&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 9:1-3</a></div>
+          <div class="txt">"I tell the truth in Christ, I am not lying, my conscience also bearing me witness in the Holy Spirit, that I have great sorrow and continual grief in my heart. For I could wish that I myself were accursed from Christ for my brethren, my countrymen according to the flesh,"</div>
+          <div class="mia-note">🔵 Orthodox reading: Paul begins not with a theory of predestination but with grief. He would be cut off himself if it would save his people.</div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%209%3A4-5&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 9:4-5</a></div>
+          <div class="txt">"who are Israelites, to whom pertain the adoption, the glory, the covenants, the giving of the law, the service of God, and the promises; of whom are the fathers and from whom, according to the flesh, Christ came, who is over all, the eternally blessed God. Amen."</div>
+          <div class="mia-note">🔵 Orthodox reading: Israel's privileges were real, and from them came Christ, "who is over all, the eternally blessed God."</div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%209%3A6-8&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 9:6-8</a></div>
+          <div class="txt">"But it is not that the word of God has taken no effect. For they are not all Israel who are of Israel, nor are they all children because they are the seed of Abraham; but, 'In Isaac your seed shall be called.' That is, those who are the children of the flesh, these are not the children of God; but the children of the promise are counted as the seed."</div>
+          <div class="mia-note">🔵 Orthodox reading: The question of Romans 9 is whether God's word to Israel has failed. Paul answers that the true Israel has always been the children of the promise.</div>
+        </div>
+        <p>Everything in Romans 9 must be read in the light of this question. Paul has just said that nothing can separate God's people from His love (8:39). But most of Israel, God's own people, have not believed in their Messiah. Has God's promise failed? Romans 9 to 11 is one answer in three parts, and it ends not with a fixed number of the elect and the reprobate but with "God has committed them all to disobedience, that He might have mercy on all" (11:32).</p>
+        <p>Chrysostom saw the shape of the argument clearly. Paul is answering a Jewish objection, and he answers it by showing that God has always chosen freely within Abraham's family, and is free now to show mercy to Gentiles who believe:</p>
+        <div class="fc">
+          <div class="fn">St John Chrysostom</div>
+          <div class="fw">Homily 16 on Romans (on 9:6&ndash;8)</div>
+          <div class="fq">"Now if all have sinned, how come some to be saved, and some to perish? It is because all were not minded to come to Him, since for His part all were saved, for all were called."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St John Chrysostom</div>
+          <div class="fw">Homily 16 on Romans (on 9:8&ndash;9)</div>
+          <div class="fq">"Thus are we also gendered by the words of God. Since in the pool of water it is the words of God which generate and fashion us. For it is by being baptized into the Name of the Father and of the Son and of the Holy Ghost that we are gendered. And this birth is not of nature, but of the promise of God."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s4">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">IV.</span>Jacob and Esau (9:10&ndash;13)</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%209%3A10-13&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 9:10-13</a></div>
+          <div class="txt">"And not only this, but when Rebecca also had conceived by one man, even by our father Isaac (for the children not yet being born, nor having done any good or evil, that the purpose of God according to election might stand, not of works but of Him who calls), it was said to her, 'The older shall serve the younger.' As it is written, 'Jacob I have loved, but Esau I have hated.'"</div>
+          <div class="mia-note">🔵 Orthodox reading: Before the twins were born or had done anything, God chose the younger to carry the promise. Election is God's free gift, not a wage for works.</div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Genesis%2025%3A23&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Genesis 25:23</a></div>
+          <div class="txt">"And the Lord said to her: 'Two nations are in your womb, Two peoples shall be separated from your body; One people shall be stronger than the other, And the older shall serve the younger.'"</div>
+          <div class="mia-note">🔵 Orthodox reading: What God told Rebecca was about two nations: the people descended from Esau would serve the people descended from Jacob.</div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Malachi%201%3A2-3&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Malachi 1:2-3</a></div>
+          <div class="txt">"'I have loved you,' says the Lord. 'Yet you say, 'In what way have You loved us?' Was not Esau Jacob's brother?' Says the Lord. 'Yet Jacob I have loved; But Esau I have hated, And laid waste his mountains and his heritage For the jackals of the wilderness.'"</div>
+          <div class="mia-note">🔵 Orthodox reading: Malachi, writing more than a thousand years after the twins, speaks of the nation of Edom and its land.</div>
+        </div>
+        <p>Three things about these verses are often missed.</p>
+        <p><strong>First, they are about peoples and roles in history.</strong> Genesis 25:23 speaks of "two nations" and "two peoples," and the promise was that "the older shall serve the younger," a matter of which line would carry the promise to Christ. Malachi speaks of Edom's mountains laid waste. Neither passage says anything about Esau's soul or his eternal destiny. Even Calvin, who reads the verses as pointing to eternal election, admits that in Malachi "earthly blessings are there recorded" and that the Lord "rejected the Edomites, the progeny of Esau."</p>
+        <div class="fc">
+          <div class="fn">John Calvin</div>
+          <div class="fw">Commentary on Romans (on 9:13)</div>
+          <div class="fq">"I therefore chose you for my people, that I might show the same kindness to the seed of Jacob; but I rejected the Edomites, the progeny of Esau... Now, though earthly blessings are there recorded, which God had conferred on the Israelites, it is not yet right to view them but as symbols of his benevolence..."</div>
+          <div class="labels"><span class="dyo">Reformer</span><span class="pl">VERBATIM · OWEN TRANSLATION (1849)</span></div>
+        </div>
+        <p><strong>Second, "hated" is Hebrew idiom for choosing one over another.</strong> When Jacob "loved Rachel more than Leah," Scripture immediately says Leah was "unloved," literally "hated" (Genesis 29:30&ndash;31). Christ says no one can be His disciple who does not "hate" his father and mother (Luke 14:26), which Matthew renders "loves father or mother more than Me" (Matthew 10:37).</p>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Genesis%2029%3A30-31&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Genesis 29:30-31</a></div>
+          <div class="txt">"Then Jacob also went in to Rachel, and he also loved Rachel more than Leah. And he served with Laban still another seven years. When the Lord saw that Leah was unloved, He opened her womb; but Rachel was barren."</div>
+          <div class="mia-note">🔵 Orthodox reading: Leah was not the object of Jacob's malice; she was simply not chosen as Rachel was.</div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Deuteronomy%2023%3A7&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Deuteronomy 23:7</a></div>
+          <div class="txt">"You shall not abhor an Edomite, for he is your brother. You shall not abhor an Egyptian, because you were an alien in his land."</div>
+          <div class="mia-note">🔵 Orthodox reading: God's law forbade Israel to abhor the Edomites: "he is your brother." Esau's descendants were not the objects of divine loathing.</div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Genesis%2033%3A9&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Genesis 33:9</a></div>
+          <div class="txt">"But Esau said, 'I have enough, my brother; keep what you have for yourself.'"</div>
+          <div class="mia-note">🔵 Orthodox reading: Esau himself was blessed with plenty and forgave his brother. His story in Genesis is not the story of a man cursed by God.</div>
+        </div>
+        <p><strong>Third, Paul's point is that the choice was not earned.</strong> "Not of works but of Him who calls." The Orthodox agree completely: no one is chosen because of merit. Chrysostom adds that God, unlike us, does not need to wait for the outcome to know a person's character:</p>
+        <div class="fc">
+          <div class="fn">St John Chrysostom</div>
+          <div class="fw">Homily 16 on Romans (on 9:11&ndash;13)</div>
+          <div class="fq">"With what intent then did God say this? Because He does not wait, as man does, to see from the issue of their acts the good and him who is not so, but even before these He knows which is the wicked and which not such."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>Reformed readers object that this makes election depend on foreseen character, which Paul's "not of works" excludes. That is a fair objection to a crude version of the view. But foreknowing how a person will freely respond to grace is not the same as rewarding his works. Faith is not a work that earns (4:4&ndash;5), and the Fathers never said God chose anyone because they deserved it. They said God's choices are not arbitrary, because He knows the heart.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s5">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">V.</span>Mercy and Pharaoh's Heart (9:14&ndash;18)</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%209%3A14-16&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 9:14-16</a></div>
+          <div class="txt">"What shall we say then? Is there unrighteousness with God? Certainly not! For He says to Moses, 'I will have mercy on whomever I will have mercy, and I will have compassion on whomever I will have compassion.' So then it is not of him who wills, nor of him who runs, but of God who shows mercy."</div>
+          <div class="mia-note">🔵 Orthodox reading: God's mercy is His to give. No one can claim it by willing or running.</div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Exodus%2033%3A19&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Exodus 33:19</a></div>
+          <div class="txt">"Then He said, 'I will make all My goodness pass before you, and I will proclaim the name of the Lord before you. I will be gracious to whom I will be gracious, and I will have compassion on whom I will have compassion.'"</div>
+          <div class="mia-note">🔵 Orthodox reading: The words were spoken to Moses after the golden calf, when all Israel had sinned and God chose to show mercy. They are a revelation of God's goodness, not of arbitrary choice.</div>
+        </div>
+        <div class="fc">
+          <div class="fn">St John Chrysostom</div>
+          <div class="fw">Homily 16 on Romans (on 9:15)</div>
+          <div class="fq">"For it is not yours to know, O Moses, he means, which are deserving of My love toward man, but leave this to Me. But if Moses had no right to know, much less have we."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>"It is not of him who wills, nor of him who runs" (9:16). St Gregory the Theologian explains how the Fathers read this verse: not as denying our will, but as denying that our will is enough on its own:</p>
+        <div class="fc">
+          <div class="fn">St Gregory of Nazianzus</div>
+          <div class="fw">Oration 37.13</div>
+          <div class="fq">"For it is necessary both that we should be our own masters and also that our salvation should be of God. This is why He says not of him that wills; that is, not of him that wills only, nor of him that runs only, but also of God. That shows mercy. Next; since to will also is from God, he has attributed the whole to God with reason."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St John Chrysostom</div>
+          <div class="fw">Homily 16 on Romans (on 9:16)</div>
+          <div class="fq">"Because when he says, it is not of him that wills, nor of him that runs, he does not deprive us of free-will, but shows that all is not one's own, for that it requires grace from above. For it is binding on us to will, and also to run: but to confide not in our own labors, but in the love of God toward man."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <h3>Who Hardened Pharaoh?</h3>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%209%3A17-18&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 9:17-18</a></div>
+          <div class="txt">"For the Scripture says to the Pharaoh, 'For this very purpose I have raised you up, that I may show My power in you, and that My name may be declared in all the earth.' Therefore He has mercy on whom He wills, and whom He wills He hardens."</div>
+          <div class="mia-note">🔵 Orthodox reading: God raised Pharaoh up to show His power, and He hardens whom He wills.</div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Exodus%204%3A21&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Exodus 4:21</a></div>
+          <div class="txt">"And the Lord said to Moses, 'When you go back to Egypt, see that you do all those wonders before Pharaoh which I have put in your hand. But I will harden his heart, so that he will not let the people go."</div>
+          <div class="mia-note">🔵 Orthodox reading: God foretold that He would harden Pharaoh's heart.</div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Exodus%208%3A15&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Exodus 8:15</a></div>
+          <div class="txt">"But when Pharaoh saw that there was relief, he hardened his heart and did not heed them, as the Lord had said."</div>
+          <div class="mia-note">🔵 Orthodox reading: Yet Exodus also says, again and again, that Pharaoh hardened his own heart.</div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Exodus%209%3A12&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Exodus 9:12</a></div>
+          <div class="txt">"But the Lord hardened the heart of Pharaoh; and he did not heed them, just as the Lord had spoken to Moses."</div>
+          <div class="mia-note">🔵 Orthodox reading: Only after Pharaoh had hardened himself through the earlier plagues does the text say that the Lord hardened him.</div>
+        </div>
+        <p>The Fathers explained the two statements with a famous image. The same sun that melts wax hardens mud. The sun does not change; the material does. So God's same goodness, shown to Pharaoh in sign after sign, softened some Egyptians who left with Israel and hardened the man who refused it.</p>
+        <div class="fc">
+          <div class="fn">Origen</div>
+          <div class="fw">De Principiis III.1.11</div>
+          <div class="fq">"Now it is not incorrect to say that the sun, by one and the same power of its heat, melts wax indeed, but dries up and hardens mud: not that its power operates one way upon mud, and in another way upon wax; but that the qualities of mud and wax are different, although according to nature they are one thing, both being from the earth. In this way, then, one and the same working upon the part of God, which was administered by Moses in signs and wonders, made manifest the hardness of Pharaoh, which he had conceived in the intensity of his wickedness..."</div>
+          <div class="labels"><span class="nes">Early Writer (not a saint)</span><span class="pl">VERBATIM · ANF TRANSLATION</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St Irenaeus of Lyons</div>
+          <div class="fw">Against Heresies IV.29.1</div>
+          <div class="fq">"For one and the same God [that blesses others] inflicts blindness upon those who do not believe, but who set Him at naught; just as the sun, which is a creature of His, [acts with regard] to those who, by reason of any weakness of the eyes cannot behold his light..."</div>
+          <div class="labels"><span class="ctx">Early Witness</span><span class="pl">VERBATIM · ANF TRANSLATION</span></div>
+        </div>
+        <p>Origen was a great biblical scholar, but some of his speculations, especially about the pre-existence of souls, were rejected by the Church; Pope Theophilus of Alexandria condemned them around AD 400. He is quoted here only where his reading agrees with the Fathers the Church received.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s6">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">VI.</span>The Potter and the Clay (9:19&ndash;24)</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%209%3A19-21&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 9:19-21</a></div>
+          <div class="txt">"You will say to me then, 'Why does He still find fault? For who has resisted His will?' But indeed, O man, who are you to reply against God? Will the thing formed say to him who formed it, 'Why have you made me like this?' Does not the potter have power over the clay, from the same lump to make one vessel for honor and another for dishonor?"</div>
+          <div class="mia-note">🔵 Orthodox reading: The objector asks why God finds fault if no one can resist Him. Paul answers that the creature has no standing to put its Maker in the dock.</div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%209%3A22-24&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 9:22-24</a></div>
+          <div class="txt">"What if God, wanting to show His wrath and to make His power known, endured with much longsuffering the vessels of wrath prepared for destruction, and that He might make known the riches of His glory on the vessels of mercy, which He had prepared beforehand for glory, even us whom He called, not of the Jews only, but also of the Gentiles?"</div>
+          <div class="mia-note">🔵 Orthodox reading: God endured the vessels of wrath with great patience, and made known His glory to vessels of mercy, called from Jews and Gentiles alike.</div>
+        </div>
+        <p>Paul's words echo several Old Testament passages. Isaiah twice rebukes the clay for questioning the potter (Isaiah 29:16; 45:9). The Wisdom of Solomon, which the Orthodox Churches read as Scripture, describes a potter making clean and common vessels "of the same clay," the very phrase Paul uses:</p>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Isaiah%2045%3A9&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Isaiah 45:9</a></div>
+          <div class="txt">"Woe to him who strives with his Maker! Let the potsherd strive with the potsherds of the earth! Shall the clay say to him who forms it, 'What are you making?' Or shall your handiwork say, 'He has no hands'?"</div>
+          <div class="mia-note">🔵 Orthodox reading: Isaiah's rebuke was aimed at Israelites who questioned how God chose to save them, through the Persian king Cyrus.</div>
+        </div>
+        <blockquote>"The potter also tempering soft earth, with labour fashioneth every vessel for our service, and of the same clay he maketh both vessels that are for clean uses, and likewise such as serve to the contrary: but what is the use of these vessels, the potter is the judge." Wisdom 15:7 (Douay-Rheims)</blockquote>
+        <h3>What Chrysostom Says the Image Means</h3>
+        <div class="fc">
+          <div class="fn">St John Chrysostom</div>
+          <div class="fw">Homily 16 on Romans (on 9:20&ndash;21)</div>
+          <div class="fq">"Here it is not to do away with free-will that he says this, but to show, up to what point we ought to obey God. For in respect of calling God to account, we ought to be as little disposed to it as the clay is."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St John Chrysostom</div>
+          <div class="fw">Homily 16 on Romans (on 9:21)</div>
+          <div class="fq">"...do not suppose that this is said by Paul as an account of the creation, nor as implying a necessity over the will, but to illustrate the sovereignty and difference of dispensations; for if we do not take it in this way, various incongruities will follow, for if here he were speaking about the will, and those who are good and those not so, He will be Himself the Maker of these, and man will be free from all responsibility."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St John Chrysostom</div>
+          <div class="fw">Homily 16 on Romans (on 9:21)</div>
+          <div class="fq">"And yet not even is it on the potter that the honor and the dishonor of the things made of the lump depends, but upon the use made by those that handle them, so here also it depends on the free choice."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <h3>Vessels of Wrath and Vessels of Mercy</h3>
+        <p>Look closely at 9:22&ndash;23. Of the vessels of mercy Paul says God "prepared [them] beforehand for glory." Of the vessels of wrath he says only that they were "prepared for destruction," with no agent named, and he says God "endured [them] with much longsuffering." Why would God patiently endure vessels He had Himself made for destruction? Chrysostom answers:</p>
+        <div class="fc">
+          <div class="fn">St John Chrysostom</div>
+          <div class="fw">Homily 16 on Romans (on 9:22)</div>
+          <div class="fq">"Pharaoh was a vessel of wrath, that is, a man who by his own hard-heartedness had kindled the wrath of God. For after enjoying much long-suffering, he became no better, but remained unimproved. Wherefore he calls him not only a vessel of wrath, but also one fitted for destruction. That is, fully fitted indeed, but by his own proper self."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St John Chrysostom</div>
+          <div class="fw">Homily 16 on Romans (on 9:22)</div>
+          <div class="fq">"Yet still, though God knew this, He endured him with much long-suffering, being willing to bring him to repentance. For had He not willed this, then He would not have been thus long-suffering."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St John Chrysostom</div>
+          <div class="fw">Homily 16 on Romans (on 9:23&ndash;24)</div>
+          <div class="fq">"As then Pharaoh became a vessel of wrath by his own lawlessness, so did these become vessels of mercy by their own readiness to obey. For though the more part is of God, still they also have contributed themselves some little. Whence he does not say either, vessels of well-doing, or vessels of boldness, but vessels of mercy, to show that the whole is of God."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>Calvin reads the same verses as a statement of God's sovereign decree:</p>
+        <div class="fc">
+          <div class="fn">John Calvin</div>
+          <div class="fw">Commentary on Romans (on 9:20)</div>
+          <div class="fq">"It is indeed evident that no cause is adduced higher than the will of God."</div>
+          <div class="labels"><span class="dyo">Reformer</span><span class="pl">VERBATIM · OWEN TRANSLATION (1849)</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">John Calvin</div>
+          <div class="fw">Commentary on Romans (on 9:22)</div>
+          <div class="fq">"There are vessels prepared for destruction, that is, given up and appointed to destruction: they are also vessels of wrath, that is, made and formed for this end, that they may be examples of God's vengeance and displeasure."</div>
+          <div class="labels"><span class="dyo">Reformer</span><span class="pl">VERBATIM · OWEN TRANSLATION (1849)</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s7">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">VII.</span>The Potter's House: Jeremiah 18</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>When Paul asks, "Does not the potter have power over the clay?" he is using an image that God had already explained at length through the prophet Jeremiah. The nineteenth-century English editors of Chrysostom's homilies printed a note at this very verse: "Read Jer. xviii. 1&ndash;10." It is good advice. Here is what Jeremiah saw.</p>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Jeremiah%2018%3A1-4&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Jeremiah 18:1-4</a></div>
+          <div class="txt">"The word which came to Jeremiah from the Lord, saying: 'Arise and go down to the potter's house, and there I will cause you to hear My words.' Then I went down to the potter's house, and there he was, making something at the wheel. And the vessel that he made of clay was marred in the hand of the potter; so he made it again into another vessel, as it seemed good to the potter to make."</div>
+          <div class="mia-note">🔵 Orthodox reading: The vessel was spoiled in the potter's hand, and the potter remade it into another vessel. The potter is fully in charge, and what he does responds to the condition of the clay.</div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Jeremiah%2018%3A5-6&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Jeremiah 18:5-6</a></div>
+          <div class="txt">"Then the word of the Lord came to me, saying: 'O house of Israel, can I not do with you as this potter?' says the Lord. 'Look, as the clay is in the potter's hand, so are you in My hand, O house of Israel!"</div>
+          <div class="mia-note">🔵 Orthodox reading: God applies the image to His people: as the clay is in the potter's hand, so is Israel in His.</div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Jeremiah%2018%3A7-8&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Jeremiah 18:7-8</a></div>
+          <div class="txt">"The instant I speak concerning a nation and concerning a kingdom, to pluck up, to pull down, and to destroy it, if that nation against whom I have spoken turns from its evil, I will relent of the disaster that I thought to bring upon it."</div>
+          <div class="mia-note">🔵 Orthodox reading: If a nation God has threatened turns from its evil, God relents of the disaster.</div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Jeremiah%2018%3A9-10&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Jeremiah 18:9-10</a></div>
+          <div class="txt">"And the instant I speak concerning a nation and concerning a kingdom, to build and to plant it, if it does evil in My sight so that it does not obey My voice, then I will relent concerning the good with which I said I would benefit it."</div>
+          <div class="mia-note">🔵 Orthodox reading: And if a nation God has promised to build does evil, God relents of the good He said He would do for it.</div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Jeremiah%2018%3A11-12&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Jeremiah 18:11-12</a></div>
+          <div class="txt">"'Now therefore, speak to the men of Judah and to the inhabitants of Jerusalem, saying, 'Thus says the Lord: 'Behold, I am fashioning a disaster and devising a plan against you. Return now every one from his evil way, and make your ways and your doings good.''' And they said, 'That is hopeless! So we will walk according to our own plans, and we will every one obey the dictates of his evil heart.'"</div>
+          <div class="mia-note">🔵 Orthodox reading: The potter appeals to the clay: "Return now." The people answer, "That is hopeless! So we will walk according to our own plans."</div>
+        </div>
+        <h3>What the Potter's House Teaches</h3>
+        <p><strong>1. God really is the potter.</strong> Nothing in Jeremiah weakens God's sovereignty. "As the clay is in the potter's hand, so are you in My hand." He does with the vessel "as it seemed good to the potter to make." The Orthodox do not deny one word of Romans 9:20&ndash;21.</p>
+        <p><strong>2. The spoiling comes from the clay, not the potter.</strong> The vessel was "marred in the hand of the potter." No potter sets out to ruin his own work. When God's people are spoiled, it is because they have refused His hands: "we will walk according to our own plans" (18:12).</p>
+        <p><strong>3. Our turning really changes how God shapes us.</strong> This is the heart of the passage. God says plainly that if a nation turns from evil, He relents of the disaster, and if a nation turns to evil, He relents even of the good He intended (18:8, 10). The potter does not shape us without regard to what we do. Our sin and our repentance genuinely change what He makes of us.</p>
+        <p><strong>4. And what He makes is always good.</strong> The potter is never the problem. Whether He builds or pulls down, remakes or reshapes, He acts in goodness, and even His threats are calls to return: "Return now every one from his evil way" (18:11). A vessel remade after being spoiled is not a lesser work of God. It is the same goodness responding to a different clay. This is exactly what Paul says in Romans 9:22: God "endured with much longsuffering" even the vessels of wrath, and in 2:4, that His longsuffering is meant to lead to repentance.</p>
+        <p>Read with Jeremiah, Paul's question "Does not the potter have power over the clay?" does not mean "God fixes each person's destiny regardless of anything in them." It means "God has every right to remake Israel, to set aside those who refuse Him and to form a new people from Jews and Gentiles who believe." That is exactly the subject of Romans 9 to 11.</p>
+        <h3>A Note on the Fathers</h3>
+        <p>In fairness, none of the Fathers in the public domain translations consulted for this page quotes Jeremiah 18 when commenting on Romans 9. The connection rests on Scripture itself: Jeremiah 18 is the Old Testament's own explanation of the potter image. But the conclusion the Fathers drew from Romans 9 is the same as Jeremiah's, and two of them reached it by linking Romans 9 to another of Paul's own vessel passages, as the next section shows.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s8">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">VIII.</span>Vessels That Change: 2 Timothy 2 and Romans 9&ndash;11</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>Paul uses the image of honourable and dishonourable vessels in one other place, and there he says what makes the difference:</p>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=2%20Timothy%202%3A20-21&amp;version=NKJV" target="_blank" rel="noopener noreferrer">2 Timothy 2:20-21</a></div>
+          <div class="txt">"But in a great house there are not only vessels of gold and silver, but also of wood and clay, some for honor and some for dishonor. Therefore if anyone cleanses himself from the latter, he will be a vessel for honor, sanctified and useful for the Master, prepared for every good work."</div>
+          <div class="mia-note">🔵 Orthodox reading: In a great house there are vessels for honour and dishonour, and "if anyone cleanses himself" he will be a vessel for honour. The same apostle, the same image, and the outcome depends on the vessel's response.</div>
+        </div>
+        <p>St John of Damascus, who summed up the teaching of the Greek Fathers in the eighth century, puts the two passages side by side:</p>
+        <div class="fc">
+          <div class="fn">St John of Damascus</div>
+          <div class="fw">Exposition of the Orthodox Faith IV.19</div>
+          <div class="fq">"It is to be observed that it is the custom in the Holy Scripture to speak of God's permission as His energy, as when the apostle says in the Epistle to the Romans, Hath not the potter power over the clay, of the same lump to make one vessel unto honour and another unto dishonour? And for this reason, that He Himself makes this or that. For He is Himself alone the Maker of all things; yet it is not He Himself that fashions noble or ignoble things, but the personal choice of each one."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St John of Damascus</div>
+          <div class="fw">Exposition of the Orthodox Faith IV.19</div>
+          <div class="fq">"And it is evident that the purification must be voluntary: for if a man, he says, purge himself. And the consequent antistrophe responds, If a man purge not himself he will be a vessel to dishonour, unmeet for the master's use and fit only to be broken in pieces."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>Origen, five centuries earlier, had made the same connection:</p>
+        <div class="fc">
+          <div class="fn">Origen</div>
+          <div class="fw">De Principiis III.1.21</div>
+          <div class="fq">"He, accordingly, who purges himself, is made a vessel unto honour, while he who has disdained to cleanse himself from his impurity is made a vessel unto dishonour... For God the Creator makes a certain vessel unto honour, and other vessels to dishonour; but that vessel which has cleansed itself from all impurity He makes a vessel unto honour, while that which has stained itself with the filth of vice He makes a vessel unto dishonour."</div>
+          <div class="labels"><span class="nes">Early Writer (not a saint)</span><span class="pl">VERBATIM · ANF TRANSLATION</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">Origen</div>
+          <div class="fw">De Principiis III.1.22</div>
+          <div class="fq">"...we are not to suppose either that those things which are in our own power can be done without the help of God, or that those which are in God's hand can be brought to completion without the intervention of our acts, and desires, and intention..."</div>
+          <div class="labels"><span class="nes">Early Writer (not a saint)</span><span class="pl">VERBATIM · ANF TRANSLATION</span></div>
+        </div>
+        <h3>Inside Romans Itself</h3>
+        <p>The same logic runs through Romans 9 to 11. Vessels change:</p>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%209%3A25-26&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 9:25-26</a></div>
+          <div class="txt">"As He says also in Hosea: 'I will call them My people, who were not My people, And her beloved, who was not beloved.' 'And it shall come to pass in the place where it was said to them, 'You are not My people,' There they shall be called sons of the living God.'"</div>
+          <div class="mia-note">🔵 Orthodox reading: Those who were "not My people" become "My people." Paul applies Hosea to Gentiles who believe. Vessels of dishonour are remade.</div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%2011%3A22-23&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 11:22-23</a></div>
+          <div class="txt">"Therefore consider the goodness and severity of God: on those who fell, severity; but toward you, goodness, if you continue in His goodness. Otherwise you also will be cut off. And they also, if they do not continue in unbelief, will be grafted in, for God is able to graft them in again."</div>
+          <div class="mia-note">🔵 Orthodox reading: Branches broken off for unbelief can be grafted in again "if they do not continue in unbelief," and branches that stand can be cut off if they do not continue in God's goodness.</div>
+        </div>
+        <p>That is Jeremiah 18 in Paul's own words. The potter's freedom is complete, and He uses it to respond to the clay: cutting off for unbelief, grafting in through faith, and always longing that the spoiled vessel return. This is why the Orthodox say that Romans 9, read to the end of Romans 11, teaches the opposite of a fixed decree of reprobation.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s9">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">IX.</span>The Reformed Reading in Its Own Words</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>It would be unfair to answer the Reformed position without first letting it speak. Its roots are in the later Augustine:</p>
+        <div class="fc">
+          <div class="fn">St Augustine of Hippo</div>
+          <div class="fw">Enchiridion 99</div>
+          <div class="fq">"He has mercy of His great goodness, He hardens without any injustice; so that neither can he that is pardoned glory in any merit of his own, nor he that is condemned complain of anything but his own demerit. For it is grace alone that separates the redeemed from the lost, all having been involved in one common perdition through their common origin."</div>
+          <div class="labels"><span class="ctx">Church Father (Latin)</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">John Calvin</div>
+          <div class="fw">Institutes of the Christian Religion III.21.5</div>
+          <div class="fq">"By predestination we mean the eternal decree of God, by which he determined with himself whatever he wished to happen with regard to every man. All are not created on equal terms, but some are preordained to eternal life, others to eternal damnation; and, accordingly, as each has been created for one or other of these ends, we say that he has been predestinated to life or to death."</div>
+          <div class="labels"><span class="dyo">Reformer</span><span class="pl">VERBATIM · BEVERIDGE TRANSLATION (1845)</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">John Calvin</div>
+          <div class="fw">Institutes of the Christian Religion III.23.7</div>
+          <div class="fq">"The decree, I admit, is, dreadful; and yet it is impossible to deny that God foreknew what the end of man was to be before he made him, and foreknew, because he had so ordained by his decree."</div>
+          <div class="labels"><span class="dyo">Reformer</span><span class="pl">VERBATIM · BEVERIDGE TRANSLATION (1845)</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">Canons of Dort (1619)</div>
+          <div class="fw">Canons of Dort, First Head, Article 6</div>
+          <div class="fq">"That some receive the gift of faith from God, and others do not receive it, proceeds from God's eternal decree... According to which decree he graciously softens the hearts of the elect, however obstinate, and inclines them to believe; while he leaves the non-elect in his just judgment to their own wickedness and obduracy."</div>
+          <div class="labels"><span class="dyo">Synod of Dort (1619)</span><span class="pl">VERBATIM · CANONS OF DORT, SCHAFF</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">Canons of Dort (1619)</div>
+          <div class="fw">Canons of Dort, First Head, Article 15</div>
+          <div class="fq">"...whom God, out of his sovereign, most just, irreprehensible and unchangeable good pleasure, hath decreed to leave in the common misery into which they have willfully plunged themselves, and not to bestow upon them saving faith and the grace of conversion... And this is the decree of reprobation which by no means makes God the author of sin (the very thought of which is blasphemy), but declares him to be an awful, irreprehensible, and righteous judge and avenger."</div>
+          <div class="labels"><span class="dyo">Synod of Dort (1619)</span><span class="pl">VERBATIM · CANONS OF DORT, SCHAFF</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">Westminster Confession (1646)</div>
+          <div class="fw">Westminster Confession of Faith III.5</div>
+          <div class="fq">"Those of mankind that are predestinated unto life, God, before the foundation of the world was laid, according to his eternal and immutable purpose, and the secret counsel and good pleasure of his will, hath chosen in Christ, unto everlasting glory, out of his mere free grace and love, without any foresight of faith or good works, or perseverance in either of them, or any other thing in the creature, as conditions, or causes moving him thereunto; and all to the praise of his glorious grace."</div>
+          <div class="labels"><span class="dyo">Reformed Confession</span><span class="pl">VERBATIM · WESTMINSTER CONFESSION, SCHAFF</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">Westminster Confession (1646)</div>
+          <div class="fw">Westminster Confession of Faith III.7</div>
+          <div class="fq">"The rest of mankind God was pleased, according to the unsearchable counsel of his own will, whereby he extendeth or withholdeth mercy as he pleaseth, for the glory of his sovereign power over his creatures, to pass by, and to ordain them to dishonor and wrath for their sin, to the praise of his glorious justice."</div>
+          <div class="labels"><span class="dyo">Reformed Confession</span><span class="pl">VERBATIM · WESTMINSTER CONFESSION, SCHAFF</span></div>
+        </div>
+        <p>Three things deserve to be said in the Reformed tradition's favour. It insists that no one is saved by his own merit, which is true. It insists that God is not the author of sin and that the lost are condemned "for their sin," which is also true. And Calvin was honest enough to call the decree "dreadful." The Reformed are not cruel people who enjoy the thought of reprobation; they believe Scripture compels it.</p>
+        <h3>How a Reformed Reader Would Answer Jeremiah 18</h3>
+        <p>A careful Calvinist would reply to the potter's house in four ways. First, Jeremiah 18 is about nations and earthly judgements, not the eternal salvation of individuals. Second, the potter's freedom is the point of both passages: "as it seemed good to the potter." Third, repentance is itself God's gift: "Restore me, and I will return" (Jeremiah 31:18); "God has also granted to the Gentiles repentance to life" (Acts 11:18). So even when the clay turns, it is because the potter turned it, and Dort says exactly this. Fourth, Paul in Romans 9:20 is silencing the objector, not explaining God's reasons.</p>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Jeremiah%2031%3A18&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Jeremiah 31:18</a></div>
+          <div class="txt">"I have surely heard Ephraim bemoaning himself: 'You have chastised me, and I was chastised, Like an untrained bull; Restore me, and I will return, For You are the Lord my God."</div>
+          <div class="mia-note">🔵 Orthodox reading: The penitent asks God to restore him so that he can return. Repentance is a gift.</div>
+        </div>
+        <h3>The Orthodox Response</h3>
+        <p><strong>To the first:</strong> Romans 9 is also about nations. Paul's examples are Jacob and Esau, of whom God said "two nations are in your womb," Edom in Malachi, and Israel and the Gentiles throughout. If Jeremiah 18 cannot speak to individuals because it concerns nations, the same is true of Romans 9's own examples. And Paul applies Jeremiah's logic to individuals when he says branches will be grafted in again "if they do not continue in unbelief" (11:23).</p>
+        <p><strong>To the second:</strong> agreed. God is the potter and is free. The question is how He uses His freedom, and Jeremiah 18 is God's own answer: He uses it in response to the clay.</p>
+        <p><strong>To the third:</strong> the Orthodox agree that repentance is a gift of grace. St Gregory says "even to wish well needs help from God." But Scripture also shows that grace can be refused: "You always resist the Holy Spirit" (Acts 7:51); "I wanted to gather your children... but you were not willing" (Matthew 23:37). In Jeremiah 18 itself the potter calls, "Return now," and the clay says, "We will walk according to our own plans." If the potter's call were irresistible, that answer could not be given.</p>
+        <p><strong>To the fourth:</strong> Paul does silence the proud objector, as Chrysostom says. But he then gives an answer (9:22&ndash;24), and the answer is about God's longsuffering and mercy. And at the end of the chapter he gives the reason Israel stumbled, which is a human reason (9:32).</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s10">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">X.</span>Protestants Divided</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>The Reformed doctrine of unconditional election and reprobation is not "the Protestant view." Protestants have argued about it since the beginning, and two major Protestant traditions reject important parts of it.</p>
+        <h3>The Lutherans</h3>
+        <p>The Lutheran Formula of Concord (1577) teaches that election to salvation is wholly of grace, but it refuses to say that God destines anyone to damnation, and it condemns the following teachings outright:</p>
+        <div class="fc">
+          <div class="fn">Formula of Concord (1577)</div>
+          <div class="fw">Formula of Concord, Epitome XI, Negative</div>
+          <div class="fq">"That God is unwilling that all men should repent and believe the Gospel... That when God calls us to him, he does not earnestly wish that all men should come to him... All these dogmas are false, horrid, and blasphemous, and by them all consolation is utterly taken away from godly minds..."</div>
+          <div class="labels"><span class="dyo">Lutheran Confession</span><span class="pl">VERBATIM · FORMULA OF CONCORD, SCHAFF</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">Formula of Concord (1577)</div>
+          <div class="fw">Formula of Concord, Epitome XI.3</div>
+          <div class="fq">"For sin arises from the devil, and from the depraved and evil will of man. Nor is this foreknowledge of God the cause why men perish, for this they ought to impute to themselves."</div>
+          <div class="labels"><span class="dyo">Lutheran Confession</span><span class="pl">VERBATIM · FORMULA OF CONCORD, SCHAFF</span></div>
+        </div>
+        <h3>The Arminians and Methodists</h3>
+        <p>In 1610 the Dutch followers of Jacobus Arminius set out five articles that the Synod of Dort later rejected. On grace, they said:</p>
+        <div class="fc">
+          <div class="fn">The Remonstrance (1610)</div>
+          <div class="fw">Remonstrance, Article IV</div>
+          <div class="fq">"That this grace of God is the beginning, continuance, and accomplishment of all good, even to this extent, that the regenerate man himself, without prevenient or assisting, awakening, following and cooperative grace, can neither think, will, nor do good, nor withstand any temptations to evil; so that all good deeds or movements, that can be conceived, must be ascribed to the grace of God in Christ. But as respects the mode of the operation of this grace, it is not irresistible, inasmuch as it is written concerning many, that they have resisted the Holy Ghost."</div>
+          <div class="labels"><span class="dyo">Arminian Articles (1610)</span><span class="pl">VERBATIM · REMONSTRANCE, SCHAFF</span></div>
+        </div>
+        <p>John Wesley and the Methodist movement took the same side, and today most Pentecostal, Methodist, Wesleyan and many Baptist Christians reject unconditional reprobation. The Orthodox did not arrive at their view by joining one side of a Protestant argument; they held it a thousand years before that argument began. But it is worth knowing that on Romans 9 the Orthodox stand much closer to most of the world's Protestants than to Geneva and Dort.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s11">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XI.</span>Why Israel Stumbled (9:30&ndash;33)</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%209%3A30-32&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 9:30-32</a></div>
+          <div class="txt">"What shall we say then? That Gentiles, who did not pursue righteousness, have attained to righteousness, even the righteousness of faith; but Israel, pursuing the law of righteousness, has not attained to the law of righteousness. Why? Because they did not seek it by faith, but as it were, by the works of the law. For they stumbled at that stumbling stone."</div>
+          <div class="mia-note">🔵 Orthodox reading: Paul's own conclusion: Israel did not attain righteousness "because they did not seek it by faith, but as it were, by the works of the law."</div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%209%3A33&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 9:33</a></div>
+          <div class="txt">"As it is written: 'Behold, I lay in Zion a stumbling stone and rock of offense, And whoever believes on Him will not be put to shame.'"</div>
+          <div class="mia-note">🔵 Orthodox reading: Christ is the stone. Those who believe on Him will not be put to shame.</div>
+        </div>
+        <p>This is the most neglected verse in the debate. After all the talk of Jacob and Esau, Pharaoh and the potter, Paul gives the reason Israel stumbled, and it is not "because God passed them over." It is "because they did not seek it by faith." The cause is in the clay's response to the potter, exactly as in Jeremiah 18.</p>
+        <div class="fc">
+          <div class="fn">St John Chrysostom</div>
+          <div class="fw">Homily 16 on Romans (summing up Romans 9)</div>
+          <div class="fq">"I, however, have a good reason to give you why the Gentiles were justified and you were cast out. And what is the reason? It is that they are of faith, you of the works of the Law. And it is owing to this obstinacy of yours that you have in every way... been given up."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>And the story does not end there. In Romans 10 Paul says God has stretched out His hands "all day long" to a disobedient people (10:21), and in Romans 11 he says that "God has committed them all to disobedience, that He might have mercy on all" (11:32). The potter has not given up on the clay. See <a href="romans_10_11.html">Romans 10&ndash;11</a>.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s12">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XII.</span>How Strong Is the Potter Argument?</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>An honest page should say where its own argument is strong and where it needs care.</p>
+        <p><strong>Where it is strong.</strong> Jeremiah 18 is not a stray verse. It is the Old Testament's fullest use of the potter image, and God Himself interprets it there. It shows that "the potter has power over the clay" and "the potter responds to the clay" are not opposites in Scripture's own mind. Paul's other vessel passage (2 Timothy 2:21) says the same, and the Fathers read Romans 9 through it. Romans 9:22 (longsuffering), 9:25&ndash;26 (not My people become My people), 9:32 (they did not seek it by faith) and 11:23 (if they do not continue in unbelief) all fit Jeremiah's picture and fit poorly with a fixed decree.</p>
+        <p><strong>Where it needs care.</strong> First, Jeremiah 18 does speak of nations, and a Calvinist can say God's conditional dealings in history sit on top of a deeper, unconditional decree. The best answer to that is not Jeremiah alone but the character of God revealed everywhere: He "desires all men to be saved" (1 Timothy 2:4), is "not willing that any should perish" (2 Peter 3:9), and has "no pleasure... that the wicked should die" (Ezekiel 18:23). Scripture does speak of "secret things" that belong to God (Deuteronomy 29:29), but it never presents a hidden will of God that contradicts His revealed desire for the salvation of all. Second, Chrysostom himself warns that Paul uses the potter image for one purpose, to silence presumptuous questioning, and that we should not press every detail of it. That warning applies to everyone. It is a reason not to build a doctrine of reprobation on the image, and also a reason to let God's own explanation of the image in Jeremiah guide how we read it.</p>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Ezekiel%2018%3A23&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Ezekiel 18:23</a></div>
+          <div class="txt">"Do I have any pleasure at all that the wicked should die?' says the Lord God, 'and not that he should turn from his ways and live?"</div>
+          <div class="mia-note">🔵 Orthodox reading: God's revealed heart toward the wicked: He wants them to turn and live.</div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=2%20Peter%203%3A9&amp;version=NKJV" target="_blank" rel="noopener noreferrer">2 Peter 3:9</a></div>
+          <div class="txt">"The Lord is not slack concerning His promise, as some count slackness, but is longsuffering toward us, not willing that any should perish but that all should come to repentance."</div>
+          <div class="mia-note">🔵 Orthodox reading: God's longsuffering is aimed at repentance, for all.</div>
+        </div>
+        <p>Taken together, the argument is a strong one. It does not depend on clever reasoning but on letting Scripture interpret Scripture: the potter of Romans 9 is the potter of Jeremiah 18, and both are the God who is "longsuffering toward us."</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s13">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XIII.</span>Objections Answered</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Romans 9:11 says election is "not of works," so it cannot depend on anything foreseen in us."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> The Orthodox agree that election is not earned by works. But Paul's contrast in Romans is between works and faith, not between works and nothing. In 9:30&ndash;32 he says the Gentiles attained righteousness by faith and Israel did not attain it because they sought it by works. Faith is not a work that earns (4:4&ndash;5).</p><p>God's foreknowledge of who will receive His grace in faith does not make His choice a reward for merit. It makes it the choice of a God who knows hearts. Chrysostom: God "does not wait, as man does, to see from the issue of their acts" who is good.</p>
+          </div>
+        </div>
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>⚡ ""Who has resisted His will?" Paul does not deny the objector's premise, so he must agree that no one can resist God."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> Paul answers the objector's tone, not his premise: "who are you to reply against God?" He then explains that God endured the vessels of wrath with great patience, which would make no sense if their resistance were impossible or unreal.</p><p>Elsewhere Scripture plainly says God's will for salvation is resisted: "You always resist the Holy Spirit" (Acts 7:51); "you were not willing" (Matthew 23:37). The Remonstrants quoted the same verse against Dort.</p>
+          </div>
+        </div>
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>⚡ "God hardened Pharaoh's heart. That proves He hardens whom He chooses regardless of their response."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> Exodus says both that God hardened Pharaoh and that Pharaoh hardened himself, and the first plagues describe Pharaoh hardening his own heart before the text says God did. The Fathers explained this with the sun that melts wax and hardens clay: God's same goodness meets different hearts.</p><p>Chrysostom adds that God endured Pharaoh "with much long-suffering, being willing to bring him to repentance." Hardening in Scripture is God's judgement on a heart that has refused Him, giving it over to what it chose (Romans 1:24).</p>
+          </div>
+        </div>
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Jeremiah 18 is about nations, not individual salvation, so it does not apply."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> Romans 9 is also about nations: Jacob and Esau are "two nations," Malachi speaks of Edom, and Paul's whole subject is Israel and the Gentiles. Whatever applies to Jeremiah 18 here applies equally to Romans 9.</p><p>And Paul does apply the same logic to individuals, in 2 Timothy 2:21 ("if anyone cleanses himself") and in Romans 11:23 ("if they do not continue in unbelief").</p>
+          </div>
+        </div>
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>⚡ "If salvation depends on our response, then we save ourselves and can boast."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> No. Every good thing in us, including the will to respond, is God's gift. St Gregory: "since to will also is from God, he has attributed the whole to God with reason." Chrysostom: Paul says "vessels of mercy" "to show that the whole is of God."</p><p>Receiving a gift is not earning it. A beggar who opens his hand for bread does not boast of having fed himself. What the Orthodox deny is not that grace is everything, but that grace forces anyone.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s14">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XIV.</span>FAQ</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>Does the Orthodox Church believe in predestination?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>Yes, in the sense of Romans 8:29: God foreknew and predestined His people to be conformed to the image of His Son. St John of Damascus says God "knows all things beforehand, yet He does not predetermine all things." What the Orthodox reject is the idea that God unconditionally decreed some people to be lost, or that His grace is irresistible.</p>
+          </div>
+        </div>
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>Was Esau damned?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>Scripture does not say so. Romans 9 and Malachi speak of God's choice of Jacob's line and of the nation of Edom. Hebrews 12:16&ndash;17 warns against Esau's profane choice of selling his birthright, a warning about what he did, not a statement that he was created for destruction. Esau's eternal state is left to God.</p>
+          </div>
+        </div>
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>Why did Augustine read Romans 9 the way he did?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>In his early writings Augustine read Romans 9 much as the Greek Fathers did. Around AD 396, in his reply to Simplicianus, he changed his mind, and his later struggle with Pelagius pushed him further. Much of the Latin West followed him, and Calvin built on him. The Greek and Oriental Churches never adopted his later view.</p>
+          </div>
+        </div>
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>If I struggle with sin, does that mean I am a vessel of wrath?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>No. The very fact that you care is a sign of grace at work. Jeremiah's potter remade the spoiled vessel. Paul says vessels can be cleansed for honour (2 Timothy 2:21). No Orthodox Christian should ever conclude that God has decided against him. The door of repentance is open until the last breath.</p>
+          </div>
+        </div>
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>What comes next?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>Paul turns from God's freedom to Israel's responsibility and to the hope of the nations: "faith comes by hearing," the remnant, and the olive tree. That is <a href="romans_10_11.html">Romans 10&ndash;11</a>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s15">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XV.</span>Sources &amp; Further Reading</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <div class="src-grid">
+          <div class="src-card">
+            <h4>St John Chrysostom</h4>
+            <ul>
+              <li>Homily 16 on Romans (NPNF 1.11)</li>
+            </ul>
+          </div>
+          <div class="src-card">
+            <h4>Other Fathers</h4>
+            <ul>
+              <li>St Irenaeus, Against Heresies IV.29, IV.37 (ANF 1)</li>
+              <li>Origen, De Principiis III.1 (ANF 4)</li>
+              <li>St Gregory of Nazianzus, Oration 37 (NPNF 2.7)</li>
+              <li>St John of Damascus, Exposition of the Orthodox Faith IV.19 (NPNF 2.9)</li>
+              <li>St Augustine, Enchiridion 98&ndash;99 (NPNF 1.3)</li>
+            </ul>
+          </div>
+          <div class="src-card">
+            <h4>Protestant Sources</h4>
+            <ul>
+              <li>John Calvin, Commentary on Romans, trans. John Owen (1849)</li>
+              <li>John Calvin, Institutes III.21&ndash;23, trans. Henry Beveridge (1845)</li>
+              <li>The Remonstrance (1610); Canons of Dort (1619); Westminster Confession III; Formula of Concord XI (Schaff, <em>Creeds of Christendom</em> III)</li>
+            </ul>
+          </div>
+          <div class="src-card">
+            <h4>Modern Studies</h4>
+            <ul>
+              <li>N. T. Wright, "Romans," <em>New Interpreter's Bible</em> X (2002)</li>
+              <li>Thomas Schreiner, "Does Romans 9 Teach Individual Election unto Salvation?" (1993)</li>
+              <li>Brian Abasciano, <em>Paul's Use of the Old Testament in Romans 9.1&ndash;9</em> (2005)</li>
+            </ul>
+          </div>
+          <div class="src-card">
+            <h4>Related Pages</h4>
+            <ul>
+              <li><a href="romans_8.html">Romans 8: Life in the Spirit</a></li>
+              <li><a href="calvinism.html">Calvinism</a></li>
+              <li><a href="problem_of_evil.html">The Problem of Evil</a></li>
+              <li><a href="assurance_of_salvation.html">Assurance of Salvation</a></li>
+              <li><a href="salvation.html">Salvation</a></li>
+            </ul>
+          </div>
+        </div>
+        <p style="margin-top:.8rem;font-size:.85rem;color:var(--mu);font-style:italic;">This page was made with Claude AI and can contain faults; please verify with an Abouna.</p>
+      </div>
+    </div>
+
+    <div class="rm-pn"><a href="romans_8.html"><small>‹ Previous</small>Romans 8: Life in the Spirit</a></div>
+  </div><!-- /content -->
+
+  <footer style="text-align:center;padding:2rem 1rem;border-top:1px solid var(--br);font-size:.8rem;color:var(--mu)">
+    <p>THE <span style="color:var(--gold)">ORTHODOX LAMP</span> &nbsp;·&nbsp; Biblical, Historical &amp; Patristic Apologetics</p>
+    <p style="margin-top:.5rem;font-size:.72rem;opacity:.6;">☩ &nbsp; In the name of the Father, and of the Son, and of the Holy Spirit &nbsp; ☩</p>
+  </footer>
+</div><!-- /main -->
+
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+function ts(h){h.closest('.sec').classList.toggle('open')}
+function tobj(h){h.closest('.obj').classList.toggle('open')}
+function tf(h){h.closest('.fi').classList.toggle('open')}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').classList.toggle('show')}
+function closeMobile(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
+
+window.addEventListener('scroll',()=>{
+  const s=document.documentElement,b=document.body;
+  const pct=(s.scrollTop||b.scrollTop)/((s.scrollHeight||b.scrollHeight)-s.clientHeight)*100;
+  document.getElementById('prog').style.width=pct+'%';
+  document.getElementById('btt').classList.toggle('show',(s.scrollTop||b.scrollTop)>300);
+});
+
+const secs=[...document.querySelectorAll('.sec')];
+const links=[...document.querySelectorAll('#nav a')];
+window.addEventListener('scroll',()=>{
+  let cur='';
+  secs.forEach(s=>{if(s.getBoundingClientRect().top<120)cur=s.id});
+  links.forEach(l=>{l.classList.toggle('active',l.getAttribute('href')==='#'+cur)});
+},{ passive:true });
+
+function doSearch(q){
+  document.querySelectorAll('.hl').forEach(e=>{
+    const p=e.parentNode;p.replaceChild(document.createTextNode(e.textContent),e);p.normalize();
+  });
+  if(!q.trim())return;
+  const re=new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi');
+  const walker=document.createTreeWalker(document.querySelector('.content'),NodeFilter.SHOW_TEXT);
+  const nodes=[];let n;
+  while((n=walker.nextNode()))nodes.push(n);
+  nodes.forEach(node=>{
+    if(!re.test(node.textContent))return;
+    re.lastIndex=0;
+    const frag=document.createDocumentFragment();
+    let last=0,m;
+    while((m=re.exec(node.textContent))!==null){
+      frag.appendChild(document.createTextNode(node.textContent.slice(last,m.index)));
+      const mark=document.createElement('mark');
+      mark.className='hl';mark.style.cssText='background:#8a6a20;color:#fff;border-radius:2px;padding:0 2px';
+      mark.textContent=m[0];frag.appendChild(mark);last=m.index+m[0].length;
+    }
+    frag.appendChild(document.createTextNode(node.textContent.slice(last)));
+    node.parentNode.replaceChild(frag,node);
+  });
+  const first=document.querySelector('.hl');if(first)first.scrollIntoView({block:'center',behavior:'smooth'});
+}
+</script>
+<button id="ol-tt" onclick="olTheme()" aria-label="Toggle light or dark mode" title="Light/dark mode">☀</button><script>function olTheme(){var l=document.documentElement.classList.toggle('light');try{localStorage.setItem('ol-theme',l?'light':'dark')}catch(e){}olIcon()}function olIcon(){document.getElementById('ol-tt').textContent=document.documentElement.classList.contains('light')?'☾':'☀'}olIcon();</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+/* AUTO-ENHANCE-JS */
+(function(){
+  try{
+    // back-to-top
+    var bt=document.createElement('button');bt.id='ol-top';bt.setAttribute('aria-label','Back to top');bt.innerHTML='\u2191';
+    bt.onclick=function(){window.scrollTo({top:0,behavior:'smooth'});};
+    document.body.appendChild(bt);
+    window.addEventListener('scroll',function(){bt.classList.toggle('show',window.scrollY>420);},{passive:true});
+    // reading time
+    var main=document.querySelector('main');
+    if(main){
+      var txt=main.innerText||'';var words=txt.trim().split(/\s+/).length;
+      var mins=Math.max(1,Math.round(words/200));
+      var rt=document.createElement('div');rt.className='ol-readtime';rt.textContent=mins+' min read';
+      var anchor=main.querySelector('.pg-title,.page-head,.pg-head,.hd');
+      if(anchor)anchor.appendChild(rt);else main.insertBefore(rt,main.firstChild);
+    }
+    // scroll-reveal
+    var secs=document.querySelectorAll('.sec');
+    if('IntersectionObserver' in window && document.documentElement.classList.contains('js-anim')){
+      var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.01,rootMargin:'0px 0px 12% 0px'});
+      secs.forEach(function(s){io.observe(s);});
+    }else{secs.forEach(function(s){s.classList.add('in');});}
+    // ensure search reveals all
+    document.querySelectorAll('.sb-search input,input[oninput*=sidebarSearch]').forEach(function(i){i.addEventListener('input',function(){document.querySelectorAll('.sec').forEach(function(s){s.classList.add('in');});});});
+  }catch(e){document.querySelectorAll('.sec').forEach(function(s){s.classList.add('in');});}
+})();
+/* END-ENHANCE-JS */</script>
+<script>
+/* AUTO-AESTHETIC2-JS */
+(function(){
+  try{
+    // section dividers between sibling .sec elements
+    Array.prototype.slice.call(document.querySelectorAll('.sec')).forEach(function(s){
+      var prev=s.previousElementSibling;
+      if(prev&&prev.classList&&prev.classList.contains('sec')&&!prev.classList.contains('ol-divider')){
+        var d=document.createElement('div');d.className='ol-divider';d.setAttribute('aria-hidden','true');d.textContent='\u2629';
+        s.parentNode.insertBefore(d,s);
+      }
+    });
+    // drop-cap on the first section's opening paragraph (chapter-opener feel)
+    var lead=document.querySelector('main .sec .sec-body p, main .sec .sec-bd p');
+    if(lead && (lead.textContent||'').trim().length>40){ lead.classList.add('ol-lead'); }
+  }catch(e){}
+})();
+/* END-AESTHETIC2-JS */</script>
+<script>
+/* AUTO-FEATURES3-JS */
+(function(){
+  try{
+    var here=(location.pathname.split('/').pop()||'index.html');
+    var base=location.href.split('#')[0];
+    function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+    /* ---- 1. copy-link buttons ---- */
+    document.querySelectorAll('.sec[id]').forEach(function(sec){
+      var h=sec.querySelector('.sec-h,.sec-hd');
+      if(!h||h.querySelector('.ol-copy'))return;
+      var b=document.createElement('button');
+      b.className='ol-copy';b.type='button';b.setAttribute('aria-label','Copy link to this section');
+      b.addEventListener('click',function(ev){
+        ev.stopPropagation();ev.preventDefault();
+        var url=base+'#'+sec.id;
+        var ok=function(){b.classList.add('ok');setTimeout(function(){b.classList.remove('ok');},1500);};
+        if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(ok,ok);}
+        else{var t=document.createElement('textarea');t.value=url;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(t);ok();}
+      });
+      var arr=h.querySelector('.arr');
+      if(arr&&arr.parentNode===h)h.insertBefore(b,arr);else h.appendChild(b);
+    });
+
+    /* ---- shared index + bundled KJV ---- */
+    var IDX=null,idxP=null,SEC={};
+    function loadIndex(){if(idxP)return idxP;idxP=fetch('search-index.json').then(function(r){return r.json();}).then(function(d){IDX=d;(d.pages||[]).forEach(function(p){var m={};(p.secs||[]).forEach(function(s){m[s.a]=s.h;});SEC[p.f]=m;});return d;});return idxP;}
+    var VP=null,vpP=null;
+    function loadVP(){if(vpP)return vpP;vpP=fetch('verse-pages.json').then(function(r){return r.json();}).then(function(d){VP=d;return d;}).catch(function(){VP={};});return vpP;}
+    var VERSES=null;
+    fetch('verses.json').then(function(r){return r.json();}).then(function(d){VERSES=d;}).catch(function(){VERSES={};});
+
+    /* ---- 2. related topics ---- */
+    loadIndex().then(function(idx){
+      if(!idx||!idx.pages)return;
+      var page=null;idx.pages.forEach(function(p){if(p.f===here)page=p;});
+      if(!page||!page.rel||!page.rel.length)return;
+      var main=document.querySelector('main')||document.getElementById('main');if(!main)return;
+      var box=document.createElement('div');box.className='ol-related';
+      var hh=document.createElement('h3');hh.textContent='Related topics';box.appendChild(hh);
+      var wrap=document.createElement('div');wrap.className='ol-related-links';
+      page.rel.forEach(function(r){var a=document.createElement('a');a.href=r.f;a.textContent=r.t;wrap.appendChild(a);});
+      box.appendChild(wrap);main.appendChild(box);
+    }).catch(function(){});
+
+    /* ---- 3. site-wide search ---- */
+    var ov=document.createElement('div');ov.className='ol-ov';
+    ov.innerHTML='<div class="ol-modal" role="dialog" aria-label="Search topics and verses"><input class="ol-search-input" type="text" placeholder="Search topics or a Bible verse (e.g. John 3:16)…" aria-label="Search topics and Bible verses" autocomplete="off"><div class="ol-results" role="listbox"></div><div class="ol-hint">↑↓ navigate · ↵ open · esc close · type a reference like Rom 5 or 1 Cor 10:12</div></div>';
+    document.body.appendChild(ov);
+    var input=ov.querySelector('.ol-search-input');
+    var results=ov.querySelector('.ol-results');
+    var flat=[],sel=-1;
+    function hilite(text,q){if(!q)return esc(text);var i=text.toLowerCase().indexOf(q);if(i<0)return esc(text);return esc(text.slice(0,i))+'<mark>'+esc(text.slice(i,i+q.length))+'</mark>'+esc(text.slice(i+q.length));}
+
+    /* fuzzy / typo-tolerant scorer */
+    function lev(a,b){var m=a.length,n=b.length;if(!m)return n;if(!n)return m;var prev=[],cur=[],i,j;for(j=0;j<=n;j++)prev[j]=j;for(i=1;i<=m;i++){cur[0]=i;for(j=1;j<=n;j++){var c=a.charAt(i-1)===b.charAt(j-1)?0:1;cur[j]=Math.min(prev[j]+1,cur[j-1]+1,prev[j-1]+c);}for(j=0;j<=n;j++)prev[j]=cur[j];}return prev[n];}
+    function scoreText(hay,q){
+      if(!q)return 0.5;hay=String(hay).toLowerCase();
+      var idx=hay.indexOf(q);
+      if(idx===0)return 1000;
+      if(idx>0)return 800-idx;
+      var words=hay.split(/[^a-z0-9]+/),best=-1,w,word,d,thr;
+      for(w=0;w<words.length;w++){word=words[w];if(!word)continue;
+        if(word.indexOf(q)===0){best=Math.max(best,600);continue;}
+        if(q.length>=4){thr=q.length<=5?1:2;d=lev(word,q);if(d<=thr)best=Math.max(best,420-d*40);}
+      }
+      if(best>=0)return best;
+      var hi=0,qi=0;for(;hi<hay.length&&qi<q.length;hi++){if(hay.charAt(hi)===q.charAt(qi))qi++;}
+      if(qi===q.length)return 200;
+      return -1;
+    }
+
+    /* Bible-book resolver (abbreviations + full names) */
+    var BK={};
+    function reg(c,al){BK[c.toLowerCase().replace(/\s+/g,'')]=c;al.split(',').forEach(function(a){a=a.replace(/\s+/g,'');if(a)BK[a]=c;});}
+    reg('Genesis','gen,ge,gn');reg('Exodus','exo,ex,exod');reg('Leviticus','lev,le,lv');reg('Numbers','num,nu,nm,nb');
+    reg('Deuteronomy','deut,dt,deu');reg('Joshua','josh,jos,jsh');reg('Judges','judg,jdg,jg,jdgs');reg('Ruth','rut,ru,rth');
+    reg('1 Samuel','1sam,1sa,1s,1sm');reg('2 Samuel','2sam,2sa,2s,2sm');reg('1 Kings','1kings,1kgs,1ki,1kg');reg('2 Kings','2kings,2kgs,2ki,2kg');
+    reg('1 Chronicles','1chron,1chr,1ch');reg('2 Chronicles','2chron,2chr,2ch');reg('Ezra','ezr');reg('Nehemiah','neh,ne');
+    reg('Esther','est,esth,es');reg('Job','jb');reg('Psalms','ps,psa,psalm,pss,psm');reg('Proverbs','prov,pro,prv,pr');
+    reg('Ecclesiastes','eccl,ecc,ec,eccles,qoh');reg('Song of Solomon','song,sos,songofsongs,canticles,cant,ss');
+    reg('Isaiah','isa,is,isai');reg('Jeremiah','jer,jr');reg('Lamentations','lam,la');reg('Ezekiel','ezek,eze,ezk');
+    reg('Daniel','dan,da,dn');reg('Hosea','hos,ho');reg('Joel','joe,jl');reg('Amos','am,amo');reg('Obadiah','obad,ob,oba');
+    reg('Jonah','jon,jnh');reg('Micah','mic,mc');reg('Nahum','nah,na');reg('Habakkuk','hab');reg('Zephaniah','zeph,zep,zp');
+    reg('Haggai','hag,hg');reg('Zechariah','zech,zec,zc');reg('Malachi','mal,ml');reg('Matthew','matt,mt,mat');
+    reg('Mark','mk,mar,mrk');reg('Luke','lk,luk,lu');reg('John','jn,joh,jhn');reg('Acts','act,ac');reg('Romans','rom,ro,rm');
+    reg('1 Corinthians','1cor,1co,1c');reg('2 Corinthians','2cor,2co,2c');reg('Galatians','gal,ga');reg('Ephesians','eph,ephes');
+    reg('Philippians','phil,php,pp');reg('Colossians','col');reg('1 Thessalonians','1thess,1thes,1th');reg('2 Thessalonians','2thess,2thes,2th');
+    reg('1 Timothy','1tim,1ti,1tm');reg('2 Timothy','2tim,2ti,2tm');reg('Titus','tit,ti,tts');reg('Philemon','philem,phlm,phm,pm');
+    reg('Hebrews','heb,hebr');reg('James','jas,jm,jms');reg('1 Peter','1pet,1pe,1pt,1p');reg('2 Peter','2pet,2pe,2pt,2p');
+    reg('1 John','1john,1jn,1jo,1j');reg('2 John','2john,2jn,2jo,2j');reg('3 John','3john,3jn,3jo,3j');reg('Jude','jud,jd');
+    reg('Revelation','rev,re,rv,apocalypse,apoc');
+    function parseRef(raw){
+      if(!raw)return null;
+      var m=raw.match(/^\s*([1-3]?\s*[a-zA-Z][a-zA-Z\s]*?)\s*(\d{1,3})(?:\s*[:.\s]\s*(\d{1,3}))?\s*$/);
+      if(!m)return null;
+      var bk=m[1].toLowerCase().replace(/[\s.]+/g,'');var canon=BK[bk];
+      if(!canon)return null;
+      return {canon:canon,ch:parseInt(m[2],10),vs:m[3]?parseInt(m[3],10):null};
+    }
+    function uniqPages(entries){var seen={},out=[];entries.forEach(function(e){if(!seen[e[0]]){seen[e[0]]=1;out.push({f:e[0],t:e[1],a:e[2]});}});return out;}
+    /* exported verse engine — used by the FE4 "Ask the Lamp" assistant.
+       resolves to null if `raw` is not a bare Bible reference. */
+    window.__olVerseQuery=function(raw){
+      var vq=parseRef((raw||'').trim());
+      if(!vq)return Promise.resolve(null);
+      return Promise.all([loadVP(),loadIndex()]).then(function(){
+        function sub(f,a){return (SEC[f]&&SEC[f][a])||'';}
+        function pages(arr){return uniqPages(arr).map(function(r){return {f:r.f,t:r.t,a:r.a,sub:sub(r.f,r.a)};});}
+        if(vq.vs!=null){
+          var key=vq.canon+' '+vq.ch+':'+vq.vs,e=VP[key];
+          return {mode:'verse',ref:key,kjv:(e&&e.k)?e.k:null,pages:e?pages(e.r):[]};
+        }
+        var prefix=vq.canon+' '+vq.ch+':',vnums=[],agg=[];
+        Object.keys(VP).forEach(function(k){if(k.indexOf(prefix)===0){vnums.push(parseInt(k.slice(prefix.length),10));VP[k].r.forEach(function(r){agg.push(r);});}});
+        vnums.sort(function(a,b){return a-b;});
+        return {mode:'chapter',ref:vq.canon+' '+vq.ch,vnums:vnums,pages:pages(agg)};
+      }).catch(function(){return null;});
+    };
+    function rowsHTML(){
+      if(!flat.length)return '<div class="r-empty">No page cites this on the site yet.</div>';
+      return flat.map(function(r,i){return '<a class="ol-r'+(i===sel?' sel':'')+'" data-i="'+i+'" href="'+r.f+(r.a?'#'+r.a:'')+'"><span class="r-t">'+esc(r.t)+'</span>'+(r.sub?'<span class="r-s">'+esc(r.sub)+'</span>':'')+'</a>';}).join('');
+    }
+
+    function renderVerse(vq){
+      if(!VP){results.innerHTML='<div class="r-empty">Loading verse index…</div>';flat=[];sel=-1;return;}
+      var canon=vq.canon,ch=vq.ch,vs=vq.vs,card='',rows=[];
+      if(vs!=null){
+        var key=canon+' '+ch+':'+vs,e=VP[key];
+        card='<div class="ol-vcard"><span class="vref">'+esc(key)+'</span>'+(e&&e.k?'<span class="vkjv">'+esc(e.k)+'<em>KJV</em></span>':'')+(e?'':'<span class="vmeta">Not cited on the site yet.</span>')+'</div>';
+        if(e)rows=uniqPages(e.r);
+      }else{
+        var prefix=canon+' '+ch+':',vnums=[],agg=[];
+        Object.keys(VP).forEach(function(k){if(k.indexOf(prefix)===0){vnums.push(parseInt(k.slice(prefix.length),10));VP[k].r.forEach(function(r){agg.push(r);});}});
+        vnums.sort(function(a,b){return a-b;});
+        card='<div class="ol-vcard"><span class="vref">'+esc(canon+' '+ch)+'</span><span class="vmeta">'+(vnums.length?'Verses cited here: '+vnums.join(', '):'No verses from this chapter are cited yet.')+'</span></div>';
+        rows=uniqPages(agg);
+      }
+      flat=rows.map(function(r){return {f:r.f,t:r.t,a:r.a,sub:(SEC[r.f]&&SEC[r.f][r.a])?SEC[r.f][r.a]:''};});
+      sel=flat.length?0:-1;
+      results.innerHTML=card+rowsHTML();
+    }
+
+    function renderText(q){
+      flat=[];
+      if(IDX&&IDX.pages){
+        if(!q){
+          IDX.pages.slice().sort(function(a,b){return a.t.localeCompare(b.t);}).forEach(function(p){flat.push({f:p.f,t:p.t,sub:'',a:'',sc:0});});
+        }else{
+          IDX.pages.forEach(function(p){
+            var ts=scoreText(p.t,q),bs=null,bss=-1,kw=-1,kwn='';
+            if(p.secs)p.secs.forEach(function(s){var sc=scoreText(s.h,q)*0.85;if(sc>bss){bss=sc;bs=s;}});
+            if(p.kw)p.kw.forEach(function(k){var sc=scoreText(k,q)*0.7;if(sc>kw){kw=sc;kwn=k;}});
+            var best=Math.max(ts,bss,kw);if(best<=0)return;
+            var it={f:p.f,t:p.t,sc:best};
+            if(best===bss&&bs){it.sub=bs.h;it.a=bs.a;}
+            else if(best===kw&&kwn){it.sub='topic · '+kwn;it.topic=1;}
+            else it.sub='';
+            flat.push(it);
+          });
+          flat.sort(function(a,b){return b.sc-a.sc;});
+        }
+      }
+      flat=flat.slice(0,40);sel=flat.length?0:-1;
+      if(!flat.length){results.innerHTML='<div class="r-empty">'+(IDX?'No matches — try a topic or a Bible verse (e.g. John 3:16)':'Loading index…')+'</div>';return;}
+      results.innerHTML=flat.map(function(r,i){
+        return '<a class="ol-r'+(i===sel?' sel':'')+'" data-i="'+i+'" href="'+r.f+(r.a?'#'+r.a:'')+'"><span class="r-t">'+hilite(r.t,q)+'</span>'+(r.sub?'<span class="r-s'+(r.topic?' r-topic':'')+'">'+(r.topic?esc(r.sub):hilite(r.sub,q))+'</span>':'')+'</a>';
+      }).join('');
+    }
+
+    function render(){
+      var raw=(input.value||'').trim();
+      var vq=parseRef(raw);
+      if(vq){if(!VP)loadVP().then(function(){if(ov.classList.contains('open')&&parseRef((input.value||'').trim()))render();});renderVerse(vq);return;}
+      renderText(raw.toLowerCase());
+    }
+    function setSel(i){var a=results.querySelectorAll('.ol-r');if(!a.length)return;sel=(i+a.length)%a.length;a.forEach(function(el,j){el.classList.toggle('sel',j===sel);});a[sel].scrollIntoView({block:'nearest'});}
+    function go(){if(sel>=0&&flat[sel]){var r=flat[sel];location.href=r.f+(r.a?'#'+r.a:'');}}
+    function openS(seed){ov.classList.add('open');document.body.style.overflow='hidden';input.value=seed||'';render();loadIndex().then(function(){if(ov.classList.contains('open'))render();}).catch(function(){});loadVP().then(function(){if(ov.classList.contains('open'))render();}).catch(function(){});setTimeout(function(){input.focus();if(seed)input.select();},30);}
+    window.__olOpenSearch=openS;
+    function closeS(){ov.classList.remove('open');document.body.style.overflow='';}
+    input.addEventListener('input',render);
+    input.addEventListener('keydown',function(e){
+      if(e.key==='ArrowDown'){e.preventDefault();setSel(sel+1);}
+      else if(e.key==='ArrowUp'){e.preventDefault();setSel(sel-1);}
+      else if(e.key==='Enter'){e.preventDefault();go();}
+      else if(e.key==='Escape'){e.preventDefault();closeS();}
+    });
+    results.addEventListener('mousemove',function(e){var a=e.target.closest('.ol-r');if(a)setSel(+a.getAttribute('data-i'));});
+    ov.addEventListener('click',function(e){if(e.target===ov)closeS();});
+    document.addEventListener('keydown',function(e){
+      if(e.key==='/'&&!ov.classList.contains('open')){var t=document.activeElement;var tn=t?t.tagName:'';if(tn==='INPUT'||tn==='TEXTAREA'||(t&&t.isContentEditable))return;e.preventDefault();openS();}
+      else if(e.key==='Escape'&&ov.classList.contains('open')){closeS();}
+    });
+    var launcher=document.createElement('button');launcher.className='ol-search-btn';launcher.type='button';
+    launcher.innerHTML='Search topics &amp; verses <span>/</span>';launcher.addEventListener('click',function(){openS();});
+    var sbs=document.querySelector('.sb-search');
+    if(sbs&&sbs.parentNode)sbs.parentNode.insertBefore(launcher,sbs);
+    else{var nav=document.querySelector('#sidebar nav,#sb nav,#sidebar,#sb');if(nav)nav.insertBefore(launcher,nav.firstChild);}
+
+    /* ---- 4. scripture tooltips (KJV bundled locally in verses.json, public domain) ---- */
+    var BOOKS='Genesis|Exodus|Leviticus|Numbers|Deuteronomy|Joshua|Judges|Ruth|1 ?Samuel|2 ?Samuel|1 ?Kings|2 ?Kings|1 ?Chronicles|2 ?Chronicles|Ezra|Nehemiah|Esther|Job|Psalms|Psalm|Proverbs|Ecclesiastes|Song of Solomon|Song of Songs|Isaiah|Jeremiah|Lamentations|Ezekiel|Daniel|Hosea|Joel|Amos|Obadiah|Jonah|Micah|Nahum|Habakkuk|Zephaniah|Haggai|Zechariah|Malachi|Matthew|Mark|Luke|John|Acts|Romans|1 ?Corinthians|2 ?Corinthians|Galatians|Ephesians|Philippians|Colossians|1 ?Thessalonians|2 ?Thessalonians|1 ?Timothy|2 ?Timothy|Titus|Philemon|Hebrews|James|1 ?Peter|2 ?Peter|1 ?John|2 ?John|3 ?John|Jude|Revelation';
+    var VRE=new RegExp('\\b((?:'+BOOKS+')\\.?\\s+\\d{1,3}:\\d{1,3}(?:[-–]\\d{1,3})?(?:,\\s?\\d{1,3}(?:[-–]\\d{1,3})?)*)','g');
+    function wrap(root){
+      var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:function(n){
+        if(!n.nodeValue||n.nodeValue.indexOf(':')<0)return NodeFilter.FILTER_REJECT;
+        var p=n.parentNode;
+        while(p&&p!==root){var t=p.nodeName.toLowerCase();
+          if(t==='a'||t==='button'||t==='script'||t==='style'||(p.classList&&(p.classList.contains('ol-verse')||p.classList.contains('ol-copy'))))return NodeFilter.FILTER_REJECT;
+          p=p.parentNode;}
+        return NodeFilter.FILTER_ACCEPT;
+      }});
+      var nodes=[],n;while(n=w.nextNode())nodes.push(n);
+      nodes.forEach(function(node){
+        var txt=node.nodeValue;VRE.lastIndex=0;if(!VRE.test(txt))return;VRE.lastIndex=0;
+        var frag=document.createDocumentFragment(),last=0,m;
+        while(m=VRE.exec(txt)){
+          if(m.index>last)frag.appendChild(document.createTextNode(txt.slice(last,m.index)));
+          var sp=document.createElement('span');sp.className='ol-verse';sp.textContent=m[0];sp.setAttribute('data-ref',m[1]);
+          frag.appendChild(sp);last=m.index+m[0].length;
+        }
+        if(last<txt.length)frag.appendChild(document.createTextNode(txt.slice(last)));
+        node.parentNode.replaceChild(frag,node);
+      });
+    }
+    document.querySelectorAll('.sec-body,.sec-bd,.sec-body2').forEach(wrap);
+    var tip=document.createElement('div');tip.className='ol-tip';tip.style.display='none';document.body.appendChild(tip);
+    function place(el){var r=el.getBoundingClientRect();tip.style.display='block';var w=tip.offsetWidth||330;
+      var left=window.scrollX+r.left;var max=window.scrollX+document.documentElement.clientWidth-w-10;
+      tip.style.left=Math.max(8,Math.min(left,max))+'px';tip.style.top=(window.scrollY+r.bottom+8)+'px';}
+    function lookup(ref){var k=ref.replace(/\s+/g,' ').trim();if(VERSES&&VERSES[k])return VERSES[k];return null;}
+    function show(el){
+      var ref=el.getAttribute('data-ref');if(!ref)return;
+      var t=lookup(ref);
+      if(t){tip.innerHTML='<b>'+esc(ref)+'</b><span class="ol-tip-kjv">KJV</span><br>'+esc(t);}
+      else if(VERSES===null){tip.innerHTML='<b>'+esc(ref)+'</b><br><span class="ol-tip-load">Loading…</span>';}
+      else{tip.innerHTML='<b>'+esc(ref)+'</b><br><span class="ol-tip-err">Text unavailable</span>';}
+      place(el);
+    }
+    function hide(){tip.style.display='none';}
+    document.addEventListener('mouseover',function(e){var t=e.target;if(t.classList&&t.classList.contains('ol-verse'))show(t);});
+    document.addEventListener('mouseout',function(e){var t=e.target;if(t.classList&&t.classList.contains('ol-verse'))hide();});
+    document.addEventListener('focusin',function(e){var t=e.target;if(t.classList&&t.classList.contains('ol-verse'))show(t);});
+    document.addEventListener('focusout',function(e){var t=e.target;if(t.classList&&t.classList.contains('ol-verse'))hide();});
+    document.querySelectorAll('.ol-verse').forEach(function(v){v.setAttribute('tabindex','0');});
+  }catch(e){}
+})();
+/* END-FEATURES3-JS */</script>
+<script>
+/* Ask the Lamp — AI config. Paste your Cloudflare Worker URL between the
+   quotes to turn on grounded AI answers. Leave blank for site-search only.
+   See ask-lamp-SETUP.md for the 10-minute setup. */
+window.OL_ASK_ENDPOINT = "https://ask-the-lamp.sebazz7397.workers.dev";
+</script>
+<script>
+/* AUTO-FEATURES4-JS */
+(function(){
+  try{
+    function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+    /* Optional strict-RAG AI answers. Set window.OL_ASK_ENDPOINT to the
+       Cloudflare Worker URL to turn "Ask the Lamp" from a search box into a
+       grounded assistant. If blank or unreachable, it silently falls back to
+       the retrieval-only behaviour below. See ask-lamp-SETUP.md. */
+    var AI_ENDPOINT=(window.OL_ASK_ENDPOINT||'').trim();
+    /* plain model text -> safe HTML: escape, light **bold**, [n] citations, paragraphs */
+    function fmtAI(s){
+      var out=esc(s);
+      out=out.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
+      /* normalise fancy citation brackets (【1】〔1〕〖1〗) the model sometimes emits to plain [1] */
+      out=out.replace(/[【〔〖]\s*(\d{1,2})\s*[】〕〗]/g,'[$1]');
+      out=out.replace(/\[(\d{1,2})\]/g,'<sup class="ol-ci">[$1]</sup>');
+      return out.split(/\n{2,}/).map(function(p){return '<p>'+p.replace(/\n/g,'<br>')+'</p>';}).join('');
+    }
+    var STOP={};'the a an and or but of to in on at for with as is are was were be been being do does did this that these those it its their them they we you i he she his her our your my me us not no yes can could would should will shall may might must have has had what why how who whom whose which when where does did about into from than then so such also more most very just only own same other any all both each few how into about'.split(/\s+/).forEach(function(w){STOP[w]=1;});
+    function toks(q){return (String(q).toLowerCase().match(/[a-z0-9]+/g)||[]).filter(function(w){return w.length>=3&&!STOP[w];});}
+
+    var C=null,cP=null;
+    function loadC(){if(cP)return cP;cP=fetch('ask-content.json').then(function(r){return r.json();}).then(function(d){C=d;return d;}).catch(function(){C={pages:[]};return C;});return cP;}
+
+    function reEsc(t){return t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}
+    function excerpt(x,tk){
+      if(!x)return '';
+      var lx=x.toLowerCase(),pos=-1,i,p;
+      for(i=0;i<tk.length;i++){p=lx.indexOf(tk[i]);if(p>=0&&(pos<0||p<pos))pos=p;}
+      if(pos<0)pos=0;
+      var start=Math.max(0,pos-65),end=Math.min(x.length,pos+165);
+      var frag=x.slice(start,end);
+      if(start>0)frag=frag.replace(/^\S*\s/,'');
+      if(end<x.length)frag=frag.replace(/\s\S*$/,'');
+      var out=esc(frag);
+      if(start>0)out='…'+out;
+      if(end<x.length)out=out+'…';
+      tk.forEach(function(t){if(t.length<3)return;try{out=out.replace(new RegExp('('+reEsc(t)+')','ig'),'<mark>$1</mark>');}catch(e){}});
+      return out;
+    }
+    /* whole-word matcher (with light plural/possessive tolerance) so that a query
+       for "christ" does NOT match inside "christian"/"christology", and vice-versa. */
+    function mkRx(t){return new RegExp('\\b'+reEsc(t)+"(?:'s|s)?\\b",'gi');}
+    function nWord(text,rx){if(!text)return 0;var m=String(text).match(rx);return m?m.length:0;}
+    function rank(q){
+      var tk=toks(q);if(!tk.length||!C||!C.pages)return {tk:tk,top:[],broad:false};
+      var rx=tk.map(mkRx);
+      /* pass 1 — how many sections each term appears in (for rarity weighting) */
+      var N=0,dfSec=tk.map(function(){return 0;});
+      C.pages.forEach(function(p){var pk=(p.t||'')+' '+((p.kw||[]).join(' '));(p.secs||[]).forEach(function(s){
+        N++;var blob=pk+' '+(s.h||'')+' '+(s.x||'');
+        tk.forEach(function(t,i){if(nWord(blob,rx[i]))dfSec[i]++;});
+      });});
+      /* rarer term => higher weight; ubiquitous terms (Christ, church…) => near-zero */
+      var idf=dfSec.map(function(df){return Math.log((N+1)/(df+1))+0.15;});
+      /* pass 2 — score every section, weighting each term by its rarity */
+      var hits=[];
+      C.pages.forEach(function(p){
+        var title=(p.t||''),kw=(p.kw||[]).join(' ');
+        (p.secs||[]).forEach(function(s){
+          var head=(s.h||''),body=(s.x||''),sc=0,covered=0;
+          tk.forEach(function(t,i){
+            var w=idf[i],any=false,r=rx[i];
+            if(nWord(head,r)){sc+=14*w;any=true;}
+            if(nWord(title,r)){sc+=8*w;any=true;}
+            if(nWord(kw,r)){sc+=7*w;any=true;}
+            var occ=nWord(body,r);if(occ){sc+=Math.min(occ,4)*4*w;any=true;}
+            if(any)covered++;
+          });
+          if(tk.length>1){if(covered===tk.length)sc+=14;sc+=covered*3;}
+          if(sc>0)hits.push({f:p.f,t:p.t,h:s.h,a:s.a,x:s.x,sc:sc,cov:covered});
+        });
+      });
+      hits.sort(function(a,b){return b.sc-a.sc;});
+      /* a single word that appears in a large share of the site is "broad" */
+      var broad=(tk.length===1&&N>0&&dfSec[0]>Math.max(40,N*0.18));
+      var per={},top=[],cap=broad?1:2,lim=broad?6:4;
+      for(var i=0;i<hits.length&&top.length<lim;i++){var f=hits[i].f;if((per[f]||0)>=cap)continue;per[f]=(per[f]||0)+1;top.push(hits[i]);}
+      return {tk:tk,top:top,broad:broad,term:tk[0]};
+    }
+
+    /* ---- UI ---- */
+    var fab=document.createElement('button');fab.className='ol-ask-fab';fab.type='button';
+    fab.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg><span>Ask the Lamp</span>';
+    document.body.appendChild(fab);
+
+    var wrap=document.createElement('div');wrap.className='ol-ask-wrap';wrap.setAttribute('role','dialog');wrap.setAttribute('aria-label','Ask the Lamp');
+    wrap.innerHTML='<div class="ol-ask-hd"><div class="ti"><b>Ask the Lamp</b><span>Search the whole site by question or verse</span></div><button class="ol-ask-x" type="button" aria-label="Close">×</button></div><div class="ol-ask-log" role="log" aria-live="polite"></div><div class="ol-ask-foot"><input type="text" placeholder="Ask a question or type a verse…" aria-label="Ask a question" autocomplete="off"><button class="send" type="button" aria-label="Send">➤</button></div><div class="ol-ask-note">Answers are drawn only from this site’s pages · not a live AI chat</div>';
+    document.body.appendChild(wrap);
+    var log=wrap.querySelector('.ol-ask-log'),inp=wrap.querySelector('.ol-ask-foot input'),sendB=wrap.querySelector('.send'),xB=wrap.querySelector('.ol-ask-x');
+    var LAMP_SVG="<svg viewBox='0 0 40 48' fill='none' xmlns='http://www.w3.org/2000/svg' aria-hidden='true'><defs><radialGradient id='olflame' cx='50%' cy='72%' r='62%'><stop offset='0%' stop-color='#ffe89c'/><stop offset='45%' stop-color='#f8ab3c'/><stop offset='100%' stop-color='#ee6f1e'/></radialGradient><radialGradient id='olfoot' cx='50%' cy='25%' r='85%'><stop offset='0%' stop-color='#c9a35a'/><stop offset='100%' stop-color='#8a6a26'/></radialGradient></defs><g class='lampg'><g class='rays' stroke='#f4a63a' stroke-width='1.6' stroke-linecap='round'><line x1='33' y1='25' x2='36.5' y2='25'/><line x1='7' y1='25' x2='3.5' y2='25'/><line x1='29.2' y1='14.4' x2='31.7' y2='11.6'/><line x1='10.8' y1='14.4' x2='8.3' y2='11.6'/><line x1='29.2' y1='35.6' x2='31.7' y2='38.4'/><line x1='10.8' y1='35.6' x2='8.3' y2='38.4'/><line x1='25' y1='11.1' x2='26.3' y2='7.4'/><line x1='15' y1='11.1' x2='13.7' y2='7.4'/></g><ellipse class='foot' cx='20' cy='44.4' rx='6' ry='1.7' fill='url(#olfoot)'/><rect class='wick' x='18.5' y='39.5' width='3' height='5.2' rx='1.4' fill='#5a4020'/><g class='fl'><path class='body' d='M20 10 C26 15.5 30.5 20.5 30 28 C29.5 35 25 40.5 20 41.5 C15 40.5 10.5 35 10 28 C9.5 20.5 14 15.5 20 10 Z' fill='url(#olflame)'/><path d='M20 18 C23.8 22.5 26 26.5 24.8 31.5 C23.9 35 22 37.2 20 37.6 C18 37.2 16.1 35 15.2 31.5 C14 26.5 16.2 22.5 20 18 Z' fill='#ffe488' opacity='.5'/><ellipse cx='15.6' cy='23' rx='1.6' ry='3' fill='#fff8df' opacity='.4'/></g><g class='eyes' fill='#5a3212'><ellipse cx='15.6' cy='27.5' rx='2.5' ry='3'/><ellipse cx='24.4' cy='27.5' rx='2.5' ry='3'/><circle cx='14.8' cy='26.5' r='.95' fill='#fff'/><circle cx='23.6' cy='26.5' r='.95' fill='#fff'/></g><g class='eyes-happy' stroke='#5a3212' stroke-width='1.7' stroke-linecap='round' fill='none'><path d='M13.1 27.9 Q15.6 24.7 18.1 27.9'/><path d='M21.9 27.9 Q24.4 24.7 26.9 27.9'/></g><path class='m-idle' d='M17.2 32.4 Q20 34.5 22.8 32.4' stroke='#5a3212' stroke-width='1.4' stroke-linecap='round' fill='none'/><path class='m-think' d='M18.5 32.6 Q20 33.4 21.5 32.6' stroke='#5a3212' stroke-width='1.4' stroke-linecap='round' fill='none'/><path class='m-happy' d='M16.4 32 Q20 35.9 23.6 32' stroke='#5a3212' stroke-width='1.6' stroke-linecap='round' fill='none'/></g></svg>";
+    function LAMP(s){return "<span class='ol-lamp st-"+s+"'>"+LAMP_SVG+"</span>";}
+    var lampAv=(function(){var hd=wrap.querySelector('.ol-ask-hd');if(!hd)return null;var a=document.createElement('span');a.className='ol-lamp ol-lamp-hd st-idle';a.innerHTML=LAMP_SVG;hd.insertBefore(a,hd.firstChild);return a;})();
+    function lampState(s){if(lampAv)lampAv.className='ol-lamp ol-lamp-hd st-'+s;}
+    var noteEl=wrap.querySelector('.ol-ask-note');
+    if(noteEl)noteEl.textContent=AI_ENDPOINT
+      ?'AI answers are generated only from this site’s pages, with sources shown — always verify against the cited pages.'
+      :'Answers are drawn only from this site’s pages · not a live AI chat';
+    var subEl=wrap.querySelector('.ol-ask-hd .ti span');
+    if(subEl&&AI_ENDPOINT)subEl.textContent='Grounded answers from the site, with sources';
+
+    function scrollDown(){log.scrollTop=log.scrollHeight;}
+    function addUser(t){var d=document.createElement('div');d.className='ol-ask-msg user';d.textContent=t;log.appendChild(d);scrollDown();}
+    function addBot(html){var d=document.createElement('div');d.className='ol-ask-msg bot';d.innerHTML=html;log.appendChild(d);scrollDown();return d;}
+
+    function pageRows(pages,limit){
+      return pages.slice(0,limit||5).map(function(r){
+        return '<a class="ol-ans" href="'+esc(r.f)+(r.a?'#'+esc(r.a):'')+'"><span class="a-t">'+esc(r.t)+'</span>'+(r.sub?'<span class="a-h">'+esc(r.sub)+'</span>':'')+'</a>';
+      }).join('');
+    }
+    function renderVerse(v){
+      var h='';
+      if(v.mode==='verse'){
+        h+='<div class="ol-vans"><span class="vr">'+esc(v.ref)+'</span>'+(v.kjv?'<span class="vt">'+esc(v.kjv)+'<em>KJV</em></span>':'<span class="vt">Not cited on the site yet.</span>')+'</div>';
+        if(v.pages.length){h+='<p class="lead">Cited on '+v.pages.length+' page'+(v.pages.length>1?'s':'')+':</p>'+pageRows(v.pages,6);}
+      }else{
+        h+='<div class="ol-vans"><span class="vr">'+esc(v.ref)+'</span><span class="vt">'+(v.vnums.length?'Verses cited here: '+v.vnums.join(', '):'No verses from this chapter are cited yet.')+'</span></div>';
+        if(v.pages.length){h+='<p class="lead">Pages citing this chapter:</p>'+pageRows(v.pages,6);}
+      }
+      addBot(h);
+    }
+    function cap1(s){return s?s.charAt(0).toUpperCase()+s.slice(1):s;}
+    function renderTopic(q){
+      var r=rank(q),tk=r.tk,top=r.top;
+      if(!tk.length){addBot('<p class="lead">Try a question like <em>why do you venerate icons?</em> or type a Bible reference such as <em>John 3:16</em>.</p>');return;}
+      if(!top.length){addBot('<p class="lead">I couldn’t find that on the site. Try different words, or browse from the menu.</p>');return;}
+      if(r.broad){
+        var h='<p class="lead">“'+esc(cap1(r.term))+'” runs through much of the site — that’s a broad topic. Here are the main places it’s covered; add a few more words to narrow things down:</p>';
+        h+=top.map(function(it){return '<a class="ol-ans" href="'+esc(it.f)+(it.a?'#'+esc(it.a):'')+'"><span class="a-t">'+esc(it.t)+'</span>'+(it.h?'<span class="a-h">'+esc(it.h)+'</span>':'')+'</a>';}).join('');
+        addBot(h);return;
+      }
+      var strong=(top[0].cov===tk.length);
+      var lead=strong?'Here’s where the site addresses that:':'This looks closest on the site:';
+      var body=top.map(function(it){
+        return '<a class="ol-ans" href="'+esc(it.f)+(it.a?'#'+esc(it.a):'')+'"><span class="a-t">'+esc(it.t)+'</span>'+(it.h?'<span class="a-h">'+esc(it.h)+'</span>':'')+'<span class="a-x">'+excerpt(it.x,tk)+'</span></a>';
+      }).join('');
+      addBot('<p class="lead">'+lead+'</p>'+body);
+    }
+
+    /* citation links under an AI answer, numbered to match [1]/[2] in the text */
+    function citeHTML(top){
+      return '<div class="ol-ai-cite"><p class="lead">Sources on the site</p>'+top.map(function(it,i){
+        return '<a class="ol-ans" href="'+esc(it.f)+(it.a?'#'+esc(it.a):'')+'"><span class="a-t"><span class="a-c">['+(i+1)+']</span>'+esc(it.t)+'</span>'+(it.h?'<span class="a-h">'+esc(it.h)+'</span>':'')+'</a>';
+      }).join('')+'</div>';
+    }
+    /* stream a grounded answer from the Worker; onErr triggers retrieval fallback */
+    function streamAI(q,passages,bubble,onDone,onErr){
+      var txt=document.createElement('div');txt.className='ol-ai-txt';
+      var acc='',started=false,gotErr=false,pinned=false;
+      function begin(){if(!started){started=true;bubble.innerHTML='';bubble.appendChild(txt);}}
+      /* keep the START of the answer at the top of the log so the reader begins at the beginning */
+      function pinStart(){if(pinned)return;pinned=true;var head=bubble.previousElementSibling||bubble;var lr=log.getBoundingClientRect(),er=head.getBoundingClientRect();log.scrollTop+=(er.top-lr.top)-10;}
+      /* gently type the answer in, word by word, with a blinking caret */
+      function typeReveal(full,done){
+        var parts=full.match(/\S+\s*/g)||[full];var i=0,n=parts.length,step=n>90?3:(n>45?2:1);
+        (function tick(){
+          i=Math.min(n,i+step);
+          txt.innerHTML=fmtAI(parts.slice(0,i).join(''))+(i<n?'<span class="ol-ai-caret"></span>':'');
+          if(i<n){setTimeout(tick,18);}else{txt.innerHTML=fmtAI(full||'—');done();}
+        })();
+      }
+      fetch(AI_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({q:q,passages:passages})}).then(function(res){
+        if(!res.ok||!res.body)throw new Error('bad response');
+        var reader=res.body.getReader(),dec=new TextDecoder(),buf='';
+        function finish(){begin();pinStart();typeReveal(acc,onDone);}
+        function pump(){
+          return reader.read().then(function(r){
+            if(r.done){finish();return;}
+            buf+=dec.decode(r.value,{stream:true});
+            var lines=buf.split('\n');buf=lines.pop()||'';
+            lines.forEach(function(line){
+              var t=line.trim();
+              if(t.indexOf('data:')!==0)return;
+              var p=t.slice(5).trim();
+              if(p==='[DONE]'||!p)return;
+              try{var tok=JSON.parse(p);if(typeof tok==='string'){acc+=tok;}}catch(e){}
+            });
+            return pump();
+          });
+        }
+        return pump();
+      }).catch(function(){if(!gotErr){gotErr=true;onErr();}});
+    }
+    function renderTopicAI(q){
+      var r=rank(q),tk=r.tk,top=r.top;
+      if(!tk.length){addBot('<p class="lead">Try a question like <em>why do you venerate icons?</em> or type a Bible reference such as <em>John 3:16</em>.</p>');busy=false;return;}
+      if(!top.length){addBot('<p class="lead">I couldn’t find that on the site. Try different words, or browse from the menu.</p>');busy=false;return;}
+      var passages=top.slice(0,6).map(function(it){return {t:it.t,h:it.h,x:it.x};});
+      lampState('think');
+      var bubble=addBot(''+LAMP('think')+'<span class="ol-ai-think">consulting the lamp…</span>');
+      streamAI(q,passages,bubble,function(){
+        var c=document.createElement('div');c.innerHTML=citeHTML(top);
+        bubble.appendChild(c.firstChild);busy=false;lampState('happy');setTimeout(function(){lampState('idle');},4200);
+      },function(){
+        bubble.parentNode&&bubble.parentNode.removeChild(bubble);
+        lampState('idle');renderTopic(q);busy=false;
+      });
+    }
+
+    var busy=false;
+    function handle(q){
+      q=(q||'').trim();if(!q||busy)return;
+      addUser(q);inp.value='';busy=true;
+      var topic=function(){loadC().then(function(){if(AI_ENDPOINT)renderTopicAI(q);else{renderTopic(q);busy=false;}});};
+      var vp=(window.__olVerseQuery?window.__olVerseQuery(q):Promise.resolve(null));
+      Promise.resolve(vp).then(function(v){
+        if(v){renderVerse(v);busy=false;return;}
+        topic();
+      }).catch(topic);
+    }
+
+    var greeted=false;
+    function greet(){
+      if(greeted)return;greeted=true;
+      var d=addBot('<p class="lead">'+LAMP('idle')+' Ask me anything about the Oriental Orthodox faith, other traditions, or type a Bible reference — I’ll point you to the answer on the site.</p><div class="ol-ask-chips"></div>');
+      var chips=['Why venerate icons?','Are we monophysite?','Purgatory','John 3:16'];
+      var cw=d.querySelector('.ol-ask-chips');
+      chips.forEach(function(c){var b=document.createElement('button');b.type='button';b.textContent=c;b.addEventListener('click',function(){handle(c);});cw.appendChild(b);});
+    }
+    function openAsk(){wrap.classList.add('open');fab.classList.add('hide');greet();lampState('idle');loadC();setTimeout(function(){inp.focus();},40);scrollDown();}
+    function closeAsk(){wrap.classList.remove('open');fab.classList.remove('hide');}
+    fab.addEventListener('click',openAsk);
+    xB.addEventListener('click',closeAsk);
+    sendB.addEventListener('click',function(){handle(inp.value);});
+    inp.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();handle(inp.value);}else if(e.key==='Escape'){closeAsk();}});
+    window.__olOpenAsk=openAsk;
+  }catch(e){}
+})();
+/* END-FEATURES4-JS */</script>
+<script>
+/* AUTO-FEATURES5-JS */
+(function(){
+  try{
+    /* ---- 1. print / save-as-PDF button in the sidebar ---- */
+    if(!document.querySelector('.ol-print-btn')){
+      var pb=document.createElement('button');pb.className='ol-print-btn';pb.type='button';
+      pb.setAttribute('aria-label','Print or save this page as PDF');
+      pb.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg><span>Print / Save as PDF</span>';
+      pb.addEventListener('click',function(){window.print();});
+      var sbtn=document.querySelector('.ol-search-btn');
+      if(sbtn&&sbtn.parentNode){sbtn.parentNode.insertBefore(pb,sbtn.nextSibling);}
+      else{var nav=document.querySelector('#sidebar nav,#sb nav,#sidebar,#sb');if(nav)nav.insertBefore(pb,nav.firstChild);}
+    }
+    /* ---- 2. offline / installable (PWA) service worker ---- */
+    if('serviceWorker' in navigator){
+      window.addEventListener('load',function(){
+        navigator.serviceWorker.register('sw.js').catch(function(){});
+      });
+    }
+  }catch(e){}
+})();
+/* END-FEATURES5-JS */</script>
+<button id="ol-sbt" onclick="olSb()" aria-label="Collapse or expand the contents sidebar" title="Hide or show contents"><span id="ol-sbi">&#8249;</span></button>
+<script>function olSb(){var c=document.documentElement.classList.toggle('sb-collapsed');try{localStorage.setItem('ol-sb',c?'1':'0')}catch(e){}olSbIcon()}function olSbIcon(){var i=document.getElementById('ol-sbi');if(i)i.innerHTML=document.documentElement.classList.contains('sb-collapsed')?'&#8250;':'&#8249;'}olSbIcon();</script>
+<script>/* AUTO-SHARECARDS-JS */
+(function(){
+try{
+  var SITE="The Orthodox Lamp";
+  var HOST="85z5yr9fyf-commits.github.io/the-orthodox-lamp";
+  /* ---- styles ---- */
+  if(!document.getElementById('ol-sc-style')){
+    var st=document.createElement('style');st.id='ol-sc-style';
+    st.textContent='.fc,.sv{position:relative}'+
+      '.ol-sc-btn{position:absolute;top:8px;right:8px;z-index:5;display:inline-flex;align-items:center;gap:5px;'+
+      'background:rgba(201,168,76,.12);border:1px solid var(--gd,#8a6a20);color:var(--gold,#c9a84c);'+
+      'border-radius:6px;padding:3px 8px;font:600 .7rem/1 Georgia,serif;cursor:pointer;opacity:0;'+
+      'transition:opacity .18s,background .18s}'+
+      '.fc:hover .ol-sc-btn,.sv:hover .ol-sc-btn,.ol-sc-btn:focus{opacity:.92}'+
+      '.ol-sc-btn:hover{background:rgba(201,168,76,.24)}'+
+      '.ol-sc-btn svg{width:12px;height:12px}'+
+      '@media(hover:none){.ol-sc-btn{opacity:.6}}'+
+      '@media print{.ol-sc-btn{display:none!important}}';
+    document.head.appendChild(st);
+  }
+  var ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"></line><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"></line></svg>';
+  function clean(s){return (s||'').replace(/\s+/g,' ').trim();}
+  function dequote(s){return s.replace(/^[“‘"']+/,'').replace(/[”’"']+$/,'').trim();}
+  function collect(el){
+    if(el.classList.contains('fc')){
+      var body=el.querySelector('.fc-body'), name=el.querySelector('.fc-name'), src=el.querySelector('.fc-src');
+      var srcTxt='';
+      if(src){var cl=src.cloneNode(true);var tg=cl.querySelector('.tag');if(tg)tg.remove();srcTxt=clean(cl.textContent);}
+      return {quote:dequote(clean(body?body.textContent:el.textContent)),
+              attr:name?clean(name.textContent):'', src:srcTxt};
+    }else{ /* .sv */
+      var cl=el.cloneNode(true), cite=cl.querySelector('cite'); var attr='';
+      var sb=cl.querySelector('.ol-sc-btn'); if(sb)sb.remove();
+      if(cite){attr=clean(cite.textContent);cite.remove();}
+      return {quote:dequote(clean(cl.textContent)), attr:attr, src:''};
+    }
+  }
+  function wrap(x,text,maxW){
+    var words=text.split(' '),lines=[],cur='';
+    for(var i=0;i<words.length;i++){
+      var t=cur?cur+' '+words[i]:words[i];
+      if(x.measureText(t).width>maxW&&cur){lines.push(cur);cur=words[i];}else{cur=t;}
+    }
+    if(cur)lines.push(cur);
+    return lines;
+  }
+  function draw(d){
+    var S=1080,c=document.createElement('canvas');c.width=S;c.height=S;
+    var x=c.getContext('2d');
+    var g=x.createLinearGradient(0,0,0,S);g.addColorStop(0,'#151515');g.addColorStop(1,'#0b0b0b');
+    x.fillStyle=g;x.fillRect(0,0,S,S);
+    x.strokeStyle='#c9a84c';x.lineWidth=3;x.strokeRect(46,46,S-92,S-92);
+    x.strokeStyle='#5a4a20';x.lineWidth=1;x.strokeRect(58,58,S-116,S-116);
+    x.textAlign='center';
+    /* label */
+    x.fillStyle='#a09880';x.font='600 22px Georgia,serif';
+    x.fillText('T H E   O R T H O D O X   L A M P',S/2,132);
+    /* lamp flame */
+    x.fillStyle='#e8c96a';x.beginPath();x.ellipse(S/2,182,11,17,0,0,Math.PI*2);x.fill();
+    x.fillStyle='#c9a84c';x.beginPath();x.moveTo(S/2,150);x.lineTo(S/2-11,180);x.lineTo(S/2+11,180);x.closePath();x.fill();
+    /* opening quote mark */
+    x.fillStyle='rgba(201,168,76,.35)';x.font='italic 150px Georgia,serif';
+    x.fillText('“',S/2,300);
+    /* quote text: size to fit */
+    var maxW=S-220, q=d.quote, size=46;
+    var lens=[[170,46],[300,40],[460,34],[680,29]], picked=25;
+    for(var i=0;i<lens.length;i++){if(q.length<=lens[i][0]){picked=lens[i][1];break;}}
+    size=picked;
+    x.fillStyle='#ece4d4';x.font='italic '+size+'px Georgia,serif';
+    var lines=wrap(x,q,maxW), lh=size*1.34;
+    if(lines.length>15){lines=lines.slice(0,15);lines[14]=lines[14].replace(/[.,;: ]+$/,'')+'…';}
+    var blockH=lines.length*lh, cy=560-blockH/2;
+    /* keep within frame */
+    if(cy<330)cy=330;
+    for(var j=0;j<lines.length;j++){x.fillText(lines[j],S/2,cy+j*lh);}
+    var y=cy+lines.length*lh+34;
+    /* divider */
+    x.strokeStyle='#5a4a20';x.lineWidth=1;x.beginPath();x.moveTo(S/2-46,y);x.lineTo(S/2+46,y);x.stroke();
+    y+=44;
+    /* attribution */
+    if(d.attr){x.fillStyle='#c9a84c';x.font='700 30px Georgia,serif';
+      var al=wrap(x,'— '+d.attr,maxW);for(var k=0;k<al.length;k++){x.fillText(al[k],S/2,y);y+=38;}}
+    /* source */
+    if(d.src){x.fillStyle='#9a9078';x.font='italic 22px Georgia,serif';
+      var sl=wrap(x,d.src,maxW);for(var m=0;m<sl.length;m++){x.fillText(sl[m],S/2,y);y+=28;}}
+    /* footer */
+    x.fillStyle='#8a8268';x.font='20px Georgia,serif';
+    x.fillText(HOST,S/2,S-70);
+    return c;
+  }
+  function share(d){
+    var c=draw(d);
+    c.toBlob(function(blob){
+      if(!blob)return;
+      var url=URL.createObjectURL(blob);
+      var a=document.createElement('a');
+      a.href=url;a.download='orthodox-lamp-quote.png';
+      document.body.appendChild(a);a.click();a.remove();
+      setTimeout(function(){URL.revokeObjectURL(url);},4000);
+    },'image/png');
+  }
+  var nodes=document.querySelectorAll('.fc, .sv');
+  nodes.forEach(function(el){
+    if(el.querySelector('.ol-sc-btn'))return;
+    var txt=clean(el.textContent);
+    if(txt.length<25)return;
+    var b=document.createElement('button');
+    b.type='button';b.className='ol-sc-btn';b.title='Download this quote as an image';
+    b.setAttribute('aria-label','Download this quote as a shareable image');
+    b.innerHTML=ICON+'<span>Share</span>';
+    b.addEventListener('click',function(ev){ev.stopPropagation();share(collect(el));});
+    el.appendChild(b);
+  });
+}catch(e){}
+})();
+/* END-SHARECARDS-JS */</script>
+<script>(function(){try{var r=document.querySelector('.rm-row'),o=r&&r.querySelector('.on');if(r&&o){r.scrollLeft+=o.getBoundingClientRect().left-r.getBoundingClientRect().left-(r.clientWidth-o.clientWidth)/2;}}catch(e){}})();</script>
+</body>
+</html>
