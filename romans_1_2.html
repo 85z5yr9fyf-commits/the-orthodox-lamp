@@ -1,0 +1,2085 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Romans 1–2: Creation &amp; Judgement — The Orthodox Lamp</title>
+<style>
+:root{--gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;--bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--tx:#e8e0d0;--mu:#b8ac82;--red:#8b2020;--br:#2a2a2a;--bg5:#3a2e10;--sidebar-w:270px;--mia:#1a3060;--mia-b:#3060c0;--dyo:#2a1a40;--dyo-b:#8060c0;--nes:#1a2510;--nes-b:#4a7030;--eut:#3a1515;--eut-b:#a03030}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.7;display:flex;flex-direction:column;min-height:100vh}
+a{color:var(--gold);text-decoration:none}
+a:hover{color:var(--gl)}
+
+#prog{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--gd),var(--gold),var(--gl));z-index:9999;transition:width .1s}
+
+#sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:100;display:flex;flex-direction:column;transition:transform .3s}
+#sidebar header{padding:1.4rem 1.2rem 1rem;border-bottom:1px solid var(--br)}
+.sb-cross{font-size:1.3rem;color:var(--gold);display:block;text-align:center;margin-bottom:.3rem}
+.sb-title{font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gl);text-align:center;line-height:1.3}
+.sb-sub{font-size:.62rem;color:var(--mu);text-align:center;margin-top:.25rem;font-style:italic}
+nav{padding:.8rem 0;flex:1}
+nav a{display:block;padding:.42rem 1.2rem;font-size:.78rem;color:var(--mu);transition:color .15s,background .15s;border-left:2px solid transparent;line-height:1.4}
+nav a:hover{color:var(--tx);background:var(--bg3)}
+nav a.active{color:var(--gl);border-left-color:var(--gold);background:var(--bg5)}
+.sb-search{padding:.8rem 1rem;border-top:1px solid var(--br)}
+.sb-search input{width:100%;background:var(--bg3);border:1px solid var(--br);border-radius:5px;padding:.4rem .7rem;color:var(--tx);font-size:.78rem;outline:none}
+.sb-search input:focus{border-color:var(--gd)}
+
+#main{margin-left:var(--sidebar-w);flex:1;display:flex;flex-direction:column}
+#mob-bar{display:none;position:fixed;top:0;left:0;right:0;height:48px;background:var(--bg2);border-bottom:1px solid var(--br);align-items:center;padding:0 1rem;z-index:99}
+#mob-bar .mb-title{font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gl);flex:1;text-align:center}
+#ham{background:none;border:none;color:var(--gold);font-size:1.4rem;cursor:pointer;padding:.3rem}
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:99}
+#overlay.show{display:block}
+
+.hero{text-align:center;padding:4.5rem 1.5rem 3rem;background:linear-gradient(180deg,var(--bg2) 0%,var(--bg) 100%);border-bottom:1px solid var(--br);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(201,168,76,.07) 0%,transparent 70%);pointer-events:none}
+.si{font-size:2rem;color:var(--gold);display:block;margin-bottom:.5rem}
+.st{font-size:clamp(1.5rem,4vw,2.4rem);font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--tx);line-height:1.2}
+.st span{color:var(--gold)}
+.ss{font-size:1rem;color:var(--gl);margin:.6rem 0 .3rem;font-weight:700;letter-spacing:.04em}
+.tg{font-size:.85rem;color:var(--mu);font-style:italic;margin-top:.4rem}
+.orn{color:var(--gold);font-size:.9rem;letter-spacing:.4em;margin-top:1rem;opacity:.7}
+
+.content{max-width:860px;margin:0 auto;padding:3rem 2rem 5rem;flex:1}
+
+.sec{border:1px solid var(--br);border-radius:8px;margin-bottom:1.2rem;overflow:hidden;background:var(--bg2)}
+.sec-h{width:100%;background:none;border:none;padding:1.1rem 1.4rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--tx);font-family:'Georgia',serif;font-size:1rem;font-weight:700;text-align:left;transition:background .2s}
+.sec-h:hover{background:var(--bg3)}
+.sec-h .sec-num{color:var(--gold);font-size:.8rem;font-weight:700;letter-spacing:.1em;margin-right:.7rem;min-width:2.2rem}
+.sec-h .arr{color:var(--gold);transition:transform .3s;font-size:.9rem}
+.sec.open .arr{transform:rotate(180deg)}
+.sec-b{display:none;padding:1.4rem;border-top:1px solid var(--br)}
+.sec.open .sec-b{display:block}
+
+h3{font-size:1rem;color:var(--gl);margin:1.4rem 0 .6rem;letter-spacing:.03em}
+h3:first-child{margin-top:0}
+p{margin-bottom:.9rem;font-size:.92rem}
+ul,ol{margin:.6rem 0 .9rem 1.4rem;font-size:.92rem}
+li{margin-bottom:.3rem}
+blockquote{border-left:3px solid var(--gold);padding:.6rem 1rem;background:var(--bg3);border-radius:0 5px 5px 0;margin:.8rem 0;font-style:italic;font-size:.9rem;color:var(--gl)}
+
+/* Glossary terms */
+.gt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.8rem;margin:.8rem 0}
+.gt{background:var(--bg3);border:1px solid var(--br);border-radius:7px;padding:.9rem 1rem}
+.gt-term{font-size:.82rem;font-weight:700;color:var(--gold);letter-spacing:.06em;margin-bottom:.2rem}
+.gt-grk{font-size:.75rem;color:var(--mu);font-style:italic;margin-bottom:.4rem}
+.gt-def{font-size:.82rem;color:var(--tx);line-height:1.5}
+
+/* Comparison grid */
+.comp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin:1rem 0}
+.comp-card{border-radius:8px;padding:1rem 1.1rem;border:1px solid var(--br)}
+.comp-card.mia{background:var(--mia);border-color:var(--mia-b)}
+.comp-card.dyo{background:var(--dyo);border-color:var(--dyo-b)}
+.comp-card.nes{background:var(--nes);border-color:var(--nes-b)}
+.comp-card.eut{background:var(--eut);border-color:var(--eut-b)}
+.comp-card h4{font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem}
+.comp-card.mia h4{color:#8ab0ff}
+.comp-card.dyo h4{color:#b090ff}
+.comp-card.nes h4{color:#80b060}
+.comp-card.eut h4{color:#e07070}
+.comp-card p{font-size:.82rem;line-height:1.5}
+
+/* Scripture cards with dual interpretation */
+.sv{background:var(--bg3);border:1px solid var(--br);border-radius:7px;padding:1rem 1.2rem;margin:.7rem 0}
+.sv .ref{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+.sv .txt{font-size:.9rem;font-style:italic;line-height:1.6;margin-bottom:.5rem}
+.sv .mia-note{background:var(--mia);border:1px solid var(--mia-b);border-radius:5px;padding:.5rem .7rem;font-size:.8rem;margin:.4rem 0}
+.sv .dyo-note{background:var(--dyo);border:1px solid var(--dyo-b);border-radius:5px;padding:.5rem .7rem;font-size:.8rem;margin:.4rem 0}
+.labels{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.4rem}
+.labels span{font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.15rem .5rem;border-radius:3px}
+.labels .mia{background:var(--mia);color:#8ab0ff;border:1px solid var(--mia-b)}
+.labels .dyo{background:var(--dyo);color:#b090ff;border:1px solid var(--dyo-b)}
+.labels .ctx{background:#1a1a3a;color:#8a8adf;border:1px solid #2a2a6a}
+.labels .pl{background:#3a2e10;color:#c9a84c;border:1px solid #5a4a20}
+
+/* Anathema cards */
+.ana{background:var(--eut);border:1px solid var(--eut-b);border-radius:7px;padding:.9rem 1.1rem;margin:.6rem 0}
+.ana-num{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#e07070;margin-bottom:.3rem}
+.ana-txt{font-size:.88rem;font-style:italic;line-height:1.6}
+
+/* Father cards */
+.fc{background:var(--bg3);border-left:3px solid var(--gold);border-radius:0 7px 7px 0;padding:1rem 1.2rem;margin:.7rem 0}
+.fc .fn{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.2rem}
+.fc .fw{font-size:.78rem;color:var(--mu);margin-bottom:.4rem;font-style:italic}
+.fc .fq{font-size:.9rem;font-style:italic;line-height:1.6;margin-bottom:.3rem}
+
+/* Objection accordion */
+.obj{border:1px solid var(--br);border-radius:7px;margin:.7rem 0;overflow:hidden;background:var(--bg3)}
+.obj-h{width:100%;background:none;border:none;padding:.8rem 1.1rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--gl);font-family:'Georgia',serif;font-size:.88rem;font-weight:700;text-align:left}
+.obj-h:hover{background:var(--bg4)}
+.obj-h .arr{transition:transform .3s;font-size:.8rem;color:var(--gold)}
+.obj.open .arr{transform:rotate(180deg)}
+.obj-b{display:none;padding:1rem 1.1rem;border-top:1px solid var(--br);font-size:.88rem}
+.obj.open .obj-b{display:block}
+
+/* FAQ */
+.fi{border:1px solid var(--br);border-radius:7px;margin:.6rem 0;overflow:hidden}
+.fi-h{width:100%;background:var(--bg2);border:none;padding:.8rem 1.1rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--tx);font-family:'Georgia',serif;font-size:.88rem;font-weight:700;text-align:left}
+.fi-h:hover{background:var(--bg3)}
+.fi-h .arr{transition:transform .3s;font-size:.8rem;color:var(--gold)}
+.fi.open .arr{transform:rotate(180deg)}
+.fi-b{display:none;padding:1rem 1.1rem;border-top:1px solid var(--br);background:var(--bg2);font-size:.88rem}
+.fi.open .fi-b{display:block}
+
+/* Timeline */
+.timeline{border-left:2px solid var(--gd);padding-left:1.4rem;margin:1rem 0}
+.tl-item{position:relative;margin-bottom:1.2rem}
+.tl-item::before{content:'';position:absolute;left:-1.8rem;top:.45rem;width:.7rem;height:.7rem;background:var(--gold);border-radius:50%}
+.tl-date{font-size:.72rem;font-weight:700;letter-spacing:.1em;color:var(--gold);text-transform:uppercase}
+.tl-text{font-size:.88rem;color:var(--tx);margin-top:.2rem}
+
+/* Sources */
+.src-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.8rem;margin-top:.8rem}
+.src-card{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:.9rem 1rem}
+.src-card h4{font-size:.78rem;font-weight:700;color:var(--gold);margin-bottom:.4rem;letter-spacing:.06em;text-transform:uppercase}
+.src-card p,.src-card li{font-size:.8rem;color:var(--mu)}
+.src-card ul{margin-left:1rem}
+
+#btt{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--bg3);border:1px solid var(--gd);border-radius:50%;width:2.4rem;height:2.4rem;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1rem;cursor:pointer;opacity:0;transition:opacity .3s;z-index:50}
+#btt.show{opacity:1}
+
+@media(max-width:768px){
+  #sidebar{transform:translateX(-100%)}
+  #sidebar.open{transform:translateX(0)}
+  #main{margin-left:0;padding-top:48px}
+  #mob-bar{display:flex}
+}
+
+.lampsvg{display:block;margin:0 auto 14px;height:auto}
+.lampsvg .lampflame{animation:lampflick 3.2s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes lampflick{0%,100%{transform:scaleY(1) scaleX(1);opacity:.95}25%{transform:scaleY(1.06) scaleX(.97);opacity:1}50%{transform:scaleY(.96) scaleX(1.03);opacity:.9}75%{transform:scaleY(1.04) scaleX(.98);opacity:1}}
+
+html.light{--gold:#8a6a20;--gl:#6f5413;--gd:#b08e3e;--bg:#f7f2e6;--bg2:#efe8d5;--bg3:#e7ddc7;--bg4:#ddd2b9;--tx:#2b2415;--mu:#6e6450;--br:#d2c7aa;--bg5:#efe0b8;--mia:#cfd8ed;--dyo:#dcd0ec;--dyo-b:#412b6e;--nes:#ddebd1;--eut:#edcfcf}
+#ol-tt{position:fixed;right:16px;bottom:74px;z-index:9999;width:44px;height:44px;border-radius:50%;background:var(--bg3,var(--panel,#1a1a1a));color:var(--gold,#c9a84c);border:1px solid var(--gd,var(--gold-dark,var(--rule,#8a6a20)));font-size:1.1rem;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35);line-height:1}#ol-tt:hover{filter:brightness(1.15)}
+html.light .pl,html.light .labels .prot{background:#eed6d6;color:#8b2020}
+html.light .gl-tag,html.light .labels .oo{background:#d8e8d8;color:#1d5c1d}
+html.light .labels .ctx{background:#d8e3ee;color:#1d4a6b}
+html.light .obj{border-color:#dcc0c0}
+html.light .obj-bd{border-top-color:#dcc0c0}
+html.light .obj-hd h3{color:#8b2020}
+html.light .comp-card.prot{border-top-color:#a83232}
+html.light .comp-card.prot .ct{color:#a83232}
+html.light .labels .mia{color:#112d68}
+html.light .labels .dyo{color:#2a1168}
+html.light .labels .pl{color:#5c4916}
+html.light .ana-num{color:#651010}
+/* ol-aes-v1 */
+html.light #sidebar{background:linear-gradient(180deg,#f5edd5 0%,#ede4cb 100%)}
+html.light .sec{box-shadow:0 1px 6px rgba(100,70,15,.09)}
+html.light .sv{box-shadow:0 1px 4px rgba(100,70,15,.08)}
+html.light .fc{box-shadow:0 1px 4px rgba(100,70,15,.08)}
+html.light a{color:#6b4a10}
+html.light #sidenav a{color:var(--mu)}
+html.light #sidenav a.active,html.light #sidenav a:hover{color:var(--gold)}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* AUTO-ENHANCE */
+html.js-anim .sec{opacity:0;transform:translateY(14px);transition:opacity .55s cubic-bezier(.16,.7,.3,1),transform .55s cubic-bezier(.16,.7,.3,1)}
+html.js-anim .sec.in{opacity:1;transform:none}
+.sec.open .sec-body,.sec.open .sec-bd,.sec.open .sec-body2{animation:olSecOpen .4s cubic-bezier(.16,.7,.3,1)}
+.fi.open .fi-body,.fi.open .fi-bd{animation:olSecOpen .32s cubic-bezier(.16,.7,.3,1)}
+@keyframes olSecOpen{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.sec{margin-bottom:20px;transition:border-color .25s,box-shadow .25s}
+.sec-h:hover,.sec-hd:hover{box-shadow:inset 3px 0 0 var(--gd)}
+.sec-body,.sec-bd{line-height:1.75}
+.sec-body p,.sec-bd p{margin-bottom:12px}
+#ol-top{position:fixed;right:22px;bottom:24px;width:42px;height:42px;border-radius:50%;border:1px solid var(--br);background:var(--bg2);color:var(--gd);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .3s,transform .3s,background .2s;z-index:150;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+#ol-top.show{opacity:1;pointer-events:auto;transform:none}
+#ol-top:hover{background:var(--gd);color:#1a140a}
+.ol-readtime{display:inline-flex;align-items:center;gap:7px;font-size:.74rem;letter-spacing:.04em;color:var(--mu);border:1px solid var(--br);border-radius:20px;padding:4px 12px;margin-top:10px;text-transform:uppercase}
+.ol-readtime::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--gd)}
+@media(prefers-reduced-motion:reduce){html.js-anim .sec{opacity:1;transform:none}#ol-top{transition:none}}
+/* END-ENHANCE */
+
+/* AUTO-AESTHETIC2 */
+:root{--ol-acc:var(--gd,#c9a84c)}
+/* smooth anchor scrolling + sticky-header offset */
+html{scroll-behavior:smooth}
+:where(.sec,[id]){scroll-margin-top:88px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+/* theme cross-fade */
+body,main,.sec,.sec-h,.sec-hd,.sec-body,.sec-bd,#sb,#sb-nav a{transition:background-color .35s ease,color .35s ease,border-color .35s ease}
+/* typography polish */
+main .sec-body p,main .sec-bd p{line-height:1.8}
+.sec-h,.sec-hd{letter-spacing:.005em}
+p.ol-lead::first-letter{float:left;font-size:3.1em;line-height:.78;padding:6px 10px 0 0;color:var(--ol-acc);font-weight:700}
+/* card hover depth */
+[class*="-card"],[class*="-box"],.vbox{transition:transform .22s cubic-bezier(.16,.7,.3,1),box-shadow .22s ease,border-color .22s ease,background-color .35s ease,color .35s ease}
+[class*="-card"]:hover,[class*="-box"]:hover,.vbox:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.28)}
+html.light [class*="-card"]:hover,html.light [class*="-box"]:hover,html.light .vbox:hover{box-shadow:0 8px 22px rgba(40,30,10,.12)}
+/* section dividers (inserted by JS) */
+.ol-divider{text-align:center;color:var(--ol-acc);opacity:.45;font-size:1rem;margin:4px auto 26px;line-height:1;letter-spacing:0;user-select:none}
+/* sidebar active-dot fill */
+#sb-nav a{position:relative}
+#sb-nav a.active::before{content:"";position:absolute;left:-2px;top:50%;width:6px;height:6px;border-radius:50%;background:var(--ol-acc);box-shadow:0 0 7px var(--ol-acc);transform:translateY(-50%) scale(0);animation:olDot .3s cubic-bezier(.16,.7,.3,1) forwards}
+@keyframes olDot{to{transform:translateY(-50%) scale(1)}}
+/* bare blockquote uplift (does not touch styled quote-cards) */
+main blockquote{border-left:3px solid var(--ol-acc);padding:8px 0 8px 18px;margin:18px 0;font-style:italic}
+/* END-AESTHETIC2 */
+
+/* AUTO-FEATURES3 */
+/* copy-link buttons */
+.ol-copy{opacity:0;margin:0 8px;background:none;border:none;cursor:pointer;font-size:.8rem;color:var(--mu);transition:opacity .2s,color .2s;vertical-align:middle;padding:2px 5px;line-height:1;border-radius:5px}
+.ol-copy::before{content:"\1F517"}
+.sec-h:hover .ol-copy,.sec-hd:hover .ol-copy,.ol-copy:focus-visible{opacity:.65}
+.ol-copy:hover{opacity:1;color:var(--gd,#c9a84c)}
+.ol-copy.ok{opacity:1;color:#3fa34d}
+.ol-copy.ok::before{content:"\2713";margin-right:4px}
+.ol-copy.ok::after{content:"copied";font-size:.7rem;letter-spacing:.03em}
+/* related topics */
+.ol-related{margin:42px 0 8px;padding:22px 24px;border:1px solid var(--br);border-radius:12px;background:var(--bg2)}
+.ol-related h3{margin:0 0 14px;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gd,#c9a84c);font-weight:700}
+.ol-related-links{display:flex;flex-wrap:wrap;gap:10px}
+.ol-related-links a{display:inline-block;padding:8px 15px;border:1px solid var(--br);border-radius:22px;font-size:.9rem;color:var(--tx,#e7ddc8);text-decoration:none;background:var(--bg,#1a140a);transition:border-color .2s,color .2s,background .2s,transform .2s}
+.ol-related-links a:hover{border-color:var(--gd,#c9a84c);color:var(--gd,#c9a84c);transform:translateY(-1px)}
+/* search launcher */
+.ol-search-btn{display:flex;align-items:center;justify-content:space-between;width:100%;margin:10px 0 4px;padding:9px 13px;border:1px solid var(--br);border-radius:9px;background:var(--bg2);color:var(--mu);font:inherit;font-size:.86rem;cursor:pointer;transition:border-color .2s,color .2s}
+.ol-search-btn:hover{border-color:var(--gd,#c9a84c);color:var(--gd,#c9a84c)}
+.ol-search-btn span{border:1px solid var(--br);border-radius:5px;padding:1px 7px;font-size:.78rem;opacity:.8}
+/* search overlay */
+.ol-ov{position:fixed;inset:0;background:rgba(0,0,0,.62);backdrop-filter:blur(3px);z-index:1000;display:none;align-items:flex-start;justify-content:center;padding:11vh 16px 16px}
+.ol-ov.open{display:flex}
+.ol-modal{width:100%;max-width:620px;background:var(--bg2,#221a0e);border:1px solid var(--br);border-radius:14px;box-shadow:0 24px 70px rgba(0,0,0,.55);overflow:hidden;display:flex;flex-direction:column;max-height:74vh}
+html.light .ol-modal{box-shadow:0 24px 70px rgba(40,30,10,.22)}
+.ol-search-input{border:none;border-bottom:1px solid var(--br);background:none;color:var(--tx,#e7ddc8);font:inherit;font-size:1.12rem;padding:18px 22px;outline:none;width:100%}
+.ol-search-input::placeholder{color:var(--mu)}
+.ol-results{overflow-y:auto;padding:8px}
+.ol-r{display:block;padding:10px 14px;border-radius:9px;text-decoration:none;color:var(--tx,#e7ddc8);transition:background .12s}
+.ol-r .r-t{display:block;font-weight:600;font-size:.97rem}
+.ol-r .r-s{display:block;font-size:.83rem;color:var(--mu);margin-top:2px}
+.ol-r .r-s::before{content:"\2192  ";color:var(--gd,#c9a84c)}
+.ol-r.sel,.ol-r:hover{background:var(--bg,#1a140a)}
+.ol-r.sel{box-shadow:inset 3px 0 0 var(--gd,#c9a84c)}
+.ol-r mark{background:rgba(201,168,76,.32);color:inherit;border-radius:2px;padding:0 1px}
+.r-empty{padding:26px 18px;text-align:center;color:var(--mu);font-size:.92rem}
+.ol-hint{border-top:1px solid var(--br);padding:9px 18px;font-size:.74rem;color:var(--mu);letter-spacing:.03em}
+.ol-r .r-s.r-topic::before{content:"\2756  ";color:var(--gd,#c9a84c)}
+/* verse-mode card */
+.ol-vcard{margin:6px 6px 4px;padding:14px 16px;border:1px solid var(--br);border-radius:10px;background:var(--bg,#1a140a)}
+.ol-vcard .vref{font-weight:700;color:var(--gd,#c9a84c);font-size:1rem}
+.ol-vcard .vkjv{display:block;margin-top:7px;font-size:.93rem;line-height:1.6;color:var(--tx,#e7ddc8)}
+.ol-vcard .vkjv em{font-style:normal;font-size:.64rem;color:var(--mu);border:1px solid var(--br);border-radius:4px;padding:0 5px;margin-left:6px;letter-spacing:.06em;vertical-align:middle}
+.ol-vcard .vmeta{display:block;margin-top:8px;font-size:.76rem;color:var(--mu);line-height:1.5}
+/* scripture verse + tooltip */
+.ol-verse{border-bottom:1px dotted var(--gd,#c9a84c);cursor:help;text-decoration:none}
+.ol-tip{position:absolute;z-index:1100;max-width:330px;background:var(--bg2,#221a0e);color:var(--tx,#e7ddc8);border:1px solid var(--br);border-radius:10px;padding:12px 15px;font-size:.9rem;line-height:1.55;box-shadow:0 12px 34px rgba(0,0,0,.5);pointer-events:none}
+html.light .ol-tip{box-shadow:0 12px 34px rgba(40,30,10,.2)}
+.ol-tip b{color:var(--gd,#c9a84c);font-size:.84rem;letter-spacing:.02em}
+.ol-tip-kjv{font-size:.66rem;color:var(--mu);border:1px solid var(--br);border-radius:4px;padding:0 5px;margin-left:6px;letter-spacing:.05em}
+.ol-tip-load,.ol-tip-err{color:var(--mu);font-style:italic}
+/* print / pdf */
+@media print{
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #sidebar,#sb,#ham,#overlay,#prog,#ol-top,#ol-tt,.ol-search-btn,.ol-copy,.back-link,.ol-ov,.ol-tip,.ol-divider,.ol-related,.sb-search,nav,.arr{display:none!important}
+  html,body{background:#fff!important;color:#000!important}
+  main{margin:0!important;padding:0!important;max-width:100%!important;width:100%!important}
+  .sec-body,.sec-bd,.sec-body2,.fi-body,.fi-bd{display:block!important;max-height:none!important;opacity:1!important;transform:none!important;animation:none!important}
+  .sec{opacity:1!important;transform:none!important;page-break-inside:avoid;border:none!important;margin-bottom:14px!important}
+  .sec-h,.sec-hd{cursor:default}
+  .hero,.pg-title,.page-head,.pg-head,.hd{background:#fff!important;color:#000!important;border:none!important}
+  .ol-verse{border-bottom:none}
+  a{color:#000!important;text-decoration:none}
+  h1,h2,h3{color:#000!important}
+}
+/* END-FEATURES3 */
+
+/* AUTO-FEATURES4 */
+.ol-ask-fab{position:fixed;right:22px;bottom:24px;z-index:1200;display:flex;align-items:center;gap:9px;height:52px;padding:0 19px 0 15px;border:1px solid var(--br);border-radius:30px;background:var(--gd,#c9a84c);color:#1a140a;font:inherit;font-weight:600;font-size:.9rem;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.35);transition:transform .2s,box-shadow .2s}
+.ol-ask-fab:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(0,0,0,.45)}
+.ol-ask-fab svg{width:20px;height:20px;flex:none;display:block}
+.ol-ask-fab.hide{display:none}
+#ol-top{bottom:128px}
+.ol-ask-wrap{position:fixed;right:22px;bottom:24px;z-index:1201;width:380px;max-width:calc(100vw - 32px);height:560px;max-height:calc(100vh - 70px);background:var(--bg2,#221a0e);border:1px solid var(--br);border-radius:16px;box-shadow:0 24px 70px rgba(0,0,0,.55);display:none;flex-direction:column;overflow:hidden}
+.ol-ask-wrap.open{display:flex}
+html.light .ol-ask-wrap{box-shadow:0 24px 70px rgba(40,30,10,.22)}
+.ol-ask-hd{display:flex;align-items:center;gap:10px;padding:13px 15px;border-bottom:1px solid var(--br);background:var(--bg,#1a140a)}
+.ol-ask-hd .ti{flex:1;line-height:1.25}
+.ol-ask-hd .ti b{color:var(--gd,#c9a84c);font-size:.97rem}
+.ol-ask-hd .ti span{display:block;font-size:.7rem;color:var(--mu);font-weight:400;letter-spacing:.02em}
+.ol-ask-x{background:none;border:none;color:var(--mu);font-size:1.4rem;line-height:1;cursor:pointer;padding:0 6px;border-radius:6px}
+.ol-ask-x:hover{color:var(--tx,#e7ddc8)}
+.ol-ask-log{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:11px}
+.ol-ask-msg{max-width:92%;font-size:.9rem;line-height:1.55;word-wrap:break-word}
+.ol-ask-msg.user{align-self:flex-end;background:var(--gd,#c9a84c);color:#1a140a;padding:8px 13px;border-radius:14px 14px 4px 14px;font-weight:500}
+.ol-ask-msg.bot{align-self:flex-start;color:var(--tx,#e7ddc8);width:100%}
+.ol-ask-msg.bot .lead{margin:0 0 9px;color:var(--mu);font-size:.85rem}
+.ol-ans{display:block;text-decoration:none;color:var(--tx,#e7ddc8);border:1px solid var(--br);border-radius:10px;padding:9px 12px;margin-bottom:8px;background:var(--bg,#1a140a);transition:border-color .18s,transform .18s}
+.ol-ans:hover{border-color:var(--gd,#c9a84c);transform:translateY(-1px)}
+.ol-ans .a-t{display:block;font-weight:600;font-size:.88rem}
+.ol-ans .a-h{display:block;font-size:.78rem;color:var(--gd,#c9a84c);margin-top:1px}
+.ol-ans .a-x{display:block;font-size:.81rem;color:var(--mu);margin-top:5px;line-height:1.5}
+.ol-ans mark,.ol-ask-msg mark{background:rgba(201,168,76,.32);color:inherit;border-radius:2px;padding:0 1px}
+.ol-ai-txt{font-size:.9rem;line-height:1.6;color:var(--tx,#e7ddc8)}
+.ol-ai-txt p{margin:0 0 9px}.ol-ai-txt p:last-child{margin-bottom:0}
+.ol-ai-txt strong{color:var(--gl,#e8c96a);font-weight:600}
+.ol-ai-txt sup.ol-ci{color:var(--gd,#c9a84c);font-weight:600;font-size:.7em;padding:0 1px}
+.ol-ai-cite{margin-top:11px;padding-top:9px;border-top:1px solid var(--br)}
+.ol-ai-cite .lead{margin:0 0 7px;color:var(--mu);font-size:.78rem;text-transform:uppercase;letter-spacing:.04em}
+.ol-ans .a-c{display:inline-block;color:var(--gd,#c9a84c);font-weight:700;font-size:.78rem;margin-right:5px}
+.ol-ai-dots{display:inline-flex;gap:5px;padding:4px 0}
+.ol-ai-dots i{width:7px;height:7px;border-radius:50%;background:var(--gd,#c9a84c);opacity:.4;animation:olaiblink 1.2s infinite}
+.ol-ai-dots i:nth-child(2){animation-delay:.2s}.ol-ai-dots i:nth-child(3){animation-delay:.4s}
+@keyframes olaiblink{0%,60%,100%{opacity:.35}30%{opacity:1}}
+.ol-ai-lamp{display:inline-block;font-size:1.15em;line-height:1;transform-origin:50% 85%;animation:ollampflick 1.7s infinite ease-in-out}
+@keyframes ollampflick{0%,100%{opacity:.85;filter:drop-shadow(0 0 2px rgba(201,168,76,.45));transform:scale(1) rotate(0)}40%{opacity:1;filter:drop-shadow(0 0 8px rgba(201,168,76,.95));transform:scale(1.08) rotate(-2deg)}68%{opacity:.92;filter:drop-shadow(0 0 4px rgba(201,168,76,.7));transform:scale(1.02) rotate(1deg)}}
+.ol-ai-think{margin-left:7px;font-style:italic;font-size:.94em;opacity:.85}
+.ol-ask-msg{animation:olmsgin .4s cubic-bezier(.22,1,.36,1) both}
+@keyframes olmsgin{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
+.ol-ai-caret{display:inline-block;width:2px;height:1.05em;background:var(--gd,#c9a84c);margin-left:2px;vertical-align:-2px;border-radius:1px;animation:olcaret .8s step-end infinite}
+@keyframes olcaret{50%{opacity:0}}
+.ol-lamp{display:inline-block;line-height:0;vertical-align:-7px}.ol-lamp svg{width:24px;height:28px;overflow:visible}.ol-lamp-hd{vertical-align:middle;flex:0 0 auto}.ol-lamp-hd svg{width:34px;height:40px}.ol-lamp .eyes-happy,.ol-lamp .m-idle,.ol-lamp .m-think,.ol-lamp .m-happy{display:none}.ol-lamp.st-idle .m-idle{display:block}.ol-lamp.st-think .m-think{display:block}.ol-lamp.st-happy .m-happy{display:block}.ol-lamp.st-happy .eyes{display:none}.ol-lamp.st-happy .eyes-happy{display:block}.ol-lamp .eyes{transform-box:fill-box;transform-origin:center;animation:ollampblink 4.8s infinite}.ol-lamp.st-think .eyes{transform:translateY(-1px)}.ol-lamp .fl{transform-box:fill-box;transform-origin:50% 100%;animation:ollampfl 2.1s infinite ease-in-out}.ol-lamp.st-think .fl{animation-duration:1.1s}.ol-lamp.st-happy .fl{animation-duration:1.3s}.ol-lamp .rays{transform-box:fill-box;transform-origin:center;animation:olrays 2.6s infinite ease-in-out}.ol-lamp.st-think .rays{animation-duration:1.4s}.ol-lamp.st-happy .rays{animation-duration:1.6s}.ol-lamp.st-think .lampg{transform-box:fill-box;transform-origin:50% 100%;animation:ollampsway 2.6s infinite ease-in-out}.ol-lamp.st-happy .lampg{transform-box:fill-box;transform-origin:50% 100%;animation:ollamphop .6s ease}@keyframes ollampfl{0%,100%{transform:scaleY(1) scaleX(1)}30%{transform:scaleY(1.05) scaleX(.97)}60%{transform:scaleY(.98) scaleX(1.02)}}@keyframes olrays{0%,100%{transform:scale(1);opacity:.8}50%{transform:scale(1.08);opacity:1}}@keyframes ollampblink{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}@keyframes ollampsway{0%,100%{transform:rotate(-2.5deg)}50%{transform:rotate(2.5deg)}}@keyframes ollamphop{0%{transform:translateY(0)}40%{transform:translateY(-3px)}100%{transform:translateY(0)}}
+.ol-vans{border:1px solid var(--br);border-radius:10px;padding:11px 13px;margin-bottom:9px;background:var(--bg,#1a140a)}
+.ol-vans .vr{font-weight:700;color:var(--gd,#c9a84c)}
+.ol-vans .vt{display:block;margin-top:5px;font-size:.85rem;line-height:1.55;color:var(--tx,#e7ddc8)}
+.ol-vans .vt em{font-style:normal;font-size:.62rem;color:var(--mu);border:1px solid var(--br);border-radius:4px;padding:0 4px;margin-left:5px;letter-spacing:.05em;vertical-align:middle}
+.ol-ask-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+.ol-ask-chips button{font:inherit;font-size:.78rem;color:var(--tx,#e7ddc8);background:var(--bg,#1a140a);border:1px solid var(--br);border-radius:16px;padding:5px 11px;cursor:pointer;transition:border-color .18s,color .18s}
+.ol-ask-chips button:hover{border-color:var(--gd,#c9a84c);color:var(--gd,#c9a84c)}
+.ol-ask-foot{border-top:1px solid var(--br);padding:10px 10px 4px;display:flex;gap:8px;align-items:center}
+.ol-ask-foot input{flex:1;border:1px solid var(--br);background:var(--bg,#1a140a);color:var(--tx,#e7ddc8);font:inherit;font-size:.9rem;padding:9px 12px;border-radius:9px;outline:none}
+.ol-ask-foot input:focus{border-color:var(--gd,#c9a84c)}
+.ol-ask-foot button.send{flex:none;border:none;background:var(--gd,#c9a84c);color:#1a140a;width:38px;height:38px;border-radius:9px;cursor:pointer;font-size:1.15rem;line-height:1;display:flex;align-items:center;justify-content:center}
+.ol-ask-foot button.send:hover{filter:brightness(1.06)}
+.ol-ask-note{font-size:.66rem;color:var(--mu);text-align:center;padding:6px 12px 9px;line-height:1.4}
+@media(max-width:480px){.ol-ask-wrap{right:8px;bottom:8px;width:auto;left:8px;height:80vh;max-height:none}.ol-ask-fab{right:12px;bottom:14px}#ol-top{bottom:78px}}
+/* END-FEATURES4 */
+
+/* AUTO-FEATURES5 */
+.ol-print-btn{display:flex;align-items:center;gap:9px;width:100%;margin:4px 0 6px;padding:9px 13px;border:1px solid var(--br);border-radius:9px;background:var(--bg2);color:var(--mu);font:inherit;font-size:.86rem;cursor:pointer;transition:border-color .2s,color .2s}
+.ol-print-btn:hover{border-color:var(--gd,#c9a84c);color:var(--gd,#c9a84c)}
+.ol-print-btn svg{width:16px;height:16px;flex:none;display:block}
+@media print{.ol-print-btn{display:none!important}}
+/* END-FEATURES5 */
+</style>
+<script>try{if(localStorage.getItem('ol-theme')==='light')document.documentElement.classList.add('light')}catch(e){}</script>
+<script>try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('js-anim')}catch(e){}</script>
+<link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#141008"><link rel="apple-touch-icon" href="icon-192.png">
+<style id="ol-sb-css">
+main{transition:margin-left .3s ease}
+#ol-sbt{position:fixed;top:50%;transform:translateY(-50%);left:var(--sidebar-w);z-index:150;width:20px;height:52px;display:flex;align-items:center;justify-content:center;background:var(--bg3);color:var(--gold);border:1px solid var(--br);border-left:none;border-radius:0 8px 8px 0;cursor:pointer;font-size:.95rem;line-height:1;box-shadow:2px 0 8px rgba(0,0,0,.28);transition:left .3s ease,filter .2s;font-family:Georgia,serif}
+#ol-sbt:hover{filter:brightness(1.18)}
+html.sb-collapsed #sidebar,html.sb-collapsed #sb{transform:translateX(-100%)}
+html.sb-collapsed main{margin-left:0}
+html.sb-collapsed #ol-sbt{left:0}
+@media(max-width:768px){#ol-sbt{display:none}}
+@media print{#ol-sbt{display:none!important}}
+</style>
+<script>try{if(localStorage.getItem('ol-sb')==='1')document.documentElement.classList.add('sb-collapsed')}catch(e){}</script>
+<!-- SEO-META-START -->
+<meta name="description" content="Romans 1 and 2 read with St John Chrysostom and the Fathers beside Calvin and the Reformed confessions: the gospel and the just shall live by faith, God known through creation, God giving people up, judgement according to works, the law written on the heart, and circumcision of the heart.">
+<link rel="canonical" href="https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/romans_1_2.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="The Orthodox Lamp">
+<meta property="og:title" content="Romans 1–2: Creation &amp; Judgement — The Orthodox Lamp">
+<meta property="og:description" content="Romans 1 and 2 read with St John Chrysostom and the Fathers beside Calvin and the Reformed confessions: the gospel and the just shall live by faith, God known through creation, God giving people up, judgement according to works, the law written on the heart, and circumcision of the heart.">
+<meta property="og:url" content="https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/romans_1_2.html">
+<meta property="og:image" content="https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Romans 1–2: Creation &amp; Judgement — The Orthodox Lamp">
+<meta name="twitter:description" content="Romans 1 and 2 read with St John Chrysostom and the Fathers beside Calvin and the Reformed confessions: the gospel and the just shall live by faith, God known through creation, God giving people up, judgement according to works, the law written on the heart, and circumcision of the heart.">
+<meta name="twitter:image" content="https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/og-cover.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "name": "Romans 1–2: Creation and Judgement — The Orthodox Lamp", "description": "Romans 1 and 2 read with St John Chrysostom and the Fathers beside Calvin and the Reformed confessions: the gospel and the just shall live by faith, God known through creation, God giving people up, judgement according to works, the law written on the heart, and circumcision of the heart.", "url": "https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/romans_1_2.html", "isPartOf": {"@type": "WebSite", "name": "The Orthodox Lamp", "url": "https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/"}, "inLanguage": "en"}]}</script>
+<!-- SEO-META-END -->
+<style>/* SVLK */.sv-lk{color:inherit;text-decoration:none;border-bottom:1px dotted currentColor;transition:opacity .15s}.sv-lk:hover{opacity:.72}
+/* OL-BREADCRUMB */
+.ol-bc{margin:0;padding:16px 24px 2px;font-size:.8rem;color:var(--mu);display:flex;flex-wrap:wrap;align-items:center;gap:.45rem;letter-spacing:.02em}
+.ol-bc a{color:var(--mu);text-decoration:none;transition:color .15s}
+.ol-bc a:hover{color:var(--gd,#c9a84c)}
+.ol-bc i{opacity:.45;font-style:normal;font-size:.9em}
+.ol-bc .cur{color:var(--gd,#c9a84c);font-weight:600}
+@media print{.ol-bc{display:none!important}}
+/* END-OL-BREADCRUMB */
+/* OL-FABALIGN */
+#ol-top,#ol-tt{right:22px;width:44px;height:44px}
+.ol-ask-fab{right:22px;bottom:24px}
+#ol-tt{bottom:90px}
+#ol-top{bottom:148px}
+@media(max-width:480px){.ol-ask-fab{right:14px;bottom:16px}#ol-tt{right:14px;bottom:82px;width:42px;height:42px}#ol-top{right:14px;bottom:138px;width:42px;height:42px}}
+/* END-OL-FABALIGN */
+
+
+
+
+
+/* OL-PGBAND */
+.oo-pgband{display:block;text-decoration:none;position:relative;margin:14px 0 6px;border-radius:10px;overflow:hidden;border:1px solid var(--br);box-shadow:0 4px 14px rgba(0,0,0,.3);cursor:pointer}
+.oo-pgband .im{height:106px;background-size:cover;filter:sepia(.5) saturate(.82) brightness(.86) contrast(.95);transition:filter .5s ease,transform .5s ease}
+.oo-pgband:hover .im,.oo-pgband:focus-visible .im{filter:sepia(.3) saturate(.95) brightness(.98) contrast(1);transform:scale(1.03)}
+.oo-pgband:focus-visible{outline:2px solid var(--gl);outline-offset:2px}
+.oo-pgband .cap{position:absolute;left:15px;bottom:9px;font:600 .68rem/1.3 var(--disp,Georgia),serif;letter-spacing:.11em;text-transform:uppercase;color:var(--gl);opacity:.92;text-shadow:0 1px 6px rgba(0,0,0,1)}
+.oo-pgband .cap b{display:block;font-size:.85rem;letter-spacing:.05em;opacity:1}
+.oo-pgband::after{content:"\2626";position:absolute;top:7px;right:13px;color:var(--gl);opacity:.62;font-size:1.02rem;line-height:1;text-shadow:0 1px 3px rgba(0,0,0,.9);transition:opacity .4s ease}
+.oo-pgband:hover::after,.oo-pgband:focus-visible::after{opacity:.96}
+@media(max-width:760px){.oo-pgband .im{height:86px}}
+@media print{.oo-pgband{display:none}}
+/* END-OL-PGBAND */
+</style>
+<style>/* Romans with the Fathers series bar */
+.rm-bar{margin:12px 24px 6px;border:1px solid var(--br);border-radius:10px;background:var(--bg2);padding:10px 12px 8px}
+.rm-t{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin:0 0 8px 2px;font-weight:700}
+.rm-bar .rm-t a{color:inherit;text-decoration:none;padding:0;margin:0;display:inline;background:none;border:0}
+.rm-row{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;width:0;min-width:100%;scrollbar-width:thin}
+.rm-row a,.rm-row span{flex:0 0 auto;display:flex;flex-direction:column;gap:1px;padding:7px 11px;border-radius:7px;border:1px solid var(--br);text-decoration:none;color:var(--tx);font-size:.78rem;line-height:1.25;background:var(--bg3);white-space:nowrap}
+.rm-row b{font-size:.7rem;color:var(--gold);letter-spacing:.06em;text-transform:uppercase}
+.rm-row a:hover{border-color:var(--gold)}
+.rm-row .on{background:var(--gold);border-color:var(--gold);color:#141414}
+.rm-row .on b{color:#141414}
+.rm-row .soon{opacity:.45;cursor:default}
+.rm-pn{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0 6px}
+.rm-pn a{display:block;padding:12px 14px;border:1px solid var(--br);border-radius:8px;background:var(--bg2);text-decoration:none;color:var(--tx);font-size:.85rem;line-height:1.35}
+.rm-pn a:hover{border-color:var(--gold)}
+.rm-pn small{display:block;color:var(--gold);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:3px}
+.rm-pn .nx{text-align:right;grid-column:2}
+@media (max-width:640px){.rm-bar{margin:10px 12px 6px}}
+@media print{.rm-bar,.rm-pn{display:none!important}}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<div id="overlay" onclick="closeMobile()"></div>
+
+<aside id="sidebar">
+  <header>
+  <svg class="lampsvg" width="92" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><radialGradient id="lmpGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffb95e" stop-opacity=".55"/><stop offset="100%" stop-color="#ffb95e" stop-opacity="0"/></radialGradient><linearGradient id="lmpFlame" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#ff7a1f"/><stop offset="55%" stop-color="#ffb347"/><stop offset="100%" stop-color="#ffe9b0"/></linearGradient><linearGradient id="lmpBrass" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e3b860"/><stop offset="50%" stop-color="#a87b35"/><stop offset="100%" stop-color="#7a5523"/></linearGradient></defs><circle cx="60" cy="38" r="34" fill="url(#lmpGlow)"/><g class="lampflame"><path d="M60 16 C66 26 70 32 70 40 C70 48 65.5 53 60 53 C54.5 53 50 48 50 40 C50 32 54 26 60 16 Z" fill="url(#lmpFlame)"/><path d="M60 30 C63 35 64.5 38 64.5 42 C64.5 46.5 62.5 49 60 49 C57.5 49 55.5 46.5 55.5 42 C55.5 38 57 35 60 30 Z" fill="#fff3cf" opacity=".85"/></g><rect x="56" y="52" width="8" height="7" rx="2" fill="#8a6228"/><path d="M28 62 L92 62 C92 80 78 92 60 92 C42 92 28 80 28 62 Z" fill="url(#lmpBrass)"/><rect x="24" y="58" width="72" height="6" rx="3" fill="#caa14e"/><rect x="56" y="92" width="8" height="16" fill="url(#lmpBrass)"/><path d="M38 118 C38 110 47 108 60 108 C73 108 82 110 82 118 L82 122 L38 122 Z" fill="url(#lmpBrass)"/><rect x="32" y="122" width="56" height="6" rx="3" fill="#caa14e"/></svg>
+    <span class="sb-cross">☩</span>
+    <div class="sb-title">The Orthodox Lamp</div>
+    <div class="sb-sub">Romans 1–2</div>
+  </header>
+  <nav id="nav">
+    <a href="#s1">I. Introduction</a>
+    <a href="#s2">II. Glossary of Terms</a>
+    <a href="#s3">III. Reading Romans with the Fathers</a>
+    <a href="#s4">IV. The Gospel &amp; the Just Shall Live by Faith</a>
+    <a href="#s5">V. God Known Through Creation</a>
+    <a href="#s6">VI. God Gave Them Up</a>
+    <a href="#s7">VII. The Judge Judged</a>
+    <a href="#s8">VIII. Judgement According to Works</a>
+    <a href="#s9">IX. The Law Written on the Heart</a>
+    <a href="#s10">X. Circumcision of the Heart</a>
+    <a href="#s11">XI. Objections Answered</a>
+    <a href="#s12">XII. FAQ</a>
+    <a href="#s13">XIII. Sources</a>
+  </nav>
+  <div class="sb-search">
+    <input type="text" id="srch" placeholder="Search this page…" oninput="doSearch(this.value)">
+  </div>
+</aside>
+
+<div id="main">
+  <div id="mob-bar">
+    <button id="ham" onclick="toggleSidebar()">☰</button>
+    <span class="mb-title">The Orthodox Lamp</span>
+  </div>
+
+  <div class="hero">
+    <span class="si">☩</span>
+    <h1 class="st">THE <span>ORTHODOX</span> LAMP</h1>
+    <p class="ss">Romans 1&ndash;2: Creation &amp; Judgement</p>
+    <p class="tg">"For He did all, whatsoever things were fitting... so by every means drawing you to repentance." St John Chrysostom, Homily 5 on Romans</p>
+    <div class="orn">✦ ✦ ✦</div>
+  </div>
+
+  <div class="content">
+<nav class="ol-bc" aria-label="Breadcrumb"><a href="index.html">Home</a><i>›</i><a href="index.html#oriental">Oriental Orthodoxy</a><i>›</i><a href="romans_1_2.html">Romans with the Fathers</a><i>›</i><span class="cur">Romans 1–2</span></nav>
+<nav class="rm-bar" aria-label="Romans with the Fathers"><div class="rm-t"><a href="romans_1_2.html">Romans with the Fathers</a></div><div class="rm-row"><a class="on" href="romans_1_2.html" aria-current="page"><b>Romans 1–2</b>Creation &amp; Judgement</a><span class="soon" title="Coming soon"><b>Romans 3–4</b>Justification &amp; Faith</span><span class="soon" title="Coming soon"><b>Romans 5</b>Adam &amp; Ancestral Sin</span><span class="soon" title="Coming soon"><b>Romans 6</b>Baptism</span><span class="soon" title="Coming soon"><b>Romans 7</b>The Law &amp; the Divided Self</span><span class="soon" title="Coming soon"><b>Romans 8</b>Life in the Spirit</span><span class="soon" title="Coming soon"><b>Romans 9</b>Election &amp; the Potter</span><span class="soon" title="Coming soon"><b>Romans 10–11</b>Israel &amp; the Nations</span><span class="soon" title="Coming soon"><b>Romans 12–16</b>The Christian Life</span></div></nav>
+
+<!-- OL-PGBAND -->
+<a class="oo-pgband" href="https://upload.wikimedia.org/wikipedia/commons/7/73/Debre_Damo_monastery_%282017%29.jpg" target="_blank" rel="noopener noreferrer" title="Debre Damo — Ethiopian Orthodox · Tigray · view full photo (Wikimedia Commons)" aria-label="View the full photograph of Debre Damo, Ethiopian Orthodox · Tigray — opens in a new tab"><div class="im" style="background-image:linear-gradient(180deg,rgba(12,12,12,.5) 0%,rgba(12,12,12,.86) 100%),url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Debre_Damo_monastery_%282017%29.jpg/960px-Debre_Damo_monastery_%282017%29.jpg');background-position:center 50%"></div><span class="cap"><b>Debre Damo</b>Ethiopian Orthodox · Tigray</span></a>
+<!-- END-OL-PGBAND -->
+
+
+    <div class="sec" id="s1">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">I.</span>Introduction: The Letter that Shaped the West</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>No book of the New Testament has been argued over more than St Paul's letter to the Romans. Augustine was converted reading a verse from it (Romans 13:13&ndash;14). Martin Luther said that Romans 1:17 opened the gates of paradise to him, and the Reformation was fought largely over its third and fourth chapters. John Calvin's doctrine of predestination leans heavily on its ninth chapter. For many Protestants, Romans is the clearest statement of the gospel in Scripture.</p>
+        <p>The Orthodox Church reads Romans too, and has read it for far longer. The Fathers preached on it, wrote commentaries on it, and quoted it constantly. The fullest of these commentaries to survive in its original Greek is the series of thirty-two homilies preached by St John Chrysostom at Antioch. St Paul is read at every Divine Liturgy of the Coptic Church, in the reading called the Pauline, before the Catholic Epistle, the Acts and the Gospel.</p>
+        <p>The aim of these pages is simple: to let the Fathers explain Romans in their own words, to set beside them the main Protestant readings fairly and in their own words, and to show where the two really differ and where they are closer than people assume.</p>
+        <p>This first page covers chapters 1 and 2. Paul introduces the gospel, then shows that the whole world stands in need of it: the Gentiles who knew God from creation and turned to idols, and the Jews who had the law and did not keep it. Along the way it raises questions that still divide Christians. What can people know of God without the Bible? Does God cause people to sin when He "gives them up"? And if we are saved by faith, why does Paul say that God "will render to each one according to his deeds"?</p>
+        <blockquote>"...the well-ordered harmony of all things spoke out more clearly than a trumpet." St John Chrysostom, Homily 3 on Romans</blockquote>
+        <h3>A Note on Quotations</h3>
+        <p>Every quotation marked <span class="pl">VERBATIM</span> has been checked word for word against a public domain translation: St John Chrysostom's thirty-two Homilies on Romans and the other Fathers in the Ante-Nicene and Nicene and Post-Nicene Fathers series, John Calvin's Commentary on Romans in John Owen's translation (1849), and the Reformation confessions in Philip Schaff's <em>Creeds of Christendom</em>. Chrysostom's homilies follow J. B. Morris's translation as revised by W. H. Simcox, in the Nicene and Post-Nicene Fathers, First Series, volume 11. Where a work has no public domain English translation, its teaching is summarised and marked <span class="pl">PARAPHRASE</span>. Scripture follows the NKJV.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s2">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">II.</span>Glossary of Terms</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+        <div class="gt-grid">
+          <div class="gt">
+            <div class="gt-term">Gospel</div>
+            <div class="gt-grk">εὐαγγέλιον · euangelion</div>
+            <div class="gt-def">"Good news." For Paul, the announcement of what God has done in Jesus Christ, His Son, "the power of God to salvation for everyone who believes" (1:16).</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Righteousness of God</div>
+            <div class="gt-grk">δικαιοσύνη θεοῦ · dikaiosynē theou</div>
+            <div class="gt-def">The phrase at the heart of Romans (1:17). Read as God's own faithfulness and justice, as the righteousness He gives to us, or both. How it is given is where Orthodox and Protestants part.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Faith</div>
+            <div class="gt-grk">πίστις · pistis</div>
+            <div class="gt-def">Trust, belief and faithfulness. Paul speaks of "the obedience of faith" (1:5), faith that obeys.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Wrath</div>
+            <div class="gt-grk">ὀργή · orgē</div>
+            <div class="gt-def">God's just opposition to sin. The Fathers insist it is not a passion or a fit of temper in God, but His righteous judgement (2:5).</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Without excuse</div>
+            <div class="gt-grk">ἀναπολόγητος · anapologētos</div>
+            <div class="gt-def">Having no defence. Paul uses it of those who knew God from creation (1:20) and of those who judge others while doing the same things (2:1).</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Gave them up</div>
+            <div class="gt-grk">παρέδωκεν · paredōken</div>
+            <div class="gt-def">"Handed over" (1:24, 26, 28). The Fathers read it as God withdrawing His help from those who refused Him, not as God pushing them into sin.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Conscience</div>
+            <div class="gt-grk">συνείδησις · syneidēsis</div>
+            <div class="gt-def">The inner witness that accuses or excuses (2:15). It can be trained or darkened, but it is never wholly lost.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Nature</div>
+            <div class="gt-grk">φύσις · physis</div>
+            <div class="gt-def">What something is made to be. Paul uses it of what is "natural" and "against nature" (1:26&ndash;27) and of Gentiles who "by nature" do what the law requires (2:14).</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Repentance</div>
+            <div class="gt-grk">μετάνοια · metanoia</div>
+            <div class="gt-def">A change of mind and life. God's kindness is meant to lead us to it (2:4).</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Circumcision of the heart</div>
+            <div class="gt-grk">περιτομὴ καρδίας · peritomē kardias</div>
+            <div class="gt-def">The inward cutting away of sin promised in Deuteronomy 30:6. Paul says it is the true circumcision (2:29). Colossians 2:11&ndash;12 links it with baptism.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s3">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">III.</span>Reading Romans with the Fathers</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>Paul wrote Romans from Corinth, most likely around AD 56 to 58, as he was about to take the collection from the Greek churches to Jerusalem (15:25&ndash;26). He had never visited Rome. The church there was a mix of Jewish and Gentile believers, and much of the letter is about how the two belong together in one people of God. Many scholars connect this with the expulsion of Jews from Rome under the emperor Claudius around AD 49 (Acts 18:2) and their return a few years later, which would have left Gentile believers leading a church into which Jewish believers were coming back. That reconstruction is likely but not certain.</p>
+        <p>St John Chrysostom worked out the date the same way, from the collection for Jerusalem, and placed Romans after the letters to the Corinthians. He began his homilies by telling his people why he loved Paul so much:</p>
+        <div class="fc">
+          <div class="fn">St John Chrysostom</div>
+          <div class="fw">Argument to the Homilies on Romans</div>
+          <div class="fq">"As I keep hearing the Epistles of the blessed Paul read, and that twice every week, and often three or four times, whenever we are celebrating the memorials of the holy martyrs, gladly do I enjoy the spiritual trumpet, and get roused and warmed with desire at recognizing the voice so dear to me, and seem to fancy him all but present to my sight, and behold him conversing with me."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St John Chrysostom</div>
+          <div class="fw">Argument to the Homilies on Romans</div>
+          <div class="fq">"For from this it is that our countless evils have arisen, from ignorance of the Scriptures; from this it is that the plague of heresies has broken out; from this that there are negligent lives; from this labors without advantage."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <h3>Three Keys the Fathers Bring</h3>
+        <p><strong>First, Jew and Gentile.</strong> Chrysostom reads Romans as a letter about two peoples being made one. Early in his homilies he says Paul is "breaking through the partition between the circumcision and the uncircumcision." Many Protestants since the Reformation have read Romans mainly as an answer to the question "How can I, a sinner, be right with God?" Both questions are really in the letter. The Fathers simply never forget the first.</p>
+        <p><strong>Second, faith and life together.</strong> The Fathers speak of salvation as a gift received by faith, and in the same breath of a life that must be lived, judged and rewarded. They do not feel the tension between Romans 1:17 and Romans 2:6 that later debates created, because for them faith is the beginning of a life of union with God, not a single moment set over against the rest.</p>
+        <p><strong>Third, the free will of man.</strong> The Fathers before Augustine, and the Greek and Oriental Fathers after him, read Romans with the conviction that God made man free and never forces him. Chrysostom says of 2:8 that Paul chose his words "that one may learn that the fall is one of free choice." This conviction matters most on Romans 9, which has <a href="romans_9.html">its own page</a> in this series.</p>
+        <h3>The Nine Pages of This Series</h3>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-date">Romans 1–2</div>
+            <div class="tl-text"><strong>Creation &amp; Judgement</strong> (this page): The gospel, what every person can know of God, God giving people up to their desires, and judgement according to works.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">Romans 3–4</div>
+            <div class="tl-text">Justification &amp; Faith <em>(coming soon)</em>: All have sinned, justification by faith apart from works of the law, and Abraham the father of all who believe.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">Romans 5</div>
+            <div class="tl-text">Adam &amp; Ancestral Sin <em>(coming soon)</em>: Peace with God, and Adam and Christ: what we inherit from Adam, and how the Fathers differ from Augustine on Romans 5:12.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">Romans 6</div>
+            <div class="tl-text">Baptism <em>(coming soon)</em>: Buried with Christ in baptism and raised to walk in newness of life.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">Romans 7</div>
+            <div class="tl-text">The Law &amp; the Divided Self <em>(coming soon)</em>: The law, sin and the divided self: who is the "wretched man" of Romans 7?</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">Romans 8</div>
+            <div class="tl-text">Life in the Spirit <em>(coming soon)</em>: Life in the Spirit, adoption, the groaning creation, and "all things work together for good."</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">Romans 9</div>
+            <div class="tl-text">Election &amp; the Potter <em>(coming soon)</em>: Jacob and Esau, Pharaoh, and the potter and the clay: election read with Jeremiah 18 and the Fathers.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">Romans 10–11</div>
+            <div class="tl-text">Israel &amp; the Nations <em>(coming soon)</em>: Faith comes by hearing, the remnant, and the olive tree: Israel and the nations.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">Romans 12–16</div>
+            <div class="tl-text">The Christian Life <em>(coming soon)</em>: The living sacrifice, the body of Christ, the governing authorities, the weak and the strong, and Phoebe and the saints at Rome.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s4">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">IV.</span>The Gospel &amp; "The Just Shall Live by Faith" (1:1&ndash;17)</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>Paul opens by calling himself a slave of Christ, set apart for the gospel, and says that through Christ he has received "grace and apostleship for obedience to the faith among all nations." Chrysostom notices that Paul claims nothing for himself:</p>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%201%3A5&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 1:5</a></div>
+          <div class="txt">"Through Him we have received grace and apostleship for obedience to the faith among all nations for His name,"</div>
+          <div class="mia-note">🔵 Orthodox reading: Faith is something you obey. It is trust that hands itself over to Christ, not merely an opinion held in the mind.</div>
+        </div>
+        <div class="fc">
+          <div class="fn">St John Chrysostom</div>
+          <div class="fw">Homily 1 on Romans (on 1:5)</div>
+          <div class="fq">"So it was not the Apostles that achieved it, but grace that paved the way before them. For it was their part to go about and preach, but to persuade was of God, Who wrought in them."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>Then come the two verses that the whole letter unfolds:</p>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%201%3A16&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 1:16</a></div>
+          <div class="txt">"For I am not ashamed of the gospel of Christ, for it is the power of God to salvation for everyone who believes, for the Jew first and also for the Greek."</div>
+          <div class="mia-note">🔵 Orthodox reading: The gospel is not only a message about power. It is itself God's power at work, and it is offered to Jew and Greek alike.</div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%201%3A17&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 1:17</a></div>
+          <div class="txt">"For in it the righteousness of God is revealed from faith to faith; as it is written, 'The just shall live by faith.'"</div>
+          <div class="mia-note">🔵 Orthodox reading: God's righteousness is revealed and given in the gospel, and it is received by faith from beginning to end. Paul quotes Habakkuk 2:4.</div>
+          <div class="dyo-note">🟣 Protestant reading: This is the verse of the Reformation. Luther came to see "the righteousness of God" not as the standard by which God condemns sinners but as the gift by which He justifies them through faith.</div>
+        </div>
+        <p>It surprises many Protestants to find how close Chrysostom's comment on 1:17 sounds to their own reading:</p>
+        <div class="fc">
+          <div class="fn">St John Chrysostom</div>
+          <div class="fw">Homily 2 on Romans (on 1:17)</div>
+          <div class="fq">"...and righteousness, not your own, but that of God; hinting also the abundance of it and the facility. For you do not achieve it by toilings and labors, but you receive it by a gift from above, contributing one thing only from your own store, believing."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St John Chrysostom</div>
+          <div class="fw">Homily 2 on Romans (on 1:17)</div>
+          <div class="fq">"...that it is not in the nature of things for him who is to live, to live otherwise save by faith; for the just, he says, shall live by faith, speaking about the life to come. For since what God gives transcends reasoning entirely, it is but reason that we need faith."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>Calvin, commenting on the same verse, takes "the righteousness of God" to be the righteousness that stands before God's judgement seat, and he deliberately separates it from the renewal of our lives:</p>
+        <div class="fc">
+          <div class="fn">John Calvin</div>
+          <div class="fw">Commentary on Romans (on 1:17)</div>
+          <div class="fq">"I take the righteousness of God to mean, that which is approved before his tribunal..."</div>
+          <div class="labels"><span class="dyo">Reformer</span><span class="pl">VERBATIM · OWEN TRANSLATION (1849)</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">John Calvin</div>
+          <div class="fw">Commentary on Romans (on 1:17)</div>
+          <div class="fq">"Of greater moment is what some think, that this righteousness does not only consist in the free remission of sins, but also, in part, includes the grace of regeneration. But I consider, that we are restored to life because God freely reconciles us to himself, as we shall hereafter show in its proper place."</div>
+          <div class="labels"><span class="dyo">Reformer</span><span class="pl">VERBATIM · OWEN TRANSLATION (1849)</span></div>
+        </div>
+        <h3>Where They Agree and Where They Part</h3>
+        <p>Both say that righteousness is God's gift, that we cannot earn it by our labours, and that it is received by faith. That is real common ground, and it should be said plainly.</p>
+        <p>The difference is what the gift is. For Calvin and the Reformed tradition, justification is God's verdict: He forgives the sinner and counts him righteous for Christ's sake. Regeneration and holiness always follow and are never absent, but they are a distinct gift and form no part of the ground on which we are accepted. For the Fathers, the righteousness God gives is not only a verdict but a healing. Chrysostom says in the same homily that the sinner is "not only to be suddenly freed from punishment but to become just." To be justified is to be forgiven and made righteous by sharing in Christ, which the Orthodox call <a href="theosis.html">theosis</a>. That is why the Fathers can speak of faith alone at the start of the Christian life and of works at the judgement without any sense of contradiction, as the next sections show. The fuller argument over justification belongs to <a href="romans_3_4.html">Romans 3 and 4</a>.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s5">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">V.</span>God Known Through Creation (1:18&ndash;23)</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>Paul now turns to why the world needs the gospel. He begins with the Gentiles, and with a claim that every Father took seriously: that God can be known, truly if not fully, from the world He made.</p>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%201%3A19&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 1:19</a></div>
+          <div class="txt">"because what may be known of God is manifest in them, for God has shown it to them."</div>
+          <div class="mia-note">🔵 Orthodox reading: The knowledge of God is not something people must climb to by cleverness. God Himself has shown it to them.</div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%201%3A20&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 1:20</a></div>
+          <div class="txt">"For since the creation of the world His invisible attributes are clearly seen, being understood by the things that are made, even His eternal power and Godhead, so that they are without excuse,"</div>
+          <div class="mia-note">🔵 Orthodox reading: Creation is a real revelation of God's power and divinity, plain enough that those who refuse it have no defence.</div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%201%3A21&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 1:21</a></div>
+          <div class="txt">"because, although they knew God, they did not glorify Him as God, nor were thankful, but became futile in their thoughts, and their foolish hearts were darkened."</div>
+          <div class="mia-note">🔵 Orthodox reading: The fault was not ignorance but ingratitude. They knew God and would not glorify Him or give thanks, and their hearts grew dark as a result.</div>
+        </div>
+        <div class="fc">
+          <div class="fn">St John Chrysostom</div>
+          <div class="fw">Homily 3 on Romans (on 1:19&ndash;20)</div>
+          <div class="fq">"...by putting before them the Creation, so that both wise, and unlearned, and Scythian, and barbarian, having through sight learned the beauty of the things which were seen, might mount up to God."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St John Chrysostom</div>
+          <div class="fw">Homily 3 on Romans (on 1:20)</div>
+          <div class="fq">"Did ye then not hear the heaven sending forth a voice by the sight, while the well-ordered harmony of all things spoke out more clearly than a trumpet? Did ye not see the hours of night and day abiding unmoved continually, the goodly order of winter, spring, and the other seasons remaining both sure and unmoved...?"</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St John Chrysostom</div>
+          <div class="fw">Homily 3 on Romans (on 1:20&ndash;21)</div>
+          <div class="fq">"And yet it is not for this God has made these things, even if this came of it. For it was not to bereave them of all excuse, that He set before them so great a system of teaching, but that they might come to know Him."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>St Athanasius, writing as a young man before the Arian crisis, makes the same argument and cites the same verse:</p>
+        <div class="fc">
+          <div class="fn">St Athanasius of Alexandria</div>
+          <div class="fw">Against the Heathen 34&ndash;35</div>
+          <div class="fq">"...it is further possible to attain to the knowledge of God from the things which are seen, since Creation, as though in written characters, declares in a loud voice, by its order and harmony, its own Lord and Creator."</div>
+          <div class="labels"><span class="mia">Coptic Pope &amp; Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St Athanasius of Alexandria</div>
+          <div class="fw">Against the Heathen 35</div>
+          <div class="fq">"For often the artist even when not seen is known by his works. And as they tell of Phidias the Sculptor that his works of art by their symmetry and by the proportion of their parts betray Phidias to those who see them although he is not there, so by the order of the Universe one ought to perceive God its maker and artificer, even though He be not seen with the bodily eyes."</div>
+          <div class="labels"><span class="mia">Coptic Pope &amp; Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>Over a century earlier, St Theophilus of Antioch (around AD 180) had put it the same way, and added what Paul says in verse 21: that sin darkens the eye that should see.</p>
+        <div class="fc">
+          <div class="fn">St Theophilus of Antioch</div>
+          <div class="fw">To Autolycus I.5</div>
+          <div class="fq">"For as the soul in man is not seen, being invisible to men, but is perceived through the motion of the body, so God cannot indeed be seen by human eyes, but is beheld and perceived through His providence and works. For, in like manner, as any person, when he sees a ship on the sea rigged and in sail, and making for the harbour, will no doubt infer that there is a pilot in her who is steering her; so we must perceive that God is the governor of the whole universe..."</div>
+          <div class="labels"><span class="ctx">Early Witness</span><span class="pl">VERBATIM · ANF TRANSLATION</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St Theophilus of Antioch</div>
+          <div class="fw">To Autolycus I.2</div>
+          <div class="fq">"For God is seen by those who are enabled to see Him when they have the eyes of their soul opened: for all have eyes; but in some they are overspread, and do not see the light of the sun... So also you, O man, have the eyes of your soul overspread by your sins and evil deeds."</div>
+          <div class="labels"><span class="ctx">Early Witness</span><span class="pl">VERBATIM · ANF TRANSLATION</span></div>
+        </div>
+        <h3>The Reformed Reading</h3>
+        <p>The Reformed tradition affirms that creation reveals God, but stresses how little fallen people can do with that knowledge:</p>
+        <div class="fc">
+          <div class="fn">John Calvin</div>
+          <div class="fw">Institutes of the Christian Religion I.5.14</div>
+          <div class="fq">"In vain for us, therefore, does Creation exhibit so many bright lamps lighted up to show forth the glory of its Author. Though they beam upon us from every quarter, they are altogether insufficient of themselves to lead us into the right path... When Paul says that that which may be known of God is manifested by the creation of the world, he does not mean such a manifestation as may be comprehended by the wit of man (Rom. 1:19); on the contrary, he shows that it has no further effect than to render us inexcusable."</div>
+          <div class="labels"><span class="dyo">Reformer</span><span class="pl">VERBATIM · BEVERIDGE TRANSLATION (1845)</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">Westminster Confession (1646)</div>
+          <div class="fw">Westminster Confession of Faith I.1</div>
+          <div class="fq">"Although the light of nature, and the works of creation and providence, do so far manifest the goodness, wisdom, and power of God, as to leave men inexcusable; yet are they not sufficient to give that knowledge of God, and of his will, which is necessary unto salvation..."</div>
+          <div class="labels"><span class="dyo">Reformed Confession</span><span class="pl">VERBATIM · WESTMINSTER CONFESSION, SCHAFF</span></div>
+        </div>
+        <div class="comp-grid">
+          <div class="comp-card mia">
+            <h4>The Fathers</h4>
+            <p>Creation is a real and open book about God, given so that people might know Him and rise to Him. Sin darkens the eye of the soul, but it does not put the light out.</p>
+          </div>
+          <div class="comp-card dyo">
+            <h4>Reformed</h4>
+            <p>Creation reveals God truly, but fallen man cannot rightly receive it. In practice it serves to leave him without excuse until God opens his eyes by faith and Scripture.</p>
+          </div>
+        </div>
+        <p>The two are closer than they first look. Both agree that no one is saved by nature alone and that all are without excuse. Calvin himself grants that creation gives off "some sparks." The difference is one of emphasis, and it matters: Chrysostom insists that God's purpose in creation was not to condemn but to draw people to Himself, and that condemnation came only from their refusal. That fits the Orthodox conviction that God desires all to be saved (1 Timothy 2:4). It is also why the Orthodox can use the arguments from creation found on <a href="evidence_for_god.html">Evidence for God</a> with a clear conscience: Paul and the Fathers did the same.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s6">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">VI.</span>"God Gave Them Up" (1:24&ndash;32)</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>Three times Paul says that God "gave them up": to uncleanness (1:24), to vile passions (1:26) and to a debased mind (1:28). Does that mean God drove them into sin?</p>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%201%3A24&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 1:24</a></div>
+          <div class="txt">"Therefore God also gave them up to uncleanness, in the lusts of their hearts, to dishonor their bodies among themselves,"</div>
+          <div class="mia-note">🔵 Orthodox reading: God's "giving up" is His judgement on a refusal that came first. They exchanged the truth for a lie, and He let them have what they chose.</div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%201%3A28&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 1:28</a></div>
+          <div class="txt">"And even as they did not like to retain God in their knowledge, God gave them over to a debased mind, to do those things which are not fitting;"</div>
+          <div class="mia-note">🔵 Orthodox reading: The pattern is exact: they did not want God in their knowledge, so God let their minds go where they wished.</div>
+        </div>
+        <div class="fc">
+          <div class="fn">St John Chrysostom</div>
+          <div class="fw">Homily 3 on Romans (on 1:24)</div>
+          <div class="fq">"...he shows, that even of the perversion of the laws it was ungodliness which was the cause... For as he that has the command in an army, if upon the battle lying heavy upon him he retreat and go away, gives up his soldiers to the enemies not by thrusting them himself, but by stripping them of his own assistance; thus too did God leave those that were not minded to receive what comes from Him..."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>St John of Damascus, summing up the teaching of the Greek Fathers in the eighth century, lays down a rule for reading all such verses:</p>
+        <div class="fc">
+          <div class="fn">St John of Damascus</div>
+          <div class="fw">Exposition of the Orthodox Faith IV.19</div>
+          <div class="fq">"It is to be observed that it is the custom in the Holy Scripture to speak of God's permission as His energy..."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St John of Damascus</div>
+          <div class="fw">Exposition of the Orthodox Faith IV.19</div>
+          <div class="fq">"...all these must be understood not as though God Himself were energising, but as though God were permitting, both because of free-will and because goodness knows no compulsion."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>Calvin agrees that God is not the cause of sin, but he will not reduce "gave them up" to permission. He sees in it God's active judgement:</p>
+        <div class="fc">
+          <div class="fn">John Calvin</div>
+          <div class="fw">Commentary on Romans (on 1:24)</div>
+          <div class="fq">"It is indeed certain, that he not only permits men to fall into sin, by allowing them to do so, and by conniving at them; but that he also, by his equitable judgment, so arranges things, that they are led and carried into such madness by their own lusts, as well as by the devil."</div>
+          <div class="labels"><span class="dyo">Reformer</span><span class="pl">VERBATIM · OWEN TRANSLATION (1849)</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">John Calvin</div>
+          <div class="fw">Commentary on Romans (on 1:24)</div>
+          <div class="fq">"God, however, is not on this account cruel, nor are we innocent, inasmuch as Paul plainly shows, that we are not delivered up into his power, except when we deserve such a punishment. Only we must make this exception, that the cause of sin is not from God, the roots of which ever abide in the sinner himself..."</div>
+          <div class="labels"><span class="dyo">Reformer</span><span class="pl">VERBATIM · OWEN TRANSLATION (1849)</span></div>
+        </div>
+        <p>To be fair to Calvin, both readings agree on three things: the people in Romans 1 deserved judgement, God's handing over is a just punishment, and the root of sin is in the sinner. The difference is whether God's role is to withdraw (the Fathers) or to withdraw and also actively arrange (Calvin). The Orthodox concern is that the second, pushed far enough, makes God the author of the very sins He punishes. That question, and how God can govern a world full of sin without causing it, is treated on <a href="problem_of_evil.html">The Problem of Evil</a>, and it returns in force on <a href="romans_9.html">Romans 9</a>.</p>
+        <h3>Romans 1:26&ndash;27</h3>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%201%3A26-27&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 1:26-27</a></div>
+          <div class="txt">"For this reason God gave them up to vile passions. For even their women exchanged the natural use for what is against nature. Likewise also the men, leaving the natural use of the woman, burned in their lust for one another, men with men committing what is shameful, and receiving in themselves the penalty of their error which was due."</div>
+          <div class="mia-note">🔵 Orthodox reading: Paul gives same-sex relations as an example of the "exchange" he has been describing: turning from the pattern of the Creator to what is against it. The Church has always read these verses as moral teaching.</div>
+        </div>
+        <p>Chrysostom notes that Paul uses the word "nature" both to make the charge and to keep his language modest:</p>
+        <div class="fc">
+          <div class="fn">St John Chrysostom</div>
+          <div class="fw">Homily 4 on Romans (on 1:26&ndash;27)</div>
+          <div class="fq">"But when God has left one, then all things are turned upside down."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St John Chrysostom</div>
+          <div class="fw">Homily 4 on Romans (on 1:26&ndash;27)</div>
+          <div class="fq">"...by naming nature has at once given additional force to his accusation, and also used this as a sort of veil, to keep the chasteness of his description."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>The Fathers, the Orthodox and Catholic Churches, and most Protestant churches read these verses in the same way. Since the late twentieth century some Protestant scholars and denominations have argued that Paul had in mind only exploitative practices of his day, or acts done out of excess by people who were not so inclined. Their case, and the Church's answer, are set out on <a href="sex_and_gender.html">Sex &amp; Gender</a>. Two things from Romans itself belong here. First, Paul's list goes straight on to envy, deceit, gossip, pride and disobedience to parents (1:29&ndash;31), so no reader escapes it. Second, the very next verse turns on anyone who reads the list with satisfaction.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s7">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">VII.</span>The Judge Judged (2:1&ndash;5)</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>Paul has led his reader through the sins of the pagan world, and a reader who kept the law would have agreed with every word. Then the trap closes:</p>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%202%3A1&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 2:1</a></div>
+          <div class="txt">"Therefore you are inexcusable, O man, whoever you are who judge, for in whatever you judge another you condemn yourself; for you who judge practice the same things."</div>
+          <div class="mia-note">🔵 Orthodox reading: The person who condemns others for what he does himself has signed his own sentence. This is not a ban on calling sin sin. Paul has just done that. It is a warning against hypocrisy.</div>
+        </div>
+        <div class="fc">
+          <div class="fn">St John Chrysostom</div>
+          <div class="fw">Homily 5 on Romans (on 2:1)</div>
+          <div class="fq">"You are depriving yourself of defense, whoever you may be; for when you condemn an adulterer, and yourself commit adultery, although no man condemns you, in your judgment upon the guilty person you have also passed sentence against yourself."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%202%3A4&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 2:4</a></div>
+          <div class="txt">"Or do you despise the riches of His goodness, forbearance, and longsuffering, not knowing that the goodness of God leads you to repentance?"</div>
+          <div class="mia-note">🔵 Orthodox reading: God's patience is not weakness or indifference. It is kindness meant to bring us to repentance.</div>
+        </div>
+        <div class="fc">
+          <div class="fn">St John Chrysostom</div>
+          <div class="fw">Homily 5 on Romans (on 2:4)</div>
+          <div class="fq">"For God shows His goodness that you may get free from your sins, not that you may add to them. If then thou make not this use thereof, the judgment will be more fearful."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%202%3A5&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 2:5</a></div>
+          <div class="txt">"But in accordance with your hardness and your impenitent heart you are treasuring up for yourself wrath in the day of wrath and revelation of the righteous judgment of God,"</div>
+          <div class="mia-note">🔵 Orthodox reading: The hard heart stores up wrath for itself. The sinner, not God, is the author of his own condemnation.</div>
+        </div>
+        <div class="fc">
+          <div class="fn">St John Chrysostom</div>
+          <div class="fw">Homily 5 on Romans (on 2:5)</div>
+          <div class="fq">"...you store up for yourself, not God for you. For He did all, whatsoever things were fitting, and created you with a power to discern between good and what was not so, and showed long-suffering over you, and called you to repentance, and threatened a fearful day, so by every means drawing you to repentance."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St John Chrysostom</div>
+          <div class="fw">Homily 5 on Romans (on 2:5)</div>
+          <div class="fq">"For lest on hearing of wrath you should think of any passion, he adds, the righteous judgment of God."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>St Irenaeus, writing around AD 180, quotes these very verses to prove that man is free and that God's judgement is just:</p>
+        <div class="fc">
+          <div class="fn">St Irenaeus of Lyons</div>
+          <div class="fw">Against Heresies IV.37.1</div>
+          <div class="fq">"God therefore has given that which is good, as the apostle tells us in this Epistle, and they who work it shall receive glory and honour, because they have done that which is good when they had it in their power not to do it; but those who do it not shall receive the just judgment of God, because they did not work good when they had it in their power so to do."</div>
+          <div class="labels"><span class="ctx">Early Witness</span><span class="pl">VERBATIM · ANF TRANSLATION</span></div>
+        </div>
+        <p>This is the seed of what the Fathers will say about Romans 9. If God's patience leads to repentance and the hard heart stores up its own wrath, then God's dealings with us are not fixed in advance without regard to how we respond. The same patience appears in 9:22, where God "endured with much longsuffering the vessels of wrath."</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s8">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">VIII.</span>Judgement According to Works (2:6&ndash;13)</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>Here is the passage that every reading of Romans has to explain. Paul, who will soon say that a man is justified by faith apart from works of the law (3:28), says this:</p>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%202%3A6-7&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 2:6-7</a></div>
+          <div class="txt">"who 'will render to each one according to his deeds': eternal life to those who by patient continuance in doing good seek for glory, honor, and immortality;"</div>
+          <div class="mia-note">🔵 Orthodox reading: There will be a real judgement of real lives. Those who keep on doing good, seeking what God gives, will receive eternal life.</div>
+          <div class="dyo-note">🟣 Protestant reading: Most Protestants agree that the judgement looks at works, but as the evidence and fruit of a faith that alone justifies. Many Reformed readers also see 2:7 as stating the law's standard, which no one in fact meets apart from Christ.</div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%202%3A13&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 2:13</a></div>
+          <div class="txt">"for not the hearers of the law are just in the sight of God, but the doers of the law will be justified;"</div>
+          <div class="mia-note">🔵 Orthodox reading: Hearing the law is not enough. God justifies those who do it.</div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=John%205%3A28-29&amp;version=NKJV" target="_blank" rel="noopener noreferrer">John 5:28-29</a></div>
+          <div class="txt">"Do not marvel at this; for the hour is coming in which all who are in the graves will hear His voice and come forth— those who have done good, to the resurrection of life, and those who have done evil, to the resurrection of condemnation."</div>
+          <div class="mia-note">🔵 Orthodox reading: Christ Himself describes the last judgement in the same terms.</div>
+        </div>
+        <h3>The Fathers</h3>
+        <div class="fc">
+          <div class="fn">St John Chrysostom</div>
+          <div class="fw">Homily 5 on Romans (on 2:7)</div>
+          <div class="fq">"Here also he awakens those who had drawn back during the trials, and shows that it is not right to trust in faith only. For it is deeds also into which that tribunal will enquire."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St John Chrysostom</div>
+          <div class="fw">Homily 5 on Romans (on 2:8)</div>
+          <div class="fq">"And he does not say, who are compelled by, lorded over by, but who obey unrighteousness, that one may learn that the fall is one of free choice..."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>The same Chrysostom who said on 1:17 that righteousness is received "by a gift from above" here warns against trusting "in faith only." He does not think he is contradicting himself. The earliest Father outside the New Testament holds the two together in exactly the same way:</p>
+        <div class="fc">
+          <div class="fn">St Clement of Rome</div>
+          <div class="fw">First Epistle of Clement 32&ndash;33</div>
+          <div class="fq">"And we, too, being called by His will in Christ Jesus, are not justified by ourselves, nor by our own wisdom, or understanding, or godliness, or works which we have wrought in holiness of heart; but by that faith through which, from the beginning, Almighty God has justified all men... What shall we do, then, brethren? Shall we become slothful in well-doing, and cease from the practice of love? God forbid that any such course should be followed by us!"</div>
+          <div class="labels"><span class="ctx">Early Witness</span><span class="pl">VERBATIM · ANF TRANSLATION</span></div>
+        </div>
+        <p>St Augustine, the Father most quoted by the Reformers, answers the question of merit in a way both sides claim. Good works are truly rewarded, because they are God's own gifts working in us:</p>
+        <div class="fc">
+          <div class="fn">St Augustine of Hippo</div>
+          <div class="fw">On Grace and Free Will 15</div>
+          <div class="fq">"If, then, your good merits are God's gifts, God does not crown your merits as your merits, but as His own gifts."</div>
+          <div class="labels"><span class="ctx">Church Father (Latin)</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St Augustine of Hippo</div>
+          <div class="fw">On the Spirit and the Letter 45 (on 2:13)</div>
+          <div class="fq">"...the statement that the doers of the law shall be justified must be so understood, as that we may know that they are not otherwise doers of the law, unless they be justified, so that justification does not subsequently accrue to them as doers of the law, but justification precedes them as doers of the law. For what else does the phrase being justified signify than being made righteous..."</div>
+          <div class="labels"><span class="ctx">Church Father (Latin)</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <h3>Calvin</h3>
+        <div class="fc">
+          <div class="fn">John Calvin</div>
+          <div class="fw">Commentary on Romans (on 2:6)</div>
+          <div class="fq">"...as he sanctifies those whom he has previously resolved to glorify, he will also crown their good works, but not on account of any merit: nor can this be proved from this verse; for though it declares what reward good works are to have, it does yet by no means show what they are worth, or what price is due to them. And it is an absurd inference, to deduce merit from reward."</div>
+          <div class="labels"><span class="dyo">Reformer</span><span class="pl">VERBATIM · OWEN TRANSLATION (1849)</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">John Calvin</div>
+          <div class="fw">Commentary on Romans (on 2:7)</div>
+          <div class="fq">"The meaning then is, that the Lord will give eternal life to those who, by attention to good works, strive to attain immortality."</div>
+          <div class="labels"><span class="dyo">Reformer</span><span class="pl">VERBATIM · OWEN TRANSLATION (1849)</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">John Calvin</div>
+          <div class="fw">Commentary on Romans (on 2:13)</div>
+          <div class="fq">"They who pervert this passage for the purpose of building up justification by works, deserve most fully to be laughed at even by children... Still more, we can prove from this passage that no one is justified by works; for if they alone are justified by the law who fulfill the law, it follows that no one is justified; for no one can be found who can boast of having fulfilled the law."</div>
+          <div class="labels"><span class="dyo">Reformer</span><span class="pl">VERBATIM · OWEN TRANSLATION (1849)</span></div>
+        </div>
+        <div class="comp-grid">
+          <div class="comp-card mia">
+            <h4>The Fathers</h4>
+            <p>We are justified by grace through faith, not by works we produce on our own. But faith is the start of a new life, and at the judgement God will look at that life. Good works done in Christ are His gifts in us, and they truly count, because He crowns them.</p>
+          </div>
+          <div class="comp-card dyo">
+            <h4>Calvin and the Reformed</h4>
+            <p>God will reward good works, and only those who persevere in them will be saved. But the works are not the ground of acceptance or a merit before God. On 2:13 Paul is stating the law's demand, which no sinner can meet, so another righteousness must be sought.</p>
+          </div>
+        </div>
+        <p>Notice how much is shared. Calvin agrees that God "will give eternal life to those who, by attention to good works, strive to attain immortality," and Augustine agrees that no good work is ours apart from God's gift. Nobody here teaches that a person can earn heaven on his own; that was the teaching of Pelagius, which the Fathers condemned and the Council of Ephesus in 431 confirmed. The real question is whether works done in God's grace are part of the way we are finally saved (the Fathers) or only its fruit and evidence (the Reformers). The Orthodox call this <a href="salvation.html">synergy</a>: God gives everything, and we freely work with what He gives. The case against faith alone is made in full on <a href="sola_fide.html">Sola Fide</a>.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s9">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">IX.</span>The Law Written on the Heart (2:14&ndash;16)</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%202%3A14-15&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 2:14-15</a></div>
+          <div class="txt">"for when Gentiles, who do not have the law, by nature do the things in the law, these, although not having the law, are a law to themselves, who show the work of the law written in their hearts, their conscience also bearing witness, and between themselves their thoughts accusing or else excusing them."</div>
+          <div class="mia-note">🔵 Orthodox reading: There is a moral law written into human nature. Even those without the law of Moses know right from wrong, and their conscience bears witness.</div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%202%3A16&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 2:16</a></div>
+          <div class="txt">"in the day when God will judge the secrets of men by Jesus Christ, according to my gospel."</div>
+          <div class="mia-note">🔵 Orthodox reading: Every conscience will be laid open on the day when God judges through Christ.</div>
+        </div>
+        <p>Who are these Gentiles who "by nature do the things in the law"? The question sounds technical, but the answer shows how each tradition reads the whole chapter. There are three main readings.</p>
+        <h3>1. Righteous Gentiles before Christ: St John Chrysostom</h3>
+        <p>On 2:10, where Paul promises "glory, honor, and peace to everyone who works what is good, to the Jew first and also to the Greek," Chrysostom says Paul is speaking of the times before Christ:</p>
+        <div class="fc">
+          <div class="fn">St John Chrysostom</div>
+          <div class="fw">Homily 5 on Romans (on 2:10)</div>
+          <div class="fq">"But by Greeks he here means not them that worshipped idols, but them that adored God, that obeyed the law of nature, that strictly kept all things, save the Jewish observances, which contribute to piety, such as were Melchizedek and his [company], such as was Job, such as were the Ninevites, such as was Cornelius."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St John Chrysostom</div>
+          <div class="fw">Homily 5 on Romans (on 2:14&ndash;15)</div>
+          <div class="fq">"But whenever he says by nature, he means by the reasonings of nature... For on this ground he means they are to be admired, because they required not a law, and yet exhibited all the doings of the Law, having the works, not the letters, graven upon their minds."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Acts%2010%3A34-35&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Acts 10:34-35</a></div>
+          <div class="txt">"Then Peter opened his mouth and said: 'In truth I perceive that God shows no partiality. But in every nation whoever fears Him and works righteousness is accepted by Him."</div>
+          <div class="mia-note">🔵 Orthodox reading: Cornelius, a Gentile who feared God, prayed and gave alms, was "accepted" by God and was then brought to Christ and baptised. This is the kind of person Chrysostom has in mind.</div>
+        </div>
+        <h3>2. Gentile Christians: St Augustine</h3>
+        <p>Augustine argues that the Gentiles of 2:14&ndash;15 are believers in whom the new covenant promise of Jeremiah 31:33 has come true, God writing His law on their hearts:</p>
+        <div class="fc">
+          <div class="fn">St Augustine of Hippo</div>
+          <div class="fw">On the Spirit and the Letter 46</div>
+          <div class="fq">"...belonging to the new testament means having the law of God not written on tables, but on the heart... embracing the righteousness of the law with innermost affection, where faith works by love."</div>
+          <div class="labels"><span class="ctx">Church Father (Latin)</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>He also allows a second reading: that even in unbelievers "what was impressed on their hearts when they were created in the image of God has not been wholly blotted out" (chapter 48).</p>
+        <h3>3. Knowledge of the law, not keeping it: Calvin</h3>
+        <div class="fc">
+          <div class="fn">John Calvin</div>
+          <div class="fw">Commentary on Romans (on 2:15)</div>
+          <div class="fq">"Without reason then is the power of the will deduced from this passage, as though Paul had said, that the keeping of the law is within our power; for he speaks not of the power to fulfill the law, but of the knowledge of it."</div>
+          <div class="labels"><span class="dyo">Reformer</span><span class="pl">VERBATIM · OWEN TRANSLATION (1849)</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">Westminster Confession (1646)</div>
+          <div class="fw">Westminster Confession of Faith XVI.7</div>
+          <div class="fq">"Works done by unregenerate men, although for the matter of them they may be things which God commands, and of good use both to themselves and others... yet because they proceed not from a heart purified by faith, nor are done in a right manner, according to the Word, nor to a right end, the glory of God; they are therefore sinful, and can not please God, or make a man meet to receive grace from God. And yet their neglect of them is more sinful and displeasing unto God."</div>
+          <div class="labels"><span class="dyo">Reformed Confession</span><span class="pl">VERBATIM · WESTMINSTER CONFESSION, SCHAFF</span></div>
+        </div>
+        <div class="comp-grid">
+          <div class="comp-card mia">
+            <h4>Chrysostom</h4>
+            <p>Real Gentiles before Christ, like Job and Cornelius, who honoured God and lived by the law of nature. God's judgement had no favourites even then.</p>
+          </div>
+          <div class="comp-card eut">
+            <h4>Augustine</h4>
+            <p>Gentile Christians, in whom God has written His law on the heart by grace. Or, in a weaker sense, unbelievers in whom God's image is not wholly erased.</p>
+          </div>
+          <div class="comp-card dyo">
+            <h4>Calvin and Westminster</h4>
+            <p>All people know the law's demands, but no unregenerate person truly keeps it. Their good deeds are useful but cannot please God.</p>
+          </div>
+        </div>
+        <p>The Orthodox Church follows Chrysostom's instinct without claiming more than Scripture says. Every human being bears the image of God, and that image, though damaged by sin, is not destroyed (Genesis 9:6; James 3:9). God is at work everywhere, drawing people toward Him, as He drew Cornelius. But no one is saved apart from Christ, and Cornelius, once he had heard, was baptised. Notably, a number of modern Protestant scholars, among them C. E. B. Cranfield and N. T. Wright, now take Augustine's view of these verses, reading them as real Christian Gentiles rather than a hypothetical case.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s10">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">X.</span>Circumcision of the Heart (2:17&ndash;29)</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>Paul now addresses the Jew directly: you who rest in the law, boast in God, teach others, do you teach yourself? Circumcision profits if you keep the law, but if you break it, it becomes uncircumcision. Then he says what true circumcision is:</p>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%202%3A28-29&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 2:28-29</a></div>
+          <div class="txt">"For he is not a Jew who is one outwardly, nor is circumcision that which is outward in the flesh; but he is a Jew who is one inwardly; and circumcision is that of the heart, in the Spirit, not in the letter; whose praise is not from men but from God."</div>
+          <div class="mia-note">🔵 Orthodox reading: What counts before God is the inward reality. The heart is circumcised by the Spirit, and the praise comes from God, not men.</div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Deuteronomy%2030%3A6&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Deuteronomy 30:6</a></div>
+          <div class="txt">"And the Lord your God will circumcise your heart and the heart of your descendants, to love the Lord your God with all your heart and with all your soul, that you may live."</div>
+          <div class="mia-note">🔵 Orthodox reading: This was always the promise: God Himself would circumcise the heart.</div>
+        </div>
+        <div class="fc">
+          <div class="fn">St John Chrysostom</div>
+          <div class="fw">Homily 6 on Romans (on 2:29)</div>
+          <div class="fq">"By saying this he sets aside all things bodily. For the circumcision is outwardly, and the sabbaths and the sacrifices and purifications: all of which he hints in a single word..."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St John Chrysostom</div>
+          <div class="fw">Homily 6 on Romans (on 2:29)</div>
+          <div class="fq">"But when he has said in the spirit he thereafter paves the way for the conversation of the Church, and introduces the faith. For it too is in the heart and spirit and has its praise of God."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>Where does this circumcision of the heart happen? Paul answers in Colossians, and St Justin Martyr, writing around AD 155, answers the same way:</p>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Colossians%202%3A11-12&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Colossians 2:11-12</a></div>
+          <div class="txt">"In Him you were also circumcised with the circumcision made without hands, by putting off the body of the sins of the flesh, by the circumcision of Christ, buried with Him in baptism, in which you also were raised with Him through faith in the working of God, who raised Him from the dead."</div>
+          <div class="mia-note">🔵 Orthodox reading: The circumcision made without hands takes place when we are buried and raised with Christ in baptism, through faith in the working of God.</div>
+        </div>
+        <div class="fc">
+          <div class="fn">St Justin Martyr</div>
+          <div class="fw">Dialogue with Trypho 43</div>
+          <div class="fq">"And we, who have approached God through Him, have received not carnal, but spiritual circumcision, which Enoch and those like him observed. And we have received it through baptism, since we were sinners, by God's mercy; and all men may equally obtain it."</div>
+          <div class="labels"><span class="ctx">Early Witness</span><span class="pl">VERBATIM · ANF TRANSLATION</span></div>
+        </div>
+        <p>Protestants agree that true circumcision is inward and the work of the Spirit. The Reformed also see a link between circumcision and baptism, and use it to argue for <a href="infant_baptism.html">infant baptism</a>. Baptists and many evangelicals see baptism as an outward sign of an inward change that has already happened. For the Fathers, baptism is where God does the inward work, which is why Paul can say we were circumcised "buried with Him in baptism." This is the theme of <a href="romans_6.html">Romans 6</a>.</p>
+        <p>With this, Paul has shown that Gentile and Jew alike stand in need of God's mercy. In chapter 3 he will say it outright: "all have sinned and fall short of the glory of God" (3:23), and then announce the righteousness of God revealed apart from the law.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s11">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XI.</span>Objections Answered</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Romans 1:17 proves justification by faith alone. The Fathers who talk about works have misread Paul."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> Chrysostom read 1:17 and said righteousness comes "by a gift from above, contributing one thing only from your own store, believing." The Fathers had no trouble with grace received by faith. What they did not do was pull 1:17 away from 2:6&ndash;7, where the same Paul says God will give eternal life "to those who by patient continuance in doing good seek for glory, honor, and immortality."</p><p>Any reading of Romans must hold both verses. The Fathers hold them by seeing faith as the entrance into a life of union with Christ that bears fruit and will be judged. Calvin holds them by saying the works are rewarded but are not the ground of salvation. Both are serious attempts. The Fathers' reading has the advantage of being the one the Church held from the beginning, as St Clement's letter from the first century shows.</p>
+          </div>
+        </div>
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Romans 2:13 is only hypothetical. Nobody actually keeps the law, so nobody is justified that way."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> This is Calvin's reading, and it fits Paul's conclusion in 3:20. But Paul in this chapter keeps describing real people: those who "by patient continuance in doing good" seek glory (2:7), Gentiles who "by nature do the things in the law" (2:14), the uncircumcised man who "keeps the righteous requirements of the law" (2:26) and the Jew "who is one inwardly" (2:29).</p><p>Chrysostom and Augustine disagreed about who these people were, but neither thought they were imaginary. Augustine read 2:13 to mean that God makes people righteous so that they become doers of the law. Several modern Protestant commentators now agree that Paul has real people in view.</p>
+          </div>
+        </div>
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>⚡ "If God "gave them up," then God caused their sin."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> Paul says God gave them up because they had already exchanged the truth for a lie (1:25) and did not want to keep God in their knowledge (1:28). The handing over is a judgement on a choice they had made.</p><p>Chrysostom compares it to a general who withdraws, leaving the soldiers to the enemy "not by thrusting them himself, but by stripping them of his own assistance." St John of Damascus says Scripture often speaks of what God permits as if He did it. Even Calvin, who gives the verse a stronger sense, insists that "the cause of sin is not from God."</p>
+          </div>
+        </div>
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Natural revelation cannot save, so Romans 1 means that everyone who never heard the gospel is lost."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> Paul's point in Romans 1 is that everyone is without excuse and needs the gospel. He is not drawing up a list of who will be saved. The Church proclaims that salvation is in Christ alone and calls every person to faith and baptism.</p><p>At the same time, the Fathers did not presume to judge those God has not shown us. Chrysostom names Job, Melchizedek, the Ninevites and Cornelius as Gentiles who honoured God. The Church knows where grace is given, in Christ and His Church; she does not claim to know the limits of God's mercy towards those who never heard. That is left to Him, and it is a reason for mission, not complacency.</p>
+          </div>
+        </div>
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Teaching that God judges by works is Pelagianism."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> Pelagius taught that man can keep God's commands by his own natural powers. The Fathers condemned this, and the Council of Ephesus in 431 confirmed the condemnation of his follower Celestius.</p><p>Saying that God judges works is not Pelagian. It is what Paul says in 2:6 and Christ says in John 5:29. The question is where good works come from. The Orthodox answer with Augustine: from God's grace working in us, so that when God crowns them, He crowns His own gifts. Without grace we can do nothing (John 15:5); with grace we freely work.</p>
+          </div>
+        </div>
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Romans 2:1 means Christians should not say anything is a sin."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> Paul has just named a long list of sins and called them deserving of death (1:32). He does not take any of it back. What he condemns in 2:1 is condemning others for what you do yourself.</p><p>Chrysostom applies it to the judge who punishes an adulterer while committing adultery. The answer to hypocrisy is not silence about sin but repentance, beginning with one's own, which is what God's kindness is meant to lead to (2:4).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s12">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XII.</span>FAQ</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>Why read Romans with Chrysostom in particular?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>His thirty-two homilies are the fullest commentary on Romans from the early Church that survives in its original language. Origen wrote an earlier commentary, but it survives mostly in a shortened Latin version made by Rufinus. Chrysostom was a skilled reader of Greek, a pastor preaching to ordinary people, and a lifelong lover of Paul. The Greek and Oriental Fathers who came after him drew on him constantly.</p>
+          </div>
+        </div>
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>Is Romans mainly about how an individual is saved?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>It is about that, but not only that. Paul's argument runs from the need of all people (chapters 1 to 3), to God's gift in Christ (3 to 8), to God's faithfulness to Israel (9 to 11), to life together in one Church of Jews and Gentiles (12 to 16). Reading the first eight chapters on their own makes it easy to miss how much the letter is about God gathering one people from both.</p>
+          </div>
+        </div>
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>What does "the wrath of God" mean if God has no passions?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>The Fathers taught that God is not moved by changing emotions as we are. Chrysostom says Paul adds "the righteous judgment of God" to "wrath" in 2:5 precisely "lest on hearing of wrath you should think of any passion." Wrath is God's just judgement on sin, and in Romans 1 it is shown first in God letting people have the darkness they chose.</p>
+          </div>
+        </div>
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>Can people really know God without the Bible?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>They can know that He exists and something of His power and divinity, as Paul says in 1:20 and Athanasius and Theophilus explain. They cannot know from nature alone the Trinity, the Incarnation or the way of salvation. That needs God's own revelation in Christ. The Westminster Confession says the same, and here Orthodox and Reformed largely agree.</p>
+          </div>
+        </div>
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>Is conscience always right?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>No. Paul says the conscience can accuse or excuse (2:15), and elsewhere speaks of consciences that are weak (1 Corinthians 8:7) or seared (1 Timothy 4:2). Conscience is a real witness that God placed in us, but it must be formed by God's word and by the life of the Church.</p>
+          </div>
+        </div>
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>What comes next?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>Chapter 3 draws the conclusion that all, Jew and Gentile, are under sin, and then announces the righteousness of God revealed through faith in Jesus Christ apart from the law. That is where the debate over faith and works is fought most fiercely, and it is the subject of the next page, <a href="romans_3_4.html">Romans 3 and 4: Justification and Faith</a>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s13">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XIII.</span>Sources &amp; Further Reading</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <div class="src-grid">
+          <div class="src-card">
+            <h4>St John Chrysostom</h4>
+            <ul>
+              <li>Argument to the Homilies on Romans (NPNF 1.11)</li>
+              <li>Homilies 1 to 6 on Romans (NPNF 1.11)</li>
+              <li><a href="https://www.newadvent.org/fathers/2102.htm" target="_blank" rel="noopener noreferrer">Homilies on Romans at New Advent</a></li>
+            </ul>
+          </div>
+          <div class="src-card">
+            <h4>Other Fathers</h4>
+            <ul>
+              <li>St Clement of Rome, First Epistle 32&ndash;33 (ANF 1)</li>
+              <li>St Justin Martyr, Dialogue with Trypho 43 (ANF 1)</li>
+              <li>St Theophilus of Antioch, To Autolycus I.2, I.5 (ANF 2)</li>
+              <li>St Irenaeus, Against Heresies IV.37 (ANF 1)</li>
+              <li>St Athanasius, Against the Heathen 34&ndash;35 (NPNF 2.4)</li>
+              <li>St Augustine, On the Spirit and the Letter 44&ndash;48; On Grace and Free Will 15 (NPNF 1.5)</li>
+              <li>St John of Damascus, Exposition of the Orthodox Faith IV.19 (NPNF 2.9)</li>
+            </ul>
+          </div>
+          <div class="src-card">
+            <h4>Protestant Sources</h4>
+            <ul>
+              <li>John Calvin, Commentary on Romans, trans. John Owen (1849)</li>
+              <li>John Calvin, Institutes of the Christian Religion I.5, trans. Henry Beveridge (1845)</li>
+              <li>Westminster Confession of Faith I.1, XVI.7 (Schaff, <em>Creeds of Christendom</em> III)</li>
+            </ul>
+          </div>
+          <div class="src-card">
+            <h4>Modern Studies</h4>
+            <ul>
+              <li>C. E. B. Cranfield, <em>Romans</em>, International Critical Commentary (1975&ndash;1979)</li>
+              <li>N. T. Wright, "The Law in Romans 2," in <em>Paul and the Mosaic Law</em> (1996)</li>
+              <li>Douglas Moo, <em>The Epistle to the Romans</em> (1996)</li>
+              <li>Thomas Schreiner, <em>Romans</em> (1998)</li>
+            </ul>
+          </div>
+          <div class="src-card">
+            <h4>Related Pages</h4>
+            <ul>
+              <li><a href="sola_fide.html">Sola Fide</a></li>
+              <li><a href="salvation.html">Salvation</a></li>
+              <li><a href="theosis.html">Theosis &amp; Deification</a></li>
+              <li><a href="problem_of_evil.html">The Problem of Evil</a></li>
+              <li><a href="evidence_for_god.html">Evidence for God</a></li>
+              <li><a href="sex_and_gender.html">Sex &amp; Gender</a></li>
+              <li><a href="calvinism.html">Calvinism</a></li>
+              <li><a href="fathers.html">Church Fathers Index</a></li>
+            </ul>
+          </div>
+        </div>
+        <p style="margin-top:.8rem;font-size:.85rem;color:var(--mu);font-style:italic;">This page was made with Claude AI and can contain faults; please verify with an Abouna.</p>
+      </div>
+    </div>
+
+    <div class="rm-pn"></div>
+  </div><!-- /content -->
+
+  <footer style="text-align:center;padding:2rem 1rem;border-top:1px solid var(--br);font-size:.8rem;color:var(--mu)">
+    <p>THE <span style="color:var(--gold)">ORTHODOX LAMP</span> &nbsp;·&nbsp; Biblical, Historical &amp; Patristic Apologetics</p>
+    <p style="margin-top:.5rem;font-size:.72rem;opacity:.6;">☩ &nbsp; In the name of the Father, and of the Son, and of the Holy Spirit &nbsp; ☩</p>
+  </footer>
+</div><!-- /main -->
+
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+function ts(h){h.closest('.sec').classList.toggle('open')}
+function tobj(h){h.closest('.obj').classList.toggle('open')}
+function tf(h){h.closest('.fi').classList.toggle('open')}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').classList.toggle('show')}
+function closeMobile(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
+
+window.addEventListener('scroll',()=>{
+  const s=document.documentElement,b=document.body;
+  const pct=(s.scrollTop||b.scrollTop)/((s.scrollHeight||b.scrollHeight)-s.clientHeight)*100;
+  document.getElementById('prog').style.width=pct+'%';
+  document.getElementById('btt').classList.toggle('show',(s.scrollTop||b.scrollTop)>300);
+});
+
+const secs=[...document.querySelectorAll('.sec')];
+const links=[...document.querySelectorAll('#nav a')];
+window.addEventListener('scroll',()=>{
+  let cur='';
+  secs.forEach(s=>{if(s.getBoundingClientRect().top<120)cur=s.id});
+  links.forEach(l=>{l.classList.toggle('active',l.getAttribute('href')==='#'+cur)});
+},{ passive:true });
+
+function doSearch(q){
+  document.querySelectorAll('.hl').forEach(e=>{
+    const p=e.parentNode;p.replaceChild(document.createTextNode(e.textContent),e);p.normalize();
+  });
+  if(!q.trim())return;
+  const re=new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi');
+  const walker=document.createTreeWalker(document.querySelector('.content'),NodeFilter.SHOW_TEXT);
+  const nodes=[];let n;
+  while((n=walker.nextNode()))nodes.push(n);
+  nodes.forEach(node=>{
+    if(!re.test(node.textContent))return;
+    re.lastIndex=0;
+    const frag=document.createDocumentFragment();
+    let last=0,m;
+    while((m=re.exec(node.textContent))!==null){
+      frag.appendChild(document.createTextNode(node.textContent.slice(last,m.index)));
+      const mark=document.createElement('mark');
+      mark.className='hl';mark.style.cssText='background:#8a6a20;color:#fff;border-radius:2px;padding:0 2px';
+      mark.textContent=m[0];frag.appendChild(mark);last=m.index+m[0].length;
+    }
+    frag.appendChild(document.createTextNode(node.textContent.slice(last)));
+    node.parentNode.replaceChild(frag,node);
+  });
+  const first=document.querySelector('.hl');if(first)first.scrollIntoView({block:'center',behavior:'smooth'});
+}
+</script>
+<button id="ol-tt" onclick="olTheme()" aria-label="Toggle light or dark mode" title="Light/dark mode">☀</button><script>function olTheme(){var l=document.documentElement.classList.toggle('light');try{localStorage.setItem('ol-theme',l?'light':'dark')}catch(e){}olIcon()}function olIcon(){document.getElementById('ol-tt').textContent=document.documentElement.classList.contains('light')?'☾':'☀'}olIcon();</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+/* AUTO-ENHANCE-JS */
+(function(){
+  try{
+    // back-to-top
+    var bt=document.createElement('button');bt.id='ol-top';bt.setAttribute('aria-label','Back to top');bt.innerHTML='\u2191';
+    bt.onclick=function(){window.scrollTo({top:0,behavior:'smooth'});};
+    document.body.appendChild(bt);
+    window.addEventListener('scroll',function(){bt.classList.toggle('show',window.scrollY>420);},{passive:true});
+    // reading time
+    var main=document.querySelector('main');
+    if(main){
+      var txt=main.innerText||'';var words=txt.trim().split(/\s+/).length;
+      var mins=Math.max(1,Math.round(words/200));
+      var rt=document.createElement('div');rt.className='ol-readtime';rt.textContent=mins+' min read';
+      var anchor=main.querySelector('.pg-title,.page-head,.pg-head,.hd');
+      if(anchor)anchor.appendChild(rt);else main.insertBefore(rt,main.firstChild);
+    }
+    // scroll-reveal
+    var secs=document.querySelectorAll('.sec');
+    if('IntersectionObserver' in window && document.documentElement.classList.contains('js-anim')){
+      var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.01,rootMargin:'0px 0px 12% 0px'});
+      secs.forEach(function(s){io.observe(s);});
+    }else{secs.forEach(function(s){s.classList.add('in');});}
+    // ensure search reveals all
+    document.querySelectorAll('.sb-search input,input[oninput*=sidebarSearch]').forEach(function(i){i.addEventListener('input',function(){document.querySelectorAll('.sec').forEach(function(s){s.classList.add('in');});});});
+  }catch(e){document.querySelectorAll('.sec').forEach(function(s){s.classList.add('in');});}
+})();
+/* END-ENHANCE-JS */</script>
+<script>
+/* AUTO-AESTHETIC2-JS */
+(function(){
+  try{
+    // section dividers between sibling .sec elements
+    Array.prototype.slice.call(document.querySelectorAll('.sec')).forEach(function(s){
+      var prev=s.previousElementSibling;
+      if(prev&&prev.classList&&prev.classList.contains('sec')&&!prev.classList.contains('ol-divider')){
+        var d=document.createElement('div');d.className='ol-divider';d.setAttribute('aria-hidden','true');d.textContent='\u2629';
+        s.parentNode.insertBefore(d,s);
+      }
+    });
+    // drop-cap on the first section's opening paragraph (chapter-opener feel)
+    var lead=document.querySelector('main .sec .sec-body p, main .sec .sec-bd p');
+    if(lead && (lead.textContent||'').trim().length>40){ lead.classList.add('ol-lead'); }
+  }catch(e){}
+})();
+/* END-AESTHETIC2-JS */</script>
+<script>
+/* AUTO-FEATURES3-JS */
+(function(){
+  try{
+    var here=(location.pathname.split('/').pop()||'index.html');
+    var base=location.href.split('#')[0];
+    function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+    /* ---- 1. copy-link buttons ---- */
+    document.querySelectorAll('.sec[id]').forEach(function(sec){
+      var h=sec.querySelector('.sec-h,.sec-hd');
+      if(!h||h.querySelector('.ol-copy'))return;
+      var b=document.createElement('button');
+      b.className='ol-copy';b.type='button';b.setAttribute('aria-label','Copy link to this section');
+      b.addEventListener('click',function(ev){
+        ev.stopPropagation();ev.preventDefault();
+        var url=base+'#'+sec.id;
+        var ok=function(){b.classList.add('ok');setTimeout(function(){b.classList.remove('ok');},1500);};
+        if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(ok,ok);}
+        else{var t=document.createElement('textarea');t.value=url;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(t);ok();}
+      });
+      var arr=h.querySelector('.arr');
+      if(arr&&arr.parentNode===h)h.insertBefore(b,arr);else h.appendChild(b);
+    });
+
+    /* ---- shared index + bundled KJV ---- */
+    var IDX=null,idxP=null,SEC={};
+    function loadIndex(){if(idxP)return idxP;idxP=fetch('search-index.json').then(function(r){return r.json();}).then(function(d){IDX=d;(d.pages||[]).forEach(function(p){var m={};(p.secs||[]).forEach(function(s){m[s.a]=s.h;});SEC[p.f]=m;});return d;});return idxP;}
+    var VP=null,vpP=null;
+    function loadVP(){if(vpP)return vpP;vpP=fetch('verse-pages.json').then(function(r){return r.json();}).then(function(d){VP=d;return d;}).catch(function(){VP={};});return vpP;}
+    var VERSES=null;
+    fetch('verses.json').then(function(r){return r.json();}).then(function(d){VERSES=d;}).catch(function(){VERSES={};});
+
+    /* ---- 2. related topics ---- */
+    loadIndex().then(function(idx){
+      if(!idx||!idx.pages)return;
+      var page=null;idx.pages.forEach(function(p){if(p.f===here)page=p;});
+      if(!page||!page.rel||!page.rel.length)return;
+      var main=document.querySelector('main')||document.getElementById('main');if(!main)return;
+      var box=document.createElement('div');box.className='ol-related';
+      var hh=document.createElement('h3');hh.textContent='Related topics';box.appendChild(hh);
+      var wrap=document.createElement('div');wrap.className='ol-related-links';
+      page.rel.forEach(function(r){var a=document.createElement('a');a.href=r.f;a.textContent=r.t;wrap.appendChild(a);});
+      box.appendChild(wrap);main.appendChild(box);
+    }).catch(function(){});
+
+    /* ---- 3. site-wide search ---- */
+    var ov=document.createElement('div');ov.className='ol-ov';
+    ov.innerHTML='<div class="ol-modal" role="dialog" aria-label="Search topics and verses"><input class="ol-search-input" type="text" placeholder="Search topics or a Bible verse (e.g. John 3:16)…" aria-label="Search topics and Bible verses" autocomplete="off"><div class="ol-results" role="listbox"></div><div class="ol-hint">↑↓ navigate · ↵ open · esc close · type a reference like Rom 5 or 1 Cor 10:12</div></div>';
+    document.body.appendChild(ov);
+    var input=ov.querySelector('.ol-search-input');
+    var results=ov.querySelector('.ol-results');
+    var flat=[],sel=-1;
+    function hilite(text,q){if(!q)return esc(text);var i=text.toLowerCase().indexOf(q);if(i<0)return esc(text);return esc(text.slice(0,i))+'<mark>'+esc(text.slice(i,i+q.length))+'</mark>'+esc(text.slice(i+q.length));}
+
+    /* fuzzy / typo-tolerant scorer */
+    function lev(a,b){var m=a.length,n=b.length;if(!m)return n;if(!n)return m;var prev=[],cur=[],i,j;for(j=0;j<=n;j++)prev[j]=j;for(i=1;i<=m;i++){cur[0]=i;for(j=1;j<=n;j++){var c=a.charAt(i-1)===b.charAt(j-1)?0:1;cur[j]=Math.min(prev[j]+1,cur[j-1]+1,prev[j-1]+c);}for(j=0;j<=n;j++)prev[j]=cur[j];}return prev[n];}
+    function scoreText(hay,q){
+      if(!q)return 0.5;hay=String(hay).toLowerCase();
+      var idx=hay.indexOf(q);
+      if(idx===0)return 1000;
+      if(idx>0)return 800-idx;
+      var words=hay.split(/[^a-z0-9]+/),best=-1,w,word,d,thr;
+      for(w=0;w<words.length;w++){word=words[w];if(!word)continue;
+        if(word.indexOf(q)===0){best=Math.max(best,600);continue;}
+        if(q.length>=4){thr=q.length<=5?1:2;d=lev(word,q);if(d<=thr)best=Math.max(best,420-d*40);}
+      }
+      if(best>=0)return best;
+      var hi=0,qi=0;for(;hi<hay.length&&qi<q.length;hi++){if(hay.charAt(hi)===q.charAt(qi))qi++;}
+      if(qi===q.length)return 200;
+      return -1;
+    }
+
+    /* Bible-book resolver (abbreviations + full names) */
+    var BK={};
+    function reg(c,al){BK[c.toLowerCase().replace(/\s+/g,'')]=c;al.split(',').forEach(function(a){a=a.replace(/\s+/g,'');if(a)BK[a]=c;});}
+    reg('Genesis','gen,ge,gn');reg('Exodus','exo,ex,exod');reg('Leviticus','lev,le,lv');reg('Numbers','num,nu,nm,nb');
+    reg('Deuteronomy','deut,dt,deu');reg('Joshua','josh,jos,jsh');reg('Judges','judg,jdg,jg,jdgs');reg('Ruth','rut,ru,rth');
+    reg('1 Samuel','1sam,1sa,1s,1sm');reg('2 Samuel','2sam,2sa,2s,2sm');reg('1 Kings','1kings,1kgs,1ki,1kg');reg('2 Kings','2kings,2kgs,2ki,2kg');
+    reg('1 Chronicles','1chron,1chr,1ch');reg('2 Chronicles','2chron,2chr,2ch');reg('Ezra','ezr');reg('Nehemiah','neh,ne');
+    reg('Esther','est,esth,es');reg('Job','jb');reg('Psalms','ps,psa,psalm,pss,psm');reg('Proverbs','prov,pro,prv,pr');
+    reg('Ecclesiastes','eccl,ecc,ec,eccles,qoh');reg('Song of Solomon','song,sos,songofsongs,canticles,cant,ss');
+    reg('Isaiah','isa,is,isai');reg('Jeremiah','jer,jr');reg('Lamentations','lam,la');reg('Ezekiel','ezek,eze,ezk');
+    reg('Daniel','dan,da,dn');reg('Hosea','hos,ho');reg('Joel','joe,jl');reg('Amos','am,amo');reg('Obadiah','obad,ob,oba');
+    reg('Jonah','jon,jnh');reg('Micah','mic,mc');reg('Nahum','nah,na');reg('Habakkuk','hab');reg('Zephaniah','zeph,zep,zp');
+    reg('Haggai','hag,hg');reg('Zechariah','zech,zec,zc');reg('Malachi','mal,ml');reg('Matthew','matt,mt,mat');
+    reg('Mark','mk,mar,mrk');reg('Luke','lk,luk,lu');reg('John','jn,joh,jhn');reg('Acts','act,ac');reg('Romans','rom,ro,rm');
+    reg('1 Corinthians','1cor,1co,1c');reg('2 Corinthians','2cor,2co,2c');reg('Galatians','gal,ga');reg('Ephesians','eph,ephes');
+    reg('Philippians','phil,php,pp');reg('Colossians','col');reg('1 Thessalonians','1thess,1thes,1th');reg('2 Thessalonians','2thess,2thes,2th');
+    reg('1 Timothy','1tim,1ti,1tm');reg('2 Timothy','2tim,2ti,2tm');reg('Titus','tit,ti,tts');reg('Philemon','philem,phlm,phm,pm');
+    reg('Hebrews','heb,hebr');reg('James','jas,jm,jms');reg('1 Peter','1pet,1pe,1pt,1p');reg('2 Peter','2pet,2pe,2pt,2p');
+    reg('1 John','1john,1jn,1jo,1j');reg('2 John','2john,2jn,2jo,2j');reg('3 John','3john,3jn,3jo,3j');reg('Jude','jud,jd');
+    reg('Revelation','rev,re,rv,apocalypse,apoc');
+    function parseRef(raw){
+      if(!raw)return null;
+      var m=raw.match(/^\s*([1-3]?\s*[a-zA-Z][a-zA-Z\s]*?)\s*(\d{1,3})(?:\s*[:.\s]\s*(\d{1,3}))?\s*$/);
+      if(!m)return null;
+      var bk=m[1].toLowerCase().replace(/[\s.]+/g,'');var canon=BK[bk];
+      if(!canon)return null;
+      return {canon:canon,ch:parseInt(m[2],10),vs:m[3]?parseInt(m[3],10):null};
+    }
+    function uniqPages(entries){var seen={},out=[];entries.forEach(function(e){if(!seen[e[0]]){seen[e[0]]=1;out.push({f:e[0],t:e[1],a:e[2]});}});return out;}
+    /* exported verse engine — used by the FE4 "Ask the Lamp" assistant.
+       resolves to null if `raw` is not a bare Bible reference. */
+    window.__olVerseQuery=function(raw){
+      var vq=parseRef((raw||'').trim());
+      if(!vq)return Promise.resolve(null);
+      return Promise.all([loadVP(),loadIndex()]).then(function(){
+        function sub(f,a){return (SEC[f]&&SEC[f][a])||'';}
+        function pages(arr){return uniqPages(arr).map(function(r){return {f:r.f,t:r.t,a:r.a,sub:sub(r.f,r.a)};});}
+        if(vq.vs!=null){
+          var key=vq.canon+' '+vq.ch+':'+vq.vs,e=VP[key];
+          return {mode:'verse',ref:key,kjv:(e&&e.k)?e.k:null,pages:e?pages(e.r):[]};
+        }
+        var prefix=vq.canon+' '+vq.ch+':',vnums=[],agg=[];
+        Object.keys(VP).forEach(function(k){if(k.indexOf(prefix)===0){vnums.push(parseInt(k.slice(prefix.length),10));VP[k].r.forEach(function(r){agg.push(r);});}});
+        vnums.sort(function(a,b){return a-b;});
+        return {mode:'chapter',ref:vq.canon+' '+vq.ch,vnums:vnums,pages:pages(agg)};
+      }).catch(function(){return null;});
+    };
+    function rowsHTML(){
+      if(!flat.length)return '<div class="r-empty">No page cites this on the site yet.</div>';
+      return flat.map(function(r,i){return '<a class="ol-r'+(i===sel?' sel':'')+'" data-i="'+i+'" href="'+r.f+(r.a?'#'+r.a:'')+'"><span class="r-t">'+esc(r.t)+'</span>'+(r.sub?'<span class="r-s">'+esc(r.sub)+'</span>':'')+'</a>';}).join('');
+    }
+
+    function renderVerse(vq){
+      if(!VP){results.innerHTML='<div class="r-empty">Loading verse index…</div>';flat=[];sel=-1;return;}
+      var canon=vq.canon,ch=vq.ch,vs=vq.vs,card='',rows=[];
+      if(vs!=null){
+        var key=canon+' '+ch+':'+vs,e=VP[key];
+        card='<div class="ol-vcard"><span class="vref">'+esc(key)+'</span>'+(e&&e.k?'<span class="vkjv">'+esc(e.k)+'<em>KJV</em></span>':'')+(e?'':'<span class="vmeta">Not cited on the site yet.</span>')+'</div>';
+        if(e)rows=uniqPages(e.r);
+      }else{
+        var prefix=canon+' '+ch+':',vnums=[],agg=[];
+        Object.keys(VP).forEach(function(k){if(k.indexOf(prefix)===0){vnums.push(parseInt(k.slice(prefix.length),10));VP[k].r.forEach(function(r){agg.push(r);});}});
+        vnums.sort(function(a,b){return a-b;});
+        card='<div class="ol-vcard"><span class="vref">'+esc(canon+' '+ch)+'</span><span class="vmeta">'+(vnums.length?'Verses cited here: '+vnums.join(', '):'No verses from this chapter are cited yet.')+'</span></div>';
+        rows=uniqPages(agg);
+      }
+      flat=rows.map(function(r){return {f:r.f,t:r.t,a:r.a,sub:(SEC[r.f]&&SEC[r.f][r.a])?SEC[r.f][r.a]:''};});
+      sel=flat.length?0:-1;
+      results.innerHTML=card+rowsHTML();
+    }
+
+    function renderText(q){
+      flat=[];
+      if(IDX&&IDX.pages){
+        if(!q){
+          IDX.pages.slice().sort(function(a,b){return a.t.localeCompare(b.t);}).forEach(function(p){flat.push({f:p.f,t:p.t,sub:'',a:'',sc:0});});
+        }else{
+          IDX.pages.forEach(function(p){
+            var ts=scoreText(p.t,q),bs=null,bss=-1,kw=-1,kwn='';
+            if(p.secs)p.secs.forEach(function(s){var sc=scoreText(s.h,q)*0.85;if(sc>bss){bss=sc;bs=s;}});
+            if(p.kw)p.kw.forEach(function(k){var sc=scoreText(k,q)*0.7;if(sc>kw){kw=sc;kwn=k;}});
+            var best=Math.max(ts,bss,kw);if(best<=0)return;
+            var it={f:p.f,t:p.t,sc:best};
+            if(best===bss&&bs){it.sub=bs.h;it.a=bs.a;}
+            else if(best===kw&&kwn){it.sub='topic · '+kwn;it.topic=1;}
+            else it.sub='';
+            flat.push(it);
+          });
+          flat.sort(function(a,b){return b.sc-a.sc;});
+        }
+      }
+      flat=flat.slice(0,40);sel=flat.length?0:-1;
+      if(!flat.length){results.innerHTML='<div class="r-empty">'+(IDX?'No matches — try a topic or a Bible verse (e.g. John 3:16)':'Loading index…')+'</div>';return;}
+      results.innerHTML=flat.map(function(r,i){
+        return '<a class="ol-r'+(i===sel?' sel':'')+'" data-i="'+i+'" href="'+r.f+(r.a?'#'+r.a:'')+'"><span class="r-t">'+hilite(r.t,q)+'</span>'+(r.sub?'<span class="r-s'+(r.topic?' r-topic':'')+'">'+(r.topic?esc(r.sub):hilite(r.sub,q))+'</span>':'')+'</a>';
+      }).join('');
+    }
+
+    function render(){
+      var raw=(input.value||'').trim();
+      var vq=parseRef(raw);
+      if(vq){if(!VP)loadVP().then(function(){if(ov.classList.contains('open')&&parseRef((input.value||'').trim()))render();});renderVerse(vq);return;}
+      renderText(raw.toLowerCase());
+    }
+    function setSel(i){var a=results.querySelectorAll('.ol-r');if(!a.length)return;sel=(i+a.length)%a.length;a.forEach(function(el,j){el.classList.toggle('sel',j===sel);});a[sel].scrollIntoView({block:'nearest'});}
+    function go(){if(sel>=0&&flat[sel]){var r=flat[sel];location.href=r.f+(r.a?'#'+r.a:'');}}
+    function openS(seed){ov.classList.add('open');document.body.style.overflow='hidden';input.value=seed||'';render();loadIndex().then(function(){if(ov.classList.contains('open'))render();}).catch(function(){});loadVP().then(function(){if(ov.classList.contains('open'))render();}).catch(function(){});setTimeout(function(){input.focus();if(seed)input.select();},30);}
+    window.__olOpenSearch=openS;
+    function closeS(){ov.classList.remove('open');document.body.style.overflow='';}
+    input.addEventListener('input',render);
+    input.addEventListener('keydown',function(e){
+      if(e.key==='ArrowDown'){e.preventDefault();setSel(sel+1);}
+      else if(e.key==='ArrowUp'){e.preventDefault();setSel(sel-1);}
+      else if(e.key==='Enter'){e.preventDefault();go();}
+      else if(e.key==='Escape'){e.preventDefault();closeS();}
+    });
+    results.addEventListener('mousemove',function(e){var a=e.target.closest('.ol-r');if(a)setSel(+a.getAttribute('data-i'));});
+    ov.addEventListener('click',function(e){if(e.target===ov)closeS();});
+    document.addEventListener('keydown',function(e){
+      if(e.key==='/'&&!ov.classList.contains('open')){var t=document.activeElement;var tn=t?t.tagName:'';if(tn==='INPUT'||tn==='TEXTAREA'||(t&&t.isContentEditable))return;e.preventDefault();openS();}
+      else if(e.key==='Escape'&&ov.classList.contains('open')){closeS();}
+    });
+    var launcher=document.createElement('button');launcher.className='ol-search-btn';launcher.type='button';
+    launcher.innerHTML='Search topics &amp; verses <span>/</span>';launcher.addEventListener('click',function(){openS();});
+    var sbs=document.querySelector('.sb-search');
+    if(sbs&&sbs.parentNode)sbs.parentNode.insertBefore(launcher,sbs);
+    else{var nav=document.querySelector('#sidebar nav,#sb nav,#sidebar,#sb');if(nav)nav.insertBefore(launcher,nav.firstChild);}
+
+    /* ---- 4. scripture tooltips (KJV bundled locally in verses.json, public domain) ---- */
+    var BOOKS='Genesis|Exodus|Leviticus|Numbers|Deuteronomy|Joshua|Judges|Ruth|1 ?Samuel|2 ?Samuel|1 ?Kings|2 ?Kings|1 ?Chronicles|2 ?Chronicles|Ezra|Nehemiah|Esther|Job|Psalms|Psalm|Proverbs|Ecclesiastes|Song of Solomon|Song of Songs|Isaiah|Jeremiah|Lamentations|Ezekiel|Daniel|Hosea|Joel|Amos|Obadiah|Jonah|Micah|Nahum|Habakkuk|Zephaniah|Haggai|Zechariah|Malachi|Matthew|Mark|Luke|John|Acts|Romans|1 ?Corinthians|2 ?Corinthians|Galatians|Ephesians|Philippians|Colossians|1 ?Thessalonians|2 ?Thessalonians|1 ?Timothy|2 ?Timothy|Titus|Philemon|Hebrews|James|1 ?Peter|2 ?Peter|1 ?John|2 ?John|3 ?John|Jude|Revelation';
+    var VRE=new RegExp('\\b((?:'+BOOKS+')\\.?\\s+\\d{1,3}:\\d{1,3}(?:[-–]\\d{1,3})?(?:,\\s?\\d{1,3}(?:[-–]\\d{1,3})?)*)','g');
+    function wrap(root){
+      var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:function(n){
+        if(!n.nodeValue||n.nodeValue.indexOf(':')<0)return NodeFilter.FILTER_REJECT;
+        var p=n.parentNode;
+        while(p&&p!==root){var t=p.nodeName.toLowerCase();
+          if(t==='a'||t==='button'||t==='script'||t==='style'||(p.classList&&(p.classList.contains('ol-verse')||p.classList.contains('ol-copy'))))return NodeFilter.FILTER_REJECT;
+          p=p.parentNode;}
+        return NodeFilter.FILTER_ACCEPT;
+      }});
+      var nodes=[],n;while(n=w.nextNode())nodes.push(n);
+      nodes.forEach(function(node){
+        var txt=node.nodeValue;VRE.lastIndex=0;if(!VRE.test(txt))return;VRE.lastIndex=0;
+        var frag=document.createDocumentFragment(),last=0,m;
+        while(m=VRE.exec(txt)){
+          if(m.index>last)frag.appendChild(document.createTextNode(txt.slice(last,m.index)));
+          var sp=document.createElement('span');sp.className='ol-verse';sp.textContent=m[0];sp.setAttribute('data-ref',m[1]);
+          frag.appendChild(sp);last=m.index+m[0].length;
+        }
+        if(last<txt.length)frag.appendChild(document.createTextNode(txt.slice(last)));
+        node.parentNode.replaceChild(frag,node);
+      });
+    }
+    document.querySelectorAll('.sec-body,.sec-bd,.sec-body2').forEach(wrap);
+    var tip=document.createElement('div');tip.className='ol-tip';tip.style.display='none';document.body.appendChild(tip);
+    function place(el){var r=el.getBoundingClientRect();tip.style.display='block';var w=tip.offsetWidth||330;
+      var left=window.scrollX+r.left;var max=window.scrollX+document.documentElement.clientWidth-w-10;
+      tip.style.left=Math.max(8,Math.min(left,max))+'px';tip.style.top=(window.scrollY+r.bottom+8)+'px';}
+    function lookup(ref){var k=ref.replace(/\s+/g,' ').trim();if(VERSES&&VERSES[k])return VERSES[k];return null;}
+    function show(el){
+      var ref=el.getAttribute('data-ref');if(!ref)return;
+      var t=lookup(ref);
+      if(t){tip.innerHTML='<b>'+esc(ref)+'</b><span class="ol-tip-kjv">KJV</span><br>'+esc(t);}
+      else if(VERSES===null){tip.innerHTML='<b>'+esc(ref)+'</b><br><span class="ol-tip-load">Loading…</span>';}
+      else{tip.innerHTML='<b>'+esc(ref)+'</b><br><span class="ol-tip-err">Text unavailable</span>';}
+      place(el);
+    }
+    function hide(){tip.style.display='none';}
+    document.addEventListener('mouseover',function(e){var t=e.target;if(t.classList&&t.classList.contains('ol-verse'))show(t);});
+    document.addEventListener('mouseout',function(e){var t=e.target;if(t.classList&&t.classList.contains('ol-verse'))hide();});
+    document.addEventListener('focusin',function(e){var t=e.target;if(t.classList&&t.classList.contains('ol-verse'))show(t);});
+    document.addEventListener('focusout',function(e){var t=e.target;if(t.classList&&t.classList.contains('ol-verse'))hide();});
+    document.querySelectorAll('.ol-verse').forEach(function(v){v.setAttribute('tabindex','0');});
+  }catch(e){}
+})();
+/* END-FEATURES3-JS */</script>
+<script>
+/* Ask the Lamp — AI config. Paste your Cloudflare Worker URL between the
+   quotes to turn on grounded AI answers. Leave blank for site-search only.
+   See ask-lamp-SETUP.md for the 10-minute setup. */
+window.OL_ASK_ENDPOINT = "https://ask-the-lamp.sebazz7397.workers.dev";
+</script>
+<script>
+/* AUTO-FEATURES4-JS */
+(function(){
+  try{
+    function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+    /* Optional strict-RAG AI answers. Set window.OL_ASK_ENDPOINT to the
+       Cloudflare Worker URL to turn "Ask the Lamp" from a search box into a
+       grounded assistant. If blank or unreachable, it silently falls back to
+       the retrieval-only behaviour below. See ask-lamp-SETUP.md. */
+    var AI_ENDPOINT=(window.OL_ASK_ENDPOINT||'').trim();
+    /* plain model text -> safe HTML: escape, light **bold**, [n] citations, paragraphs */
+    function fmtAI(s){
+      var out=esc(s);
+      out=out.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
+      /* normalise fancy citation brackets (【1】〔1〕〖1〗) the model sometimes emits to plain [1] */
+      out=out.replace(/[【〔〖]\s*(\d{1,2})\s*[】〕〗]/g,'[$1]');
+      out=out.replace(/\[(\d{1,2})\]/g,'<sup class="ol-ci">[$1]</sup>');
+      return out.split(/\n{2,}/).map(function(p){return '<p>'+p.replace(/\n/g,'<br>')+'</p>';}).join('');
+    }
+    var STOP={};'the a an and or but of to in on at for with as is are was were be been being do does did this that these those it its their them they we you i he she his her our your my me us not no yes can could would should will shall may might must have has had what why how who whom whose which when where does did about into from than then so such also more most very just only own same other any all both each few how into about'.split(/\s+/).forEach(function(w){STOP[w]=1;});
+    function toks(q){return (String(q).toLowerCase().match(/[a-z0-9]+/g)||[]).filter(function(w){return w.length>=3&&!STOP[w];});}
+
+    var C=null,cP=null;
+    function loadC(){if(cP)return cP;cP=fetch('ask-content.json').then(function(r){return r.json();}).then(function(d){C=d;return d;}).catch(function(){C={pages:[]};return C;});return cP;}
+
+    function reEsc(t){return t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}
+    function excerpt(x,tk){
+      if(!x)return '';
+      var lx=x.toLowerCase(),pos=-1,i,p;
+      for(i=0;i<tk.length;i++){p=lx.indexOf(tk[i]);if(p>=0&&(pos<0||p<pos))pos=p;}
+      if(pos<0)pos=0;
+      var start=Math.max(0,pos-65),end=Math.min(x.length,pos+165);
+      var frag=x.slice(start,end);
+      if(start>0)frag=frag.replace(/^\S*\s/,'');
+      if(end<x.length)frag=frag.replace(/\s\S*$/,'');
+      var out=esc(frag);
+      if(start>0)out='…'+out;
+      if(end<x.length)out=out+'…';
+      tk.forEach(function(t){if(t.length<3)return;try{out=out.replace(new RegExp('('+reEsc(t)+')','ig'),'<mark>$1</mark>');}catch(e){}});
+      return out;
+    }
+    /* whole-word matcher (with light plural/possessive tolerance) so that a query
+       for "christ" does NOT match inside "christian"/"christology", and vice-versa. */
+    function mkRx(t){return new RegExp('\\b'+reEsc(t)+"(?:'s|s)?\\b",'gi');}
+    function nWord(text,rx){if(!text)return 0;var m=String(text).match(rx);return m?m.length:0;}
+    function rank(q){
+      var tk=toks(q);if(!tk.length||!C||!C.pages)return {tk:tk,top:[],broad:false};
+      var rx=tk.map(mkRx);
+      /* pass 1 — how many sections each term appears in (for rarity weighting) */
+      var N=0,dfSec=tk.map(function(){return 0;});
+      C.pages.forEach(function(p){var pk=(p.t||'')+' '+((p.kw||[]).join(' '));(p.secs||[]).forEach(function(s){
+        N++;var blob=pk+' '+(s.h||'')+' '+(s.x||'');
+        tk.forEach(function(t,i){if(nWord(blob,rx[i]))dfSec[i]++;});
+      });});
+      /* rarer term => higher weight; ubiquitous terms (Christ, church…) => near-zero */
+      var idf=dfSec.map(function(df){return Math.log((N+1)/(df+1))+0.15;});
+      /* pass 2 — score every section, weighting each term by its rarity */
+      var hits=[];
+      C.pages.forEach(function(p){
+        var title=(p.t||''),kw=(p.kw||[]).join(' ');
+        (p.secs||[]).forEach(function(s){
+          var head=(s.h||''),body=(s.x||''),sc=0,covered=0;
+          tk.forEach(function(t,i){
+            var w=idf[i],any=false,r=rx[i];
+            if(nWord(head,r)){sc+=14*w;any=true;}
+            if(nWord(title,r)){sc+=8*w;any=true;}
+            if(nWord(kw,r)){sc+=7*w;any=true;}
+            var occ=nWord(body,r);if(occ){sc+=Math.min(occ,4)*4*w;any=true;}
+            if(any)covered++;
+          });
+          if(tk.length>1){if(covered===tk.length)sc+=14;sc+=covered*3;}
+          if(sc>0)hits.push({f:p.f,t:p.t,h:s.h,a:s.a,x:s.x,sc:sc,cov:covered});
+        });
+      });
+      hits.sort(function(a,b){return b.sc-a.sc;});
+      /* a single word that appears in a large share of the site is "broad" */
+      var broad=(tk.length===1&&N>0&&dfSec[0]>Math.max(40,N*0.18));
+      var per={},top=[],cap=broad?1:2,lim=broad?6:4;
+      for(var i=0;i<hits.length&&top.length<lim;i++){var f=hits[i].f;if((per[f]||0)>=cap)continue;per[f]=(per[f]||0)+1;top.push(hits[i]);}
+      return {tk:tk,top:top,broad:broad,term:tk[0]};
+    }
+
+    /* ---- UI ---- */
+    var fab=document.createElement('button');fab.className='ol-ask-fab';fab.type='button';
+    fab.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg><span>Ask the Lamp</span>';
+    document.body.appendChild(fab);
+
+    var wrap=document.createElement('div');wrap.className='ol-ask-wrap';wrap.setAttribute('role','dialog');wrap.setAttribute('aria-label','Ask the Lamp');
+    wrap.innerHTML='<div class="ol-ask-hd"><div class="ti"><b>Ask the Lamp</b><span>Search the whole site by question or verse</span></div><button class="ol-ask-x" type="button" aria-label="Close">×</button></div><div class="ol-ask-log" role="log" aria-live="polite"></div><div class="ol-ask-foot"><input type="text" placeholder="Ask a question or type a verse…" aria-label="Ask a question" autocomplete="off"><button class="send" type="button" aria-label="Send">➤</button></div><div class="ol-ask-note">Answers are drawn only from this site’s pages · not a live AI chat</div>';
+    document.body.appendChild(wrap);
+    var log=wrap.querySelector('.ol-ask-log'),inp=wrap.querySelector('.ol-ask-foot input'),sendB=wrap.querySelector('.send'),xB=wrap.querySelector('.ol-ask-x');
+    var LAMP_SVG="<svg viewBox='0 0 40 48' fill='none' xmlns='http://www.w3.org/2000/svg' aria-hidden='true'><defs><radialGradient id='olflame' cx='50%' cy='72%' r='62%'><stop offset='0%' stop-color='#ffe89c'/><stop offset='45%' stop-color='#f8ab3c'/><stop offset='100%' stop-color='#ee6f1e'/></radialGradient><radialGradient id='olfoot' cx='50%' cy='25%' r='85%'><stop offset='0%' stop-color='#c9a35a'/><stop offset='100%' stop-color='#8a6a26'/></radialGradient></defs><g class='lampg'><g class='rays' stroke='#f4a63a' stroke-width='1.6' stroke-linecap='round'><line x1='33' y1='25' x2='36.5' y2='25'/><line x1='7' y1='25' x2='3.5' y2='25'/><line x1='29.2' y1='14.4' x2='31.7' y2='11.6'/><line x1='10.8' y1='14.4' x2='8.3' y2='11.6'/><line x1='29.2' y1='35.6' x2='31.7' y2='38.4'/><line x1='10.8' y1='35.6' x2='8.3' y2='38.4'/><line x1='25' y1='11.1' x2='26.3' y2='7.4'/><line x1='15' y1='11.1' x2='13.7' y2='7.4'/></g><ellipse class='foot' cx='20' cy='44.4' rx='6' ry='1.7' fill='url(#olfoot)'/><rect class='wick' x='18.5' y='39.5' width='3' height='5.2' rx='1.4' fill='#5a4020'/><g class='fl'><path class='body' d='M20 10 C26 15.5 30.5 20.5 30 28 C29.5 35 25 40.5 20 41.5 C15 40.5 10.5 35 10 28 C9.5 20.5 14 15.5 20 10 Z' fill='url(#olflame)'/><path d='M20 18 C23.8 22.5 26 26.5 24.8 31.5 C23.9 35 22 37.2 20 37.6 C18 37.2 16.1 35 15.2 31.5 C14 26.5 16.2 22.5 20 18 Z' fill='#ffe488' opacity='.5'/><ellipse cx='15.6' cy='23' rx='1.6' ry='3' fill='#fff8df' opacity='.4'/></g><g class='eyes' fill='#5a3212'><ellipse cx='15.6' cy='27.5' rx='2.5' ry='3'/><ellipse cx='24.4' cy='27.5' rx='2.5' ry='3'/><circle cx='14.8' cy='26.5' r='.95' fill='#fff'/><circle cx='23.6' cy='26.5' r='.95' fill='#fff'/></g><g class='eyes-happy' stroke='#5a3212' stroke-width='1.7' stroke-linecap='round' fill='none'><path d='M13.1 27.9 Q15.6 24.7 18.1 27.9'/><path d='M21.9 27.9 Q24.4 24.7 26.9 27.9'/></g><path class='m-idle' d='M17.2 32.4 Q20 34.5 22.8 32.4' stroke='#5a3212' stroke-width='1.4' stroke-linecap='round' fill='none'/><path class='m-think' d='M18.5 32.6 Q20 33.4 21.5 32.6' stroke='#5a3212' stroke-width='1.4' stroke-linecap='round' fill='none'/><path class='m-happy' d='M16.4 32 Q20 35.9 23.6 32' stroke='#5a3212' stroke-width='1.6' stroke-linecap='round' fill='none'/></g></svg>";
+    function LAMP(s){return "<span class='ol-lamp st-"+s+"'>"+LAMP_SVG+"</span>";}
+    var lampAv=(function(){var hd=wrap.querySelector('.ol-ask-hd');if(!hd)return null;var a=document.createElement('span');a.className='ol-lamp ol-lamp-hd st-idle';a.innerHTML=LAMP_SVG;hd.insertBefore(a,hd.firstChild);return a;})();
+    function lampState(s){if(lampAv)lampAv.className='ol-lamp ol-lamp-hd st-'+s;}
+    var noteEl=wrap.querySelector('.ol-ask-note');
+    if(noteEl)noteEl.textContent=AI_ENDPOINT
+      ?'AI answers are generated only from this site’s pages, with sources shown — always verify against the cited pages.'
+      :'Answers are drawn only from this site’s pages · not a live AI chat';
+    var subEl=wrap.querySelector('.ol-ask-hd .ti span');
+    if(subEl&&AI_ENDPOINT)subEl.textContent='Grounded answers from the site, with sources';
+
+    function scrollDown(){log.scrollTop=log.scrollHeight;}
+    function addUser(t){var d=document.createElement('div');d.className='ol-ask-msg user';d.textContent=t;log.appendChild(d);scrollDown();}
+    function addBot(html){var d=document.createElement('div');d.className='ol-ask-msg bot';d.innerHTML=html;log.appendChild(d);scrollDown();return d;}
+
+    function pageRows(pages,limit){
+      return pages.slice(0,limit||5).map(function(r){
+        return '<a class="ol-ans" href="'+esc(r.f)+(r.a?'#'+esc(r.a):'')+'"><span class="a-t">'+esc(r.t)+'</span>'+(r.sub?'<span class="a-h">'+esc(r.sub)+'</span>':'')+'</a>';
+      }).join('');
+    }
+    function renderVerse(v){
+      var h='';
+      if(v.mode==='verse'){
+        h+='<div class="ol-vans"><span class="vr">'+esc(v.ref)+'</span>'+(v.kjv?'<span class="vt">'+esc(v.kjv)+'<em>KJV</em></span>':'<span class="vt">Not cited on the site yet.</span>')+'</div>';
+        if(v.pages.length){h+='<p class="lead">Cited on '+v.pages.length+' page'+(v.pages.length>1?'s':'')+':</p>'+pageRows(v.pages,6);}
+      }else{
+        h+='<div class="ol-vans"><span class="vr">'+esc(v.ref)+'</span><span class="vt">'+(v.vnums.length?'Verses cited here: '+v.vnums.join(', '):'No verses from this chapter are cited yet.')+'</span></div>';
+        if(v.pages.length){h+='<p class="lead">Pages citing this chapter:</p>'+pageRows(v.pages,6);}
+      }
+      addBot(h);
+    }
+    function cap1(s){return s?s.charAt(0).toUpperCase()+s.slice(1):s;}
+    function renderTopic(q){
+      var r=rank(q),tk=r.tk,top=r.top;
+      if(!tk.length){addBot('<p class="lead">Try a question like <em>why do you venerate icons?</em> or type a Bible reference such as <em>John 3:16</em>.</p>');return;}
+      if(!top.length){addBot('<p class="lead">I couldn’t find that on the site. Try different words, or browse from the menu.</p>');return;}
+      if(r.broad){
+        var h='<p class="lead">“'+esc(cap1(r.term))+'” runs through much of the site — that’s a broad topic. Here are the main places it’s covered; add a few more words to narrow things down:</p>';
+        h+=top.map(function(it){return '<a class="ol-ans" href="'+esc(it.f)+(it.a?'#'+esc(it.a):'')+'"><span class="a-t">'+esc(it.t)+'</span>'+(it.h?'<span class="a-h">'+esc(it.h)+'</span>':'')+'</a>';}).join('');
+        addBot(h);return;
+      }
+      var strong=(top[0].cov===tk.length);
+      var lead=strong?'Here’s where the site addresses that:':'This looks closest on the site:';
+      var body=top.map(function(it){
+        return '<a class="ol-ans" href="'+esc(it.f)+(it.a?'#'+esc(it.a):'')+'"><span class="a-t">'+esc(it.t)+'</span>'+(it.h?'<span class="a-h">'+esc(it.h)+'</span>':'')+'<span class="a-x">'+excerpt(it.x,tk)+'</span></a>';
+      }).join('');
+      addBot('<p class="lead">'+lead+'</p>'+body);
+    }
+
+    /* citation links under an AI answer, numbered to match [1]/[2] in the text */
+    function citeHTML(top){
+      return '<div class="ol-ai-cite"><p class="lead">Sources on the site</p>'+top.map(function(it,i){
+        return '<a class="ol-ans" href="'+esc(it.f)+(it.a?'#'+esc(it.a):'')+'"><span class="a-t"><span class="a-c">['+(i+1)+']</span>'+esc(it.t)+'</span>'+(it.h?'<span class="a-h">'+esc(it.h)+'</span>':'')+'</a>';
+      }).join('')+'</div>';
+    }
+    /* stream a grounded answer from the Worker; onErr triggers retrieval fallback */
+    function streamAI(q,passages,bubble,onDone,onErr){
+      var txt=document.createElement('div');txt.className='ol-ai-txt';
+      var acc='',started=false,gotErr=false,pinned=false;
+      function begin(){if(!started){started=true;bubble.innerHTML='';bubble.appendChild(txt);}}
+      /* keep the START of the answer at the top of the log so the reader begins at the beginning */
+      function pinStart(){if(pinned)return;pinned=true;var head=bubble.previousElementSibling||bubble;var lr=log.getBoundingClientRect(),er=head.getBoundingClientRect();log.scrollTop+=(er.top-lr.top)-10;}
+      /* gently type the answer in, word by word, with a blinking caret */
+      function typeReveal(full,done){
+        var parts=full.match(/\S+\s*/g)||[full];var i=0,n=parts.length,step=n>90?3:(n>45?2:1);
+        (function tick(){
+          i=Math.min(n,i+step);
+          txt.innerHTML=fmtAI(parts.slice(0,i).join(''))+(i<n?'<span class="ol-ai-caret"></span>':'');
+          if(i<n){setTimeout(tick,18);}else{txt.innerHTML=fmtAI(full||'—');done();}
+        })();
+      }
+      fetch(AI_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({q:q,passages:passages})}).then(function(res){
+        if(!res.ok||!res.body)throw new Error('bad response');
+        var reader=res.body.getReader(),dec=new TextDecoder(),buf='';
+        function finish(){begin();pinStart();typeReveal(acc,onDone);}
+        function pump(){
+          return reader.read().then(function(r){
+            if(r.done){finish();return;}
+            buf+=dec.decode(r.value,{stream:true});
+            var lines=buf.split('\n');buf=lines.pop()||'';
+            lines.forEach(function(line){
+              var t=line.trim();
+              if(t.indexOf('data:')!==0)return;
+              var p=t.slice(5).trim();
+              if(p==='[DONE]'||!p)return;
+              try{var tok=JSON.parse(p);if(typeof tok==='string'){acc+=tok;}}catch(e){}
+            });
+            return pump();
+          });
+        }
+        return pump();
+      }).catch(function(){if(!gotErr){gotErr=true;onErr();}});
+    }
+    function renderTopicAI(q){
+      var r=rank(q),tk=r.tk,top=r.top;
+      if(!tk.length){addBot('<p class="lead">Try a question like <em>why do you venerate icons?</em> or type a Bible reference such as <em>John 3:16</em>.</p>');busy=false;return;}
+      if(!top.length){addBot('<p class="lead">I couldn’t find that on the site. Try different words, or browse from the menu.</p>');busy=false;return;}
+      var passages=top.slice(0,6).map(function(it){return {t:it.t,h:it.h,x:it.x};});
+      lampState('think');
+      var bubble=addBot(''+LAMP('think')+'<span class="ol-ai-think">consulting the lamp…</span>');
+      streamAI(q,passages,bubble,function(){
+        var c=document.createElement('div');c.innerHTML=citeHTML(top);
+        bubble.appendChild(c.firstChild);busy=false;lampState('happy');setTimeout(function(){lampState('idle');},4200);
+      },function(){
+        bubble.parentNode&&bubble.parentNode.removeChild(bubble);
+        lampState('idle');renderTopic(q);busy=false;
+      });
+    }
+
+    var busy=false;
+    function handle(q){
+      q=(q||'').trim();if(!q||busy)return;
+      addUser(q);inp.value='';busy=true;
+      var topic=function(){loadC().then(function(){if(AI_ENDPOINT)renderTopicAI(q);else{renderTopic(q);busy=false;}});};
+      var vp=(window.__olVerseQuery?window.__olVerseQuery(q):Promise.resolve(null));
+      Promise.resolve(vp).then(function(v){
+        if(v){renderVerse(v);busy=false;return;}
+        topic();
+      }).catch(topic);
+    }
+
+    var greeted=false;
+    function greet(){
+      if(greeted)return;greeted=true;
+      var d=addBot('<p class="lead">'+LAMP('idle')+' Ask me anything about the Oriental Orthodox faith, other traditions, or type a Bible reference — I’ll point you to the answer on the site.</p><div class="ol-ask-chips"></div>');
+      var chips=['Why venerate icons?','Are we monophysite?','Purgatory','John 3:16'];
+      var cw=d.querySelector('.ol-ask-chips');
+      chips.forEach(function(c){var b=document.createElement('button');b.type='button';b.textContent=c;b.addEventListener('click',function(){handle(c);});cw.appendChild(b);});
+    }
+    function openAsk(){wrap.classList.add('open');fab.classList.add('hide');greet();lampState('idle');loadC();setTimeout(function(){inp.focus();},40);scrollDown();}
+    function closeAsk(){wrap.classList.remove('open');fab.classList.remove('hide');}
+    fab.addEventListener('click',openAsk);
+    xB.addEventListener('click',closeAsk);
+    sendB.addEventListener('click',function(){handle(inp.value);});
+    inp.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();handle(inp.value);}else if(e.key==='Escape'){closeAsk();}});
+    window.__olOpenAsk=openAsk;
+  }catch(e){}
+})();
+/* END-FEATURES4-JS */</script>
+<script>
+/* AUTO-FEATURES5-JS */
+(function(){
+  try{
+    /* ---- 1. print / save-as-PDF button in the sidebar ---- */
+    if(!document.querySelector('.ol-print-btn')){
+      var pb=document.createElement('button');pb.className='ol-print-btn';pb.type='button';
+      pb.setAttribute('aria-label','Print or save this page as PDF');
+      pb.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg><span>Print / Save as PDF</span>';
+      pb.addEventListener('click',function(){window.print();});
+      var sbtn=document.querySelector('.ol-search-btn');
+      if(sbtn&&sbtn.parentNode){sbtn.parentNode.insertBefore(pb,sbtn.nextSibling);}
+      else{var nav=document.querySelector('#sidebar nav,#sb nav,#sidebar,#sb');if(nav)nav.insertBefore(pb,nav.firstChild);}
+    }
+    /* ---- 2. offline / installable (PWA) service worker ---- */
+    if('serviceWorker' in navigator){
+      window.addEventListener('load',function(){
+        navigator.serviceWorker.register('sw.js').catch(function(){});
+      });
+    }
+  }catch(e){}
+})();
+/* END-FEATURES5-JS */</script>
+<button id="ol-sbt" onclick="olSb()" aria-label="Collapse or expand the contents sidebar" title="Hide or show contents"><span id="ol-sbi">&#8249;</span></button>
+<script>function olSb(){var c=document.documentElement.classList.toggle('sb-collapsed');try{localStorage.setItem('ol-sb',c?'1':'0')}catch(e){}olSbIcon()}function olSbIcon(){var i=document.getElementById('ol-sbi');if(i)i.innerHTML=document.documentElement.classList.contains('sb-collapsed')?'&#8250;':'&#8249;'}olSbIcon();</script>
+<script>/* AUTO-SHARECARDS-JS */
+(function(){
+try{
+  var SITE="The Orthodox Lamp";
+  var HOST="85z5yr9fyf-commits.github.io/the-orthodox-lamp";
+  /* ---- styles ---- */
+  if(!document.getElementById('ol-sc-style')){
+    var st=document.createElement('style');st.id='ol-sc-style';
+    st.textContent='.fc,.sv{position:relative}'+
+      '.ol-sc-btn{position:absolute;top:8px;right:8px;z-index:5;display:inline-flex;align-items:center;gap:5px;'+
+      'background:rgba(201,168,76,.12);border:1px solid var(--gd,#8a6a20);color:var(--gold,#c9a84c);'+
+      'border-radius:6px;padding:3px 8px;font:600 .7rem/1 Georgia,serif;cursor:pointer;opacity:0;'+
+      'transition:opacity .18s,background .18s}'+
+      '.fc:hover .ol-sc-btn,.sv:hover .ol-sc-btn,.ol-sc-btn:focus{opacity:.92}'+
+      '.ol-sc-btn:hover{background:rgba(201,168,76,.24)}'+
+      '.ol-sc-btn svg{width:12px;height:12px}'+
+      '@media(hover:none){.ol-sc-btn{opacity:.6}}'+
+      '@media print{.ol-sc-btn{display:none!important}}';
+    document.head.appendChild(st);
+  }
+  var ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"></line><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"></line></svg>';
+  function clean(s){return (s||'').replace(/\s+/g,' ').trim();}
+  function dequote(s){return s.replace(/^[“‘"']+/,'').replace(/[”’"']+$/,'').trim();}
+  function collect(el){
+    if(el.classList.contains('fc')){
+      var body=el.querySelector('.fc-body'), name=el.querySelector('.fc-name'), src=el.querySelector('.fc-src');
+      var srcTxt='';
+      if(src){var cl=src.cloneNode(true);var tg=cl.querySelector('.tag');if(tg)tg.remove();srcTxt=clean(cl.textContent);}
+      return {quote:dequote(clean(body?body.textContent:el.textContent)),
+              attr:name?clean(name.textContent):'', src:srcTxt};
+    }else{ /* .sv */
+      var cl=el.cloneNode(true), cite=cl.querySelector('cite'); var attr='';
+      var sb=cl.querySelector('.ol-sc-btn'); if(sb)sb.remove();
+      if(cite){attr=clean(cite.textContent);cite.remove();}
+      return {quote:dequote(clean(cl.textContent)), attr:attr, src:''};
+    }
+  }
+  function wrap(x,text,maxW){
+    var words=text.split(' '),lines=[],cur='';
+    for(var i=0;i<words.length;i++){
+      var t=cur?cur+' '+words[i]:words[i];
+      if(x.measureText(t).width>maxW&&cur){lines.push(cur);cur=words[i];}else{cur=t;}
+    }
+    if(cur)lines.push(cur);
+    return lines;
+  }
+  function draw(d){
+    var S=1080,c=document.createElement('canvas');c.width=S;c.height=S;
+    var x=c.getContext('2d');
+    var g=x.createLinearGradient(0,0,0,S);g.addColorStop(0,'#151515');g.addColorStop(1,'#0b0b0b');
+    x.fillStyle=g;x.fillRect(0,0,S,S);
+    x.strokeStyle='#c9a84c';x.lineWidth=3;x.strokeRect(46,46,S-92,S-92);
+    x.strokeStyle='#5a4a20';x.lineWidth=1;x.strokeRect(58,58,S-116,S-116);
+    x.textAlign='center';
+    /* label */
+    x.fillStyle='#a09880';x.font='600 22px Georgia,serif';
+    x.fillText('T H E   O R T H O D O X   L A M P',S/2,132);
+    /* lamp flame */
+    x.fillStyle='#e8c96a';x.beginPath();x.ellipse(S/2,182,11,17,0,0,Math.PI*2);x.fill();
+    x.fillStyle='#c9a84c';x.beginPath();x.moveTo(S/2,150);x.lineTo(S/2-11,180);x.lineTo(S/2+11,180);x.closePath();x.fill();
+    /* opening quote mark */
+    x.fillStyle='rgba(201,168,76,.35)';x.font='italic 150px Georgia,serif';
+    x.fillText('“',S/2,300);
+    /* quote text: size to fit */
+    var maxW=S-220, q=d.quote, size=46;
+    var lens=[[170,46],[300,40],[460,34],[680,29]], picked=25;
+    for(var i=0;i<lens.length;i++){if(q.length<=lens[i][0]){picked=lens[i][1];break;}}
+    size=picked;
+    x.fillStyle='#ece4d4';x.font='italic '+size+'px Georgia,serif';
+    var lines=wrap(x,q,maxW), lh=size*1.34;
+    if(lines.length>15){lines=lines.slice(0,15);lines[14]=lines[14].replace(/[.,;: ]+$/,'')+'…';}
+    var blockH=lines.length*lh, cy=560-blockH/2;
+    /* keep within frame */
+    if(cy<330)cy=330;
+    for(var j=0;j<lines.length;j++){x.fillText(lines[j],S/2,cy+j*lh);}
+    var y=cy+lines.length*lh+34;
+    /* divider */
+    x.strokeStyle='#5a4a20';x.lineWidth=1;x.beginPath();x.moveTo(S/2-46,y);x.lineTo(S/2+46,y);x.stroke();
+    y+=44;
+    /* attribution */
+    if(d.attr){x.fillStyle='#c9a84c';x.font='700 30px Georgia,serif';
+      var al=wrap(x,'— '+d.attr,maxW);for(var k=0;k<al.length;k++){x.fillText(al[k],S/2,y);y+=38;}}
+    /* source */
+    if(d.src){x.fillStyle='#9a9078';x.font='italic 22px Georgia,serif';
+      var sl=wrap(x,d.src,maxW);for(var m=0;m<sl.length;m++){x.fillText(sl[m],S/2,y);y+=28;}}
+    /* footer */
+    x.fillStyle='#8a8268';x.font='20px Georgia,serif';
+    x.fillText(HOST,S/2,S-70);
+    return c;
+  }
+  function share(d){
+    var c=draw(d);
+    c.toBlob(function(blob){
+      if(!blob)return;
+      var url=URL.createObjectURL(blob);
+      var a=document.createElement('a');
+      a.href=url;a.download='orthodox-lamp-quote.png';
+      document.body.appendChild(a);a.click();a.remove();
+      setTimeout(function(){URL.revokeObjectURL(url);},4000);
+    },'image/png');
+  }
+  var nodes=document.querySelectorAll('.fc, .sv');
+  nodes.forEach(function(el){
+    if(el.querySelector('.ol-sc-btn'))return;
+    var txt=clean(el.textContent);
+    if(txt.length<25)return;
+    var b=document.createElement('button');
+    b.type='button';b.className='ol-sc-btn';b.title='Download this quote as an image';
+    b.setAttribute('aria-label','Download this quote as a shareable image');
+    b.innerHTML=ICON+'<span>Share</span>';
+    b.addEventListener('click',function(ev){ev.stopPropagation();share(collect(el));});
+    el.appendChild(b);
+  });
+}catch(e){}
+})();
+/* END-SHARECARDS-JS */</script>
+<script>(function(){try{var r=document.querySelector('.rm-row'),o=r&&r.querySelector('.on');if(r&&o){r.scrollLeft+=o.getBoundingClientRect().left-r.getBoundingClientRect().left-(r.clientWidth-o.clientWidth)/2;}}catch(e){}})();</script>
+</body>
+</html>
