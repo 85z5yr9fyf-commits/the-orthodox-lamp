@@ -1,0 +1,2083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Anathema and Other Churches' Baptism — The Orthodox Lamp</title>
+<style>
+:root{--gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;--bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--tx:#e8e0d0;--mu:#b8ac82;--red:#8b2020;--br:#2a2a2a;--bg5:#3a2e10;--sidebar-w:270px;--mia:#1a3060;--mia-b:#3060c0;--dyo:#2a1a40;--dyo-b:#8060c0;--nes:#1a2510;--nes-b:#4a7030;--eut:#3a1515;--eut-b:#a03030}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.7;display:flex;flex-direction:column;min-height:100vh}
+a{color:var(--gold);text-decoration:none}
+a:hover{color:var(--gl)}
+
+#prog{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--gd),var(--gold),var(--gl));z-index:9999;transition:width .1s}
+
+#sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg2);border-right:1px solid var(--br);overflow-y:auto;z-index:100;display:flex;flex-direction:column;transition:transform .3s}
+#sidebar header{padding:1.4rem 1.2rem 1rem;border-bottom:1px solid var(--br)}
+.sb-cross{font-size:1.3rem;color:var(--gold);display:block;text-align:center;margin-bottom:.3rem}
+.sb-title{font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gl);text-align:center;line-height:1.3}
+.sb-sub{font-size:.62rem;color:var(--mu);text-align:center;margin-top:.25rem;font-style:italic}
+nav{padding:.8rem 0;flex:1}
+nav a{display:block;padding:.42rem 1.2rem;font-size:.78rem;color:var(--mu);transition:color .15s,background .15s;border-left:2px solid transparent;line-height:1.4}
+nav a:hover{color:var(--tx);background:var(--bg3)}
+nav a.active{color:var(--gl);border-left-color:var(--gold);background:var(--bg5)}
+.sb-search{padding:.8rem 1rem;border-top:1px solid var(--br)}
+.sb-search input{width:100%;background:var(--bg3);border:1px solid var(--br);border-radius:5px;padding:.4rem .7rem;color:var(--tx);font-size:.78rem;outline:none}
+.sb-search input:focus{border-color:var(--gd)}
+
+#main{margin-left:var(--sidebar-w);flex:1;display:flex;flex-direction:column}
+#mob-bar{display:none;position:fixed;top:0;left:0;right:0;height:48px;background:var(--bg2);border-bottom:1px solid var(--br);align-items:center;padding:0 1rem;z-index:99}
+#mob-bar .mb-title{font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gl);flex:1;text-align:center}
+#ham{background:none;border:none;color:var(--gold);font-size:1.4rem;cursor:pointer;padding:.3rem}
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:99}
+#overlay.show{display:block}
+
+.hero{text-align:center;padding:4.5rem 1.5rem 3rem;background:linear-gradient(180deg,var(--bg2) 0%,var(--bg) 100%);border-bottom:1px solid var(--br);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(201,168,76,.07) 0%,transparent 70%);pointer-events:none}
+.si{font-size:2rem;color:var(--gold);display:block;margin-bottom:.5rem}
+.st{font-size:clamp(1.5rem,4vw,2.4rem);font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--tx);line-height:1.2}
+.st span{color:var(--gold)}
+.ss{font-size:1rem;color:var(--gl);margin:.6rem 0 .3rem;font-weight:700;letter-spacing:.04em}
+.tg{font-size:.85rem;color:var(--mu);font-style:italic;margin-top:.4rem}
+.orn{color:var(--gold);font-size:.9rem;letter-spacing:.4em;margin-top:1rem;opacity:.7}
+
+.content{max-width:860px;margin:0 auto;padding:3rem 2rem 5rem;flex:1}
+
+.sec{border:1px solid var(--br);border-radius:8px;margin-bottom:1.2rem;overflow:hidden;background:var(--bg2)}
+.sec-h{width:100%;background:none;border:none;padding:1.1rem 1.4rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--tx);font-family:'Georgia',serif;font-size:1rem;font-weight:700;text-align:left;transition:background .2s}
+.sec-h:hover{background:var(--bg3)}
+.sec-h .sec-num{color:var(--gold);font-size:.8rem;font-weight:700;letter-spacing:.1em;margin-right:.7rem;min-width:2.2rem}
+.sec-h .arr{color:var(--gold);transition:transform .3s;font-size:.9rem}
+.sec.open .arr{transform:rotate(180deg)}
+.sec-b{display:none;padding:1.4rem;border-top:1px solid var(--br)}
+.sec.open .sec-b{display:block}
+
+h3{font-size:1rem;color:var(--gl);margin:1.4rem 0 .6rem;letter-spacing:.03em}
+h3:first-child{margin-top:0}
+p{margin-bottom:.9rem;font-size:.92rem}
+ul,ol{margin:.6rem 0 .9rem 1.4rem;font-size:.92rem}
+li{margin-bottom:.3rem}
+blockquote{border-left:3px solid var(--gold);padding:.6rem 1rem;background:var(--bg3);border-radius:0 5px 5px 0;margin:.8rem 0;font-style:italic;font-size:.9rem;color:var(--gl)}
+
+/* Glossary terms */
+.gt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.8rem;margin:.8rem 0}
+.gt{background:var(--bg3);border:1px solid var(--br);border-radius:7px;padding:.9rem 1rem}
+.gt-term{font-size:.82rem;font-weight:700;color:var(--gold);letter-spacing:.06em;margin-bottom:.2rem}
+.gt-grk{font-size:.75rem;color:var(--mu);font-style:italic;margin-bottom:.4rem}
+.gt-def{font-size:.82rem;color:var(--tx);line-height:1.5}
+
+/* Comparison grid */
+.comp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin:1rem 0}
+.comp-card{border-radius:8px;padding:1rem 1.1rem;border:1px solid var(--br)}
+.comp-card.mia{background:var(--mia);border-color:var(--mia-b)}
+.comp-card.dyo{background:var(--dyo);border-color:var(--dyo-b)}
+.comp-card.nes{background:var(--nes);border-color:var(--nes-b)}
+.comp-card.eut{background:var(--eut);border-color:var(--eut-b)}
+.comp-card h4{font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem}
+.comp-card.mia h4{color:#8ab0ff}
+.comp-card.dyo h4{color:#b090ff}
+.comp-card.nes h4{color:#80b060}
+.comp-card.eut h4{color:#e07070}
+.comp-card p{font-size:.82rem;line-height:1.5}
+
+/* Scripture cards with dual interpretation */
+.sv{background:var(--bg3);border:1px solid var(--br);border-radius:7px;padding:1rem 1.2rem;margin:.7rem 0}
+.sv .ref{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+.sv .txt{font-size:.9rem;font-style:italic;line-height:1.6;margin-bottom:.5rem}
+.sv .mia-note{background:var(--mia);border:1px solid var(--mia-b);border-radius:5px;padding:.5rem .7rem;font-size:.8rem;margin:.4rem 0}
+.sv .dyo-note{background:var(--dyo);border:1px solid var(--dyo-b);border-radius:5px;padding:.5rem .7rem;font-size:.8rem;margin:.4rem 0}
+.labels{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.4rem}
+.labels span{font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.15rem .5rem;border-radius:3px}
+.labels .mia{background:var(--mia);color:#8ab0ff;border:1px solid var(--mia-b)}
+.labels .dyo{background:var(--dyo);color:#b090ff;border:1px solid var(--dyo-b)}
+.labels .ctx{background:#1a1a3a;color:#8a8adf;border:1px solid #2a2a6a}
+.labels .pl{background:#3a2e10;color:#c9a84c;border:1px solid #5a4a20}
+
+/* Anathema cards */
+.ana{background:var(--eut);border:1px solid var(--eut-b);border-radius:7px;padding:.9rem 1.1rem;margin:.6rem 0}
+.ana-num{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#e07070;margin-bottom:.3rem}
+.ana-txt{font-size:.88rem;font-style:italic;line-height:1.6}
+
+/* Father cards */
+.fc{background:var(--bg3);border-left:3px solid var(--gold);border-radius:0 7px 7px 0;padding:1rem 1.2rem;margin:.7rem 0}
+.fc .fn{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.2rem}
+.fc .fw{font-size:.78rem;color:var(--mu);margin-bottom:.4rem;font-style:italic}
+.fc .fq{font-size:.9rem;font-style:italic;line-height:1.6;margin-bottom:.3rem}
+
+/* Objection accordion */
+.obj{border:1px solid var(--br);border-radius:7px;margin:.7rem 0;overflow:hidden;background:var(--bg3)}
+.obj-h{width:100%;background:none;border:none;padding:.8rem 1.1rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--gl);font-family:'Georgia',serif;font-size:.88rem;font-weight:700;text-align:left}
+.obj-h:hover{background:var(--bg4)}
+.obj-h .arr{transition:transform .3s;font-size:.8rem;color:var(--gold)}
+.obj.open .arr{transform:rotate(180deg)}
+.obj-b{display:none;padding:1rem 1.1rem;border-top:1px solid var(--br);font-size:.88rem}
+.obj.open .obj-b{display:block}
+
+/* FAQ */
+.fi{border:1px solid var(--br);border-radius:7px;margin:.6rem 0;overflow:hidden}
+.fi-h{width:100%;background:var(--bg2);border:none;padding:.8rem 1.1rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--tx);font-family:'Georgia',serif;font-size:.88rem;font-weight:700;text-align:left}
+.fi-h:hover{background:var(--bg3)}
+.fi-h .arr{transition:transform .3s;font-size:.8rem;color:var(--gold)}
+.fi.open .arr{transform:rotate(180deg)}
+.fi-b{display:none;padding:1rem 1.1rem;border-top:1px solid var(--br);background:var(--bg2);font-size:.88rem}
+.fi.open .fi-b{display:block}
+
+/* Timeline */
+.timeline{border-left:2px solid var(--gd);padding-left:1.4rem;margin:1rem 0}
+.tl-item{position:relative;margin-bottom:1.2rem}
+.tl-item::before{content:'';position:absolute;left:-1.8rem;top:.45rem;width:.7rem;height:.7rem;background:var(--gold);border-radius:50%}
+.tl-date{font-size:.72rem;font-weight:700;letter-spacing:.1em;color:var(--gold);text-transform:uppercase}
+.tl-text{font-size:.88rem;color:var(--tx);margin-top:.2rem}
+
+/* Sources */
+.src-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.8rem;margin-top:.8rem}
+.src-card{background:var(--bg3);border:1px solid var(--br);border-radius:6px;padding:.9rem 1rem}
+.src-card h4{font-size:.78rem;font-weight:700;color:var(--gold);margin-bottom:.4rem;letter-spacing:.06em;text-transform:uppercase}
+.src-card p,.src-card li{font-size:.8rem;color:var(--mu)}
+.src-card ul{margin-left:1rem}
+
+#btt{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--bg3);border:1px solid var(--gd);border-radius:50%;width:2.4rem;height:2.4rem;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1rem;cursor:pointer;opacity:0;transition:opacity .3s;z-index:50}
+#btt.show{opacity:1}
+
+@media(max-width:768px){
+  #sidebar{transform:translateX(-100%)}
+  #sidebar.open{transform:translateX(0)}
+  #main{margin-left:0;padding-top:48px}
+  #mob-bar{display:flex}
+}
+
+.lampsvg{display:block;margin:0 auto 14px;height:auto}
+.lampsvg .lampflame{animation:lampflick 3.2s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes lampflick{0%,100%{transform:scaleY(1) scaleX(1);opacity:.95}25%{transform:scaleY(1.06) scaleX(.97);opacity:1}50%{transform:scaleY(.96) scaleX(1.03);opacity:.9}75%{transform:scaleY(1.04) scaleX(.98);opacity:1}}
+
+html.light{--gold:#8a6a20;--gl:#6f5413;--gd:#b08e3e;--bg:#f7f2e6;--bg2:#efe8d5;--bg3:#e7ddc7;--bg4:#ddd2b9;--tx:#2b2415;--mu:#6e6450;--br:#d2c7aa;--bg5:#efe0b8;--mia:#cfd8ed;--dyo:#dcd0ec;--dyo-b:#412b6e;--nes:#ddebd1;--eut:#edcfcf}
+#ol-tt{position:fixed;right:16px;bottom:74px;z-index:9999;width:44px;height:44px;border-radius:50%;background:var(--bg3,var(--panel,#1a1a1a));color:var(--gold,#c9a84c);border:1px solid var(--gd,var(--gold-dark,var(--rule,#8a6a20)));font-size:1.1rem;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35);line-height:1}#ol-tt:hover{filter:brightness(1.15)}
+html.light .pl,html.light .labels .prot{background:#eed6d6;color:#8b2020}
+html.light .gl-tag,html.light .labels .oo{background:#d8e8d8;color:#1d5c1d}
+html.light .labels .ctx{background:#d8e3ee;color:#1d4a6b}
+html.light .obj{border-color:#dcc0c0}
+html.light .obj-bd{border-top-color:#dcc0c0}
+html.light .obj-hd h3{color:#8b2020}
+html.light .comp-card.prot{border-top-color:#a83232}
+html.light .comp-card.prot .ct{color:#a83232}
+html.light .labels .mia{color:#112d68}
+html.light .labels .dyo{color:#2a1168}
+html.light .labels .pl{color:#5c4916}
+html.light .ana-num{color:#651010}
+/* ol-aes-v1 */
+html.light #sidebar{background:linear-gradient(180deg,#f5edd5 0%,#ede4cb 100%)}
+html.light .sec{box-shadow:0 1px 6px rgba(100,70,15,.09)}
+html.light .sv{box-shadow:0 1px 4px rgba(100,70,15,.08)}
+html.light .fc{box-shadow:0 1px 4px rgba(100,70,15,.08)}
+html.light a{color:#6b4a10}
+html.light #sidenav a{color:var(--mu)}
+html.light #sidenav a.active,html.light #sidenav a:hover{color:var(--gold)}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* AUTO-ENHANCE */
+html.js-anim .sec{opacity:0;transform:translateY(14px);transition:opacity .55s cubic-bezier(.16,.7,.3,1),transform .55s cubic-bezier(.16,.7,.3,1)}
+html.js-anim .sec.in{opacity:1;transform:none}
+.sec.open .sec-body,.sec.open .sec-bd,.sec.open .sec-body2{animation:olSecOpen .4s cubic-bezier(.16,.7,.3,1)}
+.fi.open .fi-body,.fi.open .fi-bd{animation:olSecOpen .32s cubic-bezier(.16,.7,.3,1)}
+@keyframes olSecOpen{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.sec{margin-bottom:20px;transition:border-color .25s,box-shadow .25s}
+.sec-h:hover,.sec-hd:hover{box-shadow:inset 3px 0 0 var(--gd)}
+.sec-body,.sec-bd{line-height:1.75}
+.sec-body p,.sec-bd p{margin-bottom:12px}
+#ol-top{position:fixed;right:22px;bottom:24px;width:42px;height:42px;border-radius:50%;border:1px solid var(--br);background:var(--bg2);color:var(--gd);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .3s,transform .3s,background .2s;z-index:150;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+#ol-top.show{opacity:1;pointer-events:auto;transform:none}
+#ol-top:hover{background:var(--gd);color:#1a140a}
+.ol-readtime{display:inline-flex;align-items:center;gap:7px;font-size:.74rem;letter-spacing:.04em;color:var(--mu);border:1px solid var(--br);border-radius:20px;padding:4px 12px;margin-top:10px;text-transform:uppercase}
+.ol-readtime::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--gd)}
+@media(prefers-reduced-motion:reduce){html.js-anim .sec{opacity:1;transform:none}#ol-top{transition:none}}
+/* END-ENHANCE */
+
+/* AUTO-AESTHETIC2 */
+:root{--ol-acc:var(--gd,#c9a84c)}
+/* smooth anchor scrolling + sticky-header offset */
+html{scroll-behavior:smooth}
+:where(.sec,[id]){scroll-margin-top:88px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+/* theme cross-fade */
+body,main,.sec,.sec-h,.sec-hd,.sec-body,.sec-bd,#sb,#sb-nav a{transition:background-color .35s ease,color .35s ease,border-color .35s ease}
+/* typography polish */
+main .sec-body p,main .sec-bd p{line-height:1.8}
+.sec-h,.sec-hd{letter-spacing:.005em}
+p.ol-lead::first-letter{float:left;font-size:3.1em;line-height:.78;padding:6px 10px 0 0;color:var(--ol-acc);font-weight:700}
+/* card hover depth */
+[class*="-card"],[class*="-box"],.vbox{transition:transform .22s cubic-bezier(.16,.7,.3,1),box-shadow .22s ease,border-color .22s ease,background-color .35s ease,color .35s ease}
+[class*="-card"]:hover,[class*="-box"]:hover,.vbox:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.28)}
+html.light [class*="-card"]:hover,html.light [class*="-box"]:hover,html.light .vbox:hover{box-shadow:0 8px 22px rgba(40,30,10,.12)}
+/* section dividers (inserted by JS) */
+.ol-divider{text-align:center;color:var(--ol-acc);opacity:.45;font-size:1rem;margin:4px auto 26px;line-height:1;letter-spacing:0;user-select:none}
+/* sidebar active-dot fill */
+#sb-nav a{position:relative}
+#sb-nav a.active::before{content:"";position:absolute;left:-2px;top:50%;width:6px;height:6px;border-radius:50%;background:var(--ol-acc);box-shadow:0 0 7px var(--ol-acc);transform:translateY(-50%) scale(0);animation:olDot .3s cubic-bezier(.16,.7,.3,1) forwards}
+@keyframes olDot{to{transform:translateY(-50%) scale(1)}}
+/* bare blockquote uplift (does not touch styled quote-cards) */
+main blockquote{border-left:3px solid var(--ol-acc);padding:8px 0 8px 18px;margin:18px 0;font-style:italic}
+/* END-AESTHETIC2 */
+
+/* AUTO-FEATURES3 */
+/* copy-link buttons */
+.ol-copy{opacity:0;margin:0 8px;background:none;border:none;cursor:pointer;font-size:.8rem;color:var(--mu);transition:opacity .2s,color .2s;vertical-align:middle;padding:2px 5px;line-height:1;border-radius:5px}
+.ol-copy::before{content:"\1F517"}
+.sec-h:hover .ol-copy,.sec-hd:hover .ol-copy,.ol-copy:focus-visible{opacity:.65}
+.ol-copy:hover{opacity:1;color:var(--gd,#c9a84c)}
+.ol-copy.ok{opacity:1;color:#3fa34d}
+.ol-copy.ok::before{content:"\2713";margin-right:4px}
+.ol-copy.ok::after{content:"copied";font-size:.7rem;letter-spacing:.03em}
+/* related topics */
+.ol-related{margin:42px 0 8px;padding:22px 24px;border:1px solid var(--br);border-radius:12px;background:var(--bg2)}
+.ol-related h3{margin:0 0 14px;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gd,#c9a84c);font-weight:700}
+.ol-related-links{display:flex;flex-wrap:wrap;gap:10px}
+.ol-related-links a{display:inline-block;padding:8px 15px;border:1px solid var(--br);border-radius:22px;font-size:.9rem;color:var(--tx,#e7ddc8);text-decoration:none;background:var(--bg,#1a140a);transition:border-color .2s,color .2s,background .2s,transform .2s}
+.ol-related-links a:hover{border-color:var(--gd,#c9a84c);color:var(--gd,#c9a84c);transform:translateY(-1px)}
+/* search launcher */
+.ol-search-btn{display:flex;align-items:center;justify-content:space-between;width:100%;margin:10px 0 4px;padding:9px 13px;border:1px solid var(--br);border-radius:9px;background:var(--bg2);color:var(--mu);font:inherit;font-size:.86rem;cursor:pointer;transition:border-color .2s,color .2s}
+.ol-search-btn:hover{border-color:var(--gd,#c9a84c);color:var(--gd,#c9a84c)}
+.ol-search-btn span{border:1px solid var(--br);border-radius:5px;padding:1px 7px;font-size:.78rem;opacity:.8}
+/* search overlay */
+.ol-ov{position:fixed;inset:0;background:rgba(0,0,0,.62);backdrop-filter:blur(3px);z-index:1000;display:none;align-items:flex-start;justify-content:center;padding:11vh 16px 16px}
+.ol-ov.open{display:flex}
+.ol-modal{width:100%;max-width:620px;background:var(--bg2,#221a0e);border:1px solid var(--br);border-radius:14px;box-shadow:0 24px 70px rgba(0,0,0,.55);overflow:hidden;display:flex;flex-direction:column;max-height:74vh}
+html.light .ol-modal{box-shadow:0 24px 70px rgba(40,30,10,.22)}
+.ol-search-input{border:none;border-bottom:1px solid var(--br);background:none;color:var(--tx,#e7ddc8);font:inherit;font-size:1.12rem;padding:18px 22px;outline:none;width:100%}
+.ol-search-input::placeholder{color:var(--mu)}
+.ol-results{overflow-y:auto;padding:8px}
+.ol-r{display:block;padding:10px 14px;border-radius:9px;text-decoration:none;color:var(--tx,#e7ddc8);transition:background .12s}
+.ol-r .r-t{display:block;font-weight:600;font-size:.97rem}
+.ol-r .r-s{display:block;font-size:.83rem;color:var(--mu);margin-top:2px}
+.ol-r .r-s::before{content:"\2192  ";color:var(--gd,#c9a84c)}
+.ol-r.sel,.ol-r:hover{background:var(--bg,#1a140a)}
+.ol-r.sel{box-shadow:inset 3px 0 0 var(--gd,#c9a84c)}
+.ol-r mark{background:rgba(201,168,76,.32);color:inherit;border-radius:2px;padding:0 1px}
+.r-empty{padding:26px 18px;text-align:center;color:var(--mu);font-size:.92rem}
+.ol-hint{border-top:1px solid var(--br);padding:9px 18px;font-size:.74rem;color:var(--mu);letter-spacing:.03em}
+.ol-r .r-s.r-topic::before{content:"\2756  ";color:var(--gd,#c9a84c)}
+/* verse-mode card */
+.ol-vcard{margin:6px 6px 4px;padding:14px 16px;border:1px solid var(--br);border-radius:10px;background:var(--bg,#1a140a)}
+.ol-vcard .vref{font-weight:700;color:var(--gd,#c9a84c);font-size:1rem}
+.ol-vcard .vkjv{display:block;margin-top:7px;font-size:.93rem;line-height:1.6;color:var(--tx,#e7ddc8)}
+.ol-vcard .vkjv em{font-style:normal;font-size:.64rem;color:var(--mu);border:1px solid var(--br);border-radius:4px;padding:0 5px;margin-left:6px;letter-spacing:.06em;vertical-align:middle}
+.ol-vcard .vmeta{display:block;margin-top:8px;font-size:.76rem;color:var(--mu);line-height:1.5}
+/* scripture verse + tooltip */
+.ol-verse{border-bottom:1px dotted var(--gd,#c9a84c);cursor:help;text-decoration:none}
+.ol-tip{position:absolute;z-index:1100;max-width:330px;background:var(--bg2,#221a0e);color:var(--tx,#e7ddc8);border:1px solid var(--br);border-radius:10px;padding:12px 15px;font-size:.9rem;line-height:1.55;box-shadow:0 12px 34px rgba(0,0,0,.5);pointer-events:none}
+html.light .ol-tip{box-shadow:0 12px 34px rgba(40,30,10,.2)}
+.ol-tip b{color:var(--gd,#c9a84c);font-size:.84rem;letter-spacing:.02em}
+.ol-tip-kjv{font-size:.66rem;color:var(--mu);border:1px solid var(--br);border-radius:4px;padding:0 5px;margin-left:6px;letter-spacing:.05em}
+.ol-tip-load,.ol-tip-err{color:var(--mu);font-style:italic}
+/* print / pdf */
+@media print{
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #sidebar,#sb,#ham,#overlay,#prog,#ol-top,#ol-tt,.ol-search-btn,.ol-copy,.back-link,.ol-ov,.ol-tip,.ol-divider,.ol-related,.sb-search,nav,.arr{display:none!important}
+  html,body{background:#fff!important;color:#000!important}
+  main{margin:0!important;padding:0!important;max-width:100%!important;width:100%!important}
+  .sec-body,.sec-bd,.sec-body2,.fi-body,.fi-bd{display:block!important;max-height:none!important;opacity:1!important;transform:none!important;animation:none!important}
+  .sec{opacity:1!important;transform:none!important;page-break-inside:avoid;border:none!important;margin-bottom:14px!important}
+  .sec-h,.sec-hd{cursor:default}
+  .hero,.pg-title,.page-head,.pg-head,.hd{background:#fff!important;color:#000!important;border:none!important}
+  .ol-verse{border-bottom:none}
+  a{color:#000!important;text-decoration:none}
+  h1,h2,h3{color:#000!important}
+}
+/* END-FEATURES3 */
+
+/* AUTO-FEATURES4 */
+.ol-ask-fab{position:fixed;right:22px;bottom:24px;z-index:1200;display:flex;align-items:center;gap:9px;height:52px;padding:0 19px 0 15px;border:1px solid var(--br);border-radius:30px;background:var(--gd,#c9a84c);color:#1a140a;font:inherit;font-weight:600;font-size:.9rem;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.35);transition:transform .2s,box-shadow .2s}
+.ol-ask-fab:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(0,0,0,.45)}
+.ol-ask-fab svg{width:20px;height:20px;flex:none;display:block}
+.ol-ask-fab.hide{display:none}
+#ol-top{bottom:128px}
+.ol-ask-wrap{position:fixed;right:22px;bottom:24px;z-index:1201;width:380px;max-width:calc(100vw - 32px);height:560px;max-height:calc(100vh - 70px);background:var(--bg2,#221a0e);border:1px solid var(--br);border-radius:16px;box-shadow:0 24px 70px rgba(0,0,0,.55);display:none;flex-direction:column;overflow:hidden}
+.ol-ask-wrap.open{display:flex}
+html.light .ol-ask-wrap{box-shadow:0 24px 70px rgba(40,30,10,.22)}
+.ol-ask-hd{display:flex;align-items:center;gap:10px;padding:13px 15px;border-bottom:1px solid var(--br);background:var(--bg,#1a140a)}
+.ol-ask-hd .ti{flex:1;line-height:1.25}
+.ol-ask-hd .ti b{color:var(--gd,#c9a84c);font-size:.97rem}
+.ol-ask-hd .ti span{display:block;font-size:.7rem;color:var(--mu);font-weight:400;letter-spacing:.02em}
+.ol-ask-x{background:none;border:none;color:var(--mu);font-size:1.4rem;line-height:1;cursor:pointer;padding:0 6px;border-radius:6px}
+.ol-ask-x:hover{color:var(--tx,#e7ddc8)}
+.ol-ask-log{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:11px}
+.ol-ask-msg{max-width:92%;font-size:.9rem;line-height:1.55;word-wrap:break-word}
+.ol-ask-msg.user{align-self:flex-end;background:var(--gd,#c9a84c);color:#1a140a;padding:8px 13px;border-radius:14px 14px 4px 14px;font-weight:500}
+.ol-ask-msg.bot{align-self:flex-start;color:var(--tx,#e7ddc8);width:100%}
+.ol-ask-msg.bot .lead{margin:0 0 9px;color:var(--mu);font-size:.85rem}
+.ol-ans{display:block;text-decoration:none;color:var(--tx,#e7ddc8);border:1px solid var(--br);border-radius:10px;padding:9px 12px;margin-bottom:8px;background:var(--bg,#1a140a);transition:border-color .18s,transform .18s}
+.ol-ans:hover{border-color:var(--gd,#c9a84c);transform:translateY(-1px)}
+.ol-ans .a-t{display:block;font-weight:600;font-size:.88rem}
+.ol-ans .a-h{display:block;font-size:.78rem;color:var(--gd,#c9a84c);margin-top:1px}
+.ol-ans .a-x{display:block;font-size:.81rem;color:var(--mu);margin-top:5px;line-height:1.5}
+.ol-ans mark,.ol-ask-msg mark{background:rgba(201,168,76,.32);color:inherit;border-radius:2px;padding:0 1px}
+.ol-ai-txt{font-size:.9rem;line-height:1.6;color:var(--tx,#e7ddc8)}
+.ol-ai-txt p{margin:0 0 9px}.ol-ai-txt p:last-child{margin-bottom:0}
+.ol-ai-txt strong{color:var(--gl,#e8c96a);font-weight:600}
+.ol-ai-txt sup.ol-ci{color:var(--gd,#c9a84c);font-weight:600;font-size:.7em;padding:0 1px}
+.ol-ai-cite{margin-top:11px;padding-top:9px;border-top:1px solid var(--br)}
+.ol-ai-cite .lead{margin:0 0 7px;color:var(--mu);font-size:.78rem;text-transform:uppercase;letter-spacing:.04em}
+.ol-ans .a-c{display:inline-block;color:var(--gd,#c9a84c);font-weight:700;font-size:.78rem;margin-right:5px}
+.ol-ai-dots{display:inline-flex;gap:5px;padding:4px 0}
+.ol-ai-dots i{width:7px;height:7px;border-radius:50%;background:var(--gd,#c9a84c);opacity:.4;animation:olaiblink 1.2s infinite}
+.ol-ai-dots i:nth-child(2){animation-delay:.2s}.ol-ai-dots i:nth-child(3){animation-delay:.4s}
+@keyframes olaiblink{0%,60%,100%{opacity:.35}30%{opacity:1}}
+.ol-ai-lamp{display:inline-block;font-size:1.15em;line-height:1;transform-origin:50% 85%;animation:ollampflick 1.7s infinite ease-in-out}
+@keyframes ollampflick{0%,100%{opacity:.85;filter:drop-shadow(0 0 2px rgba(201,168,76,.45));transform:scale(1) rotate(0)}40%{opacity:1;filter:drop-shadow(0 0 8px rgba(201,168,76,.95));transform:scale(1.08) rotate(-2deg)}68%{opacity:.92;filter:drop-shadow(0 0 4px rgba(201,168,76,.7));transform:scale(1.02) rotate(1deg)}}
+.ol-ai-think{margin-left:7px;font-style:italic;font-size:.94em;opacity:.85}
+.ol-ask-msg{animation:olmsgin .4s cubic-bezier(.22,1,.36,1) both}
+@keyframes olmsgin{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
+.ol-ai-caret{display:inline-block;width:2px;height:1.05em;background:var(--gd,#c9a84c);margin-left:2px;vertical-align:-2px;border-radius:1px;animation:olcaret .8s step-end infinite}
+@keyframes olcaret{50%{opacity:0}}
+.ol-lamp{display:inline-block;line-height:0;vertical-align:-7px}.ol-lamp svg{width:24px;height:28px;overflow:visible}.ol-lamp-hd{vertical-align:middle;flex:0 0 auto}.ol-lamp-hd svg{width:34px;height:40px}.ol-lamp .eyes-happy,.ol-lamp .m-idle,.ol-lamp .m-think,.ol-lamp .m-happy{display:none}.ol-lamp.st-idle .m-idle{display:block}.ol-lamp.st-think .m-think{display:block}.ol-lamp.st-happy .m-happy{display:block}.ol-lamp.st-happy .eyes{display:none}.ol-lamp.st-happy .eyes-happy{display:block}.ol-lamp .eyes{transform-box:fill-box;transform-origin:center;animation:ollampblink 4.8s infinite}.ol-lamp.st-think .eyes{transform:translateY(-1px)}.ol-lamp .fl{transform-box:fill-box;transform-origin:50% 100%;animation:ollampfl 2.1s infinite ease-in-out}.ol-lamp.st-think .fl{animation-duration:1.1s}.ol-lamp.st-happy .fl{animation-duration:1.3s}.ol-lamp .rays{transform-box:fill-box;transform-origin:center;animation:olrays 2.6s infinite ease-in-out}.ol-lamp.st-think .rays{animation-duration:1.4s}.ol-lamp.st-happy .rays{animation-duration:1.6s}.ol-lamp.st-think .lampg{transform-box:fill-box;transform-origin:50% 100%;animation:ollampsway 2.6s infinite ease-in-out}.ol-lamp.st-happy .lampg{transform-box:fill-box;transform-origin:50% 100%;animation:ollamphop .6s ease}@keyframes ollampfl{0%,100%{transform:scaleY(1) scaleX(1)}30%{transform:scaleY(1.05) scaleX(.97)}60%{transform:scaleY(.98) scaleX(1.02)}}@keyframes olrays{0%,100%{transform:scale(1);opacity:.8}50%{transform:scale(1.08);opacity:1}}@keyframes ollampblink{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}@keyframes ollampsway{0%,100%{transform:rotate(-2.5deg)}50%{transform:rotate(2.5deg)}}@keyframes ollamphop{0%{transform:translateY(0)}40%{transform:translateY(-3px)}100%{transform:translateY(0)}}
+.ol-vans{border:1px solid var(--br);border-radius:10px;padding:11px 13px;margin-bottom:9px;background:var(--bg,#1a140a)}
+.ol-vans .vr{font-weight:700;color:var(--gd,#c9a84c)}
+.ol-vans .vt{display:block;margin-top:5px;font-size:.85rem;line-height:1.55;color:var(--tx,#e7ddc8)}
+.ol-vans .vt em{font-style:normal;font-size:.62rem;color:var(--mu);border:1px solid var(--br);border-radius:4px;padding:0 4px;margin-left:5px;letter-spacing:.05em;vertical-align:middle}
+.ol-ask-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+.ol-ask-chips button{font:inherit;font-size:.78rem;color:var(--tx,#e7ddc8);background:var(--bg,#1a140a);border:1px solid var(--br);border-radius:16px;padding:5px 11px;cursor:pointer;transition:border-color .18s,color .18s}
+.ol-ask-chips button:hover{border-color:var(--gd,#c9a84c);color:var(--gd,#c9a84c)}
+.ol-ask-foot{border-top:1px solid var(--br);padding:10px 10px 4px;display:flex;gap:8px;align-items:center}
+.ol-ask-foot input{flex:1;border:1px solid var(--br);background:var(--bg,#1a140a);color:var(--tx,#e7ddc8);font:inherit;font-size:.9rem;padding:9px 12px;border-radius:9px;outline:none}
+.ol-ask-foot input:focus{border-color:var(--gd,#c9a84c)}
+.ol-ask-foot button.send{flex:none;border:none;background:var(--gd,#c9a84c);color:#1a140a;width:38px;height:38px;border-radius:9px;cursor:pointer;font-size:1.15rem;line-height:1;display:flex;align-items:center;justify-content:center}
+.ol-ask-foot button.send:hover{filter:brightness(1.06)}
+.ol-ask-note{font-size:.66rem;color:var(--mu);text-align:center;padding:6px 12px 9px;line-height:1.4}.ol-ask-dl{display:block;margin-top:3px;opacity:.85}
+@media(max-width:480px){.ol-ask-wrap{right:8px;bottom:8px;width:auto;left:8px;height:80vh;max-height:none}.ol-ask-fab{right:12px;bottom:14px}#ol-top{bottom:78px}}
+/* END-FEATURES4 */
+
+/* AUTO-FEATURES5 */
+.ol-print-btn{display:flex;align-items:center;gap:9px;width:100%;margin:4px 0 6px;padding:9px 13px;border:1px solid var(--br);border-radius:9px;background:var(--bg2);color:var(--mu);font:inherit;font-size:.86rem;cursor:pointer;transition:border-color .2s,color .2s}
+.ol-print-btn:hover{border-color:var(--gd,#c9a84c);color:var(--gd,#c9a84c)}
+.ol-print-btn svg{width:16px;height:16px;flex:none;display:block}
+@media print{.ol-print-btn{display:none!important}}
+/* END-FEATURES5 */
+</style>
+<script>try{if(localStorage.getItem('ol-theme')==='light')document.documentElement.classList.add('light')}catch(e){}</script>
+<script>try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('js-anim')}catch(e){}</script>
+<link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#141008"><link rel="apple-touch-icon" href="icon-192.png">
+<style id="ol-sb-css">
+main{transition:margin-left .3s ease}
+#ol-sbt{position:fixed;top:50%;transform:translateY(-50%);left:var(--sidebar-w);z-index:150;width:20px;height:52px;display:flex;align-items:center;justify-content:center;background:var(--bg3);color:var(--gold);border:1px solid var(--br);border-left:none;border-radius:0 8px 8px 0;cursor:pointer;font-size:.95rem;line-height:1;box-shadow:2px 0 8px rgba(0,0,0,.28);transition:left .3s ease,filter .2s;font-family:Georgia,serif}
+#ol-sbt:hover{filter:brightness(1.18)}
+html.sb-collapsed #sidebar,html.sb-collapsed #sb{transform:translateX(-100%)}
+html.sb-collapsed main{margin-left:0}
+html.sb-collapsed #ol-sbt{left:0}
+@media(max-width:768px){#ol-sbt{display:none}}
+@media print{#ol-sbt{display:none!important}}
+</style>
+<script>try{if(localStorage.getItem('ol-sb')==='1')document.documentElement.classList.add('sb-collapsed')}catch(e){}</script>
+<!-- SEO-META-START -->
+<meta name="description" content="Does the Orthodox Church curse non-Orthodox Christians? What anathema means in Scripture and the councils, how the Fathers received converts from separated churches, how St Severus answered the charge of inconsistency, what the churches do today, and an honest verdict on whether it all fits together.">
+<link rel="canonical" href="https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/anathema.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="The Orthodox Lamp">
+<meta property="og:title" content="Anathema and Other Churches&#39; Baptism — The Orthodox Lamp">
+<meta property="og:description" content="Does the Orthodox Church curse non-Orthodox Christians? What anathema means in Scripture and the councils, how the Fathers received converts from separated churches, how St Severus answered the charge of inconsistency, what the churches do today, and an honest verdict on whether it all fits together.">
+<meta property="og:url" content="https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/anathema.html">
+<meta property="og:image" content="https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Anathema and Other Churches&#39; Baptism — The Orthodox Lamp">
+<meta name="twitter:description" content="Does the Orthodox Church curse non-Orthodox Christians? What anathema means in Scripture and the councils, how the Fathers received converts from separated churches, how St Severus answered the charge of inconsistency, what the churches do today, and an honest verdict on whether it all fits together.">
+<meta name="twitter:image" content="https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/og-cover.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "name": "Anathema and Other Churches' Baptism — The Orthodox Lamp", "description": "Does the Orthodox Church curse non-Orthodox Christians? What anathema means in Scripture and the councils, how the Fathers received converts from separated churches, how St Severus answered the charge of inconsistency, what the churches do today, and an honest verdict on whether it all fits together.", "url": "https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/anathema.html", "isPartOf": {"@type": "WebSite", "name": "The Orthodox Lamp", "url": "https://85z5yr9fyf-commits.github.io/the-orthodox-lamp/"}, "inLanguage": "en"}]}</script>
+<!-- SEO-META-END -->
+<style>/* SVLK */.sv-lk{color:inherit;text-decoration:none;border-bottom:1px dotted currentColor;transition:opacity .15s}.sv-lk:hover{opacity:.72}
+/* OL-BREADCRUMB */
+.ol-bc{margin:0;padding:16px 24px 2px;font-size:.8rem;color:var(--mu);display:flex;flex-wrap:wrap;align-items:center;gap:.45rem;letter-spacing:.02em}
+.ol-bc a{color:var(--mu);text-decoration:none;transition:color .15s}
+.ol-bc a:hover{color:var(--gd,#c9a84c)}
+.ol-bc i{opacity:.45;font-style:normal;font-size:.9em}
+.ol-bc .cur{color:var(--gd,#c9a84c);font-weight:600}
+@media print{.ol-bc{display:none!important}}
+/* END-OL-BREADCRUMB */
+/* OL-FABALIGN */
+#ol-top,#ol-tt{right:22px;width:44px;height:44px}
+.ol-ask-fab{right:22px;bottom:24px}
+#ol-tt{bottom:90px}
+#ol-top{bottom:148px}
+@media(max-width:480px){.ol-ask-fab{right:14px;bottom:16px}#ol-tt{right:14px;bottom:82px;width:42px;height:42px}#ol-top{right:14px;bottom:138px;width:42px;height:42px}}
+/* END-OL-FABALIGN */
+
+
+
+
+
+/* OL-PGBAND */
+.oo-pgband{display:block;text-decoration:none;position:relative;margin:14px 0 6px;border-radius:10px;overflow:hidden;border:1px solid var(--br);box-shadow:0 4px 14px rgba(0,0,0,.3);cursor:pointer}
+.oo-pgband .im{height:106px;background-size:cover;filter:sepia(.5) saturate(.82) brightness(.86) contrast(.95);transition:filter .5s ease,transform .5s ease}
+.oo-pgband:hover .im,.oo-pgband:focus-visible .im{filter:sepia(.3) saturate(.95) brightness(.98) contrast(1);transform:scale(1.03)}
+.oo-pgband:focus-visible{outline:2px solid var(--gl);outline-offset:2px}
+.oo-pgband .cap{position:absolute;left:15px;bottom:9px;font:600 .68rem/1.3 var(--disp,Georgia),serif;letter-spacing:.11em;text-transform:uppercase;color:var(--gl);opacity:.92;text-shadow:0 1px 6px rgba(0,0,0,1)}
+.oo-pgband .cap b{display:block;font-size:.85rem;letter-spacing:.05em;opacity:1}
+.oo-pgband::after{content:"\2626";position:absolute;top:7px;right:13px;color:var(--gl);opacity:.62;font-size:1.02rem;line-height:1;text-shadow:0 1px 3px rgba(0,0,0,.9);transition:opacity .4s ease}
+.oo-pgband:hover::after,.oo-pgband:focus-visible::after{opacity:.96}
+@media(max-width:760px){.oo-pgband .im{height:86px}}
+@media print{.oo-pgband{display:none}}
+/* END-OL-PGBAND */
+</style>
+<style id="ol-auth">
+/* AUTO-AUTHENTIC-CSS: book typography (EB Garamond, self-hosted, SIL OFL) and quieter ornament */
+@font-face{font-family:'EB Garamond';font-style:normal;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-greek-ext-wght-normal.woff2) format('woff2');unicode-range:U+1F00-1FFF}
+@font-face{font-family:'EB Garamond';font-style:normal;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-greek-wght-normal.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
+@font-face{font-family:'EB Garamond';font-style:normal;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-latin-ext-wght-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'EB Garamond';font-style:normal;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-latin-wght-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'EB Garamond';font-style:italic;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-greek-ext-wght-italic.woff2) format('woff2');unicode-range:U+1F00-1FFF}
+@font-face{font-family:'EB Garamond';font-style:italic;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-greek-wght-italic.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
+@font-face{font-family:'EB Garamond';font-style:italic;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-latin-ext-wght-italic.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'EB Garamond';font-style:italic;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-latin-wght-italic.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+html{font-size-adjust:.47}
+body,body *:not(svg):not(svg *):not(code):not(pre):not(kbd){font-family:'EB Garamond',Georgia,'Times New Roman',serif!important;font-size-adjust:.47!important}
+body{font-variant-numeric:oldstyle-nums;text-rendering:optimizeLegibility;font-kerning:normal}
+h1,h2,h3,h4,table,.tl-date,.htl-cd,.yr,.ol-readtime,.sec-num{font-variant-numeric:lining-nums}
+/* tracked capitals become small capitals */
+.ol-sc{text-transform:none!important;font-variant-caps:all-small-caps;letter-spacing:.05em!important}
+/* plainer boxes: small radii, no drop shadows or lifting cards */
+.sec,.fc,.fi,.obj,.gt,.sv,.nx,.note,.badge,.tag,.council,.saint,.pos,.stage,.pillar,.lk,.ol-related,.ol-search-btn,.ol-print-btn,.oo-pgband,.rm-bar,.htl-card,.htl-detail,.lp-jump,.path-link,.ev-card,[class*="-card"],[class*="-box"],.obj-tag,.lx,.gk,.typ,.sac,.gift,.ic,.pat,.pf,.hist,.trad-col,.par-col,.q-block,.section,.intro-banner{border-radius:3px!important}
+.oo-pgband,.mob-toggle,.htl-card,.step-n,.section,.sv,.fc{box-shadow:none!important}
+[class*="-card"]:hover,[class*="-box"]:hover,.vbox:hover,.sec:hover,.obj:hover,.fi:hover{box-shadow:none!important;transform:none!important}
+.site-title{text-shadow:none!important}
+/* reading time as a quiet line, not a pill */
+.ol-readtime{text-transform:none!important;border:0!important;background:none!important;padding:0!important;border-radius:0!important;font-style:italic;font-size:.86rem!important;font-variant-caps:normal!important;letter-spacing:0!important}
+.ol-readtime::before{display:none!important}
+/* opening paragraph: no coloured side bar */
+.pg-intro{border-left:0!important;padding-left:0!important;font-size:1.06em}
+/* the ✦ ✦ ✦ ornament becomes a simple rule */
+.orn{letter-spacing:0!important;opacity:1!important}
+.orn::before{content:"";display:block;width:84px;height:1px;margin:2px auto 0;background:currentColor;opacity:.55}
+/* light mode: darker ink for gold text, and red rubrics as in a service book */
+html.light{--gd:#7a5c17}
+html.light .sec-num,html.light p.ol-lead::first-letter,html.light .purpose p:first-of-type::first-letter{color:#8e2a1e!important}
+html.light .oo-pgband .cap,html.light .oo-pgband .cap b,html.light .oo-pgband::after{color:#f4e6c2!important}
+html.light #ol-tt{background:var(--bg2);color:var(--gold);box-shadow:none}
+html.light .ol-ask-fab,html.light .ol-ask-msg.user,html.light .ol-ask-foot button.send{background:#b8923f!important}
+
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<div id="overlay" onclick="closeMobile()"></div>
+
+<aside id="sidebar">
+  <header>
+  <svg class="lampsvg" width="92" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><radialGradient id="lmpGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffb95e" stop-opacity=".55"/><stop offset="100%" stop-color="#ffb95e" stop-opacity="0"/></radialGradient><linearGradient id="lmpFlame" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#ff7a1f"/><stop offset="55%" stop-color="#ffb347"/><stop offset="100%" stop-color="#ffe9b0"/></linearGradient><linearGradient id="lmpBrass" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e3b860"/><stop offset="50%" stop-color="#a87b35"/><stop offset="100%" stop-color="#7a5523"/></linearGradient></defs><circle cx="60" cy="38" r="34" fill="url(#lmpGlow)"/><g class="lampflame"><path d="M60 16 C66 26 70 32 70 40 C70 48 65.5 53 60 53 C54.5 53 50 48 50 40 C50 32 54 26 60 16 Z" fill="url(#lmpFlame)"/><path d="M60 30 C63 35 64.5 38 64.5 42 C64.5 46.5 62.5 49 60 49 C57.5 49 55.5 46.5 55.5 42 C55.5 38 57 35 60 30 Z" fill="#fff3cf" opacity=".85"/></g><rect x="56" y="52" width="8" height="7" rx="2" fill="#8a6228"/><path d="M28 62 L92 62 C92 80 78 92 60 92 C42 92 28 80 28 62 Z" fill="url(#lmpBrass)"/><rect x="24" y="58" width="72" height="6" rx="3" fill="#caa14e"/><rect x="56" y="92" width="8" height="16" fill="url(#lmpBrass)"/><path d="M38 118 C38 110 47 108 60 108 C73 108 82 110 82 118 L82 122 L38 122 Z" fill="url(#lmpBrass)"/><rect x="32" y="122" width="56" height="6" rx="3" fill="#caa14e"/></svg>
+    <span class="sb-cross">☩</span>
+    <div class="sb-title">The Orthodox Lamp</div>
+    <div class="sb-sub">Anathema &amp; Other Churches' Baptism</div>
+  </header>
+  <nav id="nav">
+    <a href="#s1">I. The Question</a>
+    <a href="#s2">II. Glossary of Terms</a>
+    <a href="#s3">III. Anathema in Scripture</a>
+    <a href="#s4">IV. What the Church Anathematizes</a>
+    <a href="#s5">V. Strictness and Economy in the Early Church</a>
+    <a href="#s6">VI. The Anathema at the Door</a>
+    <a href="#s7">VII. St Severus Answers the Charge of Inconsistency</a>
+    <a href="#s8">VIII. Practice Today</a>
+    <a href="#s9">IX. So, Is It Inconsistent?</a>
+    <a href="#s10">X. Objections Answered</a>
+    <a href="#s11">XI. FAQ</a>
+    <a href="#s12">XII. Sources &amp; Further Reading</a>
+  </nav>
+  <div class="sb-search">
+    <input type="text" id="srch" placeholder="Search this page…" oninput="doSearch(this.value)">
+  </div>
+</aside>
+
+<div id="main">
+  <div id="mob-bar">
+    <button id="ham" onclick="toggleSidebar()">☰</button>
+    <span class="mb-title">The Orthodox Lamp</span>
+  </div>
+
+  <div class="hero">
+    <span class="si">☩</span>
+    <h1 class="st">THE <span>ORTHODOX</span> LAMP</h1>
+    <p class="ss">Anathema &amp; Other Churches' Baptism</p>
+    <p class="tg">"Yet do not count him as an enemy, but admonish him as a brother." 2 Thessalonians 3:15</p>
+    <div class="orn"></div>
+  </div>
+
+  <div class="content">
+<nav class="ol-bc" aria-label="Breadcrumb"><a href="index.html">Home</a><i>›</i><a href="index.html#oriental">Oriental Orthodoxy</a><i>›</i><span class="cur">Anathema &amp; Other Churches' Baptism</span></nav>
+<!-- OL-PGBAND -->
+<a class="oo-pgband" href="https://upload.wikimedia.org/wikipedia/commons/d/d1/Church_Towers_at_the_Mor_Gabriel_Monastery%2C_Tur_Abdin.jpg" target="_blank" rel="noopener noreferrer" title="Mor Gabriel Monastery — Syriac Orthodox · Tur Abdin · view full photo (Wikimedia Commons)" aria-label="View the full photograph of Mor Gabriel Monastery, Syriac Orthodox · Tur Abdin — opens in a new tab"><div class="im" style="background-image:linear-gradient(180deg,rgba(12,12,12,.5) 0%,rgba(12,12,12,.86) 100%),url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Church_Towers_at_the_Mor_Gabriel_Monastery%2C_Tur_Abdin.jpg/960px-Church_Towers_at_the_Mor_Gabriel_Monastery%2C_Tur_Abdin.jpg');background-position:center 40%"></div><span class="cap"><b>Mor Gabriel Monastery</b>Syriac Orthodox · Tur Abdin</span></a>
+<!-- END-OL-PGBAND -->
+
+
+    <div class="sec open" id="s1">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">I.</span>The Question</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>Many people who come close to Orthodoxy stop at this point. On one side they see the anathema. Councils end their definitions with "let him be anathema," and the word sounds like a sentence that cuts a person off from God and from salvation. On the other side they see Orthodox churches today receiving Christians from other churches without baptizing them again, signing joint declarations with their leaders and calling them brothers. If the first is meant seriously, how can the second be right? If the second is right, was the first only rhetoric?</p>
+        <p>The harshness is not the difficulty this page is about. Scripture is harsh in places, and the Fathers did not think false teaching was harmless. The difficulty is consistency. So the page sets out the evidence in order: what the word means in Scripture, how the councils used it, how the early Church received people from separated groups, how the Oriental Orthodox Fathers received converts from Chalcedon after 451, and what the churches do today. Section IX gives a verdict, including the places where real tension remains.</p>
+        <blockquote>The short answer: the anathema and the acceptance of a baptism given outside the Church were never two rival policies. In the ancient rite of reception they were one act. A convert whose baptism was not repeated was received precisely by anathematizing the error he was leaving. What has always varied is the judgment about which groups had kept enough of the faith and of the form of baptism for that gentler way to be used. That variation is old, and the Fathers defended it. What is newer is the warmth of modern relations, some ecumenical statements that run ahead of what the churches have formally decided, and in some places a practice stricter than the ancient one.</blockquote>
+        <h3>A Note on Quotations</h3>
+        <p>Every quotation marked <span class="labels" style="display:inline-flex;vertical-align:middle;margin:0 .15rem"><span class="pl">VERBATIM</span></span> has been checked word for word against the translation named on its card: the Nicene and Post-Nicene Fathers (NPNF) and Ante-Nicene Fathers (ANF) for the councils, Cyprian, Eusebius, Athanasius, Basil and Augustine; E. W. Brooks's translation of <em>The Sixth Book of the Select Letters of Severus</em> (1904) for St Severus; and the official published texts for modern documents. Small misprints in the scanned 1904 edition (broken words at line ends) have been silently corrected. Where something is described rather than quoted, it carries no quotation marks and is marked <span class="labels" style="display:inline-flex;vertical-align:middle;margin:0 .15rem"><span class="pl">SUMMARY</span></span>. Scripture follows the NKJV.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s2">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">II.</span>Glossary of Terms</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <div class="gt-grid">
+          <div class="gt">
+            <div class="gt-term">Anathema</div>
+            <div class="gt-grk">ἀνάθεμα: "something set apart"</div>
+            <div class="gt-def">In the Greek Old Testament it translates the Hebrew <em>herem</em>, a thing devoted to God and taken out of common use, often for destruction (Leviticus 27:28). Paul uses it for "accursed." In church law it is the gravest sentence: formal separation from the communion of the Church, pronounced on a teaching and on those who hold it.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Excommunication</div>
+            <div class="gt-grk">ἀφορισμός, aphorismos: "marking off"</div>
+            <div class="gt-def">Exclusion from Holy Communion, usually for a set time as a penance. The canons treat it as lighter than anathema, and a person under it is still a member of the Church under discipline.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Akribeia</div>
+            <div class="gt-grk">ἀκρίβεια: "exactness"</div>
+            <div class="gt-def">Applying the canons in their full strictness.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Economy</div>
+            <div class="gt-grk">οἰκονομία, oikonomia: "management of a household"</div>
+            <div class="gt-def">A bishop's pastoral judgment to apply a rule more gently for the salvation of souls. It may change how a rule is applied. It never changes the faith.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Heresy, Schism, Unlawful Assembly</div>
+            <div class="gt-grk">St Basil's three categories</div>
+            <div class="gt-def">Heresy is a break over the faith itself. Schism is a break over church questions that could be settled. An unlawful assembly is a group gathered by disorderly clergy or laymen. The Fathers received each differently (Section V).</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">The Three Ways of Reception</div>
+            <div class="gt-grk">baptism, chrismation, confession</div>
+            <div class="gt-def">A convert may be received by baptism, by chrismation (anointing with the holy myron), or by a confession of the Orthodox faith with a written renunciation and anathema of the error. Which is used depends on what the group he comes from believed and how it baptized.</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Libellus</div>
+            <div class="gt-grk">"little book," a written statement</div>
+            <div class="gt-def">The signed document in which a convert renounced his former error and confessed the Orthodox faith. The ancient canons call it a "written renunciation" or "certificate."</div>
+          </div>
+          <div class="gt">
+            <div class="gt-term">Communion</div>
+            <div class="gt-grk">κοινωνία, koinonia</div>
+            <div class="gt-def">Sharing in the one Eucharist, which presupposes one faith. Recognizing that a person was baptized is not the same as being in communion with him.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s3">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">III.</span>Anathema in Scripture</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>In the New Testament the word is rare but heavy. Paul uses it a handful of times (Romans 9:3; 1 Corinthians 12:3; 16:22; Galatians 1:8–9). Three of these show what it means.</p>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Galatians%201%3A8-9&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Galatians 1:8–9</a></div>
+          <div class="txt">"But even if we, or an angel from heaven, preach any other gospel to you than what we have preached to you, let him be accursed. As we have said before, so now I say again, if anyone preaches any other gospel to you than what you have received, let him be accursed."</div>
+          <div class="mia-note">Orthodox reading: the anathema guards the gospel itself. Paul includes himself and even an angel: the sentence attaches to the false gospel, whoever preaches it. This is the pattern the councils follow.</div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=1%20Corinthians%2016%3A22&amp;version=NKJV" target="_blank" rel="noopener noreferrer">1 Corinthians 16:22</a></div>
+          <div class="txt">"If anyone does not love the Lord Jesus Christ, let him be accursed. O Lord, come!"</div>
+          <div class="mia-note">Orthodox reading: the line between belonging and not belonging is drawn around Christ Himself.</div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%209%3A3&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 9:3</a></div>
+          <div class="txt">"For I could wish that I myself were accursed from Christ for my brethren, my countrymen according to the flesh,"</div>
+          <div class="mia-note">Orthodox reading: "accursed from Christ" means separation from Christ, the worst thing Paul can imagine. He names it only as the measure of his love for Israel. Scripture does not treat the word lightly, and neither should we.</div>
+        </div>
+        <p>Beside these, the New Testament describes how the Church separates a member, and every passage joins the severity to a purpose.</p>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=1%20Corinthians%205%3A4-5&amp;version=NKJV" target="_blank" rel="noopener noreferrer">1 Corinthians 5:4–5</a></div>
+          <div class="txt">"In the name of our Lord Jesus Christ, when you are gathered together, along with my spirit, with the power of our Lord Jesus Christ, deliver such a one to Satan for the destruction of the flesh, that his spirit may be saved in the day of the Lord Jesus."</div>
+          <div class="mia-note">Orthodox reading: the most severe act in the Church's hands is still aimed at salvation "in the day of the Lord Jesus."</div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=2%20Corinthians%202%3A6-8&amp;version=NKJV" target="_blank" rel="noopener noreferrer">2 Corinthians 2:6–8</a></div>
+          <div class="txt">"This punishment which was inflicted by the majority is sufficient for such a man, so that, on the contrary, you ought rather to forgive and comfort him, lest perhaps such a one be swallowed up with too much sorrow. Therefore I urge you to reaffirm your love to him."</div>
+          <div class="mia-note">Orthodox reading: the same apostle who imposed the sentence asks for it to be relaxed once it has done its work. Strictness and relaxation come from one mind.</div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=2%20Thessalonians%203%3A14-15&amp;version=NKJV" target="_blank" rel="noopener noreferrer">2 Thessalonians 3:14–15</a></div>
+          <div class="txt">"And if anyone does not obey our word in this epistle, note that person and do not keep company with him, that he may be ashamed. Yet do not count him as an enemy, but admonish him as a brother."</div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Matthew%2018%3A17-18&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Matthew 18:17–18</a></div>
+          <div class="txt">"And if he refuses to hear them, tell it to the church. But if he refuses even to hear the church, let him be to you like a heathen and a tax collector. Assuredly, I say to you, whatever you bind on earth will be bound in heaven, and whatever you loose on earth will be loosed in heaven."</div>
+          <div class="mia-note">Orthodox reading: the Lord gives the Church power both to bind and to loose. A Church that could only bind, or only loose, would not be using the authority He gave.</div>
+        </div>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Titus%203%3A10-11&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Titus 3:10–11</a></div>
+          <div class="txt">"Reject a divisive man after the first and second admonition, knowing that such a person is warped and sinning, being self-condemned."</div>
+          <div class="mia-note">Orthodox reading: the one rejected is the man who persists after warning, and Paul calls him "self-condemned." The Church's sentence recognizes a choice the person has already made.</div>
+        </div>
+        <p>Two more passages keep the picture balanced. When the disciples stopped a man who cast out demons in Christ's name "because he does not follow us," the Lord answered, "Do not forbid him, for no one who works a miracle in My name can soon afterward speak evil of Me. For he who is not against us is on our side" (<a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Mark%209%3A38-40&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Mark 9:38–40</a>). He did not make the man one of the Twelve, but He did not deny that His name was at work. And Paul draws a line around his own authority to judge:</p>
+        <div class="sv">
+          <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=1%20Corinthians%205%3A12-13&amp;version=NKJV" target="_blank" rel="noopener noreferrer">1 Corinthians 5:12–13</a></div>
+          <div class="txt">"For what have I to do with judging those also who are outside? Do you not judge those who are inside? But those who are outside God judges. Therefore “put away from yourselves the evil person.”"</div>
+          <div class="mia-note">Orthodox reading: the Church's discipline is for her own members. Those outside are left to the judgment of God.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s4">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">IV.</span>What the Church Anathematizes</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <h3>The Form of a Conciliar Anathema</h3>
+        <p>The councils used the word the way Paul did in Galatians: against a teaching, and against whoever holds it. The Creed of Nicaea in 325 listed the Arian claims and ended:</p>
+        <div class="fc">
+          <div class="fn">First Council of Nicaea</div>
+          <div class="fw">The Creed of 325</div>
+          <div class="fq">"...or that he is a creature, or subject to change or conversion... all that so say, the Catholic and Apostolic Church anathematizes them."</div>
+          <div class="labels"><span class="ctx">Ecumenical Council</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">First Council of Constantinople</div>
+          <div class="fw">Canon 1 (AD 381)</div>
+          <div class="fq">"The Faith of the Three Hundred and Eighteen Fathers assembled at Nice in Bithynia shall not be set aside, but shall remain firm. And every heresy shall be anathematized..."</div>
+          <div class="labels"><span class="ctx">Ecumenical Council</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>St Cyril's twelve chapters against Nestorius, which the Oriental Orthodox treasure, have the same shape: "If anyone..." followed by the teaching, then "let him be anathema" (see <a href="cyril.html">St Cyril of Alexandria</a>). The sentence is conditional. It describes a belief and attaches the sentence to whoever holds it.</p>
+        <p>It is only fair to add that councils also anathematized named persons: Arius, Nestorius, Eutyches. After 451 the two Orthodox families anathematized one another's councils and fathers by name. The Oriental Orthodox rejected the Council of Chalcedon and the Tome of Leo, and the Council in Trullo (692) condemned Dioscorus by name in its first canon. Those named anathemas are the ones the modern dialogue proposes to lift (Section VIII). The anathemas against the heresies themselves are not proposed for lifting by anyone.</p>
+
+        <h3>The Anathema Is the Back of a Confession</h3>
+        <p>St Athanasius explained why the Nicene Creed ends with anathemas. They are not a separate act of hostility. They are the same faith stated in the negative.</p>
+        <div class="fc">
+          <div class="fn">St Athanasius</div>
+          <div class="fw">De Synodis 40 (AD 359)</div>
+          <div class="fq">"...in order to show that the statements are parallel, and that the terms in the Creed imply the disclaimers subjoined, and that all who confess the terms, will certainly understand the disclaimers. But those who both dissent from the latter and impugn the former, such men are proved on every side to be foes of Christ."</div>
+          <div class="labels"><span class="mia">Coptic Pope &amp; Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>In the very next paragraph the same Athanasius, who suffered five exiles for Nicaea, separates the persons who reject the faith from persons who hold the faith but stumble over a word:</p>
+        <div class="fc">
+          <div class="fn">St Athanasius</div>
+          <div class="fw">De Synodis 41 (AD 359)</div>
+          <div class="fq">"Those who deny the Council altogether, are sufficiently exposed by these brief remarks; those, however, who accept everything else that was defined at Nicæa, and doubt only about the Coessential, must not be treated as enemies; nor do we here attack them as Ario-maniacs, nor as opponents of the Fathers, but we discuss the matter with them as brothers with brothers, who mean what we mean, and dispute only about the word."</div>
+          <div class="labels"><span class="mia">Coptic Pope &amp; Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>This is the first key to the whole question. The anathema on Arianism did not move an inch. But Athanasius did not apply it to people who held the substance of the Nicene faith while hesitating over its wording. He judged persons by what they actually believed.</p>
+
+        <h3>Who Counts as a Heretic</h3>
+        <div class="fc">
+          <div class="fn">St Augustine of Hippo</div>
+          <div class="fw">Letter 43.1 (c. AD 397)</div>
+          <div class="fq">"But though the doctrine which men hold be false and perverse, if they do not maintain it with passionate obstinacy, especially when they have not devised it by the rashness of their own presumption, but have accepted it from parents who had been misguided and had fallen into error, and if they are with anxiety seeking the truth, and are prepared to be set right when they have found it, such men are not to be counted heretics."</div>
+          <div class="labels"><span class="ctx">Western Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>Augustine goes on to say that even with an obstinate heretic, "we do not refuse to strive by every means in our power for his correction." The founder who invents an error and the child raised in it are not in the same position, even though the error is the same.</p>
+
+        <h3>A Church Sentence, Not a Private Curse</h3>
+        <p>The canons treat anathema as a sentence of the Church concerning communion. The Council of Ephesus (431), in its seventh canon, ruled that anyone who composed a rival creed or taught the doctrines of Nestorius should be deposed if a bishop or cleric, "and if they be laymen, they shall be anathematized." Deposition is what the Church does to clergy; anathema is what she does to laymen. Both are acts of the Church about a person's place in her life.</p>
+
+        <h3>The Harsh Side, Honestly</h3>
+        <p>None of this makes heresy safe in the Fathers' eyes. St Basil, writing about the Montanists, who gave the title of the Paraclete to their founder and his prophetess, did not soften his words:</p>
+        <div class="fc">
+          <div class="fn">St Basil the Great</div>
+          <div class="fw">Letter 188, canon 1 (c. AD 374)</div>
+          <div class="fq">"They are thus also liable to eternal damnation, inasmuch as blasphemy against the Holy Ghost admits of no forgiveness."</div>
+          <div class="labels"><span class="ctx">Cappadocian Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>The Fathers believed separation from the true faith was deadly. That is exactly why they used the anathema, and exactly why they worked so hard to bring people back across it. A page that hid this would not be honest, and it would also make the rest of the evidence less impressive. The same men who wrote these sentences are the ones who designed the gentle ways of receiving converts in the next two sections.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s5">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">V.</span>Strictness and Economy in the Early Church</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <h3>The Second Century: Irenaeus Rebukes Victor</h3>
+        <p>Around 190, Victor, bishop of Rome, tried to cut off the churches of Asia because they kept Pascha on a different day. Eusebius records that Victor "declared all the brethren there wholly excommunicate," and that "this did not please all the bishops." Among those who rebuked him was St Irenaeus of Lyons:</p>
+        <div class="fc">
+          <div class="fn">St Irenaeus, quoted by Eusebius</div>
+          <div class="fw">Church History V.24.13</div>
+          <div class="fq">"Yet all of these lived none the less in peace, and we also live in peace with one another; and the disagreement in regard to the fast confirms the agreement in the faith."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>From the beginning the Church distinguished between unity of faith, which cannot bend, and unity of practice, which can.</p>
+
+        <h3>The Third Century: Cyprian, Stephen and Dionysius</h3>
+        <p>The first great argument about receiving converts came in the 250s. St Cyprian of Carthage and the African councils held that anyone coming from heresy or schism must be baptized, because outside the Church there is no true baptism. Stephen of Rome held the opposite rule. Cyprian quotes Stephen's letter:</p>
+        <div class="fc">
+          <div class="fn">Stephen of Rome, quoted by St Cyprian</div>
+          <div class="fw">Cyprian, Epistle 73 (to Pompey)</div>
+          <div class="fq">"If any one, therefore, come to you from any heresy whatever, let nothing be innovated (or done) which has not been handed down, to wit, that hands be imposed on him for repentance"</div>
+          <div class="labels"><span class="ctx">Bishop of Rome</span><span class="pl">VERBATIM · ANF TRANSLATION</span></div>
+        </div>
+        <p>Cyprian answered with a line that still has force: "custom without truth is the antiquity of error" (Epistle 73). He was not a man who took truth lightly. Yet look at how he opened the council of 256:</p>
+        <div class="fc">
+          <div class="fn">St Cyprian of Carthage</div>
+          <div class="fw">Seventh Council of Carthage (AD 256)</div>
+          <div class="fq">"It remains, that upon this same matter each of us should bring forward what we think, judging no man, nor rejecting any one from the right of communion, if he should think differently from us. For neither does any of us set himself up as a bishop of bishops..."</div>
+          <div class="labels"><span class="ctx">Bishop &amp; Martyr</span><span class="pl">VERBATIM · ANF TRANSLATION</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St Cyprian and his colleagues</div>
+          <div class="fw">Epistle 71, to Stephen</div>
+          <div class="fq">"In which behalf we neither do violence to, nor impose a law upon, any one, since each prelate has in the administration of the Church the exercise of his will free, as he shall give an account of his conduct to the Lord."</div>
+          <div class="labels"><span class="ctx">Bishop &amp; Martyr</span><span class="pl">VERBATIM · ANF TRANSLATION</span></div>
+        </div>
+        <p>Stephen went further. Dionysius of Alexandria reports that he had written about the bishops of Cilicia, Cappadocia and Galatia, "saying that he would not commune with them for this same cause; namely, that they re-baptized heretics" (Eusebius, <em>Church History</em> VII.5.4).</p>
+        <p>The Pope of Alexandria in those years, St Dionysius, stood between them, and what he did matters for the Coptic Church especially. Alexandria had its own rule, which he had received from his predecessor Heraclas. It concerned people who had been baptized in the Church, drifted into a heretical group and wanted to return:</p>
+        <div class="fc">
+          <div class="fn">St Dionysius of Alexandria</div>
+          <div class="fw">Quoted by Eusebius, Church History VII.7.4</div>
+          <div class="fq">"...he did not receive them back, though they entreated for it, until they had publicly reported all things which they had heard from their adversaries; but then he received them without requiring of them another baptism. For they had formerly received the Holy Spirit from him."</div>
+          <div class="labels"><span class="mia">Coptic Pope &amp; Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>Yet he refused to force his rule on the churches that rebaptized:</p>
+        <div class="fc">
+          <div class="fn">St Dionysius of Alexandria</div>
+          <div class="fw">Quoted by Eusebius, Church History VII.7.5</div>
+          <div class="fq">"I have learned also that this is not a novel practice introduced in Africa alone, but that even long ago in the times of the bishops before us this opinion has been adopted in the most populous churches, and in synods of the brethren in Iconium and Synnada, and by many others. To overturn their counsels and throw them into strife and contention, I cannot endure."</div>
+          <div class="labels"><span class="mia">Coptic Pope &amp; Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>And when a man in his own flock, who had long ago been baptized by heretics and had received Communion for years, begged to be baptized properly, Dionysius would not do it:</p>
+        <div class="fc">
+          <div class="fn">St Dionysius of Alexandria</div>
+          <div class="fw">Letter to Xystus of Rome, in Eusebius, Church History VII.9.4</div>
+          <div class="fq">"But I did not dare to do this; and said that his long communion was sufficient for this. For I should not dare to renew from the beginning one who had heard the giving of thanks and joined in repeating the Amen; who had stood by the table and had stretched forth his hands to receive the blessed food; and who had received it, and partaken for a long while of the body and blood of our Lord Jesus Christ."</div>
+          <div class="labels"><span class="mia">Coptic Pope &amp; Church Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>So in the third century there were holy bishops with different practices. Cyprian rebaptized but would not break communion over it. Stephen did not rebaptize and threatened to break communion with those who did. Dionysius kept his own gentler rule and refused to fight the stricter churches. None of them changed the faith. The later Church did not simply pick a winner. It learned to sort cases by what each group believed and how it baptized.</p>
+
+        <h3>The Council of Nicaea: Two Rules in One Council</h3>
+        <div class="fc">
+          <div class="fn">First Council of Nicaea</div>
+          <div class="fw">Canon 8 (AD 325)</div>
+          <div class="fq">"Concerning those who call themselves Cathari, if they come over to the Catholic and Apostolic Church, the great and holy Synod decrees that they who are ordained shall continue as they are in the clergy. But it is before all things necessary that they should profess in writing that they will observe and follow the dogmas of the Catholic and Apostolic Church..."</div>
+          <div class="labels"><span class="ctx">Ecumenical Council</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">First Council of Nicaea</div>
+          <div class="fw">Canon 19 (AD 325)</div>
+          <div class="fq">"Concerning the Paulianists who have flown for refuge to the Catholic Church, it has been decreed that they must by all means be rebaptized..."</div>
+          <div class="labels"><span class="ctx">Ecumenical Council</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>The Cathari (Novatians) were strict rigorists, but they held the Nicene faith about God. Their clergy were kept in their rank after a written profession. The Paulianists followed Paul of Samosata, who, as St Severus later put it, "sinned against the very substance of God the Word." They were baptized. One council, two rules, one principle: what was the group's faith?</p>
+
+        <h3>St Basil: Strict Theology, Gentle Practice, in One Letter</h3>
+        <p>St Basil's first canonical letter to Amphilochius of Iconium became one of the foundations of the Church's canon law. He opens by agreeing that "it is right to follow the custom obtaining in each region, because those, who at the time gave decision on these points, held different opinions concerning their baptism." Then he explains the old categories:</p>
+        <div class="fc">
+          <div class="fn">St Basil the Great</div>
+          <div class="fw">Letter 188, canon 1 (c. AD 374)</div>
+          <div class="fq">"The old authorities decided to accept that baptism which in nowise errs from the faith. Thus they used the names of heresies, of schisms, and of unlawful congregations. By heresies they meant men who were altogether broken off and alienated in matters relating to the actual faith; by schisms men who had separated for some ecclesiastical reasons and questions capable of mutual solution; by unlawful congregations gatherings held by disorderly presbyters or bishops or by uninstructed laymen."</div>
+          <div class="labels"><span class="ctx">Cappadocian Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St Basil the Great</div>
+          <div class="fw">Letter 188, canon 1</div>
+          <div class="fq">"So it seemed good to the ancient authorities to reject the baptism of heretics altogether, but to admit that of schismatics, on the ground that they still belonged to the Church."</div>
+          <div class="labels"><span class="ctx">Cappadocian Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>Next he states the strict theology of Cyprian and of his own predecessor Firmilian: that when the separatists broke away, "those who had apostatized from the Church had no longer on them the grace of the Holy Spirit, for it ceased to be imparted when the continuity was broken." He does not dismiss that reasoning. And then, in the very next sentence:</p>
+        <div class="fc">
+          <div class="fn">St Basil the Great</div>
+          <div class="fw">Letter 188, canon 1</div>
+          <div class="fq">"Nevertheless, since it has seemed to some of those of Asia that, for the sake of management of the majority, their baptism should be accepted, let it be accepted."</div>
+          <div class="labels"><span class="ctx">Cappadocian Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>Later in the same canon, discussing the Encratites, whose baptism he would rather reject, he explains why he will still fall back on custom if strictness would do harm:</p>
+        <div class="fc">
+          <div class="fn">St Basil the Great</div>
+          <div class="fw">Letter 188, canon 1</div>
+          <div class="fq">"For I am under some apprehension lest, in our wish to discourage them from baptizing, we may, through the severity of our decision, be a hindrance to those who are being saved."</div>
+          <div class="labels"><span class="ctx">Cappadocian Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>In one letter Basil states the strict theology, accepts the gentler practice, names the Montanists as liable to damnation, and says his aim is not to hinder "those who are being saved." He saw no contradiction in any of it.</p>
+
+        <h3>St Augustine: Real but Unprofitable Outside</h3>
+        <p>In the West, St Augustine worked out the other explanation during the Donatist controversy. A baptism given in the name of the Trinity outside the Church is a real baptism, so it is not repeated. But it does a person no good while he stays outside by choice. He calls it a sacrament "which can indeed be received but cannot profit elsewhere," and he describes what happens at reconciliation:</p>
+        <div class="fc">
+          <div class="fn">St Augustine of Hippo</div>
+          <div class="fw">On Baptism, Against the Donatists, Book I (c. AD 400)</div>
+          <div class="fq">"But as, by reconciliation to unity, that begins to be profitably possessed which was possessed to no profit in exclusion from unity..."</div>
+          <div class="labels"><span class="ctx">Western Father</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>On this view, too, recognizing a baptism is not approving the body that gave it.</p>
+
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-date">c. 190</div>
+            <div class="tl-text">Victor of Rome tries to cut off Asia over the date of Pascha. Irenaeus and others rebuke him.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">Before 248</div>
+            <div class="tl-text">Heraclas of Alexandria receives returning members from heretical groups without a new baptism.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">255–256</div>
+            <div class="tl-text">Cyprian's councils at Carthage require baptism of all converts. Stephen of Rome forbids it and threatens to break communion with the rebaptizing churches.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">256–258</div>
+            <div class="tl-text">Dionysius of Alexandria writes to Stephen and to his successor Xystus, working for peace.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">325</div>
+            <div class="tl-text">Nicaea receives Novatian clergy in their rank (canon 8) and baptizes Paulianists (canon 19).</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">c. 374</div>
+            <div class="tl-text">Basil's Letter 188 sets out the categories of heresy, schism and unlawful assembly.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">c. 400</div>
+            <div class="tl-text">Augustine's <em>On Baptism</em>: a baptism given outside is real but profits only when the person is reconciled to unity.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">431</div>
+            <div class="tl-text">Ephesus receives people misled by a Nestorian creed, in the case brought by the presbyter Charisius, by written anathema alone.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">5th century</div>
+            <div class="tl-text">The order of reception later counted as canon 7 of Constantinople sets out the three ways of reception.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">Late 5th to early 6th c.</div>
+            <div class="tl-text">Timothy Aelurus and St Severus receive converts from Chalcedon by written anathema, without baptism or chrism.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s6">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">VI.</span>The Anathema at the Door</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>This section holds the key to the whole question. Look at what the gentle way of receiving converts actually contained.</p>
+        <p>An order of reception that the later Church counted as the seventh canon of the Council of Constantinople (381) sets out all three ways side by side. Its NPNF editor, following earlier scholars, notes that it was probably not passed in 381 but comes from a fifth-century letter of the church of Constantinople. The Council in Trullo (692) later adopted it almost word for word in its canon 95.</p>
+        <div class="fc">
+          <div class="fn">"Canon 7" of Constantinople</div>
+          <div class="fw">Order of reception (5th century)</div>
+          <div class="fq">"Those who from heresy turn to orthodoxy, and to the portion of those who are being saved, we receive according to the following method and custom: Arians, and Macedonians, and Sabbatians, and Novatians, who call themselves Cathari or Aristori, and Quarto-decimans or Tetradites, and Apollinarians, we receive, upon their giving a written renunciation [of their errors] and anathematize every heresy which is not in accordance with the Holy, Catholic, and Apostolic Church of God. Thereupon, they are first sealed or anointed with the holy oil upon the forehead, eyes, nostrils, mouth, and ears; and when we seal them, we say, The Seal of the gift of the Holy Ghost."</div>
+          <div class="labels"><span class="ctx">Canon</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">"Canon 7" of Constantinople</div>
+          <div class="fw">Order of reception, continued</div>
+          <div class="fq">"But Eunomians, who are baptized with only one immersion, and Montanists, who are here called Phrygians, and Sabellians, who teach the identity of Father and Son... all these, when they desire to turn to orthodoxy, we receive as heathen... and then we baptize them."</div>
+          <div class="labels"><span class="ctx">Canon</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>Two things stand out. First, the reasons for the strict way are given: a corrupted faith in the Trinity, or a changed form of baptism ("only one immersion"). The line is drawn by faith and form, not by how hostile a group was. Arians were the Church's bitterest enemies in the fourth century, yet they were received by chrism.</p>
+        <p>Second, and this answers the question at the top of the page: the gentle way begins with the convert himself anathematizing "every heresy which is not in accordance with the Holy, Catholic, and Apostolic Church of God." The anathema is not the opposite of receiving someone without a new baptism. It is how he was received.</p>
+
+        <h3>Ephesus, 431: Anathema Alone</h3>
+        <p>When the Council of Ephesus dealt with a group who had been taught a Nestorian creed, it did not baptize them or even anoint them. St Severus, who knew the acts of the council, describes the decision:</p>
+        <div class="fc">
+          <div class="fn">St Severus of Antioch</div>
+          <div class="fw">Select Letters V.14, to the bishops on the hill of Mardē (from exile, 520s)</div>
+          <div class="fq">"...it both received him and admitted him to clemency, not making any canonical pronouncement in their case about chrism or about anything else of this kind: but it lawfully decided that they were to renounce the heresy itself in writing and condemn it by anathema, and so be received and become members of Christ's flock."</div>
+          <div class="labels"><span class="mia">Patriarch of Antioch &amp; Church Father</span><span class="pl">VERBATIM · BROOKS TRANSLATION (1904)</span></div>
+        </div>
+
+        <h3>The Chalcedonian Side Did the Same</h3>
+        <p>The Council in Trullo (692), which the Oriental Orthodox do not receive, repeats the order above and then adds a further class of converts:</p>
+        <div class="fc">
+          <div class="fn">Council in Trullo</div>
+          <div class="fw">Canon 95 (AD 692)</div>
+          <div class="fq">"...must give certificates and anathematize each his own heresy, and also Nestorius, Eutyches, Dioscorus, Severus, and the other chiefs of such heresies, and those who think with them, and all the aforesaid heresies; and so they become partakers of the holy Communion."</div>
+          <div class="labels"><span class="ctx">Chalcedonian Council</span><span class="pl">VERBATIM · NPNF TRANSLATION</span></div>
+        </div>
+        <p>The received text of this sentence is garbled, and its NPNF editor prints Hefele's argument that a line has dropped out. On the corrected reading, the later Christological parties are the ones received by a written certificate and anathema, without a new baptism. Read either way, the passage shows two things at once. The Chalcedonian Church anathematized our fathers by name, and it received those who came over from these divisions by a written anathema, not by baptizing them again. Each side, at its sharpest, still did not treat the other's baptism as nothing.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s7">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">VII.</span>St Severus Answers the Charge of Inconsistency</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>The question on this page is not new. It was put to the Oriental Orthodox Fathers in almost the same words fifteen centuries ago, and their answer has survived.</p>
+        <p>After 451 the bishops who rejected Chalcedon had to decide how to receive clergy and people who had been in communion with it. St Timothy Aelurus, Pope of Alexandria (457–477, much of it in exile), at first said he would not receive clergy ordained by Proterius, the Chalcedonian bishop the imperial government had installed in Alexandria. Later he received them on repentance, in their orders. Some of the faithful accused him of contradicting himself. St Severus, before he became Patriarch of Antioch, answered them in a letter to John the tribune, written in the name of Father Leontius (between 489 and 508).</p>
+        <div class="fc">
+          <div class="fn">St Severus of Antioch</div>
+          <div class="fw">Select Letters V.1, to John the tribune</div>
+          <div class="fq">"But you say that the holy Timothy contradicted himself, seeing that at first he said that those who had been ordained should not be received, but at a later time received them."</div>
+          <div class="labels"><span class="mia">Patriarch of Antioch &amp; Church Father</span><span class="pl">VERBATIM · BROOKS TRANSLATION (1904)</span></div>
+        </div>
+        <p>He replies with examples from the apostles, such as Peter and the Gentiles in Acts, and then copies out a passage from St John Chrysostom's encomium on St Paul:</p>
+        <div class="fc">
+          <div class="fn">St John Chrysostom, quoted by St Severus</div>
+          <div class="fw">Select Letters V.1</div>
+          <div class="fq">"And he would sacrifice, and shave: and again he would anathematize the doers of these things. And now he would circumcize: now he would reject circumcision. And the things done were contradictory: but the thought and intention from which these proceeded was very consistent and consonant with itself. For he sought one thing, the salvation of those who saw and heard these things."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · BROOKS TRANSLATION (1904)</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St John Chrysostom, quoted by St Severus</div>
+          <div class="fw">Select Letters V.1</div>
+          <div class="fq">"For in fact in the case of a physician also, when you see him now burning now feeding; and using now iron now medicine; and now prohibiting foods and drinks, now allowing the patient to enjoy these without stint... you do not blame him for the variation, nor because of the perpetual change: but you will then praise the technical skill the more..."</div>
+          <div class="labels"><span class="ctx">Church Father</span><span class="pl">VERBATIM · BROOKS TRANSLATION (1904)</span></div>
+        </div>
+        <p>Then Severus turns to the very baptism controversy described in Section V:</p>
+        <div class="fc">
+          <div class="fn">St Severus of Antioch</div>
+          <div class="fw">Select Letters V.1</div>
+          <div class="fq">"...when Cyprian in Africa with the synod under him said that all who had been baptized by heresy ought to receive the laver of regeneration, as if they had never originally been baptized at all, but at last the opinion of Sixtus of Rome, and of Dionysius of Alexandria and of the others prevailed, so that those who had been baptized by heretics in the name of the three substances, the Father, the Son, and the Holy Spirit, were not re-baptized, no one of sound intelligence said that those saintly bishops contradicted themselves, but that upon later consideration they chose a better and more canonical course"</div>
+          <div class="labels"><span class="mia">Patriarch of Antioch &amp; Church Father</span><span class="pl">VERBATIM · BROOKS TRANSLATION (1904)</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St Severus of Antioch</div>
+          <div class="fw">Select Letters V.1</div>
+          <div class="fq">"Though these things seem contradictory to many, yet nevertheless their one purpose was the salvation of those who had perished, and that those who stood upright might not under the influence of immoderate zeal leave the royal road, and turn away to that which is rather on the right side."</div>
+          <div class="labels"><span class="mia">Patriarch of Antioch &amp; Church Father</span><span class="pl">VERBATIM · BROOKS TRANSLATION (1904)</span></div>
+        </div>
+
+        <h3>As Patriarch: Different Medicines for Different Diseases</h3>
+        <p>As patriarch (512–518), Severus wrote against those who wanted converts from Chalcedon to be re-anointed with chrism. The letter's title states his position: it is "against those who say that men who have communicated with the Synod of Chalcedon, and are penitent and anathematize those who call our one Lord and God Jesus Christ two natures after the ineffable union and come over to the orthodox faith must be re-anointed."</p>
+        <div class="fc">
+          <div class="fn">St Severus of Antioch</div>
+          <div class="fw">Select Letters V.6</div>
+          <div class="fq">"Those who assembled in Africa in the days of Cyprian, looking at the common name of the heresies only, applied a single method of cure. But the contemporaries of the great Dionysius and those who came after him distinguished the varieties of diseases, and so applied to each of them the cure suited for it."</div>
+          <div class="labels"><span class="mia">Patriarch of Antioch &amp; Church Father</span><span class="pl">VERBATIM · BROOKS TRANSLATION (1904)</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St Severus of Antioch</div>
+          <div class="fw">Select Letters V.6</div>
+          <div class="fq">"As it seemed necessary to the men of earlier days that converts from heresies should be perfected through baptism, but afterwards a sagacious discrimination regarding the matter introduced the principle that some must be re-baptized, others re-anointed, so concerning the Nestorian heresy the fathers after examining the character of the heresy decided that the impious doctrine should only be anathematized by those who repent."</div>
+          <div class="labels"><span class="mia">Patriarch of Antioch &amp; Church Father</span><span class="pl">VERBATIM · BROOKS TRANSLATION (1904)</span></div>
+        </div>
+        <p>He adds that after Ephesus "nor has anyone been shown to have been anointed at that time," even though the bishops of the East had supported Nestorius for a long while before the reunion of 433. And he notes that Timothy, when he received the clergy of Proterius, "did not give them ordination at all."</p>
+
+        <h3>From Exile: What the Anathema Does</h3>
+        <p>Later, from exile, Severus wrote to two bishops, Sergius of Cyrrhus and Marion of Sura, about how to receive people baptized by Chalcedonians. This passage is the clearest answer in the Fathers to the question of this page, so it is given in full.</p>
+        <div class="fc">
+          <div class="fn">St Severus of Antioch</div>
+          <div class="fw">Select Letters V.15, to Sergius and Marion</div>
+          <div class="fq">"No one is so devoid of the sacred teachings of orthodoxy as not to call baptism given by any heresy imperfect and spurious: but those who know this look at the regulations of the holy fathers, and reflect that according to the character of the heresy treatment also must be applied, and the stain must be purged and expiated either by another baptism or by chrism, or by an anathema of the heresy, and the judgment of the orthodox priests and reception by them."</div>
+          <div class="labels"><span class="mia">Patriarch of Antioch &amp; Church Father</span><span class="pl">VERBATIM · BROOKS TRANSLATION (1904)</span></div>
+        </div>
+        <div class="fc">
+          <div class="fn">St Severus of Antioch</div>
+          <div class="fw">Select Letters V.15</div>
+          <div class="fq">"After the same fashion also an anathema of the heresy, when enjoined upon those who utter the condemnation by order of orthodox high-priests, and proffered by the mouth of those, as well as entrance into the holy of holies performed in accordance with the judgment of those who receive them brings healing to the sore, and causes the pure and sincere grace of the Spirit to flash invisibly upon those who have been accepted."</div>
+          <div class="labels"><span class="mia">Patriarch of Antioch &amp; Church Father</span><span class="pl">VERBATIM · BROOKS TRANSLATION (1904)</span></div>
+        </div>
+        <p>And he was as firm against excessive strictness as against laxity. Of a Palestinian bishop who anointed converts beyond what the canons asked:</p>
+        <div class="fc">
+          <div class="fn">St Severus of Antioch</div>
+          <div class="fw">Select Letters V.14</div>
+          <div class="fq">"Whence also a certain Theodotus, one of the bishops of Palestine, because he presumed to anoint certain persons, was repudiated and expelled, both by Timothy of holy memory, archbishop of the city of the Alexandrines, and by all who shared his opinions"</div>
+          <div class="labels"><span class="mia">Patriarch of Antioch &amp; Church Father</span><span class="pl">VERBATIM · BROOKS TRANSLATION (1904)</span></div>
+        </div>
+
+        <h3>What Severus Teaches</h3>
+        <p>Put together, the Oriental Orthodox Father gives a complete answer:</p>
+        <ul>
+          <li><strong>A baptism given in heresy is not complete.</strong> He calls it "imperfect and spurious." Economy is not indifference.</li>
+          <li><strong>It is still not repeated</strong> when the faith in the Trinity and the form were kept. To re-baptize or even re-anoint such converts was a fault, and a bishop was expelled for it.</li>
+          <li><strong>The anathema is the medicine.</strong> The convert's own anathema of the heresy, with the bishop's reception, "brings healing to the sore" and the grace of the Spirit.</li>
+          <li><strong>Changes in practice are not contradictions</strong> when they serve the same end. The Fathers' "one purpose was the salvation of those who had perished."</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sec" id="s8">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">VIII.</span>Practice Today</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <h3>Within the Oriental Orthodox Family</h3>
+        <p>The Coptic, Syriac, Armenian, Ethiopian, Eritrean and Malankara churches are in full communion with one another. A member of one who moves to another is not received at all in this sense. He simply goes to church.</p>
+        <p>Toward other churches, practice differs from one Oriental Orthodox church to another.</p>
+        <div class="comp-grid">
+          <div class="comp-card mia">
+            <h4>Coptic Orthodox</h4>
+            <p>Under Pope Shenouda III (1971–2012) the Coptic Church baptized converts coming from the Catholic and Protestant churches. In his <em>Comparative Theology</em> he gives his reasons with regard to Protestants: their baptism is not given by an ordained priest, is not held to be a sacrament, and is often not by immersion. <span class="labels" style="display:inline-flex;vertical-align:middle;margin:0 .15rem"><span class="pl">SUMMARY</span></span> In 2001 the Coptic Orthodox and Greek Orthodox Patriarchates of Alexandria agreed to recognize each other's baptism.</p>
+          </div>
+          <div class="comp-card mia">
+            <h4>Armenian Apostolic</h4>
+            <p>Armenian parish teaching describes the Church as accepting baptism from other churches that confess the Holy Trinity, so such converts are not baptized again. <span class="labels" style="display:inline-flex;vertical-align:middle;margin:0 .15rem"><span class="pl">SUMMARY</span></span></p>
+          </div>
+          <div class="comp-card mia">
+            <h4>Syriac Orthodox</h4>
+            <p>In 1984 Patriarch Zakka I and Pope John Paul II agreed that where their faithful cannot reach their own priest, they may "ask for the Sacraments of Penance, Eucharist and Anointing of the Sick from lawful priests of either of our two sister Churches." The same text says that the Eucharist "cannot yet be concelebrated by us."</p>
+          </div>
+        </div>
+        <p>The difference is discussed inside the family. The British Orthodox Church, while it was part of the Coptic Patriarchate, sent a representation to the Coptic Holy Synod arguing that the older Alexandrian practice, going back to Timothy, Philoxenus and Severus, was to receive Chalcedonians by confession of faith and prayer, that requiring Catholics to be baptized is a recent development, and that the Armenian, Syriac and Indian churches still keep the older practice. <span class="labels" style="display:inline-flex;vertical-align:middle;margin:0 .15rem"><span class="pl">SUMMARY</span></span> This page takes no side between sister churches on a question of discipline. It notes only that the patristic evidence in Section VII is the evidence that representation relied on.</p>
+        <p>In 2017 Pope Tawadros II and Pope Francis signed a common declaration. Early news reports had them saying they "will not repeat" each other's baptisms. The official text is more careful: they "mutually declare that we, with one mind and heart, will seek sincerely not to repeat the baptism that has been administered in either of our Churches for any person who wishes to join the other." The Coptic Information Center then stated that the declaration "does not contain a formal agreement on the question of re-baptisms."</p>
+
+        <h3>The Eastern Orthodox</h3>
+        <p>The Eastern Orthodox have moved back and forth in the same way. A council at Constantinople in 1484 received Latins by renunciation and chrismation, and the great Council of Moscow in 1667 forbade rebaptizing them. In 1755 Patriarch Cyril V of Constantinople, with the patriarchs of Alexandria and Jerusalem, required them to be baptized, a decision the Russian Church never adopted. St Nicodemus of the Holy Mountain, in his commentary on the canons (the <em>Pedalion</em>, 1800), defended the strict view and explained the older, gentler practice as economy. Today most Eastern Orthodox churches receive Catholics and many Protestants by chrismation or confession, while some communities, notably on Mount Athos, baptize. <span class="labels" style="display:inline-flex;vertical-align:middle;margin:0 .15rem"><span class="pl">SUMMARY</span></span></p>
+        <p>Between Rome and Constantinople, the sentences of 1054 were addressed in 1965. Pope Paul VI and Patriarch Athenagoras said of the authors of those sentences, "They had directed their censures against the persons concerned and not the Churches," and declared that they "regret and remove both from memory and from the midst of the Church the sentences of excommunication." The same declaration says the gesture "is not sufficient to end both old and more recent differences." Communion was not restored.</p>
+
+        <h3>Between the Two Orthodox Families</h3>
+        <p>The official dialogue between the Eastern and Oriental Orthodox concluded in its Second Agreed Statement (Chambésy, 1990):</p>
+        <div class="fc">
+          <div class="fn">Joint Commission, Eastern and Oriental Orthodox</div>
+          <div class="fw">Second Agreed Statement, Chambésy (1990)</div>
+          <div class="fq">"Both families agree that all the anathemas and condemnations of the past which now divide us should be lifted by the Churches in order that the last obstacle to the full unity and communion of our two families can be removed by the grace and power of God."</div>
+          <div class="labels"><span class="ctx">Official Dialogue</span><span class="pl">VERBATIM · OFFICIAL TEXT</span></div>
+        </div>
+        <p>The next point of the statement explains on what basis: "the lifting of anathemas and condemnations will be consummated on the basis that the Councils and Fathers previously anathematized or condemned are not heretical." That is exactly Athanasius's principle in <em>De Synodis</em> 41: people who mean what we mean are not to be treated as enemies. Nobody proposed lifting the anathemas on Nestorianism or Eutychianism. A 1993 follow-up proposed that the lifting should be done by all the churches together, at the same moment, with full communion restored at once. That has not yet happened, and there has been strong opposition, especially from the monks of Mount Athos (see <a href="eo_oo_differences.html">Eastern &amp; Oriental Orthodoxy</a>).</p>
+      </div>
+    </div>
+
+    <div class="sec" id="s9">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">IX.</span>So, Is It Inconsistent?</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <p>The objection can be put as an argument:</p>
+        <ol>
+          <li>An anathema cuts a person off from God and from salvation.</li>
+          <li>Accepting a person's baptism treats him as already joined to God.</li>
+          <li>The Church does both to the same people.</li>
+          <li>So the Church contradicts herself.</li>
+        </ol>
+        <p><strong>Premise 1 is half true.</strong> The anathema is severe, and the Fathers meant it. It declares that a teaching is false and that whoever holds it in obstinacy stands outside the Church's communion, which the Fathers believed to be a deadly place. But it is aimed at a teaching and at those who knowingly persist in it (Athanasius, Augustine). It is a sentence of the Church about communion, it can be lifted, and Scripture leaves the final judgment of those outside to God (1 Corinthians 5:13).</p>
+        <p><strong>Premise 2 is not what the Fathers meant.</strong> Not repeating a baptism does not say the person is in communion, or that his baptism has done all it should. Augustine says it was possessed "to no profit" outside unity. Severus calls it "imperfect and spurious." Even on the most generous Orthodox view, recognizing a baptism is not recognizing the body that gave it as the Church in its fullness.</p>
+        <p><strong>Premise 3 gets the order wrong.</strong> The Church does not anathematize and accept the same person at the same moment. The anathema stands against the error. The person who comes is received by joining in that anathema himself. In the ancient rite the two things the objection sets against each other are two halves of one act, and Severus says the anathema is the very means by which the grace of the Spirit is given.</p>
+
+        <h3>What Stays Fixed and What Varies</h3>
+        <div class="comp-grid">
+          <div class="comp-card mia">
+            <h4>Fixed</h4>
+            <p>The faith itself. The anathema on heresy as such. Baptism is one and is not repeated when truly given in the name of the Trinity with the right form. No one enters communion without confessing the Orthodox faith. The aim of all discipline is the salvation of souls.</p>
+          </div>
+          <div class="comp-card dyo">
+            <h4>Varies</h4>
+            <p>Which groups' baptism is accepted. Which of the three ways of reception is used. The tone of relations and how much pastoral cooperation is allowed. How quickly anathemas against persons are lifted once agreement in faith is found.</p>
+          </div>
+        </div>
+        <p>Everything in the second column has varied since the third century, with saints on more than one side. Basil called it "the custom obtaining in each region." Severus called it different medicines for different diseases. Everything in the first column has not moved.</p>
+
+        <h3>Where Real Tension Remains</h3>
+        <p>An honest answer has to name the places where the picture is not tidy.</p>
+        <p><strong>1. The same convert may be received differently by different Orthodox churches.</strong> A Catholic may be chrismated or received by confession in one church and baptized in another. The Fathers expected regional differences, and both churches confess the same faith and share one Eucharist. But it is fair to admit that this sends mixed signals, that the churches have not harmonized their practice, and that the question is still discussed inside the Coptic Church itself.</p>
+        <p><strong>2. There are two Orthodox explanations of economy, and no council has chosen between them.</strong> On the strict view (Cyprian, Firmilian, St Nicodemus, and in the twentieth century Metropolitan Anthony Khrapovitsky), outside the Church the rite is an empty form, and when the Church receives a convert without baptism she fills that form with grace at the moment of reception. On the other view (Augustine, and among modern Orthodox Fr Georges Florovsky), the rite is real but unfulfilled outside unity. Florovsky wrote: "In her sacramental, mysterious being the Church surpasses all canonical norms." And again: "All that Cyprian said about the unity of the Church and the sacraments can be and must be accepted. But it is not necessary to draw with him the final boundary around the body of the Church by means of canonical points alone." Severus's language, "imperfect and spurious" yet healed through anathema and reception, sits between the two. Either explanation removes the contradiction. Neither says that non-Orthodox Christians are under a personal curse, and neither says that separation does not matter.</p>
+        <p><strong>3. Some modern gestures run ahead of the churches.</strong> Agreed statements of a dialogue commission are recommendations, not synodal decisions. The 1990 call to lift anathemas has not been carried out, and the 2017 wording was softened from "will not" to "will seek sincerely not to." Where a modern statement seems to say more than the Church has decided, the honest reading is that it has not yet been received. The Church's slowness here is not inconsistency; it is the same caution the Fathers showed.</p>
+        <p><strong>4. Not every past sentence on persons was just.</strong> Anger and politics were mixed into the schisms. The 1965 declaration speaks of "the offensive words, the reproaches without foundation, and the reprehensible gestures which, on both sides, have marked or accompanied the sad events of this period." The Church does not claim that every anathema of a named person was rightly aimed. That is why such anathemas can be lifted when agreement in faith is found, while the anathemas on heresy stay.</p>
+
+        <h3>The Verdict</h3>
+        <p>In doctrine, the Church is not inconsistent. The harshness and the generosity come from the same conviction: that the true faith matters for salvation. A Church that did not care about truth would never anathematize. A Church that did not care about souls would never use economy. The Fathers who wrote the anathemas are the same Fathers who designed the gentle ways of reception, and they put the anathema inside the rite of reception itself.</p>
+        <p>In practice, there is variety. Some of it is ancient and deliberate. Some of it is unresolved. The honest thing is to say which is which, and the Fathers give us the tools to do that. St Severus faced this exact charge and answered it: "Though these things seem contradictory to many, yet nevertheless their one purpose was the salvation of those who had perished."</p>
+        <blockquote>What Orthodoxy does not say: that every non-Orthodox Christian is personally cursed; that all churches are equally the Church; that a recognized baptism amounts to communion; or that the anathemas on heresy have been withdrawn.</blockquote>
+      </div>
+    </div>
+
+    <div class="sec" id="s10">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">X.</span>Objections Answered</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>"If you accept Catholic baptism, Catholics are inside the Church and your anathemas are dead letters."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> Accepting a baptism has never meant that the person is in communion. Nicaea kept Novatian clergy in their rank and still required a written profession first. The order of reception received Arians by chrism and still required them to anathematize every heresy. Augustine and Severus both say the baptism profits only when the person is reconciled. A recognized baptism is a beginning that has to be completed by the Orthodox faith, not a substitute for it.</p>
+          </div>
+        </div>
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>"Economy is just a polite word for breaking the rules when it is convenient."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> Economy is written into the canons themselves (Basil, Letter 188), and it has fixed limits. The canons did not extend it to groups who had corrupted the faith in the Trinity or changed the form of baptism: those were baptized. It applies to how a person is received, never to what he must believe. And it cuts both ways. Severus records that Bishop Theodotus was expelled for being stricter than the canons allowed. Economy and strictness are both bound by the same rule: the salvation of souls within the one faith.</p>
+          </div>
+        </div>
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>"The Copts rebaptize Catholics and the Armenians do not. Which one is really Orthodox?"</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> Both. They are in full communion, confess the same faith and share one Eucharist. Neither treats the other's practice as heresy. This is a difference of discipline of the kind Basil described when he said "it is right to follow the custom obtaining in each region." Cyprian and Dionysius are both saints, and they differed on exactly this.</p>
+          </div>
+        </div>
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>"Joint declarations with Rome show the Oriental Orthodox have quietly given up the old anathemas."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> No Oriental Orthodox church has accepted the Council of Chalcedon or the Tome of Leo, and none is in communion with Rome. The 1984 Syriac declaration itself says the Eucharist "cannot yet be concelebrated." The Coptic Church said the 2017 text "does not contain a formal agreement on the question of re-baptisms." Pastoral cooperation and warmer language are not the lifting of an anathema, and nothing in these texts touches the anathemas on heresy.</p>
+          </div>
+        </div>
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>"Anathema means damnation, so the Church claims to send people to hell."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> The anathema declares that a teaching is false and that whoever holds it obstinately is outside the Church's communion. The Fathers believed that was a perilous place to stand, and some of them said so in the strongest words. But the Church's sentence is about her communion, and Scripture says plainly that "those who are outside God judges" (1 Corinthians 5:13). The Church can bind and loose. She does not claim to read every heart.</p>
+          </div>
+        </div>
+        <div class="obj">
+          <button class="obj-h" onclick="tobj(this)"><span>"Cyprian was right: there is no grace outside the Church, so economy contradicts him."</span><span class="arr">▼</span></button>
+          <div class="obj-b">
+            <p><strong>OO Response:</strong> Even if Cyprian's theology is accepted in full, economy does not contradict it. On the strict view the Church supplies the grace at the moment of reception, so nothing is being recognized that is not there. Cyprian himself refused to break communion with bishops who disagreed with him. And St Severus, an Oriental Orthodox Father, says that when the Church moved past Cyprian's single rule, "no one of sound intelligence said that those saintly bishops contradicted themselves."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s11">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XI.</span>FAQ</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>Does the Orthodox Church curse non-Orthodox Christians?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>No. The anathemas are aimed at heresies and at those who knowingly teach and hold them. A Christian raised in another church is, in Augustine's words, "not to be counted" a heretic if he holds his beliefs without obstinacy and is seeking the truth. The Church still believes that full communion in the Orthodox faith matters, which is why she invites such Christians in.</p>
+          </div>
+        </div>
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>Will I be baptized again if I become Orthodox?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>That depends on the church you join, on how you were baptized, and on the bishop. Some Orthodox churches receive Christians baptized in the name of the Trinity by chrismation or confession; some baptize. Ask the priest who is receiving you. Whatever is done, you will be asked to confess the Orthodox faith and renounce what is contrary to it.</p>
+          </div>
+        </div>
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>Are the old anathemas between the Eastern and Oriental Orthodox still in force?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>Formally, yes. The joint commission recommended in 1990 that they be lifted on the basis that the councils and fathers each side condemned "are not heretical," but the churches have not yet done it. The anathemas on Nestorian and Eutychian teaching are held by both families and are not part of that proposal.</p>
+          </div>
+        </div>
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>Can an anathema be lifted?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>An anathema on a heresy is not lifted, because the teaching does not become true. An anathema on a person is lifted when he repents, as the converts in Severus's letters did, or when the Church finds that he did not in fact hold the condemned teaching. The 1990 recommendation works on this second basis. The 1965 declaration removed sentences that, in its words, had been directed against persons, and whose consequences went further than their authors intended.</p>
+          </div>
+        </div>
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>What is "economy" in plain words?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>It is the bishop acting like a good physician: choosing the treatment that will heal this patient, within the limits of the faith and the canons. It can make the way into the Church gentler. It can never change what a person must believe to enter.</p>
+          </div>
+        </div>
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>If a Catholic or Protestant baptism is accepted, can that person receive Communion in an Orthodox church?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>No. Communion presupposes one faith. Accepting that someone was baptized is a recognition of where he starts from. He comes to the chalice once he has been received into the Orthodox Church. Rare pastoral exceptions, like the 1984 Syriac arrangement for people cut off from their own priests, are exceptions agreed between churches, not a general rule.</p>
+          </div>
+        </div>
+        <div class="fi">
+          <button class="fi-h" onclick="tf(this)"><span>Where can I read more about the acceptance of other churches' baptism?</span><span class="arr">▼</span></button>
+          <div class="fi-b">
+            <p>The page <a href="apostolic_grace.html">The Acceptance of External Baptism</a> covers the sacramental theology in more detail. This page focuses on the anathema and on whether the two fit together.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="s12">
+      <button class="sec-h" onclick="ts(this)"><span><span class="sec-num">XII.</span>Sources &amp; Further Reading</span><span class="arr">▼</span></button>
+      <div class="sec-b">
+
+        <div class="src-grid">
+          <div class="src-card">
+            <h4>Councils and Canons</h4>
+            <ul>
+              <li>Nicaea (325): Creed; canons 8 and 19 (NPNF 2.14)</li>
+              <li>Constantinople (381): canon 1; the order of reception counted as canon 7, with the editor's note on its date (NPNF 2.14)</li>
+              <li>Ephesus (431): canon 7 (NPNF 2.14)</li>
+              <li>Council in Trullo (692): canon 95, with Hefele's note (NPNF 2.14)</li>
+              <li>Seventh Council of Carthage (256) (ANF 5)</li>
+            </ul>
+          </div>
+          <div class="src-card">
+            <h4>Fathers</h4>
+            <ul>
+              <li>St Cyprian, Epistles 71 and 73 (ANF 5)</li>
+              <li>Eusebius, <em>Church History</em> V.24; VII.3–9 (NPNF 2.1)</li>
+              <li>St Athanasius, <em>De Synodis</em> 40–41 (NPNF 2.4)</li>
+              <li>St Basil, Letter 188 (NPNF 2.8)</li>
+              <li>St Augustine, Letter 43; <em>On Baptism, Against the Donatists</em> I (NPNF 1.1, 1.4)</li>
+              <li>St Severus of Antioch, <em>The Sixth Book of the Select Letters</em>, vol. II part 2, tr. E. W. Brooks (London, 1904), Letters V.1, V.6, V.14, V.15</li>
+            </ul>
+          </div>
+          <div class="src-card">
+            <h4>Modern Documents</h4>
+            <ul>
+              <li>Joint Catholic–Orthodox Declaration of Paul VI and Athenagoras I (7 December 1965)</li>
+              <li>Common Declaration of John Paul II and Mar Ignatius Zakka I Iwas (23 June 1984)</li>
+              <li>Joint Commission of the Eastern and Oriental Orthodox Churches, Second Agreed Statement (Chambésy, 1990); Proposals for Lifting of Anathemas (1993)</li>
+              <li>Common Declaration of Pope Francis and Pope Tawadros II (Cairo, 28 April 2017)</li>
+              <li>Pope Shenouda III, <em>Comparative Theology</em></li>
+            </ul>
+          </div>
+          <div class="src-card">
+            <h4>Studies</h4>
+            <ul>
+              <li>Georges Florovsky, "The Limits of the Church," <em>Church Quarterly Review</em> 117 (1933)</li>
+              <li>Representation of the British Orthodox Church to the Coptic Holy Synod on the reception of converts, <em>Glastonbury Review</em></li>
+            </ul>
+          </div>
+          <div class="src-card">
+            <h4>On This Site</h4>
+            <ul>
+              <li><a href="apostolic_grace.html">The Acceptance of External Baptism</a></li>
+              <li><a href="eo_oo_differences.html">Eastern &amp; Oriental Orthodoxy</a></li>
+              <li><a href="chalcedon_schism.html">The Chalcedonian Schism</a></li>
+              <li><a href="cyril.html">St Cyril of Alexandria</a></li>
+              <li><a href="athanasius.html">St Athanasius the Apostolic</a></li>
+              <li><a href="basil.html">St Basil the Great</a></li>
+              <li><a href="nicene_creed.html">The Nicene Creed</a></li>
+              <li><a href="church_authority.html">Church Authority</a></li>
+            </ul>
+          </div>
+        </div>
+        <p style="margin-top:.8rem;font-size:.85rem;color:var(--mu);font-style:italic;">This page was made with Claude AI and can contain faults; please verify with an Abouna.</p>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+
+  <footer style="text-align:center;padding:2rem 1rem;border-top:1px solid var(--br);font-size:.8rem;color:var(--mu)">
+    <p>THE <span style="color:var(--gold)">ORTHODOX LAMP</span> &nbsp;·&nbsp; Biblical, Historical &amp; Patristic Apologetics</p>
+    <p style="margin-top:.5rem;font-size:.72rem;opacity:.6;">☩ &nbsp; In the name of the Father, and of the Son, and of the Holy Spirit &nbsp; ☩</p>
+  </footer>
+</div><!-- /main -->
+
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+function ts(h){h.closest('.sec').classList.toggle('open')}
+function tobj(h){h.closest('.obj').classList.toggle('open')}
+function tf(h){h.closest('.fi').classList.toggle('open')}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').classList.toggle('show')}
+function closeMobile(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
+
+window.addEventListener('scroll',()=>{
+  const s=document.documentElement,b=document.body;
+  const pct=(s.scrollTop||b.scrollTop)/((s.scrollHeight||b.scrollHeight)-s.clientHeight)*100;
+  document.getElementById('prog').style.width=pct+'%';
+  document.getElementById('btt').classList.toggle('show',(s.scrollTop||b.scrollTop)>300);
+});
+
+const secs=[...document.querySelectorAll('.sec')];
+const links=[...document.querySelectorAll('#nav a')];
+window.addEventListener('scroll',()=>{
+  let cur='';
+  secs.forEach(s=>{if(s.getBoundingClientRect().top<120)cur=s.id});
+  links.forEach(l=>{l.classList.toggle('active',l.getAttribute('href')==='#'+cur)});
+},{ passive:true });
+
+function doSearch(q){
+  document.querySelectorAll('.hl').forEach(e=>{
+    const p=e.parentNode;p.replaceChild(document.createTextNode(e.textContent),e);p.normalize();
+  });
+  if(!q.trim())return;
+  const re=new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi');
+  const walker=document.createTreeWalker(document.querySelector('.content'),NodeFilter.SHOW_TEXT);
+  const nodes=[];let n;
+  while((n=walker.nextNode()))nodes.push(n);
+  nodes.forEach(node=>{
+    if(!re.test(node.textContent))return;
+    re.lastIndex=0;
+    const frag=document.createDocumentFragment();
+    let last=0,m;
+    while((m=re.exec(node.textContent))!==null){
+      frag.appendChild(document.createTextNode(node.textContent.slice(last,m.index)));
+      const mark=document.createElement('mark');
+      mark.className='hl';mark.style.cssText='background:#8a6a20;color:#fff;border-radius:2px;padding:0 2px';
+      mark.textContent=m[0];frag.appendChild(mark);last=m.index+m[0].length;
+    }
+    frag.appendChild(document.createTextNode(node.textContent.slice(last)));
+    node.parentNode.replaceChild(frag,node);
+  });
+  const first=document.querySelector('.hl');if(first)first.scrollIntoView({block:'center',behavior:'smooth'});
+}
+</script>
+<button id="ol-tt" onclick="olTheme()" aria-label="Toggle light or dark mode" title="Light/dark mode">☀</button><script>function olTheme(){var l=document.documentElement.classList.toggle('light');try{localStorage.setItem('ol-theme',l?'light':'dark')}catch(e){}olIcon()}function olIcon(){document.getElementById('ol-tt').textContent=document.documentElement.classList.contains('light')?'☾':'☀'}olIcon();</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+/* AUTO-ENHANCE-JS */
+(function(){
+  try{
+    // back-to-top
+    var bt=document.createElement('button');bt.id='ol-top';bt.setAttribute('aria-label','Back to top');bt.innerHTML='\u2191';
+    bt.onclick=function(){window.scrollTo({top:0,behavior:'smooth'});};
+    document.body.appendChild(bt);
+    window.addEventListener('scroll',function(){bt.classList.toggle('show',window.scrollY>420);},{passive:true});
+    // reading time
+    var main=document.querySelector('main');
+    if(main){
+      var txt=main.innerText||'';var words=txt.trim().split(/\s+/).length;
+      var mins=Math.max(1,Math.round(words/200));
+      var rt=document.createElement('div');rt.className='ol-readtime';rt.textContent=mins+' min read';
+      var anchor=main.querySelector('.pg-title,.page-head,.pg-head,.hd');
+      if(anchor)anchor.appendChild(rt);else main.insertBefore(rt,main.firstChild);
+    }
+    // scroll-reveal
+    var secs=document.querySelectorAll('.sec');
+    if('IntersectionObserver' in window && document.documentElement.classList.contains('js-anim')){
+      var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.01,rootMargin:'0px 0px 12% 0px'});
+      secs.forEach(function(s){io.observe(s);});
+    }else{secs.forEach(function(s){s.classList.add('in');});}
+    // ensure search reveals all
+    document.querySelectorAll('.sb-search input,input[oninput*=sidebarSearch]').forEach(function(i){i.addEventListener('input',function(){document.querySelectorAll('.sec').forEach(function(s){s.classList.add('in');});});});
+  }catch(e){document.querySelectorAll('.sec').forEach(function(s){s.classList.add('in');});}
+})();
+/* END-ENHANCE-JS */</script>
+<script>
+/* AUTO-AESTHETIC2-JS */
+(function(){
+  try{
+    // section dividers between sibling .sec elements
+    Array.prototype.slice.call(document.querySelectorAll('.sec')).forEach(function(s){
+      var prev=s.previousElementSibling;
+      if(prev&&prev.classList&&prev.classList.contains('sec')&&!prev.classList.contains('ol-divider')){
+        var d=document.createElement('div');d.className='ol-divider';d.setAttribute('aria-hidden','true');d.textContent='\u2629';
+        s.parentNode.insertBefore(d,s);
+      }
+    });
+    // drop-cap on the first section's opening paragraph (chapter-opener feel)
+    var lead=document.querySelector('main .sec .sec-body p, main .sec .sec-bd p');
+    if(lead && (lead.textContent||'').trim().length>40){ lead.classList.add('ol-lead'); }
+  }catch(e){}
+})();
+/* END-AESTHETIC2-JS */</script>
+<script>
+/* AUTO-FEATURES3-JS */
+(function(){
+  try{
+    var here=(location.pathname.split('/').pop()||'index.html');
+    var base=location.href.split('#')[0];
+    function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+    /* ---- 1. copy-link buttons ---- */
+    document.querySelectorAll('.sec[id]').forEach(function(sec){
+      var h=sec.querySelector('.sec-h,.sec-hd');
+      if(!h||h.querySelector('.ol-copy'))return;
+      var b=document.createElement('button');
+      b.className='ol-copy';b.type='button';b.setAttribute('aria-label','Copy link to this section');
+      b.addEventListener('click',function(ev){
+        ev.stopPropagation();ev.preventDefault();
+        var url=base+'#'+sec.id;
+        var ok=function(){b.classList.add('ok');setTimeout(function(){b.classList.remove('ok');},1500);};
+        if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(ok,ok);}
+        else{var t=document.createElement('textarea');t.value=url;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(t);ok();}
+      });
+      var arr=h.querySelector('.arr');
+      if(arr&&arr.parentNode===h)h.insertBefore(b,arr);else h.appendChild(b);
+    });
+
+    /* ---- shared index + bundled KJV ---- */
+    var IDX=null,idxP=null,SEC={};
+    function loadIndex(){if(idxP)return idxP;idxP=fetch('search-index.json').then(function(r){return r.json();}).then(function(d){IDX=d;(d.pages||[]).forEach(function(p){var m={};(p.secs||[]).forEach(function(s){m[s.a]=s.h;});SEC[p.f]=m;});return d;});return idxP;}
+    var VP=null,vpP=null;
+    function loadVP(){if(vpP)return vpP;vpP=fetch('verse-pages.json').then(function(r){return r.json();}).then(function(d){VP=d;return d;}).catch(function(){VP={};});return vpP;}
+    var VERSES=null;
+    fetch('verses.json').then(function(r){return r.json();}).then(function(d){VERSES=d;}).catch(function(){VERSES={};});
+
+    /* ---- 2. related topics ---- */
+    loadIndex().then(function(idx){
+      if(!idx||!idx.pages)return;
+      var page=null;idx.pages.forEach(function(p){if(p.f===here)page=p;});
+      if(!page||!page.rel||!page.rel.length)return;
+      var main=document.querySelector('main')||document.getElementById('main');if(!main)return;
+      var box=document.createElement('div');box.className='ol-related';
+      var hh=document.createElement('h3');hh.textContent='Related topics';box.appendChild(hh);
+      var wrap=document.createElement('div');wrap.className='ol-related-links';
+      page.rel.forEach(function(r){var a=document.createElement('a');a.href=r.f;a.textContent=r.t;wrap.appendChild(a);});
+      box.appendChild(wrap);main.appendChild(box);
+    }).catch(function(){});
+
+    /* ---- 3. site-wide search ---- */
+    var ov=document.createElement('div');ov.className='ol-ov';
+    ov.innerHTML='<div class="ol-modal" role="dialog" aria-label="Search topics and verses"><input class="ol-search-input" type="text" placeholder="Search topics or a Bible verse (e.g. John 3:16)…" aria-label="Search topics and Bible verses" autocomplete="off"><div class="ol-results" role="listbox"></div><div class="ol-hint">↑↓ navigate · ↵ open · esc close · type a reference like Rom 5 or 1 Cor 10:12</div></div>';
+    document.body.appendChild(ov);
+    var input=ov.querySelector('.ol-search-input');
+    var results=ov.querySelector('.ol-results');
+    var flat=[],sel=-1;
+    function hilite(text,q){if(!q)return esc(text);var i=text.toLowerCase().indexOf(q);if(i<0)return esc(text);return esc(text.slice(0,i))+'<mark>'+esc(text.slice(i,i+q.length))+'</mark>'+esc(text.slice(i+q.length));}
+
+    /* fuzzy / typo-tolerant scorer */
+    function lev(a,b){var m=a.length,n=b.length;if(!m)return n;if(!n)return m;var prev=[],cur=[],i,j;for(j=0;j<=n;j++)prev[j]=j;for(i=1;i<=m;i++){cur[0]=i;for(j=1;j<=n;j++){var c=a.charAt(i-1)===b.charAt(j-1)?0:1;cur[j]=Math.min(prev[j]+1,cur[j-1]+1,prev[j-1]+c);}for(j=0;j<=n;j++)prev[j]=cur[j];}return prev[n];}
+    function scoreText(hay,q){
+      if(!q)return 0.5;hay=String(hay).toLowerCase();
+      var idx=hay.indexOf(q);
+      if(idx===0)return 1000;
+      if(idx>0)return 800-idx;
+      var words=hay.split(/[^a-z0-9]+/),best=-1,w,word,d,thr;
+      for(w=0;w<words.length;w++){word=words[w];if(!word)continue;
+        if(word.indexOf(q)===0){best=Math.max(best,600);continue;}
+        if(q.length>=4){thr=q.length<=5?1:2;d=lev(word,q);if(d<=thr)best=Math.max(best,420-d*40);}
+      }
+      if(best>=0)return best;
+      var hi=0,qi=0;for(;hi<hay.length&&qi<q.length;hi++){if(hay.charAt(hi)===q.charAt(qi))qi++;}
+      if(qi===q.length)return 200;
+      return -1;
+    }
+
+    /* Bible-book resolver (abbreviations + full names) */
+    var BK={};
+    function reg(c,al){BK[c.toLowerCase().replace(/\s+/g,'')]=c;al.split(',').forEach(function(a){a=a.replace(/\s+/g,'');if(a)BK[a]=c;});}
+    reg('Genesis','gen,ge,gn');reg('Exodus','exo,ex,exod');reg('Leviticus','lev,le,lv');reg('Numbers','num,nu,nm,nb');
+    reg('Deuteronomy','deut,dt,deu');reg('Joshua','josh,jos,jsh');reg('Judges','judg,jdg,jg,jdgs');reg('Ruth','rut,ru,rth');
+    reg('1 Samuel','1sam,1sa,1s,1sm');reg('2 Samuel','2sam,2sa,2s,2sm');reg('1 Kings','1kings,1kgs,1ki,1kg');reg('2 Kings','2kings,2kgs,2ki,2kg');
+    reg('1 Chronicles','1chron,1chr,1ch');reg('2 Chronicles','2chron,2chr,2ch');reg('Ezra','ezr');reg('Nehemiah','neh,ne');
+    reg('Esther','est,esth,es');reg('Job','jb');reg('Psalms','ps,psa,psalm,pss,psm');reg('Proverbs','prov,pro,prv,pr');
+    reg('Ecclesiastes','eccl,ecc,ec,eccles,qoh');reg('Song of Solomon','song,sos,songofsongs,canticles,cant,ss');
+    reg('Isaiah','isa,is,isai');reg('Jeremiah','jer,jr');reg('Lamentations','lam,la');reg('Ezekiel','ezek,eze,ezk');
+    reg('Daniel','dan,da,dn');reg('Hosea','hos,ho');reg('Joel','joe,jl');reg('Amos','am,amo');reg('Obadiah','obad,ob,oba');
+    reg('Jonah','jon,jnh');reg('Micah','mic,mc');reg('Nahum','nah,na');reg('Habakkuk','hab');reg('Zephaniah','zeph,zep,zp');
+    reg('Haggai','hag,hg');reg('Zechariah','zech,zec,zc');reg('Malachi','mal,ml');reg('Matthew','matt,mt,mat');
+    reg('Mark','mk,mar,mrk');reg('Luke','lk,luk,lu');reg('John','jn,joh,jhn');reg('Acts','act,ac');reg('Romans','rom,ro,rm');
+    reg('1 Corinthians','1cor,1co,1c');reg('2 Corinthians','2cor,2co,2c');reg('Galatians','gal,ga');reg('Ephesians','eph,ephes');
+    reg('Philippians','phil,php,pp');reg('Colossians','col');reg('1 Thessalonians','1thess,1thes,1th');reg('2 Thessalonians','2thess,2thes,2th');
+    reg('1 Timothy','1tim,1ti,1tm');reg('2 Timothy','2tim,2ti,2tm');reg('Titus','tit,ti,tts');reg('Philemon','philem,phlm,phm,pm');
+    reg('Hebrews','heb,hebr');reg('James','jas,jm,jms');reg('1 Peter','1pet,1pe,1pt,1p');reg('2 Peter','2pet,2pe,2pt,2p');
+    reg('1 John','1john,1jn,1jo,1j');reg('2 John','2john,2jn,2jo,2j');reg('3 John','3john,3jn,3jo,3j');reg('Jude','jud,jd');
+    reg('Revelation','rev,re,rv,apocalypse,apoc');
+    function parseRef(raw){
+      if(!raw)return null;
+      var m=raw.match(/^\s*([1-3]?\s*[a-zA-Z][a-zA-Z\s]*?)\s*(\d{1,3})(?:\s*[:.\s]\s*(\d{1,3}))?\s*$/);
+      if(!m)return null;
+      var bk=m[1].toLowerCase().replace(/[\s.]+/g,'');var canon=BK[bk];
+      if(!canon)return null;
+      return {canon:canon,ch:parseInt(m[2],10),vs:m[3]?parseInt(m[3],10):null};
+    }
+    function uniqPages(entries){var seen={},out=[];entries.forEach(function(e){if(!seen[e[0]]){seen[e[0]]=1;out.push({f:e[0],t:e[1],a:e[2]});}});return out;}
+    /* exported verse engine — used by the FE4 "Ask the Lamp" assistant.
+       resolves to null if `raw` is not a bare Bible reference. */
+    window.__olVerseQuery=function(raw){
+      var vq=parseRef((raw||'').trim());
+      if(!vq)return Promise.resolve(null);
+      return Promise.all([loadVP(),loadIndex()]).then(function(){
+        function sub(f,a){return (SEC[f]&&SEC[f][a])||'';}
+        function pages(arr){return uniqPages(arr).map(function(r){return {f:r.f,t:r.t,a:r.a,sub:sub(r.f,r.a)};});}
+        if(vq.vs!=null){
+          var key=vq.canon+' '+vq.ch+':'+vq.vs,e=VP[key];
+          return {mode:'verse',ref:key,kjv:(e&&e.k)?e.k:null,pages:e?pages(e.r):[]};
+        }
+        var prefix=vq.canon+' '+vq.ch+':',vnums=[],agg=[];
+        Object.keys(VP).forEach(function(k){if(k.indexOf(prefix)===0){vnums.push(parseInt(k.slice(prefix.length),10));VP[k].r.forEach(function(r){agg.push(r);});}});
+        vnums.sort(function(a,b){return a-b;});
+        return {mode:'chapter',ref:vq.canon+' '+vq.ch,vnums:vnums,pages:pages(agg)};
+      }).catch(function(){return null;});
+    };
+    function rowsHTML(){
+      if(!flat.length)return '<div class="r-empty">No page cites this on the site yet.</div>';
+      return flat.map(function(r,i){return '<a class="ol-r'+(i===sel?' sel':'')+'" data-i="'+i+'" href="'+r.f+(r.a?'#'+r.a:'')+'"><span class="r-t">'+esc(r.t)+'</span>'+(r.sub?'<span class="r-s">'+esc(r.sub)+'</span>':'')+'</a>';}).join('');
+    }
+
+    function renderVerse(vq){
+      if(!VP){results.innerHTML='<div class="r-empty">Loading verse index…</div>';flat=[];sel=-1;return;}
+      var canon=vq.canon,ch=vq.ch,vs=vq.vs,card='',rows=[];
+      if(vs!=null){
+        var key=canon+' '+ch+':'+vs,e=VP[key];
+        card='<div class="ol-vcard"><span class="vref">'+esc(key)+'</span>'+(e&&e.k?'<span class="vkjv">'+esc(e.k)+'<em>KJV</em></span>':'')+(e?'':'<span class="vmeta">Not cited on the site yet.</span>')+'</div>';
+        if(e)rows=uniqPages(e.r);
+      }else{
+        var prefix=canon+' '+ch+':',vnums=[],agg=[];
+        Object.keys(VP).forEach(function(k){if(k.indexOf(prefix)===0){vnums.push(parseInt(k.slice(prefix.length),10));VP[k].r.forEach(function(r){agg.push(r);});}});
+        vnums.sort(function(a,b){return a-b;});
+        card='<div class="ol-vcard"><span class="vref">'+esc(canon+' '+ch)+'</span><span class="vmeta">'+(vnums.length?'Verses cited here: '+vnums.join(', '):'No verses from this chapter are cited yet.')+'</span></div>';
+        rows=uniqPages(agg);
+      }
+      flat=rows.map(function(r){return {f:r.f,t:r.t,a:r.a,sub:(SEC[r.f]&&SEC[r.f][r.a])?SEC[r.f][r.a]:''};});
+      sel=flat.length?0:-1;
+      results.innerHTML=card+rowsHTML();
+    }
+
+    function renderText(q){
+      flat=[];
+      if(IDX&&IDX.pages){
+        if(!q){
+          IDX.pages.slice().sort(function(a,b){return a.t.localeCompare(b.t);}).forEach(function(p){flat.push({f:p.f,t:p.t,sub:'',a:'',sc:0});});
+        }else{
+          IDX.pages.forEach(function(p){
+            var ts=scoreText(p.t,q),bs=null,bss=-1,kw=-1,kwn='';
+            if(p.secs)p.secs.forEach(function(s){var sc=scoreText(s.h,q)*0.85;if(sc>bss){bss=sc;bs=s;}});
+            if(p.kw)p.kw.forEach(function(k){var sc=scoreText(k,q)*0.7;if(sc>kw){kw=sc;kwn=k;}});
+            var best=Math.max(ts,bss,kw);if(best<=0)return;
+            var it={f:p.f,t:p.t,sc:best};
+            if(best===bss&&bs){it.sub=bs.h;it.a=bs.a;}
+            else if(best===kw&&kwn){it.sub='topic · '+kwn;it.topic=1;}
+            else it.sub='';
+            flat.push(it);
+          });
+          flat.sort(function(a,b){return b.sc-a.sc;});
+        }
+      }
+      flat=flat.slice(0,40);sel=flat.length?0:-1;
+      if(!flat.length){results.innerHTML='<div class="r-empty">'+(IDX?'No matches — try a topic or a Bible verse (e.g. John 3:16)':'Loading index…')+'</div>';return;}
+      results.innerHTML=flat.map(function(r,i){
+        return '<a class="ol-r'+(i===sel?' sel':'')+'" data-i="'+i+'" href="'+r.f+(r.a?'#'+r.a:'')+'"><span class="r-t">'+hilite(r.t,q)+'</span>'+(r.sub?'<span class="r-s'+(r.topic?' r-topic':'')+'">'+(r.topic?esc(r.sub):hilite(r.sub,q))+'</span>':'')+'</a>';
+      }).join('');
+    }
+
+    function render(){
+      var raw=(input.value||'').trim();
+      var vq=parseRef(raw);
+      if(vq){if(!VP)loadVP().then(function(){if(ov.classList.contains('open')&&parseRef((input.value||'').trim()))render();});renderVerse(vq);return;}
+      renderText(raw.toLowerCase());
+    }
+    function setSel(i){var a=results.querySelectorAll('.ol-r');if(!a.length)return;sel=(i+a.length)%a.length;a.forEach(function(el,j){el.classList.toggle('sel',j===sel);});a[sel].scrollIntoView({block:'nearest'});}
+    function go(){if(sel>=0&&flat[sel]){var r=flat[sel];location.href=r.f+(r.a?'#'+r.a:'');}}
+    function openS(seed){ov.classList.add('open');document.body.style.overflow='hidden';input.value=seed||'';render();loadIndex().then(function(){if(ov.classList.contains('open'))render();}).catch(function(){});loadVP().then(function(){if(ov.classList.contains('open'))render();}).catch(function(){});setTimeout(function(){input.focus();if(seed)input.select();},30);}
+    window.__olOpenSearch=openS;
+    function closeS(){ov.classList.remove('open');document.body.style.overflow='';}
+    input.addEventListener('input',render);
+    input.addEventListener('keydown',function(e){
+      if(e.key==='ArrowDown'){e.preventDefault();setSel(sel+1);}
+      else if(e.key==='ArrowUp'){e.preventDefault();setSel(sel-1);}
+      else if(e.key==='Enter'){e.preventDefault();go();}
+      else if(e.key==='Escape'){e.preventDefault();closeS();}
+    });
+    results.addEventListener('mousemove',function(e){var a=e.target.closest('.ol-r');if(a)setSel(+a.getAttribute('data-i'));});
+    ov.addEventListener('click',function(e){if(e.target===ov)closeS();});
+    document.addEventListener('keydown',function(e){
+      if(e.key==='/'&&!ov.classList.contains('open')){var t=document.activeElement;var tn=t?t.tagName:'';if(tn==='INPUT'||tn==='TEXTAREA'||(t&&t.isContentEditable))return;e.preventDefault();openS();}
+      else if(e.key==='Escape'&&ov.classList.contains('open')){closeS();}
+    });
+    var launcher=document.createElement('button');launcher.className='ol-search-btn';launcher.type='button';
+    launcher.innerHTML='Search topics &amp; verses <span>/</span>';launcher.addEventListener('click',function(){openS();});
+    var sbs=document.querySelector('.sb-search');
+    if(sbs&&sbs.parentNode)sbs.parentNode.insertBefore(launcher,sbs);
+    else{var nav=document.querySelector('#sidebar nav,#sb nav,#sidebar,#sb');if(nav)nav.insertBefore(launcher,nav.firstChild);}
+
+    /* ---- 4. scripture tooltips (KJV bundled locally in verses.json, public domain) ---- */
+    var BOOKS='Genesis|Exodus|Leviticus|Numbers|Deuteronomy|Joshua|Judges|Ruth|1 ?Samuel|2 ?Samuel|1 ?Kings|2 ?Kings|1 ?Chronicles|2 ?Chronicles|Ezra|Nehemiah|Esther|Job|Psalms|Psalm|Proverbs|Ecclesiastes|Song of Solomon|Song of Songs|Isaiah|Jeremiah|Lamentations|Ezekiel|Daniel|Hosea|Joel|Amos|Obadiah|Jonah|Micah|Nahum|Habakkuk|Zephaniah|Haggai|Zechariah|Malachi|Matthew|Mark|Luke|John|Acts|Romans|1 ?Corinthians|2 ?Corinthians|Galatians|Ephesians|Philippians|Colossians|1 ?Thessalonians|2 ?Thessalonians|1 ?Timothy|2 ?Timothy|Titus|Philemon|Hebrews|James|1 ?Peter|2 ?Peter|1 ?John|2 ?John|3 ?John|Jude|Revelation';
+    var VRE=new RegExp('\\b((?:'+BOOKS+')\\.?\\s+\\d{1,3}:\\d{1,3}(?:[-–]\\d{1,3})?(?:,\\s?\\d{1,3}(?:[-–]\\d{1,3})?)*)','g');
+    function wrap(root){
+      var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:function(n){
+        if(!n.nodeValue||n.nodeValue.indexOf(':')<0)return NodeFilter.FILTER_REJECT;
+        var p=n.parentNode;
+        while(p&&p!==root){var t=p.nodeName.toLowerCase();
+          if(t==='a'||t==='button'||t==='script'||t==='style'||(p.classList&&(p.classList.contains('ol-verse')||p.classList.contains('ol-copy'))))return NodeFilter.FILTER_REJECT;
+          p=p.parentNode;}
+        return NodeFilter.FILTER_ACCEPT;
+      }});
+      var nodes=[],n;while(n=w.nextNode())nodes.push(n);
+      nodes.forEach(function(node){
+        var txt=node.nodeValue;VRE.lastIndex=0;if(!VRE.test(txt))return;VRE.lastIndex=0;
+        var frag=document.createDocumentFragment(),last=0,m;
+        while(m=VRE.exec(txt)){
+          if(m.index>last)frag.appendChild(document.createTextNode(txt.slice(last,m.index)));
+          var sp=document.createElement('span');sp.className='ol-verse';sp.textContent=m[0];sp.setAttribute('data-ref',m[1]);
+          frag.appendChild(sp);last=m.index+m[0].length;
+        }
+        if(last<txt.length)frag.appendChild(document.createTextNode(txt.slice(last)));
+        node.parentNode.replaceChild(frag,node);
+      });
+    }
+    document.querySelectorAll('.sec-body,.sec-bd,.sec-body2').forEach(wrap);
+    var tip=document.createElement('div');tip.className='ol-tip';tip.style.display='none';document.body.appendChild(tip);
+    function place(el){var r=el.getBoundingClientRect();tip.style.display='block';var w=tip.offsetWidth||330;
+      var left=window.scrollX+r.left;var max=window.scrollX+document.documentElement.clientWidth-w-10;
+      tip.style.left=Math.max(8,Math.min(left,max))+'px';tip.style.top=(window.scrollY+r.bottom+8)+'px';}
+    function lookup(ref){var k=ref.replace(/\s+/g,' ').trim();if(VERSES&&VERSES[k])return VERSES[k];return null;}
+    function show(el){
+      var ref=el.getAttribute('data-ref');if(!ref)return;
+      var t=lookup(ref);
+      if(t){tip.innerHTML='<b>'+esc(ref)+'</b><span class="ol-tip-kjv">KJV</span><br>'+esc(t);}
+      else if(VERSES===null){tip.innerHTML='<b>'+esc(ref)+'</b><br><span class="ol-tip-load">Loading…</span>';}
+      else{tip.innerHTML='<b>'+esc(ref)+'</b><br><span class="ol-tip-err">Text unavailable</span>';}
+      place(el);
+    }
+    function hide(){tip.style.display='none';}
+    document.addEventListener('mouseover',function(e){var t=e.target;if(t.classList&&t.classList.contains('ol-verse'))show(t);});
+    document.addEventListener('mouseout',function(e){var t=e.target;if(t.classList&&t.classList.contains('ol-verse'))hide();});
+    document.addEventListener('focusin',function(e){var t=e.target;if(t.classList&&t.classList.contains('ol-verse'))show(t);});
+    document.addEventListener('focusout',function(e){var t=e.target;if(t.classList&&t.classList.contains('ol-verse'))hide();});
+    document.querySelectorAll('.ol-verse').forEach(function(v){v.setAttribute('tabindex','0');});
+  }catch(e){}
+})();
+/* END-FEATURES3-JS */</script>
+<script>
+/* Ask the Lamp — AI config. Paste your Cloudflare Worker URL between the
+   quotes to turn on grounded AI answers. Leave blank for site-search only.
+   See ask-lamp-SETUP.md for the 10-minute setup. */
+window.OL_ASK_ENDPOINT = "https://ask-the-lamp.sebazz7397.workers.dev";
+</script>
+<script>
+/* AUTO-FEATURES4-JS */
+(function(){
+  try{
+    function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+    /* Optional strict-RAG AI answers. Set window.OL_ASK_ENDPOINT to the
+       Cloudflare Worker URL to turn "Ask the Lamp" from a search box into a
+       grounded assistant. If blank or unreachable, it silently falls back to
+       the retrieval-only behaviour below. See ask-lamp-SETUP.md. */
+    var AI_ENDPOINT=(window.OL_ASK_ENDPOINT||'').trim();
+    /* plain model text -> safe HTML: escape, light **bold**, [n] citations, paragraphs */
+    function fmtAI(s){
+      var out=esc(s);
+      out=out.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
+      /* normalise fancy citation brackets (【1】〔1〕〖1〗) the model sometimes emits to plain [1] */
+      out=out.replace(/[【〔〖]\s*(\d{1,2})\s*[】〕〗]/g,'[$1]');
+      out=out.replace(/\[(\d{1,2})\]/g,'<sup class="ol-ci">[$1]</sup>');
+      return out.split(/\n{2,}/).map(function(p){return '<p>'+p.replace(/\n/g,'<br>')+'</p>';}).join('');
+    }
+    var STOP={};'the a an and or but of to in on at for with as is are was were be been being do does did this that these those it its their them they we you i he she his her our your my me us not no yes can could would should will shall may might must have has had what why how who whom whose which when where does did about into from than then so such also more most very just only own same other any all both each few how into about'.split(/\s+/).forEach(function(w){STOP[w]=1;});
+    function toks(q){return (String(q).toLowerCase().match(/[a-z0-9]+/g)||[]).filter(function(w){return w.length>=3&&!STOP[w];});}
+
+    var C=null,cP=null;
+    function loadC(){if(cP)return cP;cP=fetch('ask-content.json').then(function(r){return r.json();}).then(function(d){C=d;return d;}).catch(function(){C={pages:[]};return C;});return cP;}
+
+    function reEsc(t){return t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}
+    function excerpt(x,tk){
+      if(!x)return '';
+      var lx=x.toLowerCase(),pos=-1,i,p;
+      for(i=0;i<tk.length;i++){p=lx.indexOf(tk[i]);if(p>=0&&(pos<0||p<pos))pos=p;}
+      if(pos<0)pos=0;
+      var start=Math.max(0,pos-65),end=Math.min(x.length,pos+165);
+      var frag=x.slice(start,end);
+      if(start>0)frag=frag.replace(/^\S*\s/,'');
+      if(end<x.length)frag=frag.replace(/\s\S*$/,'');
+      var out=esc(frag);
+      if(start>0)out='…'+out;
+      if(end<x.length)out=out+'…';
+      tk.forEach(function(t){if(t.length<3)return;try{out=out.replace(new RegExp('('+reEsc(t)+')','ig'),'<mark>$1</mark>');}catch(e){}});
+      return out;
+    }
+    /* whole-word matcher (with light plural/possessive tolerance) so that a query
+       for "christ" does NOT match inside "christian"/"christology", and vice-versa. */
+    function mkRx(t){return new RegExp('\\b'+reEsc(t)+"(?:'s|s)?\\b",'gi');}
+    function nWord(text,rx){if(!text)return 0;var m=String(text).match(rx);return m?m.length:0;}
+    function rank(q){
+      var tk=toks(q);if(!tk.length||!C||!C.pages)return {tk:tk,top:[],broad:false};
+      var rx=tk.map(mkRx);
+      /* pass 1 — how many sections each term appears in (for rarity weighting) */
+      var N=0,dfSec=tk.map(function(){return 0;});
+      C.pages.forEach(function(p){var pk=(p.t||'')+' '+((p.kw||[]).join(' '));(p.secs||[]).forEach(function(s){
+        N++;var blob=pk+' '+(s.h||'')+' '+(s.x||'');
+        tk.forEach(function(t,i){if(nWord(blob,rx[i]))dfSec[i]++;});
+      });});
+      /* rarer term => higher weight; ubiquitous terms (Christ, church…) => near-zero */
+      var idf=dfSec.map(function(df){return Math.log((N+1)/(df+1))+0.15;});
+      /* pass 2 — score every section, weighting each term by its rarity */
+      var hits=[];
+      C.pages.forEach(function(p){
+        var title=(p.t||''),kw=(p.kw||[]).join(' ');
+        (p.secs||[]).forEach(function(s){
+          var head=(s.h||''),body=(s.x||''),sc=0,covered=0;
+          tk.forEach(function(t,i){
+            var w=idf[i],any=false,r=rx[i];
+            if(nWord(head,r)){sc+=14*w;any=true;}
+            if(nWord(title,r)){sc+=8*w;any=true;}
+            if(nWord(kw,r)){sc+=7*w;any=true;}
+            var occ=nWord(body,r);if(occ){sc+=Math.min(occ,4)*4*w;any=true;}
+            if(any)covered++;
+          });
+          if(tk.length>1){if(covered===tk.length)sc+=14;sc+=covered*3;}
+          if(sc>0)hits.push({f:p.f,t:p.t,h:s.h,a:s.a,x:s.x,sc:sc,cov:covered});
+        });
+      });
+      hits.sort(function(a,b){return b.sc-a.sc;});
+      /* a single word that appears in a large share of the site is "broad" */
+      var broad=(tk.length===1&&N>0&&dfSec[0]>Math.max(40,N*0.18));
+      var per={},top=[],cap=broad?1:2,lim=broad?6:4;
+      for(var i=0;i<hits.length&&top.length<lim;i++){var f=hits[i].f;if((per[f]||0)>=cap)continue;per[f]=(per[f]||0)+1;top.push(hits[i]);}
+      return {tk:tk,top:top,broad:broad,term:tk[0]};
+    }
+
+    /* ---- UI ---- */
+    var fab=document.createElement('button');fab.className='ol-ask-fab';fab.type='button';
+    fab.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg><span>Ask the Lamp</span>';
+    document.body.appendChild(fab);
+
+    var wrap=document.createElement('div');wrap.className='ol-ask-wrap';wrap.setAttribute('role','dialog');wrap.setAttribute('aria-label','Ask the Lamp');
+    wrap.innerHTML='<div class="ol-ask-hd"><div class="ti"><b>Ask the Lamp</b><span>Search the whole site by question or verse</span></div><button class="ol-ask-x" type="button" aria-label="Close">×</button></div><div class="ol-ask-log" role="log" aria-live="polite"></div><div class="ol-ask-foot"><input type="text" placeholder="Ask a question or type a verse…" aria-label="Ask a question" autocomplete="off"><button class="send" type="button" aria-label="Send">➤</button></div><div class="ol-ask-note">Answers are drawn only from this site’s pages · not a live AI chat</div>';
+    document.body.appendChild(wrap);
+    var log=wrap.querySelector('.ol-ask-log'),inp=wrap.querySelector('.ol-ask-foot input'),sendB=wrap.querySelector('.send'),xB=wrap.querySelector('.ol-ask-x');
+    var LAMP_SVG="<svg viewBox='0 0 40 48' fill='none' xmlns='http://www.w3.org/2000/svg' aria-hidden='true'><defs><radialGradient id='olflame' cx='50%' cy='72%' r='62%'><stop offset='0%' stop-color='#ffe89c'/><stop offset='45%' stop-color='#f8ab3c'/><stop offset='100%' stop-color='#ee6f1e'/></radialGradient><radialGradient id='olfoot' cx='50%' cy='25%' r='85%'><stop offset='0%' stop-color='#c9a35a'/><stop offset='100%' stop-color='#8a6a26'/></radialGradient></defs><g class='lampg'><g class='rays' stroke='#f4a63a' stroke-width='1.6' stroke-linecap='round'><line x1='33' y1='25' x2='36.5' y2='25'/><line x1='7' y1='25' x2='3.5' y2='25'/><line x1='29.2' y1='14.4' x2='31.7' y2='11.6'/><line x1='10.8' y1='14.4' x2='8.3' y2='11.6'/><line x1='29.2' y1='35.6' x2='31.7' y2='38.4'/><line x1='10.8' y1='35.6' x2='8.3' y2='38.4'/><line x1='25' y1='11.1' x2='26.3' y2='7.4'/><line x1='15' y1='11.1' x2='13.7' y2='7.4'/></g><ellipse class='foot' cx='20' cy='44.4' rx='6' ry='1.7' fill='url(#olfoot)'/><rect class='wick' x='18.5' y='39.5' width='3' height='5.2' rx='1.4' fill='#5a4020'/><g class='fl'><path class='body' d='M20 10 C26 15.5 30.5 20.5 30 28 C29.5 35 25 40.5 20 41.5 C15 40.5 10.5 35 10 28 C9.5 20.5 14 15.5 20 10 Z' fill='url(#olflame)'/><path d='M20 18 C23.8 22.5 26 26.5 24.8 31.5 C23.9 35 22 37.2 20 37.6 C18 37.2 16.1 35 15.2 31.5 C14 26.5 16.2 22.5 20 18 Z' fill='#ffe488' opacity='.5'/><ellipse cx='15.6' cy='23' rx='1.6' ry='3' fill='#fff8df' opacity='.4'/></g><g class='eyes' fill='#5a3212'><ellipse cx='15.6' cy='27.5' rx='2.5' ry='3'/><ellipse cx='24.4' cy='27.5' rx='2.5' ry='3'/><circle cx='14.8' cy='26.5' r='.95' fill='#fff'/><circle cx='23.6' cy='26.5' r='.95' fill='#fff'/></g><g class='eyes-happy' stroke='#5a3212' stroke-width='1.7' stroke-linecap='round' fill='none'><path d='M13.1 27.9 Q15.6 24.7 18.1 27.9'/><path d='M21.9 27.9 Q24.4 24.7 26.9 27.9'/></g><path class='m-idle' d='M17.2 32.4 Q20 34.5 22.8 32.4' stroke='#5a3212' stroke-width='1.4' stroke-linecap='round' fill='none'/><path class='m-think' d='M18.5 32.6 Q20 33.4 21.5 32.6' stroke='#5a3212' stroke-width='1.4' stroke-linecap='round' fill='none'/><path class='m-happy' d='M16.4 32 Q20 35.9 23.6 32' stroke='#5a3212' stroke-width='1.6' stroke-linecap='round' fill='none'/></g></svg>";
+    function LAMP(s){return "<span class='ol-lamp st-"+s+"'>"+LAMP_SVG+"</span>";}
+    var lampAv=(function(){var hd=wrap.querySelector('.ol-ask-hd');if(!hd)return null;var a=document.createElement('span');a.className='ol-lamp ol-lamp-hd st-idle';a.innerHTML=LAMP_SVG;hd.insertBefore(a,hd.firstChild);return a;})();
+    function lampState(s){if(lampAv)lampAv.className='ol-lamp ol-lamp-hd st-'+s;}
+    var noteEl=wrap.querySelector('.ol-ask-note');
+    if(noteEl){noteEl.textContent=AI_ENDPOINT
+      ?'AI answers are generated only from this site’s pages, with sources shown — always verify against the cited pages.'
+      :'Answers are drawn only from this site’s pages · not a live AI chat';
+      var dl=document.createElement('span');dl.className='ol-ask-dl';dl.textContent='Your first question downloads about 1 MB of site text. After that it is saved on your device.';noteEl.appendChild(dl);}
+    var subEl=wrap.querySelector('.ol-ask-hd .ti span');
+    if(subEl&&AI_ENDPOINT)subEl.textContent='Grounded answers from the site, with sources';
+
+    function scrollDown(){log.scrollTop=log.scrollHeight;}
+    function addUser(t){var d=document.createElement('div');d.className='ol-ask-msg user';d.textContent=t;log.appendChild(d);scrollDown();}
+    function addBot(html){var d=document.createElement('div');d.className='ol-ask-msg bot';d.innerHTML=html;log.appendChild(d);scrollDown();return d;}
+
+    function pageRows(pages,limit){
+      return pages.slice(0,limit||5).map(function(r){
+        return '<a class="ol-ans" href="'+esc(r.f)+(r.a?'#'+esc(r.a):'')+'"><span class="a-t">'+esc(r.t)+'</span>'+(r.sub?'<span class="a-h">'+esc(r.sub)+'</span>':'')+'</a>';
+      }).join('');
+    }
+    function renderVerse(v){
+      var h='';
+      if(v.mode==='verse'){
+        h+='<div class="ol-vans"><span class="vr">'+esc(v.ref)+'</span>'+(v.kjv?'<span class="vt">'+esc(v.kjv)+'<em>KJV</em></span>':'<span class="vt">Not cited on the site yet.</span>')+'</div>';
+        if(v.pages.length){h+='<p class="lead">Cited on '+v.pages.length+' page'+(v.pages.length>1?'s':'')+':</p>'+pageRows(v.pages,6);}
+      }else{
+        h+='<div class="ol-vans"><span class="vr">'+esc(v.ref)+'</span><span class="vt">'+(v.vnums.length?'Verses cited here: '+v.vnums.join(', '):'No verses from this chapter are cited yet.')+'</span></div>';
+        if(v.pages.length){h+='<p class="lead">Pages citing this chapter:</p>'+pageRows(v.pages,6);}
+      }
+      addBot(h);
+    }
+    function cap1(s){return s?s.charAt(0).toUpperCase()+s.slice(1):s;}
+    function renderTopic(q){
+      var r=rank(q),tk=r.tk,top=r.top;
+      if(!tk.length){addBot('<p class="lead">Try a question like <em>why do you venerate icons?</em> or type a Bible reference such as <em>John 3:16</em>.</p>');return;}
+      if(!top.length){addBot('<p class="lead">I couldn’t find that on the site. Try different words, or browse from the menu.</p>');return;}
+      if(r.broad){
+        var h='<p class="lead">“'+esc(cap1(r.term))+'” runs through much of the site — that’s a broad topic. Here are the main places it’s covered; add a few more words to narrow things down:</p>';
+        h+=top.map(function(it){return '<a class="ol-ans" href="'+esc(it.f)+(it.a?'#'+esc(it.a):'')+'"><span class="a-t">'+esc(it.t)+'</span>'+(it.h?'<span class="a-h">'+esc(it.h)+'</span>':'')+'</a>';}).join('');
+        addBot(h);return;
+      }
+      var strong=(top[0].cov===tk.length);
+      var lead=strong?'Here’s where the site addresses that:':'This looks closest on the site:';
+      var body=top.map(function(it){
+        return '<a class="ol-ans" href="'+esc(it.f)+(it.a?'#'+esc(it.a):'')+'"><span class="a-t">'+esc(it.t)+'</span>'+(it.h?'<span class="a-h">'+esc(it.h)+'</span>':'')+'<span class="a-x">'+excerpt(it.x,tk)+'</span></a>';
+      }).join('');
+      addBot('<p class="lead">'+lead+'</p>'+body);
+    }
+
+    /* citation links under an AI answer, numbered to match [1]/[2] in the text */
+    function citeHTML(top){
+      return '<div class="ol-ai-cite"><p class="lead">Sources on the site</p>'+top.map(function(it,i){
+        return '<a class="ol-ans" href="'+esc(it.f)+(it.a?'#'+esc(it.a):'')+'"><span class="a-t"><span class="a-c">['+(i+1)+']</span>'+esc(it.t)+'</span>'+(it.h?'<span class="a-h">'+esc(it.h)+'</span>':'')+'</a>';
+      }).join('')+'</div>';
+    }
+    /* stream a grounded answer from the Worker; onErr triggers retrieval fallback */
+    function streamAI(q,passages,bubble,onDone,onErr){
+      var txt=document.createElement('div');txt.className='ol-ai-txt';
+      var acc='',started=false,gotErr=false,pinned=false;
+      function begin(){if(!started){started=true;bubble.innerHTML='';bubble.appendChild(txt);}}
+      /* keep the START of the answer at the top of the log so the reader begins at the beginning */
+      function pinStart(){if(pinned)return;pinned=true;var head=bubble.previousElementSibling||bubble;var lr=log.getBoundingClientRect(),er=head.getBoundingClientRect();log.scrollTop+=(er.top-lr.top)-10;}
+      /* gently type the answer in, word by word, with a blinking caret */
+      function typeReveal(full,done){
+        var parts=full.match(/\S+\s*/g)||[full];var i=0,n=parts.length,step=n>90?3:(n>45?2:1);
+        (function tick(){
+          i=Math.min(n,i+step);
+          txt.innerHTML=fmtAI(parts.slice(0,i).join(''))+(i<n?'<span class="ol-ai-caret"></span>':'');
+          if(i<n){setTimeout(tick,18);}else{txt.innerHTML=fmtAI(full||'—');done();}
+        })();
+      }
+      fetch(AI_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({q:q,passages:passages})}).then(function(res){
+        if(!res.ok||!res.body)throw new Error('bad response');
+        var reader=res.body.getReader(),dec=new TextDecoder(),buf='';
+        function finish(){begin();pinStart();typeReveal(acc,onDone);}
+        function pump(){
+          return reader.read().then(function(r){
+            if(r.done){finish();return;}
+            buf+=dec.decode(r.value,{stream:true});
+            var lines=buf.split('\n');buf=lines.pop()||'';
+            lines.forEach(function(line){
+              var t=line.trim();
+              if(t.indexOf('data:')!==0)return;
+              var p=t.slice(5).trim();
+              if(p==='[DONE]'||!p)return;
+              try{var tok=JSON.parse(p);if(typeof tok==='string'){acc+=tok;}}catch(e){}
+            });
+            return pump();
+          });
+        }
+        return pump();
+      }).catch(function(){if(!gotErr){gotErr=true;onErr();}});
+    }
+    function renderTopicAI(q){
+      var r=rank(q),tk=r.tk,top=r.top;
+      if(!tk.length){addBot('<p class="lead">Try a question like <em>why do you venerate icons?</em> or type a Bible reference such as <em>John 3:16</em>.</p>');busy=false;return;}
+      if(!top.length){addBot('<p class="lead">I couldn’t find that on the site. Try different words, or browse from the menu.</p>');busy=false;return;}
+      var passages=top.slice(0,6).map(function(it){return {t:it.t,h:it.h,x:it.x};});
+      lampState('think');
+      var bubble=addBot(''+LAMP('think')+'<span class="ol-ai-think">consulting the lamp…</span>');
+      streamAI(q,passages,bubble,function(){
+        var c=document.createElement('div');c.innerHTML=citeHTML(top);
+        bubble.appendChild(c.firstChild);busy=false;lampState('happy');setTimeout(function(){lampState('idle');},4200);
+      },function(){
+        bubble.parentNode&&bubble.parentNode.removeChild(bubble);
+        lampState('idle');renderTopic(q);busy=false;
+      });
+    }
+
+    var busy=false;
+    function handle(q){
+      q=(q||'').trim();if(!q||busy)return;
+      addUser(q);inp.value='';busy=true;
+      var topic=function(){loadC().then(function(){if(AI_ENDPOINT)renderTopicAI(q);else{renderTopic(q);busy=false;}});};
+      var vp=(window.__olVerseQuery?window.__olVerseQuery(q):Promise.resolve(null));
+      Promise.resolve(vp).then(function(v){
+        if(v){renderVerse(v);busy=false;return;}
+        topic();
+      }).catch(topic);
+    }
+
+    var greeted=false;
+    function greet(){
+      if(greeted)return;greeted=true;
+      var d=addBot('<p class="lead">'+LAMP('idle')+' Ask me anything about the Oriental Orthodox faith, other traditions, or type a Bible reference — I’ll point you to the answer on the site.</p><div class="ol-ask-chips"></div>');
+      var chips=['Why venerate icons?','Are we monophysite?','Purgatory','John 3:16'];
+      var cw=d.querySelector('.ol-ask-chips');
+      chips.forEach(function(c){var b=document.createElement('button');b.type='button';b.textContent=c;b.addEventListener('click',function(){handle(c);});cw.appendChild(b);});
+    }
+    function openAsk(){wrap.classList.add('open');fab.classList.add('hide');greet();lampState('idle');loadC();setTimeout(function(){inp.focus();},40);scrollDown();}
+    function closeAsk(){wrap.classList.remove('open');fab.classList.remove('hide');}
+    fab.addEventListener('click',openAsk);
+    xB.addEventListener('click',closeAsk);
+    sendB.addEventListener('click',function(){handle(inp.value);});
+    inp.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();handle(inp.value);}else if(e.key==='Escape'){closeAsk();}});
+    window.__olOpenAsk=openAsk;
+  }catch(e){}
+})();
+/* END-FEATURES4-JS */</script>
+<script>
+/* AUTO-FEATURES5-JS */
+(function(){
+  try{
+    /* ---- 1. print / save-as-PDF button in the sidebar ---- */
+    if(!document.querySelector('.ol-print-btn')){
+      var pb=document.createElement('button');pb.className='ol-print-btn';pb.type='button';
+      pb.setAttribute('aria-label','Print or save this page as PDF');
+      pb.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg><span>Print / Save as PDF</span>';
+      pb.addEventListener('click',function(){window.print();});
+      var sbtn=document.querySelector('.ol-search-btn');
+      if(sbtn&&sbtn.parentNode){sbtn.parentNode.insertBefore(pb,sbtn.nextSibling);}
+      else{var nav=document.querySelector('#sidebar nav,#sb nav,#sidebar,#sb');if(nav)nav.insertBefore(pb,nav.firstChild);}
+    }
+    /* ---- 2. offline / installable (PWA) service worker ---- */
+    if('serviceWorker' in navigator){
+      window.addEventListener('load',function(){
+        navigator.serviceWorker.register('sw.js').catch(function(){});
+      });
+    }
+  }catch(e){}
+})();
+/* END-FEATURES5-JS */</script>
+<button id="ol-sbt" onclick="olSb()" aria-label="Collapse or expand the contents sidebar" title="Hide or show contents"><span id="ol-sbi">‹</span></button>
+<script>function olSb(){var c=document.documentElement.classList.toggle('sb-collapsed');try{localStorage.setItem('ol-sb',c?'1':'0')}catch(e){}olSbIcon()}function olSbIcon(){var i=document.getElementById('ol-sbi');if(i)i.innerHTML=document.documentElement.classList.contains('sb-collapsed')?'›':'‹'}olSbIcon();</script>
+<script>/* AUTO-SHARECARDS-JS */
+(function(){
+try{
+  var SITE="The Orthodox Lamp";
+  var HOST="85z5yr9fyf-commits.github.io/the-orthodox-lamp";
+  /* ---- styles ---- */
+  if(!document.getElementById('ol-sc-style')){
+    var st=document.createElement('style');st.id='ol-sc-style';
+    st.textContent='.fc,.sv{position:relative}'+
+      '.ol-sc-btn{position:absolute;top:8px;right:8px;z-index:5;display:inline-flex;align-items:center;gap:5px;'+
+      'background:rgba(201,168,76,.12);border:1px solid var(--gd,#8a6a20);color:var(--gold,#c9a84c);'+
+      'border-radius:6px;padding:3px 8px;font:600 .7rem/1 Georgia,serif;cursor:pointer;opacity:0;'+
+      'transition:opacity .18s,background .18s}'+
+      '.fc:hover .ol-sc-btn,.sv:hover .ol-sc-btn,.ol-sc-btn:focus{opacity:.92}'+
+      '.ol-sc-btn:hover{background:rgba(201,168,76,.24)}'+
+      '.ol-sc-btn svg{width:12px;height:12px}'+
+      '@media(hover:none){.ol-sc-btn{opacity:.6}}'+
+      '@media print{.ol-sc-btn{display:none!important}}';
+    document.head.appendChild(st);
+  }
+  var ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"></line><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"></line></svg>';
+  function clean(s){return (s||'').replace(/\s+/g,' ').trim();}
+  function dequote(s){return s.replace(/^[“‘"']+/,'').replace(/[”’"']+$/,'').trim();}
+  function collect(el){
+    if(el.classList.contains('fc')){
+      var body=el.querySelector('.fc-body'), name=el.querySelector('.fc-name'), src=el.querySelector('.fc-src');
+      var srcTxt='';
+      if(src){var cl=src.cloneNode(true);var tg=cl.querySelector('.tag');if(tg)tg.remove();srcTxt=clean(cl.textContent);}
+      return {quote:dequote(clean(body?body.textContent:el.textContent)),
+              attr:name?clean(name.textContent):'', src:srcTxt};
+    }else{ /* .sv */
+      var cl=el.cloneNode(true), cite=cl.querySelector('cite'); var attr='';
+      var sb=cl.querySelector('.ol-sc-btn'); if(sb)sb.remove();
+      if(cite){attr=clean(cite.textContent);cite.remove();}
+      return {quote:dequote(clean(cl.textContent)), attr:attr, src:''};
+    }
+  }
+  function wrap(x,text,maxW){
+    var words=text.split(' '),lines=[],cur='';
+    for(var i=0;i<words.length;i++){
+      var t=cur?cur+' '+words[i]:words[i];
+      if(x.measureText(t).width>maxW&&cur){lines.push(cur);cur=words[i];}else{cur=t;}
+    }
+    if(cur)lines.push(cur);
+    return lines;
+  }
+  function draw(d){
+    var S=1080,c=document.createElement('canvas');c.width=S;c.height=S;
+    var x=c.getContext('2d');
+    var g=x.createLinearGradient(0,0,0,S);g.addColorStop(0,'#151515');g.addColorStop(1,'#0b0b0b');
+    x.fillStyle=g;x.fillRect(0,0,S,S);
+    x.strokeStyle='#c9a84c';x.lineWidth=3;x.strokeRect(46,46,S-92,S-92);
+    x.strokeStyle='#5a4a20';x.lineWidth=1;x.strokeRect(58,58,S-116,S-116);
+    x.textAlign='center';
+    /* label */
+    x.fillStyle='#a09880';x.font='600 22px Georgia,serif';
+    x.fillText('T H E   O R T H O D O X   L A M P',S/2,132);
+    /* lamp flame */
+    x.fillStyle='#e8c96a';x.beginPath();x.ellipse(S/2,182,11,17,0,0,Math.PI*2);x.fill();
+    x.fillStyle='#c9a84c';x.beginPath();x.moveTo(S/2,150);x.lineTo(S/2-11,180);x.lineTo(S/2+11,180);x.closePath();x.fill();
+    /* opening quote mark */
+    x.fillStyle='rgba(201,168,76,.35)';x.font='italic 150px Georgia,serif';
+    x.fillText('“',S/2,300);
+    /* quote text: size to fit */
+    var maxW=S-220, q=d.quote, size=46;
+    var lens=[[170,46],[300,40],[460,34],[680,29]], picked=25;
+    for(var i=0;i<lens.length;i++){if(q.length<=lens[i][0]){picked=lens[i][1];break;}}
+    size=picked;
+    x.fillStyle='#ece4d4';x.font='italic '+size+'px Georgia,serif';
+    var lines=wrap(x,q,maxW), lh=size*1.34;
+    if(lines.length>15){lines=lines.slice(0,15);lines[14]=lines[14].replace(/[.,;: ]+$/,'')+'…';}
+    var blockH=lines.length*lh, cy=560-blockH/2;
+    /* keep within frame */
+    if(cy<330)cy=330;
+    for(var j=0;j<lines.length;j++){x.fillText(lines[j],S/2,cy+j*lh);}
+    var y=cy+lines.length*lh+34;
+    /* divider */
+    x.strokeStyle='#5a4a20';x.lineWidth=1;x.beginPath();x.moveTo(S/2-46,y);x.lineTo(S/2+46,y);x.stroke();
+    y+=44;
+    /* attribution */
+    if(d.attr){x.fillStyle='#c9a84c';x.font='700 30px Georgia,serif';
+      var al=wrap(x,'— '+d.attr,maxW);for(var k=0;k<al.length;k++){x.fillText(al[k],S/2,y);y+=38;}}
+    /* source */
+    if(d.src){x.fillStyle='#9a9078';x.font='italic 22px Georgia,serif';
+      var sl=wrap(x,d.src,maxW);for(var m=0;m<sl.length;m++){x.fillText(sl[m],S/2,y);y+=28;}}
+    /* footer */
+    x.fillStyle='#8a8268';x.font='20px Georgia,serif';
+    x.fillText(HOST,S/2,S-70);
+    return c;
+  }
+  function share(d){
+    var c=draw(d);
+    c.toBlob(function(blob){
+      if(!blob)return;
+      var url=URL.createObjectURL(blob);
+      var a=document.createElement('a');
+      a.href=url;a.download='orthodox-lamp-quote.png';
+      document.body.appendChild(a);a.click();a.remove();
+      setTimeout(function(){URL.revokeObjectURL(url);},4000);
+    },'image/png');
+  }
+  var nodes=document.querySelectorAll('.fc, .sv');
+  nodes.forEach(function(el){
+    if(el.querySelector('.ol-sc-btn'))return;
+    var txt=clean(el.textContent);
+    if(txt.length<25)return;
+    var b=document.createElement('button');
+    b.type='button';b.className='ol-sc-btn';b.title='Download this quote as an image';
+    b.setAttribute('aria-label','Download this quote as a shareable image');
+    b.innerHTML=ICON+'<span>Share</span>';
+    b.addEventListener('click',function(ev){ev.stopPropagation();share(collect(el));});
+    el.appendChild(b);
+  });
+}catch(e){}
+})();
+/* END-SHARECARDS-JS */</script>
+<script id="ol-lightfix">
+/* AUTO-LIGHTFIX-JS: quiet typographic clean-up plus a light-mode safety net.
+   In light mode it finds any box still painted with a dark-theme colour, or text
+   too faint to read, and re-tints it (keeping its hue) so every page reads well. */
+(function(){
+  try{
+    var R=document.documentElement;
+    function P(c){var m=c&&c.match(/rgba?\(([^)]+)\)/);if(!m)return null;var a=m[1].split(/[ ,\/]+/).filter(Boolean).map(Number);return {r:a[0],g:a[1],b:a[2],a:a.length>3?a[3]:1};}
+    function L(c){function f(v){v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4);}return .2126*f(c.r)+.7152*f(c.g)+.0722*f(c.b);}
+    function hsl(c){var r=c.r/255,g=c.g/255,b=c.b/255,mx=Math.max(r,g,b),mn=Math.min(r,g,b),h=0,s=0,l=(mx+mn)/2,d=mx-mn;
+      if(d){s=l>.5?d/(2-mx-mn):d/(mx+mn);h=mx===r?(g-b)/d+(g<b?6:0):mx===g?(b-r)/d+2:(r-g)/d+4;h/=6;}return [h,s,l];}
+    function css(h,s,l){return 'hsl('+Math.round(h*360)+','+Math.round(s*100)+'%,'+Math.round(l*100)+'%)';}
+    function bgOf(el){for(var e=el;e&&e.nodeType===1;e=e.parentElement){var cs=getComputedStyle(e),c=P(cs.backgroundColor);if(c&&c.a>.5)return c;}return {r:247,g:242,b:230,a:1};}
+    var SKIP='.oo-pgband,.ol-ask-fab,#ol-tt,.ol-ask-wrap .send,svg,img,video,canvas,code,pre';
+    var done=[];
+    function undo(){for(var i=done.length-1;i>=0;i--){var d=done[i];if(d[2])d[0].style.setProperty(d[1],d[2],d[3]);else d[0].style.removeProperty(d[1]);}done=[];}
+    function set(el,p,v){done.push([el,p,el.style.getPropertyValue(p),el.style.getPropertyPriority(p)]);el.style.setProperty(p,v,'important');}
+    function fix(){
+      undo();
+      if(!R.classList.contains('light'))return;
+      var all=document.body.querySelectorAll('*');
+      for(var i=0;i<all.length;i++){var el=all[i];if(el.closest(SKIP))continue;
+        var cs=getComputedStyle(el),c=P(cs.backgroundColor);
+        if(c&&c.a>.5&&L(c)<.16){var h=hsl(c);set(el,'background-color',css(h[0],Math.min(h[1],.32),.92));}
+        var bi=cs.backgroundImage;
+        if(bi&&bi.indexOf('gradient')>=0&&bi.indexOf('url(')<0){var m=bi.match(/rgba?\([^)]+\)/);var g=m&&P(m[0]);if(g&&g.a>.5&&L(g)<.16){set(el,'background-image','none');var hg=hsl(g);set(el,'background-color',css(hg[0],Math.min(hg[1],.3),.91));}}
+      }
+      for(var j=0;j<all.length;j++){var t=all[j];if(t.closest(SKIP))continue;
+        var own=false;for(var k=0;k<t.childNodes.length;k++){var n=t.childNodes[k];if(n.nodeType===3&&n.textContent.trim()){own=true;break;}}
+        if(!own)continue;
+        var fg=P(getComputedStyle(t).color);if(!fg)continue;var bg=bgOf(t),a=L(fg),b=L(bg);
+        var cr=(Math.max(a,b)+.05)/(Math.min(a,b)+.05);
+        if(cr<4.2&&b>.4){var hf=hsl(fg);set(t,'color',css(hf[0],Math.min(hf[1],.6),hf[1]>.15?.27:.24));}
+      }
+    }
+    /* uppercase, widely tracked labels read as small capitals, as in a printed book */
+    function caps(){var all=document.body.querySelectorAll('*');for(var i=0;i<all.length;i++){var el=all[i];if(el.closest('.oo-pgband,.ol-ask-wrap,#ol-tt'))continue;var cs=getComputedStyle(el);
+      if(!el.classList.contains('ol-sc')&&parseFloat(cs.fontSize)<18&&cs.textTransform==='uppercase'&&parseFloat(cs.letterSpacing)>=0.6&&el.textContent.trim()){var px=parseFloat(cs.fontSize);el.classList.add('ol-sc');if(px)el.style.fontSize=Math.round(px*1.3*10)/10+'px';}}}
+    function run(){try{caps();}catch(e){}try{fix();}catch(e){}}
+    if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+    window.addEventListener('load',function(){setTimeout(function(){try{caps();fix();}catch(e){}},400);setTimeout(function(){try{caps();fix();}catch(e){}},1600);});
+    new MutationObserver(function(){try{fix();}catch(e){}}).observe(R,{attributes:true,attributeFilter:['class']});
+    var tm=null;new MutationObserver(function(ms){if(!R.classList.contains('light'))return;for(var i=0;i<ms.length;i++){if(ms[i].addedNodes.length){clearTimeout(tm);tm=setTimeout(function(){try{caps();fix();}catch(e){}},250);return;}}}).observe(document.body,{childList:true,subtree:true});
+    window.olLightFix=fix;
+  }catch(e){}
+})();
+
+</script>
+</body>
+</html>
