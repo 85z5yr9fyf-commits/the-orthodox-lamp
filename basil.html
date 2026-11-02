@@ -481,6 +481,43 @@ html.sb-collapsed #ol-sbt{left:0}
 @media print{.oo-pgband{display:none}}
 /* END-OL-PGBAND */
 </style>
+<style id="ol-auth">
+/* AUTO-AUTHENTIC-CSS: book typography (EB Garamond, self-hosted, SIL OFL) and quieter ornament */
+@font-face{font-family:'EB Garamond';font-style:normal;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-greek-ext-wght-normal.woff2) format('woff2');unicode-range:U+1F00-1FFF}
+@font-face{font-family:'EB Garamond';font-style:normal;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-greek-wght-normal.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
+@font-face{font-family:'EB Garamond';font-style:normal;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-latin-ext-wght-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'EB Garamond';font-style:normal;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-latin-wght-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'EB Garamond';font-style:italic;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-greek-ext-wght-italic.woff2) format('woff2');unicode-range:U+1F00-1FFF}
+@font-face{font-family:'EB Garamond';font-style:italic;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-greek-wght-italic.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
+@font-face{font-family:'EB Garamond';font-style:italic;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-latin-ext-wght-italic.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'EB Garamond';font-style:italic;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-latin-wght-italic.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+html{font-size-adjust:.47}
+body,body *:not(svg):not(svg *):not(code):not(pre):not(kbd){font-family:'EB Garamond',Georgia,'Times New Roman',serif!important;font-size-adjust:.47!important}
+body{font-variant-numeric:oldstyle-nums;text-rendering:optimizeLegibility;font-kerning:normal}
+h1,h2,h3,h4,table,.tl-date,.htl-cd,.yr,.ol-readtime,.sec-num{font-variant-numeric:lining-nums}
+/* tracked capitals become small capitals */
+.ol-sc{text-transform:none!important;font-variant-caps:all-small-caps;letter-spacing:.05em!important}
+/* plainer boxes: small radii, no drop shadows or lifting cards */
+.sec,.fc,.fi,.obj,.gt,.sv,.nx,.note,.badge,.tag,.council,.saint,.pos,.stage,.pillar,.lk,.ol-related,.ol-search-btn,.ol-print-btn,.oo-pgband,.rm-bar,.htl-card,.htl-detail,.lp-jump,.path-link,.ev-card,[class*="-card"],[class*="-box"],.obj-tag,.lx,.gk,.typ,.sac,.gift,.ic,.pat,.pf,.hist,.trad-col,.par-col,.q-block,.section,.intro-banner{border-radius:3px!important}
+.oo-pgband,.mob-toggle,.htl-card,.step-n,.section,.sv,.fc{box-shadow:none!important}
+[class*="-card"]:hover,[class*="-box"]:hover,.vbox:hover,.sec:hover,.obj:hover,.fi:hover{box-shadow:none!important;transform:none!important}
+.site-title{text-shadow:none!important}
+/* reading time as a quiet line, not a pill */
+.ol-readtime{text-transform:none!important;border:0!important;background:none!important;padding:0!important;border-radius:0!important;font-style:italic;font-size:.86rem!important;font-variant-caps:normal!important;letter-spacing:0!important}
+.ol-readtime::before{display:none!important}
+/* opening paragraph: no coloured side bar */
+.pg-intro{border-left:0!important;padding-left:0!important;font-size:1.06em}
+/* the ✦ ✦ ✦ ornament becomes a simple rule */
+.orn{letter-spacing:0!important;opacity:1!important}
+.orn::before{content:"";display:block;width:84px;height:1px;margin:2px auto 0;background:currentColor;opacity:.55}
+/* light mode: darker ink for gold text, and red rubrics as in a service book */
+html.light{--gd:#7a5c17}
+html.light .sec-num,html.light p.ol-lead::first-letter,html.light .purpose p:first-of-type::first-letter{color:#8e2a1e!important}
+html.light .oo-pgband .cap,html.light .oo-pgband .cap b,html.light .oo-pgband::after{color:#f4e6c2!important}
+html.light #ol-tt{background:var(--bg2);color:var(--gold);box-shadow:none}
+html.light .ol-ask-fab,html.light .ol-ask-msg.user,html.light .ol-ask-foot button.send{background:#b8923f!important}
+
+</style>
 </head>
 <body>
 <div id="prog"></div>
@@ -527,7 +564,7 @@ html.sb-collapsed #ol-sbt{left:0}
     <h1 class="st">THE <span>ORTHODOX</span> LAMP</h1>
     <p class="ss">St Basil the Great</p>
     <p class="tg">"...the honour paid to the image passes on to the prototype." On the Holy Spirit 18.45</p>
-    <div class="orn">✦ ✦ ✦</div>
+    <div class="orn"></div>
   </div>
 
   <div class="content">
@@ -699,7 +736,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=1%20Corinthians%202%3A10-11&amp;version=NKJV" target="_blank" rel="noopener noreferrer">1 Corinthians 2:10-11</a></div>
           <div class="txt">"But God has revealed them to us through His Spirit. For the Spirit searches all things, yes, the deep things of God. For what man knows the things of a man except the spirit of the man which is in him? Even so no one knows the things of God except the Spirit of God."</div>
-          <div class="mia-note">🔵 Shared reading: Only the Spirit of God knows the things of God. We know God truly, because He reveals Himself; we do not comprehend Him.</div>
+          <div class="mia-note">Shared reading: Only the Spirit of God knows the things of God. We know God truly, because He reveals Himself; we do not comprehend Him.</div>
         </div>
         <p>Basil's humility before the mystery of God is not vagueness. He is precise about what can be said and honest about what cannot. This is the spirit of every Orthodox liturgy, where God is praised as beyond all understanding and yet truly known.</p>
       </div>
@@ -742,7 +779,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Matthew%2028%3A19&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Matthew 28:19</a></div>
           <div class="txt">"Go therefore and make disciples of all the nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit,"</div>
-          <div class="mia-note">🔵 Orthodox reading: One of Basil's decisive arguments. The Lord Himself joined the Spirit to the Father and the Son in the one Name of baptism. To rank Him with creatures is to break the Name in which we were baptized.</div>
+          <div class="mia-note">Orthodox reading: One of Basil's decisive arguments. The Lord Himself joined the Spirit to the Father and the Son in the one Name of baptism. To rank Him with creatures is to break the Name in which we were baptized.</div>
         </div>
         <div class="fc">
           <div class="fn">St Basil</div>
@@ -761,7 +798,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Psalm%2033%3A6&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Psalm 33:6</a></div>
           <div class="txt">"By the word of the Lord the heavens were made, And all the host of them by the breath of His mouth."</div>
-          <div class="mia-note">🔵 Orthodox reading: The Word and the Breath (Spirit) of the Lord together make the heavens. Basil reads the Spirit's perfecting work in creation in verses like this.</div>
+          <div class="mia-note">Orthodox reading: The Word and the Breath (Spirit) of the Lord together make the heavens. Basil reads the Spirit's perfecting work in creation in verses like this.</div>
         </div>
         <div class="fc">
           <div class="fn">St Basil</div>
@@ -773,7 +810,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Acts%205%3A3-4&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Acts 5:3-4</a></div>
           <div class="txt">"But Peter said, 'Ananias, why has Satan filled your heart to lie to the Holy Spirit and keep back part of the price of the land for yourself? While it remained, was it not your own? And after it was sold, was it not in your own control? Why have you conceived this thing in your heart? You have not lied to men but to God.'"</div>
-          <div class="mia-note">🔵 Orthodox reading: To lie to the Holy Spirit is to lie to God. The apostle speaks of the Spirit as God without needing to argue it.</div>
+          <div class="mia-note">Orthodox reading: To lie to the Holy Spirit is to lie to God. The apostle speaks of the Spirit as God without needing to argue it.</div>
         </div>
         <h3>One Worship, Not Three</h3>
         <div class="fc">
@@ -822,8 +859,8 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=2%20Thessalonians%202%3A15&amp;version=NKJV" target="_blank" rel="noopener noreferrer">2 Thessalonians 2:15</a></div>
           <div class="txt">"Therefore, brethren, stand fast and hold the traditions which you were taught, whether by word or our epistle."</div>
-          <div class="mia-note">🔵 Orthodox reading: Paul himself names two channels of tradition, "by word" and "by our epistle," and asks for both to be held. Basil's distinction is Paul's.</div>
-          <div class="dyo-note">🟣 Protestant reading: Paul's oral teaching was later written in Scripture, so Scripture alone now carries the apostolic tradition.</div>
+          <div class="mia-note">Orthodox reading: Paul himself names two channels of tradition, "by word" and "by our epistle," and asks for both to be held. Basil's distinction is Paul's.</div>
+          <div class="dyo-note">Protestant reading: Paul's oral teaching was later written in Scripture, so Scripture alone now carries the apostolic tradition.</div>
         </div>
         <p>Every one of Basil's examples is still part of Coptic worship: the sign of the cross, prayer facing east, and the words of the invocation of the Holy Spirit over the bread and cup. Note also what Basil does not say. He does not set unwritten tradition against Scripture. Both carry "the same force" because both come from the apostles, and he spends most of his treatise proving the Spirit's divinity from Scripture. See <a href="sola_scriptura.html">Scripture and Tradition</a>.</p>
       </div>
@@ -849,8 +886,8 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=John%206%3A54&amp;version=NKJV" target="_blank" rel="noopener noreferrer">John 6:54</a></div>
           <div class="txt">"Whoever eats My flesh and drinks My blood has eternal life, and I will raise him up at the last day."</div>
-          <div class="mia-note">🔵 Orthodox reading: Basil quotes this verse as the reason for frequent communion. The Eucharist is "the holy body and blood of Christ," and to receive it is to share in life.</div>
-          <div class="dyo-note">🟣 Protestant reading: Many Protestants read the discourse as a call to believe in Christ, with eating and drinking as images of faith.</div>
+          <div class="mia-note">Orthodox reading: Basil quotes this verse as the reason for frequent communion. The Eucharist is "the holy body and blood of Christ," and to receive it is to share in life.</div>
+          <div class="dyo-note">Protestant reading: Many Protestants read the discourse as a call to believe in Christ, with eating and drinking as images of faith.</div>
         </div>
         <p>The same letter records that in Alexandria and Egypt "each one of the laity, for the most part, keeps the communion, at his own house," a practice from times of persecution and from the desert. Basil writes of it as an accepted custom. The Church later regulated it closely, but his letter is a precious glimpse of how highly the Egyptian Church of his day prized the holy Mysteries. See <a href="mysteries_of_christ.html">The Seven Mysteries of Christ</a>.</p>
       </div>
@@ -882,12 +919,12 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=John%2013%3A14&amp;version=NKJV" target="_blank" rel="noopener noreferrer">John 13:14</a></div>
           <div class="txt">"If I then, your Lord and Teacher, have washed your feet, you also ought to wash one another's feet."</div>
-          <div class="mia-note">🔵 Shared reading: Basil's question to the solitary rests on this command. Love needs a neighbour.</div>
+          <div class="mia-note">Shared reading: Basil's question to the solitary rests on this command. Love needs a neighbour.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Acts%204%3A32&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Acts 4:32</a></div>
           <div class="txt">"Now the multitude of those who believed were of one heart and one soul; neither did anyone say that any of the things he possessed was his own, but they had all things in common."</div>
-          <div class="mia-note">🔵 Shared reading: Basil took the Jerusalem church as the model for his communities: one heart, one soul, and goods held in common.</div>
+          <div class="mia-note">Shared reading: Basil took the Jerusalem church as the model for his communities: one heart, one soul, and goods held in common.</div>
         </div>
         <p>Basil did not invent community monasticism; St Pachomius had founded communities in Upper Egypt a generation earlier. What Basil did was to write the principles of the common life with such clarity that his Rules became a foundation for monastic life across the Christian East. The Egyptian desert and the Cappadocian monastery speak with one voice. See <a href="monasticism.html">Monasticism &amp; the Desert Fathers</a>.</p>
       </div>
@@ -914,7 +951,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Luke%2012%3A18-20&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Luke 12:18-20</a></div>
           <div class="txt">"So he said, 'I will do this: I will pull down my barns and build greater, and there I will store all my crops and my goods. And I will say to my soul, 'Soul, you have many goods laid up for many years; take your ease; eat, drink, and be merry.'' But God said to him, 'Fool! This night your soul will be required of you; then whose will those things be which you have provided?'"</div>
-          <div class="mia-note">🔵 Orthodox reading: Basil preached a famous sermon on this parable.</div>
+          <div class="mia-note">Orthodox reading: Basil preached a famous sermon on this parable.</div>
         </div>
         <div class="fc">
           <div class="fn">St Basil</div>
@@ -975,31 +1012,31 @@ html.sb-collapsed #ol-sbt{left:0}
       <div class="sec-b">
 
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Basil never calls the Holy Spirit God, so the deity of the Spirit is a later idea."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>"Basil never calls the Holy Spirit God, so the deity of the Spirit is a later idea."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> Basil gives the Spirit everything that belongs to God: He is ranked with the Father and the Son in baptism, He perfects creation, He makes us god by grace, and He receives the same glory. Gregory the Theologian, who knew Basil better than anyone, explains that Basil held back the bare phrase for a time to protect his church from an Arian emperor, while teaching "by statements which unmistakably had the same meaning" (Section VII). Gregory himself said it plainly, and the Council of 381 confessed it.</p><p>The Spirit's deity is also not a fourth-century invention. Peter tells Ananias that lying to the Spirit is lying to God (Acts 5:3-4), and the Lord places the Spirit in the one Name of baptism (Matthew 28:19).</p>
           </div>
         </div>
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Basil's appeal to unwritten tradition opens the door to anything the Church wants to add."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>"Basil's appeal to unwritten tradition opens the door to anything the Church wants to add."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> Basil's examples are modest and verifiable: the sign of the cross, facing east to pray, the words of the Eucharistic invocation, the blessing of baptismal water. These were practised by every church of his day, including by his opponents. He gives them weight because they are universal and apostolic, not because a bishop invented them.</p><p>And Basil does not use tradition to avoid Scripture. Most of On the Holy Spirit is careful exegesis. His point is that Christians have always received the faith through both channels Paul names in 2 Thessalonians 2:15.</p>
           </div>
         </div>
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Basil's "three hypostases" amounts to three gods."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>"Basil's "three hypostases" amounts to three gods."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> Basil rejected this charge directly. The three hypostases share one essence, one will, one operation and one glory: "the sovereignty and authority over us is one, and so the doxology ascribed by us is not plural but one" (On the Holy Spirit 18.45). The Father creates through the Son and perfects through the Spirit; "the first principle of existing things is One."</p>
           </div>
         </div>
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ "The Cappadocians turned the simple faith of the Bible into Greek philosophy."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>"The Cappadocians turned the simple faith of the Bible into Greek philosophy."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> Basil used the best language of his education to protect the faith, as Paul used the Greek of his day. But the content of his argument is biblical: the baptismal Name, the work of the Spirit in Scripture, the worship of the Church. It was Eunomius, not Basil, who claimed that the human mind could define God's essence. Basil's answer, that we know God from His works but cannot grasp what He is, is a confession of the limits of philosophy, not a surrender to it.</p>
           </div>
         </div>
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Letter 93 shows laypeople giving themselves communion, so the priest is unnecessary."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>"Letter 93 shows laypeople giving themselves communion, so the priest is unnecessary."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> Basil describes the custom of keeping the consecrated gifts at home, which arose in persecution and in the desert, and he is careful to say that the gifts were first offered and given by the priest: "when once the priest has completed the offering, and given it, the recipient... is bound to believe that he properly takes and receives it from the giver." The Eucharist still comes from the Church's priesthood. The letter shows how precious the Mysteries were, not that they could be made without a priest.</p>
           </div>
@@ -1874,5 +1911,53 @@ try{
 }catch(e){}
 })();
 /* END-SHARECARDS-JS */</script>
+<script id="ol-lightfix">
+/* AUTO-LIGHTFIX-JS: quiet typographic clean-up plus a light-mode safety net.
+   In light mode it finds any box still painted with a dark-theme colour, or text
+   too faint to read, and re-tints it (keeping its hue) so every page reads well. */
+(function(){
+  try{
+    var R=document.documentElement;
+    function P(c){var m=c&&c.match(/rgba?\(([^)]+)\)/);if(!m)return null;var a=m[1].split(/[ ,\/]+/).filter(Boolean).map(Number);return {r:a[0],g:a[1],b:a[2],a:a.length>3?a[3]:1};}
+    function L(c){function f(v){v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4);}return .2126*f(c.r)+.7152*f(c.g)+.0722*f(c.b);}
+    function hsl(c){var r=c.r/255,g=c.g/255,b=c.b/255,mx=Math.max(r,g,b),mn=Math.min(r,g,b),h=0,s=0,l=(mx+mn)/2,d=mx-mn;
+      if(d){s=l>.5?d/(2-mx-mn):d/(mx+mn);h=mx===r?(g-b)/d+(g<b?6:0):mx===g?(b-r)/d+2:(r-g)/d+4;h/=6;}return [h,s,l];}
+    function css(h,s,l){return 'hsl('+Math.round(h*360)+','+Math.round(s*100)+'%,'+Math.round(l*100)+'%)';}
+    function bgOf(el){for(var e=el;e&&e.nodeType===1;e=e.parentElement){var cs=getComputedStyle(e),c=P(cs.backgroundColor);if(c&&c.a>.5)return c;}return {r:247,g:242,b:230,a:1};}
+    var SKIP='.oo-pgband,.ol-ask-fab,#ol-tt,.ol-ask-wrap .send,svg,img,video,canvas,code,pre';
+    var done=[];
+    function undo(){for(var i=done.length-1;i>=0;i--){var d=done[i];if(d[2])d[0].style.setProperty(d[1],d[2],d[3]);else d[0].style.removeProperty(d[1]);}done=[];}
+    function set(el,p,v){done.push([el,p,el.style.getPropertyValue(p),el.style.getPropertyPriority(p)]);el.style.setProperty(p,v,'important');}
+    function fix(){
+      undo();
+      if(!R.classList.contains('light'))return;
+      var all=document.body.querySelectorAll('*');
+      for(var i=0;i<all.length;i++){var el=all[i];if(el.closest(SKIP))continue;
+        var cs=getComputedStyle(el),c=P(cs.backgroundColor);
+        if(c&&c.a>.5&&L(c)<.16){var h=hsl(c);set(el,'background-color',css(h[0],Math.min(h[1],.32),.92));}
+        var bi=cs.backgroundImage;
+        if(bi&&bi.indexOf('gradient')>=0&&bi.indexOf('url(')<0){var m=bi.match(/rgba?\([^)]+\)/);var g=m&&P(m[0]);if(g&&g.a>.5&&L(g)<.16){set(el,'background-image','none');var hg=hsl(g);set(el,'background-color',css(hg[0],Math.min(hg[1],.3),.91));}}
+      }
+      for(var j=0;j<all.length;j++){var t=all[j];if(t.closest(SKIP))continue;
+        var own=false;for(var k=0;k<t.childNodes.length;k++){var n=t.childNodes[k];if(n.nodeType===3&&n.textContent.trim()){own=true;break;}}
+        if(!own)continue;
+        var fg=P(getComputedStyle(t).color);if(!fg)continue;var bg=bgOf(t),a=L(fg),b=L(bg);
+        var cr=(Math.max(a,b)+.05)/(Math.min(a,b)+.05);
+        if(cr<4.2&&b>.4){var hf=hsl(fg);set(t,'color',css(hf[0],Math.min(hf[1],.6),hf[1]>.15?.27:.24));}
+      }
+    }
+    /* uppercase, widely tracked labels read as small capitals, as in a printed book */
+    function caps(){var all=document.body.querySelectorAll('*');for(var i=0;i<all.length;i++){var el=all[i];if(el.closest('.oo-pgband,.ol-ask-wrap,#ol-tt'))continue;var cs=getComputedStyle(el);
+      if(!el.classList.contains('ol-sc')&&parseFloat(cs.fontSize)<18&&cs.textTransform==='uppercase'&&parseFloat(cs.letterSpacing)>=0.6&&el.textContent.trim()){var px=parseFloat(cs.fontSize);el.classList.add('ol-sc');if(px)el.style.fontSize=Math.round(px*1.3*10)/10+'px';}}}
+    function run(){try{caps();}catch(e){}try{fix();}catch(e){}}
+    if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+    window.addEventListener('load',function(){setTimeout(function(){try{caps();fix();}catch(e){}},400);setTimeout(function(){try{caps();fix();}catch(e){}},1600);});
+    new MutationObserver(function(){try{fix();}catch(e){}}).observe(R,{attributes:true,attributeFilter:['class']});
+    var tm=null;new MutationObserver(function(ms){if(!R.classList.contains('light'))return;for(var i=0;i<ms.length;i++){if(ms[i].addedNodes.length){clearTimeout(tm);tm=setTimeout(function(){try{caps();fix();}catch(e){}},250);return;}}}).observe(document.body,{childList:true,subtree:true});
+    window.olLightFix=fix;
+  }catch(e){}
+})();
+
+</script>
 </body>
 </html>

@@ -500,6 +500,43 @@ html.sb-collapsed #ol-sbt{left:0}
 @media (max-width:640px){.rm-bar{margin:10px 12px 6px}}
 @media print{.rm-bar,.rm-pn{display:none!important}}
 </style>
+<style id="ol-auth">
+/* AUTO-AUTHENTIC-CSS: book typography (EB Garamond, self-hosted, SIL OFL) and quieter ornament */
+@font-face{font-family:'EB Garamond';font-style:normal;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-greek-ext-wght-normal.woff2) format('woff2');unicode-range:U+1F00-1FFF}
+@font-face{font-family:'EB Garamond';font-style:normal;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-greek-wght-normal.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
+@font-face{font-family:'EB Garamond';font-style:normal;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-latin-ext-wght-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'EB Garamond';font-style:normal;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-latin-wght-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'EB Garamond';font-style:italic;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-greek-ext-wght-italic.woff2) format('woff2');unicode-range:U+1F00-1FFF}
+@font-face{font-family:'EB Garamond';font-style:italic;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-greek-wght-italic.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
+@font-face{font-family:'EB Garamond';font-style:italic;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-latin-ext-wght-italic.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'EB Garamond';font-style:italic;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-latin-wght-italic.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+html{font-size-adjust:.47}
+body,body *:not(svg):not(svg *):not(code):not(pre):not(kbd){font-family:'EB Garamond',Georgia,'Times New Roman',serif!important;font-size-adjust:.47!important}
+body{font-variant-numeric:oldstyle-nums;text-rendering:optimizeLegibility;font-kerning:normal}
+h1,h2,h3,h4,table,.tl-date,.htl-cd,.yr,.ol-readtime,.sec-num{font-variant-numeric:lining-nums}
+/* tracked capitals become small capitals */
+.ol-sc{text-transform:none!important;font-variant-caps:all-small-caps;letter-spacing:.05em!important}
+/* plainer boxes: small radii, no drop shadows or lifting cards */
+.sec,.fc,.fi,.obj,.gt,.sv,.nx,.note,.badge,.tag,.council,.saint,.pos,.stage,.pillar,.lk,.ol-related,.ol-search-btn,.ol-print-btn,.oo-pgband,.rm-bar,.htl-card,.htl-detail,.lp-jump,.path-link,.ev-card,[class*="-card"],[class*="-box"],.obj-tag,.lx,.gk,.typ,.sac,.gift,.ic,.pat,.pf,.hist,.trad-col,.par-col,.q-block,.section,.intro-banner{border-radius:3px!important}
+.oo-pgband,.mob-toggle,.htl-card,.step-n,.section,.sv,.fc{box-shadow:none!important}
+[class*="-card"]:hover,[class*="-box"]:hover,.vbox:hover,.sec:hover,.obj:hover,.fi:hover{box-shadow:none!important;transform:none!important}
+.site-title{text-shadow:none!important}
+/* reading time as a quiet line, not a pill */
+.ol-readtime{text-transform:none!important;border:0!important;background:none!important;padding:0!important;border-radius:0!important;font-style:italic;font-size:.86rem!important;font-variant-caps:normal!important;letter-spacing:0!important}
+.ol-readtime::before{display:none!important}
+/* opening paragraph: no coloured side bar */
+.pg-intro{border-left:0!important;padding-left:0!important;font-size:1.06em}
+/* the ✦ ✦ ✦ ornament becomes a simple rule */
+.orn{letter-spacing:0!important;opacity:1!important}
+.orn::before{content:"";display:block;width:84px;height:1px;margin:2px auto 0;background:currentColor;opacity:.55}
+/* light mode: darker ink for gold text, and red rubrics as in a service book */
+html.light{--gd:#7a5c17}
+html.light .sec-num,html.light p.ol-lead::first-letter,html.light .purpose p:first-of-type::first-letter{color:#8e2a1e!important}
+html.light .oo-pgband .cap,html.light .oo-pgband .cap b,html.light .oo-pgband::after{color:#f4e6c2!important}
+html.light #ol-tt{background:var(--bg2);color:var(--gold);box-shadow:none}
+html.light .ol-ask-fab,html.light .ol-ask-msg.user,html.light .ol-ask-foot button.send{background:#b8923f!important}
+
+</style>
 </head>
 <body>
 <div id="prog"></div>
@@ -544,7 +581,7 @@ html.sb-collapsed #ol-sbt{left:0}
     <h1 class="st">THE <span>ORTHODOX</span> LAMP</h1>
     <p class="ss">Romans 6: Baptism</p>
     <p class="tg">"For Baptism is the Cross. What the Cross then, and Burial, is to Christ, that Baptism has been to us..." St John Chrysostom, Homily 10 on Romans</p>
-    <div class="orn">✦ ✦ ✦</div>
+    <div class="orn"></div>
   </div>
 
   <div class="content">
@@ -635,7 +672,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%206%3A1-2&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 6:1-2</a></div>
           <div class="txt">"What shall we say then? Shall we continue in sin that grace may abound? Certainly not! How shall we who died to sin live any longer in it?"</div>
-          <div class="mia-note">🔵 Orthodox reading: Grace is not permission. The one who has died to sin cannot keep living in it.</div>
+          <div class="mia-note">Orthodox reading: Grace is not permission. The one who has died to sin cannot keep living in it.</div>
         </div>
         <div class="fc">
           <div class="fn">St John Chrysostom</div>
@@ -654,12 +691,12 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%206%3A3-4&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 6:3-4</a></div>
           <div class="txt">"Or do you not know that as many of us as were baptized into Christ Jesus were baptized into His death? Therefore we were buried with Him through baptism into death, that just as Christ was raised from the dead by the glory of the Father, even so we also should walk in newness of life."</div>
-          <div class="mia-note">🔵 Orthodox reading: Baptism unites us to Christ's death and burial, so that we may share His resurrection life now and walk in it.</div>
+          <div class="mia-note">Orthodox reading: Baptism unites us to Christ's death and burial, so that we may share His resurrection life now and walk in it.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%206%3A5-7&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 6:5-7</a></div>
           <div class="txt">"For if we have been united together in the likeness of His death, certainly we also shall be in the likeness of His resurrection, knowing this, that our old man was crucified with Him, that the body of sin might be done away with, that we should no longer be slaves of sin. For he who has died has been freed from sin."</div>
-          <div class="mia-note">🔵 Orthodox reading: We have been grown together with Him in a death like His. The old self was crucified so that sin's power over us might be broken.</div>
+          <div class="mia-note">Orthodox reading: We have been grown together with Him in a death like His. The old self was crucified so that sin's power over us might be broken.</div>
         </div>
         <div class="fc">
           <div class="fn">St John Chrysostom</div>
@@ -791,12 +828,12 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Titus%203%3A5-7&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Titus 3:5-7</a></div>
           <div class="txt">"not by works of righteousness which we have done, but according to His mercy He saved us, through the washing of regeneration and renewing of the Holy Spirit, whom He poured out on us abundantly through Jesus Christ our Savior, that having been justified by His grace we should become heirs according to the hope of eternal life."</div>
-          <div class="mia-note">🔵 Orthodox reading: Saved not by works of righteousness we have done, but by God's mercy, through the washing of regeneration and renewal of the Holy Spirit.</div>
+          <div class="mia-note">Orthodox reading: Saved not by works of righteousness we have done, but by God's mercy, through the washing of regeneration and renewal of the Holy Spirit.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Acts%2022%3A16&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Acts 22:16</a></div>
           <div class="txt">"And now why are you waiting? Arise and be baptized, and wash away your sins, calling on the name of the Lord."</div>
-          <div class="mia-note">🔵 Orthodox reading: Ananias to Paul himself: be baptised and wash away your sins.</div>
+          <div class="mia-note">Orthodox reading: Ananias to Paul himself: be baptised and wash away your sins.</div>
         </div>
         <p>Notice that Titus 3:5 puts "not by works" and "the washing of regeneration" side by side. For the Fathers there was no tension. Baptism is not a work we do to earn salvation; it is the place where God, in mercy, does the saving work. That is why baptism and "faith alone" were never set against each other in the early Church.</p>
       </div>
@@ -837,7 +874,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%206%3A8-11&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 6:8-11</a></div>
           <div class="txt">"Now if we died with Christ, we believe that we shall also live with Him, knowing that Christ, having been raised from the dead, dies no more. Death no longer has dominion over Him. For the death that He died, He died to sin once for all; but the life that He lives, He lives to God. Likewise you also, reckon yourselves to be dead indeed to sin, but alive to God in Christ Jesus our Lord."</div>
-          <div class="mia-note">🔵 Orthodox reading: Christ died to sin once and lives to God. In Him, we are to count ourselves dead to sin and alive to God.</div>
+          <div class="mia-note">Orthodox reading: Christ died to sin once and lives to God. In Him, we are to count ourselves dead to sin and alive to God.</div>
         </div>
         <div class="fc">
           <div class="fn">St John Chrysostom</div>
@@ -874,7 +911,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%206%3A12-14&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 6:12-14</a></div>
           <div class="txt">"Therefore do not let sin reign in your mortal body, that you should obey it in its lusts. And do not present your members as instruments of unrighteousness to sin, but present yourselves to God as being alive from the dead, and your members as instruments of righteousness to God. For sin shall not have dominion over you, for you are not under law but under grace."</div>
-          <div class="mia-note">🔵 Orthodox reading: Because we are under grace, sin no longer rules us. So we must not let it reign, but offer our bodies to God as instruments of righteousness.</div>
+          <div class="mia-note">Orthodox reading: Because we are under grace, sin no longer rules us. So we must not let it reign, but offer our bodies to God as instruments of righteousness.</div>
         </div>
         <div class="fc">
           <div class="fn">St John Chrysostom</div>
@@ -899,12 +936,12 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%206%3A15-18&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 6:15-18</a></div>
           <div class="txt">"What then? Shall we sin because we are not under law but under grace? Certainly not! Do you not know that to whom you present yourselves slaves to obey, you are that one's slaves whom you obey, whether of sin leading to death, or of obedience leading to righteousness? But God be thanked that though you were slaves of sin, yet you obeyed from the heart that form of doctrine to which you were delivered. And having been set free from sin, you became slaves of righteousness."</div>
-          <div class="mia-note">🔵 Orthodox reading: Everyone serves someone. Set free from sin, we have become slaves of righteousness, by obeying from the heart the teaching handed on to us.</div>
+          <div class="mia-note">Orthodox reading: Everyone serves someone. Set free from sin, we have become slaves of righteousness, by obeying from the heart the teaching handed on to us.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%206%3A19&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 6:19</a></div>
           <div class="txt">"I speak in human terms because of the weakness of your flesh. For just as you presented your members as slaves of uncleanness, and of lawlessness leading to more lawlessness, so now present your members as slaves of righteousness for holiness."</div>
-          <div class="mia-note">🔵 Orthodox reading: Paul calls for the same energy in holiness that was once given to sin.</div>
+          <div class="mia-note">Orthodox reading: Paul calls for the same energy in holiness that was once given to sin.</div>
         </div>
         <p>Paul says they "obeyed from the heart that form of doctrine to which you were delivered" (6:17). The Greek speaks of a "pattern of teaching" into which they were handed over, the tradition received at baptism. For the Fathers this was the baptismal creed and catechesis, which is why the Church still teaches catechumens before baptism and has them confess the faith at the font. Freedom in Christ is not freedom from all masters, but freedom to serve the right one.</p>
         <p>Many Protestants rightly stress that sanctification is the fruit of justification. The Orthodox agree, and would add only that the two are not separate gifts but one life. Paul ends the paragraph: "you have your fruit to holiness, and the end, everlasting life" (6:22). Holiness is the road on which eternal life is reached.</p>
@@ -918,7 +955,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%206%3A22-23&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 6:22-23</a></div>
           <div class="txt">"But now having been set free from sin, and having become slaves of God, you have your fruit to holiness, and the end, everlasting life. For the wages of sin is death, but the gift of God is eternal life in Christ Jesus our Lord."</div>
-          <div class="mia-note">🔵 Orthodox reading: Sin pays wages, and they are death. God pays no wages; He gives eternal life as a gift in Christ.</div>
+          <div class="mia-note">Orthodox reading: Sin pays wages, and they are death. God pays no wages; He gives eternal life as a gift in Christ.</div>
         </div>
         <div class="fc">
           <div class="fn">St John Chrysostom</div>
@@ -941,31 +978,31 @@ html.sb-collapsed #ol-sbt{left:0}
       <div class="sec-b">
 
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Romans 6 is about Spirit baptism, not water baptism."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>"Romans 6 is about Spirit baptism, not water baptism."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> Paul's readers had all been baptised in water, and he reminds them of it: "do you not know that as many of us as were baptized..." The early Church, from Barnabas and Justin to Cyril and Chrysostom, read Romans 6 as speaking of the font. No early writer separated a "Spirit baptism" from water baptism here.</p><p>Water and Spirit belong together in the New Testament: "born of water and the Spirit" (John 3:5), "be baptized... and you shall receive the gift of the Holy Spirit" (Acts 2:38). St Basil explains how: in the water the old life dies, and through the Spirit the new life is given.</p>
           </div>
         </div>
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ "If baptism saves, then salvation is by a work."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>"If baptism saves, then salvation is by a work."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> Baptism is not something we do for God but something God does to us. No one baptises himself. Paul puts it in the passive: we "were baptized," we "were buried." Titus 3:5 calls it the washing of regeneration in the same breath as "not by works of righteousness which we have done."</p><p>Luther made the same point against those who called baptism a human work: it is God's word and promise joined to the water, received by faith.</p>
           </div>
         </div>
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ "The thief on the cross was saved without baptism."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>"The thief on the cross was saved without baptism."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> He was, and the Church has never denied it. He lived before Christian baptism was commanded (Matthew 28:19), and he confessed Christ at the moment of his death. The Fathers also recognised the "baptism of blood" of martyrs who died before they could be baptised, as St Cyril of Jerusalem says: "except only Martyrs, who even without the water receive the kingdom."</p><p>God is not bound by the sacraments He has given, but we are. An exception God makes for one who could not be baptised does not give anyone who can be baptised a reason to refuse it.</p>
           </div>
         </div>
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Many baptised people live as if nothing happened, so baptism cannot really do anything."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>"Many baptised people live as if nothing happened, so baptism cannot really do anything."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> Paul wrote Romans 6 precisely because baptised people were in danger of going on in sin. A real gift can be neglected. Chrysostom: "As then that is real, so is this. But if it be real, then what is of our part again must be contributed."</p><p>Calvin made a similar point: Scripture speaks of what baptism really is when it is rightly received, and we never have "naked and empty symbols, except when our ingratitude and wickedness hinder the working of divine beneficence." A gift ignored is still a gift.</p>
           </div>
         </div>
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Mark 16:16 is not even in the oldest manuscripts."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>"Mark 16:16 is not even in the oldest manuscripts."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> That is true: the longer ending of Mark (16:9–20) is missing from the two oldest complete Greek manuscripts, though it was known in the second century and is read in the Church. But the teaching of Mark 16:16 does not depend on it. John 3:5, Acts 2:38, Acts 22:16, Romans 6:3–4, Galatians 3:27, Titus 3:5 and 1 Peter 3:21 all say the same.</p>
           </div>
@@ -1824,5 +1861,53 @@ try{
 })();
 /* END-SHARECARDS-JS */</script>
 <script>(function(){try{var r=document.querySelector('.rm-row'),o=r&&r.querySelector('.on');if(r&&o){r.scrollLeft+=o.getBoundingClientRect().left-r.getBoundingClientRect().left-(r.clientWidth-o.clientWidth)/2;}}catch(e){}})();</script>
+<script id="ol-lightfix">
+/* AUTO-LIGHTFIX-JS: quiet typographic clean-up plus a light-mode safety net.
+   In light mode it finds any box still painted with a dark-theme colour, or text
+   too faint to read, and re-tints it (keeping its hue) so every page reads well. */
+(function(){
+  try{
+    var R=document.documentElement;
+    function P(c){var m=c&&c.match(/rgba?\(([^)]+)\)/);if(!m)return null;var a=m[1].split(/[ ,\/]+/).filter(Boolean).map(Number);return {r:a[0],g:a[1],b:a[2],a:a.length>3?a[3]:1};}
+    function L(c){function f(v){v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4);}return .2126*f(c.r)+.7152*f(c.g)+.0722*f(c.b);}
+    function hsl(c){var r=c.r/255,g=c.g/255,b=c.b/255,mx=Math.max(r,g,b),mn=Math.min(r,g,b),h=0,s=0,l=(mx+mn)/2,d=mx-mn;
+      if(d){s=l>.5?d/(2-mx-mn):d/(mx+mn);h=mx===r?(g-b)/d+(g<b?6:0):mx===g?(b-r)/d+2:(r-g)/d+4;h/=6;}return [h,s,l];}
+    function css(h,s,l){return 'hsl('+Math.round(h*360)+','+Math.round(s*100)+'%,'+Math.round(l*100)+'%)';}
+    function bgOf(el){for(var e=el;e&&e.nodeType===1;e=e.parentElement){var cs=getComputedStyle(e),c=P(cs.backgroundColor);if(c&&c.a>.5)return c;}return {r:247,g:242,b:230,a:1};}
+    var SKIP='.oo-pgband,.ol-ask-fab,#ol-tt,.ol-ask-wrap .send,svg,img,video,canvas,code,pre';
+    var done=[];
+    function undo(){for(var i=done.length-1;i>=0;i--){var d=done[i];if(d[2])d[0].style.setProperty(d[1],d[2],d[3]);else d[0].style.removeProperty(d[1]);}done=[];}
+    function set(el,p,v){done.push([el,p,el.style.getPropertyValue(p),el.style.getPropertyPriority(p)]);el.style.setProperty(p,v,'important');}
+    function fix(){
+      undo();
+      if(!R.classList.contains('light'))return;
+      var all=document.body.querySelectorAll('*');
+      for(var i=0;i<all.length;i++){var el=all[i];if(el.closest(SKIP))continue;
+        var cs=getComputedStyle(el),c=P(cs.backgroundColor);
+        if(c&&c.a>.5&&L(c)<.16){var h=hsl(c);set(el,'background-color',css(h[0],Math.min(h[1],.32),.92));}
+        var bi=cs.backgroundImage;
+        if(bi&&bi.indexOf('gradient')>=0&&bi.indexOf('url(')<0){var m=bi.match(/rgba?\([^)]+\)/);var g=m&&P(m[0]);if(g&&g.a>.5&&L(g)<.16){set(el,'background-image','none');var hg=hsl(g);set(el,'background-color',css(hg[0],Math.min(hg[1],.3),.91));}}
+      }
+      for(var j=0;j<all.length;j++){var t=all[j];if(t.closest(SKIP))continue;
+        var own=false;for(var k=0;k<t.childNodes.length;k++){var n=t.childNodes[k];if(n.nodeType===3&&n.textContent.trim()){own=true;break;}}
+        if(!own)continue;
+        var fg=P(getComputedStyle(t).color);if(!fg)continue;var bg=bgOf(t),a=L(fg),b=L(bg);
+        var cr=(Math.max(a,b)+.05)/(Math.min(a,b)+.05);
+        if(cr<4.2&&b>.4){var hf=hsl(fg);set(t,'color',css(hf[0],Math.min(hf[1],.6),hf[1]>.15?.27:.24));}
+      }
+    }
+    /* uppercase, widely tracked labels read as small capitals, as in a printed book */
+    function caps(){var all=document.body.querySelectorAll('*');for(var i=0;i<all.length;i++){var el=all[i];if(el.closest('.oo-pgband,.ol-ask-wrap,#ol-tt'))continue;var cs=getComputedStyle(el);
+      if(!el.classList.contains('ol-sc')&&parseFloat(cs.fontSize)<18&&cs.textTransform==='uppercase'&&parseFloat(cs.letterSpacing)>=0.6&&el.textContent.trim()){var px=parseFloat(cs.fontSize);el.classList.add('ol-sc');if(px)el.style.fontSize=Math.round(px*1.3*10)/10+'px';}}}
+    function run(){try{caps();}catch(e){}try{fix();}catch(e){}}
+    if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+    window.addEventListener('load',function(){setTimeout(function(){try{caps();fix();}catch(e){}},400);setTimeout(function(){try{caps();fix();}catch(e){}},1600);});
+    new MutationObserver(function(){try{fix();}catch(e){}}).observe(R,{attributes:true,attributeFilter:['class']});
+    var tm=null;new MutationObserver(function(ms){if(!R.classList.contains('light'))return;for(var i=0;i<ms.length;i++){if(ms[i].addedNodes.length){clearTimeout(tm);tm=setTimeout(function(){try{caps();fix();}catch(e){}},250);return;}}}).observe(document.body,{childList:true,subtree:true});
+    window.olLightFix=fix;
+  }catch(e){}
+})();
+
+</script>
 </body>
 </html>

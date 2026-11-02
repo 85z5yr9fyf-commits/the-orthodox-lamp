@@ -500,6 +500,43 @@ html.sb-collapsed #ol-sbt{left:0}
 @media (max-width:640px){.rm-bar{margin:10px 12px 6px}}
 @media print{.rm-bar,.rm-pn{display:none!important}}
 </style>
+<style id="ol-auth">
+/* AUTO-AUTHENTIC-CSS: book typography (EB Garamond, self-hosted, SIL OFL) and quieter ornament */
+@font-face{font-family:'EB Garamond';font-style:normal;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-greek-ext-wght-normal.woff2) format('woff2');unicode-range:U+1F00-1FFF}
+@font-face{font-family:'EB Garamond';font-style:normal;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-greek-wght-normal.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
+@font-face{font-family:'EB Garamond';font-style:normal;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-latin-ext-wght-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'EB Garamond';font-style:normal;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-latin-wght-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'EB Garamond';font-style:italic;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-greek-ext-wght-italic.woff2) format('woff2');unicode-range:U+1F00-1FFF}
+@font-face{font-family:'EB Garamond';font-style:italic;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-greek-wght-italic.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
+@font-face{font-family:'EB Garamond';font-style:italic;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-latin-ext-wght-italic.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'EB Garamond';font-style:italic;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-latin-wght-italic.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+html{font-size-adjust:.47}
+body,body *:not(svg):not(svg *):not(code):not(pre):not(kbd){font-family:'EB Garamond',Georgia,'Times New Roman',serif!important;font-size-adjust:.47!important}
+body{font-variant-numeric:oldstyle-nums;text-rendering:optimizeLegibility;font-kerning:normal}
+h1,h2,h3,h4,table,.tl-date,.htl-cd,.yr,.ol-readtime,.sec-num{font-variant-numeric:lining-nums}
+/* tracked capitals become small capitals */
+.ol-sc{text-transform:none!important;font-variant-caps:all-small-caps;letter-spacing:.05em!important}
+/* plainer boxes: small radii, no drop shadows or lifting cards */
+.sec,.fc,.fi,.obj,.gt,.sv,.nx,.note,.badge,.tag,.council,.saint,.pos,.stage,.pillar,.lk,.ol-related,.ol-search-btn,.ol-print-btn,.oo-pgband,.rm-bar,.htl-card,.htl-detail,.lp-jump,.path-link,.ev-card,[class*="-card"],[class*="-box"],.obj-tag,.lx,.gk,.typ,.sac,.gift,.ic,.pat,.pf,.hist,.trad-col,.par-col,.q-block,.section,.intro-banner{border-radius:3px!important}
+.oo-pgband,.mob-toggle,.htl-card,.step-n,.section,.sv,.fc{box-shadow:none!important}
+[class*="-card"]:hover,[class*="-box"]:hover,.vbox:hover,.sec:hover,.obj:hover,.fi:hover{box-shadow:none!important;transform:none!important}
+.site-title{text-shadow:none!important}
+/* reading time as a quiet line, not a pill */
+.ol-readtime{text-transform:none!important;border:0!important;background:none!important;padding:0!important;border-radius:0!important;font-style:italic;font-size:.86rem!important;font-variant-caps:normal!important;letter-spacing:0!important}
+.ol-readtime::before{display:none!important}
+/* opening paragraph: no coloured side bar */
+.pg-intro{border-left:0!important;padding-left:0!important;font-size:1.06em}
+/* the ✦ ✦ ✦ ornament becomes a simple rule */
+.orn{letter-spacing:0!important;opacity:1!important}
+.orn::before{content:"";display:block;width:84px;height:1px;margin:2px auto 0;background:currentColor;opacity:.55}
+/* light mode: darker ink for gold text, and red rubrics as in a service book */
+html.light{--gd:#7a5c17}
+html.light .sec-num,html.light p.ol-lead::first-letter,html.light .purpose p:first-of-type::first-letter{color:#8e2a1e!important}
+html.light .oo-pgband .cap,html.light .oo-pgband .cap b,html.light .oo-pgband::after{color:#f4e6c2!important}
+html.light #ol-tt{background:var(--bg2);color:var(--gold);box-shadow:none}
+html.light .ol-ask-fab,html.light .ol-ask-msg.user,html.light .ol-ask-foot button.send{background:#b8923f!important}
+
+</style>
 </head>
 <body>
 <div id="prog"></div>
@@ -545,7 +582,7 @@ html.sb-collapsed #ol-sbt{left:0}
     <h1 class="st">THE <span>ORTHODOX</span> LAMP</h1>
     <p class="ss">Romans 3&ndash;4: Justification &amp; Faith</p>
     <p class="tg">"For for this cause He both died and rose again, that He might make us righteous." St John Chrysostom, Homily 9 on Romans</p>
-    <div class="orn">✦ ✦ ✦</div>
+    <div class="orn"></div>
   </div>
 
   <div class="content">
@@ -637,7 +674,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%203%3A1-2&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 3:1-2</a></div>
           <div class="txt">"What advantage then has the Jew, or what is the profit of circumcision? Much in every way! Chiefly because to them were committed the oracles of God."</div>
-          <div class="mia-note">🔵 Orthodox reading: Israel's privilege was real, but it was a gift of God, not an achievement.</div>
+          <div class="mia-note">Orthodox reading: Israel's privilege was real, but it was a gift of God, not an achievement.</div>
         </div>
         <div class="fc">
           <div class="fn">St John Chrysostom</div>
@@ -649,8 +686,8 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%203%3A10-12&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 3:10-12</a></div>
           <div class="txt">"As it is written: 'There is none righteous, no, not one; There is none who understands; There is none who seeks after God. They have all turned aside; They have together become unprofitable; There is none who does good, no, not one.'"</div>
-          <div class="mia-note">🔵 Orthodox reading: Paul gathers the prophets' laments over their own generation to show that no one, Jew or Gentile, can stand before God on his own record.</div>
-          <div class="dyo-note">🟣 Protestant reading: In Reformed teaching this passage is a chief proof of total depravity: fallen man, left to himself, is unable to seek God or do any spiritual good until God regenerates him.</div>
+          <div class="mia-note">Orthodox reading: Paul gathers the prophets' laments over their own generation to show that no one, Jew or Gentile, can stand before God on his own record.</div>
+          <div class="dyo-note">Protestant reading: In Reformed teaching this passage is a chief proof of total depravity: fallen man, left to himself, is unable to seek God or do any spiritual good until God regenerates him.</div>
         </div>
         <div class="fc">
           <div class="fn">St John Chrysostom</div>
@@ -667,7 +704,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%203%3A20&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 3:20</a></div>
           <div class="txt">"Therefore by the deeds of the law no flesh will be justified in His sight, for by the law is the knowledge of sin."</div>
-          <div class="mia-note">🔵 Orthodox reading: The law shows sin up. It cannot remove it.</div>
+          <div class="mia-note">Orthodox reading: The law shows sin up. It cannot remove it.</div>
         </div>
         <div class="fc">
           <div class="fn">St John Chrysostom</div>
@@ -725,23 +762,23 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%203%3A21-22&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 3:21-22</a></div>
           <div class="txt">"But now the righteousness of God apart from the law is revealed, being witnessed by the Law and the Prophets, even the righteousness of God, through faith in Jesus Christ, to all and on all who believe. For there is no difference;"</div>
-          <div class="mia-note">🔵 Orthodox reading: God's righteousness comes apart from the law, yet the law and the prophets bear witness to it. It is given through faith to all who believe.</div>
+          <div class="mia-note">Orthodox reading: God's righteousness comes apart from the law, yet the law and the prophets bear witness to it. It is given through faith to all who believe.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%203%3A23&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 3:23</a></div>
           <div class="txt">"for all have sinned and fall short of the glory of God,"</div>
-          <div class="mia-note">🔵 Orthodox reading: Sin is not only breaking rules. It is falling short of the glory for which we were made.</div>
+          <div class="mia-note">Orthodox reading: Sin is not only breaking rules. It is falling short of the glory for which we were made.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%203%3A24-25&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 3:24-25</a></div>
           <div class="txt">"being justified freely by His grace through the redemption that is in Christ Jesus, whom God set forth as a propitiation by His blood, through faith, to demonstrate His righteousness, because in His forbearance God had passed over the sins that were previously committed,"</div>
-          <div class="mia-note">🔵 Orthodox reading: Christ is the true mercy seat, the place where God meets His people and sin is covered by blood. This is God's own initiative and gift.</div>
-          <div class="dyo-note">🟣 Protestant reading: Most Protestants read hilastērion as "propitiation": Christ's death turned away God's just wrath by bearing the penalty of sin in our place, the doctrine of penal substitution.</div>
+          <div class="mia-note">Orthodox reading: Christ is the true mercy seat, the place where God meets His people and sin is covered by blood. This is God's own initiative and gift.</div>
+          <div class="dyo-note">Protestant reading: Most Protestants read hilastērion as "propitiation": Christ's death turned away God's just wrath by bearing the penalty of sin in our place, the doctrine of penal substitution.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Leviticus%2016%3A15&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Leviticus 16:15</a></div>
           <div class="txt">"Then he shall kill the goat of the sin offering, which is for the people, bring its blood inside the veil, do with that blood as he did with the blood of the bull, and sprinkle it on the mercy seat and before the mercy seat."</div>
-          <div class="mia-note">🔵 Orthodox reading: The background of Paul's word. On the Day of Atonement the high priest sprinkled the blood on the mercy seat to cleanse the sanctuary and the people.</div>
+          <div class="mia-note">Orthodox reading: The background of Paul's word. On the Day of Atonement the high priest sprinkled the blood on the mercy seat to cleanse the sanctuary and the people.</div>
         </div>
         <p>Chrysostom notices that Paul's word points back to the sacrifices of the old covenant:</p>
         <div class="fc">
@@ -788,18 +825,18 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%203%3A27&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 3:27</a></div>
           <div class="txt">"Where is boasting then? It is excluded. By what law? Of works? No, but by the law of faith."</div>
-          <div class="mia-note">🔵 Orthodox reading: Faith leaves no room for boasting, because faith receives what God gives.</div>
+          <div class="mia-note">Orthodox reading: Faith leaves no room for boasting, because faith receives what God gives.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%203%3A28&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 3:28</a></div>
           <div class="txt">"Therefore we conclude that a man is justified by faith apart from the deeds of the law."</div>
-          <div class="mia-note">🔵 Orthodox reading: No one is justified by doing what the law commands. Justification comes by faith.</div>
-          <div class="dyo-note">🟣 Protestant reading: Luther and the Lutheran and Reformed confessions read this as justification by faith alone: faith is the only means by which the sinner receives Christ's righteousness, and works, though they must follow, add nothing to it.</div>
+          <div class="mia-note">Orthodox reading: No one is justified by doing what the law commands. Justification comes by faith.</div>
+          <div class="dyo-note">Protestant reading: Luther and the Lutheran and Reformed confessions read this as justification by faith alone: faith is the only means by which the sinner receives Christ's righteousness, and works, though they must follow, add nothing to it.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%203%3A29-30&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 3:29-30</a></div>
           <div class="txt">"Or is He the God of the Jews only? Is He not also the God of the Gentiles? Yes, of the Gentiles also, since there is one God who will justify the circumcised by faith and the uncircumcised through faith."</div>
-          <div class="mia-note">🔵 Orthodox reading: This is why Paul insists on faith: there is one God of Jews and Gentiles, and He justifies both the same way.</div>
+          <div class="mia-note">Orthodox reading: This is why Paul insists on faith: there is one God of Jews and Gentiles, and He justifies both the same way.</div>
         </div>
         <p>Chrysostom's comment on 3:27 is one that every Orthodox reader of Romans should know:</p>
         <div class="fc">
@@ -811,7 +848,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%203%3A31&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 3:31</a></div>
           <div class="txt">"Do we then make void the law through faith? Certainly not! On the contrary, we establish the law."</div>
-          <div class="mia-note">🔵 Orthodox reading: Faith does not abolish the law. It fulfils what the law was for.</div>
+          <div class="mia-note">Orthodox reading: Faith does not abolish the law. It fulfils what the law was for.</div>
         </div>
         <div class="fc">
           <div class="fn">St John Chrysostom</div>
@@ -877,17 +914,17 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%204%3A2-3&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 4:2-3</a></div>
           <div class="txt">"For if Abraham was justified by works, he has something to boast about, but not before God. For what does the Scripture say? 'Abraham believed God, and it was accounted to him for righteousness.'"</div>
-          <div class="mia-note">🔵 Orthodox reading: Abraham's righteousness before God came by trusting God's promise, not by a record of deeds. Paul quotes Genesis 15:6.</div>
+          <div class="mia-note">Orthodox reading: Abraham's righteousness before God came by trusting God's promise, not by a record of deeds. Paul quotes Genesis 15:6.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%204%3A4-5&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 4:4-5</a></div>
           <div class="txt">"Now to him who works, the wages are not counted as grace but as debt. But to him who does not work but believes on Him who justifies the ungodly, his faith is accounted for righteousness,"</div>
-          <div class="mia-note">🔵 Orthodox reading: A wage is earned; a gift is received. God justifies the ungodly, those who have nothing to offer, when they believe.</div>
+          <div class="mia-note">Orthodox reading: A wage is earned; a gift is received. God justifies the ungodly, those who have nothing to offer, when they believe.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%204%3A6-8&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 4:6-8</a></div>
           <div class="txt">"just as David also describes the blessedness of the man to whom God imputes righteousness apart from works: 'Blessed are those whose lawless deeds are forgiven, And whose sins are covered; Blessed is the man to whom the Lord shall not impute sin.'"</div>
-          <div class="mia-note">🔵 Orthodox reading: David's blessing in Psalm 32 is the blessing of forgiveness: sins covered and not counted.</div>
+          <div class="mia-note">Orthodox reading: David's blessing in Psalm 32 is the blessing of forgiveness: sins covered and not counted.</div>
         </div>
         <div class="fc">
           <div class="fn">St John Chrysostom</div>
@@ -955,8 +992,8 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=2%20Corinthians%205%3A21&amp;version=NKJV" target="_blank" rel="noopener noreferrer">2 Corinthians 5:21</a></div>
           <div class="txt">"For He made Him who knew no sin to be sin for us, that we might become the righteousness of God in Him."</div>
-          <div class="mia-note">🔵 Orthodox reading: Paul does not say we are counted as the righteousness of God but that we "become" it, in Christ. The Fathers read this as a real exchange: He took what is ours so that we might share what is His.</div>
-          <div class="dyo-note">🟣 Protestant reading: Reformed readers see here the double imputation: our sin credited to Christ, His righteousness credited to us.</div>
+          <div class="mia-note">Orthodox reading: Paul does not say we are counted as the righteousness of God but that we "become" it, in Christ. The Fathers read this as a real exchange: He took what is ours so that we might share what is His.</div>
+          <div class="dyo-note">Protestant reading: Reformed readers see here the double imputation: our sin credited to Christ, His righteousness credited to us.</div>
         </div>
         <p>Is there common ground? More than the debates suggest. Both sides say justification is God's free gift in Christ and not earned. Both say a justified person will be changed. Many Protestant theologians also speak of "union with Christ" as the root of both justification and sanctification, which brings them closer to the Fathers. The Orthodox worry about a purely legal justification is that it can make the change in the believer seem optional. The Protestant worry about the Orthodox view is that it can make our standing with God depend on how holy we have become. The Orthodox answer is that our standing rests always on Christ, in whom we live, and that the holiness is His life in us, not ours apart from Him. That is <a href="theosis.html">theosis</a>.</p>
       </div>
@@ -969,12 +1006,12 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%204%3A9-10&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 4:9-10</a></div>
           <div class="txt">"Does this blessedness then come upon the circumcised only, or upon the uncircumcised also? For we say that faith was accounted to Abraham for righteousness. How then was it accounted? While he was circumcised, or uncircumcised? Not while circumcised, but while uncircumcised."</div>
-          <div class="mia-note">🔵 Orthodox reading: Abraham was counted righteous before he was circumcised. Faith came first.</div>
+          <div class="mia-note">Orthodox reading: Abraham was counted righteous before he was circumcised. Faith came first.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%204%3A11&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 4:11</a></div>
           <div class="txt">"And he received the sign of circumcision, a seal of the righteousness of the faith which he had while still uncircumcised, that he might be the father of all those who believe, though they are uncircumcised, that righteousness might be imputed to them also,"</div>
-          <div class="mia-note">🔵 Orthodox reading: Circumcision was a sign and seal of the righteousness he already had by faith, so that he could be the father of believers among the uncircumcised too.</div>
+          <div class="mia-note">Orthodox reading: Circumcision was a sign and seal of the righteousness he already had by faith, so that he could be the father of believers among the uncircumcised too.</div>
         </div>
         <div class="fc">
           <div class="fn">St John Chrysostom</div>
@@ -999,12 +1036,12 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%204%3A16&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 4:16</a></div>
           <div class="txt">"Therefore it is of faith that it might be according to grace, so that the promise might be sure to all the seed, not only to those who are of the law, but also to those who are of the faith of Abraham, who is the father of us all"</div>
-          <div class="mia-note">🔵 Orthodox reading: The promise rests on faith so that it can rest on grace, and so that it can be sure for all Abraham's children, Jew and Gentile.</div>
+          <div class="mia-note">Orthodox reading: The promise rests on faith so that it can rest on grace, and so that it can be sure for all Abraham's children, Jew and Gentile.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%204%3A17&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 4:17</a></div>
           <div class="txt">"As it is written, 'I have made you a father of many nations' in the presence of Him whom he believed—God, who gives life to the dead and calls those things which do not exist as though they did;"</div>
-          <div class="mia-note">🔵 Orthodox reading: The God Abraham trusted is the God who raises the dead and creates out of nothing.</div>
+          <div class="mia-note">Orthodox reading: The God Abraham trusted is the God who raises the dead and creates out of nothing.</div>
         </div>
         <div class="fc">
           <div class="fn">St John Chrysostom</div>
@@ -1021,12 +1058,12 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%204%3A20-22&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 4:20-22</a></div>
           <div class="txt">"He did not waver at the promise of God through unbelief, but was strengthened in faith, giving glory to God, and being fully convinced that what He had promised He was also able to perform. And therefore 'it was accounted to him for righteousness.'"</div>
-          <div class="mia-note">🔵 Orthodox reading: Abraham's faith was not a single moment of assent. It was trust that held firm through years of waiting and gave glory to God.</div>
+          <div class="mia-note">Orthodox reading: Abraham's faith was not a single moment of assent. It was trust that held firm through years of waiting and gave glory to God.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%204%3A23-25&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 4:23-25</a></div>
           <div class="txt">"Now it was not written for his sake alone that it was imputed to him, but also for us. It shall be imputed to us who believe in Him who raised up Jesus our Lord from the dead, who was delivered up because of our offenses, and was raised because of our justification."</div>
-          <div class="mia-note">🔵 Orthodox reading: The same faith is counted to us when we believe in the God who raised Jesus. Christ died for our sins and rose for our justification.</div>
+          <div class="mia-note">Orthodox reading: The same faith is counted to us when we believe in the God who raised Jesus. Christ died for our sins and rose for our justification.</div>
         </div>
         <div class="fc">
           <div class="fn">St John Chrysostom</div>
@@ -1046,8 +1083,8 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=James%202%3A21-24&amp;version=NKJV" target="_blank" rel="noopener noreferrer">James 2:21-24</a></div>
           <div class="txt">"Was not Abraham our father justified by works when he offered Isaac his son on the altar? Do you see that faith was working together with his works, and by works faith was made perfect? And the Scripture was fulfilled which says, 'Abraham believed God, and it was accounted to him for righteousness.' And he was called the friend of God. You see then that a man is justified by works, and not by faith only."</div>
-          <div class="mia-note">🔵 Orthodox reading: James says Abraham's faith "was working together with his works," and was made perfect by them. Faith and works are not rivals but partners.</div>
-          <div class="dyo-note">🟣 Protestant reading: Most Protestants read James as speaking of how a true faith is shown to be real before others, not of how a sinner is accepted by God.</div>
+          <div class="mia-note">Orthodox reading: James says Abraham's faith "was working together with his works," and was made perfect by them. Faith and works are not rivals but partners.</div>
+          <div class="dyo-note">Protestant reading: Most Protestants read James as speaking of how a true faith is shown to be real before others, not of how a sinner is accepted by God.</div>
         </div>
         <div class="fc">
           <div class="fn">John Calvin</div>
@@ -1076,31 +1113,31 @@ html.sb-collapsed #ol-sbt{left:0}
       <div class="sec-b">
 
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Romans 3:28 says faith apart from works. The Orthodox add works, so they preach another gospel."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>"Romans 3:28 says faith apart from works. The Orthodox add works, so they preach another gospel."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> Paul says "apart from the deeds of the law." The Orthodox agree that no one is justified by doing the works of the law, and that the sinner comes to God by faith, without any prior works. Chrysostom said exactly that on 3:27 and 3:31.</p><p>What the Orthodox add is not works to earn salvation but the life that faith leads into: baptism, the Spirit, love and perseverance. Paul himself says "faith working through love" (Galatians 5:6) and that God "will render to each one according to his deeds" (2:6). Holding these together is not another gospel. It is the whole of Paul.</p>
           </div>
         </div>
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ "The Fathers said "faith alone," so they were Protestants before Protestantism."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>"The Fathers said "faith alone," so they were Protestants before Protestantism."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> Some Fathers did use the words, and Protestants are right to point it out. But the same Fathers taught baptismal regeneration, judgement by works, the real change of the believer, and the possibility of falling away. They used "faith alone" to exclude boasting in works of the law and to show how a sinner first comes to Christ.</p><p>Taking one phrase while leaving the rest of their teaching behind does not make them Protestants. It is better to let them speak for themselves, as this page tries to do.</p>
           </div>
         </div>
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ ""Accounted" in Romans 4 is accounting language. It can only mean a legal reckoning, not an inward change."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>""Accounted" in Romans 4 is accounting language. It can only mean a legal reckoning, not an inward change."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> The word does mean to count or credit. The question is whether God's counting is like a human accountant recording a fact, or like God's word in creation, which makes what it says. When God counted Abraham's faith as righteousness, Chrysostom says, He was able "even to make him just."</p><p>Paul himself, in the same chapter, describes God as the one who "calls those things which do not exist as though they did" (4:17). God's reckoning is creative. That is why the Fathers never separated being counted righteous from being made righteous.</p>
           </div>
         </div>
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ "If justification is being made righteous, no one can be sure of it, since no one is perfectly righteous."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>"If justification is being made righteous, no one can be sure of it, since no one is perfectly righteous."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> The Orthodox do not teach that we must become perfect before God accepts us. We are accepted in Christ from the moment of faith and baptism, as Chrysostom says, "straightway justified." The making righteous begins then and continues through life.</p><p>Our confidence rests on Christ's faithfulness, not on measuring our own holiness. The Orthodox simply do not claim that a single moment guarantees the end regardless of how we live afterward. Paul himself warns believers not to be high-minded but to fear, and to continue in God's goodness (Romans 11:20&ndash;22). See <a href="assurance_of_salvation.html">Assurance of Salvation</a>.</p>
           </div>
         </div>
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Romans 3:10 proves total depravity: no one seeks God unless God first regenerates him."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>"Romans 3:10 proves total depravity: no one seeks God unless God first regenerates him."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> Paul is quoting Psalm 14 and others to show that all, Jew and Gentile, are under sin and cannot justify themselves. The Fathers fully agree. But the same Paul says in chapter 2 that God's kindness leads people to repentance and that some Gentiles do by nature what the law requires.</p><p>The Orthodox teach that no one can come to God without grace, but that God's grace goes out to all and that people can resist or receive it. Grace comes first; regeneration is given in baptism to those who respond in faith. Whether grace is irresistible is the question of <a href="romans_9.html">Romans 9</a>.</p>
           </div>
@@ -1971,5 +2008,53 @@ try{
 })();
 /* END-SHARECARDS-JS */</script>
 <script>(function(){try{var r=document.querySelector('.rm-row'),o=r&&r.querySelector('.on');if(r&&o){r.scrollLeft+=o.getBoundingClientRect().left-r.getBoundingClientRect().left-(r.clientWidth-o.clientWidth)/2;}}catch(e){}})();</script>
+<script id="ol-lightfix">
+/* AUTO-LIGHTFIX-JS: quiet typographic clean-up plus a light-mode safety net.
+   In light mode it finds any box still painted with a dark-theme colour, or text
+   too faint to read, and re-tints it (keeping its hue) so every page reads well. */
+(function(){
+  try{
+    var R=document.documentElement;
+    function P(c){var m=c&&c.match(/rgba?\(([^)]+)\)/);if(!m)return null;var a=m[1].split(/[ ,\/]+/).filter(Boolean).map(Number);return {r:a[0],g:a[1],b:a[2],a:a.length>3?a[3]:1};}
+    function L(c){function f(v){v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4);}return .2126*f(c.r)+.7152*f(c.g)+.0722*f(c.b);}
+    function hsl(c){var r=c.r/255,g=c.g/255,b=c.b/255,mx=Math.max(r,g,b),mn=Math.min(r,g,b),h=0,s=0,l=(mx+mn)/2,d=mx-mn;
+      if(d){s=l>.5?d/(2-mx-mn):d/(mx+mn);h=mx===r?(g-b)/d+(g<b?6:0):mx===g?(b-r)/d+2:(r-g)/d+4;h/=6;}return [h,s,l];}
+    function css(h,s,l){return 'hsl('+Math.round(h*360)+','+Math.round(s*100)+'%,'+Math.round(l*100)+'%)';}
+    function bgOf(el){for(var e=el;e&&e.nodeType===1;e=e.parentElement){var cs=getComputedStyle(e),c=P(cs.backgroundColor);if(c&&c.a>.5)return c;}return {r:247,g:242,b:230,a:1};}
+    var SKIP='.oo-pgband,.ol-ask-fab,#ol-tt,.ol-ask-wrap .send,svg,img,video,canvas,code,pre';
+    var done=[];
+    function undo(){for(var i=done.length-1;i>=0;i--){var d=done[i];if(d[2])d[0].style.setProperty(d[1],d[2],d[3]);else d[0].style.removeProperty(d[1]);}done=[];}
+    function set(el,p,v){done.push([el,p,el.style.getPropertyValue(p),el.style.getPropertyPriority(p)]);el.style.setProperty(p,v,'important');}
+    function fix(){
+      undo();
+      if(!R.classList.contains('light'))return;
+      var all=document.body.querySelectorAll('*');
+      for(var i=0;i<all.length;i++){var el=all[i];if(el.closest(SKIP))continue;
+        var cs=getComputedStyle(el),c=P(cs.backgroundColor);
+        if(c&&c.a>.5&&L(c)<.16){var h=hsl(c);set(el,'background-color',css(h[0],Math.min(h[1],.32),.92));}
+        var bi=cs.backgroundImage;
+        if(bi&&bi.indexOf('gradient')>=0&&bi.indexOf('url(')<0){var m=bi.match(/rgba?\([^)]+\)/);var g=m&&P(m[0]);if(g&&g.a>.5&&L(g)<.16){set(el,'background-image','none');var hg=hsl(g);set(el,'background-color',css(hg[0],Math.min(hg[1],.3),.91));}}
+      }
+      for(var j=0;j<all.length;j++){var t=all[j];if(t.closest(SKIP))continue;
+        var own=false;for(var k=0;k<t.childNodes.length;k++){var n=t.childNodes[k];if(n.nodeType===3&&n.textContent.trim()){own=true;break;}}
+        if(!own)continue;
+        var fg=P(getComputedStyle(t).color);if(!fg)continue;var bg=bgOf(t),a=L(fg),b=L(bg);
+        var cr=(Math.max(a,b)+.05)/(Math.min(a,b)+.05);
+        if(cr<4.2&&b>.4){var hf=hsl(fg);set(t,'color',css(hf[0],Math.min(hf[1],.6),hf[1]>.15?.27:.24));}
+      }
+    }
+    /* uppercase, widely tracked labels read as small capitals, as in a printed book */
+    function caps(){var all=document.body.querySelectorAll('*');for(var i=0;i<all.length;i++){var el=all[i];if(el.closest('.oo-pgband,.ol-ask-wrap,#ol-tt'))continue;var cs=getComputedStyle(el);
+      if(!el.classList.contains('ol-sc')&&parseFloat(cs.fontSize)<18&&cs.textTransform==='uppercase'&&parseFloat(cs.letterSpacing)>=0.6&&el.textContent.trim()){var px=parseFloat(cs.fontSize);el.classList.add('ol-sc');if(px)el.style.fontSize=Math.round(px*1.3*10)/10+'px';}}}
+    function run(){try{caps();}catch(e){}try{fix();}catch(e){}}
+    if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+    window.addEventListener('load',function(){setTimeout(function(){try{caps();fix();}catch(e){}},400);setTimeout(function(){try{caps();fix();}catch(e){}},1600);});
+    new MutationObserver(function(){try{fix();}catch(e){}}).observe(R,{attributes:true,attributeFilter:['class']});
+    var tm=null;new MutationObserver(function(ms){if(!R.classList.contains('light'))return;for(var i=0;i<ms.length;i++){if(ms[i].addedNodes.length){clearTimeout(tm);tm=setTimeout(function(){try{caps();fix();}catch(e){}},250);return;}}}).observe(document.body,{childList:true,subtree:true});
+    window.olLightFix=fix;
+  }catch(e){}
+})();
+
+</script>
 </body>
 </html>

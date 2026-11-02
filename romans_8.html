@@ -500,6 +500,43 @@ html.sb-collapsed #ol-sbt{left:0}
 @media (max-width:640px){.rm-bar{margin:10px 12px 6px}}
 @media print{.rm-bar,.rm-pn{display:none!important}}
 </style>
+<style id="ol-auth">
+/* AUTO-AUTHENTIC-CSS: book typography (EB Garamond, self-hosted, SIL OFL) and quieter ornament */
+@font-face{font-family:'EB Garamond';font-style:normal;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-greek-ext-wght-normal.woff2) format('woff2');unicode-range:U+1F00-1FFF}
+@font-face{font-family:'EB Garamond';font-style:normal;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-greek-wght-normal.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
+@font-face{font-family:'EB Garamond';font-style:normal;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-latin-ext-wght-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'EB Garamond';font-style:normal;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-latin-wght-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'EB Garamond';font-style:italic;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-greek-ext-wght-italic.woff2) format('woff2');unicode-range:U+1F00-1FFF}
+@font-face{font-family:'EB Garamond';font-style:italic;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-greek-wght-italic.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
+@font-face{font-family:'EB Garamond';font-style:italic;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-latin-ext-wght-italic.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'EB Garamond';font-style:italic;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-latin-wght-italic.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+html{font-size-adjust:.47}
+body,body *:not(svg):not(svg *):not(code):not(pre):not(kbd){font-family:'EB Garamond',Georgia,'Times New Roman',serif!important;font-size-adjust:.47!important}
+body{font-variant-numeric:oldstyle-nums;text-rendering:optimizeLegibility;font-kerning:normal}
+h1,h2,h3,h4,table,.tl-date,.htl-cd,.yr,.ol-readtime,.sec-num{font-variant-numeric:lining-nums}
+/* tracked capitals become small capitals */
+.ol-sc{text-transform:none!important;font-variant-caps:all-small-caps;letter-spacing:.05em!important}
+/* plainer boxes: small radii, no drop shadows or lifting cards */
+.sec,.fc,.fi,.obj,.gt,.sv,.nx,.note,.badge,.tag,.council,.saint,.pos,.stage,.pillar,.lk,.ol-related,.ol-search-btn,.ol-print-btn,.oo-pgband,.rm-bar,.htl-card,.htl-detail,.lp-jump,.path-link,.ev-card,[class*="-card"],[class*="-box"],.obj-tag,.lx,.gk,.typ,.sac,.gift,.ic,.pat,.pf,.hist,.trad-col,.par-col,.q-block,.section,.intro-banner{border-radius:3px!important}
+.oo-pgband,.mob-toggle,.htl-card,.step-n,.section,.sv,.fc{box-shadow:none!important}
+[class*="-card"]:hover,[class*="-box"]:hover,.vbox:hover,.sec:hover,.obj:hover,.fi:hover{box-shadow:none!important;transform:none!important}
+.site-title{text-shadow:none!important}
+/* reading time as a quiet line, not a pill */
+.ol-readtime{text-transform:none!important;border:0!important;background:none!important;padding:0!important;border-radius:0!important;font-style:italic;font-size:.86rem!important;font-variant-caps:normal!important;letter-spacing:0!important}
+.ol-readtime::before{display:none!important}
+/* opening paragraph: no coloured side bar */
+.pg-intro{border-left:0!important;padding-left:0!important;font-size:1.06em}
+/* the ✦ ✦ ✦ ornament becomes a simple rule */
+.orn{letter-spacing:0!important;opacity:1!important}
+.orn::before{content:"";display:block;width:84px;height:1px;margin:2px auto 0;background:currentColor;opacity:.55}
+/* light mode: darker ink for gold text, and red rubrics as in a service book */
+html.light{--gd:#7a5c17}
+html.light .sec-num,html.light p.ol-lead::first-letter,html.light .purpose p:first-of-type::first-letter{color:#8e2a1e!important}
+html.light .oo-pgband .cap,html.light .oo-pgband .cap b,html.light .oo-pgband::after{color:#f4e6c2!important}
+html.light #ol-tt{background:var(--bg2);color:var(--gold);box-shadow:none}
+html.light .ol-ask-fab,html.light .ol-ask-msg.user,html.light .ol-ask-foot button.send{background:#b8923f!important}
+
+</style>
 </head>
 <body>
 <div id="prog"></div>
@@ -543,7 +580,7 @@ html.sb-collapsed #ol-sbt{left:0}
     <h1 class="st">THE <span>ORTHODOX</span> LAMP</h1>
     <p class="ss">Romans 8: Life in the Spirit</p>
     <p class="tg">"For what the Only-begotten was by Nature, this they also have become by grace." St John Chrysostom, Homily 15 on Romans</p>
-    <div class="orn">✦ ✦ ✦</div>
+    <div class="orn"></div>
   </div>
 
   <div class="content">
@@ -639,12 +676,12 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%208%3A1-2&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 8:1-2</a></div>
           <div class="txt">"There is therefore now no condemnation to those who are in Christ Jesus, who do not walk according to the flesh, but according to the Spirit. For the law of the Spirit of life in Christ Jesus has made me free from the law of sin and death."</div>
-          <div class="mia-note">🔵 Orthodox reading: In Christ there is no condemnation, because the Spirit has done what the law could not: set us free from the law of sin and death.</div>
+          <div class="mia-note">Orthodox reading: In Christ there is no condemnation, because the Spirit has done what the law could not: set us free from the law of sin and death.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%208%3A3-4&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 8:3-4</a></div>
           <div class="txt">"For what the law could not do in that it was weak through the flesh, God did by sending His own Son in the likeness of sinful flesh, on account of sin: He condemned sin in the flesh, that the righteous requirement of the law might be fulfilled in us who do not walk according to the flesh but according to the Spirit."</div>
-          <div class="mia-note">🔵 Orthodox reading: God condemned sin in the flesh of His Son, so that the law's righteous requirement might be fulfilled in us, not only counted to us.</div>
+          <div class="mia-note">Orthodox reading: God condemned sin in the flesh of His Son, so that the law's righteous requirement might be fulfilled in us, not only counted to us.</div>
         </div>
         <div class="fc">
           <div class="fn">St John Chrysostom</div>
@@ -670,12 +707,12 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%208%3A9-11&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 8:9-11</a></div>
           <div class="txt">"But you are not in the flesh but in the Spirit, if indeed the Spirit of God dwells in you. Now if anyone does not have the Spirit of Christ, he is not His. And if Christ is in you, the body is dead because of sin, but the Spirit is life because of righteousness. But if the Spirit of Him who raised Jesus from the dead dwells in you, He who raised Christ from the dead will also give life to your mortal bodies through His Spirit who dwells in you."</div>
-          <div class="mia-note">🔵 Orthodox reading: To belong to Christ is to have His Spirit. The same Spirit who raised Jesus will give life to our mortal bodies.</div>
+          <div class="mia-note">Orthodox reading: To belong to Christ is to have His Spirit. The same Spirit who raised Jesus will give life to our mortal bodies.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%208%3A12-13&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 8:12-13</a></div>
           <div class="txt">"Therefore, brethren, we are debtors—not to the flesh, to live according to the flesh. For if you live according to the flesh you will die; but if by the Spirit you put to death the deeds of the body, you will live."</div>
-          <div class="mia-note">🔵 Orthodox reading: A warning to believers: living by the flesh leads to death; putting to death the deeds of the body by the Spirit leads to life.</div>
+          <div class="mia-note">Orthodox reading: A warning to believers: living by the flesh leads to death; putting to death the deeds of the body by the Spirit leads to life.</div>
         </div>
         <p>Romans 8:9 is a striking verse for the doctrine of the Trinity: the same Spirit is called "the Spirit of God" and "the Spirit of Christ," and having the Spirit is the same as Christ being in you (8:10). St Basil built his defence of the Spirit's divinity partly on texts like this. In the Orthodox Church the newly baptised are anointed with holy chrism for the gift of the Spirit, so that from the beginning of their Christian life Romans 8:9 is true of them.</p>
         <p>Verse 11 also shows that salvation includes the body. The Spirit who dwells in us now is the pledge that our bodies will be raised. That is why the Church honours the bodies of the saints and why Orthodox spirituality is never merely "spiritual" in the sense of ignoring the body.</p>
@@ -690,7 +727,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%208%3A14-17&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 8:14-17</a></div>
           <div class="txt">"For as many as are led by the Spirit of God, these are sons of God. For you did not receive the spirit of bondage again to fear, but you received the Spirit of adoption by whom we cry out, 'Abba, Father.' The Spirit Himself bears witness with our spirit that we are children of God, and if children, then heirs—heirs of God and joint heirs with Christ, if indeed we suffer with Him, that we may also be glorified together."</div>
-          <div class="mia-note">🔵 Orthodox reading: By the Spirit we are made sons of God and cry "Abba, Father." We are heirs of God and joint heirs with Christ, if we suffer with Him.</div>
+          <div class="mia-note">Orthodox reading: By the Spirit we are made sons of God and cry "Abba, Father." We are heirs of God and joint heirs with Christ, if we suffer with Him.</div>
         </div>
         <div class="fc">
           <div class="fn">St John Chrysostom</div>
@@ -727,7 +764,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=2%20Peter%201%3A4&amp;version=NKJV" target="_blank" rel="noopener noreferrer">2 Peter 1:4</a></div>
           <div class="txt">"by which have been given to us exceedingly great and precious promises, that through these you may be partakers of the divine nature, having escaped the corruption that is in the world through lust."</div>
-          <div class="mia-note">🔵 Orthodox reading: Partakers of the divine nature: the scriptural root of the Fathers' language of deification.</div>
+          <div class="mia-note">Orthodox reading: Partakers of the divine nature: the scriptural root of the Fathers' language of deification.</div>
         </div>
         <p>"Made God" does not mean we become God by nature or cease to be creatures. It means sharing by grace in the life, glory and incorruption of God, as iron in the fire glows with the fire's heat without becoming fire. Many Protestants are uneasy with the language, but the substance is in Romans 8 itself: sons of God, heirs of God, conformed to the image of the Son, glorified. See <a href="theosis.html">Theosis &amp; Deification</a>.</p>
         <p>Note also the condition in 8:17: "if indeed we suffer with Him, that we may also be glorified together." Glory comes by way of the cross. That is why the Orthodox life includes fasting, ascetic struggle and patience in suffering, not as a way of earning adoption, but as the path the adopted children walk with their Brother.</p>
@@ -741,17 +778,17 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%208%3A18&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 8:18</a></div>
           <div class="txt">"For I consider that the sufferings of this present time are not worthy to be compared with the glory which shall be revealed in us."</div>
-          <div class="mia-note">🔵 Orthodox reading: Present sufferings are nothing compared with the coming glory.</div>
+          <div class="mia-note">Orthodox reading: Present sufferings are nothing compared with the coming glory.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%208%3A19-21&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 8:19-21</a></div>
           <div class="txt">"For the earnest expectation of the creation eagerly waits for the revealing of the sons of God. For the creation was subjected to futility, not willingly, but because of Him who subjected it in hope; because the creation itself also will be delivered from the bondage of corruption into the glorious liberty of the children of God."</div>
-          <div class="mia-note">🔵 Orthodox reading: Creation was subjected to futility because of human sin, and it waits to be set free into the glorious liberty of God's children.</div>
+          <div class="mia-note">Orthodox reading: Creation was subjected to futility because of human sin, and it waits to be set free into the glorious liberty of God's children.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%208%3A22-23&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 8:22-23</a></div>
           <div class="txt">"For we know that the whole creation groans and labors with birth pangs together until now. Not only that, but we also who have the firstfruits of the Spirit, even we ourselves groan within ourselves, eagerly waiting for the adoption, the redemption of our body."</div>
-          <div class="mia-note">🔵 Orthodox reading: Creation groans like a woman in labour, and so do we, waiting for the redemption of our bodies.</div>
+          <div class="mia-note">Orthodox reading: Creation groans like a woman in labour, and so do we, waiting for the redemption of our bodies.</div>
         </div>
         <div class="fc">
           <div class="fn">St John Chrysostom</div>
@@ -774,7 +811,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Revelation%2021%3A5&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Revelation 21:5</a></div>
           <div class="txt">"Then He who sat on the throne said, 'Behold, I make all things new.' And He said to me, 'Write, for these words are true and faithful.'"</div>
-          <div class="mia-note">🔵 Orthodox reading: The end of the story is not escape from creation but its renewal.</div>
+          <div class="mia-note">Orthodox reading: The end of the story is not escape from creation but its renewal.</div>
         </div>
         <p>Here Orthodox and most Protestants agree: salvation is not only of souls but of the whole creation, and the Christian hope is the resurrection of the body in a renewed world, not a disembodied heaven. The Orthodox express this in the blessing of water at Theophany, of fields, homes and food, and in the icons, where matter shows forth grace. Creation is waiting for us to become what God made us to be.</p>
       </div>
@@ -787,7 +824,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%208%3A26-27&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 8:26-27</a></div>
           <div class="txt">"Likewise the Spirit also helps in our weaknesses. For we do not know what we should pray for as we ought, but the Spirit Himself makes intercession for us with groanings which cannot be uttered. Now He who searches the hearts knows what the mind of the Spirit is, because He makes intercession for the saints according to the will of God."</div>
-          <div class="mia-note">🔵 Orthodox reading: We do not know how to pray as we should, but the Spirit intercedes for us according to God's will.</div>
+          <div class="mia-note">Orthodox reading: We do not know how to pray as we should, but the Spirit intercedes for us according to God's will.</div>
         </div>
         <div class="fc">
           <div class="fn">St John Chrysostom</div>
@@ -806,7 +843,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%208%3A28&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 8:28</a></div>
           <div class="txt">"And we know that all things work together for good to those who love God, to those who are the called according to His purpose."</div>
-          <div class="mia-note">🔵 Orthodox reading: God works all things, even suffering, for the good of those who love Him and are called according to His purpose.</div>
+          <div class="mia-note">Orthodox reading: God works all things, even suffering, for the good of those who love Him and are called according to His purpose.</div>
         </div>
         <p>Whose purpose? Most translations add "His," and Calvin understood it as God's eternal purpose of election. Chrysostom, reading the Greek "according to purpose," took it to include the purpose of those who are called, their willing response:</p>
         <div class="fc">
@@ -832,7 +869,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%208%3A29-30&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 8:29-30</a></div>
           <div class="txt">"For whom He foreknew, He also predestined to be conformed to the image of His Son, that He might be the firstborn among many brethren. Moreover whom He predestined, these He also called; whom He called, these He also justified; and whom He justified, these He also glorified."</div>
-          <div class="mia-note">🔵 Orthodox reading: God's plan reaches from eternity to glory: foreknown, predestined to be conformed to the Son, called, justified, glorified.</div>
+          <div class="mia-note">Orthodox reading: God's plan reaches from eternity to glory: foreknown, predestined to be conformed to the Son, called, justified, glorified.</div>
         </div>
         <div class="fc">
           <div class="fn">St John Chrysostom</div>
@@ -887,22 +924,22 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%208%3A31-32&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 8:31-32</a></div>
           <div class="txt">"What then shall we say to these things? If God is for us, who can be against us? He who did not spare His own Son, but delivered Him up for us all, how shall He not with Him also freely give us all things?"</div>
-          <div class="mia-note">🔵 Orthodox reading: If God gave His own Son, He will give us all things with Him.</div>
+          <div class="mia-note">Orthodox reading: If God gave His own Son, He will give us all things with Him.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%208%3A33-34&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 8:33-34</a></div>
           <div class="txt">"Who shall bring a charge against God's elect? It is God who justifies. Who is he who condemns? It is Christ who died, and furthermore is also risen, who is even at the right hand of God, who also makes intercession for us."</div>
-          <div class="mia-note">🔵 Orthodox reading: No one can accuse or condemn those whom God justifies and for whom Christ intercedes.</div>
+          <div class="mia-note">Orthodox reading: No one can accuse or condemn those whom God justifies and for whom Christ intercedes.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%208%3A35-37&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 8:35-37</a></div>
           <div class="txt">"Who shall separate us from the love of Christ? Shall tribulation, or distress, or persecution, or famine, or nakedness, or peril, or sword? As it is written: 'For Your sake we are killed all day long; We are accounted as sheep for the slaughter.' Yet in all these things we are more than conquerors through Him who loved us."</div>
-          <div class="mia-note">🔵 Orthodox reading: No suffering can separate us from Christ's love. In all these things we are more than conquerors.</div>
+          <div class="mia-note">Orthodox reading: No suffering can separate us from Christ's love. In all these things we are more than conquerors.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%208%3A38-39&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 8:38-39</a></div>
           <div class="txt">"For I am persuaded that neither death nor life, nor angels nor principalities nor powers, nor things present nor things to come, nor height nor depth, nor any other created thing, shall be able to separate us from the love of God which is in Christ Jesus our Lord."</div>
-          <div class="mia-note">🔵 Orthodox reading: Nothing in all creation can separate us from the love of God in Christ.</div>
+          <div class="mia-note">Orthodox reading: Nothing in all creation can separate us from the love of God in Christ.</div>
         </div>
         <p>For Reformed Christians this is the great text of assurance and the perseverance of the saints:</p>
         <div class="fc">
@@ -945,25 +982,25 @@ html.sb-collapsed #ol-sbt{left:0}
       <div class="sec-b">
 
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ ""No condemnation" means a Christian can never be condemned, whatever he does."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>""No condemnation" means a Christian can never be condemned, whatever he does."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> Paul says no condemnation "to those who are in Christ Jesus," and describes them as those who "do not walk according to the flesh but according to the Spirit" (8:4; the text Chrysostom read, followed by the NKJV, has the same words in 8:1 as well). The same chapter warns believers that living by the flesh leads to death (8:13).</p><p>The promise is total and true for all who abide in Christ. It is not a guarantee for someone who abandons Him. Chrysostom: "all afterward comes of our listlessness."</p>
           </div>
         </div>
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ "The golden chain of 8:30 proves that everyone called is certainly glorified, so salvation cannot be lost."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>"The golden chain of 8:30 proves that everyone called is certainly glorified, so salvation cannot be lost."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> The chain describes God's purpose and how it unfolds for those who love Him (8:28). It is written to encourage believers in suffering, not to answer whether a believer can fall away, a question Paul answers elsewhere (Romans 11:22).</p><p>Chrysostom, who read the chain as joyfully as any Calvinist, also said that the call is "not forced upon them, nor compulsory. All then were called, but all did not obey the call." God's part is certain; ours is real.</p>
           </div>
         </div>
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ ""Made God" is pagan language. Christians never become divine."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>""Made God" is pagan language. Christians never become divine."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> The Fathers do not mean that we become God by nature, which would be blasphemy. They mean what Peter calls being "partakers of the divine nature" (2 Peter 1:4) and what Paul calls being "conformed to the image of His Son" (8:29) and "glorified" (8:30).</p><p>St Athanasius, who said "He was made man that we might be made God," was also the great defender of the absolute difference between the uncreated God and every creature. He saw no contradiction, because deification is a gift of grace to a creature, not a change of nature.</p>
           </div>
         </div>
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Predestination means God has already decided who will be saved, so our choices do not matter."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>"Predestination means God has already decided who will be saved, so our choices do not matter."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> Paul says God predestined believers "to be conformed to the image of His Son." That is a destiny of holiness that we must walk into, as 8:13 and 8:17 show. St John of Damascus: God "knows beforehand those things that are in our power, but He does not predetermine them."</p><p>God's foreknowledge does not cause our choices any more than our knowing that the sun will rise causes it to rise. And God's will is that all be saved (1 Timothy 2:4). Our choices matter because God made them matter.</p>
           </div>
@@ -1814,5 +1851,53 @@ try{
 })();
 /* END-SHARECARDS-JS */</script>
 <script>(function(){try{var r=document.querySelector('.rm-row'),o=r&&r.querySelector('.on');if(r&&o){r.scrollLeft+=o.getBoundingClientRect().left-r.getBoundingClientRect().left-(r.clientWidth-o.clientWidth)/2;}}catch(e){}})();</script>
+<script id="ol-lightfix">
+/* AUTO-LIGHTFIX-JS: quiet typographic clean-up plus a light-mode safety net.
+   In light mode it finds any box still painted with a dark-theme colour, or text
+   too faint to read, and re-tints it (keeping its hue) so every page reads well. */
+(function(){
+  try{
+    var R=document.documentElement;
+    function P(c){var m=c&&c.match(/rgba?\(([^)]+)\)/);if(!m)return null;var a=m[1].split(/[ ,\/]+/).filter(Boolean).map(Number);return {r:a[0],g:a[1],b:a[2],a:a.length>3?a[3]:1};}
+    function L(c){function f(v){v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4);}return .2126*f(c.r)+.7152*f(c.g)+.0722*f(c.b);}
+    function hsl(c){var r=c.r/255,g=c.g/255,b=c.b/255,mx=Math.max(r,g,b),mn=Math.min(r,g,b),h=0,s=0,l=(mx+mn)/2,d=mx-mn;
+      if(d){s=l>.5?d/(2-mx-mn):d/(mx+mn);h=mx===r?(g-b)/d+(g<b?6:0):mx===g?(b-r)/d+2:(r-g)/d+4;h/=6;}return [h,s,l];}
+    function css(h,s,l){return 'hsl('+Math.round(h*360)+','+Math.round(s*100)+'%,'+Math.round(l*100)+'%)';}
+    function bgOf(el){for(var e=el;e&&e.nodeType===1;e=e.parentElement){var cs=getComputedStyle(e),c=P(cs.backgroundColor);if(c&&c.a>.5)return c;}return {r:247,g:242,b:230,a:1};}
+    var SKIP='.oo-pgband,.ol-ask-fab,#ol-tt,.ol-ask-wrap .send,svg,img,video,canvas,code,pre';
+    var done=[];
+    function undo(){for(var i=done.length-1;i>=0;i--){var d=done[i];if(d[2])d[0].style.setProperty(d[1],d[2],d[3]);else d[0].style.removeProperty(d[1]);}done=[];}
+    function set(el,p,v){done.push([el,p,el.style.getPropertyValue(p),el.style.getPropertyPriority(p)]);el.style.setProperty(p,v,'important');}
+    function fix(){
+      undo();
+      if(!R.classList.contains('light'))return;
+      var all=document.body.querySelectorAll('*');
+      for(var i=0;i<all.length;i++){var el=all[i];if(el.closest(SKIP))continue;
+        var cs=getComputedStyle(el),c=P(cs.backgroundColor);
+        if(c&&c.a>.5&&L(c)<.16){var h=hsl(c);set(el,'background-color',css(h[0],Math.min(h[1],.32),.92));}
+        var bi=cs.backgroundImage;
+        if(bi&&bi.indexOf('gradient')>=0&&bi.indexOf('url(')<0){var m=bi.match(/rgba?\([^)]+\)/);var g=m&&P(m[0]);if(g&&g.a>.5&&L(g)<.16){set(el,'background-image','none');var hg=hsl(g);set(el,'background-color',css(hg[0],Math.min(hg[1],.3),.91));}}
+      }
+      for(var j=0;j<all.length;j++){var t=all[j];if(t.closest(SKIP))continue;
+        var own=false;for(var k=0;k<t.childNodes.length;k++){var n=t.childNodes[k];if(n.nodeType===3&&n.textContent.trim()){own=true;break;}}
+        if(!own)continue;
+        var fg=P(getComputedStyle(t).color);if(!fg)continue;var bg=bgOf(t),a=L(fg),b=L(bg);
+        var cr=(Math.max(a,b)+.05)/(Math.min(a,b)+.05);
+        if(cr<4.2&&b>.4){var hf=hsl(fg);set(t,'color',css(hf[0],Math.min(hf[1],.6),hf[1]>.15?.27:.24));}
+      }
+    }
+    /* uppercase, widely tracked labels read as small capitals, as in a printed book */
+    function caps(){var all=document.body.querySelectorAll('*');for(var i=0;i<all.length;i++){var el=all[i];if(el.closest('.oo-pgband,.ol-ask-wrap,#ol-tt'))continue;var cs=getComputedStyle(el);
+      if(!el.classList.contains('ol-sc')&&parseFloat(cs.fontSize)<18&&cs.textTransform==='uppercase'&&parseFloat(cs.letterSpacing)>=0.6&&el.textContent.trim()){var px=parseFloat(cs.fontSize);el.classList.add('ol-sc');if(px)el.style.fontSize=Math.round(px*1.3*10)/10+'px';}}}
+    function run(){try{caps();}catch(e){}try{fix();}catch(e){}}
+    if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+    window.addEventListener('load',function(){setTimeout(function(){try{caps();fix();}catch(e){}},400);setTimeout(function(){try{caps();fix();}catch(e){}},1600);});
+    new MutationObserver(function(){try{fix();}catch(e){}}).observe(R,{attributes:true,attributeFilter:['class']});
+    var tm=null;new MutationObserver(function(ms){if(!R.classList.contains('light'))return;for(var i=0;i<ms.length;i++){if(ms[i].addedNodes.length){clearTimeout(tm);tm=setTimeout(function(){try{caps();fix();}catch(e){}},250);return;}}}).observe(document.body,{childList:true,subtree:true});
+    window.olLightFix=fix;
+  }catch(e){}
+})();
+
+</script>
 </body>
 </html>

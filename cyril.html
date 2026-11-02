@@ -481,6 +481,43 @@ html.sb-collapsed #ol-sbt{left:0}
 @media print{.oo-pgband{display:none}}
 /* END-OL-PGBAND */
 </style>
+<style id="ol-auth">
+/* AUTO-AUTHENTIC-CSS: book typography (EB Garamond, self-hosted, SIL OFL) and quieter ornament */
+@font-face{font-family:'EB Garamond';font-style:normal;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-greek-ext-wght-normal.woff2) format('woff2');unicode-range:U+1F00-1FFF}
+@font-face{font-family:'EB Garamond';font-style:normal;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-greek-wght-normal.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
+@font-face{font-family:'EB Garamond';font-style:normal;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-latin-ext-wght-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'EB Garamond';font-style:normal;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-latin-wght-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'EB Garamond';font-style:italic;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-greek-ext-wght-italic.woff2) format('woff2');unicode-range:U+1F00-1FFF}
+@font-face{font-family:'EB Garamond';font-style:italic;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-greek-wght-italic.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
+@font-face{font-family:'EB Garamond';font-style:italic;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-latin-ext-wght-italic.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'EB Garamond';font-style:italic;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-latin-wght-italic.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+html{font-size-adjust:.47}
+body,body *:not(svg):not(svg *):not(code):not(pre):not(kbd){font-family:'EB Garamond',Georgia,'Times New Roman',serif!important;font-size-adjust:.47!important}
+body{font-variant-numeric:oldstyle-nums;text-rendering:optimizeLegibility;font-kerning:normal}
+h1,h2,h3,h4,table,.tl-date,.htl-cd,.yr,.ol-readtime,.sec-num{font-variant-numeric:lining-nums}
+/* tracked capitals become small capitals */
+.ol-sc{text-transform:none!important;font-variant-caps:all-small-caps;letter-spacing:.05em!important}
+/* plainer boxes: small radii, no drop shadows or lifting cards */
+.sec,.fc,.fi,.obj,.gt,.sv,.nx,.note,.badge,.tag,.council,.saint,.pos,.stage,.pillar,.lk,.ol-related,.ol-search-btn,.ol-print-btn,.oo-pgband,.rm-bar,.htl-card,.htl-detail,.lp-jump,.path-link,.ev-card,[class*="-card"],[class*="-box"],.obj-tag,.lx,.gk,.typ,.sac,.gift,.ic,.pat,.pf,.hist,.trad-col,.par-col,.q-block,.section,.intro-banner{border-radius:3px!important}
+.oo-pgband,.mob-toggle,.htl-card,.step-n,.section,.sv,.fc{box-shadow:none!important}
+[class*="-card"]:hover,[class*="-box"]:hover,.vbox:hover,.sec:hover,.obj:hover,.fi:hover{box-shadow:none!important;transform:none!important}
+.site-title{text-shadow:none!important}
+/* reading time as a quiet line, not a pill */
+.ol-readtime{text-transform:none!important;border:0!important;background:none!important;padding:0!important;border-radius:0!important;font-style:italic;font-size:.86rem!important;font-variant-caps:normal!important;letter-spacing:0!important}
+.ol-readtime::before{display:none!important}
+/* opening paragraph: no coloured side bar */
+.pg-intro{border-left:0!important;padding-left:0!important;font-size:1.06em}
+/* the ✦ ✦ ✦ ornament becomes a simple rule */
+.orn{letter-spacing:0!important;opacity:1!important}
+.orn::before{content:"";display:block;width:84px;height:1px;margin:2px auto 0;background:currentColor;opacity:.55}
+/* light mode: darker ink for gold text, and red rubrics as in a service book */
+html.light{--gd:#7a5c17}
+html.light .sec-num,html.light p.ol-lead::first-letter,html.light .purpose p:first-of-type::first-letter{color:#8e2a1e!important}
+html.light .oo-pgband .cap,html.light .oo-pgband .cap b,html.light .oo-pgband::after{color:#f4e6c2!important}
+html.light #ol-tt{background:var(--bg2);color:var(--gold);box-shadow:none}
+html.light .ol-ask-fab,html.light .ol-ask-msg.user,html.light .ol-ask-foot button.send{background:#b8923f!important}
+
+</style>
 </head>
 <body>
 <div id="prog"></div>
@@ -527,7 +564,7 @@ html.sb-collapsed #ol-sbt{left:0}
     <h1 class="st">THE <span>ORTHODOX</span> LAMP</h1>
     <p class="ss">St Cyril of Alexandria, Pillar of Faith</p>
     <p class="tg">"...one Christ and one Son; for the difference of the natures is not taken away by the union." Second Letter to Nestorius</p>
-    <div class="orn">✦ ✦ ✦</div>
+    <div class="orn"></div>
   </div>
 
   <div class="content">
@@ -703,7 +740,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=John%201%3A14&amp;version=NKJV" target="_blank" rel="noopener noreferrer">John 1:14</a></div>
           <div class="txt">"And the Word became flesh and dwelt among us, and we beheld His glory, the glory as of the only begotten of the Father, full of grace and truth."</div>
-          <div class="mia-note">🔵 Orthodox reading: "The Word became flesh": not "the Word came into a man." The subject who became flesh is the Word Himself.</div>
+          <div class="mia-note">Orthodox reading: "The Word became flesh": not "the Word came into a man." The subject who became flesh is the Word Himself.</div>
         </div>
         <div class="fc">
           <div class="fn">St Cyril</div>
@@ -721,7 +758,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Philippians%202%3A6-8&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Philippians 2:6-8</a></div>
           <div class="txt">"who, being in the form of God, did not consider it robbery to be equal with God, but made Himself of no reputation, taking the form of a bondservant, and coming in the likeness of men. And being found in appearance as a man, He humbled Himself and became obedient to the point of death, even the death of the cross."</div>
-          <div class="mia-note">🔵 Orthodox reading: The one "in the form of God" is the same one who "humbled Himself and became obedient to the point of death." One subject, from glory to the cross.</div>
+          <div class="mia-note">Orthodox reading: The one "in the form of God" is the same one who "humbled Himself and became obedient to the point of death." One subject, from glory to the cross.</div>
         </div>
         <div class="fc">
           <div class="fn">St Cyril</div>
@@ -760,18 +797,18 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=1%20Corinthians%202%3A8&amp;version=NKJV" target="_blank" rel="noopener noreferrer">1 Corinthians 2:8</a></div>
           <div class="txt">"which none of the rulers of this age knew; for had they known, they would not have crucified the Lord of glory."</div>
-          <div class="mia-note">🔵 Orthodox reading: Paul says the rulers crucified "the Lord of glory." He does not say they crucified a man joined to the Lord of glory.</div>
-          <div class="dyo-note">🟣 Protestant reading: The verse names the divine Christ by a title while the suffering belongs to His human nature, which most Protestants also confess.</div>
+          <div class="mia-note">Orthodox reading: Paul says the rulers crucified "the Lord of glory." He does not say they crucified a man joined to the Lord of glory.</div>
+          <div class="dyo-note">Protestant reading: The verse names the divine Christ by a title while the suffering belongs to His human nature, which most Protestants also confess.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Acts%2020%3A28&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Acts 20:28</a></div>
           <div class="txt">"Therefore take heed to yourselves and to all the flock, among which the Holy Spirit has made you overseers, to shepherd the church of God which He purchased with His own blood."</div>
-          <div class="mia-note">🔵 Orthodox reading: "The church of God which He purchased with His own blood." Scripture does not hesitate to call the blood of Christ the blood of God.</div>
+          <div class="mia-note">Orthodox reading: "The church of God which He purchased with His own blood." Scripture does not hesitate to call the blood of Christ the blood of God.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=1%20Peter%204%3A1&amp;version=NKJV" target="_blank" rel="noopener noreferrer">1 Peter 4:1</a></div>
           <div class="txt">"Therefore, since Christ suffered for us in the flesh, arm yourselves also with the same mind, for he who has suffered in the flesh has ceased from sin,"</div>
-          <div class="mia-note">🔵 Shared reading: "Christ suffered for us in the flesh." Cyril's phrase "suffered in the flesh" is Peter's.</div>
+          <div class="mia-note">Shared reading: "Christ suffered for us in the flesh." Cyril's phrase "suffered in the flesh" is Peter's.</div>
         </div>
         <p>See <a href="will_of_christ.html">One Will or Two? The Will of Christ</a> for how this single-subject teaching shapes the Oriental Orthodox reading of Gethsemane.</p>
       </div>
@@ -803,7 +840,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Luke%201%3A43&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Luke 1:43</a></div>
           <div class="txt">"But why is this granted to me, that the mother of my Lord should come to me?"</div>
-          <div class="mia-note">🔵 Orthodox reading: Elizabeth, filled with the Holy Spirit, calls Mary "the mother of my Lord." The child in Mary's womb is already her Lord.</div>
+          <div class="mia-note">Orthodox reading: Elizabeth, filled with the Holy Spirit, calls Mary "the mother of my Lord." The child in Mary's womb is already her Lord.</div>
         </div>
         <p>Notice "from the two together is one God the Son." Cyril could speak of "a union of two natures" when the phrase meant a real union from which one Christ results. What he refused was any language that left two subjects after the union. This matters for the reunion of 433 and for Chalcedon (Sections XI and XII). See <a href="marian_theology.html">Mary: Theotokos &amp; Perpetual Virginity</a>.</p>
       </div>
@@ -831,7 +868,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Isaiah%206%3A6-7&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Isaiah 6:6-7</a></div>
           <div class="txt">"Then one of the seraphim flew to me, having in his hand a live coal which he had taken with the tongs from the altar. And he touched my mouth with it, and said: 'Behold, this has touched your lips; Your iniquity is taken away, And your sin purged.'"</div>
-          <div class="mia-note">🔵 Orthodox reading: Cyril saw in the live coal a type of the incarnate Word: wood and fire united, the wood remaining wood yet wholly filled with fire.</div>
+          <div class="mia-note">Orthodox reading: Cyril saw in the live coal a type of the incarnate Word: wood and fire united, the wood remaining wood yet wholly filled with fire.</div>
         </div>
         <div class="fc">
           <div class="fn">St Cyril</div>
@@ -851,8 +888,8 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=John%206%3A53-54&amp;version=NKJV" target="_blank" rel="noopener noreferrer">John 6:53-54</a></div>
           <div class="txt">"Then Jesus said to them, 'Most assuredly, I say to you, unless you eat the flesh of the Son of Man and drink His blood, you have no life in you. Whoever eats My flesh and drinks My blood has eternal life, and I will raise him up at the last day."</div>
-          <div class="mia-note">🔵 Orthodox reading: Cyril reads this of the Eucharist: the flesh we receive is the flesh of the Word, and so gives eternal life.</div>
-          <div class="dyo-note">🟣 Protestant reading: Many Protestants read the discourse as a call to believe in Christ, with eating as an image of faith.</div>
+          <div class="mia-note">Orthodox reading: Cyril reads this of the Eucharist: the flesh we receive is the flesh of the Word, and so gives eternal life.</div>
+          <div class="dyo-note">Protestant reading: Many Protestants read the discourse as a call to believe in Christ, with eating as an image of faith.</div>
         </div>
         <div class="fc">
           <div class="fn">St Cyril</div>
@@ -890,7 +927,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=John%206%3A63&amp;version=NKJV" target="_blank" rel="noopener noreferrer">John 6:63</a></div>
           <div class="txt">"It is the Spirit who gives life; the flesh profits nothing. The words that I speak to you are spirit, and they are life."</div>
-          <div class="mia-note">🔵 Orthodox reading: Cyril comments that flesh considered alone "profits nothing," but the flesh united to the life-giving Word becomes life-giving.</div>
+          <div class="mia-note">Orthodox reading: Cyril comments that flesh considered alone "profits nothing," but the flesh united to the life-giving Word becomes life-giving.</div>
         </div>
         <p>See <a href="mysteries_of_christ.html">The Seven Mysteries of Christ</a> and <a href="eucharist_sacrifice.html">The Eucharist as Sacrifice</a>.</p>
       </div>
@@ -921,7 +958,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Psalm%2096%3A11&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Psalm 96:11</a></div>
           <div class="txt">"Let the heavens rejoice, and let the earth be glad; Let the sea roar, and all its fullness;"</div>
-          <div class="mia-note">🔵 Shared reading: Cyril opened his letter of reconciliation to John with this verse.</div>
+          <div class="mia-note">Shared reading: Cyril opened his letter of reconciliation to John with this verse.</div>
         </div>
         <div class="fc">
           <div class="fn">St Cyril</div>
@@ -984,31 +1021,31 @@ html.sb-collapsed #ol-sbt{left:0}
 
         <p>Cyril is attacked from several directions: by sceptics for his conduct in Alexandria, by those who think Nestorius was treated unfairly, and by those who think "one nature" means a mixture. Each is answered here as fairly as the evidence allows.</p>
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Cyril was responsible for the murder of Hypatia."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>"Cyril was responsible for the murder of Hypatia."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> Hypatia, a respected Neoplatonist philosopher, was murdered in Alexandria in March 415 by a Christian mob led by a church reader named Peter. The closest source is Socrates, who was no partisan of Cyril. He blames the political quarrel between Cyril and the prefect Orestes, and the rumour among Christians that Hypatia was keeping Orestes from being reconciled to the bishop.</p><p>Socrates does not say Cyril ordered the killing, and no ancient source says so. But he does say that the crime "brought not the least opprobrium, not only upon Cyril, but also upon the whole Alexandrian church." In the Greek this means it brought great shame, and Socrates adds that "nothing can be farther from the spirit of Christianity than the allowance of massacres, fights, and transactions of that sort." The Orthodox answer is not to deny the shame. The Church does not canonise saints because they were faultless, and Cyril's early years as bishop show a man who wielded power harshly. He is honoured for his defence of the faith, which the Church judged to be true.</p>
           </div>
         </div>
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Ephesus was rigged: Cyril opened it before John of Antioch arrived."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>"Ephesus was rigged: Cyril opened it before John of Antioch arrived."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> It is true that Cyril opened the council before the Syrian bishops arrived, and that this was contested. It is also true that Nestorius refused three summonses to attend, and that John's rival meeting, held a few days later, deposed Cyril with far fewer bishops. The Roman legates endorsed Cyril's council.</p><p>The decisive point came two years later. John of Antioch himself accepted Nestorius' deposition and confessed the Theotokos in the Reunion of 433. The Church as a whole received Ephesus. Its verdict did not rest on a procedural advantage but on the agreement that followed.</p>
           </div>
         </div>
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ ""One incarnate nature" is Monophysitism: it mixes Godhead and manhood into one."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>""One incarnate nature" is Monophysitism: it mixes Godhead and manhood into one."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> Cyril explained his formula precisely to rule this out: the Word has not "been mixed up," the Word has not "passed into the nature of the flesh nor yet that of the flesh into His Nature," and each "abides and is conceived of in its natural property" (Section VIII). His analogy is a human being, one from soul and body, in whom neither is changed into the other.</p><p>The Oriental Orthodox condemn Eutyches, who seemed to make Christ's humanity unlike ours, just as they condemn Nestorius. The label "Monophysite" was given by opponents and implies a single, mixed nature. The Oriental Orthodox describe their faith as Miaphysite: one united nature of the incarnate Word, from two.</p>
           </div>
         </div>
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Cyril abandoned his Twelve Chapters in 433, which proves he was wrong in 430."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>"Cyril abandoned his Twelve Chapters in 433, which proves he was wrong in 430."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> He did not withdraw them. Cyril accepted the Antiochene confession because it confessed one Christ and the Theotokos, which was the substance of what the Chapters defended, and he wrote several letters explaining that he had changed nothing. The Chapters were later received by the Second Council of Constantinople in 553 and are honoured by the Oriental Orthodox.</p>
           </div>
         </div>
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Nestorius was misunderstood. His later book shows he was orthodox."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>"Nestorius was misunderstood. His later book shows he was orthodox."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> The historian Socrates, who read Nestorius' works, thought him unlearned rather than heretical: "he seemed scared at the term Theotocos, as though it were some terrible phantom" (Church History VII.32). Some modern scholars, reading Nestorius' late work the <em>Bazaar of Heracleides</em>, have argued he meant something closer to the orthodox faith than his opponents thought.</p><p>But the question at Ephesus was not Nestorius' private intentions. It was whether the one born of Mary is God the Word, and whether we may say that God the Word suffered in the flesh. Nestorius never accepted that God the Word Himself was born and suffered in the sense Cyril meant; even in his last work he spoke of two natural "persons" united in one "person of union." Whatever his intentions, his refusal divided the one Christ into two subjects, and that is what the Church rejected.</p>
           </div>
@@ -1885,5 +1922,53 @@ try{
 }catch(e){}
 })();
 /* END-SHARECARDS-JS */</script>
+<script id="ol-lightfix">
+/* AUTO-LIGHTFIX-JS: quiet typographic clean-up plus a light-mode safety net.
+   In light mode it finds any box still painted with a dark-theme colour, or text
+   too faint to read, and re-tints it (keeping its hue) so every page reads well. */
+(function(){
+  try{
+    var R=document.documentElement;
+    function P(c){var m=c&&c.match(/rgba?\(([^)]+)\)/);if(!m)return null;var a=m[1].split(/[ ,\/]+/).filter(Boolean).map(Number);return {r:a[0],g:a[1],b:a[2],a:a.length>3?a[3]:1};}
+    function L(c){function f(v){v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4);}return .2126*f(c.r)+.7152*f(c.g)+.0722*f(c.b);}
+    function hsl(c){var r=c.r/255,g=c.g/255,b=c.b/255,mx=Math.max(r,g,b),mn=Math.min(r,g,b),h=0,s=0,l=(mx+mn)/2,d=mx-mn;
+      if(d){s=l>.5?d/(2-mx-mn):d/(mx+mn);h=mx===r?(g-b)/d+(g<b?6:0):mx===g?(b-r)/d+2:(r-g)/d+4;h/=6;}return [h,s,l];}
+    function css(h,s,l){return 'hsl('+Math.round(h*360)+','+Math.round(s*100)+'%,'+Math.round(l*100)+'%)';}
+    function bgOf(el){for(var e=el;e&&e.nodeType===1;e=e.parentElement){var cs=getComputedStyle(e),c=P(cs.backgroundColor);if(c&&c.a>.5)return c;}return {r:247,g:242,b:230,a:1};}
+    var SKIP='.oo-pgband,.ol-ask-fab,#ol-tt,.ol-ask-wrap .send,svg,img,video,canvas,code,pre';
+    var done=[];
+    function undo(){for(var i=done.length-1;i>=0;i--){var d=done[i];if(d[2])d[0].style.setProperty(d[1],d[2],d[3]);else d[0].style.removeProperty(d[1]);}done=[];}
+    function set(el,p,v){done.push([el,p,el.style.getPropertyValue(p),el.style.getPropertyPriority(p)]);el.style.setProperty(p,v,'important');}
+    function fix(){
+      undo();
+      if(!R.classList.contains('light'))return;
+      var all=document.body.querySelectorAll('*');
+      for(var i=0;i<all.length;i++){var el=all[i];if(el.closest(SKIP))continue;
+        var cs=getComputedStyle(el),c=P(cs.backgroundColor);
+        if(c&&c.a>.5&&L(c)<.16){var h=hsl(c);set(el,'background-color',css(h[0],Math.min(h[1],.32),.92));}
+        var bi=cs.backgroundImage;
+        if(bi&&bi.indexOf('gradient')>=0&&bi.indexOf('url(')<0){var m=bi.match(/rgba?\([^)]+\)/);var g=m&&P(m[0]);if(g&&g.a>.5&&L(g)<.16){set(el,'background-image','none');var hg=hsl(g);set(el,'background-color',css(hg[0],Math.min(hg[1],.3),.91));}}
+      }
+      for(var j=0;j<all.length;j++){var t=all[j];if(t.closest(SKIP))continue;
+        var own=false;for(var k=0;k<t.childNodes.length;k++){var n=t.childNodes[k];if(n.nodeType===3&&n.textContent.trim()){own=true;break;}}
+        if(!own)continue;
+        var fg=P(getComputedStyle(t).color);if(!fg)continue;var bg=bgOf(t),a=L(fg),b=L(bg);
+        var cr=(Math.max(a,b)+.05)/(Math.min(a,b)+.05);
+        if(cr<4.2&&b>.4){var hf=hsl(fg);set(t,'color',css(hf[0],Math.min(hf[1],.6),hf[1]>.15?.27:.24));}
+      }
+    }
+    /* uppercase, widely tracked labels read as small capitals, as in a printed book */
+    function caps(){var all=document.body.querySelectorAll('*');for(var i=0;i<all.length;i++){var el=all[i];if(el.closest('.oo-pgband,.ol-ask-wrap,#ol-tt'))continue;var cs=getComputedStyle(el);
+      if(!el.classList.contains('ol-sc')&&parseFloat(cs.fontSize)<18&&cs.textTransform==='uppercase'&&parseFloat(cs.letterSpacing)>=0.6&&el.textContent.trim()){var px=parseFloat(cs.fontSize);el.classList.add('ol-sc');if(px)el.style.fontSize=Math.round(px*1.3*10)/10+'px';}}}
+    function run(){try{caps();}catch(e){}try{fix();}catch(e){}}
+    if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+    window.addEventListener('load',function(){setTimeout(function(){try{caps();fix();}catch(e){}},400);setTimeout(function(){try{caps();fix();}catch(e){}},1600);});
+    new MutationObserver(function(){try{fix();}catch(e){}}).observe(R,{attributes:true,attributeFilter:['class']});
+    var tm=null;new MutationObserver(function(ms){if(!R.classList.contains('light'))return;for(var i=0;i<ms.length;i++){if(ms[i].addedNodes.length){clearTimeout(tm);tm=setTimeout(function(){try{caps();fix();}catch(e){}},250);return;}}}).observe(document.body,{childList:true,subtree:true});
+    window.olLightFix=fix;
+  }catch(e){}
+})();
+
+</script>
 </body>
 </html>

@@ -481,6 +481,43 @@ html.sb-collapsed #ol-sbt{left:0}
 @media print{.oo-pgband{display:none}}
 /* END-OL-PGBAND */
 </style>
+<style id="ol-auth">
+/* AUTO-AUTHENTIC-CSS: book typography (EB Garamond, self-hosted, SIL OFL) and quieter ornament */
+@font-face{font-family:'EB Garamond';font-style:normal;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-greek-ext-wght-normal.woff2) format('woff2');unicode-range:U+1F00-1FFF}
+@font-face{font-family:'EB Garamond';font-style:normal;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-greek-wght-normal.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
+@font-face{font-family:'EB Garamond';font-style:normal;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-latin-ext-wght-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'EB Garamond';font-style:normal;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-latin-wght-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'EB Garamond';font-style:italic;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-greek-ext-wght-italic.woff2) format('woff2');unicode-range:U+1F00-1FFF}
+@font-face{font-family:'EB Garamond';font-style:italic;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-greek-wght-italic.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
+@font-face{font-family:'EB Garamond';font-style:italic;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-latin-ext-wght-italic.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'EB Garamond';font-style:italic;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-latin-wght-italic.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+html{font-size-adjust:.47}
+body,body *:not(svg):not(svg *):not(code):not(pre):not(kbd){font-family:'EB Garamond',Georgia,'Times New Roman',serif!important;font-size-adjust:.47!important}
+body{font-variant-numeric:oldstyle-nums;text-rendering:optimizeLegibility;font-kerning:normal}
+h1,h2,h3,h4,table,.tl-date,.htl-cd,.yr,.ol-readtime,.sec-num{font-variant-numeric:lining-nums}
+/* tracked capitals become small capitals */
+.ol-sc{text-transform:none!important;font-variant-caps:all-small-caps;letter-spacing:.05em!important}
+/* plainer boxes: small radii, no drop shadows or lifting cards */
+.sec,.fc,.fi,.obj,.gt,.sv,.nx,.note,.badge,.tag,.council,.saint,.pos,.stage,.pillar,.lk,.ol-related,.ol-search-btn,.ol-print-btn,.oo-pgband,.rm-bar,.htl-card,.htl-detail,.lp-jump,.path-link,.ev-card,[class*="-card"],[class*="-box"],.obj-tag,.lx,.gk,.typ,.sac,.gift,.ic,.pat,.pf,.hist,.trad-col,.par-col,.q-block,.section,.intro-banner{border-radius:3px!important}
+.oo-pgband,.mob-toggle,.htl-card,.step-n,.section,.sv,.fc{box-shadow:none!important}
+[class*="-card"]:hover,[class*="-box"]:hover,.vbox:hover,.sec:hover,.obj:hover,.fi:hover{box-shadow:none!important;transform:none!important}
+.site-title{text-shadow:none!important}
+/* reading time as a quiet line, not a pill */
+.ol-readtime{text-transform:none!important;border:0!important;background:none!important;padding:0!important;border-radius:0!important;font-style:italic;font-size:.86rem!important;font-variant-caps:normal!important;letter-spacing:0!important}
+.ol-readtime::before{display:none!important}
+/* opening paragraph: no coloured side bar */
+.pg-intro{border-left:0!important;padding-left:0!important;font-size:1.06em}
+/* the ✦ ✦ ✦ ornament becomes a simple rule */
+.orn{letter-spacing:0!important;opacity:1!important}
+.orn::before{content:"";display:block;width:84px;height:1px;margin:2px auto 0;background:currentColor;opacity:.55}
+/* light mode: darker ink for gold text, and red rubrics as in a service book */
+html.light{--gd:#7a5c17}
+html.light .sec-num,html.light p.ol-lead::first-letter,html.light .purpose p:first-of-type::first-letter{color:#8e2a1e!important}
+html.light .oo-pgband .cap,html.light .oo-pgband .cap b,html.light .oo-pgband::after{color:#f4e6c2!important}
+html.light #ol-tt{background:var(--bg2);color:var(--gold);box-shadow:none}
+html.light .ol-ask-fab,html.light .ol-ask-msg.user,html.light .ol-ask-foot button.send{background:#b8923f!important}
+
+</style>
 </head>
 <body>
 <div id="prog"></div>
@@ -527,7 +564,7 @@ html.sb-collapsed #ol-sbt{left:0}
     <h1 class="st">THE <span>ORTHODOX</span> LAMP</h1>
     <p class="ss">St Athanasius the Apostolic</p>
     <p class="tg">"For He was made man that we might be made God." On the Incarnation 54</p>
-    <div class="orn">✦ ✦ ✦</div>
+    <div class="orn"></div>
   </div>
 
   <div class="content">
@@ -705,7 +742,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Hebrews%202%3A14&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Hebrews 2:14</a></div>
           <div class="txt">"Inasmuch then as the children have partaken of flesh and blood, He Himself likewise shared in the same, that through death He might destroy him who had the power of death, that is, the devil,"</div>
-          <div class="mia-note">🔵 Shared reading: The Word shares our flesh in order to die in it, and by dying to undo death. This is the heart of On the Incarnation.</div>
+          <div class="mia-note">Shared reading: The Word shares our flesh in order to die in it, and by dying to undo death. This is the heart of On the Incarnation.</div>
         </div>
         <div class="fc">
           <div class="fn">St Athanasius</div>
@@ -716,8 +753,8 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=2%20Peter%201%3A4&amp;version=NKJV" target="_blank" rel="noopener noreferrer">2 Peter 1:4</a></div>
           <div class="txt">"by which have been given to us exceedingly great and precious promises, that through these you may be partakers of the divine nature, having escaped the corruption that is in the world through lust."</div>
-          <div class="mia-note">🔵 Orthodox reading: "Made God" means this: not that we become God by nature, but that by grace we become "partakers of the divine nature." Athanasius' sentence is the classic summary of theosis.</div>
-          <div class="dyo-note">🟣 Protestant reading: Many Protestants read this verse as moral renewal rather than participation in God's life.</div>
+          <div class="mia-note">Orthodox reading: "Made God" means this: not that we become God by nature, but that by grace we become "partakers of the divine nature." Athanasius' sentence is the classic summary of theosis.</div>
+          <div class="dyo-note">Protestant reading: Many Protestants read this verse as moral renewal rather than participation in God's life.</div>
         </div>
         <p>Notice what the argument requires. If the one who became man were a creature, as Arius taught, He could not give us a share in the divine life, because He would not have it to give. Athanasius' whole doctrine of salvation depends on the Son being fully God. That is why he fought Arianism for half a century. See <a href="theosis.html">Theosis &amp; Deification</a>.</p>
       </div>
@@ -745,20 +782,20 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=John%201%3A1-3&amp;version=NKJV" target="_blank" rel="noopener noreferrer">John 1:1-3</a></div>
           <div class="txt">"In the beginning was the Word, and the Word was with God, and the Word was God. He was in the beginning with God. All things were made through Him, and without Him nothing was made that was made."</div>
-          <div class="mia-note">🔵 Orthodox reading: "In the beginning was the Word." There was no "once" before the Word, because all things, time included, were made through Him.</div>
+          <div class="mia-note">Orthodox reading: "In the beginning was the Word." There was no "once" before the Word, because all things, time included, were made through Him.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Hebrews%201%3A3&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Hebrews 1:3</a></div>
           <div class="txt">"who being the brightness of His glory and the express image of His person, and upholding all things by the word of His power, when He had by Himself purged our sins, sat down at the right hand of the Majesty on high,"</div>
-          <div class="mia-note">🔵 Orthodox reading: Athanasius' favourite image: the Son is the radiance of the Father's glory. A light is never without its radiance, so the Father was never without the Son.</div>
+          <div class="mia-note">Orthodox reading: Athanasius' favourite image: the Son is the radiance of the Father's glory. A light is never without its radiance, so the Father was never without the Son.</div>
         </div>
         <h3>"The Lord Created Me"</h3>
         <p>The Arians' chief proof text was Proverbs 8:22, which in the Greek Bible reads, "The Lord created me a beginning of His ways for His works." Wisdom is speaking, and Wisdom is Christ (1 Corinthians 1:24). So, they said, Christ was created.</p>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Proverbs%208%3A22&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Proverbs 8:22</a></div>
           <div class="txt">"'The Lord possessed me at the beginning of His way, Before His works of old."</div>
-          <div class="mia-note">🔵 Orthodox reading: The Hebrew is usually rendered "possessed" (NKJV), but the Greek Bible the Fathers used read "created." Athanasius accepted the Greek and answered the argument on its own ground.</div>
-          <div class="dyo-note">🟣 Protestant reading: Many modern Protestants read the passage as poetry about God's wisdom, not a direct statement about the Son.</div>
+          <div class="mia-note">Orthodox reading: The Hebrew is usually rendered "possessed" (NKJV), but the Greek Bible the Fathers used read "created." Athanasius accepted the Greek and answered the argument on its own ground.</div>
+          <div class="dyo-note">Protestant reading: Many modern Protestants read the passage as poetry about God's wisdom, not a direct statement about the Son.</div>
         </div>
         <div class="fc">
           <div class="fn">St Athanasius</div>
@@ -771,7 +808,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=John%205%3A23&amp;version=NKJV" target="_blank" rel="noopener noreferrer">John 5:23</a></div>
           <div class="txt">"that all should honor the Son just as they honor the Father. He who does not honor the Son does not honor the Father who sent Him."</div>
-          <div class="mia-note">🔵 Orthodox reading: The Son receives the same honour as the Father. If He were a creature, worshipping Him would be idolatry.</div>
+          <div class="mia-note">Orthodox reading: The Son receives the same honour as the Father. If He were a creature, worshipping Him would be idolatry.</div>
         </div>
         <div class="fc">
           <div class="fn">St Athanasius</div>
@@ -804,12 +841,12 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=John%2010%3A30&amp;version=NKJV" target="_blank" rel="noopener noreferrer">John 10:30</a></div>
           <div class="txt">"I and My Father are one.'"</div>
-          <div class="mia-note">🔵 Orthodox reading: "One" is neuter in Greek: not one person, but one thing. The Father and the Son are distinct, yet one in what they are.</div>
+          <div class="mia-note">Orthodox reading: "One" is neuter in Greek: not one person, but one thing. The Father and the Son are distinct, yet one in what they are.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=John%2014%3A9&amp;version=NKJV" target="_blank" rel="noopener noreferrer">John 14:9</a></div>
           <div class="txt">"Jesus said to him, 'Have I been with you so long, and yet you have not known Me, Philip? He who has seen Me has seen the Father; so how can you say, 'Show us the Father'?"</div>
-          <div class="mia-note">🔵 Orthodox reading: To see the Son is to see the Father, because the Son is the Father's own image and radiance, not a likeness made from outside.</div>
+          <div class="mia-note">Orthodox reading: To see the Son is to see the Father, because the Son is the Father's own image and radiance, not a likeness made from outside.</div>
         </div>
       </div>
     </div>
@@ -979,7 +1016,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Matthew%2010%3A23&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Matthew 10:23</a></div>
           <div class="txt">"When they persecute you in this city, flee to another. For assuredly, I say to you, you will not have gone through the cities of Israel before the Son of Man comes."</div>
-          <div class="mia-note">🔵 Orthodox reading: Athanasius cites this command. Flight was not cowardice but obedience, and it kept the shepherd alive for the flock.</div>
+          <div class="mia-note">Orthodox reading: Athanasius cites this command. Flight was not cowardice but obedience, and it kept the shepherd alive for the flock.</div>
         </div>
         <h3>The Pillar of the Church</h3>
         <div class="fc">
@@ -1025,31 +1062,31 @@ html.sb-collapsed #ol-sbt{left:0}
 
         <p>The objections below come from Jehovah's Witnesses, sceptics and some Protestants.</p>
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Constantine and Nicaea invented the deity of Christ."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>"Constantine and Nicaea invented the deity of Christ."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> Arius himself is the evidence against this. He was condemned by his own bishop, Alexander, years before Constantine called the council, because Alexander saw that Arius' teaching was new. Athanasius says the bishops at Nicaea first tried to use Scripture's own words and only adopted "one in essence" when the Arians twisted every one of them (Section VI).</p><p>And Constantine did not hold the line. Within ten years he had recalled Arius and exiled Athanasius. Most of Athanasius' exiles were ordered by emperors who favoured the Arians. If Nicene faith had been imposed by imperial power, it would not have survived the emperors.</p>
           </div>
         </div>
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Athanasius was a violent political operator who won by force."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>"Athanasius was a violent political operator who won by force."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> The charges against him at the time are known, and the most famous of them collapsed: the bishop he was accused of murdering turned up alive (Section XII). Some accusations of rough treatment by his supporters may have had substance, and historians still debate them. But Athanasius spent seventeen years of his episcopate in exile, hunted by soldiers. Those with the power to use force were his enemies.</p>
           </div>
         </div>
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Athanasius taught sola scriptura."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>"Athanasius taught sola scriptura."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> He taught that the Scriptures "are sufficient to declare the truth," and in the same sentence he commends "other works of our blessed teachers" for interpreting them (Section X). His whole defence of Nicaea appeals to "the sense of the Scriptures" as the Church had received it, against Arians who also quoted Scripture. He receives the canon from "the Fathers." That is Scripture read within the Church, which is the Orthodox position. See <a href="sola_scriptura.html">Scripture and Tradition</a>.</p>
           </div>
         </div>
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Proverbs 8:22 says Wisdom was created, so the Son is a creature."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>"Proverbs 8:22 says Wisdom was created, so the Son is a creature."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> Athanasius answered this at length. The verse is a proverb and must be read as one. Wisdom does not say "I am a creature," but "The Lord created me a beginning of His ways," and this refers, he says, to "His manhood and Economy towards us," not "the Essence of His Godhead" (Section V). The Word who made all things cannot be one of the things He made (John 1:3).</p>
           </div>
         </div>
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ "The majority of bishops were Arian in the 350s, so Nicene orthodoxy was just the side that won."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>"The majority of bishops were Arian in the 350s, so Nicene orthodoxy was just the side that won."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> Truth is not decided by numbers, and Athanasius never thought it was. Many bishops signed Arian-leaning creeds under imperial pressure, and many, like the "like in essence" party, were much nearer to Nicaea than to Arius (Section VII). When the pressure lifted, the Church returned to the faith of Nicaea and confessed it again at Constantinople in 381.</p>
           </div>
@@ -1928,5 +1965,53 @@ try{
 }catch(e){}
 })();
 /* END-SHARECARDS-JS */</script>
+<script id="ol-lightfix">
+/* AUTO-LIGHTFIX-JS: quiet typographic clean-up plus a light-mode safety net.
+   In light mode it finds any box still painted with a dark-theme colour, or text
+   too faint to read, and re-tints it (keeping its hue) so every page reads well. */
+(function(){
+  try{
+    var R=document.documentElement;
+    function P(c){var m=c&&c.match(/rgba?\(([^)]+)\)/);if(!m)return null;var a=m[1].split(/[ ,\/]+/).filter(Boolean).map(Number);return {r:a[0],g:a[1],b:a[2],a:a.length>3?a[3]:1};}
+    function L(c){function f(v){v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4);}return .2126*f(c.r)+.7152*f(c.g)+.0722*f(c.b);}
+    function hsl(c){var r=c.r/255,g=c.g/255,b=c.b/255,mx=Math.max(r,g,b),mn=Math.min(r,g,b),h=0,s=0,l=(mx+mn)/2,d=mx-mn;
+      if(d){s=l>.5?d/(2-mx-mn):d/(mx+mn);h=mx===r?(g-b)/d+(g<b?6:0):mx===g?(b-r)/d+2:(r-g)/d+4;h/=6;}return [h,s,l];}
+    function css(h,s,l){return 'hsl('+Math.round(h*360)+','+Math.round(s*100)+'%,'+Math.round(l*100)+'%)';}
+    function bgOf(el){for(var e=el;e&&e.nodeType===1;e=e.parentElement){var cs=getComputedStyle(e),c=P(cs.backgroundColor);if(c&&c.a>.5)return c;}return {r:247,g:242,b:230,a:1};}
+    var SKIP='.oo-pgband,.ol-ask-fab,#ol-tt,.ol-ask-wrap .send,svg,img,video,canvas,code,pre';
+    var done=[];
+    function undo(){for(var i=done.length-1;i>=0;i--){var d=done[i];if(d[2])d[0].style.setProperty(d[1],d[2],d[3]);else d[0].style.removeProperty(d[1]);}done=[];}
+    function set(el,p,v){done.push([el,p,el.style.getPropertyValue(p),el.style.getPropertyPriority(p)]);el.style.setProperty(p,v,'important');}
+    function fix(){
+      undo();
+      if(!R.classList.contains('light'))return;
+      var all=document.body.querySelectorAll('*');
+      for(var i=0;i<all.length;i++){var el=all[i];if(el.closest(SKIP))continue;
+        var cs=getComputedStyle(el),c=P(cs.backgroundColor);
+        if(c&&c.a>.5&&L(c)<.16){var h=hsl(c);set(el,'background-color',css(h[0],Math.min(h[1],.32),.92));}
+        var bi=cs.backgroundImage;
+        if(bi&&bi.indexOf('gradient')>=0&&bi.indexOf('url(')<0){var m=bi.match(/rgba?\([^)]+\)/);var g=m&&P(m[0]);if(g&&g.a>.5&&L(g)<.16){set(el,'background-image','none');var hg=hsl(g);set(el,'background-color',css(hg[0],Math.min(hg[1],.3),.91));}}
+      }
+      for(var j=0;j<all.length;j++){var t=all[j];if(t.closest(SKIP))continue;
+        var own=false;for(var k=0;k<t.childNodes.length;k++){var n=t.childNodes[k];if(n.nodeType===3&&n.textContent.trim()){own=true;break;}}
+        if(!own)continue;
+        var fg=P(getComputedStyle(t).color);if(!fg)continue;var bg=bgOf(t),a=L(fg),b=L(bg);
+        var cr=(Math.max(a,b)+.05)/(Math.min(a,b)+.05);
+        if(cr<4.2&&b>.4){var hf=hsl(fg);set(t,'color',css(hf[0],Math.min(hf[1],.6),hf[1]>.15?.27:.24));}
+      }
+    }
+    /* uppercase, widely tracked labels read as small capitals, as in a printed book */
+    function caps(){var all=document.body.querySelectorAll('*');for(var i=0;i<all.length;i++){var el=all[i];if(el.closest('.oo-pgband,.ol-ask-wrap,#ol-tt'))continue;var cs=getComputedStyle(el);
+      if(!el.classList.contains('ol-sc')&&parseFloat(cs.fontSize)<18&&cs.textTransform==='uppercase'&&parseFloat(cs.letterSpacing)>=0.6&&el.textContent.trim()){var px=parseFloat(cs.fontSize);el.classList.add('ol-sc');if(px)el.style.fontSize=Math.round(px*1.3*10)/10+'px';}}}
+    function run(){try{caps();}catch(e){}try{fix();}catch(e){}}
+    if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+    window.addEventListener('load',function(){setTimeout(function(){try{caps();fix();}catch(e){}},400);setTimeout(function(){try{caps();fix();}catch(e){}},1600);});
+    new MutationObserver(function(){try{fix();}catch(e){}}).observe(R,{attributes:true,attributeFilter:['class']});
+    var tm=null;new MutationObserver(function(ms){if(!R.classList.contains('light'))return;for(var i=0;i<ms.length;i++){if(ms[i].addedNodes.length){clearTimeout(tm);tm=setTimeout(function(){try{caps();fix();}catch(e){}},250);return;}}}).observe(document.body,{childList:true,subtree:true});
+    window.olLightFix=fix;
+  }catch(e){}
+})();
+
+</script>
 </body>
 </html>

@@ -500,6 +500,43 @@ html.sb-collapsed #ol-sbt{left:0}
 @media (max-width:640px){.rm-bar{margin:10px 12px 6px}}
 @media print{.rm-bar,.rm-pn{display:none!important}}
 </style>
+<style id="ol-auth">
+/* AUTO-AUTHENTIC-CSS: book typography (EB Garamond, self-hosted, SIL OFL) and quieter ornament */
+@font-face{font-family:'EB Garamond';font-style:normal;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-greek-ext-wght-normal.woff2) format('woff2');unicode-range:U+1F00-1FFF}
+@font-face{font-family:'EB Garamond';font-style:normal;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-greek-wght-normal.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
+@font-face{font-family:'EB Garamond';font-style:normal;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-latin-ext-wght-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'EB Garamond';font-style:normal;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-latin-wght-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'EB Garamond';font-style:italic;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-greek-ext-wght-italic.woff2) format('woff2');unicode-range:U+1F00-1FFF}
+@font-face{font-family:'EB Garamond';font-style:italic;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-greek-wght-italic.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
+@font-face{font-family:'EB Garamond';font-style:italic;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-latin-ext-wght-italic.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'EB Garamond';font-style:italic;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-latin-wght-italic.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+html{font-size-adjust:.47}
+body,body *:not(svg):not(svg *):not(code):not(pre):not(kbd){font-family:'EB Garamond',Georgia,'Times New Roman',serif!important;font-size-adjust:.47!important}
+body{font-variant-numeric:oldstyle-nums;text-rendering:optimizeLegibility;font-kerning:normal}
+h1,h2,h3,h4,table,.tl-date,.htl-cd,.yr,.ol-readtime,.sec-num{font-variant-numeric:lining-nums}
+/* tracked capitals become small capitals */
+.ol-sc{text-transform:none!important;font-variant-caps:all-small-caps;letter-spacing:.05em!important}
+/* plainer boxes: small radii, no drop shadows or lifting cards */
+.sec,.fc,.fi,.obj,.gt,.sv,.nx,.note,.badge,.tag,.council,.saint,.pos,.stage,.pillar,.lk,.ol-related,.ol-search-btn,.ol-print-btn,.oo-pgband,.rm-bar,.htl-card,.htl-detail,.lp-jump,.path-link,.ev-card,[class*="-card"],[class*="-box"],.obj-tag,.lx,.gk,.typ,.sac,.gift,.ic,.pat,.pf,.hist,.trad-col,.par-col,.q-block,.section,.intro-banner{border-radius:3px!important}
+.oo-pgband,.mob-toggle,.htl-card,.step-n,.section,.sv,.fc{box-shadow:none!important}
+[class*="-card"]:hover,[class*="-box"]:hover,.vbox:hover,.sec:hover,.obj:hover,.fi:hover{box-shadow:none!important;transform:none!important}
+.site-title{text-shadow:none!important}
+/* reading time as a quiet line, not a pill */
+.ol-readtime{text-transform:none!important;border:0!important;background:none!important;padding:0!important;border-radius:0!important;font-style:italic;font-size:.86rem!important;font-variant-caps:normal!important;letter-spacing:0!important}
+.ol-readtime::before{display:none!important}
+/* opening paragraph: no coloured side bar */
+.pg-intro{border-left:0!important;padding-left:0!important;font-size:1.06em}
+/* the ✦ ✦ ✦ ornament becomes a simple rule */
+.orn{letter-spacing:0!important;opacity:1!important}
+.orn::before{content:"";display:block;width:84px;height:1px;margin:2px auto 0;background:currentColor;opacity:.55}
+/* light mode: darker ink for gold text, and red rubrics as in a service book */
+html.light{--gd:#7a5c17}
+html.light .sec-num,html.light p.ol-lead::first-letter,html.light .purpose p:first-of-type::first-letter{color:#8e2a1e!important}
+html.light .oo-pgband .cap,html.light .oo-pgband .cap b,html.light .oo-pgband::after{color:#f4e6c2!important}
+html.light #ol-tt{background:var(--bg2);color:var(--gold);box-shadow:none}
+html.light .ol-ask-fab,html.light .ol-ask-msg.user,html.light .ol-ask-foot button.send{background:#b8923f!important}
+
+</style>
 </head>
 <body>
 <div id="prog"></div>
@@ -544,7 +581,7 @@ html.sb-collapsed #ol-sbt{left:0}
     <h1 class="st">THE <span>ORTHODOX</span> LAMP</h1>
     <p class="ss">Romans 12&ndash;16: The Christian Life</p>
     <p class="tg">"Let the eye look upon no evil thing, and it has become a sacrifice." St John Chrysostom, Homily 20 on Romans</p>
-    <div class="orn">✦ ✦ ✦</div>
+    <div class="orn"></div>
   </div>
 
   <div class="content">
@@ -635,7 +672,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%2012%3A1-2&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 12:1-2</a></div>
           <div class="txt">"I beseech you therefore, brethren, by the mercies of God, that you present your bodies a living sacrifice, holy, acceptable to God, which is your reasonable service. And do not be conformed to this world, but be transformed by the renewing of your mind, that you may prove what is that good and acceptable and perfect will of God."</div>
-          <div class="mia-note">🔵 Orthodox reading: The response to God's mercy is the offering of the whole self, body included, and the transformation of the mind.</div>
+          <div class="mia-note">Orthodox reading: The response to God's mercy is the offering of the whole self, body included, and the transformation of the mind.</div>
         </div>
         <div class="fc">
           <div class="fn">St John Chrysostom</div>
@@ -661,7 +698,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%2012%3A4-5&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 12:4-5</a></div>
           <div class="txt">"For as we have many members in one body, but all the members do not have the same function, so we, being many, are one body in Christ, and individually members of one another."</div>
-          <div class="mia-note">🔵 Orthodox reading: The Church is one body in Christ, with many members and many functions.</div>
+          <div class="mia-note">Orthodox reading: The Church is one body in Christ, with many members and many functions.</div>
         </div>
         <p>Paul lists prophecy, ministry, teaching, exhortation, giving, leading and mercy. Every member has a gift, and none is to think of himself more highly than he ought. The Orthodox see the Church as exactly this body, ordered and many-gifted: clergy and laity, monastics and married, each with a place. Protestants rightly stress that every believer has a ministry. The Orthodox would add that the body has a shape given by Christ, which includes the ordained ministry, and that gifts are exercised within the communion of the Church, not apart from it.</p>
       </div>
@@ -674,17 +711,17 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%2012%3A9-13&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 12:9-13</a></div>
           <div class="txt">"Let love be without hypocrisy. Abhor what is evil. Cling to what is good. Be kindly affectionate to one another with brotherly love, in honor giving preference to one another; not lagging in diligence, fervent in spirit, serving the Lord; rejoicing in hope, patient in tribulation, continuing steadfastly in prayer; distributing to the needs of the saints, given to hospitality."</div>
-          <div class="mia-note">🔵 Orthodox reading: Genuine love: hating evil, holding to good, honouring others, fervent in spirit, patient in trouble, generous and hospitable.</div>
+          <div class="mia-note">Orthodox reading: Genuine love: hating evil, holding to good, honouring others, fervent in spirit, patient in trouble, generous and hospitable.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%2012%3A14-18&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 12:14-18</a></div>
           <div class="txt">"Bless those who persecute you; bless and do not curse. Rejoice with those who rejoice, and weep with those who weep. Be of the same mind toward one another. Do not set your mind on high things, but associate with the humble. Do not be wise in your own opinion. Repay no one evil for evil. Have regard for good things in the sight of all men. If it is possible, as much as depends on you, live peaceably with all men."</div>
-          <div class="mia-note">🔵 Orthodox reading: Bless persecutors, weep with those who weep, live at peace with all as far as it depends on you.</div>
+          <div class="mia-note">Orthodox reading: Bless persecutors, weep with those who weep, live at peace with all as far as it depends on you.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%2012%3A19-21&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 12:19-21</a></div>
           <div class="txt">"Beloved, do not avenge yourselves, but rather give place to wrath; for it is written, 'Vengeance is Mine, I will repay,' says the Lord. Therefore 'If your enemy is hungry, feed him; If he is thirsty, give him a drink; For in so doing you will heap coals of fire on his head.' Do not be overcome by evil, but overcome evil with good."</div>
-          <div class="mia-note">🔵 Orthodox reading: Leave vengeance to God. Feed your enemy. Overcome evil with good.</div>
+          <div class="mia-note">Orthodox reading: Leave vengeance to God. Feed your enemy. Overcome evil with good.</div>
         </div>
         <div class="fc">
           <div class="fn">St John Chrysostom</div>
@@ -703,12 +740,12 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%2013%3A1-2&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 13:1-2</a></div>
           <div class="txt">"Let every soul be subject to the governing authorities. For there is no authority except from God, and the authorities that exist are appointed by God. Therefore whoever resists the authority resists the ordinance of God, and those who resist will bring judgment on themselves."</div>
-          <div class="mia-note">🔵 Orthodox reading: Civil authority as such is part of God's ordering of the world. Christians are to be subject to it.</div>
+          <div class="mia-note">Orthodox reading: Civil authority as such is part of God's ordering of the world. Christians are to be subject to it.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%2013%3A3-4&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 13:3-4</a></div>
           <div class="txt">"For rulers are not a terror to good works, but to evil. Do you want to be unafraid of the authority? Do what is good, and you will have praise from the same. For he is God's minister to you for good. But if you do evil, be afraid; for he does not bear the sword in vain; for he is God's minister, an avenger to execute wrath on him who practices evil."</div>
-          <div class="mia-note">🔵 Orthodox reading: Government exists to restrain evil and reward good; it is God's servant for that purpose.</div>
+          <div class="mia-note">Orthodox reading: Government exists to restrain evil and reward good; it is God's servant for that purpose.</div>
         </div>
         <p>Does this mean every ruler is chosen by God and must be obeyed in everything? Chrysostom and Calvin give almost the same answer:</p>
         <div class="fc">
@@ -726,7 +763,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Acts%205%3A29&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Acts 5:29</a></div>
           <div class="txt">"But Peter and the other apostles answered and said: 'We ought to obey God rather than men."</div>
-          <div class="mia-note">🔵 Orthodox reading: When rulers command what God forbids, the apostles' answer stands: obey God rather than men.</div>
+          <div class="mia-note">Orthodox reading: When rulers command what God forbids, the apostles' answer stands: obey God rather than men.</div>
         </div>
         <p>This is the balance the martyrs kept. They paid taxes, prayed for emperors and honoured rulers, and they died rather than offer incense to idols or deny Christ. The Coptic Church remembers its martyrs in its very calendar, the Era of the Martyrs, which begins in AD 284 with the reign of the emperor Diocletian. Romans 13 teaches respect for the order God has given; it does not teach that Caesar may claim what belongs to God.</p>
       </div>
@@ -739,12 +776,12 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%2013%3A8-10&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 13:8-10</a></div>
           <div class="txt">"Owe no one anything except to love one another, for he who loves another has fulfilled the law. For the commandments, 'You shall not commit adultery,' 'You shall not murder,' 'You shall not steal,' 'You shall not bear false witness,' 'You shall not covet,' and if there is any other commandment, are all summed up in this saying, namely, 'You shall love your neighbor as yourself.' Love does no harm to a neighbor; therefore love is the fulfillment of the law."</div>
-          <div class="mia-note">🔵 Orthodox reading: Love fulfils the law. Every commandment is summed up in "You shall love your neighbour as yourself."</div>
+          <div class="mia-note">Orthodox reading: Love fulfils the law. Every commandment is summed up in "You shall love your neighbour as yourself."</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%2013%3A11-14&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 13:11-14</a></div>
           <div class="txt">"And do this, knowing the time, that now it is high time to awake out of sleep; for now our salvation is nearer than when we first believed. The night is far spent, the day is at hand. Therefore let us cast off the works of darkness, and let us put on the armor of light. Let us walk properly, as in the day, not in revelry and drunkenness, not in lewdness and lust, not in strife and envy. But put on the Lord Jesus Christ, and make no provision for the flesh, to fulfill its lusts."</div>
-          <div class="mia-note">🔵 Orthodox reading: The night is far spent. Cast off the works of darkness and put on the Lord Jesus Christ.</div>
+          <div class="mia-note">Orthodox reading: The night is far spent. Cast off the works of darkness and put on the Lord Jesus Christ.</div>
         </div>
         <p>These are the verses that converted St Augustine. In the garden at Milan in 386, torn between his desire for God and his bondage to his passions, he heard a child's voice chanting "Take up and read":</p>
         <div class="fc">
@@ -764,17 +801,17 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%2014%3A1-3&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 14:1-3</a></div>
           <div class="txt">"Receive one who is weak in the faith, but not to disputes over doubtful things. For one believes he may eat all things, but he who is weak eats only vegetables. Let not him who eats despise him who does not eat, and let not him who does not eat judge him who eats; for God has received him."</div>
-          <div class="mia-note">🔵 Orthodox reading: Some ate everything; others ate only vegetables. Neither was to despise or judge the other.</div>
+          <div class="mia-note">Orthodox reading: Some ate everything; others ate only vegetables. Neither was to despise or judge the other.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%2014%3A5-6&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 14:5-6</a></div>
           <div class="txt">"One person esteems one day above another; another esteems every day alike. Let each be fully convinced in his own mind. He who observes the day, observes it to the Lord; and he who does not observe the day, to the Lord he does not observe it. He who eats, eats to the Lord, for he gives God thanks; and he who does not eat, to the Lord he does not eat, and gives God thanks."</div>
-          <div class="mia-note">🔵 Orthodox reading: Some honoured certain days; others regarded every day alike. Each was to be fully convinced and to act for the Lord.</div>
+          <div class="mia-note">Orthodox reading: Some honoured certain days; others regarded every day alike. Each was to be fully convinced and to act for the Lord.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%2014%3A17&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 14:17</a></div>
           <div class="txt">"for the kingdom of God is not eating and drinking, but righteousness and peace and joy in the Holy Spirit."</div>
-          <div class="mia-note">🔵 Orthodox reading: The kingdom of God is not food and drink, but righteousness, peace and joy in the Holy Spirit.</div>
+          <div class="mia-note">Orthodox reading: The kingdom of God is not food and drink, but righteousness, peace and joy in the Holy Spirit.</div>
         </div>
         <p>Some Protestants use Romans 14 to object to Orthodox fasting and feast days: surely Paul says such things do not matter? The Fathers read the chapter more carefully. Chrysostom thought the dispute in Rome involved new converts still attached to Jewish food laws and observances, and some quarrelling over fasting, and that Paul's concern was to stop the judging:</p>
         <div class="fc">
@@ -794,7 +831,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%2015%3A5-7&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 15:5-7</a></div>
           <div class="txt">"Now may the God of patience and comfort grant you to be like-minded toward one another, according to Christ Jesus, that you may with one mind and one mouth glorify the God and Father of our Lord Jesus Christ. Therefore receive one another, just as Christ also received us, to the glory of God."</div>
-          <div class="mia-note">🔵 Orthodox reading: The goal is one mind and one voice glorifying God, receiving one another as Christ received us.</div>
+          <div class="mia-note">Orthodox reading: The goal is one mind and one voice glorifying God, receiving one another as Christ received us.</div>
         </div>
         <p>It is worth noticing that Romans 14 is about matters of conscience <em>within</em> one church that shared the same faith and the same table. It is not a charter for treating every disagreement about doctrine as a matter of indifference. Paul ends the letter by warning against those who cause divisions "contrary to the doctrine which you learned" (16:17).</p>
       </div>
@@ -807,7 +844,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%2015%3A15-16&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 15:15-16</a></div>
           <div class="txt">"Nevertheless, brethren, I have written more boldly to you on some points, as reminding you, because of the grace given to me by God, that I might be a minister of Jesus Christ to the Gentiles, ministering the gospel of God, that the offering of the Gentiles might be acceptable, sanctified by the Holy Spirit."</div>
-          <div class="mia-note">🔵 Orthodox reading: Paul describes his preaching in priestly language: he ministers the gospel so that the offering of the Gentiles may be acceptable, sanctified by the Holy Spirit.</div>
+          <div class="mia-note">Orthodox reading: Paul describes his preaching in priestly language: he ministers the gospel so that the offering of the Gentiles may be acceptable, sanctified by the Holy Spirit.</div>
         </div>
         <div class="fc">
           <div class="fn">St John Chrysostom</div>
@@ -825,7 +862,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%2015%3A23-24&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 15:23-24</a></div>
           <div class="txt">"But now no longer having a place in these parts, and having a great desire these many years to come to you, whenever I journey to Spain, I shall come to you. For I hope to see you on my journey, and to be helped on my way there by you, if first I may enjoy your company for a while."</div>
-          <div class="mia-note">🔵 Orthodox reading: Paul planned to visit Rome on his way to Spain. Early tradition says he was released after his first Roman imprisonment and preached in the west before his martyrdom.</div>
+          <div class="mia-note">Orthodox reading: Paul planned to visit Rome on his way to Spain. Early tradition says he was released after his first Roman imprisonment and preached in the west before his martyrdom.</div>
         </div>
         <p>St Clement of Rome, writing around AD 96, says Paul reached "the extreme limit of the west" before he was martyred, which many have taken as Spain. Paul's plan in Romans 15 is one reason that tradition is taken seriously.</p>
       </div>
@@ -838,7 +875,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%2016%3A1-2&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 16:1-2</a></div>
           <div class="txt">"I commend to you Phoebe our sister, who is a servant of the church in Cenchrea, that you may receive her in the Lord in a manner worthy of the saints, and assist her in whatever business she has need of you; for indeed she has been a helper of many and of myself also."</div>
-          <div class="mia-note">🔵 Orthodox reading: Phoebe, a deacon of the church at Cenchrea, carried the letter to Rome. Paul asks the Romans to receive her and help her.</div>
+          <div class="mia-note">Orthodox reading: Phoebe, a deacon of the church at Cenchrea, carried the letter to Rome. Paul asks the Romans to receive her and help her.</div>
         </div>
         <div class="fc">
           <div class="fn">St John Chrysostom</div>
@@ -849,7 +886,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%2016%3A7&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 16:7</a></div>
           <div class="txt">"Greet Andronicus and Junia, my countrymen and my fellow prisoners, who are of note among the apostles, who also were in Christ before me."</div>
-          <div class="mia-note">🔵 Orthodox reading: Andronicus and Junia, Paul's kinsmen and fellow prisoners, were "of note among the apostles" and in Christ before him.</div>
+          <div class="mia-note">Orthodox reading: Andronicus and Junia, Paul's kinsmen and fellow prisoners, were "of note among the apostles" and in Christ before him.</div>
         </div>
         <div class="fc">
           <div class="fn">St John Chrysostom</div>
@@ -868,7 +905,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%2016%3A3-5&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 16:3-5</a></div>
           <div class="txt">"Greet Priscilla and Aquila, my fellow workers in Christ Jesus, who risked their own necks for my life, to whom not only I give thanks, but also all the churches of the Gentiles. Likewise greet the church that is in their house. Greet my beloved Epaenetus, who is the firstfruits of Achaia to Christ."</div>
-          <div class="mia-note">🔵 Orthodox reading: Priscilla, named before her husband Aquila, risked her life for Paul. A church met in their house.</div>
+          <div class="mia-note">Orthodox reading: Priscilla, named before her husband Aquila, risked her life for Paul. A church met in their house.</div>
         </div>
         <p>Of the people Paul commends or greets in 16:1&ndash;15, ten are women. Whatever one's view of ordination, no one can read this chapter and think the women of the early Church were on the edge of its life. They were at its heart.</p>
       </div>
@@ -881,12 +918,12 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%2016%3A17-18&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 16:17-18</a></div>
           <div class="txt">"Now I urge you, brethren, note those who cause divisions and offenses, contrary to the doctrine which you learned, and avoid them. For those who are such do not serve our Lord Jesus Christ, but their own belly, and by smooth words and flattering speech deceive the hearts of the simple."</div>
-          <div class="mia-note">🔵 Orthodox reading: Avoid those who cause divisions contrary to the teaching you received.</div>
+          <div class="mia-note">Orthodox reading: Avoid those who cause divisions contrary to the teaching you received.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%2016%3A20&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 16:20</a></div>
           <div class="txt">"And the God of peace will crush Satan under your feet shortly. The grace of our Lord Jesus Christ be with you. Amen."</div>
-          <div class="mia-note">🔵 Orthodox reading: The God of peace will soon crush Satan under your feet, an echo of the first promise of the gospel in Genesis 3:15.</div>
+          <div class="mia-note">Orthodox reading: The God of peace will soon crush Satan under your feet, an echo of the first promise of the gospel in Genesis 3:15.</div>
         </div>
         <h3>Why Does Paul Not Greet Peter?</h3>
         <p>Protestant writers often point out that Romans 16 greets many people in Rome but not Peter, and argue that Peter cannot have been the bishop of Rome at the time. That is a fair observation. Paul wrote around AD 57; Peter most likely came to Rome later, and was martyred there in the 60s. The Orthodox have no difficulty with this. The ancient tradition is not that Peter founded the Roman church alone, but that Peter and Paul together established it and were both martyred there:</p>
@@ -915,7 +952,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%2016%3A25-27&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 16:25-27</a></div>
           <div class="txt">"Now to Him who is able to establish you according to my gospel and the preaching of Jesus Christ, according to the revelation of the mystery kept secret since the world began but now made manifest, and by the prophetic Scriptures made known to all nations, according to the commandment of the everlasting God, for obedience to the faith— to God, alone wise, be glory through Jesus Christ forever. Amen."</div>
-          <div class="mia-note">🔵 Orthodox reading: The letter ends as it began, with the gospel of Jesus Christ made known to all nations "for obedience to the faith," and with glory to the only wise God.</div>
+          <div class="mia-note">Orthodox reading: The letter ends as it began, with the gospel of Jesus Christ made known to all nations "for obedience to the faith," and with glory to the only wise God.</div>
         </div>
         <h3>The Whole Letter</h3>
         <p>Romans begins and ends with "the obedience of faith" (1:5; 16:26). In between, Paul has shown that all have sinned; that God's righteousness is given freely through faith in Christ; that Adam's death is overcome by Christ's life; that in baptism we die and rise with Him; that the law could not do what the Spirit does; that nothing outside us can separate us from God's love; that the potter remakes the clay that turns to Him; that God's purpose is mercy on all; and that the answer to such mercy is a life offered as a living sacrifice. That is the gospel the Fathers preached, and it is the gospel the Orthodox Church still proclaims.</p>
@@ -927,25 +964,25 @@ html.sb-collapsed #ol-sbt{left:0}
       <div class="sec-b">
 
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Romans 14 shows that fasting rules and holy days are matters of indifference, so the Orthodox are legalistic."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>"Romans 14 shows that fasting rules and holy days are matters of indifference, so the Orthodox are legalistic."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> Romans 14 forbids judging one another over food and days; it does not forbid fasting. Christ said His disciples would fast (Matthew 9:15), and the Didache shows the first-century Church fasting together on Wednesdays and Fridays.</p><p>The Orthodox fast as a family discipline of love and prayer, not as a way of earning salvation, and Romans 14 binds them not to despise those who do not. Mocking those who fast is just as contrary to Romans 14.</p>
           </div>
         </div>
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Romans 13 means Christians must obey any government."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>"Romans 13 means Christians must obey any government."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> Chrysostom and Calvin both say that Paul is speaking of the institution of government, not approving every ruler or every command. The apostles themselves disobeyed when ordered to stop preaching (Acts 5:29), and the martyrs refused to worship the emperor.</p>
           </div>
         </div>
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ "If Junia was an apostle, women should be ordained priests and bishops."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>"If Junia was an apostle, women should be ordained priests and bishops."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> Paul uses "apostle" in more than one sense, including missionaries sent by the churches (2 Corinthians 8:23). Calvin and Chrysostom both understand Junia's apostleship in this wider sense. The early Church honoured her and had women deacons, but did not ordain women as presbyters or bishops.</p><p>The Orthodox take Junia seriously as a woman apostle in that sense and a saint. The question of ordination rests on the whole tradition of the Church, discussed on <a href="women_in_church.html">Women in the Church</a>.</p>
           </div>
         </div>
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Paul's silence about Peter in Romans 16 disproves that Peter was ever in Rome."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>"Paul's silence about Peter in Romans 16 disproves that Peter was ever in Rome."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> It shows only that Peter was probably not in Rome in AD 57. Early sources, including 1 Clement, Ignatius and Irenaeus, place both Peter and Paul in Rome and connect their martyrdoms with the city. The Orthodox accept that tradition while rejecting later claims of papal supremacy built on it.</p>
           </div>
@@ -1797,5 +1834,53 @@ try{
 })();
 /* END-SHARECARDS-JS */</script>
 <script>(function(){try{var r=document.querySelector('.rm-row'),o=r&&r.querySelector('.on');if(r&&o){r.scrollLeft+=o.getBoundingClientRect().left-r.getBoundingClientRect().left-(r.clientWidth-o.clientWidth)/2;}}catch(e){}})();</script>
+<script id="ol-lightfix">
+/* AUTO-LIGHTFIX-JS: quiet typographic clean-up plus a light-mode safety net.
+   In light mode it finds any box still painted with a dark-theme colour, or text
+   too faint to read, and re-tints it (keeping its hue) so every page reads well. */
+(function(){
+  try{
+    var R=document.documentElement;
+    function P(c){var m=c&&c.match(/rgba?\(([^)]+)\)/);if(!m)return null;var a=m[1].split(/[ ,\/]+/).filter(Boolean).map(Number);return {r:a[0],g:a[1],b:a[2],a:a.length>3?a[3]:1};}
+    function L(c){function f(v){v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4);}return .2126*f(c.r)+.7152*f(c.g)+.0722*f(c.b);}
+    function hsl(c){var r=c.r/255,g=c.g/255,b=c.b/255,mx=Math.max(r,g,b),mn=Math.min(r,g,b),h=0,s=0,l=(mx+mn)/2,d=mx-mn;
+      if(d){s=l>.5?d/(2-mx-mn):d/(mx+mn);h=mx===r?(g-b)/d+(g<b?6:0):mx===g?(b-r)/d+2:(r-g)/d+4;h/=6;}return [h,s,l];}
+    function css(h,s,l){return 'hsl('+Math.round(h*360)+','+Math.round(s*100)+'%,'+Math.round(l*100)+'%)';}
+    function bgOf(el){for(var e=el;e&&e.nodeType===1;e=e.parentElement){var cs=getComputedStyle(e),c=P(cs.backgroundColor);if(c&&c.a>.5)return c;}return {r:247,g:242,b:230,a:1};}
+    var SKIP='.oo-pgband,.ol-ask-fab,#ol-tt,.ol-ask-wrap .send,svg,img,video,canvas,code,pre';
+    var done=[];
+    function undo(){for(var i=done.length-1;i>=0;i--){var d=done[i];if(d[2])d[0].style.setProperty(d[1],d[2],d[3]);else d[0].style.removeProperty(d[1]);}done=[];}
+    function set(el,p,v){done.push([el,p,el.style.getPropertyValue(p),el.style.getPropertyPriority(p)]);el.style.setProperty(p,v,'important');}
+    function fix(){
+      undo();
+      if(!R.classList.contains('light'))return;
+      var all=document.body.querySelectorAll('*');
+      for(var i=0;i<all.length;i++){var el=all[i];if(el.closest(SKIP))continue;
+        var cs=getComputedStyle(el),c=P(cs.backgroundColor);
+        if(c&&c.a>.5&&L(c)<.16){var h=hsl(c);set(el,'background-color',css(h[0],Math.min(h[1],.32),.92));}
+        var bi=cs.backgroundImage;
+        if(bi&&bi.indexOf('gradient')>=0&&bi.indexOf('url(')<0){var m=bi.match(/rgba?\([^)]+\)/);var g=m&&P(m[0]);if(g&&g.a>.5&&L(g)<.16){set(el,'background-image','none');var hg=hsl(g);set(el,'background-color',css(hg[0],Math.min(hg[1],.3),.91));}}
+      }
+      for(var j=0;j<all.length;j++){var t=all[j];if(t.closest(SKIP))continue;
+        var own=false;for(var k=0;k<t.childNodes.length;k++){var n=t.childNodes[k];if(n.nodeType===3&&n.textContent.trim()){own=true;break;}}
+        if(!own)continue;
+        var fg=P(getComputedStyle(t).color);if(!fg)continue;var bg=bgOf(t),a=L(fg),b=L(bg);
+        var cr=(Math.max(a,b)+.05)/(Math.min(a,b)+.05);
+        if(cr<4.2&&b>.4){var hf=hsl(fg);set(t,'color',css(hf[0],Math.min(hf[1],.6),hf[1]>.15?.27:.24));}
+      }
+    }
+    /* uppercase, widely tracked labels read as small capitals, as in a printed book */
+    function caps(){var all=document.body.querySelectorAll('*');for(var i=0;i<all.length;i++){var el=all[i];if(el.closest('.oo-pgband,.ol-ask-wrap,#ol-tt'))continue;var cs=getComputedStyle(el);
+      if(!el.classList.contains('ol-sc')&&parseFloat(cs.fontSize)<18&&cs.textTransform==='uppercase'&&parseFloat(cs.letterSpacing)>=0.6&&el.textContent.trim()){var px=parseFloat(cs.fontSize);el.classList.add('ol-sc');if(px)el.style.fontSize=Math.round(px*1.3*10)/10+'px';}}}
+    function run(){try{caps();}catch(e){}try{fix();}catch(e){}}
+    if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+    window.addEventListener('load',function(){setTimeout(function(){try{caps();fix();}catch(e){}},400);setTimeout(function(){try{caps();fix();}catch(e){}},1600);});
+    new MutationObserver(function(){try{fix();}catch(e){}}).observe(R,{attributes:true,attributeFilter:['class']});
+    var tm=null;new MutationObserver(function(ms){if(!R.classList.contains('light'))return;for(var i=0;i<ms.length;i++){if(ms[i].addedNodes.length){clearTimeout(tm);tm=setTimeout(function(){try{caps();fix();}catch(e){}},250);return;}}}).observe(document.body,{childList:true,subtree:true});
+    window.olLightFix=fix;
+  }catch(e){}
+})();
+
+</script>
 </body>
 </html>

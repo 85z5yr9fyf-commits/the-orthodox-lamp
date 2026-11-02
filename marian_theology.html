@@ -481,6 +481,43 @@ html.sb-collapsed #ol-sbt{left:0}
 @media print{.oo-pgband{display:none}}
 /* END-OL-PGBAND */
 </style>
+<style id="ol-auth">
+/* AUTO-AUTHENTIC-CSS: book typography (EB Garamond, self-hosted, SIL OFL) and quieter ornament */
+@font-face{font-family:'EB Garamond';font-style:normal;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-greek-ext-wght-normal.woff2) format('woff2');unicode-range:U+1F00-1FFF}
+@font-face{font-family:'EB Garamond';font-style:normal;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-greek-wght-normal.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
+@font-face{font-family:'EB Garamond';font-style:normal;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-latin-ext-wght-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'EB Garamond';font-style:normal;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-latin-wght-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'EB Garamond';font-style:italic;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-greek-ext-wght-italic.woff2) format('woff2');unicode-range:U+1F00-1FFF}
+@font-face{font-family:'EB Garamond';font-style:italic;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-greek-wght-italic.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
+@font-face{font-family:'EB Garamond';font-style:italic;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-latin-ext-wght-italic.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'EB Garamond';font-style:italic;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-latin-wght-italic.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+html{font-size-adjust:.47}
+body,body *:not(svg):not(svg *):not(code):not(pre):not(kbd){font-family:'EB Garamond',Georgia,'Times New Roman',serif!important;font-size-adjust:.47!important}
+body{font-variant-numeric:oldstyle-nums;text-rendering:optimizeLegibility;font-kerning:normal}
+h1,h2,h3,h4,table,.tl-date,.htl-cd,.yr,.ol-readtime,.sec-num{font-variant-numeric:lining-nums}
+/* tracked capitals become small capitals */
+.ol-sc{text-transform:none!important;font-variant-caps:all-small-caps;letter-spacing:.05em!important}
+/* plainer boxes: small radii, no drop shadows or lifting cards */
+.sec,.fc,.fi,.obj,.gt,.sv,.nx,.note,.badge,.tag,.council,.saint,.pos,.stage,.pillar,.lk,.ol-related,.ol-search-btn,.ol-print-btn,.oo-pgband,.rm-bar,.htl-card,.htl-detail,.lp-jump,.path-link,.ev-card,[class*="-card"],[class*="-box"],.obj-tag,.lx,.gk,.typ,.sac,.gift,.ic,.pat,.pf,.hist,.trad-col,.par-col,.q-block,.section,.intro-banner{border-radius:3px!important}
+.oo-pgband,.mob-toggle,.htl-card,.step-n,.section,.sv,.fc{box-shadow:none!important}
+[class*="-card"]:hover,[class*="-box"]:hover,.vbox:hover,.sec:hover,.obj:hover,.fi:hover{box-shadow:none!important;transform:none!important}
+.site-title{text-shadow:none!important}
+/* reading time as a quiet line, not a pill */
+.ol-readtime{text-transform:none!important;border:0!important;background:none!important;padding:0!important;border-radius:0!important;font-style:italic;font-size:.86rem!important;font-variant-caps:normal!important;letter-spacing:0!important}
+.ol-readtime::before{display:none!important}
+/* opening paragraph: no coloured side bar */
+.pg-intro{border-left:0!important;padding-left:0!important;font-size:1.06em}
+/* the ✦ ✦ ✦ ornament becomes a simple rule */
+.orn{letter-spacing:0!important;opacity:1!important}
+.orn::before{content:"";display:block;width:84px;height:1px;margin:2px auto 0;background:currentColor;opacity:.55}
+/* light mode: darker ink for gold text, and red rubrics as in a service book */
+html.light{--gd:#7a5c17}
+html.light .sec-num,html.light p.ol-lead::first-letter,html.light .purpose p:first-of-type::first-letter{color:#8e2a1e!important}
+html.light .oo-pgband .cap,html.light .oo-pgband .cap b,html.light .oo-pgband::after{color:#f4e6c2!important}
+html.light #ol-tt{background:var(--bg2);color:var(--gold);box-shadow:none}
+html.light .ol-ask-fab,html.light .ol-ask-msg.user,html.light .ol-ask-foot button.send{background:#b8923f!important}
+
+</style>
 </head>
 <body>
 <div id="prog"></div>
@@ -531,7 +568,7 @@ html.sb-collapsed #ol-sbt{left:0}
     <h1 class="st">THE <span>ORTHODOX</span> LAMP</h1>
     <p class="ss">Mary: Theotokos &amp; Perpetual Virginity</p>
     <p class="tg">"...henceforth all generations will call me blessed." Luke 1:48</p>
-    <div class="orn">✦ ✦ ✦</div>
+    <div class="orn"></div>
   </div>
 
   <div class="content">
@@ -649,28 +686,28 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Luke%201%3A43&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Luke 1:43</a></div>
           <div class="txt">"But why is this granted to me, that the mother of my Lord should come to me?"</div>
-          <div class="mia-note">🔵 Orthodox reading: Elizabeth, "filled with the Holy Spirit" (Luke 1:41), calls the unborn child her Lord. In the Greek Old Testament <em>Kyrios</em>, Lord, stands for the divine name.</div>
+          <div class="mia-note">Orthodox reading: Elizabeth, "filled with the Holy Spirit" (Luke 1:41), calls the unborn child her Lord. In the Greek Old Testament <em>Kyrios</em>, Lord, stands for the divine name.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Luke%201%3A35&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Luke 1:35</a></div>
           <div class="txt">"And the angel answered and said to her, 'The Holy Spirit will come upon you, and the power of the Highest will overshadow you; therefore, also, that Holy One who is to be born will be called the Son of God."</div>
-          <div class="mia-note">🔵 Orthodox reading: The child conceived in Mary is "that Holy One," the Son of God, from the moment of conception.</div>
+          <div class="mia-note">Orthodox reading: The child conceived in Mary is "that Holy One," the Son of God, from the moment of conception.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=John%201%3A14&amp;version=NKJV" target="_blank" rel="noopener noreferrer">John 1:14</a></div>
           <div class="txt">"And the Word became flesh and dwelt among us, and we beheld His glory, the glory as of the only begotten of the Father, full of grace and truth."</div>
-          <div class="mia-note">🔵 Orthodox reading: The Word who "was God" (John 1:1) is the one who became flesh. The flesh He became was taken from Mary, so the one she bore is God the Word.</div>
+          <div class="mia-note">Orthodox reading: The Word who "was God" (John 1:1) is the one who became flesh. The flesh He became was taken from Mary, so the one she bore is God the Word.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Galatians%204%3A4&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Galatians 4:4</a></div>
           <div class="txt">"But when the fullness of the time had come, God sent forth His Son, born of a woman, born under the law,"</div>
-          <div class="mia-note">🔵 Orthodox reading: God sent forth His Son, and that same Son was born of a woman. The one sent and the one born are the same person.</div>
+          <div class="mia-note">Orthodox reading: God sent forth His Son, and that same Son was born of a woman. The one sent and the one born are the same person.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Isaiah%207%3A14&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Isaiah 7:14</a></div>
           <div class="txt">"Therefore the Lord Himself will give you a sign: Behold, the virgin shall conceive and bear a Son, and shall call His name Immanuel."</div>
-          <div class="mia-note">🔵 Orthodox reading: The virgin's son is Immanuel, "God with us" (Matthew 1:23). The sign is not only that a virgin conceives, but who it is that she bears.</div>
-          <div class="dyo-note">🟣 Protestant reading: Many read the Hebrew <em>almah</em> as "young woman," though Matthew follows the Greek <em>parthenos</em>, "virgin."</div>
+          <div class="mia-note">Orthodox reading: The virgin's son is Immanuel, "God with us" (Matthew 1:23). The sign is not only that a virgin conceives, but who it is that she bears.</div>
+          <div class="dyo-note">Protestant reading: Many read the Hebrew <em>almah</em> as "young woman," though Matthew follows the Greek <em>parthenos</em>, "virgin."</div>
         </div>
       </div>
     </div>
@@ -742,13 +779,13 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Matthew%201%3A18&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Matthew 1:18</a></div>
           <div class="txt">"Now the birth of Jesus Christ was as follows: After His mother Mary was betrothed to Joseph, before they came together, she was found with child of the Holy Spirit."</div>
-          <div class="mia-note">🔵 Shared reading: The conception is by the Holy Spirit, before Joseph and Mary came together.</div>
+          <div class="mia-note">Shared reading: The conception is by the Holy Spirit, before Joseph and Mary came together.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Luke%201%3A34&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Luke 1:34</a></div>
           <div class="txt">"Then Mary said to the angel, 'How can this be, since I do not know a man?'"</div>
-          <div class="mia-note">🔵 Orthodox reading: Mary is betrothed. If she meant to live with Joseph as his wife, a promise of a son would be no puzzle. Her question makes most sense if she had already given her virginity to God.</div>
-          <div class="dyo-note">🟣 Protestant reading: Mary is simply asking how she can conceive now, before the marriage is completed.</div>
+          <div class="mia-note">Orthodox reading: Mary is betrothed. If she meant to live with Joseph as his wife, a promise of a son would be no puzzle. Her question makes most sense if she had already given her virginity to God.</div>
+          <div class="dyo-note">Protestant reading: Mary is simply asking how she can conceive now, before the marriage is completed.</div>
         </div>
         <div class="fc">
           <div class="fn">St. Augustine of Hippo</div>
@@ -768,8 +805,8 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Ezekiel%2044%3A2&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Ezekiel 44:2</a></div>
           <div class="txt">"And the Lord said to me, 'This gate shall be shut; it shall not be opened, and no man shall enter by it, because the Lord God of Israel has entered by it; therefore it shall be shut."</div>
-          <div class="mia-note">🔵 Orthodox reading: The Fathers and the Coptic Theotokia read the shut gate as the Virgin. Notice the reason the prophet gives: the gate stays shut "because the Lord God of Israel has entered by it." Section X returns to this.</div>
-          <div class="dyo-note">🟣 Protestant reading: The verse describes the east gate of Ezekiel's visionary temple, shut in honour of the Lord's glory that entered by it (Ezekiel 43:4).</div>
+          <div class="mia-note">Orthodox reading: The Fathers and the Coptic Theotokia read the shut gate as the Virgin. Notice the reason the prophet gives: the gate stays shut "because the Lord God of Israel has entered by it." Section X returns to this.</div>
+          <div class="dyo-note">Protestant reading: The verse describes the east gate of Ezekiel's visionary temple, shut in honour of the Lord's glory that entered by it (Ezekiel 43:4).</div>
         </div>
         <div class="fc">
           <div class="fn">St. Ambrose of Milan</div>
@@ -910,8 +947,8 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Ezekiel%2044%3A2&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Ezekiel 44:2</a></div>
           <div class="txt">"And the Lord said to me, 'This gate shall be shut; it shall not be opened, and no man shall enter by it, because the Lord God of Israel has entered by it; therefore it shall be shut."</div>
-          <div class="mia-note">🔵 Orthodox reading: The gate is shut, and the prophet gives the reason: "because the Lord God of Israel has entered by it." The Fathers saw in this the Virgin through whom God came into the world. Her closing is the result of His entering.</div>
-          <div class="dyo-note">🟣 Protestant reading: The verse is about the east gate of the temple in Ezekiel's vision, not about Mary. Its application to her is typology.</div>
+          <div class="mia-note">Orthodox reading: The gate is shut, and the prophet gives the reason: "because the Lord God of Israel has entered by it." The Fathers saw in this the Virgin through whom God came into the world. Her closing is the result of His entering.</div>
+          <div class="dyo-note">Protestant reading: The verse is about the east gate of the temple in Ezekiel's vision, not about Mary. Its application to her is typology.</div>
         </div>
         <div class="fc">
           <div class="fn">St. Jerome</div>
@@ -940,29 +977,29 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Matthew%201%3A25&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Matthew 1:25</a></div>
           <div class="txt">"and did not know her till she had brought forth her firstborn Son. And he called His name Jesus."</div>
-          <div class="mia-note">🔵 Orthodox reading: Matthew is guarding the virgin conception: Joseph had no part in it. "Till" tells us what was true up to the birth and says nothing about afterwards.</div>
-          <div class="dyo-note">🟣 Protestant reading: "Till" naturally implies that things changed after the birth.</div>
+          <div class="mia-note">Orthodox reading: Matthew is guarding the virgin conception: Joseph had no part in it. "Till" tells us what was true up to the birth and says nothing about afterwards.</div>
+          <div class="dyo-note">Protestant reading: "Till" naturally implies that things changed after the birth.</div>
         </div>
         <h3>How Scripture Uses "Till"</h3>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Matthew%2028%3A20&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Matthew 28:20</a></div>
           <div class="txt">"teaching them to observe all things that I have commanded you; and lo, I am with you always, even to the end of the age.' Amen."</div>
-          <div class="mia-note">🔵 Orthodox reading: The Greek is <em>heos</em>, the same word as in Matthew 1:25. Christ does not leave us when the age ends.</div>
+          <div class="mia-note">Orthodox reading: The Greek is <em>heos</em>, the same word as in Matthew 1:25. Christ does not leave us when the age ends.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=1%20Corinthians%2015%3A25&amp;version=NKJV" target="_blank" rel="noopener noreferrer">1 Corinthians 15:25</a></div>
           <div class="txt">"For He must reign till He has put all enemies under His feet."</div>
-          <div class="mia-note">🔵 Orthodox reading: Paul uses <em>achri</em>, another Greek word for "until." Christ's reign does not end when His enemies are under His feet. "Till" marks a point without implying a change after it.</div>
+          <div class="mia-note">Orthodox reading: Paul uses <em>achri</em>, another Greek word for "until." Christ's reign does not end when His enemies are under His feet. "Till" marks a point without implying a change after it.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=2%20Samuel%206%3A23&amp;version=NKJV" target="_blank" rel="noopener noreferrer">2 Samuel 6:23</a></div>
           <div class="txt">"Therefore Michal the daughter of Saul had no children to the day of her death."</div>
-          <div class="mia-note">🔵 Orthodox reading: The Greek Old Testament reads <em>heos</em>, "until" the day of her death. No one supposes Michal had children afterwards.</div>
+          <div class="mia-note">Orthodox reading: The Greek Old Testament reads <em>heos</em>, "until" the day of her death. No one supposes Michal had children afterwards.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Genesis%208%3A7&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Genesis 8:7</a></div>
           <div class="txt">"Then he sent out a raven, which kept going to and fro until the waters had dried up from the earth."</div>
-          <div class="mia-note">🔵 Orthodox reading: Chrysostom points out that the Greek says the raven did not return "till" the waters were dried up; and it never returned at all.</div>
+          <div class="mia-note">Orthodox reading: Chrysostom points out that the Greek says the raven did not return "till" the waters were dried up; and it never returned at all.</div>
         </div>
         <div class="fc">
           <div class="fn">St. John Chrysostom</div>
@@ -994,13 +1031,13 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Luke%202%3A7&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Luke 2:7</a></div>
           <div class="txt">"And she brought forth her firstborn Son, and wrapped Him in swaddling cloths, and laid Him in a manger, because there was no room for them in the inn."</div>
-          <div class="mia-note">🔵 Orthodox reading: "Firstborn" is the legal status of the child who opens the womb. Luke uses it because Jesus must be presented in the Temple as the firstborn (Luke 2:22-23), not to count Mary's children.</div>
-          <div class="dyo-note">🟣 Protestant reading: "Firstborn" suggests later children.</div>
+          <div class="mia-note">Orthodox reading: "Firstborn" is the legal status of the child who opens the womb. Luke uses it because Jesus must be presented in the Temple as the firstborn (Luke 2:22-23), not to count Mary's children.</div>
+          <div class="dyo-note">Protestant reading: "Firstborn" suggests later children.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Exodus%2013%3A2&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Exodus 13:2</a></div>
           <div class="txt">"'Consecrate to Me all the firstborn, whatever opens the womb among the children of Israel, both of man and beast; it is Mine.'"</div>
-          <div class="mia-note">🔵 Orthodox reading: The firstborn had to be consecrated as soon as he opened the womb. Parents could not wait to see whether other children followed. An only child was a firstborn child.</div>
+          <div class="mia-note">Orthodox reading: The firstborn had to be consecrated as soon as he opened the womb. Parents could not wait to see whether other children followed. An only child was a firstborn child.</div>
         </div>
         <div class="fc">
           <div class="fn">St. Jerome</div>
@@ -1019,8 +1056,8 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Mark%206%3A3&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Mark 6:3</a></div>
           <div class="txt">"Is this not the carpenter, the Son of Mary, and brother of James, Joses, Judas, and Simon? And are not His sisters here with us?' So they were offended at Him."</div>
-          <div class="mia-note">🔵 Orthodox reading: Jesus alone is called "the Son of Mary." The four men are called His brothers, but never her sons.</div>
-          <div class="dyo-note">🟣 Protestant reading: The plain reading is that these are Mary's other children.</div>
+          <div class="mia-note">Orthodox reading: Jesus alone is called "the Son of Mary." The four men are called His brothers, but never her sons.</div>
+          <div class="dyo-note">Protestant reading: The plain reading is that these are Mary's other children.</div>
         </div>
         <p>Three explanations have been given in the history of the Church.</p>
         <div class="comp-grid">
@@ -1056,23 +1093,23 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Genesis%2014%3A14&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Genesis 14:14</a></div>
           <div class="txt">"Now when Abram heard that his brother was taken captive, he armed his three hundred and eighteen trained servants who were born in his own house, and went in pursuit as far as Dan."</div>
-          <div class="mia-note">🔵 Orthodox reading: Lot was Abram's nephew, the son of his brother Haran (Genesis 11:27), yet Scripture calls him Abram's brother.</div>
+          <div class="mia-note">Orthodox reading: Lot was Abram's nephew, the son of his brother Haran (Genesis 11:27), yet Scripture calls him Abram's brother.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Genesis%2013%3A8&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Genesis 13:8</a></div>
           <div class="txt">"So Abram said to Lot, 'Please let there be no strife between you and me, and between my herdsmen and your herdsmen; for we are brethren."</div>
-          <div class="mia-note">🔵 Orthodox reading: Uncle and nephew call each other brethren.</div>
+          <div class="mia-note">Orthodox reading: Uncle and nephew call each other brethren.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=1%20Chronicles%2023%3A22&amp;version=NKJV" target="_blank" rel="noopener noreferrer">1 Chronicles 23:22</a></div>
           <div class="txt">"And Eleazar died, and had no sons, but only daughters; and their brethren, the sons of Kish, took them as wives."</div>
-          <div class="mia-note">🔵 Orthodox reading: The sons of Kish were cousins of Eleazar's daughters (verse 21), yet they are called "their brethren."</div>
+          <div class="mia-note">Orthodox reading: The sons of Kish were cousins of Eleazar's daughters (verse 21), yet they are called "their brethren."</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Colossians%204%3A10&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Colossians 4:10</a></div>
           <div class="txt">"Aristarchus my fellow prisoner greets you, with Mark the cousin of Barnabas (about whom you received instructions: if he comes to you, welcome him),"</div>
-          <div class="mia-note">🔵 Orthodox reading: Greek does have a word for cousin, <em>anepsios</em>, and Paul uses it here.</div>
-          <div class="dyo-note">🟣 Protestant reading: If the evangelists meant cousins, why not use <em>anepsios</em>?</div>
+          <div class="mia-note">Orthodox reading: Greek does have a word for cousin, <em>anepsios</em>, and Paul uses it here.</div>
+          <div class="dyo-note">Protestant reading: If the evangelists meant cousins, why not use <em>anepsios</em>?</div>
         </div>
         <p>The Protestant question is fair, and the answer is that the evangelists are following the Greek Bible's way of naming kin, and the early Church's way of naming the Lord's family. The word "brother" alone cannot settle the question. What settles it is who the brothers' mother was, which the cross scene answers (Section XVI), and the unbroken witness of the Fathers (Section IX).</p>
       </div>
@@ -1085,8 +1122,8 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Galatians%201%3A19&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Galatians 1:19</a></div>
           <div class="txt">"But I saw none of the other apostles except James, the Lord's brother."</div>
-          <div class="mia-note">🔵 Orthodox reading: "The Lord's brother" was James' title in the early Church, to set him apart from James the son of Zebedee. It does not say whose son he was.</div>
-          <div class="dyo-note">🟣 Protestant reading: Paul means a real brother, a son of Mary.</div>
+          <div class="mia-note">Orthodox reading: "The Lord's brother" was James' title in the early Church, to set him apart from James the son of Zebedee. It does not say whose son he was.</div>
+          <div class="dyo-note">Protestant reading: Paul means a real brother, a son of Mary.</div>
         </div>
         <div class="fc">
           <div class="fn">Hegesippus, in Eusebius</div>
@@ -1111,7 +1148,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=John%207%3A5&amp;version=NKJV" target="_blank" rel="noopener noreferrer">John 7:5</a></div>
           <div class="txt">"For even His brothers did not believe in Him."</div>
-          <div class="mia-note">🔵 Orthodox reading: During the ministry the brothers did not believe. After the resurrection the Lord appeared to James (1 Corinthians 15:7), and the brothers are found praying with the apostles (Acts 1:14).</div>
+          <div class="mia-note">Orthodox reading: During the ministry the brothers did not believe. After the resurrection the Lord appeared to James (1 Corinthians 15:7), and the brothers are found praying with the apostles (Acts 1:14).</div>
         </div>
       </div>
     </div>
@@ -1125,8 +1162,8 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=John%2019%3A25-27&amp;version=NKJV" target="_blank" rel="noopener noreferrer">John 19:25-27</a></div>
           <div class="txt">"Now there stood by the cross of Jesus His mother, and His mother's sister, Mary the wife of Clopas, and Mary Magdalene. When Jesus therefore saw His mother, and the disciple whom He loved standing by, He said to His mother, 'Woman, behold your son!' Then He said to the disciple, 'Behold your mother!' And from that hour that disciple took her to his own home."</div>
-          <div class="mia-note">🔵 Orthodox reading: The care of a widowed mother fell to her sons. If James, Joses, Judas and Simon were her own sons, passing them over for a disciple from another family would make little sense and would shame them in public. Christ gives her to John because she had no other son to receive her.</div>
-          <div class="dyo-note">🟣 Protestant reading: The brothers did not yet believe (John 7:5), so Christ entrusted her to a believer.</div>
+          <div class="mia-note">Orthodox reading: The care of a widowed mother fell to her sons. If James, Joses, Judas and Simon were her own sons, passing them over for a disciple from another family would make little sense and would shame them in public. Christ gives her to John because she had no other son to receive her.</div>
+          <div class="dyo-note">Protestant reading: The brothers did not yet believe (John 7:5), so Christ entrusted her to a believer.</div>
         </div>
         <p>The Protestant answer does not hold. Within weeks the brothers are with the apostles in the upper room, praying "with Mary the mother of Jesus" (Acts 1:14), and James soon leads the Church in Jerusalem. If they were her sons, the Lord who knew all things would hardly have passed over them for a few weeks of unbelief. The Fathers saw the point at once.</p>
         <div class="fc">
@@ -1145,12 +1182,12 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Matthew%2027%3A55-56&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Matthew 27:55-56</a></div>
           <div class="txt">"And many women who followed Jesus from Galilee, ministering to Him, were there looking on from afar, among whom were Mary Magdalene, Mary the mother of James and Joses, and the mother of Zebedee's sons."</div>
-          <div class="mia-note">🔵 Orthodox reading: Two of the Lord's brothers are named James and Joses (Mark 6:3). Here a woman at the cross is "the mother of James and Joses," and she is plainly not the Virgin, whom the evangelists would call "His mother."</div>
+          <div class="mia-note">Orthodox reading: Two of the Lord's brothers are named James and Joses (Mark 6:3). Here a woman at the cross is "the mother of James and Joses," and she is plainly not the Virgin, whom the evangelists would call "His mother."</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Mark%2015%3A40&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Mark 15:40</a></div>
           <div class="txt">"There were also women looking on from afar, among whom were Mary Magdalene, Mary the mother of James the Less and of Joses, and Salome,"</div>
-          <div class="mia-note">🔵 Orthodox reading: Mark calls her the mother of "James the Less and of Joses." The brothers named in Mark 6:3 have a mother at the cross who is not the Virgin Mary.</div>
+          <div class="mia-note">Orthodox reading: Mark calls her the mother of "James the Less and of Joses." The brothers named in Mark 6:3 have a mother at the cross who is not the Virgin Mary.</div>
         </div>
         <p>John's list at the cross includes "Mary the wife of Clopas" (John 19:25), and Hegesippus says Clopas was Joseph's brother (Section XV). Many, from Jerome onward, identify her with "the mother of James and Joses." Others count her separately. Either way, the James and Joses who are called the Lord's brothers had a mother who was not the Virgin Mary. The Gospels themselves, read side by side, rule out the claim that they were her sons.</p>
       </div>
@@ -1255,49 +1292,49 @@ html.sb-collapsed #ol-sbt{left:0}
 
         <p>The objections below are stated as a thoughtful Protestant would state them.</p>
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ "The plain meaning of 'brother' is a son of the same mother."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>"The plain meaning of 'brother' is a son of the same mother."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> Plain meaning depends on the language and the people using it. In the Greek Bible the Gospel writers used, Lot is Abram's "brother" though he was his nephew (Genesis 14:14), and cousins are "brethren" (1 Chronicles 23:22). Augustine explains that "it was of the usage of Scripture to call blood relations and all other near kindred by the term brethren" (Section IX).</p><p>More decisive, the Gospels name the mother of James and Joses, and she is not the Virgin (Section XVI). Scripture never once calls these men sons of Mary; it calls Jesus alone "the Son of Mary" (Mark 6:3).</p>
           </div>
         </div>
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ "'Till she had brought forth' means Joseph knew her afterwards."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>"'Till she had brought forth' means Joseph knew her afterwards."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> In biblical Greek <em>heos</em> marks what was true up to a point and leaves the rest unsaid, as in Matthew 28:20 and 1 Corinthians 15:25. Chrysostom, a native Greek speaker, says Matthew "used the word till, not that you should suspect that afterwards he did know her." Even Calvin says "no just and well-grounded inference can be drawn" from the verse about what came after (Section XI).</p>
           </div>
         </div>
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ "'Firstborn' implies later children."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>"'Firstborn' implies later children."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> The firstborn had to be consecrated when he opened the womb (Exodus 13:2), before anyone could know whether more children would follow. An only son was a firstborn son, as Jerome says, and as the Jewish epitaph of Arsinoe shows (Section XII).</p>
           </div>
         </div>
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Calling Mary the Mother of God does not mean she had no other children. Many Protestants call her Theotokos and still say she had other sons."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>"Calling Mary the Mother of God does not mean she had no other children. Many Protestants call her Theotokos and still say she had other sons."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> That is true as a matter of logic, and this page does not claim otherwise (Section X). But the same Church that gave us the title Theotokos also confessed her Ever-Virgin, and its teachers reasoned from the one to the other: Origen speaks of the body "appointed to minister to the Word," Chrysostom of "a child-bearing so strange," and John of Damascus asks whether she "who had borne God" could "receive the embrace of a man." To separate the two titles is to keep the Fathers' word while setting aside their understanding of it. The Reformers themselves kept both: Luther taught her lasting virginity, and the Reformed Second Helvetic Confession of 1566 speaks of "the ever virgin Mary" (Chapter XI).</p>
           </div>
         </div>
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ "The perpetual virginity treats marriage as unclean."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>"The perpetual virginity treats marriage as unclean."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> The Church calls marriage a holy mystery, and Scripture says "Marriage is honorable among all, and the bed undefiled" (Hebrews 13:4). Jerome himself wrote that "virginity itself is the fruit of marriage." Mary's virginity is not a judgement on marriage. It is about her unique calling: the one who bore God was wholly given to Him.</p>
           </div>
         </div>
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ "The brothers appear with Mary again and again (Matthew 12:46; John 2:12; Acts 1:14). They must be her sons."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>"The brothers appear with Mary again and again (Matthew 12:46; John 2:12; Acts 1:14). They must be her sons."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> Appearing with Mary shows a household, not a birth mother. On the Coptic view Joseph's sons grew up in the same home and would naturally travel with Mary, especially after Joseph's death. Cousins in an extended family would do the same. What Scripture never does is call any of them her son.</p>
           </div>
         </div>
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Psalm 69:8 prophesies that Christ would be 'an alien to my mother's children.'"</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>"Psalm 69:8 prophesies that Christ would be 'an alien to my mother's children.'"</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> The verse is Hebrew poetry, and "my mother's children" stands in parallel with "my brothers." The same psalm says the Messiah is given vinegar to drink (Psalm 69:21), and it is applied to Christ because His own people rejected Him (John 1:11), not to count Mary's children. A doctrine about Mary's family cannot be built on one line of poetry against the plain evidence of the cross.</p>
           </div>
         </div>
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ "The perpetual virginity is not taught in Scripture, so it cannot be required."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>"The perpetual virginity is not taught in Scripture, so it cannot be required."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> Scripture gives real support: Mary's question in Luke 1:34, the shut gate of Ezekiel 44:2, the cross scene of John 19:26-27, and the mother of James and Joses in Mark 15:40. Scripture never says she had other children, as Jerome points out: "That Mary was married after she brought forth, we do not believe, because we do not read it." And the Church that recognised the books of Scripture is the same Church that confessed her Ever-Virgin. See <a href="sola_scriptura.html">Sola Scriptura</a>.</p>
           </div>
@@ -2186,5 +2223,53 @@ try{
 }catch(e){}
 })();
 /* END-SHARECARDS-JS */</script>
+<script id="ol-lightfix">
+/* AUTO-LIGHTFIX-JS: quiet typographic clean-up plus a light-mode safety net.
+   In light mode it finds any box still painted with a dark-theme colour, or text
+   too faint to read, and re-tints it (keeping its hue) so every page reads well. */
+(function(){
+  try{
+    var R=document.documentElement;
+    function P(c){var m=c&&c.match(/rgba?\(([^)]+)\)/);if(!m)return null;var a=m[1].split(/[ ,\/]+/).filter(Boolean).map(Number);return {r:a[0],g:a[1],b:a[2],a:a.length>3?a[3]:1};}
+    function L(c){function f(v){v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4);}return .2126*f(c.r)+.7152*f(c.g)+.0722*f(c.b);}
+    function hsl(c){var r=c.r/255,g=c.g/255,b=c.b/255,mx=Math.max(r,g,b),mn=Math.min(r,g,b),h=0,s=0,l=(mx+mn)/2,d=mx-mn;
+      if(d){s=l>.5?d/(2-mx-mn):d/(mx+mn);h=mx===r?(g-b)/d+(g<b?6:0):mx===g?(b-r)/d+2:(r-g)/d+4;h/=6;}return [h,s,l];}
+    function css(h,s,l){return 'hsl('+Math.round(h*360)+','+Math.round(s*100)+'%,'+Math.round(l*100)+'%)';}
+    function bgOf(el){for(var e=el;e&&e.nodeType===1;e=e.parentElement){var cs=getComputedStyle(e),c=P(cs.backgroundColor);if(c&&c.a>.5)return c;}return {r:247,g:242,b:230,a:1};}
+    var SKIP='.oo-pgband,.ol-ask-fab,#ol-tt,.ol-ask-wrap .send,svg,img,video,canvas,code,pre';
+    var done=[];
+    function undo(){for(var i=done.length-1;i>=0;i--){var d=done[i];if(d[2])d[0].style.setProperty(d[1],d[2],d[3]);else d[0].style.removeProperty(d[1]);}done=[];}
+    function set(el,p,v){done.push([el,p,el.style.getPropertyValue(p),el.style.getPropertyPriority(p)]);el.style.setProperty(p,v,'important');}
+    function fix(){
+      undo();
+      if(!R.classList.contains('light'))return;
+      var all=document.body.querySelectorAll('*');
+      for(var i=0;i<all.length;i++){var el=all[i];if(el.closest(SKIP))continue;
+        var cs=getComputedStyle(el),c=P(cs.backgroundColor);
+        if(c&&c.a>.5&&L(c)<.16){var h=hsl(c);set(el,'background-color',css(h[0],Math.min(h[1],.32),.92));}
+        var bi=cs.backgroundImage;
+        if(bi&&bi.indexOf('gradient')>=0&&bi.indexOf('url(')<0){var m=bi.match(/rgba?\([^)]+\)/);var g=m&&P(m[0]);if(g&&g.a>.5&&L(g)<.16){set(el,'background-image','none');var hg=hsl(g);set(el,'background-color',css(hg[0],Math.min(hg[1],.3),.91));}}
+      }
+      for(var j=0;j<all.length;j++){var t=all[j];if(t.closest(SKIP))continue;
+        var own=false;for(var k=0;k<t.childNodes.length;k++){var n=t.childNodes[k];if(n.nodeType===3&&n.textContent.trim()){own=true;break;}}
+        if(!own)continue;
+        var fg=P(getComputedStyle(t).color);if(!fg)continue;var bg=bgOf(t),a=L(fg),b=L(bg);
+        var cr=(Math.max(a,b)+.05)/(Math.min(a,b)+.05);
+        if(cr<4.2&&b>.4){var hf=hsl(fg);set(t,'color',css(hf[0],Math.min(hf[1],.6),hf[1]>.15?.27:.24));}
+      }
+    }
+    /* uppercase, widely tracked labels read as small capitals, as in a printed book */
+    function caps(){var all=document.body.querySelectorAll('*');for(var i=0;i<all.length;i++){var el=all[i];if(el.closest('.oo-pgband,.ol-ask-wrap,#ol-tt'))continue;var cs=getComputedStyle(el);
+      if(!el.classList.contains('ol-sc')&&parseFloat(cs.fontSize)<18&&cs.textTransform==='uppercase'&&parseFloat(cs.letterSpacing)>=0.6&&el.textContent.trim()){var px=parseFloat(cs.fontSize);el.classList.add('ol-sc');if(px)el.style.fontSize=Math.round(px*1.3*10)/10+'px';}}}
+    function run(){try{caps();}catch(e){}try{fix();}catch(e){}}
+    if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+    window.addEventListener('load',function(){setTimeout(function(){try{caps();fix();}catch(e){}},400);setTimeout(function(){try{caps();fix();}catch(e){}},1600);});
+    new MutationObserver(function(){try{fix();}catch(e){}}).observe(R,{attributes:true,attributeFilter:['class']});
+    var tm=null;new MutationObserver(function(ms){if(!R.classList.contains('light'))return;for(var i=0;i<ms.length;i++){if(ms[i].addedNodes.length){clearTimeout(tm);tm=setTimeout(function(){try{caps();fix();}catch(e){}},250);return;}}}).observe(document.body,{childList:true,subtree:true});
+    window.olLightFix=fix;
+  }catch(e){}
+})();
+
+</script>
 </body>
 </html>

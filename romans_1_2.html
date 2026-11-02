@@ -500,6 +500,43 @@ html.sb-collapsed #ol-sbt{left:0}
 @media (max-width:640px){.rm-bar{margin:10px 12px 6px}}
 @media print{.rm-bar,.rm-pn{display:none!important}}
 </style>
+<style id="ol-auth">
+/* AUTO-AUTHENTIC-CSS: book typography (EB Garamond, self-hosted, SIL OFL) and quieter ornament */
+@font-face{font-family:'EB Garamond';font-style:normal;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-greek-ext-wght-normal.woff2) format('woff2');unicode-range:U+1F00-1FFF}
+@font-face{font-family:'EB Garamond';font-style:normal;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-greek-wght-normal.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
+@font-face{font-family:'EB Garamond';font-style:normal;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-latin-ext-wght-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'EB Garamond';font-style:normal;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-latin-wght-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'EB Garamond';font-style:italic;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-greek-ext-wght-italic.woff2) format('woff2');unicode-range:U+1F00-1FFF}
+@font-face{font-family:'EB Garamond';font-style:italic;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-greek-wght-italic.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
+@font-face{font-family:'EB Garamond';font-style:italic;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-latin-ext-wght-italic.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'EB Garamond';font-style:italic;font-display:swap;font-weight:400 800;src:url(fonts/eb-garamond-latin-wght-italic.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+html{font-size-adjust:.47}
+body,body *:not(svg):not(svg *):not(code):not(pre):not(kbd){font-family:'EB Garamond',Georgia,'Times New Roman',serif!important;font-size-adjust:.47!important}
+body{font-variant-numeric:oldstyle-nums;text-rendering:optimizeLegibility;font-kerning:normal}
+h1,h2,h3,h4,table,.tl-date,.htl-cd,.yr,.ol-readtime,.sec-num{font-variant-numeric:lining-nums}
+/* tracked capitals become small capitals */
+.ol-sc{text-transform:none!important;font-variant-caps:all-small-caps;letter-spacing:.05em!important}
+/* plainer boxes: small radii, no drop shadows or lifting cards */
+.sec,.fc,.fi,.obj,.gt,.sv,.nx,.note,.badge,.tag,.council,.saint,.pos,.stage,.pillar,.lk,.ol-related,.ol-search-btn,.ol-print-btn,.oo-pgband,.rm-bar,.htl-card,.htl-detail,.lp-jump,.path-link,.ev-card,[class*="-card"],[class*="-box"],.obj-tag,.lx,.gk,.typ,.sac,.gift,.ic,.pat,.pf,.hist,.trad-col,.par-col,.q-block,.section,.intro-banner{border-radius:3px!important}
+.oo-pgband,.mob-toggle,.htl-card,.step-n,.section,.sv,.fc{box-shadow:none!important}
+[class*="-card"]:hover,[class*="-box"]:hover,.vbox:hover,.sec:hover,.obj:hover,.fi:hover{box-shadow:none!important;transform:none!important}
+.site-title{text-shadow:none!important}
+/* reading time as a quiet line, not a pill */
+.ol-readtime{text-transform:none!important;border:0!important;background:none!important;padding:0!important;border-radius:0!important;font-style:italic;font-size:.86rem!important;font-variant-caps:normal!important;letter-spacing:0!important}
+.ol-readtime::before{display:none!important}
+/* opening paragraph: no coloured side bar */
+.pg-intro{border-left:0!important;padding-left:0!important;font-size:1.06em}
+/* the ✦ ✦ ✦ ornament becomes a simple rule */
+.orn{letter-spacing:0!important;opacity:1!important}
+.orn::before{content:"";display:block;width:84px;height:1px;margin:2px auto 0;background:currentColor;opacity:.55}
+/* light mode: darker ink for gold text, and red rubrics as in a service book */
+html.light{--gd:#7a5c17}
+html.light .sec-num,html.light p.ol-lead::first-letter,html.light .purpose p:first-of-type::first-letter{color:#8e2a1e!important}
+html.light .oo-pgband .cap,html.light .oo-pgband .cap b,html.light .oo-pgband::after{color:#f4e6c2!important}
+html.light #ol-tt{background:var(--bg2);color:var(--gold);box-shadow:none}
+html.light .ol-ask-fab,html.light .ol-ask-msg.user,html.light .ol-ask-foot button.send{background:#b8923f!important}
+
+</style>
 </head>
 <body>
 <div id="prog"></div>
@@ -543,7 +580,7 @@ html.sb-collapsed #ol-sbt{left:0}
     <h1 class="st">THE <span>ORTHODOX</span> LAMP</h1>
     <p class="ss">Romans 1&ndash;2: Creation &amp; Judgement</p>
     <p class="tg">"For He did all, whatsoever things were fitting... so by every means drawing you to repentance." St John Chrysostom, Homily 5 on Romans</p>
-    <div class="orn">✦ ✦ ✦</div>
+    <div class="orn"></div>
   </div>
 
   <div class="content">
@@ -699,7 +736,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%201%3A5&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 1:5</a></div>
           <div class="txt">"Through Him we have received grace and apostleship for obedience to the faith among all nations for His name,"</div>
-          <div class="mia-note">🔵 Orthodox reading: Faith is something you obey. It is trust that hands itself over to Christ, not merely an opinion held in the mind.</div>
+          <div class="mia-note">Orthodox reading: Faith is something you obey. It is trust that hands itself over to Christ, not merely an opinion held in the mind.</div>
         </div>
         <div class="fc">
           <div class="fn">St John Chrysostom</div>
@@ -711,13 +748,13 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%201%3A16&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 1:16</a></div>
           <div class="txt">"For I am not ashamed of the gospel of Christ, for it is the power of God to salvation for everyone who believes, for the Jew first and also for the Greek."</div>
-          <div class="mia-note">🔵 Orthodox reading: The gospel is not only a message about power. It is itself God's power at work, and it is offered to Jew and Greek alike.</div>
+          <div class="mia-note">Orthodox reading: The gospel is not only a message about power. It is itself God's power at work, and it is offered to Jew and Greek alike.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%201%3A17&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 1:17</a></div>
           <div class="txt">"For in it the righteousness of God is revealed from faith to faith; as it is written, 'The just shall live by faith.'"</div>
-          <div class="mia-note">🔵 Orthodox reading: God's righteousness is revealed and given in the gospel, and it is received by faith from beginning to end. Paul quotes Habakkuk 2:4.</div>
-          <div class="dyo-note">🟣 Protestant reading: This is the verse of the Reformation. Luther came to see "the righteousness of God" not as the standard by which God condemns sinners but as the gift by which He justifies them through faith.</div>
+          <div class="mia-note">Orthodox reading: God's righteousness is revealed and given in the gospel, and it is received by faith from beginning to end. Paul quotes Habakkuk 2:4.</div>
+          <div class="dyo-note">Protestant reading: This is the verse of the Reformation. Luther came to see "the righteousness of God" not as the standard by which God condemns sinners but as the gift by which He justifies them through faith.</div>
         </div>
         <p>It surprises many Protestants to find how close Chrysostom's comment on 1:17 sounds to their own reading:</p>
         <div class="fc">
@@ -759,17 +796,17 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%201%3A19&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 1:19</a></div>
           <div class="txt">"because what may be known of God is manifest in them, for God has shown it to them."</div>
-          <div class="mia-note">🔵 Orthodox reading: The knowledge of God is not something people must climb to by cleverness. God Himself has shown it to them.</div>
+          <div class="mia-note">Orthodox reading: The knowledge of God is not something people must climb to by cleverness. God Himself has shown it to them.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%201%3A20&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 1:20</a></div>
           <div class="txt">"For since the creation of the world His invisible attributes are clearly seen, being understood by the things that are made, even His eternal power and Godhead, so that they are without excuse,"</div>
-          <div class="mia-note">🔵 Orthodox reading: Creation is a real revelation of God's power and divinity, plain enough that those who refuse it have no defence.</div>
+          <div class="mia-note">Orthodox reading: Creation is a real revelation of God's power and divinity, plain enough that those who refuse it have no defence.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%201%3A21&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 1:21</a></div>
           <div class="txt">"because, although they knew God, they did not glorify Him as God, nor were thankful, but became futile in their thoughts, and their foolish hearts were darkened."</div>
-          <div class="mia-note">🔵 Orthodox reading: The fault was not ignorance but ingratitude. They knew God and would not glorify Him or give thanks, and their hearts grew dark as a result.</div>
+          <div class="mia-note">Orthodox reading: The fault was not ignorance but ingratitude. They knew God and would not glorify Him or give thanks, and their hearts grew dark as a result.</div>
         </div>
         <div class="fc">
           <div class="fn">St John Chrysostom</div>
@@ -851,12 +888,12 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%201%3A24&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 1:24</a></div>
           <div class="txt">"Therefore God also gave them up to uncleanness, in the lusts of their hearts, to dishonor their bodies among themselves,"</div>
-          <div class="mia-note">🔵 Orthodox reading: God's "giving up" is His judgement on a refusal that came first. They exchanged the truth for a lie, and He let them have what they chose.</div>
+          <div class="mia-note">Orthodox reading: God's "giving up" is His judgement on a refusal that came first. They exchanged the truth for a lie, and He let them have what they chose.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%201%3A28&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 1:28</a></div>
           <div class="txt">"And even as they did not like to retain God in their knowledge, God gave them over to a debased mind, to do those things which are not fitting;"</div>
-          <div class="mia-note">🔵 Orthodox reading: The pattern is exact: they did not want God in their knowledge, so God let their minds go where they wished.</div>
+          <div class="mia-note">Orthodox reading: The pattern is exact: they did not want God in their knowledge, so God let their minds go where they wished.</div>
         </div>
         <div class="fc">
           <div class="fn">St John Chrysostom</div>
@@ -895,7 +932,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%201%3A26-27&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 1:26-27</a></div>
           <div class="txt">"For this reason God gave them up to vile passions. For even their women exchanged the natural use for what is against nature. Likewise also the men, leaving the natural use of the woman, burned in their lust for one another, men with men committing what is shameful, and receiving in themselves the penalty of their error which was due."</div>
-          <div class="mia-note">🔵 Orthodox reading: Paul gives same-sex relations as an example of the "exchange" he has been describing: turning from the pattern of the Creator to what is against it. The Church has always read these verses as moral teaching.</div>
+          <div class="mia-note">Orthodox reading: Paul gives same-sex relations as an example of the "exchange" he has been describing: turning from the pattern of the Creator to what is against it. The Church has always read these verses as moral teaching.</div>
         </div>
         <p>Chrysostom notes that Paul uses the word "nature" both to make the charge and to keep his language modest:</p>
         <div class="fc">
@@ -922,7 +959,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%202%3A1&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 2:1</a></div>
           <div class="txt">"Therefore you are inexcusable, O man, whoever you are who judge, for in whatever you judge another you condemn yourself; for you who judge practice the same things."</div>
-          <div class="mia-note">🔵 Orthodox reading: The person who condemns others for what he does himself has signed his own sentence. This is not a ban on calling sin sin. Paul has just done that. It is a warning against hypocrisy.</div>
+          <div class="mia-note">Orthodox reading: The person who condemns others for what he does himself has signed his own sentence. This is not a ban on calling sin sin. Paul has just done that. It is a warning against hypocrisy.</div>
         </div>
         <div class="fc">
           <div class="fn">St John Chrysostom</div>
@@ -933,7 +970,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%202%3A4&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 2:4</a></div>
           <div class="txt">"Or do you despise the riches of His goodness, forbearance, and longsuffering, not knowing that the goodness of God leads you to repentance?"</div>
-          <div class="mia-note">🔵 Orthodox reading: God's patience is not weakness or indifference. It is kindness meant to bring us to repentance.</div>
+          <div class="mia-note">Orthodox reading: God's patience is not weakness or indifference. It is kindness meant to bring us to repentance.</div>
         </div>
         <div class="fc">
           <div class="fn">St John Chrysostom</div>
@@ -944,7 +981,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%202%3A5&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 2:5</a></div>
           <div class="txt">"But in accordance with your hardness and your impenitent heart you are treasuring up for yourself wrath in the day of wrath and revelation of the righteous judgment of God,"</div>
-          <div class="mia-note">🔵 Orthodox reading: The hard heart stores up wrath for itself. The sinner, not God, is the author of his own condemnation.</div>
+          <div class="mia-note">Orthodox reading: The hard heart stores up wrath for itself. The sinner, not God, is the author of his own condemnation.</div>
         </div>
         <div class="fc">
           <div class="fn">St John Chrysostom</div>
@@ -977,18 +1014,18 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%202%3A6-7&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 2:6-7</a></div>
           <div class="txt">"who 'will render to each one according to his deeds': eternal life to those who by patient continuance in doing good seek for glory, honor, and immortality;"</div>
-          <div class="mia-note">🔵 Orthodox reading: There will be a real judgement of real lives. Those who keep on doing good, seeking what God gives, will receive eternal life.</div>
-          <div class="dyo-note">🟣 Protestant reading: Most Protestants agree that the judgement looks at works, but as the evidence and fruit of a faith that alone justifies. Many Reformed readers also see 2:7 as stating the law's standard, which no one in fact meets apart from Christ.</div>
+          <div class="mia-note">Orthodox reading: There will be a real judgement of real lives. Those who keep on doing good, seeking what God gives, will receive eternal life.</div>
+          <div class="dyo-note">Protestant reading: Most Protestants agree that the judgement looks at works, but as the evidence and fruit of a faith that alone justifies. Many Reformed readers also see 2:7 as stating the law's standard, which no one in fact meets apart from Christ.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%202%3A13&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 2:13</a></div>
           <div class="txt">"for not the hearers of the law are just in the sight of God, but the doers of the law will be justified;"</div>
-          <div class="mia-note">🔵 Orthodox reading: Hearing the law is not enough. God justifies those who do it.</div>
+          <div class="mia-note">Orthodox reading: Hearing the law is not enough. God justifies those who do it.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=John%205%3A28-29&amp;version=NKJV" target="_blank" rel="noopener noreferrer">John 5:28-29</a></div>
           <div class="txt">"Do not marvel at this; for the hour is coming in which all who are in the graves will hear His voice and come forth— those who have done good, to the resurrection of life, and those who have done evil, to the resurrection of condemnation."</div>
-          <div class="mia-note">🔵 Orthodox reading: Christ Himself describes the last judgement in the same terms.</div>
+          <div class="mia-note">Orthodox reading: Christ Himself describes the last judgement in the same terms.</div>
         </div>
         <h3>The Fathers</h3>
         <div class="fc">
@@ -1063,12 +1100,12 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%202%3A14-15&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 2:14-15</a></div>
           <div class="txt">"for when Gentiles, who do not have the law, by nature do the things in the law, these, although not having the law, are a law to themselves, who show the work of the law written in their hearts, their conscience also bearing witness, and between themselves their thoughts accusing or else excusing them."</div>
-          <div class="mia-note">🔵 Orthodox reading: There is a moral law written into human nature. Even those without the law of Moses know right from wrong, and their conscience bears witness.</div>
+          <div class="mia-note">Orthodox reading: There is a moral law written into human nature. Even those without the law of Moses know right from wrong, and their conscience bears witness.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%202%3A16&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 2:16</a></div>
           <div class="txt">"in the day when God will judge the secrets of men by Jesus Christ, according to my gospel."</div>
-          <div class="mia-note">🔵 Orthodox reading: Every conscience will be laid open on the day when God judges through Christ.</div>
+          <div class="mia-note">Orthodox reading: Every conscience will be laid open on the day when God judges through Christ.</div>
         </div>
         <p>Who are these Gentiles who "by nature do the things in the law"? The question sounds technical, but the answer shows how each tradition reads the whole chapter. There are three main readings.</p>
         <h3>1. Righteous Gentiles before Christ: St John Chrysostom</h3>
@@ -1088,7 +1125,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Acts%2010%3A34-35&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Acts 10:34-35</a></div>
           <div class="txt">"Then Peter opened his mouth and said: 'In truth I perceive that God shows no partiality. But in every nation whoever fears Him and works righteousness is accepted by Him."</div>
-          <div class="mia-note">🔵 Orthodox reading: Cornelius, a Gentile who feared God, prayed and gave alms, was "accepted" by God and was then brought to Christ and baptised. This is the kind of person Chrysostom has in mind.</div>
+          <div class="mia-note">Orthodox reading: Cornelius, a Gentile who feared God, prayed and gave alms, was "accepted" by God and was then brought to Christ and baptised. This is the kind of person Chrysostom has in mind.</div>
         </div>
         <h3>2. Gentile Christians: St Augustine</h3>
         <p>Augustine argues that the Gentiles of 2:14&ndash;15 are believers in whom the new covenant promise of Jeremiah 31:33 has come true, God writing His law on their hearts:</p>
@@ -1138,12 +1175,12 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Romans%202%3A28-29&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Romans 2:28-29</a></div>
           <div class="txt">"For he is not a Jew who is one outwardly, nor is circumcision that which is outward in the flesh; but he is a Jew who is one inwardly; and circumcision is that of the heart, in the Spirit, not in the letter; whose praise is not from men but from God."</div>
-          <div class="mia-note">🔵 Orthodox reading: What counts before God is the inward reality. The heart is circumcised by the Spirit, and the praise comes from God, not men.</div>
+          <div class="mia-note">Orthodox reading: What counts before God is the inward reality. The heart is circumcised by the Spirit, and the praise comes from God, not men.</div>
         </div>
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Deuteronomy%2030%3A6&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Deuteronomy 30:6</a></div>
           <div class="txt">"And the Lord your God will circumcise your heart and the heart of your descendants, to love the Lord your God with all your heart and with all your soul, that you may live."</div>
-          <div class="mia-note">🔵 Orthodox reading: This was always the promise: God Himself would circumcise the heart.</div>
+          <div class="mia-note">Orthodox reading: This was always the promise: God Himself would circumcise the heart.</div>
         </div>
         <div class="fc">
           <div class="fn">St John Chrysostom</div>
@@ -1161,7 +1198,7 @@ html.sb-collapsed #ol-sbt{left:0}
         <div class="sv">
           <div class="ref"><a class="sv-lk" href="https://www.biblegateway.com/passage/?search=Colossians%202%3A11-12&amp;version=NKJV" target="_blank" rel="noopener noreferrer">Colossians 2:11-12</a></div>
           <div class="txt">"In Him you were also circumcised with the circumcision made without hands, by putting off the body of the sins of the flesh, by the circumcision of Christ, buried with Him in baptism, in which you also were raised with Him through faith in the working of God, who raised Him from the dead."</div>
-          <div class="mia-note">🔵 Orthodox reading: The circumcision made without hands takes place when we are buried and raised with Christ in baptism, through faith in the working of God.</div>
+          <div class="mia-note">Orthodox reading: The circumcision made without hands takes place when we are buried and raised with Christ in baptism, through faith in the working of God.</div>
         </div>
         <div class="fc">
           <div class="fn">St Justin Martyr</div>
@@ -1179,37 +1216,37 @@ html.sb-collapsed #ol-sbt{left:0}
       <div class="sec-b">
 
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Romans 1:17 proves justification by faith alone. The Fathers who talk about works have misread Paul."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>"Romans 1:17 proves justification by faith alone. The Fathers who talk about works have misread Paul."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> Chrysostom read 1:17 and said righteousness comes "by a gift from above, contributing one thing only from your own store, believing." The Fathers had no trouble with grace received by faith. What they did not do was pull 1:17 away from 2:6&ndash;7, where the same Paul says God will give eternal life "to those who by patient continuance in doing good seek for glory, honor, and immortality."</p><p>Any reading of Romans must hold both verses. The Fathers hold them by seeing faith as the entrance into a life of union with Christ that bears fruit and will be judged. Calvin holds them by saying the works are rewarded but are not the ground of salvation. Both are serious attempts. The Fathers' reading has the advantage of being the one the Church held from the beginning, as St Clement's letter from the first century shows.</p>
           </div>
         </div>
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Romans 2:13 is only hypothetical. Nobody actually keeps the law, so nobody is justified that way."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>"Romans 2:13 is only hypothetical. Nobody actually keeps the law, so nobody is justified that way."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> This is Calvin's reading, and it fits Paul's conclusion in 3:20. But Paul in this chapter keeps describing real people: those who "by patient continuance in doing good" seek glory (2:7), Gentiles who "by nature do the things in the law" (2:14), the uncircumcised man who "keeps the righteous requirements of the law" (2:26) and the Jew "who is one inwardly" (2:29).</p><p>Chrysostom and Augustine disagreed about who these people were, but neither thought they were imaginary. Augustine read 2:13 to mean that God makes people righteous so that they become doers of the law. Several modern Protestant commentators now agree that Paul has real people in view.</p>
           </div>
         </div>
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ "If God "gave them up," then God caused their sin."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>"If God "gave them up," then God caused their sin."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> Paul says God gave them up because they had already exchanged the truth for a lie (1:25) and did not want to keep God in their knowledge (1:28). The handing over is a judgement on a choice they had made.</p><p>Chrysostom compares it to a general who withdraws, leaving the soldiers to the enemy "not by thrusting them himself, but by stripping them of his own assistance." St John of Damascus says Scripture often speaks of what God permits as if He did it. Even Calvin, who gives the verse a stronger sense, insists that "the cause of sin is not from God."</p>
           </div>
         </div>
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Natural revelation cannot save, so Romans 1 means that everyone who never heard the gospel is lost."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>"Natural revelation cannot save, so Romans 1 means that everyone who never heard the gospel is lost."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> Paul's point in Romans 1 is that everyone is without excuse and needs the gospel. He is not drawing up a list of who will be saved. The Church proclaims that salvation is in Christ alone and calls every person to faith and baptism.</p><p>At the same time, the Fathers did not presume to judge those God has not shown us. Chrysostom names Job, Melchizedek, the Ninevites and Cornelius as Gentiles who honoured God. The Church knows where grace is given, in Christ and His Church; she does not claim to know the limits of God's mercy towards those who never heard. That is left to Him, and it is a reason for mission, not complacency.</p>
           </div>
         </div>
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Teaching that God judges by works is Pelagianism."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>"Teaching that God judges by works is Pelagianism."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> Pelagius taught that man can keep God's commands by his own natural powers. The Fathers condemned this, and the Council of Ephesus in 431 confirmed the condemnation of his follower Celestius.</p><p>Saying that God judges works is not Pelagian. It is what Paul says in 2:6 and Christ says in John 5:29. The question is where good works come from. The Orthodox answer with Augustine: from God's grace working in us, so that when God crowns them, He crowns His own gifts. Without grace we can do nothing (John 15:5); with grace we freely work.</p>
           </div>
         </div>
         <div class="obj">
-          <button class="obj-h" onclick="tobj(this)"><span>⚡ "Romans 2:1 means Christians should not say anything is a sin."</span><span class="arr">▼</span></button>
+          <button class="obj-h" onclick="tobj(this)"><span>"Romans 2:1 means Christians should not say anything is a sin."</span><span class="arr">▼</span></button>
           <div class="obj-b">
             <p><strong>OO Response:</strong> Paul has just named a long list of sins and called them deserving of death (1:32). He does not take any of it back. What he condemns in 2:1 is condemning others for what you do yourself.</p><p>Chrysostom applies it to the judge who punishes an adulterer while committing adultery. The answer to hypocrisy is not silence about sin but repentance, beginning with one's own, which is what God's kindness is meant to lead to (2:4).</p>
           </div>
@@ -2082,5 +2119,53 @@ try{
 })();
 /* END-SHARECARDS-JS */</script>
 <script>(function(){try{var r=document.querySelector('.rm-row'),o=r&&r.querySelector('.on');if(r&&o){r.scrollLeft+=o.getBoundingClientRect().left-r.getBoundingClientRect().left-(r.clientWidth-o.clientWidth)/2;}}catch(e){}})();</script>
+<script id="ol-lightfix">
+/* AUTO-LIGHTFIX-JS: quiet typographic clean-up plus a light-mode safety net.
+   In light mode it finds any box still painted with a dark-theme colour, or text
+   too faint to read, and re-tints it (keeping its hue) so every page reads well. */
+(function(){
+  try{
+    var R=document.documentElement;
+    function P(c){var m=c&&c.match(/rgba?\(([^)]+)\)/);if(!m)return null;var a=m[1].split(/[ ,\/]+/).filter(Boolean).map(Number);return {r:a[0],g:a[1],b:a[2],a:a.length>3?a[3]:1};}
+    function L(c){function f(v){v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4);}return .2126*f(c.r)+.7152*f(c.g)+.0722*f(c.b);}
+    function hsl(c){var r=c.r/255,g=c.g/255,b=c.b/255,mx=Math.max(r,g,b),mn=Math.min(r,g,b),h=0,s=0,l=(mx+mn)/2,d=mx-mn;
+      if(d){s=l>.5?d/(2-mx-mn):d/(mx+mn);h=mx===r?(g-b)/d+(g<b?6:0):mx===g?(b-r)/d+2:(r-g)/d+4;h/=6;}return [h,s,l];}
+    function css(h,s,l){return 'hsl('+Math.round(h*360)+','+Math.round(s*100)+'%,'+Math.round(l*100)+'%)';}
+    function bgOf(el){for(var e=el;e&&e.nodeType===1;e=e.parentElement){var cs=getComputedStyle(e),c=P(cs.backgroundColor);if(c&&c.a>.5)return c;}return {r:247,g:242,b:230,a:1};}
+    var SKIP='.oo-pgband,.ol-ask-fab,#ol-tt,.ol-ask-wrap .send,svg,img,video,canvas,code,pre';
+    var done=[];
+    function undo(){for(var i=done.length-1;i>=0;i--){var d=done[i];if(d[2])d[0].style.setProperty(d[1],d[2],d[3]);else d[0].style.removeProperty(d[1]);}done=[];}
+    function set(el,p,v){done.push([el,p,el.style.getPropertyValue(p),el.style.getPropertyPriority(p)]);el.style.setProperty(p,v,'important');}
+    function fix(){
+      undo();
+      if(!R.classList.contains('light'))return;
+      var all=document.body.querySelectorAll('*');
+      for(var i=0;i<all.length;i++){var el=all[i];if(el.closest(SKIP))continue;
+        var cs=getComputedStyle(el),c=P(cs.backgroundColor);
+        if(c&&c.a>.5&&L(c)<.16){var h=hsl(c);set(el,'background-color',css(h[0],Math.min(h[1],.32),.92));}
+        var bi=cs.backgroundImage;
+        if(bi&&bi.indexOf('gradient')>=0&&bi.indexOf('url(')<0){var m=bi.match(/rgba?\([^)]+\)/);var g=m&&P(m[0]);if(g&&g.a>.5&&L(g)<.16){set(el,'background-image','none');var hg=hsl(g);set(el,'background-color',css(hg[0],Math.min(hg[1],.3),.91));}}
+      }
+      for(var j=0;j<all.length;j++){var t=all[j];if(t.closest(SKIP))continue;
+        var own=false;for(var k=0;k<t.childNodes.length;k++){var n=t.childNodes[k];if(n.nodeType===3&&n.textContent.trim()){own=true;break;}}
+        if(!own)continue;
+        var fg=P(getComputedStyle(t).color);if(!fg)continue;var bg=bgOf(t),a=L(fg),b=L(bg);
+        var cr=(Math.max(a,b)+.05)/(Math.min(a,b)+.05);
+        if(cr<4.2&&b>.4){var hf=hsl(fg);set(t,'color',css(hf[0],Math.min(hf[1],.6),hf[1]>.15?.27:.24));}
+      }
+    }
+    /* uppercase, widely tracked labels read as small capitals, as in a printed book */
+    function caps(){var all=document.body.querySelectorAll('*');for(var i=0;i<all.length;i++){var el=all[i];if(el.closest('.oo-pgband,.ol-ask-wrap,#ol-tt'))continue;var cs=getComputedStyle(el);
+      if(!el.classList.contains('ol-sc')&&parseFloat(cs.fontSize)<18&&cs.textTransform==='uppercase'&&parseFloat(cs.letterSpacing)>=0.6&&el.textContent.trim()){var px=parseFloat(cs.fontSize);el.classList.add('ol-sc');if(px)el.style.fontSize=Math.round(px*1.3*10)/10+'px';}}}
+    function run(){try{caps();}catch(e){}try{fix();}catch(e){}}
+    if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+    window.addEventListener('load',function(){setTimeout(function(){try{caps();fix();}catch(e){}},400);setTimeout(function(){try{caps();fix();}catch(e){}},1600);});
+    new MutationObserver(function(){try{fix();}catch(e){}}).observe(R,{attributes:true,attributeFilter:['class']});
+    var tm=null;new MutationObserver(function(ms){if(!R.classList.contains('light'))return;for(var i=0;i<ms.length;i++){if(ms[i].addedNodes.length){clearTimeout(tm);tm=setTimeout(function(){try{caps();fix();}catch(e){}},250);return;}}}).observe(document.body,{childList:true,subtree:true});
+    window.olLightFix=fix;
+  }catch(e){}
+})();
+
+</script>
 </body>
 </html>
