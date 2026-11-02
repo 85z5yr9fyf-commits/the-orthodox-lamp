@@ -442,7 +442,7 @@ html.light .ol-ask-wrap{box-shadow:0 24px 70px rgba(40,30,10,.22)}
 .ol-ask-foot input:focus{border-color:var(--gd,#c9a84c)}
 .ol-ask-foot button.send{flex:none;border:none;background:var(--gd,#c9a84c);color:#1a140a;width:38px;height:38px;border-radius:9px;cursor:pointer;font-size:1.15rem;line-height:1;display:flex;align-items:center;justify-content:center}
 .ol-ask-foot button.send:hover{filter:brightness(1.06)}
-.ol-ask-note{font-size:.66rem;color:var(--mu);text-align:center;padding:6px 12px 9px;line-height:1.4}
+.ol-ask-note{font-size:.66rem;color:var(--mu);text-align:center;padding:6px 12px 9px;line-height:1.4}.ol-ask-dl{display:block;margin-top:3px;opacity:.85}
 @media(max-width:480px){.ol-ask-wrap{right:8px;bottom:8px;width:auto;left:8px;height:80vh;max-height:none}.ol-ask-fab{right:12px;bottom:14px}#ol-top{bottom:78px}}
 /* END-FEATURES4 */
 
@@ -1254,9 +1254,10 @@ window.OL_ASK_ENDPOINT = "https://ask-the-lamp.sebazz7397.workers.dev";
     var lampAv=(function(){var hd=wrap.querySelector('.ol-ask-hd');if(!hd)return null;var a=document.createElement('span');a.className='ol-lamp ol-lamp-hd st-idle';a.innerHTML=LAMP_SVG;hd.insertBefore(a,hd.firstChild);return a;})();
     function lampState(s){if(lampAv)lampAv.className='ol-lamp ol-lamp-hd st-'+s;}
     var noteEl=wrap.querySelector('.ol-ask-note');
-    if(noteEl)noteEl.textContent=AI_ENDPOINT
+    if(noteEl){noteEl.textContent=AI_ENDPOINT
       ?'AI answers are generated only from this site’s pages, with sources shown — always verify against the cited pages.'
       :'Answers are drawn only from this site’s pages · not a live AI chat';
+      var dl=document.createElement('span');dl.className='ol-ask-dl';dl.textContent='Your first question downloads about 1 MB of site text. After that it is saved on your device.';noteEl.appendChild(dl);}
     var subEl=wrap.querySelector('.ol-ask-hd .ti span');
     if(subEl&&AI_ENDPOINT)subEl.textContent='Grounded answers from the site, with sources';
 
