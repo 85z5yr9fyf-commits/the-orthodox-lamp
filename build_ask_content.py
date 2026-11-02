@@ -4,7 +4,7 @@ import json,re,glob,os,sys
 from bs4 import BeautifulSoup
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 old={p['f']:p for p in json.load(open('ask-content.json',encoding='utf-8'))['pages']}
-SKIP={'index.html','ortho_deploy.html','study.html','learning_paths.html','fathers.html'}
+SKIP={'apostolic_grace.html','index.html','ortho_deploy.html','study.html','learning_paths.html','fathers.html'}
 CH=1100
 def clean(t): return re.sub(r'\s+',' ',t).strip()
 def chunks(text):
