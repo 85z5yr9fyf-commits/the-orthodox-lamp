@@ -2,7 +2,7 @@
    Strategy: stale-while-revalidate for same-origin GET requests, so every page
    and data file you visit is cached and remains available offline. A small shell
    is precached on install so the site opens even on a cold offline start. */
-var CACHE = 'ol-cache-v3';
+var CACHE = 'ol-cache-v4';
 var SHELL = ['./', './index.html', './manifest.webmanifest',
              './icon-192.png', './icon-512.png'];
 

@@ -1959,11 +1959,67 @@ window.OL_ASK_ENDPOINT = "https://ask-the-lamp.sebazz7397.workers.dev";
       out=out.replace(/\[(\d{1,2})\]/g,'<sup class="ol-ci">[$1]</sup>');
       return out.split(/\n{2,}/).map(function(p){return '<p>'+p.replace(/\n/g,'<br>')+'</p>';}).join('');
     }
-    var STOP={};'the a an and or but of to in on at for with as is are was were be been being do does did this that these those it its their them they we you i he she his her our your my me us not no yes can could would should will shall may might must have has had what why how who whom whose which when where does did about into from than then so such also more most very just only own same other any all both each few how into about'.split(/\s+/).forEach(function(w){STOP[w]=1;});
+    var STOP={};'the a an and or but of to in on at for with as is are was were be been being do does did this that these those it its their them they we you i he she his her our your my me us not no yes can could would should will shall may might must have has had what why how who whom whose which when where does did about into from than then so such also more most very just only own same other any all both each few how into about there here tell explain mean means really believe believes teach teaches say says said'.split(/\s+/).forEach(function(w){STOP[w]=1;});
     function toks(q){return (String(q).toLowerCase().match(/[a-z0-9]+/g)||[]).filter(function(w){return w.length>=3&&!STOP[w];});}
+    /* light stemmer so that "suffering"/"suffer", "baptism"/"baptize", "reliable"/"reliability" meet */
+    var SUF=['ationally','izations','ational','ization','ability','ibility','iveness','fulness','ousness','ations','ities','ation','ions','ments','isms','ists','ings','ised','ized','ises','izes','ment','ness','able','ible','ally','ence','ance','ical','ity','ion','ism','ist','ing','ise','ize','ies','ied','ers','ed','es','ly','al','ic','er','s'];
+    var STEMC={};
+    function stem(w){
+      if(STEMC[w])return STEMC[w];var o=w;
+      w=w.replace(/'s$/,'');
+      for(var pass=0;pass<2;pass++){var hit=false;if(w.length>4){for(var i=0;i<SUF.length;i++){var s=SUF[i];if(w.length-s.length>=4&&w.slice(-s.length)===s){if(s==='s'&&/[sui]s$/.test(w))break;w=w.slice(0,-s.length);if(s==='ies'||s==='ied')w+='y';hit=true;break;}}}if(!hit)break;}
+      if(w.length>4&&w.charAt(w.length-1)==='e')w=w.slice(0,-1);
+      if(w.length>4&&w.slice(-2)==='ss')w=w;
+      STEMC[o]=w;return w;
+    }
+    /* related words: a query word also looks for these (at lower weight) */
+    var SYN={curse:['anathema','excommunicat'],cursed:['anathema'],anathema:['curse','excommunicat'],excommunicat:['anathema'],
+      rebaptiz:['baptism','again','reception'],rebaptism:['baptism','again','reception'],rebapt:['baptism','again','reception'],
+      monophysit:['miaphysit','eutych'],miaphysit:['monophysit'],mary:['theotokos','virgin'],theotokos:['mary'],virgin:['theotokos'],
+      pray:['intercession'],prayer:['intercession'],intercession:['pray'],suffer:['evil'],pain:['evil','suffer'],evil:['suffer'],
+      predestin:['calvin','elect','election'],predestination:['calvin','elect'],elect:['predestin'],
+      becom:['catechumen','convert','chrismation'],convert:['becom','reception','catechumen'],join:['becom','convert','reception'],
+      hell:['gehenna','damnation','punishment','annihilation'],damnation:['hell'],
+      bible:['scripture'],scripture:['bible'],enough:['sola','alone','sufficien'],alone:['sola'],
+      pope:['papal','papacy','rome'],papal:['pope'],papacy:['pope'],communion:['eucharist'],eucharist:['communion'],
+      tongue:['glossolalia','gifts'],tongues:['glossolalia','gift'],economy:['oikonomia','economia'],oikonomia:['economy','economia'],economia:['economy','oikonomia'],
+      copt:['coptic'],coptic:['copt'],catholic:['rome','latin'],idol:['idolatry','veneration','icon'],idolatry:['veneration','icon'],
+      afterlife:['death','soul'],death:['soul','afterlife'],resurrect:['risen','rise'],rise:['resurrect'],
+      woman:['women','deacon'],women:['woman','deacon','ordination'],priest:['priesthood','ordination'],
+      reliab:['reliability','historical'],gay:['homosexual'],lesbian:['homosexual'],confess:['confession','repentance'],natur:['miaphysit','union'],god:[],jesus:['christ'],christ:['jesus']};
+    /* word pairs that point at one idea */
+    var PAIR=[[['jesus','god'],['divinity','divin']],[['christ','god'],['divinity','divin']],[['faith','alone'],['sola','fide']],[['bible','alone'],['sola','scriptura']],[['bible','enough'],['sola','scriptura']],[['scripture','alone'],['sola','scriptura']],[['god','allow'],['evil','suffer']],[['god','exist'],['evidence','exist']]];
+    function qTerms(q,prev){
+      var raw=toks(q),T={},P={},i;
+      function add(w,wt,par){var s=stem(w);if(!s||STOP[s])return;if(!T[s]||T[s]<wt){T[s]=wt;P[s]=par||s;}}
+      raw.forEach(function(w){add(w,1);});
+      var lq=String(q).toLowerCase();
+      if(/\bwills?\s+of\s+(christ|jesus|god)\b/.test(lq)){add('will',1);add('monothelit',.6);add('energ',.6);}
+      var st=raw.map(stem);
+      PAIR.forEach(function(p){var a=stem(p[0][0]),b=stem(p[0][1]);if(st.indexOf(a)>=0&&st.indexOf(b)>=0)p[1].forEach(function(x){add(x,.9,a);});});
+      st.forEach(function(s){(SYN[s]||[]).forEach(function(x){add(x,.6,s);});});
+      if(prev){var pt=toks(prev);pt.forEach(function(w){add(w,.5);});pt.map(stem).forEach(function(s){(SYN[s]||[]).forEach(function(x){add(x,.5);});});}
+      return {raw:raw,T:T,P:P};
+    }
+    function wordsOf(t){return (String(t||'').toLowerCase().match(/[a-z0-9]+/g)||[]);}
 
-    var C=null,cP=null;
-    function loadC(){if(cP)return cP;cP=fetch('ask-content.json').then(function(r){return r.json();}).then(function(d){C=d;return d;}).catch(function(){C={pages:[]};return C;});return cP;}
+    var C=null,cP=null,IX=null;
+    function buildIX(){
+      var secs=[],df={},tot=0;
+      (C.pages||[]).forEach(function(p){
+        var ttl={},kw={};wordsOf(p.t).forEach(function(w){ttl[stem(w)]=1;});wordsOf((p.kw||[]).join(' ')).forEach(function(w){kw[stem(w)]=1;});
+        (p.secs||[]).forEach(function(s){
+          var tf={},n=0,hd={};
+          wordsOf(s.x).forEach(function(w){if(w.length<3)return;var k=stem(w);tf[k]=(tf[k]||0)+1;n++;});
+          wordsOf(s.h).forEach(function(w){hd[stem(w)]=1;});
+          var seen={};for(var k in tf)seen[k]=1;for(k in hd)seen[k]=1;for(k in ttl)seen[k]=1;
+          for(k in seen)df[k]=(df[k]||0)+1;
+          tot+=n;secs.push({p:p,s:s,tf:tf,n:n,hd:hd,ttl:ttl,kw:kw});
+        });
+      });
+      IX={secs:secs,df:df,N:secs.length,avg:tot/Math.max(1,secs.length)};
+    }
+    function loadC(){if(cP)return cP;cP=fetch('ask-content.json').then(function(r){return r.json();}).then(function(d){C=d;buildIX();return d;}).catch(function(){C={pages:[]};buildIX();return C;});return cP;}
 
     function reEsc(t){return t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}
     function excerpt(x,tk){
@@ -1981,45 +2037,42 @@ window.OL_ASK_ENDPOINT = "https://ask-the-lamp.sebazz7397.workers.dev";
       tk.forEach(function(t){if(t.length<3)return;try{out=out.replace(new RegExp('('+reEsc(t)+')','ig'),'<mark>$1</mark>');}catch(e){}});
       return out;
     }
-    /* whole-word matcher (with light plural/possessive tolerance) so that a query
-       for "christ" does NOT match inside "christian"/"christology", and vice-versa. */
-    function mkRx(t){return new RegExp('\\b'+reEsc(t)+"(?:'s|s)?\\b",'gi');}
-    function nWord(text,rx){if(!text)return 0;var m=String(text).match(rx);return m?m.length:0;}
-    function rank(q){
-      var tk=toks(q);if(!tk.length||!C||!C.pages)return {tk:tk,top:[],broad:false};
-      var rx=tk.map(mkRx);
-      /* pass 1 — how many sections each term appears in (for rarity weighting) */
-      var N=0,dfSec=tk.map(function(){return 0;});
-      C.pages.forEach(function(p){var pk=(p.t||'')+' '+((p.kw||[]).join(' '));(p.secs||[]).forEach(function(s){
-        N++;var blob=pk+' '+(s.h||'')+' '+(s.x||'');
-        tk.forEach(function(t,i){if(nWord(blob,rx[i]))dfSec[i]++;});
-      });});
-      /* rarer term => higher weight; ubiquitous terms (Christ, church…) => near-zero */
-      var idf=dfSec.map(function(df){return Math.log((N+1)/(df+1))+0.15;});
-      /* pass 2 — score every section, weighting each term by its rarity */
-      var hits=[];
-      C.pages.forEach(function(p){
-        var title=(p.t||''),kw=(p.kw||[]).join(' ');
-        (p.secs||[]).forEach(function(s){
-          var head=(s.h||''),body=(s.x||''),sc=0,covered=0;
-          tk.forEach(function(t,i){
-            var w=idf[i],any=false,r=rx[i];
-            if(nWord(head,r)){sc+=14*w;any=true;}
-            if(nWord(title,r)){sc+=8*w;any=true;}
-            if(nWord(kw,r)){sc+=7*w;any=true;}
-            var occ=nWord(body,r);if(occ){sc+=Math.min(occ,4)*4*w;any=true;}
-            if(any)covered++;
-          });
-          if(tk.length>1){if(covered===tk.length)sc+=14;sc+=covered*3;}
-          if(sc>0)hits.push({f:p.f,t:p.t,h:s.h,a:s.a,x:s.x,sc:sc,cov:covered});
+    /* BM25 over section text, plus boosts for words in the page title, section heading and keywords */
+    function rank(q,prev){
+      var Q=qTerms(q,prev),tk=Q.raw,T=Q.T,P=Q.P,keys=Object.keys(T);
+      if(!tk.length||!IX||!IX.N)return {tk:tk,top:[],broad:false};
+      var N=IX.N,idf={},core=0;
+      keys.forEach(function(k){var d=IX.df[k]||0;idf[k]=Math.max(0.05,Math.log(1+(N-d+.5)/(d+.5)));});
+      var CORE={};keys.forEach(function(k){if(T[k]>=.8&&P[k]===k){CORE[k]=1;core++;}});
+      var hits=[],k1=1.2,b=.75;
+      IX.secs.forEach(function(S){
+        var sc=0,cov=0,cv={};
+        keys.forEach(function(k){
+          var w=T[k]*idf[k],any=false,f=S.tf[k]||0;
+          if(f){sc+=w*(f*(k1+1))/(f+k1*(1-b+b*S.n/IX.avg));any=true;}
+          if(S.hd[k]){sc+=2.2*w;any=true;}
+          if(S.ttl[k]){sc+=2.6*w;any=true;}
+          if(S.kw[k]){sc+=1.2*w;any=true;}
+          if(any&&CORE[P[k]]&&!cv[P[k]]){cv[P[k]]=1;cov++;}
         });
+        if(core>1)sc*=(0.55+0.45*cov/core);
+        if(sc>0)hits.push({f:S.p.f,t:S.p.t,h:S.s.h,a:S.s.a,x:S.s.x,sc:sc,cov:cov});
       });
       hits.sort(function(a,b){return b.sc-a.sc;});
-      /* a single word that appears in a large share of the site is "broad" */
-      var broad=(tk.length===1&&N>0&&dfSec[0]>Math.max(40,N*0.18));
-      var per={},top=[],cap=broad?1:2,lim=broad?6:4;
-      for(var i=0;i<hits.length&&top.length<lim;i++){var f=hits[i].f;if((per[f]||0)>=cap)continue;per[f]=(per[f]||0)+1;top.push(hits[i]);}
+      var st0=tk.length===1?stem(tk[0]):'',dfx=st0?(IX.df[st0]||0):0;
+      var broad=(tk.length===1&&N>0&&dfx>Math.max(40,N*0.18)&&!prev);
+      var per={},top=[],cap=broad?1:2,lim=6,best=hits.length?hits[0].sc:0;
+      for(var i=0;i<hits.length&&top.length<lim;i++){var h=hits[i];if(h.sc<best*0.25)break;if((per[h.f]||0)>=cap)continue;per[h.f]=(per[h.f]||0)+1;top.push(h);}
       return {tk:tk,top:top,broad:broad,term:tk[0]};
+    }
+    /* is this a follow-up to the last question? (short, or leans on "it/that/they") */
+    var LASTQ='',LASTTOP=[];
+    function followUp(q){
+      if(!LASTQ)return '';
+      var w=String(q).toLowerCase().match(/[a-z']+/g)||[];
+      var s=String(q).toLowerCase().trim();
+      var lead=/^(and|but|so|also|then|what about|how about|and what|and why|and how)\b/.test(s);
+      return lead?LASTQ:'';
     }
 
     /* ---- UI ---- */
@@ -2064,8 +2117,8 @@ window.OL_ASK_ENDPOINT = "https://ask-the-lamp.sebazz7397.workers.dev";
       addBot(h);
     }
     function cap1(s){return s?s.charAt(0).toUpperCase()+s.slice(1):s;}
-    function renderTopic(q){
-      var r=rank(q),tk=r.tk,top=r.top;
+    function renderTopic(q,pv){
+      var prev=(pv!==undefined)?pv:followUp(q),r=rank(q,prev),tk=r.tk,top=r.top;LASTQ=prev?(prev+' '+q).slice(-200):q;
       if(!tk.length){addBot('<p class="lead">Try a question like <em>why do you venerate icons?</em> or type a Bible reference such as <em>John 3:16</em>.</p>');return;}
       if(!top.length){addBot('<p class="lead">I couldn’t find that on the site. Try different words, or browse from the menu.</p>');return;}
       if(r.broad){
@@ -2082,9 +2135,12 @@ window.OL_ASK_ENDPOINT = "https://ask-the-lamp.sebazz7397.workers.dev";
     }
 
     /* citation links under an AI answer, numbered to match [1]/[2] in the text */
-    function citeHTML(top){
-      return '<div class="ol-ai-cite"><p class="lead">Sources on the site</p>'+top.map(function(it,i){
-        return '<a class="ol-ans" href="'+esc(it.f)+(it.a?'#'+esc(it.a):'')+'"><span class="a-t"><span class="a-c">['+(i+1)+']</span>'+esc(it.t)+'</span>'+(it.h?'<span class="a-h">'+esc(it.h)+'</span>':'')+'</a>';
+    function citeHTML(top,ans){
+      var used={},any=false;String(ans||'').replace(/[\[【〔〖]\s*(\d{1,2})\s*[\]】〕〗]/g,function(m,n){used[+n]=1;any=true;return m;});
+      var items=top.map(function(it,i){return {it:it,n:i+1};}).filter(function(o){return !any||used[o.n];});
+      if(!any)items=items.slice(0,3);
+      return '<div class="ol-ai-cite"><p class="lead">'+(any?'Sources on the site':'Closest pages on the site')+'</p>'+items.map(function(o){var it=o.it;
+        return '<a class="ol-ans" href="'+esc(it.f)+(it.a?'#'+esc(it.a):'')+'"><span class="a-t"><span class="a-c">['+o.n+']</span>'+esc(it.t)+'</span>'+(it.h?'<span class="a-h">'+esc(it.h)+'</span>':'')+'</a>';
       }).join('')+'</div>';
     }
     /* stream a grounded answer from the Worker; onErr triggers retrieval fallback */
@@ -2106,7 +2162,7 @@ window.OL_ASK_ENDPOINT = "https://ask-the-lamp.sebazz7397.workers.dev";
       fetch(AI_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({q:q,passages:passages})}).then(function(res){
         if(!res.ok||!res.body)throw new Error('bad response');
         var reader=res.body.getReader(),dec=new TextDecoder(),buf='';
-        function finish(){begin();pinStart();typeReveal(acc,onDone);}
+        function finish(){begin();pinStart();typeReveal(acc,function(){onDone(acc);});}
         function pump(){
           return reader.read().then(function(r){
             if(r.done){finish();return;}
@@ -2126,18 +2182,20 @@ window.OL_ASK_ENDPOINT = "https://ask-the-lamp.sebazz7397.workers.dev";
       }).catch(function(){if(!gotErr){gotErr=true;onErr();}});
     }
     function renderTopicAI(q){
-      var r=rank(q),tk=r.tk,top=r.top;
+      var prev=followUp(q),r=rank(q,prev),tk=r.tk,top=r.top;LASTQ=prev?(prev+' '+q).slice(-200):q;
+      if(prev&&LASTTOP.length){var mt=LASTTOP.slice(0,2),seen={};mt.forEach(function(x){seen[x.f+'|'+x.x.slice(0,60)]=1;});top.forEach(function(x){var k=x.f+'|'+x.x.slice(0,60);if(!seen[k]&&mt.length<6){seen[k]=1;mt.push(x);}});top=mt;}
+      if(top.length)LASTTOP=top.slice();
       if(!tk.length){addBot('<p class="lead">Try a question like <em>why do you venerate icons?</em> or type a Bible reference such as <em>John 3:16</em>.</p>');busy=false;return;}
       if(!top.length){addBot('<p class="lead">I couldn’t find that on the site. Try different words, or browse from the menu.</p>');busy=false;return;}
       var passages=top.slice(0,6).map(function(it){return {t:it.t,h:it.h,x:it.x};});
       lampState('think');
       var bubble=addBot(''+LAMP('think')+'<span class="ol-ai-think">consulting the lamp…</span>');
-      streamAI(q,passages,bubble,function(){
-        var c=document.createElement('div');c.innerHTML=citeHTML(top);
+      streamAI(prev?('(Follow-up to the earlier question: "'+prev+'") '+q):q,passages,bubble,function(ans){
+        var c=document.createElement('div');c.innerHTML=citeHTML(top,ans);
         bubble.appendChild(c.firstChild);busy=false;lampState('happy');setTimeout(function(){lampState('idle');},4200);
       },function(){
         bubble.parentNode&&bubble.parentNode.removeChild(bubble);
-        lampState('idle');renderTopic(q);busy=false;
+        lampState('idle');renderTopic(q,prev);busy=false;
       });
     }
 
