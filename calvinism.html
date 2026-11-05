@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="ol-level" content="In Depth">
 <title>THE ORTHODOX LAMP — Calvinism &amp; TULIP</title>
 <style>
 :root{--gold:#c9a84c;--gl:#e8c96a;--gd:#8a6a20;--bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--tx:#e8e0d0;--mu:#b8ac82;--red:#8b2020;--br:#2a2a2a;--bg5:#3a2e10;--sidebar-w:270px}
@@ -820,12 +821,12 @@ document.querySelector('.sec').classList.add('open');
     document.body.appendChild(bt);
     window.addEventListener('scroll',function(){bt.classList.toggle('show',window.scrollY>420);},{passive:true});
     // reading time
-    var main=document.querySelector('main');
+    var main=document.querySelector('main')||document.querySelector('.content');
     if(main){
-      var txt=main.innerText||'';var words=txt.trim().split(/\s+/).length;
+      var txt=main.textContent||'';var words=txt.trim().split(/\s+/).length;
       var mins=Math.max(1,Math.round(words/200));
-      var rt=document.createElement('div');rt.className='ol-readtime';rt.textContent=mins+' min read';
-      var anchor=main.querySelector('.pg-title,.page-head,.pg-head,.hd');
+      var rt=document.createElement('div');rt.className='ol-readtime';var lvm=document.querySelector('meta[name="ol-level"]');rt.textContent=(lvm?lvm.content+' \u00b7 ':'')+mins+' min read';
+      var anchor=main.querySelector('.pg-title,.page-head,.pg-head,.hd')||(main.tagName!=='MAIN'&&document.querySelector('.hero'));
       if(anchor)anchor.appendChild(rt);else main.insertBefore(rt,main.firstChild);
     }
     // scroll-reveal

@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="ol-level" content="First Steps">
 <title>Monasticism &amp; the Desert Fathers — The Orthodox Lamp</title>
 <style>
 :root{
@@ -834,12 +835,12 @@ function sidebarSearch(q){
     document.body.appendChild(bt);
     window.addEventListener('scroll',function(){bt.classList.toggle('show',window.scrollY>420);},{passive:true});
     // reading time
-    var main=document.querySelector('main');
+    var main=document.querySelector('main')||document.querySelector('.content');
     if(main){
-      var txt=main.innerText||'';var words=txt.trim().split(/\s+/).length;
+      var txt=main.textContent||'';var words=txt.trim().split(/\s+/).length;
       var mins=Math.max(1,Math.round(words/200));
-      var rt=document.createElement('div');rt.className='ol-readtime';rt.textContent=mins+' min read';
-      var anchor=main.querySelector('.pg-title,.page-head,.pg-head,.hd');
+      var rt=document.createElement('div');rt.className='ol-readtime';var lvm=document.querySelector('meta[name="ol-level"]');rt.textContent=(lvm?lvm.content+' \u00b7 ':'')+mins+' min read';
+      var anchor=main.querySelector('.pg-title,.page-head,.pg-head,.hd')||(main.tagName!=='MAIN'&&document.querySelector('.hero'));
       if(anchor)anchor.appendChild(rt);else main.insertBefore(rt,main.firstChild);
     }
     // scroll-reveal
