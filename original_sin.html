@@ -765,9 +765,10 @@ function sidebarSearch(q){
     window.addEventListener('scroll',function(){bt.classList.toggle('show',window.scrollY>420);},{passive:true});
     // reading time
     var main=document.querySelector('main')||document.querySelector('.content');
-    if(main){
-      var txt=main.textContent||'';var words=txt.trim().split(/\s+/).length;
-      var mins=Math.max(1,Math.round(words/200));
+    if(main&&!document.querySelector('meta[name="ol-noread"]')){
+      var cl=main.cloneNode(true);cl.querySelectorAll('script,style,nav,footer,button.arr,.arr,.ol-bc,.oo-pgband,.labels,.sec-num,.src-grid,.src-card,.ol-related,.ol-readtime,.lk-drop,.sources,#sources,.bib,.refs').forEach(function(x){x.parentNode&&x.parentNode.removeChild(x);});
+      var words=(cl.textContent||'').trim().split(/\s+/).filter(function(w){return /[A-Za-z\u0370-\u03ff]/.test(w);}).length;
+      var mins=words/230;mins=mins<10?Math.max(1,Math.round(mins)):Math.round(mins/5)*5;
       var rt=document.createElement('div');rt.className='ol-readtime';var lvm=document.querySelector('meta[name="ol-level"]');rt.textContent=(lvm?lvm.content+' \u00b7 ':'')+mins+' min read';
       var anchor=main.querySelector('.pg-title,.page-head,.pg-head,.hd')||(main.tagName!=='MAIN'&&document.querySelector('.hero'));
       if(anchor)anchor.appendChild(rt);else main.insertBefore(rt,main.firstChild);
